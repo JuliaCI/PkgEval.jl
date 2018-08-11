@@ -1,37 +1,27 @@
 [[Arpack]]
-deps = ["BinaryProvider", "Libdl", "LinearAlgebra", "Random", "SparseArrays", "Test"]
-git-tree-sha1 = "59f5796ccfc2e532d99766dc4bfa20b22c5ede5a"
+deps = ["BinaryProvider", "LinearAlgebra", "Random", "SparseArrays", "Test"]
+git-tree-sha1 = "b30209671cd6137070990e2b71178b2335506256"
 uuid = "7d9fca2a-8960-54d3-9f78-7d1dccf2cb97"
-version = "0.1.0"
+version = "0.1.4"
 
 [[Base64]]
 uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 
 [[BinaryBuilder]]
+deps = ["BinaryProvider", "Compat", "GitHub", "HTTP", "JSON", "MbedTLS", "Nullables", "ObjectFile", "PkgLicenses", "ProgressMeter", "Reexport", "SHA", "TerminalMenus"]
 path = "/home/keno/.julia/dev/BinaryBuilder"
 uuid = "12aac903-9f7c-5d81-afc2-d9565ea332ae"
 version = "0.0.4+"
 
-    [BinaryBuilder.deps]
-    BinaryProvider = "b99e7846-7c00-51b0-8f62-c81ae34c0232"
-    Compat = "34da2185-b29b-5c13-b0c7-acf172513d20"
-    GitHub = "bc5e4493-9b4d-5f90-b8aa-2b2bcaad7a26"
-    HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
-    JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
-    MbedTLS = "739be429-bea8-5141-9913-cc70e7f3736d"
-    Nullables = "4d1e1d77-625e-5b40-9113-a560ec7a8ecd"
-    ObjectFile = "d8793406-e978-5875-9003-1fc021f44a92"
-    PkgLicenses = "fc669557-7ec9-5e45-bca9-462afbc28879"
-    ProgressMeter = "92933f4c-e287-5a05-a399-4b506db050ca"
-    Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
-    SHA = "ea8e919c-243c-51af-8825-aaa63cd721ce"
-    TerminalMenus = "dc548174-15c3-5faf-af27-7997cfbde655"
-
 [[BinaryProvider]]
-deps = ["Compat", "SHA"]
-git-tree-sha1 = "88f5e40c04b5aac568656d6464576974eb9afce4"
+git-tree-sha1 = "94dac52c662ca793008fb689e3daf626b6139943"
 uuid = "b99e7846-7c00-51b0-8f62-c81ae34c0232"
-version = "0.3.2"
+version = "0.3.3"
+
+    [BinaryProvider.deps]
+    Compat = "34da2185-b29b-5c13-b0c7-acf172513d20"
+    Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+    SHA = "ea8e919c-243c-51af-8825-aaa63cd721ce"
 
 [[CodecZlib]]
 deps = ["BinaryProvider", "Compat", "Test", "TranscodingStreams"]
@@ -40,9 +30,9 @@ uuid = "944b1d66-785c-5afd-91f1-9de20f533193"
 version = "0.4.3"
 
 [[Compat]]
-git-tree-sha1 = "f3e87ca1e2df8e1e4f82ea504fddf0b9b0894f61"
+git-tree-sha1 = "c478aec93ea90bb99c307a92df17a76131bf275f"
 uuid = "34da2185-b29b-5c13-b0c7-acf172513d20"
-version = "0.69.0"
+version = "1.0.0"
 
     [Compat.deps]
     Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
@@ -63,18 +53,25 @@ version = "0.69.0"
     SharedArrays = "1a1011a3-84de-559e-8e89-a11a2f7dc383"
     Sockets = "6462fe0b-24de-5631-8697-dd941f90decc"
     SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+    Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
     Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
     UUIDs = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
     Unicode = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
 
 [[DataStructures]]
-deps = ["Compat", "REPL"]
-git-tree-sha1 = "abc05631fbe6e6a62c60f37bf644df87d5470fe4"
+deps = ["InteractiveUtils", "REPL", "Random", "Serialization", "Test"]
+git-tree-sha1 = "a591110d3ac12c9b4d0cec163fcf234baed7f5ac"
 uuid = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
-version = "0.8.3"
+version = "0.10.0"
 
 [[Dates]]
 uuid = "ade2ca70-3891-5945-98fb-dc099432e06a"
+
+[[DeepDiffs]]
+deps = ["Compat"]
+git-tree-sha1 = "cd4648e98d5625c75b9ebbec516533ec1250ce57"
+uuid = "ab62b9b5-e342-54a8-a765-a90f495de1a6"
+version = "1.1.0"
 
 [[DelimitedFiles]]
 uuid = "8bb1440f-4735-579b-a4ab-409b98df4dab"
@@ -93,9 +90,9 @@ version = "4.1.0+"
 
 [[HTTP]]
 deps = ["Base64", "Dates", "Distributed", "IniFile", "MbedTLS", "Sockets", "Test"]
-git-tree-sha1 = "f1dd8a2e46970b318e2637aed47a21af033e3998"
+git-tree-sha1 = "0377221d6785564b378971423ccc71d6e0292644"
 uuid = "cd3eb016-35fb-5094-929b-558a96fad6f3"
-version = "0.6.12"
+version = "0.6.13"
 
 [[IniFile]]
 deps = ["Compat"]
@@ -107,10 +104,10 @@ version = "0.4.0"
 uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 
 [[JSON]]
-deps = ["Compat", "Nullables", "Sockets", "Unicode"]
-git-tree-sha1 = "e2f6776e8bfd310b2ade13fba1faf99d8967d58f"
+deps = ["Dates", "Distributed", "Mmap", "Sockets", "Test", "Unicode"]
+git-tree-sha1 = "723a515212612b2175095fa5fa55da0bb4c377e5"
 uuid = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
-version = "0.17.2"
+version = "0.18.0"
 
 [[LaTeXStrings]]
 deps = ["Compat"]
@@ -128,40 +125,50 @@ uuid = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
 deps = ["Arpack", "Base64", "CodecZlib", "DataStructures", "DelimitedFiles", "Distributed", "LinearAlgebra", "Markdown", "Random", "SharedArrays", "SimpleTraits", "SparseArrays", "Test"]
 path = "/home/keno/.julia/dev/LightGraphs"
 uuid = "093fc24a-ae57-5d10-9952-331d41423f4d"
-version = "0.13.1+"
+version = "0.14.0+"
 
 [[LinearAlgebra]]
 uuid = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 
 [[MacroTools]]
 deps = ["Compat"]
-git-tree-sha1 = "f5c87f9af1c1b0aea42080672dea169f936a83fb"
+git-tree-sha1 = "18c17737f3d375b86b495144ba7ab359ab3dca57"
 uuid = "1914dd2f-81c6-5fcd-8719-6d5c9610ff09"
-version = "0.4.1"
+version = "0.4.2"
 
 [[Markdown]]
 uuid = "d6f4376e-aef5-505a-96c1-9c027394607a"
 
 [[MbedTLS]]
 deps = ["BinaryProvider", "Compat", "Sockets"]
-git-tree-sha1 = "08997c97ca92924bc459b675ac3cfec1b0a3385c"
+git-tree-sha1 = "9c6b927293e9133277d8c99f06ab3d5470b34572"
 uuid = "739be429-bea8-5141-9913-cc70e7f3736d"
-version = "0.5.11"
+version = "0.5.12"
 
 [[Mmap]]
 uuid = "a63ad114-7e13-5084-954f-fe012c677804"
 
 [[Nullables]]
-deps = ["Compat"]
-git-tree-sha1 = "23258f849603ad4fed3ce7dbcb8c0658920fa5ef"
+git-tree-sha1 = "3e0c90487ebaf7f14b9f39e817c5afca41869ccf"
 uuid = "4d1e1d77-625e-5b40-9113-a560ec7a8ecd"
-version = "0.0.5"
+version = "0.0.6"
+
+    [Nullables.deps]
+    Compat = "34da2185-b29b-5c13-b0c7-acf172513d20"
+    InteractiveUtils = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
+    Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 
 [[ObjectFile]]
 deps = ["Compat", "Reexport", "StructIO"]
 git-tree-sha1 = "b1405b56737c39fb95bcc8aa4d954012a392f1ce"
 uuid = "d8793406-e978-5875-9003-1fc021f44a92"
 version = "0.2.0"
+
+[[OrderedCollections]]
+deps = ["Random", "Serialization", "Test"]
+git-tree-sha1 = "cc23c786049328c93138da14e7020a464d707a23"
+uuid = "bac558e1-5e72-5ebc-8fee-abe8a469f55d"
+version = "0.1.0"
 
 [[Pkg]]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
@@ -186,12 +193,6 @@ version = "0.2.1+"
 
 [[PkgLicenses]]
 git-tree-sha1 = "7db3e7592bb1eaf858644d9f17b516b8e28c046c"
-repo-rev = "7db3e7592bb1eaf858644d9f17b516b8e28c046c"
-repo-url = "https://github.com/JuliaPackaging/PkgLicenses.jl"
-uuid = "b242979a-6dd6-11e8-2ab9-e78bc3af494f"
-version = "0.0.0"
-[[PkgLicenses]]
-git-tree-sha1 = "7db3e7592bb1eaf858644d9f17b516b8e28c046c"
 uuid = "fc669557-7ec9-5e45-bca9-462afbc28879"
 version = "0.1.0"
 
@@ -200,9 +201,9 @@ uuid = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 
 [[ProgressMeter]]
 deps = ["Compat"]
-git-tree-sha1 = "cf807099a343964a3708a74a8ecbff4c0aa2ecb0"
+git-tree-sha1 = "30d3473425cdb13b23ff10dfc7727be8bcc2871a"
 uuid = "92933f4c-e287-5a05-a399-4b506db050ca"
-version = "0.5.5"
+version = "0.5.6"
 
 [[REPL]]
 uuid = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
@@ -216,14 +217,16 @@ uuid = "189a3867-3050-52da-a836-e630ba90ab69"
 version = "0.1.0"
 
 [[Revise]]
-git-tree-sha1 = "3f0c0ca0883f0e0595016923108ec1f1dcc3f35b"
+git-tree-sha1 = "8bea8c6c74a5b9d094f1225a366b6913ab86e47f"
 uuid = "295af30f-e4ad-537b-8983-00126c2a3abe"
-version = "0.4.3"
+version = "0.6.0"
 
     [Revise.deps]
-    DataStructures = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
     Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
     FileWatching = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
+    InteractiveUtils = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
+    LibGit2 = "76f85450-5226-5b5a-8eaa-529ad045b433"
+    OrderedCollections = "bac558e1-5e72-5ebc-8fee-abe8a469f55d"
     Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
     REPL = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
     Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
@@ -251,6 +254,9 @@ uuid = "6462fe0b-24de-5631-8697-dd941f90decc"
 [[SparseArrays]]
 uuid = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
 
+[[Statistics]]
+uuid = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
+
 [[StructIO]]
 deps = ["Test"]
 git-tree-sha1 = "010dc73c7146869c042b49adcdb6bf528c12e859"
@@ -266,28 +272,38 @@ version = "0.0.4"
 uuid = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [[TikzGraphs]]
-deps = ["Compat", "LightGraphs", "TikzPictures"]
-git-tree-sha1 = "b8a1f94318af836a3d93a5f0f341066c22ec1403"
+git-tree-sha1 = "83c987eb93c765f78e1adc2c75f00ba92740ac5e"
 uuid = "b4f28e30-c73f-5eaf-a395-8a9db949a742"
-version = "0.6.0"
+version = "0.7.0"
+
+    [TikzGraphs.deps]
+    LightGraphs = "093fc24a-ae57-5d10-9952-331d41423f4d"
+    Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+    Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+    TikzPictures = "37f6aa50-8035-52d0-81c2-5a1d08754b2d"
 
 [[TikzPictures]]
-deps = ["LaTeXStrings"]
-git-tree-sha1 = "133141d39d03c67c57175384e48e592d6d2d2575"
+deps = ["LaTeXStrings", "Test"]
+git-tree-sha1 = "6bc23be23b7efceebe33253c39c0f218b24621ea"
 uuid = "37f6aa50-8035-52d0-81c2-5a1d08754b2d"
-version = "1.2.0"
+version = "2.0.1"
 
 [[TranscodingStreams]]
-deps = ["Compat", "Random", "Test"]
-git-tree-sha1 = "497524e8b703e67caf20cc086d20235852041fe4"
+git-tree-sha1 = "9ace282f45e71d2fd3fcb752ca337452560f3108"
 uuid = "3bb67fe8-82b1-5028-8e26-92a6c54297fa"
-version = "0.5.2"
+version = "0.5.4"
+
+    [TranscodingStreams.deps]
+    Compat = "34da2185-b29b-5c13-b0c7-acf172513d20"
+    Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+    Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+    Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [[URIParser]]
-deps = ["Compat", "Unicode"]
-git-tree-sha1 = "0f9c5e2d14e03fbd00696f9394e288bdd5adacbc"
+deps = ["Test", "Unicode"]
+git-tree-sha1 = "6ddf8244220dfda2f17539fa8c9de20d6c575b69"
 uuid = "30578b45-9adc-5946-b283-645ec420af67"
-version = "0.3.1"
+version = "0.4.0"
 
 [[UUIDs]]
 uuid = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"

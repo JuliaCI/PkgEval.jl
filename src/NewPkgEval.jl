@@ -10,23 +10,48 @@ module NewPkgEval
     using DataStructures
     import LibGit2
 
-    const julia_url = "https://julialang-s3.julialang.org/bin/linux/x64/0.7/julia-0.7.0-alpha-linux-x86_64.tar.gz"
     downloads_dir(name) = joinpath(@__DIR__, "..", "deps", "downloads", name)
-    julia_path() = joinpath(@__DIR__, "..", "deps", "julia")
-    function obtain_julia()
-        download_verify_unpack(
-            julia_url,
-            "8a1adb1fddbdd3e7a05c9ee8dfa322e2940dabe01b8acbb5806478643ed54ed9",
-            julia_path();
-            tarball_path=downloads_dir(basename(julia_url)),
-            force=true
-        )
+    julia_path(ver) = joinpath(@__DIR__, "..", "deps", "julia-$ver")
+    versions_file() = joinpath(@__DIR__, "..", "deps", "Versions.toml")
+
+    function read_versions()
+        vers = TOML.parse(read(versions_file(), String))
     end
 
-    function run_sandboxed_julia(args=``; kwargs...)
-        obtain_julia()
+    function obtain_julia(the_ver)
+        vers = read_versions()
+        for (ver, data) in vers
+            ver = VersionNumber(ver)
+            ver == the_ver || continue
+            if haskey(data, "url")
+                file = get(data, "file", "julia-$ver.tar.gz")
+                @assert !isabspath(file)
+                download_verify_unpack(
+                    data["url"],
+                    data["sha"],
+                    julia_path(ver);
+                    tarball_path=downloads_dir(file),
+                    force=true
+                )
+            else
+                file = data["file"]
+                !isabspath(file) && (file = downloads_dir(file))
+                BinaryProvider.verify(file, data["sha"])
+                isdir(julia_path(ver)) || BinaryProvider.unpack(file, julia_path(ver))
+            end
+            return
+        end
+        error("Requested Julia version not found")
+    end
+
+    function run_sandboxed_julia(args=``; ver=v"1.0", do_obtain=true, kwargs...)
+        if do_obtain
+            obtain_julia(ver)
+        else
+            @assert ispath(julia_path(ver))
+        end
         ispath(registry_path()) || error("Please run `NewPkgEval.get_registry()` first")
-        jp = joinpath(julia_path(), first(readdir(julia_path())))
+        jp = joinpath(julia_path(ver), first(readdir(julia_path(ver))))
         runner = BinaryBuilder.UserNSRunner(pwd(),
             mappings=[
                 jp => "/opt/julia",
@@ -35,9 +60,10 @@ module NewPkgEval
         BinaryBuilder.run_interactive(runner, `/opt/julia/bin/julia --color=yes $args`; kwargs...)
     end
 
-    log_path() = joinpath(@__DIR__, "..", "logs")
-    function run_sandboxed_test(pkg)
-        log = joinpath(log_path(), "$pkg.log")
+    log_path(ver) = joinpath(@__DIR__, "..", "logs-$ver")
+    function run_sandboxed_test(pkg; ver=v"1.0", do_depwarns=false, kwargs...)
+        isdir(log_path(ver)) || mkdir(log_path(ver))
+        log = joinpath(log_path(ver), "$pkg.log")
         c = quote
             mkpath("/root/.julia/registries")
             open("/etc/hosts", "w") do f
@@ -53,7 +79,12 @@ module NewPkgEval
         arg = "using Pkg; eval($(repr(c)))"
         try
             open(log, "w") do f
-                run_sandboxed_julia(`-e $arg`; stdout=f, stderr=f)
+                cmd = ``
+                if do_depwarns
+                    cmd = `--depwarn=error`
+                end
+                cmd = `$cmd -e $arg`
+                run_sandboxed_julia(cmd; ver=ver, kwargs..., stdout=f, stderr=f)
             end
             return true
         catch e
@@ -125,10 +156,12 @@ module NewPkgEval
         "Homebrew",
         "WinRPM",
         "NamedTuples", # As requested by quinnj
-        "Compat"
+        "Compat",
+        "LinearAlgebra"
     ]
 
-    function run_all(dg, ninstances, result = Dict{String, Symbol}())
+    function run_all(dg, ninstances, ver, result = Dict{String, Symbol}(); do_depwarns=false)
+        obtain_julia(ver)
         frontier = BitSet()
         pkgs = copy(dg.names)
         running = Vector{Union{Nothing, Symbol}}(nothing, ninstances)
@@ -241,7 +274,7 @@ module NewPkgEval
                             pkg = dg.names[pkgno]
                             running[i] = pkg
                             times[i] = now()
-                            result[pkg] = run_sandboxed_test(pkg) ? :ok : :fail
+                            result[pkg] = run_sandboxed_test(pkg, do_depwarns=do_depwarns, ver=ver, do_obtain=false) ? :ok : :fail
                             running[i] = nothing
                             put!(completed, pkgno)
                         end
@@ -308,9 +341,10 @@ module NewPkgEval
         g::LightGraphs.SimpleGraphs.SimpleDiGraph
     end
 
-    function read_stdlib()
-        stdlib_path = joinpath(julia_path(), first(readdir(julia_path())),
-                "share/julia/stdlib/v0.7")
+    function read_stdlib(ver)
+        obtain_julia(ver)
+        stdlib_path = joinpath(julia_path(ver), first(readdir(julia_path(ver))),
+                "share/julia/stdlib/v$(ver.major).$(ver.minor)")
         ret = Tuple{String, UUID, Vector{UUID}}[]
         stdlibs = readdir(stdlib_path)
         for stdlib in stdlibs
@@ -321,15 +355,14 @@ module NewPkgEval
         ret
     end
 
-    function PkgDepGraph(pkgs)
+    function PkgDepGraph(pkgs, ver)
         # Add packages
         vertex_map = Dict(pkg[2] => i for (i, pkg) in enumerate(pkgs))
         uuids = map(x->x[2], pkgs)
         names = map(x->x[1], pkgs)
         # Add stdlibs to vertex map
-        stdlibs = read_stdlib()
+        stdlibs = read_stdlib(ver)
         stdlib_uuids = Set(x[2] for x in stdlibs)
-        @Base.show stdlib_uuids
         for (i, (name, uuid, _)) in enumerate(stdlibs)
             x = findfirst(==(uuid), uuids)
             if x === nothing
