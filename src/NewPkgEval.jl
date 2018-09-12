@@ -138,6 +138,9 @@ module NewPkgEval
         "DynamicalBilliards", # Hangs forever
         "ChangePrecision", # Hangs forever
         "Rectangle", # Hangs forever
+        "Parts", # Hangs forever
+        "ZippedArrays", # Hangs forever
+        "Chunks", # Hangs forever
         "Electron",
         "DotOverloading",
         "ValuedTuples",
@@ -148,6 +151,10 @@ module NewPkgEval
         "LazyContext",
         "RecurUnroll", # deleted, hangs
         "TypedBools", # deleted, hangs
+        "LazyCall", # deleted, hangs
+        "MeshCatMechanisms",
+        "SessionHacker",
+        "Embeddings"
     ]
 
     const ok_list = [
