@@ -5,7 +5,7 @@ module NewPkgEval
     using LightGraphs
     import Pkg.TOML
     using Pkg
-    using Pkg: UUID
+    import Base: UUID
     using Dates
     using DataStructures
     import LibGit2
@@ -53,11 +53,11 @@ module NewPkgEval
         ispath(registry_path()) || error("Please run `NewPkgEval.get_registry()` first")
         jp = joinpath(julia_path(ver), first(readdir(julia_path(ver))))
         runner = BinaryBuilder.UserNSRunner(pwd(),
-            mappings=[
-                jp => "/opt/julia",
-                registry_path() => "/opt/Uncurated"
+            workspaces=[
+                jp => "/maps/julia",
+                registry_path() => "/maps/registries/Uncurated"
             ])
-        BinaryBuilder.run_interactive(runner, `/opt/julia/bin/julia --color=yes $args`; kwargs...)
+        BinaryBuilder.run_interactive(runner, `/maps/julia/bin/julia --color=yes $args`; kwargs...)
     end
 
     log_path(ver) = joinpath(@__DIR__, "..", "logs-$ver")
@@ -69,10 +69,11 @@ module NewPkgEval
             open("/etc/hosts", "w") do f
                 println(f, "127.0.0.1\tlocalhost")
             end
+            run(`mkdir /dev/pts /dev/shm`)
             run(`mount -t devpts -o newinstance jrunpts /dev/pts`)
             run(`mount -o bind /dev/pts/ptmx /dev/ptmx`)
             run(`mount -t tmpfs tempfs /dev/shm`)
-            run(`ln -s /opt/Uncurated/ /root/.julia/registries/Uncurated`)
+            #run(`ln -s /opt/General/ /root/.julia/registries/General`)
             Pkg.add($pkg)
             Pkg.test($pkg)
         end
@@ -154,7 +155,8 @@ module NewPkgEval
         "LazyCall", # deleted, hangs
         "MeshCatMechanisms",
         "SessionHacker",
-        "Embeddings"
+        "Embeddings",
+        "GeoStatsDevTools",
     ]
 
     const ok_list = [
@@ -188,7 +190,12 @@ module NewPkgEval
             push!(queue, PkgEntry(length(inneighbors(dg.g, p)), p))
         end
         for x in skip_list
-            skip_pkg!(result, dg, findfirst(==(x), dg.names))
+            pkg = findfirst(==(x), dg.names)
+            if pkg === nothing
+                @warn "Package $(x) in skip list, but not found"
+                continue
+            end
+            skip_pkg!(result, dg, pkg)
         end
         done = false
         processing = false
@@ -229,6 +236,7 @@ module NewPkgEval
                     stop_work()
                     println("done")
                 catch e
+                    @Base.show e
                     stop_work()
                     !isa(e, InterruptException) && rethrow(e)
                 end
@@ -264,6 +272,7 @@ module NewPkgEval
                         processing = false
                     end
                 catch e
+                    @Base.show e
                     stop_work()
                     !isa(e, InterruptException) && rethrow(e)
                 end
@@ -279,13 +288,14 @@ module NewPkgEval
                             end
                             pkgno = pop!(queue).idx
                             pkg = dg.names[pkgno]
-                            running[i] = pkg
+                            running[i] = Symbol(pkg)
                             times[i] = now()
                             result[pkg] = run_sandboxed_test(pkg, do_depwarns=do_depwarns, ver=ver, do_obtain=false) ? :ok : :fail
                             running[i] = nothing
                             put!(completed, pkgno)
                         end
                     catch e
+                        @Base.show e
                         stop_work()
                         !isa(e, InterruptException) && rethrow(e)
                     end
@@ -308,18 +318,10 @@ module NewPkgEval
         pkgs = Tuple{String, UUID, String}[]
         for registry in (registry_path(),)
             open(joinpath(registry, "Registry.toml")) do io
-                # skip forward until [packages] section
-                for line in eachline(io)
-                    occursin(r"^ \s* \[ \s* packages \s* \] \s* $"x, line) && break
-                end
-                for line in eachline(io)
-                    m = match(Pkg.Types.line_re, line)
-                    m == nothing &&
-                            error("misformatted registry.toml package entry: $line")
-                    uuid = UUID(m.captures[1])
-                    name = Base.unescape_string(m.captures[2])
-                    name == "julia" && continue
-                    path = abspath(registry, Base.unescape_string(m.captures[3]))
+                for (_uuid, pkgdata) in Pkg.Types.read_registry(joinpath(registry, "Registry.toml"))["packages"]
+                    uuid = UUID(_uuid)
+                    name = pkgdata["name"]
+                    path = abspath(registry, pkgdata["path"])
                     push!(pkgs, (name, uuid, path))
                 end
             end
@@ -355,7 +357,7 @@ module NewPkgEval
         ret = Tuple{String, UUID, Vector{UUID}}[]
         stdlibs = readdir(stdlib_path)
         for stdlib in stdlibs
-            proj = Pkg.read_project(joinpath(stdlib_path, stdlib, "Project.toml"))
+            proj = Pkg.Types.read_project(joinpath(stdlib_path, stdlib, "Project.toml"))
             deps = UUID.(collect(values(proj["deps"])))
             push!(ret, (proj["name"], UUID(proj["uuid"]), deps))
         end
