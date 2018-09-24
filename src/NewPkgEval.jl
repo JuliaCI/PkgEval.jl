@@ -50,12 +50,12 @@ module NewPkgEval
         else
             @assert ispath(julia_path(ver))
         end
-        ispath(registry_path()) || error("Please run `NewPkgEval.get_registry()` first")
+        #ispath(registry_path()) || error("Please run `NewPkgEval.get_registry()` first")
         jp = joinpath(julia_path(ver), first(readdir(julia_path(ver))))
         runner = BinaryBuilder.UserNSRunner(pwd(),
             workspaces=[
                 jp => "/maps/julia",
-                registry_path() => "/maps/registries/Uncurated"
+                #registry_path() => "/maps/registries/Uncurated"
             ])
         BinaryBuilder.run_interactive(runner, `/maps/julia/bin/julia --color=yes $args`; kwargs...)
     end
@@ -69,7 +69,6 @@ module NewPkgEval
             open("/etc/hosts", "w") do f
                 println(f, "127.0.0.1\tlocalhost")
             end
-            run(`mkdir /dev/pts /dev/shm`)
             run(`mount -t devpts -o newinstance jrunpts /dev/pts`)
             run(`mount -o bind /dev/pts/ptmx /dev/ptmx`)
             run(`mount -t tmpfs tempfs /dev/shm`)
