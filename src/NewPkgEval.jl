@@ -333,7 +333,7 @@ module NewPkgEval
     function get_registry()
         if !isdir(registry_path())
             creds = LibGit2.CachedCredentials()
-            url = Pkg.Types.DEFAULT_REGISTRIES["Uncurated"]
+            url = Pkg.Types.DEFAULT_REGISTRIES["General"]
             repo = Pkg.GitTools.clone(url, registry_path(); header = "registry Uncurated from $(repr(url))", credentials = creds)
             close(repo)
         else
