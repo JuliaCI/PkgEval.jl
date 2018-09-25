@@ -14,10 +14,21 @@ module NewPkgEval
     julia_path(ver) = joinpath(@__DIR__, "..", "deps", "julia-$ver")
     versions_file() = joinpath(@__DIR__, "..", "deps", "Versions.toml")
 
+    """
+        read_versions() -> Dict
+
+    Parse the `deps/Versions.toml` file containing version and download information for
+    various versions of Julia.
+    """
     function read_versions()
         vers = TOML.parse(read(versions_file(), String))
     end
 
+    """
+        obtain_julia(the_ver)
+
+    Download the specified version of Julia using the information provided in `Versions.toml`.
+    """
     function obtain_julia(the_ver)
         vers = read_versions()
         for (ver, data) in vers
@@ -44,6 +55,14 @@ module NewPkgEval
         error("Requested Julia version not found")
     end
 
+    """
+        run_sandboxed_julia(args=``; ver=v"1.0", do_obtain=true, kwargs...)
+
+    Run Julia inside of a sandbox, passing the given arguments `args` to it. The keyword
+    argument `ver` specifies the version of Julia to use, and `do_obtain` dictates whether
+    the specified version should first be downloaded. If `do_obtain` is `false`, it must
+    already be installed.
+    """
     function run_sandboxed_julia(args=``; ver=v"1.0", do_obtain=true, kwargs...)
         if do_obtain
             obtain_julia(ver)
@@ -61,6 +80,17 @@ module NewPkgEval
     end
 
     log_path(ver) = joinpath(@__DIR__, "..", "logs-$ver")
+
+    """
+        run_sandboxed_test(pkg; ver=v"1.0", do_depwarns=false, kwargs...)
+
+    Run the unit tests for a single package `pkg` inside of a sandbox using the Julia version
+    `ver`. If `do_depwarns` is `true`, deprecation warnings emitted while running the package's
+    tests will cause the tests to fail.
+
+    A log for the tests is written to a version-specific directory in the NewPkgEval root
+    directory.
+    """
     function run_sandboxed_test(pkg; ver=v"1.0", do_depwarns=false, kwargs...)
         isdir(log_path(ver)) || mkdir(log_path(ver))
         log = joinpath(log_path(ver), "$pkg.log")
@@ -127,6 +157,7 @@ module NewPkgEval
         end
     end
 
+    # Skip these packages when testing all packages
     const skip_list = [
         "AbstractAlgebra", # Hangs forever
         "DiscretePredictors", # Hangs forever
@@ -158,6 +189,7 @@ module NewPkgEval
         "GeoStatsDevTools",
     ]
 
+    # Blindly assume these packages are okay
     const ok_list = [
         "BinDeps", # Not really ok, but packages may list it just as a fallback
         "InteractiveUtils", # We rely on LD_LIBRARY_PATH working for the moment
@@ -165,9 +197,19 @@ module NewPkgEval
         "WinRPM",
         "NamedTuples", # As requested by quinnj
         "Compat",
-        "LinearAlgebra"
+        "LinearAlgebra", # Takes too long
     ]
 
+    """
+        run_all(depsgraph, ninstances, version[, result]; do_depwarns=false)
+
+    Run all tests for all packages in the given package dependency graph using `ninstances`
+    workers and the specified version of Julia. An existing result `Dict` can be specified,
+    in which case the function will write to that.
+
+    If the keyword argument `do_depwarns` is `true`, deprecation warnings emitted in package
+    tests will cause the package's tests to fail, i.e. Julia is run with `--depwarn=error`.
+    """
     function run_all(dg, ninstances, ver, result = Dict{String, Symbol}(); do_depwarns=false)
         obtain_julia(ver)
         frontier = BitSet()
@@ -313,6 +355,12 @@ module NewPkgEval
         run_all(dg, ninstances, result)
     end
 
+    """
+        read_all_pkgs()
+
+    Read all packages from the default registry and return them as a vector of tuples containing
+    the package name, its UUID, and a path to it.
+    """
     function read_all_pkgs()
         pkgs = Tuple{String, UUID, String}[]
         for registry in (registry_path(),)
@@ -330,6 +378,11 @@ module NewPkgEval
 
     registry_path() = joinpath(@__DIR__, "..", "work", "registry")
 
+    """
+        get_registry()
+
+    Download the default registry, or if it already exists, update it.
+    """
     function get_registry()
         if !isdir(registry_path())
             creds = LibGit2.CachedCredentials()
@@ -363,6 +416,12 @@ module NewPkgEval
         ret
     end
 
+    """
+        PkgDepGraph(pkgs, ver)
+
+    Construct a package dependency graph given a vector of package name, UUID, path tuples
+    and a specific Julia version.
+    """
     function PkgDepGraph(pkgs, ver)
         # Add packages
         vertex_map = Dict(pkg[2] => i for (i, pkg) in enumerate(pkgs))
