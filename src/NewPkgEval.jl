@@ -8,7 +8,7 @@ module NewPkgEval
     import Base: UUID
     using Dates
     using DataStructures
-    import LibGit2
+    using LibGit2
 
     downloads_dir(name) = joinpath(@__DIR__, "..", "deps", "downloads", name)
     julia_path(ver) = joinpath(@__DIR__, "..", "deps", "julia-$ver")
@@ -379,20 +379,28 @@ module NewPkgEval
     registry_path() = joinpath(@__DIR__, "..", "work", "registry")
 
     """
-        get_registry()
+        get_registry(; name="General", url=<General URL>)
 
-    Download the default registry, or if it already exists, update it.
+    Download the given registry, or if it already exists, update it.
     """
-    function get_registry()
+    function get_registry(; name="General", url=Pkg.Types.DEFAULT_REGISTRIES["General"])
+        creds = LibGit2.CachedCredentials()
         if !isdir(registry_path())
-            creds = LibGit2.CachedCredentials()
-            url = Pkg.Types.DEFAULT_REGISTRIES["General"]
-            repo = Pkg.GitTools.clone(url, registry_path(); header = "registry Uncurated from $(repr(url))", credentials = creds)
+            repo = Pkg.GitTools.clone(url, registry_path();
+                                      header="registry $name from $(repr(url))",
+                                      credentials=creds)
             close(repo)
         else
-            errors = Pkg.API.do_update_registry!(registry_path())
-            Pkg.API.print_errors(errors)
+            try
+                with(GitRepo(registry_path())) do repo
+                    Pkg.GitTools.fetch(repo, credentials=creds)
+                end
+            catch e
+                @error "Error updating repo" exception=(e, stacktrace(catch_backtrace()))
+                isa(e, InterruptException) && rethrow(e)
+            end
         end
+        nothing
     end
 
     struct PkgDepGraph
