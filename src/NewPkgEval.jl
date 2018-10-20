@@ -13,6 +13,7 @@ module NewPkgEval
     downloads_dir(name) = joinpath(@__DIR__, "..", "deps", "downloads", name)
     julia_path(ver) = joinpath(@__DIR__, "..", "deps", "julia-$ver")
     versions_file() = joinpath(@__DIR__, "..", "deps", "Versions.toml")
+    registries_file() = joinpath(@__DIR__, "..", "deps", "Registries.toml")
 
     """
         read_versions() -> Dict
@@ -20,9 +21,15 @@ module NewPkgEval
     Parse the `deps/Versions.toml` file containing version and download information for
     various versions of Julia.
     """
-    function read_versions()
-        vers = TOML.parse(read(versions_file(), String))
-    end
+    read_versions() = TOML.parsefile(versions_file())
+
+    """
+        read_registries() -> Dict
+
+    Parse the `deps/Registries.toml` file containing a URL and packages to skip or assume
+    passing for listed registries.
+    """
+    read_registries() = TOML.parsefile(registries_file())
 
     """
         obtain_julia(the_ver)
@@ -158,47 +165,10 @@ module NewPkgEval
     end
 
     # Skip these packages when testing all packages
-    const skip_list = [
-        "AbstractAlgebra", # Hangs forever
-        "DiscretePredictors", # Hangs forever
-        "LinearLeastSquares", # Hangs forever
-        "SLEEF", # Hangs forever
-        "OrthogonalPolynomials", # Hangs forever
-        "IndexableBitVectors",
-        "LatinHypercubeSampling", # Hangs forever
-        "DynamicalBilliards", # Hangs forever
-        "ChangePrecision", # Hangs forever
-        "Rectangle", # Hangs forever
-        "Parts", # Hangs forever
-        "ZippedArrays", # Hangs forever
-        "Chunks", # Hangs forever
-        "Electron",
-        "DotOverloading",
-        "ValuedTuples",
-        "HCubature",
-        "SequentialMonteCarlo",
-        "RequirementVersions",
-        "NumberedLines",
-        "LazyContext",
-        "RecurUnroll", # deleted, hangs
-        "TypedBools", # deleted, hangs
-        "LazyCall", # deleted, hangs
-        "MeshCatMechanisms",
-        "SessionHacker",
-        "Embeddings",
-        "GeoStatsDevTools",
-    ]
-
+    const SKIP_LIST = Ref{Vector{String}}(String[])
     # Blindly assume these packages are okay
-    const ok_list = [
-        "BinDeps", # Not really ok, but packages may list it just as a fallback
-        "InteractiveUtils", # We rely on LD_LIBRARY_PATH working for the moment
-        "Homebrew",
-        "WinRPM",
-        "NamedTuples", # As requested by quinnj
-        "Compat",
-        "LinearAlgebra", # Takes too long
-    ]
+    const OK_LIST = Ref{Vector{String}}(String[])
+    # Both of these are populated by get_registry
 
     """
         run_all(depsgraph, ninstances, version[, result]; do_depwarns=false)
@@ -221,16 +191,16 @@ module NewPkgEval
         queue = binary_maxheap(PkgEntry)
         completed = Channel(Inf)
         # Add packages without dependencies to the frontier
-        for x in ok_list
+        for x in OK_LIST[]
             result[x] = :ok
             put!(completed, findfirst(==(x), dg.names))
         end
         for p in filter(v->length(outneighbors(dg.g, v)) == 0, vertices(dg.g))
-            (dg.names[p] in skip_list) && continue
+            (dg.names[p] in SKIP_LIST[]) && continue
             (haskey(result, dg.names[p])) && continue
             push!(queue, PkgEntry(length(inneighbors(dg.g, p)), p))
         end
-        for x in skip_list
+        for x in SKIP_LIST[]
             pkg = findfirst(==(x), dg.names)
             if pkg === nothing
                 @warn "Package $(x) in skip list, but not found"
@@ -379,11 +349,14 @@ module NewPkgEval
     registry_path() = joinpath(@__DIR__, "..", "work", "registry")
 
     """
-        get_registry(; name="General", url=<General URL>)
+        get_registry(name="General")
 
-    Download the given registry, or if it already exists, update it.
+    Download the given registry, or if it already exists, update it. `name` must correspond
+    to an existing stanza in the `deps/Registries.toml` file.
     """
-    function get_registry(; name="General", url=Pkg.Types.DEFAULT_REGISTRIES["General"])
+    function get_registry(name="General")
+        reg = read_registries()[name]
+        url = reg["url"]
         creds = LibGit2.CachedCredentials()
         if !isdir(registry_path())
             repo = Pkg.GitTools.clone(url, registry_path();
@@ -400,6 +373,8 @@ module NewPkgEval
                 isa(e, InterruptException) && rethrow(e)
             end
         end
+        SKIP_LIST[] = get(reg, "skip", String[])
+        OK_LIST[] = get(reg, "okay", String[])
         nothing
     end
 
