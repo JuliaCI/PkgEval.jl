@@ -72,6 +72,7 @@ if isfile(joinpath(@__DIR__, "..", "deps", "downloads", tarball))
   println("You may manually copy the file from products/ and add the following stanza to Versions.toml:")
   println(version_stanza)
 else
+  mkpath(joinpath(@__DIR__, "..", "deps", "downloads"))
   cp(joinpath(@__DIR__, "products", tarball), joinpath(@__DIR__, "..", "deps", "downloads", tarball))
   open(joinpath(@__DIR__, "..", "deps", "Versions.toml"); append=true) do f
     println(f, version_stanza)
