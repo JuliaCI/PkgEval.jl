@@ -55,6 +55,17 @@ module NewPkgEval
         error("Requested Julia version not found")
     end
 
+    function installed_julia_dir(ver)
+         jp = julia_path(ver)
+         jp_contents = readdir(jp)
+         # Allow the unpacked directory to either be insider another directory (as produced by
+         # the buildbots) or directly inside the mapped directory (as produced by the BB script)
+         if length(jp_contents) == 1
+             jp = joinpath(jp, first(jp_contents))
+         end
+         jp
+    end
+
     """
         run_sandboxed_julia(args=``; ver=v"1.0", do_obtain=true, kwargs...)
 
@@ -70,10 +81,9 @@ module NewPkgEval
             @assert ispath(julia_path(ver))
         end
         #ispath(registry_path()) || error("Please run `NewPkgEval.get_registry()` first")
-        jp = joinpath(julia_path(ver), first(readdir(julia_path(ver))))
         runner = BinaryBuilder.UserNSRunner(pwd(),
             workspaces=[
-                jp => "/maps/julia",
+                installed_julia_dir(ver) => "/maps/julia",
                 #registry_path() => "/maps/registries/Uncurated"
             ])
         BinaryBuilder.run_interactive(runner, `/maps/julia/bin/julia --color=yes $args`; kwargs...)
@@ -187,6 +197,7 @@ module NewPkgEval
         "SessionHacker",
         "Embeddings",
         "GeoStatsDevTools",
+        "DataDeps", # hangs
     ]
 
     # Blindly assume these packages are okay
@@ -198,6 +209,7 @@ module NewPkgEval
         "NamedTuples", # As requested by quinnj
         "Compat",
         "LinearAlgebra", # Takes too long
+        "Pkg", # fails tests on 1.0, but otherwise ok
     ]
 
     """
@@ -404,14 +416,18 @@ module NewPkgEval
 
     function read_stdlib(ver)
         obtain_julia(ver)
-        stdlib_path = joinpath(julia_path(ver), first(readdir(julia_path(ver))),
+        stdlib_path = joinpath(installed_julia_dir(ver),
                 "share/julia/stdlib/v$(ver.major).$(ver.minor)")
         ret = Tuple{String, UUID, Vector{UUID}}[]
         stdlibs = readdir(stdlib_path)
         for stdlib in stdlibs
             proj = Pkg.Types.read_project(joinpath(stdlib_path, stdlib, "Project.toml"))
-            deps = UUID.(collect(values(proj["deps"])))
-            push!(ret, (proj["name"], UUID(proj["uuid"]), deps))
+            deps, name, uuid = isdefined(proj, :deps) ?
+                (proj.deps, proj.name, proj.uuid) :
+                (proj["deps"], proj["name"], UUID(proj["uuid"]))
+            deps = collect(values(deps))
+            deps = eltype(deps) == UUID ? deps : UUID.(deps)
+            push!(ret, (name, uuid, deps))
         end
         ret
     end
