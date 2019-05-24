@@ -388,7 +388,7 @@ module NewPkgEval
         pkgs
     end
 
-    registry_path() = joinpath(@__DIR__, "..", "work", "registry")
+    registry_path() = joinpath(first(DEPOT_PATH), "registries", "General")
 
     """
         get_registry()
@@ -416,12 +416,10 @@ module NewPkgEval
 
     function read_stdlib(ver)
         obtain_julia(ver)
-        stdlib_path = joinpath(installed_julia_dir(ver),
-                "share/julia/stdlib/v$(ver.major).$(ver.minor)")
         ret = Tuple{String, UUID, Vector{UUID}}[]
-        stdlibs = readdir(stdlib_path)
+        stdlibs = readdir(Sys.STDLIB)
         for stdlib in stdlibs
-            proj = Pkg.Types.read_project(joinpath(stdlib_path, stdlib, "Project.toml"))
+            proj = Pkg.Types.read_project(joinpath(Sys.STDLIB, stdlib, "Project.toml"))
             deps, name, uuid = isdefined(proj, :deps) ?
                 (proj.deps, proj.name, proj.uuid) :
                 (proj["deps"], proj["name"], UUID(proj["uuid"]))

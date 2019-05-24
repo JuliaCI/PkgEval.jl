@@ -16,8 +16,8 @@ with NewPkgEval to do it for you. To use the built-in script,
 run
 ```
 cd util
-julia -e 'using Pkg; pkg"add BinaryBuilder"; pkg"add GitHub"'
-julia build_julia.jl --verbose --branch my_branch
+julia --project -e 'import Pkg; Pkg.instantiate()'
+julia build_julia.jl --project --verbose --branch my_branch
 ```
 This will register a julia version called `1.2.0-my_branch` in deps/Versions.toml,
 using a stanza that looks like so:
