@@ -30,7 +30,7 @@ module NewPkgEval
 
     Download the specified version of Julia using the information provided in `Versions.toml`.
     """
-    function obtain_julia(the_ver)
+    function obtain_julia(the_ver::VersionNumber)
         vers = read_versions()
         for (ver, data) in vers
             ver = VersionNumber(ver)
@@ -68,14 +68,14 @@ module NewPkgEval
     end
 
     """
-        run_sandboxed_julia(args=``; ver=v"1.0", do_obtain=true, kwargs...)
+        run_sandboxed_julia(args=``; ver::VersionNumber, do_obtain=true, kwargs...)
 
     Run Julia inside of a sandbox, passing the given arguments `args` to it. The keyword
     argument `ver` specifies the version of Julia to use, and `do_obtain` dictates whether
     the specified version should first be downloaded. If `do_obtain` is `false`, it must
     already be installed.
     """
-    function run_sandboxed_julia(args=``; ver=v"1.0", do_obtain=true, kwargs...)
+    function run_sandboxed_julia(args=``; ver::VersionNumber, do_obtain=true, kwargs...)
         if do_obtain
             obtain_julia(ver)
         else
@@ -85,7 +85,7 @@ module NewPkgEval
         runner = BinaryBuilder.UserNSRunner(pwd(),
             workspaces=[
                 installed_julia_dir(ver) => "/maps/julia",
-                #registry_path() => "/maps/registries/Uncurated"
+                #registry_path() => "/maps/registries/General"
             ])
         BinaryBuilder.run_interactive(runner, `/maps/julia/bin/julia --color=yes $args`; kwargs...)
     end
@@ -93,7 +93,7 @@ module NewPkgEval
     log_path(ver) = joinpath(@__DIR__, "..", "logs-$ver")
 
     """
-        run_sandboxed_test(pkg; ver=v"1.0", do_depwarns=false, kwargs...)
+        run_sandboxed_test(pkg; ver::VersionNumber, do_depwarns=false, kwargs...)
 
     Run the unit tests for a single package `pkg` inside of a sandbox using the Julia version
     `ver`. If `do_depwarns` is `true`, deprecation warnings emitted while running the package's
@@ -102,7 +102,8 @@ module NewPkgEval
     A log for the tests is written to a version-specific directory in the NewPkgEval root
     directory.
     """
-    function run_sandboxed_test(pkg; ver=v"1.0", do_depwarns=false, kwargs...)
+    function run_sandboxed_test(pkg; ver::VersionNumber, do_depwarns=false, kwargs...)
+        @assert ispath(julia_path(ver))
         isdir(log_path(ver)) || mkdir(log_path(ver))
         log = joinpath(log_path(ver), "$pkg.log")
         arg = """
@@ -224,7 +225,7 @@ module NewPkgEval
     If the keyword argument `do_depwarns` is `true`, deprecation warnings emitted in package
     tests will cause the package's tests to fail, i.e. Julia is run with `--depwarn=error`.
     """
-    function run_all(dg, ninstances, ver, result = Dict{String, Symbol}(); do_depwarns=false)
+    function run_all(dg, ninstances::Integer, ver::VersionNumber, result = Dict{String, Symbol}(); do_depwarns=false)
         obtain_julia(ver)
         frontier = BitSet()
         pkgs = copy(dg.names)
