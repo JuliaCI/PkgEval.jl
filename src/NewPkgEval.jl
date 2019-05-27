@@ -13,6 +13,7 @@ module NewPkgEval
     downloads_dir(name) = joinpath(@__DIR__, "..", "deps", "downloads", name)
     julia_path(ver) = joinpath(@__DIR__, "..", "deps", "julia-$ver")
     versions_file() = joinpath(@__DIR__, "..", "deps", "Versions.toml")
+    registry_path() = joinpath(first(DEPOT_PATH), "registries", "General")
 
     """
         read_versions() -> Dict
@@ -104,19 +105,20 @@ module NewPkgEval
     function run_sandboxed_test(pkg; ver=v"1.0", do_depwarns=false, kwargs...)
         isdir(log_path(ver)) || mkdir(log_path(ver))
         log = joinpath(log_path(ver), "$pkg.log")
-        c = quote
-            mkpath("/root/.julia/registries")
+        arg = """
+            using Pkg
             open("/etc/hosts", "w") do f
                 println(f, "127.0.0.1\tlocalhost")
             end
-            run(`mount -t devpts -o newinstance jrunpts /dev/pts`)
-            run(`mount -o bind /dev/pts/ptmx /dev/ptmx`)
-            run(`mount -t tmpfs tempfs /dev/shm`)
-            #run(`ln -s /opt/General/ /root/.julia/registries/General`)
-            Pkg.add($pkg)
-            Pkg.test($pkg)
-        end
-        arg = "using Pkg; eval($(repr(c)))"
+            # TODO: Stop registry having to clone from scratch for each test
+            #mkpath("/root/.julia/registries")
+            #run(`mount -t devpts -o newinstance jrunpts /dev/pts`)
+            #run(`mount -o bind /dev/pts/ptmx /dev/ptmx`)
+            #run(`mount -t tmpfs tempfs /dev/shm`)
+            #run(`ln -s $(registry_path()) /root/.julia/registries/General`)
+            Pkg.add($(repr(pkg)))
+            Pkg.test($(repr(pkg)))
+        """
         try
             open(log, "w") do f
                 cmd = ``
@@ -388,7 +390,6 @@ module NewPkgEval
         pkgs
     end
 
-    registry_path() = joinpath(first(DEPOT_PATH), "registries", "General")
 
     """
         get_registry()
@@ -396,15 +397,8 @@ module NewPkgEval
     Download the default registry, or if it already exists, update it.
     """
     function get_registry()
-        if !isdir(registry_path())
-            creds = LibGit2.CachedCredentials()
-            url = Pkg.Types.DEFAULT_REGISTRIES["General"]
-            repo = Pkg.GitTools.clone(url, registry_path(); header = "registry Uncurated from $(repr(url))", credentials = creds)
-            close(repo)
-        else
-            errors = Pkg.API.do_update_registry!(registry_path())
-            Pkg.API.print_errors(errors)
-        end
+        Pkg.Types.clone_default_registries()
+        Pkg.Types.update_registries(Pkg.Types.Context())
     end
 
     struct PkgDepGraph
