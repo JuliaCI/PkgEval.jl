@@ -1,29 +1,29 @@
-# Note that this script can accept some limited command-line arguments, run
-# `julia build_tarballs.jl --help` to see a usage message.
 using BinaryBuilder
 using GitHub
 
+function get_julia_version(ref::String="master")
+    file = GitHub.file("JuliaLang/julia", "VERSION";
+                        params = Dict("ref" => ref))
+    @assert file.encoding == "base64" # GitHub says this will always be the case
+    str = String(base64decode(chomp(file.content)))
+    return chomp(str)
+end
 
-function build_julia(branch=nothing, binarybuilder_args="")
+function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=[""])
     name = "julia"
 
-    if !any(a->startswith(a, "--branch"), ARGS) 
-        version = v"1.0.3"
-        commit_hash = "099e826241fca365a120df9bac9a9fede6e7bae4"
-    else
-        idx = findfirst(a->startswith(a, "--branch"), ARGS)
-        branch_name = ARGS[idx+1]
-        deleteat!(ARGS, idx:idx+1)
-        sanitized_branch = replace(branch_name, "/" => ".")
-        version = VersionNumber("1.2.0-$(sanitized_branch)")
-        commit_hash = GitHub.reference("JuliaLang/julia", "heads/$(branch_name)").object["sha"]
-    end
+    idx = findfirst(a->startswith(a, "--branch"), ARGS)
+    branch_name = ARGS[idx+1]
+    deleteat!(ARGS, idx:idx+1)
+    sanitized_rev = replace(branch_name, "/" => ".")
+    julia_version = get_julia_version(ref)
+    version = VersionNumber("$(julia_version)-$(sanitized_rev)")
+    commit_hash = GitHub.reference("JuliaLang/julia", "heads/$(branch_name)").object["sha"]
         
 
     # Collection of sources required to build julia
     sources = [
-        "https://github.com/JuliaLang/julia.git" =>
-        commit_hash,
+        "https://github.com/JuliaLang/julia.git" => commit_hash,
     ]
 
     # Bash recipe for building across all platforms
@@ -69,6 +69,7 @@ function build_julia(branch=nothing, binarybuilder_args="")
     file = "$tarball"
     sha = "$hash"
     """
+
     if isfile(joinpath(@__DIR__, "..", "deps", "downloads", tarball))
         @warn "$tarball already exists in deps/downloads folder. Not copying."
         println("You may manually copy the file from products/ and add the following stanza to Versions.toml:")

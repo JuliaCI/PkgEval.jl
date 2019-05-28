@@ -1,5 +1,7 @@
 module NewPkgEval
 
+    include("build_julia.jl")
+
     using BinaryBuilder
     using BinaryProvider
     using LightGraphs
@@ -90,7 +92,7 @@ module NewPkgEval
         BinaryBuilder.run_interactive(runner, `/maps/julia/bin/julia --color=yes $args`; kwargs...)
     end
 
-    log_path(ver) = joinpath(@__DIR__, "..", "logs-$ver")
+    log_path(ver) = joinpath(@__DIR__, "..", "logs/logs-$ver")
 
     """
         run_sandboxed_test(pkg; ver::VersionNumber, do_depwarns=false, kwargs...)
