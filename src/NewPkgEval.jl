@@ -198,6 +198,7 @@ module NewPkgEval
         "Embeddings",
         "GeoStatsDevTools",
         "DataDeps", # hangs
+        "DataDepsGenerators", # hangs
     ]
 
     # Blindly assume these packages are okay
