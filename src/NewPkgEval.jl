@@ -303,9 +303,9 @@ module NewPkgEval
                         processing = true
                         push!(processed, pkgno)
                         for revdep in inneighbors(dg.g, pkgno)
-                            if result[dg.names[pkgno]] != :ok
-                                skip_pkg!(result, dg, revdep)
-                            else
+                            #if result[dg.names[pkgno]] != :ok
+                            #    skip_pkg!(result, dg, revdep)
+                            #else
                                 (revdep in processed) && continue
                                 # Last dependency to finish adds it to
                                 # the frontier
@@ -319,7 +319,7 @@ module NewPkgEval
                                 all_processed || continue
                                 haskey(result, dg.names[revdep]) && continue
                                 push!(queue, PkgEntry(length(inneighbors(dg.g, revdep)), revdep))
-                            end
+                            #end
                         end
                         notify(cond)
                         processing = false
