@@ -16,6 +16,16 @@ module NewPkgEval
     julia_path(ver) = joinpath(@__DIR__, "..", "deps", "julia-$ver")
     versions_file() = joinpath(@__DIR__, "..", "deps", "Versions.toml")
     registry_path() = joinpath(first(DEPOT_PATH), "registries", "General")
+    
+    """
+        get_registry()
+
+    Download the default registry, or if it already exists, update it.
+    """
+    function get_registry()
+        Pkg.Types.clone_default_registries()
+        Pkg.Types.update_registries(Pkg.Types.Context())
+    end
 
     """
         read_versions() -> Dict
@@ -393,17 +403,6 @@ module NewPkgEval
         pkgs
     end
 
-
-    """
-        get_registry()
-
-    Download the default registry, or if it already exists, update it.
-    """
-    function get_registry()
-        Pkg.Types.clone_default_registries()
-        Pkg.Types.update_registries(Pkg.Types.Context())
-    end
-
     struct PkgDepGraph
         vertex_map::Dict{UUID, Int}
         uuid::Vector{UUID}
@@ -475,10 +474,6 @@ module NewPkgEval
             rem_edge!(g, cyc[end], cyc[1])
         end
         PkgDepGraph(vertex_map, uuids, names, g)
-    end
-
-    function no_dep_pkgs(g::PkgDepGraph)
-        filter(v->length(outneighbors(g.g, v)) == 0, vertices(g.g))
     end
 
     function analyze_results(dg, result)

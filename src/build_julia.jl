@@ -1,5 +1,6 @@
 using BinaryBuilder
 using GitHub
+using Base64
 
 function get_julia_version(ref::String="master")
     file = GitHub.file("JuliaLang/julia", "VERSION";
@@ -9,18 +10,18 @@ function get_julia_version(ref::String="master")
     return chomp(str)
 end
 
-function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=[""])
+"""
+    build_julia(ref::String="master"; binarybuilder_args::Vector{String}=String["--verbose"])
+
+Downloads and builds julia at `ref` using BinaryBuilder.
+"""
+function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=String["--verbose"])
     name = "julia"
-
-    idx = findfirst(a->startswith(a, "--branch"), ARGS)
-    branch_name = ARGS[idx+1]
-    deleteat!(ARGS, idx:idx+1)
-    sanitized_rev = replace(branch_name, "/" => ".")
+    sanitized_ref = replace(ref, "/" => ".")
     julia_version = get_julia_version(ref)
-    version = VersionNumber("$(julia_version)-$(sanitized_rev)")
-    commit_hash = GitHub.reference("JuliaLang/julia", "heads/$(branch_name)").object["sha"]
+    version = VersionNumber("$(julia_version)-$(sanitized_ref)")
+    commit_hash = GitHub.reference("JuliaLang/julia", "heads/$(ref)").object["sha"]
         
-
     # Collection of sources required to build julia
     sources = [
         "https://github.com/JuliaLang/julia.git" => commit_hash,
@@ -61,7 +62,7 @@ function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=["
     dependencies = []
 
     # Build the tarballs, and possibly a `build.jl` as well.
-    product_hashes = build_tarballs(ARGS, name, version, sources, script, platforms, products, dependencies)
+    product_hashes = build_tarballs(binarybuilder_args, name, version, sources, script, platforms, products, dependencies)
     tarball, hash = product_hashes["x86_64-linux-gnu"]
 
     version_stanza = """
@@ -69,14 +70,16 @@ function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=["
     file = "$tarball"
     sha = "$hash"
     """
-
-    if isfile(joinpath(@__DIR__, "..", "deps", "downloads", tarball))
+    @show tarball
+    @show hash
+    download_path = joinpath(@__DIR__, "..", "deps", "downloads")
+    if isfile(joinpath(download_path, tarball))
         @warn "$tarball already exists in deps/downloads folder. Not copying."
         println("You may manually copy the file from products/ and add the following stanza to Versions.toml:")
         println(version_stanza)
     else
-        mkpath(joinpath(@__DIR__, "..", "deps", "downloads"))
-        cp(joinpath(@__DIR__, "products", tarball), joinpath(@__DIR__, "..", "deps", "downloads", tarball))
+        mkpath(download_path)
+        cp(joinpath(@__DIR__, "..", "products", tarball), joinpath(download_path, tarball))
         open(joinpath(@__DIR__, "..", "deps", "Versions.toml"); append=true) do f
             println(f, version_stanza)
         end
