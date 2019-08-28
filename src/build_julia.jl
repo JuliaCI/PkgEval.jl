@@ -20,8 +20,10 @@ function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=St
     sanitized_ref = replace(ref, "/" => ".")
     julia_version = get_julia_version(ref)
     version = VersionNumber("$(julia_version)-$(sanitized_ref)")
+    @show version
     commit_hash = GitHub.reference("JuliaLang/julia", "heads/$(ref)").object["sha"]
         
+    @show commit_hash
     # Collection of sources required to build julia
     sources = [
         "https://github.com/JuliaLang/julia.git" => commit_hash,

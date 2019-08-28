@@ -214,19 +214,22 @@ module NewPkgEval
         "GeoStatsDevTools",
         "DataDeps", # hangs
         "DataDepsGenerators", # hangs
+	"MackeyGlass", # deleted, hangs
+	"Keys", #deleted, hangs
+	"HTTP", # hangs sometimes https://github.com/JuliaWeb/HTTP.jl/issues/441
     ]
 
     # Blindly assume these packages are okay
     const ok_list = [
         "BinDeps", # Not really ok, but packages may list it just as a fallback
-        "InteractiveUtils", # We rely on LD_LIBRARY_PATH working for the moment
         "Homebrew",
         "WinRPM",
         "NamedTuples", # As requested by quinnj
         "Compat",
-        "LinearAlgebra", # Takes too long
-        "Pkg", # fails tests on 1.0, but otherwise ok
     ]
+    
+    # Stdlibs are assumed to be ok
+    append!(ok_list, readdir(Sys.STDLIB))
 
     """
         run_all(depsgraph, ninstances, version[, result]; do_depwarns=false)
@@ -327,7 +330,7 @@ module NewPkgEval
                                 # the frontier
                                 all_processed = true
                                 for dep in outneighbors(dg.g, revdep)
-                                    if !(dep in processed) || result[dg.names[dep]] != :ok
+                                    if !(dep in processed) # || result[dg.names[dep]] != :ok
                                         all_processed = false
                                         break
                                     end
