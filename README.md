@@ -10,8 +10,8 @@ git clone git@github.com:JuliaComputing/NewPkgEval.jl.git
 
 2. Build a julia binary distribution
 
-You have to choices. Either you build a binary distribution of julia yourself
-(or let the buildbots do it), you you may use the script that ships
+You have two choices. Either you build a binary distribution of julia yourself
+(or let the buildbots do it), or you may use the script that ships
 with NewPkgEval to do it for you. To use the built-in script,
 run
 ```
