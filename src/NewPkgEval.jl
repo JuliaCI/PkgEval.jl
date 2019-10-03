@@ -9,7 +9,7 @@ import Pkg.TOML
 using Pkg
 import Base: UUID
 using Dates
-using DataStructures
+using DataStructures: BinaryMaxHeap
 import LibGit2
 
 downloads_dir(name) = joinpath(@__DIR__, "..", "deps", "downloads", name)
@@ -123,35 +123,32 @@ function run_sandboxed_test(pkg; ver::VersionNumber, do_depwarns=false, time_lim
         open("/etc/hosts", "w") do f
             println(f, "127.0.0.1\tlocalhost")
         end
-        # TODO: Stop registry having to clone from scratch for each test
+        #run(`mount -t devpts -o newinstance jrunpts /dev/pts`)
+        #run(`mount -o bind /dev/pts/ptmx /dev/ptmx`)
+        #run(`mount -t tmpfs tempfs /dev/shm`)
         mkpath("/root/.julia/registries")
-        run(`mount -t devpts -o newinstance jrunpts /dev/pts`)
-        run(`mount -o bind /dev/pts/ptmx /dev/ptmx`)
-        run(`mount -t tmpfs tempfs /dev/shm`)
         run(`ln -s /maps/registries/General /root/.julia/registries/General`)
         Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
         Pkg.add($(repr(pkg)))
         Pkg.test($(repr(pkg)))
     """
-    try
-        timed_out=false
-        open(log, "w") do f
-            cmd = ``
-            if do_depwarns
-                cmd = `--depwarn=error`
-            end
-            cmd = `$cmd -e $arg`
+    cmd = ``
+    do_depwarns && (cmd = `--depwarn=error`)
+    cmd = `$cmd -e $arg`
+    succeded = true
+    timed_out = false
+    open(log, "w") do f
+        try
             t = @async run_sandboxed_julia(cmd; ver=ver, kwargs..., stdout=f, stderr=f)
-            time_out = false
             Timer(time_limit) do timer
                 timed_out = true
                 try; schedule(t, InterruptException(); error=true); catch; end
             end
-            fetch(t)
+            wait(t)
+            return !timed_out
+        catch e
+            return false
         end
-        return !timed_out
-    catch e
-        return false
     end
 end
 
@@ -164,9 +161,9 @@ function show_result(io::IO, dg, queue, results)
     q = length(queue)
     printstyled(io, o; color = :green)
     print(io, "\tFailed: ")
-    printstyled(io, f; color = :red)
+    printstyled(io, f; color = Base.error_color())
     print(io, "\tSkipped: ")
-    printstyled(io, s; color = :yellow)
+    printstyled(io, s; color = Base.warn_color())
     print(io, "\tCurrent Frontier/Remaining: ")
     print(io, q, '/')
     print(io, length(vertices(dg.g)) - (o+f+s))
@@ -190,7 +187,7 @@ function skip_pkg!(result, dg, to_skip)
     end
 end
 
-# Skip these packages when testing all packages
+# Skip these packages when testing packages
 const skip_list = [
     "AbstractAlgebra", # Hangs forever
     "DiscretePredictors", # Hangs forever
@@ -224,7 +221,6 @@ const skip_list = [
     "DataDepsGenerators", # hangs
     "MackeyGlass", # deleted, hangs
     "Keys", #deleted, hangs
-    "HTTP", # hangs sometimes https://github.com/JuliaWeb/HTTP.jl/issues/441
 ]
 
 # Blindly assume these packages are okay
@@ -254,7 +250,12 @@ Tests will be forcibly interrupted after `time_limit` seconds.
 """
 function run(dg, ninstances::Integer, ver::VersionNumber, result = Dict{String, Symbol}();
              do_depwarns=false, time_limit=typemax(UInt), skip_dependees_for_failed_pkgs = false)
+
     obtain_julia(ver)
+
+    # In case we need to provide sudo password, do that before starting the actual testing
+    run_sandboxed_julia(`-e '1'`; ver=ver)
+
     get_registry() # make sure local registry is updated
     frontier = BitSet()
     pkgs = copy(dg.names)
@@ -268,7 +269,6 @@ function run(dg, ninstances::Integer, ver::VersionNumber, result = Dict{String, 
     for x in ok_list
         i = findfirst(==(x), dg.names)
         if i !== nothing
-            println("Putting $x in there")
             result[x] = :ok
             put!(completed, i)
         end
@@ -460,7 +460,7 @@ function PkgDepGraph(pkgs, ver)
         data === nothing && continue
         for (k,v) in data
             if !haskey(vertex_map, v)
-                @error("Dependency $k ($v) not in registry")
+                # @error("Dependency $k ($v) not in registry")
                 continue
             end
             add_edge!(g, vertex_map[uuid], vertex_map[v])
