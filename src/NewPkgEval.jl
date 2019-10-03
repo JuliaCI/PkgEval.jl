@@ -135,7 +135,6 @@ function run_sandboxed_test(pkg; ver::VersionNumber, do_depwarns=false, time_lim
     cmd = ``
     do_depwarns && (cmd = `--depwarn=error`)
     cmd = `$cmd -e $arg`
-    succeded = true
     timed_out = false
     open(log, "w") do f
         try
@@ -250,7 +249,6 @@ Tests will be forcibly interrupted after `time_limit` seconds.
 """
 function run(dg, ninstances::Integer, ver::VersionNumber, result = Dict{String, Symbol}();
              do_depwarns=false, time_limit=typemax(UInt), skip_dependees_for_failed_pkgs = false)
-
     obtain_julia(ver)
 
     # In case we need to provide sudo password, do that before starting the actual testing
@@ -428,7 +426,7 @@ function read_pkgs(pkgs::Union{Nothing, Vector{String}}=nothing)
             end
         end
     end
-    if !isempty(pkgs)
+    if pkgs !== nothing && !isempty(pkgs)
         @warn """did not find the following packages in the registry:\n $("  - " .* join(pkgs, '\n'))"""
     end
     pkg_data

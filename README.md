@@ -67,3 +67,9 @@ results = NewPkgEval.run(dg, 20, v"1.2.0")
 ```
 
 See the docstrings for more arguments.
+
+If you have problem running more than 1 worker at a time try set the environment variable
+
+``` 
+BINARYBUILDER_USE_SQUASHFS=false
+``` 
