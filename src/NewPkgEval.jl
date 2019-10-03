@@ -268,6 +268,7 @@ function run(dg, ninstances::Integer, ver::VersionNumber, result = Dict{String, 
     for x in ok_list
         i = findfirst(==(x), dg.names)
         if i !== nothing
+            println("Putting $x in there")
             result[x] = :ok
             put!(completed, i)
         end
@@ -418,12 +419,17 @@ function read_pkgs(pkgs::Union{Nothing, Vector{String}}=nothing)
                 uuid = UUID(_uuid)
                 name = pkgdata["name"]
                 if pkgs !== nothing
-                    name in pkgs || continue
+                    idx = findfirst(==(name), pkgs)
+                    idx === nothing && continue
+                    deleteat!(pkgs, idx)
                 end
                 path = abspath(registry, pkgdata["path"])
                 push!(pkg_data, (name, uuid, path))
             end
         end
+    end
+    if !isempty(pkgs)
+        @warn """did not find the following packages in the registry:\n $("  - " .* join(pkgs, '\n'))"""
     end
     pkg_data
 end
@@ -433,22 +439,6 @@ struct PkgDepGraph
     uuid::Vector{UUID}
     names::Vector{String}
     g::LightGraphs.SimpleGraphs.SimpleDiGraph
-end
-
-function read_stdlib(ver)
-    obtain_julia(ver)
-    ret = Tuple{String, UUID, Vector{UUID}}[]
-    stdlibs = readdir(Sys.STDLIB)
-    for stdlib in stdlibs
-        proj = Pkg.Types.read_project(joinpath(Sys.STDLIB, stdlib, "Project.toml"))
-        deps, name, uuid = isdefined(proj, :deps) ?
-            (proj.deps, proj.name, proj.uuid) :
-            (proj["deps"], proj["name"], UUID(proj["uuid"]))
-        deps = collect(values(deps))
-        deps = eltype(deps) == UUID ? deps : UUID.(deps)
-        push!(ret, (name, uuid, deps))
-    end
-    ret
 end
 
 """
@@ -462,32 +452,15 @@ function PkgDepGraph(pkgs, ver)
     vertex_map = Dict(pkg[2] => i for (i, pkg) in enumerate(pkgs))
     uuids = map(x->x[2], pkgs)
     names = map(x->x[1], pkgs)
-    # Add stdlibs to vertex map
-    stdlibs = read_stdlib(ver)
-    stdlib_uuids = Set(x[2] for x in stdlibs)
-    for (i, (name, uuid, _)) in enumerate(stdlibs)
-        x = findfirst(==(uuid), uuids)
-        if x === nothing
-            push!(names, name)
-            push!(uuids, uuid)
-            vertex_map[uuid] = length(names)
-        end
-    end
     g = LightGraphs.SimpleGraphs.SimpleDiGraph(length(names))
-    for (_, uuid, deps) in stdlibs
-        for dep in deps
-            add_edge!(g, vertex_map[uuid], vertex_map[dep])
-        end
-    end
     for (name, uuid, path) in pkgs
-        (uuid in stdlib_uuids) && continue
         vers = Pkg.Operations.load_versions(path)
         max_ver = maximum(keys(vers))
         data = Pkg.Operations.load_package_data(UUID, joinpath(path, "Deps.toml"), max_ver)
         data === nothing && continue
         for (k,v) in data
             if !haskey(vertex_map, v)
-                #error("Dependency $k ($v) not in registry")
+                @error("Dependency $k ($v) not in registry")
                 continue
             end
             add_edge!(g, vertex_map[uuid], vertex_map[v])
