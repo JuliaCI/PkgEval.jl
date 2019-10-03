@@ -117,7 +117,8 @@ directory.
 function run_sandboxed_test(pkg; ver::VersionNumber, do_depwarns=false, time_limit=typemax(UInt), kwargs...)
     @assert ispath(julia_path(ver))
     mkpath(log_path(ver))
-    log = joinpath(log_path(ver), "$pkg.log")
+    log_stdout = joinpath(log_path(ver), "$(pkg)_stdout.log")
+    log_stderr = joinpath(log_path(ver), "$(pkg)_stderr.log")
     arg = """
         using Pkg
         open("/etc/hosts", "w") do f
@@ -136,17 +137,19 @@ function run_sandboxed_test(pkg; ver::VersionNumber, do_depwarns=false, time_lim
     do_depwarns && (cmd = `--depwarn=error`)
     cmd = `$cmd -e $arg`
     timed_out = false
-    open(log, "w") do f
-        try
-            t = @async run_sandboxed_julia(cmd; ver=ver, kwargs..., stdout=f, stderr=f)
-            Timer(time_limit) do timer
-                timed_out = true
-                try; schedule(t, InterruptException(); error=true); catch; end
+    open(log_stdout, "w") do f_stdout
+        open(log_stderr, "w") do f_stderr
+            try
+                t = @async run_sandboxed_julia(cmd; ver=ver, kwargs..., stdout=f_stdout, stderr=f_stderr)
+                Timer(time_limit) do timer
+                    timed_out = true
+                    try; schedule(t, InterruptException(); error=true); catch; end
+                end
+                wait(t)
+                return !timed_out
+            catch e
+                return false
             end
-            wait(t)
-            return !timed_out
-        catch e
-            return false
         end
     end
 end
@@ -230,9 +233,6 @@ const ok_list = [
     "NamedTuples", # As requested by quinnj
     "Compat",
 ]
-
-# Stdlibs are assumed to be ok
-append!(ok_list, readdir(Sys.STDLIB))
 
 """
     run(depsgraph, ninstances, version[, result]; do_depwarns=false, 
