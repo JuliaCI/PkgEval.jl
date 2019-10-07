@@ -4,7 +4,7 @@
 In order to run PkgEval against a Julia Package do the following:
 
 
-1) Obtain NewPkgEval and install dependencies
+1. Obtain NewPkgEval and install dependencies
   
     ```
     git clone https://github.com/JuliaComputing/NewPkgEval.jl.git
