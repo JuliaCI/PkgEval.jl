@@ -1,7 +1,7 @@
 # NewPkgEval - Evaluate julia packages
 
 # Basic usage
-In order to run PkgEval against a Julia Package do the following:
+In order to run PkgEval against a Julia package do the following:
 
 
 1. Obtain NewPkgEval and install dependencies
