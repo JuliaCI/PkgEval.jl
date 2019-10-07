@@ -117,7 +117,7 @@ function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=St
     else
         mkpath(download_path)
         cp(joinpath(@__DIR__, "..", "deps", "products", tarball), joinpath(download_path, tarball))
-        open(joinpath(@__DIR__, "..", "deps", "Versions.toml"); append=true) do f
+        open(versions_file(); append=true) do f
             println(f, version_stanza)
         end
     end
