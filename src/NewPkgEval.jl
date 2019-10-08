@@ -13,6 +13,7 @@ versions_file() = joinpath(@__DIR__, "..", "deps", "Versions.toml")
 registry_path() = joinpath(first(DEPOT_PATH), "registries", "General")
 
 include("build_julia.jl")
+include("analyze.jl")
 
 """
     get_registry()
