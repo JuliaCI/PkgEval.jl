@@ -90,9 +90,8 @@ function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=St
     ]
 
     # The products that we will ensure are always built
-    products(prefix) = [
-        LibraryProduct(prefix, "sys", :sys),
-        ExecutableProduct(prefix, "julia", :julia)
+    products = [
+        ExecutableProduct("julia", :julia)
     ]
 
     # Dependencies that must be installed before this package can be built
@@ -100,9 +99,9 @@ function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=St
 
     # Build the tarballs, and possibly a `build.jl` as well.
     product_hashes = cd(joinpath(@__DIR__, "..", "deps")) do
-        build_tarballs(binarybuilder_args, "julia", version, sources, script, platforms, products, dependencies)
+        build_tarballs(binarybuilder_args, "julia", version, sources, script, platforms, products, dependencies, preferred_gcc_version=v"7", skip_audit=true)
     end
-    tarball, hash = product_hashes["x86_64-linux-gnu"]
+    tarball, hash = product_hashes[platforms[1]]
 
     version_stanza = """
     ["$version"]

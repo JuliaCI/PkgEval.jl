@@ -1,7 +1,6 @@
 module NewPkgEval
 
 using BinaryBuilder
-using BinaryProvider
 import Pkg.TOML
 using Pkg
 import Base: UUID
@@ -47,7 +46,7 @@ function obtain_julia(the_ver::VersionNumber)
         if haskey(data, "url")
             file = get(data, "file", "julia-$ver.tar.gz")
             @assert !isabspath(file)
-            download_verify_unpack(
+            Pkg.PlatformEngines.download_verify_unpack(
                 data["url"],
                 data["sha"],
                 julia_path(ver);
@@ -57,8 +56,8 @@ function obtain_julia(the_ver::VersionNumber)
         else
             file = data["file"]
             !isabspath(file) && (file = downloads_dir(file))
-            BinaryProvider.verify(file, data["sha"])
-            isdir(julia_path(ver)) || BinaryProvider.unpack(file, julia_path(ver))
+            Pkg.PlatformEngines.verify(file, data["sha"])
+            isdir(julia_path(ver)) || Pkg.PlatformEngines.unpack(file, julia_path(ver))
         end
         return
     end
@@ -76,6 +75,15 @@ function installed_julia_dir(ver)
      jp
 end
 
+function with_mounted_shards(f, runner)
+    BinaryBuilder.mount_shards(runner; verbose=true)
+    try
+        f()
+    finally
+        BinaryBuilder.unmount_shards(runner; verbose=true)
+    end
+end
+
 """
     run_sandboxed_julia(args=``; ver::VersionNumber, do_obtain=true, kwargs...)
 
@@ -84,26 +92,28 @@ argument `ver` specifies the version of Julia to use, and `do_obtain` dictates w
 the specified version should first be downloaded. If `do_obtain` is `false`, it must
 already be installed.
 """
-function run_sandboxed_julia(args=``; ver::VersionNumber, do_obtain=true, kwargs...)
-    cmd = cmd_sandboxed_julia(args; ver=ver, do_obtain=do_obtain)
-    Base.run(pipeline(cmd; kwargs...))
+function run_sandboxed_julia(args=``; ver::VersionNumber, do_obtain=true, stdout=stdout, stdin=stdin)
+    runner, cmd = runner_sandboxed_julia(args; ver=ver, do_obtain=do_obtain)
+    with_mounted_shards(runner) do
+        Base.run(pipeline(cmd, stdout=stdout, stderr=stderr))
+    end
 end
 
-function cmd_sandboxed_julia(args=``; ver::VersionNumber, do_obtain=true)
+function runner_sandboxed_julia(args=``; ver::VersionNumber, do_obtain=true)
     if do_obtain
         obtain_julia(ver)
     else
         @assert ispath(julia_path(ver))
     end
     ispath(registry_path()) || error("Please run `NewPkgEval.get_registry()` first")
-    runner = BinaryBuilder.UserNSRunner(pwd(),
+    runner = BinaryBuilder.UserNSRunner(mktempdir(),
         workspaces=[
             installed_julia_dir(ver) => "/maps/julia",
             registry_path() => "/maps/registries/General"
         ])
-
     cmd = `/maps/julia/bin/julia --color=yes $args`
-    return setenv(`$(runner.sandbox_cmd) -- $(cmd)`, runner.env)
+    cmd = setenv(`$(runner.sandbox_cmd) -- $(cmd)`, runner.env) # extracted from run_interactive in BinaryBuilder
+    return runner, cmd
 end
 
 log_path(ver) = joinpath(@__DIR__, "..", "logs/logs-$ver")
@@ -123,9 +133,9 @@ function run_sandboxed_test(pkg::AbstractString; ver, time_limit = 45*60, do_dep
     arg = """
         using Pkg
         # TODO: Possible to remove?
-        open("/etc/hosts", "w") do f
-            println(f, "127.0.0.1\tlocalhost")
-        end
+        #open("/etc/hosts", "w") do f
+        #   println(f, "127.0.0.1\tlocalhost")
+        #end
         # Map the local registry to the sandbox registry
         mkpath("/root/.julia/registries")
         run(`ln -s /maps/registries/General /root/.julia/registries/General`)
@@ -136,29 +146,33 @@ function run_sandboxed_test(pkg::AbstractString; ver, time_limit = 45*60, do_dep
     """
     cmd = do_depwarns ? `--depwarn=error` : ``
     cmd = `$cmd -e $arg`
-    cmd = cmd_sandboxed_julia(cmd; ver=ver, kwargs...)
+    runner, cmd = runner_sandboxed_julia(cmd; ver=ver, kwargs...)
 
     log = joinpath(log_path(ver), "$pkg.log")
     open(log, "w") do f
-        p = Base.run(pipeline(cmd, stdout=f, stderr=f); wait=false)
-        Timer(time_limit) do timer
-            process_running(p) || return # exit callback
-            if BinaryBuilder.runner_override == "privileged"
-                pid = getpid(p)
-                Base.run(`sudo kill $pid`)
-                sleep(3)
-                if process_running(p)
-                    Base.run(`sudo kill -9 $pid`)
-                end
-            else
-                kill(p)
-                sleep(3)
-                if process_running(p)
-                    kill(p, 9)
+        with_mounted_shards(runner) do
+            p = Base.run(pipeline(cmd, stdout=f, stderr=f); wait=false)
+            t = Timer(time_limit) do timer
+                process_running(p) || return # exit callback
+                if BinaryBuilder.runner_override == "privileged"
+                    pid = getpid(p)
+                    Base.run(`sudo kill $pid`)
+                    sleep(3)
+                    if process_running(p)
+                        Base.run(`sudo kill -9 $pid`)
+                    end
+                else
+                    kill(p)
+                    sleep(3)
+                    if process_running(p)
+                        kill(p, 9)
+                    end
                 end
             end
+            s = success(p)
+            close(t)
+            return s
         end
-        return success(p)
     end
 end
 
