@@ -109,16 +109,17 @@ end
 log_path(ver) = joinpath(@__DIR__, "..", "logs/logs-$ver")
 
 """
-    run_sandboxed_test(pkg; ver::VersionNumber, do_depwarns=false, time_limit=60*45, kwargs...)
+    run_sandboxed_test(pkg; ver::VersionNumber, do_depwarns=false, log_limit = 5*1024^2, time_limit=60*45, kwargs...)
 
 Run the unit tests for a single package `pkg` inside of a sandbox using the Julia version
 `ver`. If `do_depwarns` is `true`, deprecation warnings emitted while running the package's
-tests will cause the tests to fail. Test will be forcibly interrupted after `time_limit` seconds.
+tests will cause the tests to fail. Test will be forcibly interrupted after `time_limit` seconds or if the log
+becomes larger than `log_limit`.
 
 A log for the tests is written to a version-specific directory in the NewPkgEval root
 directory.
 """
-function run_sandboxed_test(pkg::AbstractString; ver, time_limit = 45*60, do_depwarns=false, kwargs...)
+function run_sandboxed_test(pkg::AbstractString; ver, log_limit = 5*1024^2 #= 5 MB =#,time_limit = 45*60, do_depwarns=false, kwargs...)
     mkpath(log_path(ver))
     arg = """
         using Pkg
@@ -130,6 +131,7 @@ function run_sandboxed_test(pkg::AbstractString; ver, time_limit = 45*60, do_dep
         mkpath("/root/.julia/registries")
         run(`ln -s /maps/registries/General /root/.julia/registries/General`)
         # Prevent Pkg from updating registy on the Pkg.add
+        ENV["CI"] = true
         Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
         Pkg.add($(repr(pkg)))
         Pkg.test($(repr(pkg)))
@@ -141,24 +143,40 @@ function run_sandboxed_test(pkg::AbstractString; ver, time_limit = 45*60, do_dep
     log = joinpath(log_path(ver), "$pkg.log")
     open(log, "w") do f
         p = Base.run(pipeline(cmd, stdout=f, stderr=f); wait=false)
-        Timer(time_limit) do timer
+        t = Timer(time_limit) do timer
             process_running(p) || return # exit callback
-            if BinaryBuilder.runner_override == "privileged"
-                pid = getpid(p)
-                Base.run(`sudo kill $pid`)
-                sleep(3)
-                if process_running(p)
-                    Base.run(`sudo kill -9 $pid`)
-                end
-            else
-                kill(p)
-                sleep(3)
-                if process_running(p)
-                    kill(p, 9)
-                end
-            end
+            kill_process(p)
         end
-        return success(p)
+        t2 = @async while true
+            process_running(p) || break
+            if stat(log).size > log_limit
+                kill_process(p)
+                break
+            end
+            flush(f)
+            sleep(2)
+        end
+        s = success(p)
+        close(t)
+        wait(t2)
+        return s
+    end
+end
+
+function kill_process(p)
+    if BinaryBuilder.runner_override == "privileged"
+        pid = getpid(p)
+        Base.run(`sudo kill $pid`)
+        sleep(3)
+        if process_running(p)
+            Base.run(`sudo kill -9 $pid`)
+        end
+    else
+        kill(p)
+        sleep(3)
+        if process_running(p)
+            kill(p, 9)
+        end
     end
 end
 
