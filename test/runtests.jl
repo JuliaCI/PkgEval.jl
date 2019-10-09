@@ -2,6 +2,7 @@ using NewPkgEval
 using Test
 
 v = NewPkgEval.build_julia("v1.2.0")
+
 pkgnames = ["JSON", "TimerOutputs", "Crayons", "Example"]
 pkgs = NewPkgEval.read_pkgs(pkgnames)
 results = NewPkgEval.run(pkgs, 2, v)
