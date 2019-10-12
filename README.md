@@ -59,11 +59,11 @@ In order to run PkgEval against a Julia package do the following:
 
 4. Run PkgEval
 
-```julia
-using NewPkgEval
-pkgs = NewPkgEval.read_pkgs(); # can also give a vector of packages here
-results = NewPkgEval.run(pkgs, 20, v"1.2.0")
-```
+    ```julia
+    using NewPkgEval
+    pkgs = NewPkgEval.read_pkgs(); # can also give a vector of packages here
+    results = NewPkgEval.run(pkgs, 20, v"1.2.0")
+    ```
 
     See the docstrings for more arguments.
 
