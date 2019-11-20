@@ -165,36 +165,57 @@ function run(pkgs::Vector, ninstances::Integer, ver::VersionNumber, result=Dict{
         end
     end
 
+    start = now()
+    io = IOContext(IOBuffer(), :color=>true)
+    on_ci = parse(Bool, get(ENV, "CI", "false"))
+    function update_output()
+        o = count(==(:ok),      values(result))
+        f = count(==(:fail),    values(result))
+        s = count(==(:skipped), values(result))
+        x = npkgs - (o + f + s)
+
+        function runtimestr(start)
+            time = Dates.canonicalize(Dates.CompoundPeriod(now() - start))
+            isempty(time.periods) || pop!(time.periods) # get rid of milliseconds
+            if isempty(time.periods)
+                "just started"
+            else
+                "running for $time"
+            end
+        end
+
+        if on_ci
+            println("$x packages to test ($o succeeded, $f failed, $s skipped, $(runtimestr(start)))")
+            sleep(10)
+        else
+            print(io, "Success: ")
+            printstyled(io, o; color = :green)
+            print(io, "\tFailed: ")
+            printstyled(io, f; color = Base.error_color())
+            print(io, "\tSkipped: ")
+            printstyled(io, s; color = Base.warn_color())
+            println(io, "\tRemaining: ", x)
+            for i = 1:ninstances
+                r = running[i]
+                if r === nothing
+                    println(io, "Worker $i: -------")
+                else
+                    println(io, "Worker $i: $(r) $(runtimestr(times[i]))")
+                end
+            end
+            print(String(take!(io.io)))
+            sleep(1)
+            CSI = "\e["
+            print(io, "$(CSI)$(ninstances+1)A$(CSI)1G$(CSI)0J")
+        end
+    end
+
     try @sync begin
         # Printer
         @async begin
             try
-                io = IOContext(IOBuffer(), :color=>true)
                 while (!isempty(pkgs) || !all(==(nothing), running)) && !done
-                    o = count(==(:ok),      values(result))
-                    f = count(==(:fail),    values(result))
-                    s = count(==(:skipped), values(result))
-                    print(io, "Success: ")
-                    printstyled(io, o; color = :green)
-                    print(io, "\tFailed: ")
-                    printstyled(io, f; color = Base.error_color())
-                    print(io, "\tSkipped: ")
-                    printstyled(io, s; color = Base.warn_color())
-                    println(io, "\tRemaining: ", npkgs - (o + f + s))
-                    for i = 1:ninstances
-                        r = running[i]
-                        if r === nothing
-                            println(io, "Worker $i: -------")
-                        else
-                            time = Dates.canonicalize(Dates.CompoundPeriod(now() - times[i]))
-                            pop!(time.periods) # get rid of milliseconds
-                            println(io, "Worker $i: $(r) running for ", time)
-                        end
-                    end
-                    print(String(take!(io.io)))
-                    sleep(1)
-                    CSI = "\e["
-                    print(io, "$(CSI)$(ninstances+1)A$(CSI)1G$(CSI)0J")
+                    update_output()
                 end
                 stop_work()
             catch e
