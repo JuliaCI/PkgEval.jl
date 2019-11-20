@@ -60,9 +60,9 @@ function run_sandboxed_test(pkg::AbstractString; ver, log_limit = 5*1024^2 #= 5 
     arg = """
         using Pkg
 
-        # Map the local registry to the sandbox registry
-        mkpath("/root/.julia/registries")
-        run(`ln -s /maps/registries/General /root/.julia/registries/General`)
+        # Map the local registries to the sandbox
+        mkpath("/root/.julia")
+        run(`ln -s /maps/registries /root/.julia/registries`)
 
         # Prevent Pkg from updating registy on the Pkg.add
         ENV["CI"] = true
