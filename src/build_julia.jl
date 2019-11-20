@@ -103,22 +103,32 @@ function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=St
     end
     tarball, hash = product_hashes[platforms[1]]
 
+    # Update versions.toml
     version_stanza = """
         ["$version"]
         file = "$tarball"
         sha = "$hash"
     """
-    download_path = joinpath(@__DIR__, "..", "deps", "downloads")
-    if isfile(joinpath(download_path, tarball))
-        @warn "$tarball already exists in deps/downloads folder. Not copying."
-        println("You may manually copy the file from products/ and add the following stanza to Versions.toml:")
+    if haskey(read_versions(), version)
+        # TODO: overwrite automatically, since the hash will have changed
+        @warn "$version already exists in Versions.toml. Not adding."
+        println("You may manually add the following stanza to $(versions_file()):")
         println(version_stanza)
     else
-        mkpath(download_path)
-        cp(joinpath(@__DIR__, "..", "deps", "products", tarball), joinpath(download_path, tarball))
         open(versions_file(); append=true) do f
             println(f, version_stanza)
         end
     end
+
+    # Copy the generated tarball to the downloads folder
+    download_path = joinpath(@__DIR__, "..", "deps", "downloads")
+    if isfile(joinpath(download_path, tarball))
+        @warn "$tarball already exists in deps/downloads folder. Not copying."
+        println("You may manually copy the file from products/.")
+    else
+        mkpath(download_path)
+        cp(joinpath(@__DIR__, "..", "deps", "products", tarball), joinpath(download_path, tarball))
+    end
+
     return version
 end
