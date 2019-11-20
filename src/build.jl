@@ -1,6 +1,5 @@
 using BinaryBuilder
 using LibGit2
-using Base64
 
 """
     version_id = build_julia(ref::String="master"; binarybuilder_args::Vector{String}=String["--verbose"])
