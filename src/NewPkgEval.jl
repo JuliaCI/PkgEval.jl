@@ -35,7 +35,7 @@ function get_registry(name=DEFAULT_REGISTRY)
     end
 
     # read some metadata
-    skip_lists[name] = haskey(reg, "skip") ? reg["skip"] : String[]
+    skip_lists[name] = get(reg, "skip", String[])
 
     return
 end
