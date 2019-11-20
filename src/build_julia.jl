@@ -1,26 +1,6 @@
 using BinaryBuilder
-using GitHub
+using LibGit2
 using Base64
-
-# This is a global github authentication token that is set the first time
-# we authenticate and then reused
-const _github_auth = Ref{GitHub.Authorization}()
-function github_auth()
-    if !isassigned(_github_auth) || _github_auth[] isa GitHub.AnonymousAuth
-        # If the user is feeding us a GITHUB_AUTH token, use it
-        auth = get(ENV, "GITHUB_AUTH", nothing)
-        _github_auth[] = (auth === nothing ? GitHub.AnonymousAuth() : GitHub.authenticate(auth))
-    end
-    return _github_auth[]
-end
-
-function get_julia_version(ref::String="master")
-    file = GitHub.file("JuliaLang/julia", "VERSION";
-                       params = Dict("ref" => ref), auth=github_auth())
-    @assert file.encoding == "base64" # GitHub says this will always be the case
-    str = String(base64decode(chomp(file.content)))
-    return VersionNumber(chomp(str))
-end
 
 """
     version_id = build_julia(ref::String="master"; binarybuilder_args::Vector{String}=String["--verbose"])
@@ -29,18 +9,21 @@ Download and build julia at git reference `ref` using BinaryBuilder. Return the 
 (what other functions use to identify this build).
 """
 function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=String["--verbose"])
-    # This errors if `ref` cannot be found, error message is pretty ok
-    version = get_julia_version(ref)
-
-    reference = GitHub.reference("JuliaLang/julia", "heads/$(ref)"; handle_error=false, auth=github_auth())
-    if reference.object == nothing
-        reference = GitHub.reference("JuliaLang/julia", "tags/$(ref)"; handle_error=false, auth=github_auth())
-    end
-    if reference.object == nothing
-        commit_hash = GitHub.commit("JuliaLang/julia", ref; auth=github_auth()).sha
+    # get the Julia repo
+    repo_path = downloads_dir("julia")
+    if !isdir(repo_path)
+        @info "Cloning Julia repository..."
+        repo = LibGit2.clone("https://github.com/JuliaLang/julia", repo_path)
     else
-        commit_hash = reference.object["sha"]
+        repo = LibGit2.GitRepo(repo_path)
+        LibGit2.fetch(repo)
     end
+
+    # lookup the version number and commit hash
+    reference = LibGit2.GitCommit(repo, ref)
+    tree = LibGit2.peel(LibGit2.GitTree, reference)
+    version = VersionNumber(chomp(LibGit2.content(tree["VERSION"])))
+    commit_hash = string(LibGit2.GitHash(reference))
 
     if version.prerelease != ()
         contrib_path = joinpath(Sys.BINDIR, "..", "..", "contrib")
