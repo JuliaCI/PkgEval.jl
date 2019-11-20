@@ -6,21 +6,45 @@ using Pkg
 import Base: UUID
 using Dates
 
+const DEFAULT_REGISTRY = "General"
+
 downloads_dir(name) = joinpath(@__DIR__, "..", "deps", "downloads", name)
 julia_path(ver) = joinpath(@__DIR__, "..", "deps", "julia-$ver")
 versions_file() = joinpath(@__DIR__, "..", "deps", "Versions.toml")
-registry_path() = joinpath(first(DEPOT_PATH), "registries", "General")
+registry_path(name) = joinpath(first(DEPOT_PATH), "registries", name)
+registries_file() = joinpath(@__DIR__, "..", "deps", "Registries.toml")
 
 include("build_julia.jl")
+
+# Skip these packages when testing packages
+const skip_lists = Dict{String,Vector{String}}()
+
+# Blindly assume these packages are okay
+const ok_lists = Dict{String,Vector{String}}()
 
 """
     get_registry()
 
-Download the default registry, or if it already exists, update it.
+Download the given registry, or if it already exists, update it. `name` must correspond
+to an existing stanza in the `deps/Registries.toml` file.
 """
-function get_registry()
-    Pkg.Types.clone_default_registries()
-    Pkg.Types.update_registries(Pkg.Types.Context())
+function get_registry(name=DEFAULT_REGISTRY)
+    reg = read_registries()[name]
+
+    # clone or update the registry
+    regspec = RegistrySpec(name = name, url = reg["url"], uuid = UUID(reg["uuid"]))
+    if any(existing_regspec -> existing_regspec.name == name, Pkg.Types.collect_registries())
+        Pkg.Types.update_registries(Pkg.Types.Context(), [regspec])
+    else
+        Pkg.Types.clone_or_cp_registries([regspec])
+    end
+
+    # read some metadata
+    skip_lists[name] = haskey(reg, "skip") ? reg["skip"] : String[]
+    ok_lists[name] = haskey(reg, "okay") ? reg["okay"] : String[]
+    append!(ok_lists[name], readdir(Sys.STDLIB))   # stdlibs are assumed to be ok
+
+    return
 end
 
 """
@@ -29,9 +53,15 @@ end
 Parse the `deps/Versions.toml` file containing version and download information for
 various versions of Julia.
 """
-function read_versions()
-    vers = TOML.parse(read(versions_file(), String))
-end
+read_versions() = TOML.parse(read(versions_file(), String))
+
+"""
+    read_registries() -> Dict
+
+Parse the `deps/Registries.toml` file containing a URL and packages to skip or assume
+passing for listed registries.
+"""
+read_registries() = TOML.parsefile(registries_file())
 
 """
     obtain_julia(the_ver)
@@ -105,14 +135,13 @@ function runner_sandboxed_julia(args=``; ver::VersionNumber, do_obtain=true)
     else
         @assert ispath(julia_path(ver))
     end
-    ispath(registry_path()) || error("Please run `NewPkgEval.get_registry()` first")
     tmpdir = joinpath(tempdir(), "NewPkgEval")
     mkpath(tmpdir)
     tmpdir = mktempdir(tmpdir)
     runner = BinaryBuilder.UserNSRunner(tmpdir,
         workspaces=[
-            installed_julia_dir(ver) => "/maps/julia",
-            registry_path() => "/maps/registries/General"
+            installed_julia_dir(ver)                    => "/maps/julia",
+            joinpath(first(DEPOT_PATH), "registries")   => "/maps/registries"
         ])
     cmd = `/maps/julia/bin/julia --color=yes $args`
     cmd = setenv(`$(runner.sandbox_cmd) -- $(cmd)`, runner.env) # extracted from run_interactive in BinaryBuilder
@@ -195,54 +224,6 @@ function kill_process(p)
     end
 end
 
-# Skip these packages when testing packages
-const skip_list = [
-    "AbstractAlgebra", # Hangs forever
-    "DiscretePredictors", # Hangs forever
-    "LinearLeastSquares", # Hangs forever
-    "SLEEF", # Hangs forever
-    "OrthogonalPolynomials", # Hangs forever
-    "IndexableBitVectors",
-    "LatinHypercubeSampling", # Hangs forever
-    "DynamicalBilliards", # Hangs forever
-    "ChangePrecision", # Hangs forever
-    "Rectangle", # Hangs forever
-    "Parts", # Hangs forever
-    "ZippedArrays", # Hangs forever
-    "Chunks", # Hangs forever
-    "Electron",
-    "DotOverloading",
-    "ValuedTuples",
-    "HCubature",
-    "SequentialMonteCarlo",
-    "RequirementVersions",
-    "NumberedLines",
-    "LazyContext",
-    "RecurUnroll", # deleted, hangs
-    "TypedBools", # deleted, hangs
-    "LazyCall", # deleted, hangs
-    "MeshCatMechanisms",
-    "SessionHacker",
-    "Embeddings",
-    "GeoStatsDevTools",
-    "DataDeps", # hangs
-    "DataDepsGenerators", # hangs
-    "MackeyGlass", # deleted, hangs
-    "Keys", #deleted, hangs
-]
-
-# Blindly assume these packages are okay
-const ok_list = [
-    "BinDeps", # Not really ok, but packages may list it just as a fallback
-    "Homebrew",
-    "WinRPM",
-    "NamedTuples", # As requested by quinnj
-    "Compat",
-]
-
-# Stdlibs are assumed to be ok
-append!(ok_list, readdir(Sys.STDLIB))
-
 """
     run(depsgraph, ninstances, version[, result]; do_depwarns=false,
         time_limit=60*45)
@@ -256,12 +237,12 @@ tests will cause the package's tests to fail, i.e. Julia is run with `--depwarn=
 
 Tests will be forcibly interrupted after `time_limit` seconds.
 """
-function run(pkgs::Vector, ninstances::Integer, ver::VersionNumber, result = Dict{String, Symbol}();
+function run(pkgs::Vector, ninstances::Integer, ver::VersionNumber, result=Dict{String,Symbol}();
              do_depwarns=false, time_limit=60*45)
     obtain_julia(ver)
+
     # In case we need to provide sudo password, do that before starting the actual testing
     run_sandboxed_julia(`-e '1'`; ver=ver)
-    get_registry() # make sure local registry is updated
 
     pkgs = copy(pkgs)
     npkgs = length(pkgs)
@@ -331,7 +312,7 @@ function run(pkgs::Vector, ninstances::Integer, ver::VersionNumber, result = Dic
                 try
                     while !isempty(pkgs) && !done
                         pkg = pop!(pkgs)
-                        if pkg.name in skip_list
+                        if pkg.name in skip_lists[pkg.registry]
                             result[pkg.name] = :skip
                         else
                             running[i] = Symbol(pkg.name)
@@ -354,33 +335,36 @@ function run(pkgs::Vector, ninstances::Integer, ver::VersionNumber, result = Dic
 end
 
 """
-    read_pkgs([pkgs::Vector{String}])
+    read_pkgs([pkgs::Vector{String}]; [registry::String])
 
-Read packages from the default registry and return them as a vector of tuples containing
-the package name, its UUID, and a path to it. If `pkgs` is given, only collect packages
-matching the names in `pkgs`
+Read all packages from a registry and return them as a vector of tuples containing the
+package name and registry, its UUID, and a path to it. If `pkgs` is given, only collect
+packages matching the names in `pkgs`
 """
-function read_pkgs(pkgs::Union{Nothing, Vector{String}}=nothing)
+function read_pkgs(pkgs::Union{Nothing, Vector{String}}=nothing; registry=DEFAULT_REGISTRY)
+    # make sure local registry is updated
+    get_registry(registry)
+
     pkg_data = []
-    for registry in (registry_path(),)
-        open(joinpath(registry, "Registry.toml")) do io
-            for (_uuid, pkgdata) in Pkg.Types.read_registry(joinpath(registry, "Registry.toml"))["packages"]
-                uuid = UUID(_uuid)
-                name = pkgdata["name"]
-                if pkgs !== nothing
-                    idx = findfirst(==(name), pkgs)
-                    idx === nothing && continue
-                    deleteat!(pkgs, idx)
-                end
-                path = abspath(registry, pkgdata["path"])
-                push!(pkg_data, (name=name, uuid=uuid, path=path))
+    regpath = registry_path(registry)
+    open(joinpath(regpath, "Registry.toml")) do io
+        for (_uuid, pkgdata) in Pkg.Types.read_registry(joinpath(regpath, "Registry.toml"))["packages"]
+            uuid = UUID(_uuid)
+            name = pkgdata["name"]
+            if pkgs !== nothing
+                idx = findfirst(==(name), pkgs)
+                idx === nothing && continue
+                deleteat!(pkgs, idx)
             end
+            path = abspath(regpath, pkgdata["path"])
+            push!(pkg_data, (name=name, uuid=uuid, path=path, registry=registry))
         end
     end
     if pkgs !== nothing && !isempty(pkgs)
-        @warn """did not find the following packages in the registry:\n $("  - " .* join(pkgs, '\n'))"""
+        @warn """did not find the following packages in the $registry registry:\n $("  - " .* join(pkgs, '\n'))"""
     end
-    pkg_data
+
+    return pkg_data
 end
 
 end # module
