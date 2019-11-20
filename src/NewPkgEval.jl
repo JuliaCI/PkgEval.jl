@@ -126,26 +126,26 @@ log_path(ver) = joinpath(@__DIR__, "..", "logs/logs-$ver")
 
 Run the unit tests for a single package `pkg` inside of a sandbox using the Julia version
 `ver`. If `do_depwarns` is `true`, deprecation warnings emitted while running the package's
-tests will cause the tests to fail. Test will be forcibly interrupted after `time_limit` seconds or if the log
-becomes larger than `log_limit`.
+tests will cause the tests to fail. Test will be forcibly interrupted after `time_limit`
+seconds or if the log becomes larger than `log_limit`.
 
 A log for the tests is written to a version-specific directory in the NewPkgEval root
 directory.
 """
-function run_sandboxed_test(pkg::AbstractString; ver, log_limit = 5*1024^2 #= 5 MB =#,time_limit = 45*60, do_depwarns=false, kwargs...)
+function run_sandboxed_test(pkg::AbstractString; ver, log_limit = 5*1024^2 #= 5 MB =#,
+                            time_limit = 45*60, do_depwarns=false, kwargs...)
     mkpath(log_path(ver))
     arg = """
         using Pkg
-        # TODO: Possible to remove?
-        #open("/etc/hosts", "w") do f
-        #   println(f, "127.0.0.1\tlocalhost")
-        #end
+
         # Map the local registry to the sandbox registry
         mkpath("/root/.julia/registries")
         run(`ln -s /maps/registries/General /root/.julia/registries/General`)
+
         # Prevent Pkg from updating registy on the Pkg.add
         ENV["CI"] = true
         Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
+
         Pkg.add($(repr(pkg)))
         Pkg.test($(repr(pkg)))
     """

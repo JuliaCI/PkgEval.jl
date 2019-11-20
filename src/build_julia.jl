@@ -25,8 +25,8 @@ end
 """
     version_id = build_julia(ref::String="master"; binarybuilder_args::Vector{String}=String["--verbose"])
 
-Download and build julia at git reference `ref` using BinaryBuilder. Return the `version_id` (what other functions use
-to identify this build).
+Download and build julia at git reference `ref` using BinaryBuilder. Return the `version_id`
+(what other functions use to identify this build).
 """
 function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=String["--verbose"])
     # This errors if `ref` cannot be found, error message is pretty ok
@@ -59,7 +59,7 @@ function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=St
             version = VersionNumber(string(version) * string("-", commit_hash[1:6]))
         end
     end
-        
+
     # Collection of sources required to build julia
     sources = [
         "https://github.com/JuliaLang/julia.git" => commit_hash,
@@ -70,13 +70,13 @@ function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=St
     cd $WORKSPACE/srcdir
     mount -t devpts -o newinstance jrunpts /dev/pts
     mount -o bind /dev/pts/ptmx /dev/ptmx
+
     cd julia
     cat > Make.user <<EOF
-    LLVM_ASSERTIONS=1
-    LIBSSH2_ENABLE_TESTS=0
     JULIA_CPU_TARGET=generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)
     EOF
     make -j${nproc}
+
     make install
     cp LICENSE.md ${prefix}
     contrib/fixup-libgfortran.sh ${prefix}/lib/julia
@@ -104,9 +104,9 @@ function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=St
     tarball, hash = product_hashes[platforms[1]]
 
     version_stanza = """
-    ["$version"]
-    file = "$tarball"
-    sha = "$hash"
+        ["$version"]
+        file = "$tarball"
+        sha = "$hash"
     """
     download_path = joinpath(@__DIR__, "..", "deps", "downloads")
     if isfile(joinpath(download_path, tarball))
