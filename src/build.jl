@@ -84,8 +84,9 @@ function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=St
         build_tarballs(binarybuilder_args, "julia", version, sources, script, platforms, products, dependencies, preferred_gcc_version=v"7", skip_audit=true)
     end
     tarball, hash = product_hashes[platforms[1]]
+    version = string(version)
 
-    # Update versions.toml
+    # Update Versions.toml
     version_stanza = """
         ["$version"]
         file = "$tarball"

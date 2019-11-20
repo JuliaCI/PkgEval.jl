@@ -61,10 +61,10 @@ read_registries() = TOML.parsefile(registries_file())
 
 Download the specified version of Julia using the information provided in `Versions.toml`.
 """
-function obtain_julia(the_ver)
+function obtain_julia(the_ver::String)
     vers = read_versions()
     for (ver, data) in vers
-        ver == string(the_ver) || continue
+        ver == the_ver || continue
         dir = julia_path(ver)
         mkpath(dirname(dir))
         if haskey(data, "url")
@@ -95,7 +95,7 @@ function obtain_julia(the_ver)
     error("Requested Julia version not found")
 end
 
-function installed_julia_dir(ver)
+function installed_julia_dir(ver::String)
      jp = julia_path(ver)
      jp_contents = readdir(jp)
      # Allow the unpacked directory to either be insider another directory (as produced by
