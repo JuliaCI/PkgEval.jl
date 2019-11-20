@@ -27,7 +27,7 @@ end
 
     results = NewPkgEval.run(pkgs, 2, v; time_limit = 0.1)
     for pkg in pkgnames
-        @test results[pkg] == :fail
+        @test results[pkg] == :killed
     end
 
     results = NewPkgEval.run(pkgs, 2, v)

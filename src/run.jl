@@ -80,23 +80,26 @@ function run_sandboxed_test(pkg::AbstractString; ver, log_limit = 5*1024^2 #= 5 
     open(log, "w") do f
         with_mounted_shards(runner) do
             p = Base.run(pipeline(cmd, stdout=f, stderr=f, stdin=devnull); wait=false)
+            killed = Ref(false)
             t = Timer(time_limit) do timer
                 process_running(p) || return # exit callback
+                killed[] = true
                 kill_process(p)
             end
             t2 = @async while true
                 process_running(p) || break
                 if stat(log).size > log_limit
                     kill_process(p)
+                    killed[] = true
                     break
                 end
                 flush(f)
                 sleep(2)
             end
-            s = success(p)
+            succeeded = success(p)
             close(t)
             wait(t2)
-            return s
+            return (killed[], succeeded)
         end
     end
 end
@@ -211,7 +214,9 @@ function run(pkgs::Vector, ninstances::Integer, ver::VersionNumber, result=Dict{
                         else
                             running[i] = Symbol(pkg.name)
                             times[i] = now()
-                            result[pkg.name] = NewPkgEval.run_sandboxed_test(pkg.name; ver=ver, time_limit=time_limit) ? :ok : :fail
+                            killed, succeeded = NewPkgEval.run_sandboxed_test(pkg.name; ver=ver, time_limit=time_limit)
+                            result[pkg.name] = killed ? :killed :
+                                               succeeded ? :ok : :fail
                             running[i] = nothing
                         end
                     end
