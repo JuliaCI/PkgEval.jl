@@ -8,14 +8,14 @@ function with_mounted_shards(f, runner)
 end
 
 """
-    run_sandboxed_julia(args=``; ver::VersionNumber, do_obtain=true, kwargs...)
+    run_sandboxed_julia(args=``; ver, do_obtain=true, kwargs...)
 
 Run Julia inside of a sandbox, passing the given arguments `args` to it. The keyword
 argument `ver` specifies the version of Julia to use, and `do_obtain` dictates whether
 the specified version should first be downloaded. If `do_obtain` is `false`, it must
 already be installed.
 """
-function run_sandboxed_julia(args=``; ver::VersionNumber, do_obtain=true,
+function run_sandboxed_julia(args=``; ver, do_obtain=true,
                              stdin=stdin, stdout=stdout, stderr=stderr)
     runner, cmd = runner_sandboxed_julia(args; ver=ver, do_obtain=do_obtain)
     with_mounted_shards(runner) do
@@ -23,7 +23,7 @@ function run_sandboxed_julia(args=``; ver::VersionNumber, do_obtain=true,
     end
 end
 
-function runner_sandboxed_julia(args=``; ver::VersionNumber, do_obtain=true)
+function runner_sandboxed_julia(args=``; ver, do_obtain=true)
     if do_obtain
         obtain_julia(ver)
     else
@@ -45,7 +45,7 @@ end
 log_path(ver) = joinpath(@__DIR__, "..", "logs/logs-$ver")
 
 """
-    run_sandboxed_test(pkg; ver::VersionNumber, do_depwarns=false, log_limit = 5*1024^2, time_limit=60*45, kwargs...)
+    run_sandboxed_test(pkg; ver, do_depwarns=false, log_limit = 5*1024^2, time_limit=60*45, kwargs...)
 
 Run the unit tests for a single package `pkg` inside of a sandbox using the Julia version
 `ver`. If `do_depwarns` is `true`, deprecation warnings emitted while running the package's
@@ -134,7 +134,7 @@ tests will cause the package's tests to fail, i.e. Julia is run with `--depwarn=
 
 Tests will be forcibly interrupted after `time_limit` seconds.
 """
-function run(pkgs::Vector, ninstances::Integer, ver::VersionNumber, result=Dict{String,Symbol}();
+function run(pkgs::Vector, ninstances::Integer, ver, result=Dict{String,Symbol}();
              do_depwarns=false, time_limit=60*45)
     obtain_julia(ver)
 

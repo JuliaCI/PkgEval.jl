@@ -61,26 +61,34 @@ read_registries() = TOML.parsefile(registries_file())
 
 Download the specified version of Julia using the information provided in `Versions.toml`.
 """
-function obtain_julia(the_ver::VersionNumber)
+function obtain_julia(the_ver)
     vers = read_versions()
     for (ver, data) in vers
-        ver = VersionNumber(ver)
-        ver == the_ver || continue
+        ver == string(the_ver) || continue
+        dir = julia_path(ver)
+        mkpath(dirname(dir))
         if haskey(data, "url")
+            url = data["url"]
+
             file = get(data, "file", "julia-$ver.tar.gz")
             @assert !isabspath(file)
-            Pkg.PlatformEngines.download_verify_unpack(
-                data["url"],
-                data["sha"],
-                julia_path(ver);
-                tarball_path=downloads_dir(file),
-                force=true
-            )
+            file = downloads_dir(file)
+            mkpath(dirname(file))
+
+            if haskey(data, "sha")
+                Pkg.PlatformEngines.download_verify_unpack(url, data["sha"], dir;
+                                                           tarball_path=file, force=true)
+            else
+                ispath(file) || Pkg.PlatformEngines.download(url, file)
+                isdir(dir) || Pkg.PlatformEngines.unpack(file, dir)
+            end
         else
             file = data["file"]
             !isabspath(file) && (file = downloads_dir(file))
-            Pkg.PlatformEngines.verify(file, data["sha"])
-            isdir(julia_path(ver)) || Pkg.PlatformEngines.unpack(file, julia_path(ver))
+            if haskey(data, "sha")
+                Pkg.PlatformEngines.verify(file, data["sha"])
+            end
+            isdir(dir) || Pkg.PlatformEngines.unpack(file, dir)
         end
         return
     end

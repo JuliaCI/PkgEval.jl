@@ -2,15 +2,14 @@ using NewPkgEval
 using Test
 
 # determine the version to use
-const verstr = get(ENV, "JULIA_VERSION", string(VERSION))
+const ver = get(ENV, "JULIA_VERSION", string(VERSION))
 const v = try
-    ver = VersionNumber(verstr)
     NewPkgEval.obtain_julia(ver)
     ver
 catch
     # either the string is an invalid version number (assume it is a git ref),
     # or we couldn't obtain this version
-    NewPkgEval.build_julia(verstr)
+    NewPkgEval.build_julia(ver)
 end
 
 @testset "sandbox" begin
@@ -19,6 +18,8 @@ end
         close(io)
         @test read(path, String) == "1337"
     end
+
+    NewPkgEval.run_sandboxed_julia(`-e 'using InteractiveUtils; versioninfo()'`; ver=v)
 end
 
 @testset "PkgEval" begin
