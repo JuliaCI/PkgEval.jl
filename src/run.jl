@@ -15,10 +15,11 @@ argument `ver` specifies the version of Julia to use, and `do_obtain` dictates w
 the specified version should first be downloaded. If `do_obtain` is `false`, it must
 already be installed.
 """
-function run_sandboxed_julia(args=``; ver::VersionNumber, do_obtain=true, stdout=stdout, stdin=stdin)
+function run_sandboxed_julia(args=``; ver::VersionNumber, do_obtain=true,
+                             stdin=stdin, stdout=stdout, stderr=stderr)
     runner, cmd = runner_sandboxed_julia(args; ver=ver, do_obtain=do_obtain)
     with_mounted_shards(runner) do
-        Base.run(pipeline(cmd, stdout=stdout, stderr=stderr))
+        Base.run(pipeline(cmd, stdin=stdin, stdout=stdout, stderr=stderr))
     end
 end
 
@@ -78,7 +79,7 @@ function run_sandboxed_test(pkg::AbstractString; ver, log_limit = 5*1024^2 #= 5 
     log = joinpath(log_path(ver), "$pkg.log")
     open(log, "w") do f
         with_mounted_shards(runner) do
-            p = Base.run(pipeline(cmd, stdout=f, stderr=f); wait=false)
+            p = Base.run(pipeline(cmd, stdout=f, stderr=f, stdin=devnull); wait=false)
             t = Timer(time_limit) do timer
                 process_running(p) || return # exit callback
                 kill_process(p)
