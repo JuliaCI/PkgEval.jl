@@ -19,9 +19,6 @@ include("build_julia.jl")
 # Skip these packages when testing packages
 const skip_lists = Dict{String,Vector{String}}()
 
-# Blindly assume these packages are okay
-const ok_lists = Dict{String,Vector{String}}()
-
 """
     get_registry()
 
@@ -41,8 +38,6 @@ function get_registry(name=DEFAULT_REGISTRY)
 
     # read some metadata
     skip_lists[name] = haskey(reg, "skip") ? reg["skip"] : String[]
-    ok_lists[name] = haskey(reg, "okay") ? reg["okay"] : String[]
-    append!(ok_lists[name], readdir(Sys.STDLIB))   # stdlibs are assumed to be ok
 
     return
 end
