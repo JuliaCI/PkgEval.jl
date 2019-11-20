@@ -244,7 +244,7 @@ const ok_list = [
 append!(ok_list, readdir(Sys.STDLIB))
 
 """
-    run(depsgraph, ninstances, version[, result]; do_depwarns=false, 
+    run(depsgraph, ninstances, version[, result]; do_depwarns=false,
         time_limit=60*45)
 
 Run all tests for all packages in the given package dependency graph using `ninstances`
@@ -324,7 +324,7 @@ function run(pkgs::Vector, ninstances::Integer, ver::VersionNumber, result = Dic
                 !isa(e, InterruptException) && rethrow(e)
             end
         end
-        
+
         # Workers
         for i = 1:ninstances
             push!(all_workers, @async begin

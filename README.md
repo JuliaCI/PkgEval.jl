@@ -69,6 +69,6 @@ In order to run PkgEval against a Julia package do the following:
 
     If you have problem running more than 1 worker at a time try set the environment variable
 
-    ``` 
+    ```
     BINARYBUILDER_USE_SQUASHFS=false
-    ``` 
+    ```
