@@ -1,4 +1,3 @@
-using BinaryBuilder
 using LibGit2
 import SHA: sha256
 
@@ -6,6 +5,17 @@ function filehash(path)
     open(path, "r") do f
         bytes2hex(sha256(f))
     end
+end
+
+function installed_julia_dir(ver)
+     jp = julia_path(ver)
+     jp_contents = readdir(jp)
+     # Allow the unpacked directory to either be insider another directory (as produced by
+     # the buildbots) or directly inside the mapped directory (as produced by the BB script)
+     if length(jp_contents) == 1
+         jp = joinpath(jp, first(jp_contents))
+     end
+     jp
 end
 
 """
