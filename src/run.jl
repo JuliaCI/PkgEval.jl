@@ -221,6 +221,7 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
                         times[i] = now()
                         log = missing
                         pkg_version = missing
+                        reason = missing
                         if pkg.name in skip_lists[pkg.registry]
                             result[pkg.name] = :skip
                         else
@@ -241,18 +242,22 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
                             if result[pkg.name] == :fail
                                 if occursin("ERROR: Unsatisfiable requirements detected for package", log)
                                     # NOTE: might be the package itself, or one of its dependencies
-                                    result[pkg.name] = :unsatisfiable
+                                    reason = :unsatisfiable
                                 elseif occursin("ERROR: Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
-                                    result[pkg.name] = :untestable
+                                    reason = :untestable
                                 elseif occursin("cannot open shared object file: No such file or directory", log)
-                                    result[pkg.name] = :binary_dependency
+                                    reason = :binary_dependency
+                                elseif occursin("Some tests did not pass", log)
+                                    reason = :test_failures
+                                else
+                                    reason = :unknown
                                 end
                             end
                         end
 
                         # report to the caller
                         if callback !== nothing
-                            callback(pkg.name, pkg_version, times[i], result[pkg.name], log)
+                            callback(pkg.name, pkg_version, times[i], result[pkg.name], reason, log)
                         else
                             write(joinpath(log_path(julia), "$(pkg.name).log"), log)
                         end

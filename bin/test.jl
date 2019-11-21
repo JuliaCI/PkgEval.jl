@@ -29,6 +29,7 @@ function main(;pkgnames=["Example"], julia_releases=["1.2"], registry="General",
                                            julia_version TEXT,
                                            run INT,
                                            status TEXT,
+                                           reason TEXT,
                                            log TEXT,
                                            datetime TEXT,
                                            duration REAL)
@@ -39,15 +40,18 @@ function main(;pkgnames=["Example"], julia_releases=["1.2"], registry="General",
 
     # test!
     for (julia_release, julia_version) in julia_versions
-        function store_result(package_name, package_version, start, status, log)
+        function store_result(package_name, package_version, start, status, reason, log)
             stop = now()
             elapsed = (stop-start) / Millisecond(1000)
 
-            SQLite.Query(db, "INSERT INTO builds VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                         values=[package_name,
-                                 ismissing(package_version) ? missing : string(package_version),
-                                 julia_release, string(julia_version),
-                                 run, string(status), log, string(now()), elapsed])
+            # stringify all values to prevent serialization, but keep `missing`s
+            string_or_missing(obj) = ismissing(obj) ? missing : string(obj)
+
+            SQLite.Query(db, "INSERT INTO builds VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                         values=string_or_missing.([package_name, package_version,
+                                                    julia_release, julia_version,
+                                                    run, status, reason,
+                                                    log, now(), elapsed]))
         end
 
         NewPkgEval.run(julia_version, pkgs; callback=store_result)
