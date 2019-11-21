@@ -37,10 +37,6 @@ In order to run PkgEval against a Julia package do the following:
 
     restart Julia and try again.
 
-    The builder uses the GitHub API and if you are not authenticated you might get rate limited (should only happen
-    if you build over and over again).
-    Setting the environment variable `GITHUB_AUTH` to a github authentication token will authenticate and avoid rate limiting
-
     If something goes wrong, or you built julia yourself, you may have to add that stanza
     manually and copy the tarball from the products/ directory into `deps/downloads`.
 
@@ -69,6 +65,6 @@ In order to run PkgEval against a Julia package do the following:
 
     If you have problem running more than 1 worker at a time try set the environment variable
 
-    ``` 
+    ```
     BINARYBUILDER_USE_SQUASHFS=false
-    ``` 
+    ```
