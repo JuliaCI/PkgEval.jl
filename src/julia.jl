@@ -65,26 +65,29 @@ function download_julia(name::String)
 
     # get the filename and extension from the url
     url = data["url"]
-    name = basename(url)
-    dot_idx = findfirst(isequal('.'), name)
-    ext = name[dot_idx+1:end]
-    name = name[1:dot_idx-1]
+    filename = basename(url)
+    if endswith(filename, ".tar.gz")
+        ext = ".tar.gz"
+        base = filename[1:end-7]
+    else
+        ext, base = splitext(filename)
+    end
 
     # download
-    temp_file = downloads_dir(name)
+    temp_file = downloads_dir(base)
     mkpath(dirname(temp_file))
     ispath(temp_file) && rm(temp_file)
     Pkg.PlatformEngines.download(url, temp_file)
 
     # unpack
-    temp_dir = julia_path(name)
+    temp_dir = julia_path(base)
     ispath(temp_dir) && rm(temp_dir; recursive=true)
     Pkg.PlatformEngines.unpack(temp_file, temp_dir)
 
     # figure out stuff from the downloaded binary
-    version = VersionNumber(read(`$(installed_julia_dir(name))/bin/julia -e 'print(Base.VERSION_STRING)'`, String))
+    version = VersionNumber(read(`$(installed_julia_dir(base))/bin/julia -e 'print(Base.VERSION_STRING)'`, String))
     if version.prerelease != ()
-        commit_short = read(`$(installed_julia_dir(name))/bin/julia -e 'print(Base.GIT_VERSION_INFO.commit_short)'`, String)
+        commit_short = read(`$(installed_julia_dir(base))/bin/julia -e 'print(Base.GIT_VERSION_INFO.commit_short)'`, String)
         version = VersionNumber(string(version) * string("-", commit_short))
     end
     rm(temp_dir; recursive=true) # let `obtain_julia` unpack; keeps code simpler here
@@ -98,19 +101,19 @@ function download_julia(name::String)
         hash = filehash(temp_file)
 
         # move to its final location
-        name = "julia-$version.$ext"
-        file = downloads_dir(name)
-        if ispath(file)
-            @warn "Destination file $name already exists, assuming it matches"
+        tarball = "julia-$version$ext"
+        tarball_path = downloads_dir(tarball)
+        if ispath(tarball_path)
+            @warn "Destination file $tarball already exists, assuming it matches"
             rm(temp_file)
         else
-            mv(temp_file, file)
+            mv(temp_file, tarball_path)
         end
 
         # Update Versions.toml
         version_stanza = """
             ["$version"]
-            file = "$name"
+            file = "$tarball"
             sha = "$hash"
             """
         open(versions_file(); append=true) do f
@@ -197,12 +200,12 @@ function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=St
         build_tarballs(binarybuilder_args, "julia", version, sources, script, platforms, products, dependencies, preferred_gcc_version=v"7", skip_audit=true)
     end
     temp_file, hash = product_hashes[platforms[1]]
-    name = basename(temp_file)
+    tarball = basename(temp_file)
 
     # Update Versions.toml
     version_stanza = """
         ["$version"]
-        file = "$name"
+        file = "$tarball"
         sha = "$hash"
         """
     open(versions_file(); append=true) do f
@@ -210,13 +213,13 @@ function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=St
     end
 
     # Copy the generated tarball to the downloads folder
-    file = downloads_dir(name)
-    if ispath(file)
+    tarball_path = downloads_dir(tarball)
+    if ispath(tarball_path)
         # NOTE: we can't use the previous file here (like in `download_julia`)
         #       because the hash will most certainly be different
-        @warn "Destination file $name already exists, overwriting"
+        @warn "Destination file $tarball already exists, overwriting"
     end
-    mv(temp_file, file)
+    mv(temp_file, tarball_path)
 
     return version
 end
