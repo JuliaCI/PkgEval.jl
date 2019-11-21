@@ -30,7 +30,7 @@ NewPkgEval.obtain_julia(julia::VersionNumber)
     NewPkgEval.run_sandboxed_julia(julia, `-e 'using InteractiveUtils; versioninfo()'`)
 end
 
-const pkgnames = ["JSON", "TimerOutputs", "Crayons", "Example"]
+const pkgnames = ["TimerOutputs", "Crayons", "Example"]
 
 @testset "low-level interface" begin
     pkgs = NewPkgEval.read_pkgs(pkgnames)
