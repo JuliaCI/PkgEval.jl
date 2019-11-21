@@ -249,8 +249,12 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
                                     reason = :untestable
                                 elseif occursin("cannot open shared object file: No such file or directory", log)
                                     reason = :binary_dependency
+                                elseif occursin(r"Package .+ does not have .+ in its dependencies", log)
+                                    reason = :missing_dependency
                                 elseif occursin("Some tests did not pass", log)
                                     reason = :test_failures
+                                elseif occursin("ERROR: LoadError: syntax", log)
+                                    reason = :syntax
                                 else
                                     reason = :unknown
                                 end
