@@ -219,15 +219,23 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
                     while !isempty(pkgs) && !done
                         pkg = pop!(pkgs)
                         times[i] = now()
+                        log = nothing
+                        pkg_version = nothing
                         if pkg.name in skip_lists[pkg.registry]
                             result[pkg.name] = :skip
-                            log = nothing
                         else
                             running[i] = Symbol(pkg.name)
                             killed, succeeded, log = NewPkgEval.run_sandboxed_test(julia, pkg.name; kwargs...)
                             result[pkg.name] = killed ? :killed :
                                                succeeded ? :ok : :fail
                             running[i] = nothing
+
+                            # pick up the installed package version from the log
+                            let match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
+                                if match !== nothing
+                                    pkg_version = VersionNumber(match.captures[1])
+                                end
+                            end
 
                             # figure out a more accurate failure reason from the log
                             if result[pkg.name] == :fail
@@ -244,7 +252,7 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
 
                         # report to the caller
                         if callback !== nothing
-                            callback(pkg.name, times[i], result[pkg.name], log)
+                            callback(pkg.name, pkg_version, times[i], result[pkg.name], log)
                         else
                             write(joinpath(log_path(julia), "$(pkg.name).log"), log)
                         end
