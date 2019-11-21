@@ -44,7 +44,8 @@ function main(;pkgnames=["Example"], julia_releases=["1.2"], registry="General",
             elapsed = (stop-start) / Millisecond(1000)
 
             SQLite.Query(db, "INSERT INTO builds VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                         values=[package_name, string(package_version),
+                         values=[package_name,
+                                 ismissing(package_version) ? missing : string(package_version),
                                  julia_release, string(julia_version),
                                  run, string(status), log, string(now()), elapsed])
         end

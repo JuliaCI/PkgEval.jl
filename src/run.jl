@@ -219,8 +219,8 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
                     while !isempty(pkgs) && !done
                         pkg = pop!(pkgs)
                         times[i] = now()
-                        log = nothing
-                        pkg_version = nothing
+                        log = missing
+                        pkg_version = missing
                         if pkg.name in skip_lists[pkg.registry]
                             result[pkg.name] = :skip
                         else
