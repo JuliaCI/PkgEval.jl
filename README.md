@@ -13,22 +13,42 @@ In order to run PkgEval against a Julia package do the following:
     ```
 
 
-2. Build a julia binary distribution
+2. Obtain a binary Julia distribution
 
-    You have two choices. Either you build a binary distribution of julia yourself
-    (or let the buildbots do it), or you may use NewPkgEval to do it for you:
+    You have three choices. Either you use a specific version of Julia that has been
+    registered in `Versions.toml` already, and will automatically be downloaded, verified
+    and unpacked when required using the `obtain_julia` function:
 
     ```jl
     import NewPkgEval
-    NewPkgEval.build_julia(ref="master"; binarybuilder_args=String["--verbose"])
+    NewPkgEval.obtain_julia(v"1.2.0")
     ```
 
-    where `ref` is a GitHub reference (branch, commit or tag, for example `"v1.2.0"`).
-    This will register a in deps/Versions.toml, using a stanza that looks like so:
+    If you want to use an unreleased version of Julia as provided by the build bots, you can
+    add or use an entry from `Builds.toml` and call `download_julia`. The exact version of
+    these entries is often not known beforehand, and because of that the function returns
+    the exact version number you should use with other functions in NewPkgEval:
+
+    ```jl
+    julia = NewPkgEval.download_julia("latest")
+    NewPkgEval.run(julia, ...)
     ```
-    ["1.2.0"]
-    file = "julia.v1.2.0.x86_64-linux-gnu.tar.gz"
-    sha = "9c796bfd7cb53604d6b176c45d38069d8f816efbe69d717b92d713bc080c89eb"
+
+    It also adds an entry to Versions.toml:
+
+    ```
+    ["1.4.0-DEV-8f7855a7c3"]
+    file = "julia-1.4.0-DEV-8f7855a7c3.tar.gz"
+    sha = "dcd105b94906359cae52656129615a1446e7aee1e992ae9c06a15554d83a46f0"
+
+    ```
+
+    Finally, you can also build Julia from Git using BinaryBuilder using the `build_julia`
+    method. Similarly, it adds an entry to Versions.toml and returns the version identifier
+    you should then use:
+
+    ```jl
+    julia = NewPkgEval.build_julia("master")
     ```
 
     If you get a permission error, try to set the variable
@@ -41,12 +61,12 @@ In order to run PkgEval against a Julia package do the following:
     manually and copy the tarball from the products/ directory into `deps/downloads`.
 
 
-3. Try the julia sandbox environment
+3. Try the Julia sandbox environment
 
     To see that things work as expected, try to run
 
     ```
-    julia> NewPkgEval.run_sandboxed_julia(`-e 'print("hello")'`; ver=v);
+    julia> NewPkgEval.run_sandboxed_julia(julia, `-e 'print("hello")'`);
     hello
     ```
 
@@ -57,8 +77,7 @@ In order to run PkgEval against a Julia package do the following:
 
     ```julia
     using NewPkgEval
-    pkgs = NewPkgEval.read_pkgs(); # can also give a vector of packages here
-    results = NewPkgEval.run(pkgs, 20, v"1.2.0")
+    results = NewPkgEval.run(v"1.2.0") # pass an array of package names to limit the run
     ```
 
     See the docstrings for more arguments.

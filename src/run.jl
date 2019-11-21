@@ -8,33 +8,33 @@ function with_mounted_shards(f, runner)
 end
 
 """
-    run_sandboxed_julia(args=``; ver::String, do_obtain=true, kwargs...)
+    run_sandboxed_julia(julia::VersionNumber, args=``; do_obtain=true, kwargs...)
 
 Run Julia inside of a sandbox, passing the given arguments `args` to it. The keyword
-argument `ver` specifies the version of Julia to use, and `do_obtain` dictates whether
+argument `julia` specifies the version of Julia to use, and `do_obtain` dictates whether
 the specified version should first be downloaded. If `do_obtain` is `false`, it must
 already be installed.
 """
-function run_sandboxed_julia(args=``; ver::String, do_obtain=true,
-                             stdin=stdin, stdout=stdout, stderr=stderr)
-    runner, cmd = runner_sandboxed_julia(args; ver=ver, do_obtain=do_obtain)
+function run_sandboxed_julia(julia::VersionNumber, args=``; stdin=stdin, stdout=stdout,
+                             stderr=stderr, kwargs...)
+    runner, cmd = runner_sandboxed_julia(julia, args; kwargs...)
     with_mounted_shards(runner) do
         Base.run(pipeline(cmd, stdin=stdin, stdout=stdout, stderr=stderr))
     end
 end
 
-function runner_sandboxed_julia(args=``; ver::String, do_obtain=true)
+function runner_sandboxed_julia(julia::VersionNumber, args=``; do_obtain=true)
     if do_obtain
-        obtain_julia(ver)
+        obtain_julia(julia)
     else
-        @assert ispath(julia_path(ver))
+        @assert ispath(julia_path(julia))
     end
     tmpdir = joinpath(tempdir(), "NewPkgEval")
     mkpath(tmpdir)
     tmpdir = mktempdir(tmpdir)
     runner = BinaryBuilder.UserNSRunner(tmpdir,
         workspaces=[
-            installed_julia_dir(ver)                    => "/maps/julia",
+            installed_julia_dir(julia)                    => "/maps/julia",
             joinpath(first(DEPOT_PATH), "registries")   => "/maps/registries"
         ])
     cmd = `/maps/julia/bin/julia --color=yes $args`
@@ -42,22 +42,20 @@ function runner_sandboxed_julia(args=``; ver::String, do_obtain=true)
     return runner, cmd
 end
 
-log_path(ver) = joinpath(@__DIR__, "..", "logs/logs-$ver")
-
 """
-    run_sandboxed_test(pkg; ver::String, do_depwarns=false, log_limit = 5*1024^2, time_limit=60*45, kwargs...)
+    run_sandboxed_test(julia::VersionNumber, pkg; do_depwarns=false, log_limit=5*1024^2, time_limit=60*45)
 
 Run the unit tests for a single package `pkg` inside of a sandbox using the Julia version
-`ver`. If `do_depwarns` is `true`, deprecation warnings emitted while running the package's
+`julia`. If `do_depwarns` is `true`, deprecation warnings emitted while running the package's
 tests will cause the tests to fail. Test will be forcibly interrupted after `time_limit`
 seconds or if the log becomes larger than `log_limit`.
 
 A log for the tests is written to a version-specific directory in the NewPkgEval root
 directory.
 """
-function run_sandboxed_test(pkg::String; ver::String, log_limit = 5*1024^2 #= 5 MB =#,
+function run_sandboxed_test(julia::VersionNumber, pkg::String; log_limit = 5*1024^2 #= 5 MB =#,
                             time_limit = 45*60, do_depwarns=false, kwargs...)
-    mkpath(log_path(ver))
+    mkpath(log_path(julia))
     arg = """
         using Pkg
 
@@ -74,10 +72,9 @@ function run_sandboxed_test(pkg::String; ver::String, log_limit = 5*1024^2 #= 5 
     """
     cmd = do_depwarns ? `--depwarn=error` : ``
     cmd = `$cmd -e $arg`
-    runner, cmd = runner_sandboxed_julia(cmd; ver=ver, kwargs...)
+    runner, cmd = runner_sandboxed_julia(julia, cmd; kwargs...)
 
-    log = joinpath(log_path(ver), "$pkg.log")
-    open(log, "w") do f
+    mktemp() do log, f
         with_mounted_shards(runner) do
             p = Base.run(pipeline(cmd, stdout=f, stderr=f, stdin=devnull); wait=false)
             killed = Ref(false)
@@ -99,7 +96,7 @@ function run_sandboxed_test(pkg::String; ver::String, log_limit = 5*1024^2 #= 5 
             succeeded = success(p)
             close(t)
             wait(t2)
-            return (killed[], succeeded)
+            return (killed[], succeeded, read(log, String))
         end
     end
 end
@@ -121,25 +118,12 @@ function kill_process(p)
     end
 end
 
-"""
-    run(depsgraph, ninstances, version[, result]; do_depwarns=false,
-        time_limit=60*45)
-
-Run all tests for all packages in the given package dependency graph using `ninstances`
-workers and the specified version of Julia. An existing result `Dict` can be specified,
-in which case the function will write to that.
-
-If the keyword argument `do_depwarns` is `true`, deprecation warnings emitted in package
-tests will cause the package's tests to fail, i.e. Julia is run with `--depwarn=error`.
-
-Tests will be forcibly interrupted after `time_limit` seconds.
-"""
-function run(pkgs::Vector, ninstances::Integer, ver::String, result=Dict{String,Symbol}();
-             do_depwarns=false, time_limit=60*45)
-    obtain_julia(ver)
+function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THREADS,
+             callback=nothing, kwargs...)
+    obtain_julia(julia)
 
     # In case we need to provide sudo password, do that before starting the actual testing
-    run_sandboxed_julia(`-e '1'`; ver=ver)
+    run_sandboxed_julia(julia, `-e '1'`)
 
     pkgs = copy(pkgs)
     npkgs = length(pkgs)
@@ -169,9 +153,12 @@ function run(pkgs::Vector, ninstances::Integer, ver::String, result=Dict{String,
     io = IOContext(IOBuffer(), :color=>true)
     on_ci = parse(Bool, get(ENV, "CI", "false"))
     function update_output()
+        # known statuses
         o = count(==(:ok),      values(result))
         f = count(==(:fail),    values(result))
+        k = count(==(:killed),  values(result))
         s = count(==(:skipped), values(result))
+        # remaining
         x = npkgs - (o + f + s)
 
         function runtimestr(start)
@@ -185,13 +172,15 @@ function run(pkgs::Vector, ninstances::Integer, ver::String, result=Dict{String,
         end
 
         if on_ci
-            println("$x packages to test ($o succeeded, $f failed, $s skipped, $(runtimestr(start)))")
+            println("$x packages to test ($o succeeded, $f failed, $k killed, $s skipped, $(runtimestr(start)))")
             sleep(10)
         else
             print(io, "Success: ")
             printstyled(io, o; color = :green)
             print(io, "\tFailed: ")
             printstyled(io, f; color = Base.error_color())
+            print(io, "\tKilled: ")
+            printstyled(io, k; color = Base.error_color())
             print(io, "\tSkipped: ")
             printstyled(io, s; color = Base.warn_color())
             println(io, "\tRemaining: ", x)
@@ -210,6 +199,7 @@ function run(pkgs::Vector, ninstances::Integer, ver::String, result=Dict{String,
         end
     end
 
+    result = Dict{String,Symbol}()
     try @sync begin
         # Printer
         @async begin
@@ -230,15 +220,52 @@ function run(pkgs::Vector, ninstances::Integer, ver::String, result=Dict{String,
                 try
                     while !isempty(pkgs) && !done
                         pkg = pop!(pkgs)
+                        times[i] = now()
+                        log = missing
+                        pkg_version = missing
+                        reason = missing
                         if pkg.name in skip_lists[pkg.registry]
                             result[pkg.name] = :skip
                         else
                             running[i] = Symbol(pkg.name)
-                            times[i] = now()
-                            killed, succeeded = NewPkgEval.run_sandboxed_test(pkg.name; ver=ver, time_limit=time_limit)
+                            killed, succeeded, log = NewPkgEval.run_sandboxed_test(julia, pkg.name; kwargs...)
                             result[pkg.name] = killed ? :killed :
                                                succeeded ? :ok : :fail
                             running[i] = nothing
+
+                            # pick up the installed package version from the log
+                            let match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
+                                if match !== nothing
+                                    pkg_version = VersionNumber(match.captures[1])
+                                end
+                            end
+
+                            # figure out a more accurate failure reason from the log
+                            if result[pkg.name] == :fail
+                                if occursin("ERROR: Unsatisfiable requirements detected for package", log)
+                                    # NOTE: might be the package itself, or one of its dependencies
+                                    reason = :unsatisfiable
+                                elseif occursin("ERROR: Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
+                                    reason = :untestable
+                                elseif occursin("cannot open shared object file: No such file or directory", log)
+                                    reason = :binary_dependency
+                                elseif occursin(r"Package .+ does not have .+ in its dependencies", log)
+                                    reason = :missing_dependency
+                                elseif occursin("Some tests did not pass", log)
+                                    reason = :test_failures
+                                elseif occursin("ERROR: LoadError: syntax", log)
+                                    reason = :syntax
+                                else
+                                    reason = :unknown
+                                end
+                            end
+                        end
+
+                        # report to the caller
+                        if callback !== nothing
+                            callback(pkg.name, pkg_version, times[i], result[pkg.name], reason, log)
+                        else
+                            write(joinpath(log_path(julia), "$(pkg.name).log"), log)
                         end
                     end
                 catch e
@@ -252,4 +279,20 @@ function run(pkgs::Vector, ninstances::Integer, ver::String, result=Dict{String,
         e isa InterruptException || rethrow(e)
     end
     return result
+end
+
+"""
+    run(julia::VersionNumber, pkgnames=nothing; registry=General, update_registry=true, kwargs...)
+
+Run all tests for all packages in the registry `registry`, or only for the packages as
+identified by their name in `pkgnames`, using Julia version `julia` on `ninstances` workers.
+By default, the registry will be first updated unless `update_registry` is set to false.
+
+Refer to `run_sandboxed_test`[@ref] for other possible keyword arguments.
+"""
+function run(julia::VersionNumber=Base.VERSION, pkgnames::Union{Nothing, Vector{String}}=nothing;
+             registry::String=DEFAULT_REGISTRY, update_registry::Bool=true, kwargs...)
+    get_registry(registry; update=update_registry)
+    pkgs = read_pkgs(pkgnames)
+    run(julia, pkgs; kwargs...)
 end

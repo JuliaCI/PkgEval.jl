@@ -2,39 +2,51 @@ using NewPkgEval
 using Test
 
 # determine the version to use
-const ref = get(ENV, "JULIA_VERSION", string(VERSION))
-const ver = try
-    # maybe it refers to a version in Versions.toml
-    NewPkgEval.obtain_julia(ref)
-    ref
+const version = get(ENV, "JULIA_VERSION", string(VERSION))
+const julia = try
+    # maybe it already refers to a version in Versions.toml
+    v = VersionNumber(version)
+    NewPkgEval.obtain_julia(v)
+    v
 catch
-    # assume it points to something in our Git repository
-    NewPkgEval.build_julia(ref)
+    # maybe it points to a build in Builds.jl
+    try
+        NewPkgEval.download_julia(version)
+    catch
+        # assume it points to something in our Git repository
+        NewPkgEval.build_julia(version)
+    end
 end
+NewPkgEval.obtain_julia(julia::VersionNumber)
 
 @testset "sandbox" begin
     mktemp() do path, io
-        NewPkgEval.run_sandboxed_julia(`-e 'print(1337)'`; ver=ver, stdout=io)
+        NewPkgEval.run_sandboxed_julia(julia, `-e 'print(1337)'`; stdout=io)
         close(io)
         @test read(path, String) == "1337"
     end
 
-    NewPkgEval.run_sandboxed_julia(`-e 'using InteractiveUtils; versioninfo()'`; ver=ver)
+    # print versioninfo so we can verify in CI logs that the correct version is used
+    NewPkgEval.run_sandboxed_julia(julia, `-e 'using InteractiveUtils; versioninfo()'`)
 end
 
-@testset "PkgEval" begin
-    pkgnames = ["JSON", "TimerOutputs", "Crayons", "Example"]
+const pkgnames = ["TimerOutputs", "Crayons", "Example"]
+
+@testset "low-level interface" begin
     pkgs = NewPkgEval.read_pkgs(pkgnames)
 
-    results = NewPkgEval.run(pkgs, 2, ver; time_limit = 0.1)
+    # timeouts
+    results = NewPkgEval.run(julia, pkgs; time_limit = 0.1)
     for pkg in pkgnames
         @test results[pkg] == :killed
     end
+end
 
-    results = NewPkgEval.run(pkgs, 2, ver)
+@testset "main entrypoint" begin
+    results = NewPkgEval.run(julia, pkgnames)
     for pkg in pkgnames
         @test results[pkg] == :ok
-        output = read(joinpath(NewPkgEval.log_path(ver), "$pkg.log"), String)
+        output = read(joinpath(NewPkgEval.log_path(julia), "$pkg.log"), String)
         @test occursin("Testing $pkg tests passed", output)
     end
 end
