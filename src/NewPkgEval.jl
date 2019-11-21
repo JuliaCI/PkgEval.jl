@@ -45,7 +45,7 @@ end
 """
     read_versions() -> Dict
 
-Parse the `deps/Versions.toml` file containing version and download information for
+Parse the `deps/Versions.toml` file containing download and verification information for
 various versions of Julia.
 """
 read_versions() = TOML.parse(read(versions_file(), String))
@@ -53,11 +53,16 @@ read_versions() = TOML.parse(read(versions_file(), String))
 """
     read_registries() -> Dict
 
-Parse the `deps/Registries.toml` file containing a URL and packages to skip or assume
-passing for listed registries.
+Parse the `deps/Registries.toml` file containing a URL and packages to skip for listed
+registries.
 """
 read_registries() = TOML.parsefile(registries_file())
 
+"""
+    read_builds() -> Dict
+
+Parse the `deps/Builds.toml` file containing download information for various Julia builds.
+"""
 read_builds() = TOML.parsefile(builds_file())
 
 function installed_julia_dir(ver)
