@@ -120,7 +120,7 @@ function kill_process(p)
 end
 
 function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THREADS,
-             result=Dict{String,Symbol}(), kwargs...)
+             callback=nothing, kwargs...)
     obtain_julia(julia)
 
     # In case we need to provide sudo password, do that before starting the actual testing
@@ -195,6 +195,7 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
         end
     end
 
+    result = Dict{String,Symbol}()
     try @sync begin
         # Printer
         @async begin
@@ -215,15 +216,18 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
                 try
                     while !isempty(pkgs) && !done
                         pkg = pop!(pkgs)
+                        times[i] = now()
                         if pkg.name in skip_lists[pkg.registry]
                             result[pkg.name] = :skip
                         else
                             running[i] = Symbol(pkg.name)
-                            times[i] = now()
                             killed, succeeded = NewPkgEval.run_sandboxed_test(julia, pkg.name; kwargs...)
                             result[pkg.name] = killed ? :killed :
                                                succeeded ? :ok : :fail
                             running[i] = nothing
+                        end
+                        if callback !== nothing
+                            callback(pkg.name, result[pkg.name], times[i])
                         end
                     end
                 catch e
