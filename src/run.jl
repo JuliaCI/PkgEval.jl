@@ -74,8 +74,7 @@ function run_sandboxed_test(julia::VersionNumber, pkg::String; log_limit = 5*102
     cmd = `$cmd -e $arg`
     runner, cmd = runner_sandboxed_julia(julia, cmd; kwargs...)
 
-    log = joinpath(log_path(julia), "$pkg.log")
-    open(log, "w") do f
+    mktemp() do log, f
         with_mounted_shards(runner) do
             p = Base.run(pipeline(cmd, stdout=f, stderr=f, stdin=devnull); wait=false)
             killed = Ref(false)
@@ -97,7 +96,7 @@ function run_sandboxed_test(julia::VersionNumber, pkg::String; log_limit = 5*102
             succeeded = success(p)
             close(t)
             wait(t2)
-            return (killed[], succeeded)
+            return (killed[], succeeded, read(log, String))
         end
     end
 end
@@ -154,9 +153,12 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
     io = IOContext(IOBuffer(), :color=>true)
     on_ci = parse(Bool, get(ENV, "CI", "false"))
     function update_output()
+        # known statuses
         o = count(==(:ok),      values(result))
-        f = count(==(:fail),    values(result))
         s = count(==(:skipped), values(result))
+        # everything else is a failure
+        f = length(result) - (o + s)
+        # remaining
         x = npkgs - (o + f + s)
 
         function runtimestr(start)
@@ -219,15 +221,32 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
                         times[i] = now()
                         if pkg.name in skip_lists[pkg.registry]
                             result[pkg.name] = :skip
+                            log = nothing
                         else
                             running[i] = Symbol(pkg.name)
-                            killed, succeeded = NewPkgEval.run_sandboxed_test(julia, pkg.name; kwargs...)
+                            killed, succeeded, log = NewPkgEval.run_sandboxed_test(julia, pkg.name; kwargs...)
                             result[pkg.name] = killed ? :killed :
                                                succeeded ? :ok : :fail
                             running[i] = nothing
+
+                            # figure out a more accurate failure reason from the log
+                            if result[pkg.name] == :fail
+                                if occursin("ERROR: Unsatisfiable requirements detected for package", log)
+                                    # NOTE: might be the package itself, or one of its dependencies
+                                    result[pkg.name] = :unsatisfiable
+                                elseif occursin("ERROR: Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
+                                    result[pkg.name] = :untestable
+                                elseif occursin("cannot open shared object file: No such file or directory", log)
+                                    result[pkg.name] = :binary_dependency
+                                end
+                            end
                         end
+
+                        # report to the caller
                         if callback !== nothing
-                            callback(pkg.name, result[pkg.name], times[i])
+                            callback(pkg.name, times[i], result[pkg.name], log)
+                        else
+                            write(joinpath(log_path(julia), "$(pkg.name).log"), log)
                         end
                     end
                 catch e
