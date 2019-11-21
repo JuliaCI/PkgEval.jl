@@ -17,7 +17,7 @@ In order to run PkgEval against a Julia package do the following:
 
     You have three choices. Either you use a specific version of Julia that has been
     registered in `Versions.toml` already, and will automatically be downloaded, verified
-    and unpacked when required as such:
+    and unpacked when required using the `obtain_julia` function:
 
     ```jl
     import NewPkgEval
@@ -30,8 +30,8 @@ In order to run PkgEval against a Julia package do the following:
     the exact version number you should use with other functions in NewPkgEval:
 
     ```jl
-    ver = NewPkgEval.download_julia("latest")
-    NewPkgEval.run(..., ver, ...)
+    julia = NewPkgEval.download_julia("latest")
+    NewPkgEval.run(julia, ...)
     ```
 
     It also adds an entry to Versions.toml:
@@ -48,7 +48,7 @@ In order to run PkgEval against a Julia package do the following:
     you should then use:
 
     ```jl
-    ver = NewPkgEval.build_julia("master")
+    julia = NewPkgEval.build_julia("master")
     ```
 
     If you get a permission error, try to set the variable
@@ -66,7 +66,7 @@ In order to run PkgEval against a Julia package do the following:
     To see that things work as expected, try to run
 
     ```
-    julia> NewPkgEval.run_sandboxed_julia(`-e 'print("hello")'`; ver=ver);
+    julia> NewPkgEval.run_sandboxed_julia(julia, `-e 'print("hello")'`);
     hello
     ```
 
@@ -77,9 +77,7 @@ In order to run PkgEval against a Julia package do the following:
 
     ```julia
     using NewPkgEval
-    NewPkgEval.get_registry(update=true)
-    pkgs = NewPkgEval.read_pkgs(); # can also give a vector of packages here
-    results = NewPkgEval.run(pkgs, 20, v"1.2.0")
+    results = NewPkgEval.run(v"1.2.0") # pass an array of package names to limit the run
     ```
 
     See the docstrings for more arguments.

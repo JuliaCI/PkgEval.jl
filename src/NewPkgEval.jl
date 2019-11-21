@@ -14,6 +14,7 @@ versions_file() = joinpath(@__DIR__, "..", "deps", "Versions.toml")
 registry_path(name) = joinpath(first(DEPOT_PATH), "registries", name)
 registries_file() = joinpath(@__DIR__, "..", "deps", "Registries.toml")
 builds_file() = joinpath(@__DIR__, "..", "deps", "Builds.toml")
+log_path(julia) = joinpath(@__DIR__, "..", "logs/logs-$julia")
 
 # Skip these packages when testing packages
 const skip_lists = Dict{String,Vector{String}}()
@@ -84,7 +85,10 @@ package name and registry, its UUID, and a path to it. If `pkgs` is given, only 
 packages matching the names in `pkgs`
 """
 function read_pkgs(pkgs::Union{Nothing, Vector{String}}=nothing; registry=DEFAULT_REGISTRY)
-    ispath(registry_path(registry)) || error("Please run `NewPkgEval.get_registry()` first")
+    get_registry(registry)
+    if pkgs !== nothing
+        pkgs = copy(pkgs)
+    end
 
     pkg_data = []
     regpath = registry_path(registry)
