@@ -155,9 +155,9 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
     function update_output()
         # known statuses
         o = count(==(:ok),      values(result))
+        f = count(==(:fail),    values(result))
+        k = count(==(:killed),  values(result))
         s = count(==(:skipped), values(result))
-        # everything else is a failure
-        f = length(result) - (o + s)
         # remaining
         x = npkgs - (o + f + s)
 
@@ -172,13 +172,15 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
         end
 
         if on_ci
-            println("$x packages to test ($o succeeded, $f failed, $s skipped, $(runtimestr(start)))")
+            println("$x packages to test ($o succeeded, $f failed, $k killed, $s skipped, $(runtimestr(start)))")
             sleep(10)
         else
             print(io, "Success: ")
             printstyled(io, o; color = :green)
             print(io, "\tFailed: ")
             printstyled(io, f; color = Base.error_color())
+            print(io, "\tKilled: ")
+            printstyled(io, k; color = Base.error_color())
             print(io, "\tSkipped: ")
             printstyled(io, s; color = Base.warn_color())
             println(io, "\tRemaining: ", x)
