@@ -19,20 +19,21 @@ builds_file() = joinpath(@__DIR__, "..", "deps", "Builds.toml")
 const skip_lists = Dict{String,Vector{String}}()
 
 """
-    get_registry()
+    get_registry([name]; update=false)
 
-Download the given registry, or if it already exists, update it. `name` must correspond
-to an existing stanza in the `deps/Registries.toml` file.
+Download the given registry, or if it already exists, update it if `update` is true.
+`name` must correspond to an existing stanza in the `deps/Registries.toml` file.
 """
-function get_registry(name=DEFAULT_REGISTRY)
+function get_registry(name=DEFAULT_REGISTRY; update=false)
     reg = read_registries()[name]
-
-    # clone or update the registry
     regspec = RegistrySpec(name = name, url = reg["url"], uuid = UUID(reg["uuid"]))
-    if any(existing_regspec -> existing_regspec.name == name, Pkg.Types.collect_registries())
-        Pkg.Types.update_registries(Pkg.Types.Context(), [regspec])
-    else
+
+    # clone and update the registry
+    if !any(existing_regspec -> existing_regspec.name == name, Pkg.Types.collect_registries())
         Pkg.Types.clone_or_cp_registries([regspec])
+    elseif update
+        Pkg.UPDATED_REGISTRY_THIS_SESSION[] = false
+        Pkg.Types.update_registries(Pkg.Types.Context(), [regspec])
     end
 
     # read some metadata
@@ -78,8 +79,7 @@ package name and registry, its UUID, and a path to it. If `pkgs` is given, only 
 packages matching the names in `pkgs`
 """
 function read_pkgs(pkgs::Union{Nothing, Vector{String}}=nothing; registry=DEFAULT_REGISTRY)
-    # make sure local registry is updated
-    get_registry(registry)
+    ispath(registry_path(registry)) || error("Please run `NewPkgEval.get_registry()` first")
 
     pkg_data = []
     regpath = registry_path(registry)

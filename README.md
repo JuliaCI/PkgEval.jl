@@ -61,7 +61,7 @@ In order to run PkgEval against a Julia package do the following:
     manually and copy the tarball from the products/ directory into `deps/downloads`.
 
 
-3. Try the julia sandbox environment
+3. Try the Julia sandbox environment
 
     To see that things work as expected, try to run
 
@@ -77,6 +77,7 @@ In order to run PkgEval against a Julia package do the following:
 
     ```julia
     using NewPkgEval
+    NewPkgEval.get_registry(update=true)
     pkgs = NewPkgEval.read_pkgs(); # can also give a vector of packages here
     results = NewPkgEval.run(pkgs, 20, v"1.2.0")
     ```

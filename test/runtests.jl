@@ -19,6 +19,10 @@ catch
 end
 NewPkgEval.obtain_julia(ver::VersionNumber)
 
+@testset "registry" begin
+    NewPkgEval.get_registry(update=true)
+end
+
 @testset "sandbox" begin
     mktemp() do path, io
         NewPkgEval.run_sandboxed_julia(`-e 'print(1337)'`; ver=ver, stdout=io)
