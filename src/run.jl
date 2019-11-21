@@ -15,7 +15,7 @@ argument `ver` specifies the version of Julia to use, and `do_obtain` dictates w
 the specified version should first be downloaded. If `do_obtain` is `false`, it must
 already be installed.
 """
-function run_sandboxed_julia(args=``; ver::String, do_obtain=true,
+function run_sandboxed_julia(args=``; ver::VersionNumber, do_obtain=true,
                              stdin=stdin, stdout=stdout, stderr=stderr)
     runner, cmd = runner_sandboxed_julia(args; ver=ver, do_obtain=do_obtain)
     with_mounted_shards(runner) do
@@ -23,7 +23,7 @@ function run_sandboxed_julia(args=``; ver::String, do_obtain=true,
     end
 end
 
-function runner_sandboxed_julia(args=``; ver::String, do_obtain=true)
+function runner_sandboxed_julia(args=``; ver::VersionNumber, do_obtain=true)
     if do_obtain
         obtain_julia(ver)
     else
@@ -55,7 +55,7 @@ seconds or if the log becomes larger than `log_limit`.
 A log for the tests is written to a version-specific directory in the NewPkgEval root
 directory.
 """
-function run_sandboxed_test(pkg::String; ver::String, log_limit = 5*1024^2 #= 5 MB =#,
+function run_sandboxed_test(pkg::String; ver::VersionNumber, log_limit = 5*1024^2 #= 5 MB =#,
                             time_limit = 45*60, do_depwarns=false, kwargs...)
     mkpath(log_path(ver))
     arg = """
@@ -134,7 +134,7 @@ tests will cause the package's tests to fail, i.e. Julia is run with `--depwarn=
 
 Tests will be forcibly interrupted after `time_limit` seconds.
 """
-function run(pkgs::Vector, ninstances::Integer, ver::String, result=Dict{String,Symbol}();
+function run(pkgs::Vector, ninstances::Integer, ver::VersionNumber, result=Dict{String,Symbol}();
              do_depwarns=false, time_limit=60*45)
     obtain_julia(ver)
 

@@ -4,13 +4,20 @@ using Test
 # determine the version to use
 const ref = get(ENV, "JULIA_VERSION", string(VERSION))
 const ver = try
-    # maybe it refers to a version in Versions.toml
-    NewPkgEval.obtain_julia(ref)
-    ref
+    # maybe it already refers to a version in Versions.toml
+    v = VersionNumber(ref)
+    NewPkgEval.obtain_julia(v)
+    v
 catch
-    # assume it points to something in our Git repository
-    NewPkgEval.build_julia(ref)
+    # maybe it points to a build in Builds.jl
+    try
+        NewPkgEval.download_julia(ref)
+    catch
+        # assume it points to something in our Git repository
+        NewPkgEval.build_julia(ref)
+    end
 end
+NewPkgEval.obtain_julia(ver::VersionNumber)
 
 @testset "sandbox" begin
     mktemp() do path, io

@@ -13,6 +13,7 @@ julia_path(ver) = joinpath(@__DIR__, "..", "deps", "julia-$ver")
 versions_file() = joinpath(@__DIR__, "..", "deps", "Versions.toml")
 registry_path(name) = joinpath(first(DEPOT_PATH), "registries", name)
 registries_file() = joinpath(@__DIR__, "..", "deps", "Registries.toml")
+builds_file() = joinpath(@__DIR__, "..", "deps", "Builds.toml")
 
 # Skip these packages when testing packages
 const skip_lists = Dict{String,Vector{String}}()
@@ -56,46 +57,9 @@ passing for listed registries.
 """
 read_registries() = TOML.parsefile(registries_file())
 
-"""
-    obtain_julia(the_ver)
+read_builds() = TOML.parsefile(builds_file())
 
-Download the specified version of Julia using the information provided in `Versions.toml`.
-"""
-function obtain_julia(the_ver::String)
-    vers = read_versions()
-    for (ver, data) in vers
-        ver == the_ver || continue
-        dir = julia_path(ver)
-        mkpath(dirname(dir))
-        if haskey(data, "url")
-            url = data["url"]
-
-            file = get(data, "file", "julia-$ver.tar.gz")
-            @assert !isabspath(file)
-            file = downloads_dir(file)
-            mkpath(dirname(file))
-
-            if haskey(data, "sha")
-                Pkg.PlatformEngines.download_verify_unpack(url, data["sha"], dir;
-                                                           tarball_path=file, force=true)
-            else
-                ispath(file) || Pkg.PlatformEngines.download(url, file)
-                isdir(dir) || Pkg.PlatformEngines.unpack(file, dir)
-            end
-        else
-            file = data["file"]
-            !isabspath(file) && (file = downloads_dir(file))
-            if haskey(data, "sha")
-                Pkg.PlatformEngines.verify(file, data["sha"])
-            end
-            isdir(dir) || Pkg.PlatformEngines.unpack(file, dir)
-        end
-        return
-    end
-    error("Requested Julia version not found")
-end
-
-function installed_julia_dir(ver::String)
+function installed_julia_dir(ver)
      jp = julia_path(ver)
      jp_contents = readdir(jp)
      # Allow the unpacked directory to either be insider another directory (as produced by
