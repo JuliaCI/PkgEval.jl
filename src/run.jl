@@ -10,7 +10,7 @@ end
 
 Run Julia inside of a sandbox, passing the given arguments `args` to it. The argument
 `julia` specifies the version of Julia to use, which should be readily available (i.e. the
-user is responsible for having called `obtain_julia`).
+user is responsible for having called `prepare_julia`).
 """
 function run_sandboxed_julia(julia::VersionNumber, args=``; stdin=stdin, stdout=stdout,
                              stderr=stderr, kwargs...)
@@ -104,7 +104,7 @@ end
 
 function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THREADS,
              callback=nothing, kwargs...)
-    obtain_julia(julia)
+    prepare_julia(julia)
 
     length(readlines(`docker images -q newpkgeval`)) == 0 && error("Docker image not found, please run NewPkgEval.prepare_runner() first.")
 
@@ -275,7 +275,7 @@ Refer to `run_sandboxed_test`[@ref] for other possible keyword arguments.
 """
 function run(julia::VersionNumber=Base.VERSION, pkgnames::Union{Nothing, Vector{String}}=nothing;
              registry::String=DEFAULT_REGISTRY, update_registry::Bool=true, kwargs...)
-    get_registry(registry; update=update_registry)
+    prepare_registry(registry; update=update_registry)
     prepare_runner()
     pkgs = read_pkgs(pkgnames)
     run(julia, pkgs; kwargs...)

@@ -18,7 +18,7 @@ function main(;pkgnames=["Example"], julia_releases=["1.2"], registry="General",
                           for julia_release in julia_releases)
 
     # get the packages
-    NewPkgEval.get_registry(update=true)
+    NewPkgEval.prepare_registry(update=true)
     pkgs = NewPkgEval.read_pkgs(pkgnames)
 
     # prepare the database

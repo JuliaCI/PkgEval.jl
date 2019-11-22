@@ -6,7 +6,7 @@ const version = get(ENV, "JULIA_VERSION", string(VERSION))
 const julia = try
     # maybe it already refers to a version in Versions.toml
     v = VersionNumber(version)
-    NewPkgEval.obtain_julia(v)
+    NewPkgEval.prepare_julia(v)
     v
 catch
     # maybe it points to a build in Builds.jl
@@ -17,7 +17,7 @@ catch
         NewPkgEval.build_julia(version)
     end
 end
-NewPkgEval.obtain_julia(julia::VersionNumber)
+NewPkgEval.prepare_julia(julia::VersionNumber)
 
 @testset "sandbox" begin
     mktemp() do path, io
@@ -33,6 +33,10 @@ end
 const pkgnames = ["TimerOutputs", "Crayons", "Example"]
 
 @testset "low-level interface" begin
+    NewPkgEval.prepare_julia(julia)
+    NewPkgEval.prepare_registry()
+    NewPkgEval.prepare_runner()
+
     pkgs = NewPkgEval.read_pkgs(pkgnames)
 
     # timeouts

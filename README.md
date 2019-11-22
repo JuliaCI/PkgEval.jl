@@ -17,11 +17,11 @@ In order to run PkgEval against a Julia package do the following:
 
     You have three choices. Either you use a specific version of Julia that has been
     registered in `Versions.toml` already, and will automatically be downloaded, verified
-    and unpacked when required using the `obtain_julia` function:
+    and unpacked when required using the `prepare_julia` function:
 
     ```jl
     import NewPkgEval
-    NewPkgEval.obtain_julia(v"1.2.0")
+    NewPkgEval.prepare_julia(v"1.2.0")
     ```
 
     If you want to use an unreleased version of Julia as provided by the build bots, you can

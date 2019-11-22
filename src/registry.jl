@@ -4,12 +4,12 @@ const DEFAULT_REGISTRY = "General"
 const skip_lists = Dict{String,Vector{String}}()
 
 """
-    get_registry([name]; update=false)
+    prepare_registry([name]; update=false)
 
 Download the given registry, or if it already exists, update it if `update` is true.
 `name` must correspond to an existing stanza in the `deps/Registries.toml` file.
 """
-function get_registry(name=DEFAULT_REGISTRY; update=false)
+function prepare_registry(name=DEFAULT_REGISTRY; update=false)
     reg = read_registries()[name]
     regspec = RegistrySpec(name = name, url = reg["url"], uuid = UUID(reg["uuid"]))
 
@@ -35,7 +35,7 @@ package name and registry, its UUID, and a path to it. If `pkgs` is given, only 
 packages matching the names in `pkgs`
 """
 function read_pkgs(pkgs::Union{Nothing, Vector{String}}=nothing; registry=DEFAULT_REGISTRY)
-    get_registry(registry)
+    prepare_registry(registry)
     if pkgs !== nothing
         pkgs = copy(pkgs)
     end
