@@ -1,89 +1,85 @@
-# NewPkgEval - Evaluate julia packages
+# NewPkgEval.jl
 
-# Basic usage
-In order to run PkgEval against a Julia package do the following:
-
-
-1. Obtain NewPkgEval and install dependencies
-
-    ```
-    git clone https://github.com/JuliaComputing/NewPkgEval.jl.git
-    cd NewPkgEval.jl
-    julia --project 'import Pkg; Pkg.instantiate()'
-    ```
+*Evaluate Julia packages.*
 
 
-2. Obtain a binary Julia distribution
+## Quick start
 
-    You have three choices. Either you use a specific version of Julia that has been
-    registered in `Versions.toml` already, and will automatically be downloaded, verified
-    and unpacked when required using the `obtain_julia` function:
+Start by installing the package:
 
-    ```jl
-    import NewPkgEval
-    NewPkgEval.obtain_julia(v"1.2.0")
-    ```
+```shell
+git clone https://github.com/JuliaComputing/NewPkgEval.jl.git
+cd NewPkgEval.jl
+julia --project 'import Pkg; Pkg.instantiate()'
+```
 
-    If you want to use an unreleased version of Julia as provided by the build bots, you can
-    add or use an entry from `Builds.toml` and call `download_julia`. The exact version of
-    these entries is often not known beforehand, and because of that the function returns
-    the exact version number you should use with other functions in NewPkgEval:
+Then use the following commands to run the tests of a list of packages on a specific version
+of Julia:
 
-    ```jl
-    julia = NewPkgEval.download_julia("latest")
-    NewPkgEval.run(julia, ...)
-    ```
+```julia
+julia> using NewPkgEval
 
-    It also adds an entry to Versions.toml:
+julia> NewPkgEval.run(v"1.2.0", ["Example"])
+Dict{String,Symbol} with 1 entry:
+  "Example" => :ok
+```
 
-    ```
-    ["1.4.0-DEV-8f7855a7c3"]
-    file = "julia-1.4.0-DEV-8f7855a7c3.tar.gz"
-    sha = "dcd105b94906359cae52656129615a1446e7aee1e992ae9c06a15554d83a46f0"
+Detailed logs will be generated in the `logs/` directory. For this example,
+`logs/logs-1.2.0/Example.log` would contain:
 
-    ```
-
-    Finally, you can also build Julia from Git using BinaryBuilder using the `build_julia`
-    method. Similarly, it adds an entry to Versions.toml and returns the version identifier
-    you should then use:
-
-    ```jl
-    julia = NewPkgEval.build_julia("master")
-    ```
-
-    If you get a permission error, try to set the variable
-
-    `BINARYBUILDER_RUNNER=privileged`
-
-    restart Julia and try again.
-
-    If something goes wrong, or you built julia yourself, you may have to add that stanza
-    manually and copy the tarball from the products/ directory into `deps/downloads`.
+```
+Resolving package versions...
+Installed Example ─ v0.5.3
+...
+Testing Example tests passed
+```
 
 
-3. Try the Julia sandbox environment
+## Choosing a different version of Julia
 
-    To see that things work as expected, try to run
+NewPkgEval ultimately needs a binary build of Julia to run tests with, but there's multiple
+options to provide such a build. The easiest option is to use a version number that has
+already been registered in the `Versions.toml` database, together with an URL and hash to
+download an verify the file. An error will be thrown if the specific version cannot be
+found. This is done automatically when the `prepare_julia` function is called (you will need
+to call this method explicitly if you use a lower-level interface, i.e., anything but the
+`run` function from the quick start section above):
 
-    ```
-    julia> NewPkgEval.run_sandboxed_julia(julia, `-e 'print("hello")'`);
-    hello
-    ```
+```
+julia> NewPkgEval.prepare_julia(v"1.2.0-nonexistent")
+ERROR: Requested Julia version not found
+```
 
-    which will execute the julia command in the sandbox environment of the newly built julia.
+Alternatively, you can download a named release as listed in `Builds.toml`. By calling
+`download_julia` with a release name, this release will be downloaded, hashed, and added to
+the `Versions.toml` database for later use. The method returns the version number that
+corresponds with this added entry; you should use it when calling into other functions of
+the package:
 
+```julia
+julia_version = NewPkgEval.download_julia("latest")
+NewPkgEval.run(julia_version, ...)
+```
 
-4. Run PkgEval
+For even more control, you can build Julia by calling the `build_julia` function, passing a
+string that identifies a branch, tag or commit in the Julia Git repository:
 
-    ```julia
-    using NewPkgEval
-    results = NewPkgEval.run(v"1.2.0") # pass an array of package names to limit the run
-    ```
+```julia
+julia_version = NewPkgEval.build_julia("master")
+```
 
-    See the docstrings for more arguments.
+Similarly, this function returns a version number that corresponds with an entry added to
+`Versions.toml`:
 
-    If you have problem running more than 1 worker at a time try set the environment variable
+```
+["1.4.0-DEV-8f7855a7c3"]
+file = "julia-1.4.0-DEV-8f7855a7c3.tar.gz"
+sha = "dcd105b94906359cae52656129615a1446e7aee1e992ae9c06a15554d83a46f0"
+```
 
-    ```
-    BINARYBUILDER_USE_SQUASHFS=false
-    ```
+If you get a permission error while building Julia, try to set the variable
+`BINARYBUILDER_RUNNER=privileged`, restart Julia and try the build again.
+
+Finally, it is also possible to build Julia yourself, in which case you will need to create
+a tarball, copy it to the `deps/downloads` directory, and add a correct version stanza to
+`Versions.toml`.

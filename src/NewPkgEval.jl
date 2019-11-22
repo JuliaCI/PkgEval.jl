@@ -1,9 +1,8 @@
 module NewPkgEval
 
-using BinaryBuilder
 import Pkg.TOML
 using Pkg
-import Base: UUID
+using Base: UUID
 using Dates
 
 downloads_dir(name) = joinpath(@__DIR__, "..", "deps", "downloads", name)

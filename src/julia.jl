@@ -1,3 +1,4 @@
+using BinaryBuilder
 using LibGit2
 import SHA: sha256
 
@@ -19,11 +20,11 @@ function installed_julia_dir(ver)
 end
 
 """
-    obtain_julia(the_ver)
+    prepare_julia(the_ver)
 
 Download the specified version of Julia using the information provided in `Versions.toml`.
 """
-function obtain_julia(the_ver::VersionNumber)
+function prepare_julia(the_ver::VersionNumber)
     vers = read_versions()
     for (ver, data) in vers
         ver == string(the_ver) || continue
@@ -90,14 +91,14 @@ function download_julia(name::String)
         commit_short = read(`$(installed_julia_dir(base))/bin/julia -e 'print(Base.GIT_VERSION_INFO.commit_short)'`, String)
         version = VersionNumber(string(version) * string("-", commit_short))
     end
-    rm(temp_dir; recursive=true) # let `obtain_julia` unpack; keeps code simpler here
+    rm(temp_dir; recursive=true) # let `prepare_julia` unpack; keeps code simpler here
 
     versions = read_versions()
     if haskey(versions, string(version))
         @info "Julia $name (version $version) already available"
         rm(temp_file)
     else
-        # always use the hash of the downloaded file to force a check during `obtain_julia`
+        # always use the hash of the downloaded file to force a check during `prepare_julia`
         hash = filehash(temp_file)
 
         # move to its final location

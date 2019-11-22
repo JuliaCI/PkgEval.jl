@@ -2,6 +2,7 @@
 
 using DataFrames
 using NewPkgEval
+using Random
 using SQLite
 using Dates
 
@@ -16,10 +17,13 @@ function main(;pkgnames=["Example"], julia_releases=["1.2"], registry="General",
     # get the Julia versions
     julia_versions = Dict(julia_release => NewPkgEval.download_julia(julia_release)
                           for julia_release in julia_releases)
+    NewPkgEval.prepare_julia.(values(julia_versions))
 
     # get the packages
-    NewPkgEval.get_registry(update=true)
+    NewPkgEval.prepare_registry(update=true)
     pkgs = NewPkgEval.read_pkgs(pkgnames)
+
+    NewPkgEval.prepare_runner()
 
     # prepare the database
     SQLite.execute!(db, """
@@ -54,7 +58,8 @@ function main(;pkgnames=["Example"], julia_releases=["1.2"], registry="General",
                                                     log, now(), elapsed]))
         end
 
-        NewPkgEval.run(julia_version, pkgs; callback=store_result)
+        # use a random test order to (hopefully) get a more reasonable ETA
+        NewPkgEval.run(julia_version, shuffle(pkgs); callback=store_result)
     end
 
     return

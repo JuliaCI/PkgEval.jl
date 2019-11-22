@@ -1,45 +1,55 @@
-function with_mounted_shards(f, runner)
-    BinaryBuilder.mount_shards(runner; verbose=true)
-    try
-        f()
-    finally
-        BinaryBuilder.unmount_shards(runner; verbose=true)
+using ProgressMeter
+
+function prepare_runner()
+    cd(joinpath(dirname(@__DIR__), "runner")) do
+        Base.run(`docker build . -t newpkgeval`)
     end
+    return
 end
 
 """
-    run_sandboxed_julia(julia::VersionNumber, args=``; do_obtain=true, kwargs...)
+    run_sandboxed_julia(julia::VersionNumber, args=``; wait=true, interactive=true,
+                        stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
 
-Run Julia inside of a sandbox, passing the given arguments `args` to it. The keyword
-argument `julia` specifies the version of Julia to use, and `do_obtain` dictates whether
-the specified version should first be downloaded. If `do_obtain` is `false`, it must
-already be installed.
+Run Julia inside of a sandbox, passing the given arguments `args` to it. The argument
+`julia` specifies the version of Julia to use, which should be readily available (i.e. the
+user is responsible for having called `prepare_julia`).
+
+The argument `wait` determines if the process will be waited on, and defaults to true. If
+setting this argument to `false`, remember that the sandbox is using on Docker and killing
+the process does not necessarily kill the container. It is advised to use the `name` keyword
+argument to set the container name, and use that to kill the Julia process.
+
+The keyword argument `interactive` maps to the Docker option, and defaults to true.
 """
-function run_sandboxed_julia(julia::VersionNumber, args=``; stdin=stdin, stdout=stdout,
-                             stderr=stderr, kwargs...)
-    runner, cmd = runner_sandboxed_julia(julia, args; kwargs...)
-    with_mounted_shards(runner) do
-        Base.run(pipeline(cmd, stdin=stdin, stdout=stdout, stderr=stderr))
-    end
+function run_sandboxed_julia(julia::VersionNumber, args=``; wait=true,
+                             stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
+    container = spawn_sandboxed_julia(julia, args; kwargs...)
+    Base.run(pipeline(`docker attach $container`, stdin=stdin, stdout=stdout, stderr=stderr); wait=wait)
 end
 
-function runner_sandboxed_julia(julia::VersionNumber, args=``; do_obtain=true)
-    if do_obtain
-        obtain_julia(julia)
-    else
-        @assert ispath(julia_path(julia))
+function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true, name=nothing)
+    cmd = `docker run --detach`
+
+    # mount data
+    @assert ispath(julia_path(julia))
+    installed_julia_path = installed_julia_dir(julia)
+    @assert isdir(installed_julia_path)
+    registry_path = joinpath(first(DEPOT_PATH), "registries")
+    @assert isdir(registry_path)
+    cmd = ```$cmd --mount type=bind,source=$installed_julia_path,target=/opt/julia,readonly
+                  --mount type=bind,source=$registry_path,target=/root/.julia/registries,readonly```
+
+    if interactive
+        cmd = `$cmd --interactive --tty`
     end
-    tmpdir = joinpath(tempdir(), "NewPkgEval")
-    mkpath(tmpdir)
-    tmpdir = mktempdir(tmpdir)
-    runner = BinaryBuilder.UserNSRunner(tmpdir,
-        workspaces=[
-            installed_julia_dir(julia)                  => "/maps/julia",
-            joinpath(first(DEPOT_PATH), "registries")   => "/maps/registries"
-        ])
-    cmd = `/maps/julia/bin/julia --color=yes $args`
-    cmd = setenv(`$(runner.sandbox_cmd) -- $(cmd)`, runner.env) # extracted from run_interactive in BinaryBuilder
-    return runner, cmd
+
+    if name !== nothing
+        cmd = `$cmd --name $name`
+    end
+
+    container = chomp(read(`$cmd --rm newpkgeval /opt/julia/bin/julia $args`, String))
+    return something(name, container)
 end
 
 """
@@ -59,71 +69,58 @@ function run_sandboxed_test(julia::VersionNumber, pkg::String; log_limit = 5*102
     arg = """
         using Pkg
 
-        # Map the local registries to the sandbox
-        mkpath("/root/.julia")
-        run(`ln -s /maps/registries /root/.julia/registries`)
-
         # Prevent Pkg from updating registy on the Pkg.add
-        ENV["CI"] = true
         Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
+
+        ENV["CI"] = true
+        ENV["PKGEVAL"] = true
 
         Pkg.add($(repr(pkg)))
         Pkg.test($(repr(pkg)))
     """
     cmd = do_depwarns ? `--depwarn=error` : ``
     cmd = `$cmd -e $arg`
-    runner, cmd = runner_sandboxed_julia(julia, cmd; kwargs...)
 
     mktemp() do log, f
-        with_mounted_shards(runner) do
-            p = Base.run(pipeline(cmd, stdout=f, stderr=f, stdin=devnull); wait=false)
-            killed = Ref(false)
-            t = Timer(time_limit) do timer
-                process_running(p) || return # exit callback
-                killed[] = true
-                kill_process(p)
-            end
-            t2 = @async while true
-                process_running(p) || break
-                if stat(log).size > log_limit
-                    kill_process(p)
-                    killed[] = true
-                    break
-                end
-                flush(f)
-                sleep(2)
-            end
-            succeeded = success(p)
-            close(t)
-            wait(t2)
-            return (killed[], succeeded, read(log, String))
+        container = "Julia_v$(julia)-$(pkg)"
+        p = run_sandboxed_julia(julia, cmd; stdout=f, stderr=f, stdin=devnull,
+                                interactive=false, wait=false, name=container, kwargs...)
+        killed = Ref(false)
+        t = Timer(time_limit) do timer
+            process_running(p) || return # exit callback
+            killed[] = true
+            kill_container(p, container)
         end
+        t2 = @async while true
+            process_running(p) || break
+            if stat(log).size > log_limit
+                kill_container(p, container)
+                killed[] = true
+                break
+            end
+            flush(f)
+            sleep(2)
+        end
+        succeeded = success(p)
+        close(t)
+        wait(t2)
+        return (killed[], succeeded, read(log, String))
     end
 end
 
-function kill_process(p)
-    if BinaryBuilder.runner_override == "privileged"
-        pid = getpid(p)
-        Base.run(`sudo kill $pid`)
-        sleep(3)
-        if process_running(p)
-            Base.run(`sudo kill -9 $pid`)
-        end
-    else
-        kill(p)
-        sleep(3)
-        if process_running(p)
-            kill(p, 9)
-        end
+function kill_container(p, container)
+    Base.run(`docker kill --signal=SIGTERM $container`)
+    sleep(3)
+    if process_running(p)
+        Base.run(`docker kill --signal=SIGKILL $container`)
     end
 end
 
 function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THREADS,
              callback=nothing, kwargs...)
-    obtain_julia(julia)
+    prepare_julia(julia)
 
-    # In case we need to provide sudo password, do that before starting the actual testing
-    run_sandboxed_julia(julia, `-e '1'`)
+    length(readlines(`docker images -q newpkgeval`)) == 0 && error("Docker image not found, please run NewPkgEval.prepare_runner() first.")
 
     pkgs = copy(pkgs)
     npkgs = length(pkgs)
@@ -152,22 +149,23 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
     start = now()
     io = IOContext(IOBuffer(), :color=>true)
     on_ci = parse(Bool, get(ENV, "CI", "false"))
+    p = Progress(npkgs; barlen=50, color=:normal)
     function update_output()
         # known statuses
         o = count(==(:ok),      values(result))
+        s = count(==(:skip),    values(result))
         f = count(==(:fail),    values(result))
         k = count(==(:killed),  values(result))
-        s = count(==(:skipped), values(result))
         # remaining
-        x = npkgs - (o + f + s)
+        x = npkgs - length(result)
 
         function runtimestr(start)
             time = Dates.canonicalize(Dates.CompoundPeriod(now() - start))
-            isempty(time.periods) || pop!(time.periods) # get rid of milliseconds
-            if isempty(time.periods)
+            if isempty(time.periods) || first(time.periods) isa Millisecond
                 "just started"
             else
-                "running for $time"
+                # be coarse in the name of brevity
+                string(first(time.periods))
             end
         end
 
@@ -186,16 +184,23 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
             println(io, "\tRemaining: ", x)
             for i = 1:ninstances
                 r = running[i]
-                if r === nothing
-                    println(io, "Worker $i: -------")
+                str = if r === nothing
+                    " #$i: -------"
                 else
-                    println(io, "Worker $i: $(r) $(runtimestr(times[i]))")
+                    " #$i: $r ($(runtimestr(times[i])))"
+                end
+                if i%2 == 1 && i < ninstances
+                    print(io, rpad(str, 45))
+                else
+                    println(io, str)
                 end
             end
             print(String(take!(io.io)))
+            p.tlast = 0
+            update!(p, length(result))
             sleep(1)
             CSI = "\e["
-            print(io, "$(CSI)$(ninstances+1)A$(CSI)1G$(CSI)0J")
+            print(io, "$(CSI)$(ceil(Int, ninstances/2)+1)A$(CSI)1G$(CSI)0J")
         end
     end
 
@@ -207,6 +212,7 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
                 while (!isempty(pkgs) || !all(==(nothing), running)) && !done
                     update_output()
                 end
+                println()
                 stop_work()
             catch e
                 stop_work()
@@ -292,7 +298,8 @@ Refer to `run_sandboxed_test`[@ref] for other possible keyword arguments.
 """
 function run(julia::VersionNumber=Base.VERSION, pkgnames::Union{Nothing, Vector{String}}=nothing;
              registry::String=DEFAULT_REGISTRY, update_registry::Bool=true, kwargs...)
-    get_registry(registry; update=update_registry)
+    prepare_registry(registry; update=update_registry)
+    prepare_runner()
     pkgs = read_pkgs(pkgnames)
     run(julia, pkgs; kwargs...)
 end
