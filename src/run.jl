@@ -137,7 +137,7 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
     start = now()
     io = IOContext(IOBuffer(), :color=>true)
     on_ci = parse(Bool, get(ENV, "CI", "false"))
-    p = Progress(npkgs; barlen=50)
+    p = Progress(npkgs; barlen=50, color=:normal)
     function update_output()
         # known statuses
         o = count(==(:ok),      values(result))
@@ -152,7 +152,8 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
             if isempty(time.periods) || first(time.periods) isa Millisecond
                 "just started"
             else
-                "running for $time"
+                # be coarse in the name of brevity
+                string(first(time.periods))
             end
         end
 
@@ -172,9 +173,9 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
             for i = 1:ninstances
                 r = running[i]
                 str = if r === nothing
-                    " $i: -------"
+                    " #$i: -------"
                 else
-                    " $i: $(r) $(runtimestr(times[i]))"
+                    " #$i: $r ($(runtimestr(times[i])))"
                 end
                 if i%2 == 1 && i < ninstances
                     print(io, rpad(str, 45))
@@ -199,6 +200,7 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
                 while (!isempty(pkgs) || !all(==(nothing), running)) && !done
                     update_output()
                 end
+                println()
                 stop_work()
             catch e
                 stop_work()
