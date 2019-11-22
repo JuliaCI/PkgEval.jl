@@ -34,7 +34,7 @@ function runner_sandboxed_julia(julia::VersionNumber, args=``; do_obtain=true)
     tmpdir = mktempdir(tmpdir)
     runner = BinaryBuilder.UserNSRunner(tmpdir,
         workspaces=[
-            installed_julia_dir(julia)                    => "/maps/julia",
+            installed_julia_dir(julia)                  => "/maps/julia",
             joinpath(first(DEPOT_PATH), "registries")   => "/maps/registries"
         ])
     cmd = `/maps/julia/bin/julia --color=yes $args`
