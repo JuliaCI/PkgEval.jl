@@ -138,11 +138,11 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
     function update_output()
         # known statuses
         o = count(==(:ok),      values(result))
+        s = count(==(:skip),    values(result))
         f = count(==(:fail),    values(result))
         k = count(==(:killed),  values(result))
-        s = count(==(:skipped), values(result))
         # remaining
-        x = npkgs - (o + f + s)
+        x = npkgs - length(result)
 
         function runtimestr(start)
             time = Dates.canonicalize(Dates.CompoundPeriod(now() - start))
