@@ -2,6 +2,7 @@
 
 using DataFrames
 using NewPkgEval
+using Random
 using SQLite
 using Dates
 
@@ -57,7 +58,8 @@ function main(;pkgnames=["Example"], julia_releases=["1.2"], registry="General",
                                                     log, now(), elapsed]))
         end
 
-        NewPkgEval.run(julia_version, pkgs; callback=store_result)
+        # use a random test order to (hopefully) get a more reasonable ETA
+        NewPkgEval.run(julia_version, shuffle(pkgs); callback=store_result)
     end
 
     return
