@@ -20,6 +20,7 @@ end
 NewPkgEval.prepare_julia(julia::VersionNumber)
 
 @testset "sandbox" begin
+    NewPkgEval.prepare_runner()
     mktemp() do path, io
         NewPkgEval.run_sandboxed_julia(julia, `-e 'print(1337)'`; stdout=io)
         close(io)
@@ -33,9 +34,7 @@ end
 const pkgnames = ["TimerOutputs", "Crayons", "Example"]
 
 @testset "low-level interface" begin
-    NewPkgEval.prepare_julia(julia)
     NewPkgEval.prepare_registry()
-    NewPkgEval.prepare_runner()
 
     pkgs = NewPkgEval.read_pkgs(pkgnames)
 

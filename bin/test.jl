@@ -16,10 +16,13 @@ function main(;pkgnames=["Example"], julia_releases=["1.2"], registry="General",
     # get the Julia versions
     julia_versions = Dict(julia_release => NewPkgEval.download_julia(julia_release)
                           for julia_release in julia_releases)
+    NewPkgEval.prepare_julia.(values(julia_versions))
 
     # get the packages
     NewPkgEval.prepare_registry(update=true)
     pkgs = NewPkgEval.read_pkgs(pkgnames)
+
+    NewPkgEval.prepare_runner()
 
     # prepare the database
     SQLite.execute!(db, """
