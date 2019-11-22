@@ -169,16 +169,21 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
             println(io, "\tRemaining: ", x)
             for i = 1:ninstances
                 r = running[i]
-                if r === nothing
-                    println(io, "Worker $i: -------")
+                str = if r === nothing
+                    " $i: -------"
                 else
-                    println(io, "Worker $i: $(r) $(runtimestr(times[i]))")
+                    " $i: $(r) $(runtimestr(times[i]))"
+                end
+                if i%2 == 1 && i < ninstances
+                    print(io, rpad(str, 45))
+                else
+                    println(io, str)
                 end
             end
             print(String(take!(io.io)))
             sleep(1)
             CSI = "\e["
-            print(io, "$(CSI)$(ninstances+1)A$(CSI)1G$(CSI)0J")
+            print(io, "$(CSI)$(ceil(Int, ninstances/2)+1)A$(CSI)1G$(CSI)0J")
         end
     end
 
