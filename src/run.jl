@@ -1,45 +1,40 @@
-function with_mounted_shards(f, runner)
-    BinaryBuilder.mount_shards(runner; verbose=true)
-    try
-        f()
-    finally
-        BinaryBuilder.unmount_shards(runner; verbose=true)
+function prepare_runner()
+    cd(joinpath(dirname(@__DIR__), "runner")) do
+        Base.run(`docker build . -t newpkgeval`)
     end
+    return
 end
 
 """
     run_sandboxed_julia(julia::VersionNumber, args=``; do_obtain=true, kwargs...)
 
-Run Julia inside of a sandbox, passing the given arguments `args` to it. The keyword
-argument `julia` specifies the version of Julia to use, and `do_obtain` dictates whether
-the specified version should first be downloaded. If `do_obtain` is `false`, it must
-already be installed.
+Run Julia inside of a sandbox, passing the given arguments `args` to it. The argument
+`julia` specifies the version of Julia to use, which should be readily available (i.e. the
+user is responsible for having called `obtain_julia`).
 """
 function run_sandboxed_julia(julia::VersionNumber, args=``; stdin=stdin, stdout=stdout,
                              stderr=stderr, kwargs...)
-    runner, cmd = runner_sandboxed_julia(julia, args; kwargs...)
-    with_mounted_shards(runner) do
-        Base.run(pipeline(cmd, stdin=stdin, stdout=stdout, stderr=stderr))
-    end
+    cmd = runner_sandboxed_julia(julia, args; kwargs...)
+    Base.run(pipeline(cmd, stdin=stdin, stdout=stdout, stderr=stderr))
 end
 
-function runner_sandboxed_julia(julia::VersionNumber, args=``; do_obtain=true)
-    if do_obtain
-        obtain_julia(julia)
-    else
-        @assert ispath(julia_path(julia))
+function runner_sandboxed_julia(julia::VersionNumber, args=``; interactive=true)
+    cmd = `docker run`
+
+    # mount data
+    @assert ispath(julia_path(julia))
+    installed_julia_path = installed_julia_dir(julia)
+    @assert isdir(installed_julia_path)
+    registry_path = joinpath(first(DEPOT_PATH), "registries")
+    @assert isdir(registry_path)
+    cmd = ```$cmd --mount type=bind,source=$installed_julia_path,target=/maps/julia,readonly
+                  --mount type=bind,source=$registry_path,target=/maps/registries,readonly```
+
+    if interactive
+        cmd = `$cmd --interactive --tty`
     end
-    tmpdir = joinpath(tempdir(), "NewPkgEval")
-    mkpath(tmpdir)
-    tmpdir = mktempdir(tmpdir)
-    runner = BinaryBuilder.UserNSRunner(tmpdir,
-        workspaces=[
-            installed_julia_dir(julia)                  => "/maps/julia",
-            joinpath(first(DEPOT_PATH), "registries")   => "/maps/registries"
-        ])
-    cmd = `/maps/julia/bin/julia --color=yes $args`
-    cmd = setenv(`$(runner.sandbox_cmd) -- $(cmd)`, runner.env) # extracted from run_interactive in BinaryBuilder
-    return runner, cmd
+
+    `$cmd --rm newpkgeval /maps/julia/bin/julia --color=yes $args`
 end
 
 """
@@ -72,49 +67,38 @@ function run_sandboxed_test(julia::VersionNumber, pkg::String; log_limit = 5*102
     """
     cmd = do_depwarns ? `--depwarn=error` : ``
     cmd = `$cmd -e $arg`
-    runner, cmd = runner_sandboxed_julia(julia, cmd; kwargs...)
+    cmd = runner_sandboxed_julia(julia, cmd; interactive=false, kwargs...)
 
     mktemp() do log, f
-        with_mounted_shards(runner) do
-            p = Base.run(pipeline(cmd, stdout=f, stderr=f, stdin=devnull); wait=false)
-            killed = Ref(false)
-            t = Timer(time_limit) do timer
-                process_running(p) || return # exit callback
-                killed[] = true
-                kill_process(p)
-            end
-            t2 = @async while true
-                process_running(p) || break
-                if stat(log).size > log_limit
-                    kill_process(p)
-                    killed[] = true
-                    break
-                end
-                flush(f)
-                sleep(2)
-            end
-            succeeded = success(p)
-            close(t)
-            wait(t2)
-            return (killed[], succeeded, read(log, String))
+        p = Base.run(pipeline(cmd, stdout=f, stderr=f, stdin=devnull); wait=false)
+        killed = Ref(false)
+        t = Timer(time_limit) do timer
+            process_running(p) || return # exit callback
+            killed[] = true
+            kill_process(p)
         end
+        t2 = @async while true
+            process_running(p) || break
+            if stat(log).size > log_limit
+                kill_process(p)
+                killed[] = true
+                break
+            end
+            flush(f)
+            sleep(2)
+        end
+        succeeded = success(p)
+        close(t)
+        wait(t2)
+        return (killed[], succeeded, read(log, String))
     end
 end
 
 function kill_process(p)
-    if BinaryBuilder.runner_override == "privileged"
-        pid = getpid(p)
-        Base.run(`sudo kill $pid`)
-        sleep(3)
-        if process_running(p)
-            Base.run(`sudo kill -9 $pid`)
-        end
-    else
-        kill(p)
-        sleep(3)
-        if process_running(p)
-            kill(p, 9)
-        end
+    kill(p)
+    sleep(3)
+    if process_running(p)
+        kill(p, 9)
     end
 end
 
@@ -122,8 +106,7 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
              callback=nothing, kwargs...)
     obtain_julia(julia)
 
-    # In case we need to provide sudo password, do that before starting the actual testing
-    run_sandboxed_julia(julia, `-e '1'`)
+    length(readlines(`docker images -q newpkgeval`)) == 0 && error("Docker image not found, please run NewPkgEval.prepare_runner() first.")
 
     pkgs = copy(pkgs)
     npkgs = length(pkgs)
@@ -293,6 +276,7 @@ Refer to `run_sandboxed_test`[@ref] for other possible keyword arguments.
 function run(julia::VersionNumber=Base.VERSION, pkgnames::Union{Nothing, Vector{String}}=nothing;
              registry::String=DEFAULT_REGISTRY, update_registry::Bool=true, kwargs...)
     get_registry(registry; update=update_registry)
+    prepare_runner()
     pkgs = read_pkgs(pkgnames)
     run(julia, pkgs; kwargs...)
 end

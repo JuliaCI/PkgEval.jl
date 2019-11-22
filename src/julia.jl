@@ -1,3 +1,4 @@
+using BinaryBuilder
 using LibGit2
 import SHA: sha256
 
