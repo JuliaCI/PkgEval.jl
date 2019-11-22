@@ -8,19 +8,27 @@ function prepare_runner()
 end
 
 """
-    run_sandboxed_julia(julia::VersionNumber, args=``; do_obtain=true, kwargs...)
+    run_sandboxed_julia(julia::VersionNumber, args=``; wait=true, interactive=true,
+                        stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
 
 Run Julia inside of a sandbox, passing the given arguments `args` to it. The argument
 `julia` specifies the version of Julia to use, which should be readily available (i.e. the
 user is responsible for having called `prepare_julia`).
+
+The argument `wait` determines if the process will be waited on, and defaults to true. If
+setting this argument to `false`, remember that the sandbox is using on Docker and killing
+the process does not necessarily kill the container. It is advised to use the `name` keyword
+argument to set the container name, and use that to kill the Julia process.
+
+The keyword argument `interactive` maps to the Docker option, and defaults to true.
 """
-function run_sandboxed_julia(julia::VersionNumber, args=``; stdin=stdin, stdout=stdout,
-                             stderr=stderr, kwargs...)
+function run_sandboxed_julia(julia::VersionNumber, args=``; wait=true,
+                             stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
     container = spawn_sandboxed_julia(julia, args; kwargs...)
-    Base.run(pipeline(`docker attach $container`, stdin=stdin, stdout=stdout, stderr=stderr))
+    Base.run(pipeline(`docker attach $container`, stdin=stdin, stdout=stdout, stderr=stderr); wait=wait)
 end
 
-function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true)
+function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true, name=nothing)
     cmd = `docker run --detach`
 
     # mount data
@@ -36,7 +44,12 @@ function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true)
         cmd = `$cmd --interactive --tty`
     end
 
-    chomp(read(`$cmd --rm newpkgeval /opt/julia/bin/julia $args`, String))
+    if name !== nothing
+        cmd = `$cmd --name $name`
+    end
+
+    container = chomp(read(`$cmd --rm newpkgeval /opt/julia/bin/julia $args`, String))
+    return something(name, container)
 end
 
 """
@@ -67,10 +80,11 @@ function run_sandboxed_test(julia::VersionNumber, pkg::String; log_limit = 5*102
     """
     cmd = do_depwarns ? `--depwarn=error` : ``
     cmd = `$cmd -e $arg`
-    container = spawn_sandboxed_julia(julia, cmd; interactive=false, kwargs...)
 
     mktemp() do log, f
-        p = Base.run(pipeline(`docker attach $container`, stdout=f, stderr=f, stdin=devnull); wait=false)
+        container = "Julia_v$(julia)-$(pkg)"
+        p = run_sandboxed_julia(julia, cmd; stdout=f, stderr=f, stdin=devnull,
+                                interactive=false, wait=false, name=container, kwargs...)
         killed = Ref(false)
         t = Timer(time_limit) do timer
             process_running(p) || return # exit callback
