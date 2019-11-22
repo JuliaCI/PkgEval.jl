@@ -34,7 +34,7 @@ function runner_sandboxed_julia(julia::VersionNumber, args=``; interactive=true)
         cmd = `$cmd --interactive --tty`
     end
 
-    `$cmd --rm newpkgeval /maps/julia/bin/julia --color=yes $args`
+    `$cmd --rm newpkgeval /maps/julia/bin/julia $args`
 end
 
 """
