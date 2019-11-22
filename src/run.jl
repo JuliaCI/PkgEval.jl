@@ -16,12 +16,12 @@ user is responsible for having called `prepare_julia`).
 """
 function run_sandboxed_julia(julia::VersionNumber, args=``; stdin=stdin, stdout=stdout,
                              stderr=stderr, kwargs...)
-    cmd = runner_sandboxed_julia(julia, args; kwargs...)
-    Base.run(pipeline(cmd, stdin=stdin, stdout=stdout, stderr=stderr))
+    container = spawn_sandboxed_julia(julia, args; kwargs...)
+    Base.run(pipeline(`docker attach $container`, stdin=stdin, stdout=stdout, stderr=stderr))
 end
 
-function runner_sandboxed_julia(julia::VersionNumber, args=``; interactive=true)
-    cmd = `docker run`
+function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true)
+    cmd = `docker run --detach`
 
     # mount data
     @assert ispath(julia_path(julia))
@@ -36,7 +36,7 @@ function runner_sandboxed_julia(julia::VersionNumber, args=``; interactive=true)
         cmd = `$cmd --interactive --tty`
     end
 
-    `$cmd --rm newpkgeval /maps/julia/bin/julia $args`
+    chomp(read(`$cmd --rm newpkgeval /opt/julia/bin/julia $args`, String))
 end
 
 """
@@ -69,20 +69,20 @@ function run_sandboxed_test(julia::VersionNumber, pkg::String; log_limit = 5*102
     """
     cmd = do_depwarns ? `--depwarn=error` : ``
     cmd = `$cmd -e $arg`
-    cmd = runner_sandboxed_julia(julia, cmd; interactive=false, kwargs...)
+    container = spawn_sandboxed_julia(julia, cmd; interactive=false, kwargs...)
 
     mktemp() do log, f
-        p = Base.run(pipeline(cmd, stdout=f, stderr=f, stdin=devnull); wait=false)
+        p = Base.run(pipeline(`docker attach $container`, stdout=f, stderr=f, stdin=devnull); wait=false)
         killed = Ref(false)
         t = Timer(time_limit) do timer
             process_running(p) || return # exit callback
             killed[] = true
-            kill_process(p)
+            kill_container(p, container)
         end
         t2 = @async while true
             process_running(p) || break
             if stat(log).size > log_limit
-                kill_process(p)
+                kill_container(p, container)
                 killed[] = true
                 break
             end
@@ -96,11 +96,11 @@ function run_sandboxed_test(julia::VersionNumber, pkg::String; log_limit = 5*102
     end
 end
 
-function kill_process(p)
-    kill(p)
+function kill_container(p, container)
+    Base.run(`docker kill --signal=SIGTERM $container`)
     sleep(3)
     if process_running(p)
-        kill(p, 9)
+        Base.run(`docker kill --signal=SIGKILL $container`)
     end
 end
 
