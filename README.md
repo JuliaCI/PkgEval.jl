@@ -1,8 +1,10 @@
-# NewPkgEval - Evaluate julia packages
+# NewPkgEval.jl
 
-# Basic usage
+*Evaluate Julia packages.*
+
+## Basic usage
+
 In order to run PkgEval against a Julia package do the following:
-
 
 1. Obtain NewPkgEval and install dependencies
 
@@ -11,7 +13,6 @@ In order to run PkgEval against a Julia package do the following:
     cd NewPkgEval.jl
     julia --project 'import Pkg; Pkg.instantiate()'
     ```
-
 
 2. Obtain a binary Julia distribution
 
@@ -57,9 +58,8 @@ In order to run PkgEval against a Julia package do the following:
 
     restart Julia and try again.
 
-    If something goes wrong, or you built julia yourself, you may have to add that stanza
-    manually and copy the tarball from the products/ directory into `deps/downloads`.
-
+    If something goes wrong, or you built Julia yourself, you may have to add that stanza
+    manually and copy the tarball into the `deps/downloads` directory.
 
 3. Try the Julia sandbox environment
 
@@ -70,8 +70,7 @@ In order to run PkgEval against a Julia package do the following:
     hello
     ```
 
-    which will execute the julia command in the sandbox environment of the newly built julia.
-
+    which will execute the Julia command in the sandbox environment of the newly built Julia.
 
 4. Run PkgEval
 
@@ -81,9 +80,3 @@ In order to run PkgEval against a Julia package do the following:
     ```
 
     See the docstrings for more arguments.
-
-    If you have problem running more than 1 worker at a time try set the environment variable
-
-    ```
-    BINARYBUILDER_USE_SQUASHFS=false
-    ```
