@@ -29,8 +29,8 @@ function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true)
     @assert isdir(installed_julia_path)
     registry_path = joinpath(first(DEPOT_PATH), "registries")
     @assert isdir(registry_path)
-    cmd = ```$cmd --mount type=bind,source=$installed_julia_path,target=/maps/julia,readonly
-                  --mount type=bind,source=$registry_path,target=/maps/registries,readonly```
+    cmd = ```$cmd --mount type=bind,source=$installed_julia_path,target=/opt/julia,readonly
+                  --mount type=bind,source=$registry_path,target=/root/.julia/registries,readonly```
 
     if interactive
         cmd = `$cmd --interactive --tty`
@@ -56,13 +56,11 @@ function run_sandboxed_test(julia::VersionNumber, pkg::String; log_limit = 5*102
     arg = """
         using Pkg
 
-        # Map the local registries to the sandbox
-        mkpath("/root/.julia")
-        run(`ln -s /maps/registries /root/.julia/registries`)
-
         # Prevent Pkg from updating registy on the Pkg.add
-        ENV["CI"] = true
         Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
+
+        ENV["CI"] = true
+        ENV["PKGEVAL"] = true
 
         Pkg.add($(repr(pkg)))
         Pkg.test($(repr(pkg)))
