@@ -1,3 +1,5 @@
+using ProgressMeter
+
 function prepare_runner()
     cd(joinpath(dirname(@__DIR__), "runner")) do
         Base.run(`docker build . -t newpkgeval`)
@@ -135,6 +137,7 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
     start = now()
     io = IOContext(IOBuffer(), :color=>true)
     on_ci = parse(Bool, get(ENV, "CI", "false"))
+    p = Progress(npkgs; barlen=50)
     function update_output()
         # known statuses
         o = count(==(:ok),      values(result))
@@ -146,8 +149,7 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
 
         function runtimestr(start)
             time = Dates.canonicalize(Dates.CompoundPeriod(now() - start))
-            isempty(time.periods) || pop!(time.periods) # get rid of milliseconds
-            if isempty(time.periods)
+            if isempty(time.periods) || first(time.periods) isa Millisecond
                 "just started"
             else
                 "running for $time"
@@ -181,6 +183,8 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
                 end
             end
             print(String(take!(io.io)))
+            p.tlast = 0
+            update!(p, length(result))
             sleep(1)
             CSI = "\e["
             print(io, "$(CSI)$(ceil(Int, ninstances/2)+1)A$(CSI)1G$(CSI)0J")
