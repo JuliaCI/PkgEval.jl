@@ -12,8 +12,7 @@ end
                         stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
 
 Run Julia inside of a sandbox, passing the given arguments `args` to it. The argument
-`julia` specifies the version of Julia to use, which should be readily available (i.e. the
-user is responsible for having called `prepare_julia`).
+`julia` specifies the version of Julia to use.
 
 The argument `wait` determines if the process will be waited on, and defaults to true. If
 setting this argument to `false`, remember that the sandbox is using on Docker and killing
@@ -53,15 +52,18 @@ function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true, 
 end
 
 """
-    run_sandboxed_test(julia::VersionNumber, pkg; do_depwarns=false, log_limit=5*1024^2, time_limit=60*45)
+    run_sandboxed_test(julia::VersionNumber, pkg; do_depwarns=false, log_limit=5*1024^2,
+                       time_limit=60*45)
 
-Run the unit tests for a single package `pkg` inside of a sandbox using the Julia version
-`julia`. If `do_depwarns` is `true`, deprecation warnings emitted while running the package's
-tests will cause the tests to fail. Test will be forcibly interrupted after `time_limit`
-seconds or if the log becomes larger than `log_limit`.
+Run the unit tests for a single package `pkg` inside of a sandbox using Julia version
+`julia`. If `do_depwarns` is `true`, deprecation warnings emitted while running the
+package's tests will cause the tests to fail. Test will be forcibly interrupted after
+`time_limit` seconds or if the log becomes larger than `log_limit`.
 
 A log for the tests is written to a version-specific directory in the NewPkgEval root
 directory.
+
+Refer to `run_sandboxed_julia`[@ref] for more possible `keyword arguments.
 """
 function run_sandboxed_test(julia::VersionNumber, pkg::String; log_limit = 5*1024^2 #= 5 MB =#,
                             time_limit = 45*60, do_depwarns=false, kwargs...)
@@ -118,10 +120,6 @@ end
 
 function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THREADS,
              callback=nothing, kwargs...)
-    prepare_julia(julia)
-
-    length(readlines(`docker images -q newpkgeval`)) == 0 && error("Docker image not found, please run NewPkgEval.prepare_runner() first.")
-
     pkgs = copy(pkgs)
     npkgs = length(pkgs)
     ninstances = min(npkgs, ninstances)
@@ -288,18 +286,24 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
 end
 
 """
-    run(julia::VersionNumber, pkgnames=nothing; registry=General, update_registry=true, kwargs...)
+    run(julia::VersionNumber, pkgnames=nothing; registry=General, update_registry=true,
+        ninstances=Sys.CPU_THREADS, kwargs...)
 
 Run all tests for all packages in the registry `registry`, or only for the packages as
 identified by their name in `pkgnames`, using Julia version `julia` on `ninstances` workers.
-By default, the registry will be first updated unless `update_registry` is set to false.
+The registry is first updated if `update_registry` is set to true.
 
-Refer to `run_sandboxed_test`[@ref] for other possible keyword arguments.
+Refer to `run_sandboxed_test`[@ref] and `run_sandboxed_julia`[@ref] for more possible
+keyword arguments.
 """
 function run(julia::VersionNumber=Base.VERSION, pkgnames::Union{Nothing, Vector{String}}=nothing;
-             registry::String=DEFAULT_REGISTRY, update_registry::Bool=true, kwargs...)
-    prepare_registry(registry; update=update_registry)
+             registry::String=DEFAULT_REGISTRY, kwargs...)
+
+    prepare_registry(registry)
+
     prepare_runner()
     pkgs = read_pkgs(pkgnames)
+
+    prepare_julia(julia)
     run(julia, pkgs; kwargs...)
 end

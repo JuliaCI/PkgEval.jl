@@ -34,6 +34,12 @@ Installed Example ─ v0.5.3
 Testing Example tests passed
 ```
 
+Other `run` methods, that offer more options and control over the testing process, are
+available as well. These methods however require you to first prepare the environment
+yourself, by calling `prepare_registry` to set-up the package registry, `prepare_runner` to
+build the Docker image, and `prepare_julia` to download and unpack a binary version of
+Julia.
+
 
 ## Choosing a different version of Julia
 
