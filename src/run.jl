@@ -1,4 +1,5 @@
 using ProgressMeter
+using Random
 
 function prepare_runner()
     cd(joinpath(dirname(@__DIR__), "runner")) do
@@ -178,14 +179,18 @@ function kill_container(p, container)
     end
 end
 
-function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THREADS,
-             callback=nothing, kwargs...)
+function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
+             ninstances::Integer=Sys.CPU_THREADS, callback=nothing, kwargs...)
     # here we deal with managing execution: spawning workers, output, result I/O, etc
 
-    pkgs = copy(pkgs)
-    npkgs = length(pkgs)
-    ninstances = min(npkgs, ninstances)
-    running = Vector{Union{Nothing, Symbol}}(nothing, ninstances)
+    jobs = [(julia=julia, pkg=pkg) for julia in julia_versions for pkg in pkgs]
+
+    # use a random test order to (hopefully) get a more reasonable ETA
+    shuffle!(jobs)
+
+    njobs = length(jobs)
+    ninstances = min(njobs, ninstances)
+    running = Vector{Union{Nothing, eltype(jobs)}}(nothing, ninstances)
     times = DateTime[now() for i = 1:ninstances]
     all_workers = Task[]
 
@@ -209,7 +214,7 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
     start = now()
     io = IOContext(IOBuffer(), :color=>true)
     on_ci = parse(Bool, get(ENV, "CI", "false"))
-    p = Progress(npkgs; barlen=50, color=:normal)
+    p = Progress(njobs; barlen=50, color=:normal)
     function update_output()
         # known statuses
         o = count(==(:ok),      values(result))
@@ -217,7 +222,7 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
         f = count(==(:fail),    values(result))
         k = count(==(:kill),    values(result))
         # remaining
-        x = npkgs - length(result)
+        x = njobs - length(result)
 
         function runtimestr(start)
             time = Dates.canonicalize(Dates.CompoundPeriod(now() - start))
@@ -243,14 +248,14 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
             printstyled(io, s; color = Base.warn_color())
             println(io, "\tRemaining: ", x)
             for i = 1:ninstances
-                r = running[i]
-                str = if r === nothing
+                job = running[i]
+                str = if job === nothing
                     " #$i: -------"
                 else
-                    " #$i: $r ($(runtimestr(times[i])))"
+                    " #$i: $(job.pkg.name) @ $(job.julia) ($(runtimestr(times[i])))"
                 end
                 if i%2 == 1 && i < ninstances
-                    print(io, rpad(str, 45))
+                    print(io, rpad(str, 50))
                 else
                     println(io, str)
                 end
@@ -264,12 +269,12 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
         end
     end
 
-    result = Dict{String,Symbol}()
+    result = Dict{NamedTuple{(:julia, :pkg), Tuple{VersionNumber, String}},Symbol}()
     try @sync begin
         # Printer
         @async begin
             try
-                while (!isempty(pkgs) || !all(==(nothing), running)) && !done
+                while (!isempty(jobs) || !all(==(nothing), running)) && !done
                     update_output()
                 end
                 println()
@@ -284,20 +289,22 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
         for i = 1:ninstances
             push!(all_workers, @async begin
                 try
-                    while !isempty(pkgs) && !done
-                        pkg = pop!(pkgs)
+                    while !isempty(jobs) && !done
+                        job = pop!(jobs)
                         times[i] = now()
-                        running[i] = Symbol(pkg.name)
-                        version, status, reason, log = run_sandboxed_test(julia, pkg; kwargs...)
-                        result[pkg.name] = status
+                        running[i] = job
+                        pkg_version, status, reason, log =
+                            run_sandboxed_test(job.julia, job.pkg; kwargs...)
+                        result[(julia=job.julia,pkg=job.pkg.name)] = status
                         running[i] = nothing
 
                         # report to the caller
                         if callback !== nothing
-                            callback(pkg.name, version, times[i], status, reason, log)
+                            callback(job.julia, job.pkg.name, pkg_version,
+                                     times[i], status, reason, log)
                         else
-                            mkpath(log_path(julia))
-                            write(joinpath(log_path(julia), "$(pkg.name).log"), log)
+                            mkpath(log_path(job.julia))
+                            write(joinpath(log_path(job.julia), "$(job.pkg.name).log"), log)
                         end
                     end
                 catch e
@@ -314,25 +321,26 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
 end
 
 """
-    run(julia::VersionNumber, pkgnames=nothing; registry=General, update_registry=true,
-        ninstances=Sys.CPU_THREADS, kwargs...)
+    run(julia_versions::Vector{VersionNumber}=[Base.VERSION],
+        pkg_names::Vector{String}=[]]; registry=General, update_registry=true, kwargs...)
 
 Run all tests for all packages in the registry `registry`, or only for the packages as
-identified by their name in `pkgnames`, using Julia version `julia` on `ninstances` workers.
+identified by their name in `pkgnames`, using Julia versions `julia_versions`.
 The registry is first updated if `update_registry` is set to true.
 
 Refer to `run_sandboxed_test`[@ref] and `run_sandboxed_julia`[@ref] for more possible
 keyword arguments.
 """
-function run(julia::VersionNumber=Base.VERSION, pkg_names::Vector{String}=String[];
-             registry::String=DEFAULT_REGISTRY, kwargs...)
+function run(julia_versions::Vector{VersionNumber}=[Base.VERSION],
+             pkg_names::Vector{String}=String[];
+             registry::String=DEFAULT_REGISTRY, update_registry::Bool=true, kwargs...)
     # high-level entry-point that takes care of everything
 
-    prepare_registry(registry)
+    prepare_registry(registry; update=update_registry)
 
     prepare_runner()
     pkgs = read_pkgs(pkg_names)
 
-    prepare_julia(julia)
-    run(julia, pkgs; kwargs...)
+    prepare_julia.(julia_versions)
+    run(julia_versions, pkgs; kwargs...)
 end

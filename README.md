@@ -13,13 +13,13 @@ cd NewPkgEval.jl
 julia --project 'import Pkg; Pkg.instantiate()'
 ```
 
-Then use the following commands to run the tests of a list of packages on a specific version
-of Julia:
+Then use the following commands to run the tests of a list of packages on a selection of
+Julia versions:
 
 ```julia
 julia> using NewPkgEval
 
-julia> NewPkgEval.run(v"1.2.0", ["Example"])
+julia> NewPkgEval.run([v"1.2.0"], ["Example"])
 Dict{String,Symbol} with 1 entry:
   "Example" => :ok
 ```
@@ -64,7 +64,7 @@ the package:
 
 ```julia
 julia_version = NewPkgEval.download_julia("latest")
-NewPkgEval.run(julia_version, ...)
+NewPkgEval.run([julia_version], ...)
 ```
 
 For even more control, you can build Julia by calling the `build_julia` function, passing a

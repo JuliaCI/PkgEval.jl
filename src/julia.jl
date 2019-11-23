@@ -48,7 +48,7 @@ function prepare_julia(the_ver::VersionNumber)
         end
         return
     end
-    error("Requested Julia version not found")
+    error("Requested Julia version $the_ver not found")
 end
 
 """
