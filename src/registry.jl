@@ -33,10 +33,9 @@ Read all packages from a registry and return them as a vector of tuples containi
 package name and registry, its UUID, and a path to it. If `pkgs` is given, only collect
 packages matching the names in `pkgs`
 """
-function read_pkgs(pkgs::Union{Nothing, Vector{String}}=nothing; registry=DEFAULT_REGISTRY)
-    if pkgs !== nothing
-        pkgs = copy(pkgs)
-    end
+function read_pkgs(pkg_names::Vector{String}=String[]; registry=DEFAULT_REGISTRY)
+    pkg_names = Set(pkg_names)
+    want_all = isempty(pkg_names)
 
     pkg_data = []
     regpath = registry_path(registry)
@@ -44,17 +43,19 @@ function read_pkgs(pkgs::Union{Nothing, Vector{String}}=nothing; registry=DEFAUL
         for (_uuid, pkgdata) in Pkg.Types.read_registry(joinpath(regpath, "Registry.toml"))["packages"]
             uuid = UUID(_uuid)
             name = pkgdata["name"]
-            if pkgs !== nothing
-                idx = findfirst(==(name), pkgs)
-                idx === nothing && continue
-                deleteat!(pkgs, idx)
+
+            if !want_all
+                name in pkg_names || continue
+                delete!(pkg_names, name)
             end
+
             path = abspath(regpath, pkgdata["path"])
             push!(pkg_data, (name=name, uuid=uuid, path=path, registry=registry))
         end
     end
-    if pkgs !== nothing && !isempty(pkgs)
-        @warn """did not find the following packages in the $registry registry:\n $("  - " .* join(pkgs, '\n'))"""
+
+    if !want_all && !isempty(pkg_names)
+        @warn """did not find the following packages in the $registry registry:\n $("  - " .* join(pkg_names, '\n'))"""
     end
 
     return pkg_data

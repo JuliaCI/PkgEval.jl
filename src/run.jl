@@ -324,14 +324,14 @@ The registry is first updated if `update_registry` is set to true.
 Refer to `run_sandboxed_test`[@ref] and `run_sandboxed_julia`[@ref] for more possible
 keyword arguments.
 """
-function run(julia::VersionNumber=Base.VERSION, pkgnames::Union{Nothing, Vector{String}}=nothing;
+function run(julia::VersionNumber=Base.VERSION, pkg_names::Vector{String}=String[];
              registry::String=DEFAULT_REGISTRY, kwargs...)
     # high-level entry-point that takes care of everything
 
     prepare_registry(registry)
 
     prepare_runner()
-    pkgs = read_pkgs(pkgnames)
+    pkgs = read_pkgs(pkg_names)
 
     prepare_julia(julia)
     run(julia, pkgs; kwargs...)
