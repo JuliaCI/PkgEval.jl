@@ -65,9 +65,29 @@ directory.
 
 Refer to `run_sandboxed_julia`[@ref] for more possible `keyword arguments.
 """
-function run_sandboxed_test(julia::VersionNumber, pkg::String; log_limit = 5*1024^2 #= 5 MB =#,
+function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 5*1024^2 #= 5 MB =#,
                             time_limit = 45*60, do_depwarns=false, kwargs...)
-    mkpath(log_path(julia))
+    # everything related to testing in Julia: version compatibility, invoking Pkg, etc
+
+    if pkg.name in skip_lists[pkg.registry]
+        return missing, :skip, :explicit, missing
+    end
+
+    # can we even test this package?
+    supported = false
+    pkg_compat = Pkg.Operations.load_package_data_raw(Pkg.Operations.VersionSpec, joinpath(pkg.path, "Compat.toml"))
+    for (version_range, bounds) in pkg_compat
+        if haskey(bounds, "julia") && julia ∈ bounds["julia"]
+            supported = true
+            break
+        end
+    end
+    if !supported
+        return missing, :skip, :unsupported, missing
+    end
+
+    # prepare for launching a container
+    container = "Julia_v$(julia)-$(pkg.name)"
     arg = """
         using Pkg
 
@@ -77,36 +97,76 @@ function run_sandboxed_test(julia::VersionNumber, pkg::String; log_limit = 5*102
         ENV["CI"] = true
         ENV["PKGEVAL"] = true
 
-        Pkg.add($(repr(pkg)))
-        Pkg.test($(repr(pkg)))
+        Pkg.add($(repr(pkg.name)))
+        Pkg.test($(repr(pkg.name)))
     """
     cmd = do_depwarns ? `--depwarn=error` : ``
     cmd = `$cmd -e $arg`
 
-    mktemp() do log, f
-        container = "Julia_v$(julia)-$(pkg)"
+    mktemp() do path, f
         p = run_sandboxed_julia(julia, cmd; stdout=f, stderr=f, stdin=devnull,
                                 interactive=false, wait=false, name=container, kwargs...)
-        killed = Ref(false)
+        status = nothing
+        reason = missing
+        version = missing
+
+        # kill on timeout
         t = Timer(time_limit) do timer
-            process_running(p) || return # exit callback
-            killed[] = true
+            process_running(p) || return
+            status = :kill
+            reason = :time_limit
             kill_container(p, container)
         end
+
+        # kill on too-large logs
         t2 = @async while true
             process_running(p) || break
-            if stat(log).size > log_limit
+            if stat(path).size > log_limit
                 kill_container(p, container)
-                killed[] = true
+                status = :kill
+                reason = :log_limit
                 break
             end
-            flush(f)
             sleep(2)
         end
+
         succeeded = success(p)
+        log = read(path, String)
         close(t)
         wait(t2)
-        return (killed[], succeeded, read(log, String))
+
+        # pick up the installed package version from the log
+        let match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
+            if match !== nothing
+                version = VersionNumber(match.captures[1])
+            end
+        end
+
+        if succeeded
+            @assert status == nothing
+            status = :ok
+        elseif status === nothing
+            status = :fail
+            reason = :unknown
+
+            # figure out a more accurate failure reason from the log
+            if occursin("ERROR: Unsatisfiable requirements detected for package", log)
+                # NOTE: might be the package itself, or one of its dependencies
+                reason = :unsatisfiable
+            elseif occursin("ERROR: Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
+                reason = :untestable
+            elseif occursin("cannot open shared object file: No such file or directory", log)
+                reason = :binary_dependency
+            elseif occursin(r"Package .+ does not have .+ in its dependencies", log)
+                reason = :missing_dependency
+            elseif occursin("Some tests did not pass", log)
+                reason = :test_failures
+            elseif occursin("ERROR: LoadError: syntax", log)
+                reason = :syntax
+            end
+        end
+
+        return version, status, reason, log
     end
 end
 
@@ -120,6 +180,8 @@ end
 
 function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THREADS,
              callback=nothing, kwargs...)
+    # here we deal with managing execution: spawning workers, output, result I/O, etc
+
     pkgs = copy(pkgs)
     npkgs = length(pkgs)
     ninstances = min(npkgs, ninstances)
@@ -153,7 +215,7 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
         o = count(==(:ok),      values(result))
         s = count(==(:skip),    values(result))
         f = count(==(:fail),    values(result))
-        k = count(==(:killed),  values(result))
+        k = count(==(:kill),    values(result))
         # remaining
         x = npkgs - length(result)
 
@@ -225,50 +287,16 @@ function run(julia::VersionNumber, pkgs::Vector; ninstances::Integer=Sys.CPU_THR
                     while !isempty(pkgs) && !done
                         pkg = pop!(pkgs)
                         times[i] = now()
-                        log = missing
-                        pkg_version = missing
-                        reason = missing
-                        if pkg.name in skip_lists[pkg.registry]
-                            result[pkg.name] = :skip
-                        else
-                            running[i] = Symbol(pkg.name)
-                            killed, succeeded, log = NewPkgEval.run_sandboxed_test(julia, pkg.name; kwargs...)
-                            result[pkg.name] = killed ? :killed :
-                                               succeeded ? :ok : :fail
-                            running[i] = nothing
-
-                            # pick up the installed package version from the log
-                            let match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
-                                if match !== nothing
-                                    pkg_version = VersionNumber(match.captures[1])
-                                end
-                            end
-
-                            # figure out a more accurate failure reason from the log
-                            if result[pkg.name] == :fail
-                                if occursin("ERROR: Unsatisfiable requirements detected for package", log)
-                                    # NOTE: might be the package itself, or one of its dependencies
-                                    reason = :unsatisfiable
-                                elseif occursin("ERROR: Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
-                                    reason = :untestable
-                                elseif occursin("cannot open shared object file: No such file or directory", log)
-                                    reason = :binary_dependency
-                                elseif occursin(r"Package .+ does not have .+ in its dependencies", log)
-                                    reason = :missing_dependency
-                                elseif occursin("Some tests did not pass", log)
-                                    reason = :test_failures
-                                elseif occursin("ERROR: LoadError: syntax", log)
-                                    reason = :syntax
-                                else
-                                    reason = :unknown
-                                end
-                            end
-                        end
+                        running[i] = Symbol(pkg.name)
+                        version, status, reason, log = run_sandboxed_test(julia, pkg; kwargs...)
+                        result[pkg.name] = status
+                        running[i] = nothing
 
                         # report to the caller
                         if callback !== nothing
-                            callback(pkg.name, pkg_version, times[i], result[pkg.name], reason, log)
+                            callback(pkg.name, version, times[i], status, reason, log)
                         else
+                            mkpath(log_path(julia))
                             write(joinpath(log_path(julia), "$(pkg.name).log"), log)
                         end
                     end
@@ -298,6 +326,7 @@ keyword arguments.
 """
 function run(julia::VersionNumber=Base.VERSION, pkgnames::Union{Nothing, Vector{String}}=nothing;
              registry::String=DEFAULT_REGISTRY, kwargs...)
+    # high-level entry-point that takes care of everything
 
     prepare_registry(registry)
 

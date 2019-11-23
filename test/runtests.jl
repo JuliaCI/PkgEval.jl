@@ -41,7 +41,7 @@ const pkgnames = ["TimerOutputs", "Crayons", "Example"]
     # timeouts
     results = NewPkgEval.run(julia, pkgs; time_limit = 0.1)
     for pkg in pkgnames
-        @test results[pkg] == :killed
+        @test results[pkg] == :kill
     end
 end
 
