@@ -313,7 +313,7 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
                         if callback !== nothing
                             callback(job.julia, job.pkg.name, pkg_version,
                                      times[i], status, reason, log)
-                        else
+                        elseif log !== missing
                             mkpath(log_path(job.julia))
                             write(joinpath(log_path(job.julia), "$(job.pkg.name).log"), log)
                         end
