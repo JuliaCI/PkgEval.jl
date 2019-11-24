@@ -75,13 +75,24 @@ function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 5*1024^2 #= 5
     end
 
     # can we even test this package?
-    supported = false
-    pkg_compat = Pkg.Operations.load_package_data_raw(Pkg.Operations.VersionSpec, joinpath(pkg.path, "Compat.toml"))
+    pkg_versions = Pkg.Operations.load_versions(pkg.path)
+    julia_supported = Dict{VersionNumber,Bool}()
+    pkg_compat = Pkg.Operations.load_package_data_raw(Pkg.Types.VersionSpec,
+                                                      joinpath(pkg.path, "Compat.toml"))
     for (version_range, bounds) in pkg_compat
-        if haskey(bounds, "julia") && julia ∈ bounds["julia"]
-            supported = true
-            break
+        if haskey(bounds, "julia")
+            for pkg_version in keys(pkg_versions)
+                if pkg_version in version_range
+                    julia_supported[pkg_version] = julia ∈ bounds["julia"]
+                end
+            end
         end
+    end
+    if length(julia_supported) != length(pkg_versions)
+        # not all versions have a bound for Julia, so we need to be conservative
+        supported = true
+    else
+        supported = any(values(julia_supported))
     end
     if !supported
         return missing, :skip, :unsupported, missing
