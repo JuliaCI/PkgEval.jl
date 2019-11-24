@@ -72,6 +72,8 @@ function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 5*1024^2 #= 5
 
     if pkg.name in skip_lists[pkg.registry]
         return missing, :skip, :explicit, missing
+    elseif endswith(pkg.name, "_jll")
+        return missing, :skip, :jll, missing
     end
 
     # can we even test this package?
