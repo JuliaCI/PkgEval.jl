@@ -15,5 +15,7 @@ RUN apt-get update && apt-get install -y \
     tzdata \
     # FFMPEG.jl
     ffmpeg \
+    # GZip.jl
+    zlib1g-dev \
     # clean-up
     && rm -rf /var/lib/apt/lists/*
