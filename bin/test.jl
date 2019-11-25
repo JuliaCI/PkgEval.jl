@@ -5,7 +5,7 @@ using NewPkgEval
 using SQLite
 using Dates
 
-function main(;julia_releases=["1.2"], pkg_names=["Example"], registry="General",
+function main(;julia_releases=["stable"], pkg_names=["Example"], registry="General",
                dbfile=nothing)
     db = if dbfile === nothing
         # in memory
@@ -63,5 +63,5 @@ function main(;julia_releases=["1.2"], pkg_names=["Example"], registry="General"
     return
 end
 
-isinteractive() || main(julia_releases=["1.0", "1.2", "latest"], pkg_names=String[],
+isinteractive() || main(julia_releases=["lts", "stable", "nightly"], pkg_names=String[],
                         dbfile=joinpath(@__DIR__, "test.db"))

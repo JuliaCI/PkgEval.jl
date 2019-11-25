@@ -56,14 +56,14 @@ julia> NewPkgEval.prepare_julia(v"1.2.0-nonexistent")
 ERROR: Requested Julia version not found
 ```
 
-Alternatively, you can download a named release as listed in `Builds.toml`. By calling
+Alternatively, you can download a named release as listed in `Releases.toml`. By calling
 `download_julia` with a release name, this release will be downloaded, hashed, and added to
 the `Versions.toml` database for later use. The method returns the version number that
 corresponds with this added entry; you should use it when calling into other functions of
 the package:
 
 ```julia
-julia_version = NewPkgEval.download_julia("latest")
+julia_version = NewPkgEval.download_julia("nightly")
 NewPkgEval.run([julia_version], ...)
 ```
 

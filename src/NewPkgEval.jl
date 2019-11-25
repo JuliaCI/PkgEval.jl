@@ -10,7 +10,7 @@ julia_path(ver) = joinpath(dirname(@__DIR__), "deps", "usr", "julia-$ver")
 versions_file() = joinpath(dirname(@__DIR__), "deps", "Versions.toml")
 registry_path(name) = joinpath(first(DEPOT_PATH), "registries", name)
 registries_file() = joinpath(dirname(@__DIR__), "deps", "Registries.toml")
-builds_file() = joinpath(dirname(@__DIR__), "deps", "Builds.toml")
+releases_file() = joinpath(dirname(@__DIR__), "deps", "Releases.toml")
 log_path(julia) = joinpath(dirname(@__DIR__), "logs/logs-$julia")
 
 """
@@ -30,11 +30,11 @@ registries.
 read_registries() = TOML.parsefile(registries_file())
 
 """
-    read_builds() -> Dict
+    read_releases() -> Dict
 
-Parse the `deps/Builds.toml` file containing download information for various Julia builds.
+Parse the `deps/Releases.toml` file containing download information for various Julia releases.
 """
-read_builds() = TOML.parsefile(builds_file())
+read_releases() = TOML.parsefile(releases_file())
 
 include("registry.jl")
 include("julia.jl")
