@@ -39,16 +39,16 @@ const pkgnames = ["TimerOutputs", "Crayons", "Example"]
     pkgs = NewPkgEval.read_pkgs(pkgnames)
 
     # timeouts
-    results = NewPkgEval.run(julia, pkgs; time_limit = 0.1)
+    results = NewPkgEval.run([julia], pkgs; time_limit = 0.1)
     for pkg in pkgnames
-        @test results[pkg] == :killed
+        @test results[(julia=julia,pkg=pkg)] == :kill
     end
 end
 
 @testset "main entrypoint" begin
-    results = NewPkgEval.run(julia, pkgnames)
+    results = NewPkgEval.run([julia], pkgnames)
     for pkg in pkgnames
-        @test results[pkg] == :ok
+        @test results[(julia=julia,pkg=pkg)] == :ok
         output = read(joinpath(NewPkgEval.log_path(julia), "$pkg.log"), String)
         @test occursin("Testing $pkg tests passed", output)
     end
