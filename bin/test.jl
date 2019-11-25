@@ -4,6 +4,7 @@ using DataFrames
 using NewPkgEval
 using SQLite
 using Dates
+using TimeZones
 
 function main(;julia_releases=["stable"], pkg_names=["Example"], registry="General",
                dbfile=nothing)
@@ -46,6 +47,7 @@ function main(;julia_releases=["stable"], pkg_names=["Example"], registry="Gener
         stop = now()
         elapsed = (stop-start) / Millisecond(1000)
         julia_release = julia_versions[julia_version]
+        zoned_start = ZonedDateTime(start, localzone())
 
         # stringify all values to prevent serialization, but keep `missing`s
         string_or_missing(obj) = ismissing(obj) ? missing : string(obj)
@@ -54,7 +56,7 @@ function main(;julia_releases=["stable"], pkg_names=["Example"], registry="Gener
                         values=string_or_missing.([package_name, package_version,
                                                 julia_release, julia_version,
                                                 run, status, reason,
-                                                log, now(), elapsed]))
+                                                log, zoned_start, elapsed]))
     end
 
     # test!
