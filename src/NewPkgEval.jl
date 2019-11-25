@@ -5,13 +5,13 @@ using Pkg
 using Base: UUID
 using Dates
 
-downloads_dir(name) = joinpath(@__DIR__, "..", "deps", "downloads", name)
-julia_path(ver) = joinpath(@__DIR__, "..", "deps", "julia-$ver")
-versions_file() = joinpath(@__DIR__, "..", "deps", "Versions.toml")
+downloads_dir(name) = joinpath(dirname(@__DIR__), "deps", "downloads", name)
+julia_path(ver) = joinpath(dirname(@__DIR__), "deps", "julia-$ver")
+versions_file() = joinpath(dirname(@__DIR__), "deps", "Versions.toml")
 registry_path(name) = joinpath(first(DEPOT_PATH), "registries", name)
-registries_file() = joinpath(@__DIR__, "..", "deps", "Registries.toml")
-builds_file() = joinpath(@__DIR__, "..", "deps", "Builds.toml")
-log_path(julia) = joinpath(@__DIR__, "..", "logs/logs-$julia")
+registries_file() = joinpath(dirname(@__DIR__), "deps", "Registries.toml")
+builds_file() = joinpath(dirname(@__DIR__), "deps", "Builds.toml")
+log_path(julia) = joinpath(dirname(@__DIR__), "logs/logs-$julia")
 
 """
     read_versions() -> Dict
