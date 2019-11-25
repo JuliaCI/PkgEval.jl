@@ -51,3 +51,11 @@ end
         @test occursin("Testing $pkg tests passed", output)
     end
 end
+
+@testset "reporting" begin
+    lts = v"1.0.5"
+    stable = v"1.2.0"
+    results = NewPkgEval.run([lts, stable], ["Example"])
+    NewPkgEval.compare(results, lts, stable)
+    NewPkgEval.render(results)
+end

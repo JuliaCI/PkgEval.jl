@@ -33,6 +33,9 @@ function main(;julia_releases=["stable"], pkg_names=["Example"], registry="Gener
     stringify(obj) = ismissing(obj) ? missing : string(obj)
     stringify.(result) |> SQLite.load!(db, "builds")
 
+    # generate a website
+    NewPkgEval.render(result)
+
     return
 end
 

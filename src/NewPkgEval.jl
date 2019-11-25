@@ -4,6 +4,11 @@ import Pkg.TOML
 using Pkg
 using Base: UUID
 using Dates
+using ProgressMeter
+using DataFrames
+using Random
+using Mustache
+using JSON
 
 downloads_dir(name) = joinpath(dirname(@__DIR__), "deps", "downloads", name)
 julia_path(ver) = joinpath(dirname(@__DIR__), "deps", "usr", "julia-$ver")
@@ -39,5 +44,6 @@ read_releases() = TOML.parsefile(releases_file())
 include("registry.jl")
 include("julia.jl")
 include("run.jl")
+include("report.jl")
 
 end # module

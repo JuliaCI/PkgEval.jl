@@ -1,7 +1,3 @@
-using ProgressMeter
-using DataFrames
-using Random
-
 function prepare_runner()
     cd(joinpath(dirname(@__DIR__), "runner")) do
         Base.run(`docker build . -t newpkgeval`)
