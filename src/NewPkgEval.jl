@@ -6,7 +6,7 @@ using Base: UUID
 using Dates
 
 downloads_dir(name) = joinpath(dirname(@__DIR__), "deps", "downloads", name)
-julia_path(ver) = joinpath(dirname(@__DIR__), "deps", "julia-$ver")
+julia_path(ver) = joinpath(dirname(@__DIR__), "deps", "usr", "julia-$ver")
 versions_file() = joinpath(dirname(@__DIR__), "deps", "Versions.toml")
 registry_path(name) = joinpath(first(DEPOT_PATH), "registries", name)
 registries_file() = joinpath(dirname(@__DIR__), "deps", "Registries.toml")
