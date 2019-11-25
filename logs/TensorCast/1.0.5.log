@@ -1,0 +1,93 @@
+ Resolving package versions...
+ Installed Requires ──────────── v0.5.2
+ Installed OrderedCollections ── v1.1.0
+ Installed RecursiveArrayTools ─ v1.0.2
+ Installed ArrayInterface ────── v1.2.1
+ Installed Tokenize ──────────── v0.5.6
+ Installed TensorCast ────────── v0.1.5
+ Installed StaticArrays ──────── v0.12.1
+ Installed MacroTools ────────── v0.5.1
+ Installed RecipesBase ───────── v0.7.0
+ Installed Compat ────────────── v3.0.0
+ Installed ArrayLayouts ──────── v0.1.5
+ Installed FillArrays ────────── v0.8.2
+ Installed CSTParser ─────────── v1.0.0
+ Installed LazyArrays ────────── v0.14.8
+ Installed DataStructures ────── v0.17.6
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [02d47bb6] + TensorCast v0.1.5
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [4fba245c] + ArrayInterface v1.2.1
+  [4c555306] + ArrayLayouts v0.1.5
+  [00ebfdb7] + CSTParser v1.0.0
+  [34da2185] + Compat v3.0.0
+  [864edb3b] + DataStructures v0.17.6
+  [1a297f60] + FillArrays v0.8.2
+  [5078a376] + LazyArrays v0.14.8
+  [1914dd2f] + MacroTools v0.5.1
+  [bac558e1] + OrderedCollections v1.1.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [731186ca] + RecursiveArrayTools v1.0.2
+  [ae029012] + Requires v0.5.2
+  [90137ffa] + StaticArrays v0.12.1
+  [02d47bb6] + TensorCast v0.1.5
+  [0796e94c] + Tokenize v0.5.6
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing TensorCast
+ Resolving package versions...
+ERROR: Unsatisfiable requirements detected for package Einsum [b7d42ee7]:
+ Einsum [b7d42ee7] log:
+ ├─possible versions are: 0.4.1 or uninstalled
+ ├─restricted to versions * by an explicit requirement, leaving only versions 0.4.1
+ └─restricted by compatibility requirements with Compat [34da2185] to versions: uninstalled — no versions left
+   └─Compat [34da2185] log:
+     ├─possible versions are: [1.0.0-1.0.1, 1.1.0, 1.2.0, 1.3.0, 1.4.0, 1.5.0-1.5.1, 2.0.0, 2.1.0, 2.2.0, 3.0.0] or uninstalled
+     └─restricted to versions 3.0.0 by an explicit requirement, leaving only versions 3.0.0
+Stacktrace:
+ [1] #propagate_constraints!#61(::Bool, ::Function, ::Pkg.GraphType.Graph, ::Set{Int64}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/GraphType.jl:1007
+ [2] propagate_constraints! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/GraphType.jl:948 [inlined]
+ [3] #simplify_graph!#121(::Bool, ::Function, ::Pkg.GraphType.Graph, ::Set{Int64}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/GraphType.jl:1462
+ [4] simplify_graph! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/GraphType.jl:1462 [inlined] (repeats 2 times)
+ [5] resolve_versions!(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}, ::Nothing) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:373
+ [6] resolve_versions! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:316 [inlined]
+ [7] #add_or_develop#62(::Array{Base.UUID,1}, ::Symbol, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1201
+ [8] add_or_develop at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1184 [inlined]
+ [9] (::getfield(Pkg.Operations, Symbol("##39#43")){Bool,getfield(Pkg.Operations, Symbol("##67#69")){Pkg.Types.Context,getfield(Pkg.Operations, Symbol("##66#68")){Pkg.Types.Context,Array{Any,1},Cmd,Pkg.Types.PackageSpec},Pkg.Types.PackageSpec},Pkg.Types.Context,Pkg.Types.PackageSpec,Pkg.Types.Context,Array{Pkg.Types.PackageSpec,1}})(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:891
+ [10] mktempdir(::getfield(Pkg.Operations, Symbol("##39#43")){Bool,getfield(Pkg.Operations, Symbol("##67#69")){Pkg.Types.Context,getfield(Pkg.Operations, Symbol("##66#68")){Pkg.Types.Context,Array{Any,1},Cmd,Pkg.Types.PackageSpec},Pkg.Types.PackageSpec},Pkg.Types.Context,Pkg.Types.PackageSpec,Pkg.Types.Context,Array{Pkg.Types.PackageSpec,1}}, ::String) at ./file.jl:581
+ [11] mktempdir at ./file.jl:579 [inlined]
+ [12] #with_dependencies_loadable_at_toplevel#37(::Bool, ::Function, ::getfield(Pkg.Operations, Symbol("##67#69")){Pkg.Types.Context,getfield(Pkg.Operations, Symbol("##66#68")){Pkg.Types.Context,Array{Any,1},Cmd,Pkg.Types.PackageSpec},Pkg.Types.PackageSpec}, ::Pkg.Types.Context, ::Pkg.Types.PackageSpec) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:867
+ [13] #with_dependencies_loadable_at_toplevel at ./none:0 [inlined]
+ [14] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1347
+ [15] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [16] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [17] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [18] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [19] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [20] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [21] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [22] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [23] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [24] top-level scope at none:0

@@ -1,0 +1,185 @@
+ Resolving package versions...
+ Installed KrylovMethods ─ v0.6.0
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [9a2cd570] + KrylovMethods v0.6.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [9a2cd570] + KrylovMethods v0.6.0
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [2f01184e] + SparseArrays 
+  [4ec0a83e] + Unicode 
+   Testing KrylovMethods
+ Resolving package versions...
+ Installed FastClosures ──── v0.3.2
+ Installed TimerOutputs ──── v0.5.3
+ Installed LinearOperators ─ v0.7.1
+    Status `/tmp/tmpzh9Ej7/Manifest.toml`
+  [9aa1b823] FastClosures v0.3.2
+  [9a2cd570] KrylovMethods v0.6.0
+  [5c8ed15e] LinearOperators v0.7.1
+  [a759f4b9] TimerOutputs v0.5.3
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+=== bicgstb ===
+iter	 relres
+  1	8.73e-02
+  2	8.98e-03
+  3	1.70e-03
+bicgstb iterated maxIter (=3) times but reached only residual norm 8.98e-03 instead of tol=1.00e-06.
+bcgstb achieved desired tolerance at iteration 6.5. Residual norm is 2.47e-07.
+=== block bicgstb ===
+iter	 relres
+  1	9.11e-02
+  2	2.53e-02
+  3	3.13e-03
+blockBiCGSTB iterated maxIter (=3) times but reached only residual norm 2.53e-02 instead of tol=1.00e-06.
+blockBiCGSTB achieved desired tolerance at iteration 7. Residual norm is 3.31e-07.
+=== cg ===
+iter	 relres
+  1	0.00e+00
+cg achieved desired tolerance at iteration 1. Residual norm is 0.00e+00.
+=== cg ===
+iter	 relres
+  1	2.53e-01
+cg iterated maxIter (=1) times but reached only residual norm 2.53e-01 instead of tol=1.00e-15.
+Matrix A in cg has to be positive definite.
+cg achieved desired tolerance at iteration 24. Residual norm is 8.56e-06.
+=== blockcg ===
+iter	max(relres)
+  1	8.13e-16
+blockCG achieved desired tolerance at iteration 1. Residual norm is 8.13e-16.
+=== blockcg ===
+iter	max(relres)
+  1	1.21e-14
+blockCG iterated maxIter (=1) times but reached only residual norm 1.21e-14 instead of tol=1.00e-30.
+=== blockcg ===
+iter	max(relres)
+  1	4.10e-01
+  2	2.29e-01
+  3	1.50e-01
+  4	1.20e-01
+  5	1.06e-01
+  6	7.69e-02
+  7	4.06e-02
+  8	2.18e-02
+  9	1.22e-02
+ 10	7.36e-03
+ 11	3.97e-03
+ 12	1.77e-03
+ 13	7.21e-04
+blockCG achieved desired tolerance at iteration 13. Residual norm is 7.21e-04.
+=== blockcg ===
+iter	max(relres)
+  1	4.10e-01
+  2	2.29e-01
+  3	1.50e-01
+  4	1.20e-01
+  5	1.06e-01
+  6	7.69e-02
+  7	4.06e-02
+  8	2.18e-02
+  9	1.22e-02
+ 10	7.36e-03
+ 11	3.97e-03
+ 12	1.77e-03
+ 13	7.21e-04
+blockCG achieved desired tolerance at iteration 13. Residual norm is 7.21e-04.
+=== cgls ===
+iter	   |A'r|	 norm(r)	 norm(x)
+  1	1.50e+01	4.03e-01	1.06e+01
+  2	6.44e-01	5.48e-01	1.05e+01
+cgls iterated maxIter (=2) times witout reaching tolerance. Returned result has residual norm  6.44e-01.
+cgls relative gradient norm below desired tolerance at iteration 10. Returned result has residual norm  3.33e-12.
+=== gmres ===
+iter	 relres
+
+  1	2.8e-01 8.6e-02 2.7e-02 	 2.7e-02
+  2	8.5e-03 2.4e-03 7.4e-04 	 7.4e-04
+  3	2.3e-04 6.4e-05 2.0e-05 	 2.0e-05
+gmres iterated maxIter (=3) times without achieving the desired tolerance.
+gmres achieved desired tolerance at iteration 3. Residual norm is 5.25e-07.
+*******************************************************
+=== fgmres ===
+iter	 relres
+
+  1	2.8e-01 8.6e-02 2.7e-02 
+  2	8.5e-03 2.4e-03 7.4e-04 
+  3	2.3e-04 6.4e-05 2.0e-05 
+fgmres iterated maxIter (=3) outer iterations without achieving the desired tolerance. Acheived: 1.99e-05
+fgmres achieved desired tolerance at inner iteration 12. Residual norm is 5.25e-07.
+*******************************************************
+=== blockFGMRES ===
+iter	 relres
+
+  1	1.9e-01 4.3e-02 6.3e-03 
+  2	1.1e-03 2.5e-04 4.0e-05 
+  3	8.0e-06 1.7e-06 2.8e-07 
+blockFGMRES iterated maxIter (=3) outer iterations without achieving the desired tolerance. Acheived: 2.78e-07
+-----------------------------------
+blockFGMRES achieved desired tolerance at inner iteration 9. Residual norm is 2.65e-07.
+*****************************************************************************
+Givens rotation for v=[0.0,1.2933235941317403]
+Givens rotation for v=[-0.2935474932220003,0.0]
+Givens rotation for v=[1.2310911555432507,-0.937050159221911]
+=== Testing Lanczos Bidiagonalization ===
+ssor achieved desired tolerance at iteration 27. Residual norm is 9.88e-03.
+ssor achieved desired tolerance at iteration 40. Residual norm is 9.99e-03.
+cg achieved desired tolerance at iteration 53. Residual norm is 9.04e-13.
+=== sor ===
+iter	 relres
+
+  1	1.42e-01
+  2	6.33e-02
+  3	3.87e-02
+ssor iterated maxIter (=3) times but reached only residual norm 3.87e-02 instead of tol=1.00e-02.
+ssor achieved desired tolerance at iteration 15. Residual norm is 9.13e-03.
+ssor achieved desired tolerance at iteration 22. Residual norm is 9.36e-03.
+iter	|r_k|		|A'*r_k|	|A|		cond(A)		STOP
+001	4.629e-01	4.792e-01	1.673e+00	1.000e+00	[0,0,0]
+002	2.979e-16	4.965e-16	2.000e+00	2.309e+00	[1,0,0]
+lsqr achieved desired tolerance at iteration 2. The system should be compatible. Residual norm is 2.98e-16.
+lsqr achieved desired tolerance at iteration 2. The system should be incompatible. Gradient norm is 1.34e-01.
+lsqr achieved desired tolerance at iteration 10. The system should be incompatible. Gradient norm is 1.05e+01.
+minres iterated maxIter (=1) times but reached only residual norm 1.31e-01 instead of tol=1.00e-12.
+=== minres ===
+iter	|r_k|		|A*r_k|		|A|			cond(A)
+1	1.31e-01	3.18e-01	6.18e+00		1.27e+00
+2	2.09e-02	6.21e-02	6.18e+00		1.27e+00
+3	1.73e-03	2.88e-03	6.18e+00		1.27e+00
+4	3.32e-05	1.12e-05	6.18e+00		1.33e+00
+5	9.85e-07	5.04e-07	6.18e+00		1.36e+00
+6	8.92e-11	1.24e-13	6.18e+00		1.53e+00
+7	1.42e-20	3.43e-29	6.18e+00		1.54e+00
+minres converged at iteration 7. |A r_k|=3.43e-29 and |r_k|=1.42e-20.
+=== minres ===
+iter	|r_k|		|A*r_k|		|A|			cond(A)
+1	2.67e-02	1.03e-01	4.98e+00		1.01e+00
+2	2.15e-03	3.29e-03	5.50e+00		1.11e+00
+3	1.25e-04	1.40e-04	5.50e+00		1.11e+00
+4	2.53e-06	9.01e-07	5.50e+00		1.18e+00
+5	1.56e-07	1.63e-07	5.50e+00		1.24e+00
+6	1.62e-11	2.67e-14	5.50e+00		1.32e+00
+7	9.92e-20	9.28e-27	5.50e+00		1.37e+00
+minres converged at iteration 7. |A r_k|=9.28e-27 and |r_k|=9.92e-20.
+test stop by condlim
+test stop by beta
+minres stopped because beta (=3.05e-13) became smaller than the tolerance (btol=1.00e-10) at iteration 5.
+test if anything is done for zero right hand side
+Test Summary: | Pass  Total
+KrylovMethods |  155    155
+   Testing KrylovMethods tests passed 

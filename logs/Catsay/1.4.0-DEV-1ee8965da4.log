@@ -1,0 +1,31 @@
+ Resolving package versions...
+ Installed Catsay ─ v0.2.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [5193907d] + Catsay v0.2.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [5193907d] + Catsay v0.2.0
+   Testing Catsay
+No changes
+Status `/tmp/jl_xRyjmP/Manifest.toml`
+  [5193907d] Catsay v0.2.0
+ERROR: LoadError: ArgumentError: Package Test not found in current path:
+- Run `import Pkg; Pkg.add("Test")` to install the Test package.
+
+Stacktrace:
+ [1] require(::Module, ::Symbol) at ./loading.jl:885
+ [2] include(::String) at ./client.jl:439
+ [3] top-level scope at none:6
+in expression starting at /root/.julia/packages/Catsay/7PebR/test/runtests.jl:1
+ERROR: Package Catsay errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

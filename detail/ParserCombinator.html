@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="ParserCombinator">ParserCombinator</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#ParserCombinator">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 16 hours ago and took 2 minutes, 14 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/ParserCombinator/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed AutoHashEquals ─── v0.2.0
+ Installed Nullables ──────── v0.0.8
+ Installed Compat ─────────── v2.2.0
+ Installed ParserCombinator ─ v2.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [fae87a5f] + ParserCombinator v2.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [15f4f7f2] + AutoHashEquals v0.2.0
+  [34da2185] + Compat v2.2.0
+  [4d1e1d77] + Nullables v0.0.8
+  [fae87a5f] + ParserCombinator v2.0.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing ParserCombinator
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;tmpHOdrIu&#x2F;Manifest.toml`
+  [15f4f7f2] AutoHashEquals v0.2.0
+  [34da2185] Compat v2.2.0
+  [4d1e1d77] Nullables v0.0.8
+  [fae87a5f] ParserCombinator v2.0.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+sources ok
+ 1  = 1
+ - 1  = -1
+ 1 + 1  = 2
+ 1 - 1  = 0
+ - 1 - 1  = -2
+fix ok
+Seq
+Transform
++-Alt
+| +-[1]:Seq
+| | +-[1]:Equal
+| | | `-&quot;a&quot;
+| | `-[2]:Drop
+| |   `-Equal
+| |     `-&quot;b&quot;
+| `-[2]:Pattern
+|   +-text=&quot;c&quot;
+|   +-regex=r&quot;^(?:c)(.??)&quot;
+|   `-groups
+`-f
+print ok
+names ok
+2 2 aaaa r&quot;a{2,2}&quot;
+1 3 aaaa r&quot;a{1,3}?&quot;
+1 2 aaa r&quot;a{1,2}&quot;
+0 1  r&quot;a{0,1}?&quot;
+0 2 aa r&quot;a{0,2}&quot;
+2 2 aaa r&quot;a{2,2}?&quot;
+0 1 a r&quot;a{0,1}&quot;
+3 3 aaaa r&quot;a{3,3}?&quot;
+1 1 aa r&quot;a{1,1}&quot;
+2 3  r&quot;a{2,3}?&quot;
+1 1 aaa r&quot;a{1,1}&quot;
+0 2  r&quot;a{0,2}?&quot;
+2 3 aa r&quot;a{2,3}&quot;
+2 4 aaa r&quot;a{2,4}?&quot;
+3 3  r&quot;a{3,3}&quot;
+1 1 aaa r&quot;a{1,1}?&quot;
+1 3 aa r&quot;a{1,3}&quot;
+2 2 a r&quot;a{2,2}?&quot;
+0 1 aaa r&quot;a{0,1}&quot;
+0 1 aaaa r&quot;a{0,1}?&quot;
+tests ok
+greedy true
+ParserCombinator.NoCache
+  0.005494 seconds (10.47 k allocations: 485.984 KiB)
+  0.005667 seconds (10.47 k allocations: 485.984 KiB)
+n results: 35
+max depth: 5
+max iter: 4
+n calls: 323
+ParserCombinator.Cache
+  0.401948 seconds (268.55 k allocations: 13.349 MiB)
+  0.011750 seconds (24.64 k allocations: 668.984 KiB)
+n results: 35
+max depth: 4
+max iter: 4
+n calls: 198
+slow ok
+  1:foo        00 Trace-&gt;Case
+  1:foo        01  Case-&gt;Pattern
+  4:           01  Case&lt;-[&quot;foo&quot;]
+  4:           00 Trace&lt;-[&quot;Foo&quot;]
+case ok 
+ 1:foo        00 Trace-&gt;Case
+  1:foo        01  Case-&gt;Pattern
+   :           01  Case&lt;-!!!
+   :           00 Trace&lt;-!!!
+all
++-[1]:sum
+| `-Transform
+|   +-Seq
+|   | +-[1]:prd
+|   | | +-Seq
+|   | | | +-[1]:neg
+|   | | | | `-Alt
+|   | | | |   +-[1]:Seq
+|   | | | |   | +-[1]:Drop
+|   | | | |   | | `-Equal
+|   | | | |   | |   `-&quot;(&quot;
+|   | | | |   | +-[2]:sum...
+|   | | | |   | `-[3]:Drop
+|   | | | |   |   `-Equal
+|   | | | |   |     `-&quot;)&quot;
+|   | | | |   +-[2]:Transform
+|   | | | |   | +-Pattern
+|   | | | |   | | +-text=&quot;-?(\d*\.?\d+|\d+\.\d*)([eE]\d+)?&quot;
+|   | | | |   | | +-regex=r&quot;^(?:-?(\d*\.?\d+|\d+\.\d*)([eE]\d+)?)(.??)&quot;
+|   | | | |   | | `-groups
+|   | | | |   | `-f
+|   | | | |   `-[3]:Transform
+|   | | | |     +-Seq
+|   | | | |     | +-[1]:Drop
+|   | | | |     | | `-Equal
+|   | | | |     | |   `-&quot;-&quot;
+|   | | | |     | `-[2]:neg...
+|   | | | |     `-f
+|   | | | `-[2]:Depth
+|   | | |   +-Alt
+|   | | |   | +-[1]:mul
+|   | | |   | | +-[1]:Drop
+|   | | |   | | | `-Equal
+|   | | |   | | |   `-&quot;*&quot;
+|   | | |   | | `-[2]:neg...
+|   | | |   | `-[2]:div
+|   | | |   |   +-Seq
+|   | | |   |   | +-[1]:Drop
+|   | | |   |   | | `-Equal
+|   | | |   |   | |   `-&quot;&#x2F;&quot;
+|   | | |   |   | `-[2]:neg...
+|   | | |   |   `-f
+|   | | |   +-lo=0
+|   | | |   +-hi=9223372036854775807
+|   | | |   `-flatten=true
+|   | | `-f
+|   | `-[2]:Depth
+|   |   +-Alt
+|   |   | +-[1]:add
+|   |   | | +-[1]:Drop
+|   |   | | | `-Equal
+|   |   | | |   `-&quot;+&quot;
+|   |   | | `-[2]:prd...
+|   |   | `-[2]:sub
+|   |   |   +-Seq
+|   |   |   | +-[1]:Drop
+|   |   |   | | `-Equal
+|   |   |   | |   `-&quot;-&quot;
+|   |   |   | `-[2]:prd...
+|   |   |   `-f
+|   |   +-lo=0
+|   |   +-hi=9223372036854775807
+|   |   `-flatten=true
+|   `-f
+`-[2]:Eos
+  1:1+2*3&#x2F;4    00 Trace-&gt;all
+  1:1+2*3&#x2F;4    01  all-&gt;sum
+  1:1+2*3&#x2F;4    02   Transform-&gt;Seq
+  1:1+2*3&#x2F;4    03    Seq-&gt;prd
+  1:1+2*3&#x2F;4    04     prd-&gt;Seq
+  1:1+2*3&#x2F;4    05      Seq-&gt;neg
+  1:1+2*3&#x2F;4    06       Alt-&gt;Seq
+  1:1+2*3&#x2F;4    07        Seq-&gt;Drop
+  1:1+2*3&#x2F;4    08         Drop-&gt;Equal
+   :           08         Drop&lt;-!!!
+   :           07        Seq&lt;-!!!
+   :           06       Alt&lt;-!!!
+  1:1+2*3&#x2F;4    06       Alt-&gt;Transform
+  1:1+2*3&#x2F;4    07        Transform-&gt;Pattern
+  2:+2*3&#x2F;4     07        Transform&lt;-[&quot;1&quot;]
+  2:+2*3&#x2F;4     06       Alt&lt;-[1.0]
+  2:+2*3&#x2F;4     05      Seq&lt;-[1.0]
+  2:+2*3&#x2F;4     05      Seq-&gt;Depth
+  2:+2*3&#x2F;4     06       Depth-&gt;Alt
+  2:+2*3&#x2F;4     07        Alt-&gt;mul
+  2:+2*3&#x2F;4     08         mul-&gt;Drop
+  2:+2*3&#x2F;4     09          Drop-&gt;Equal
+   :           09          Drop&lt;-!!!
+   :           08         mul&lt;-!!!
+   :           07        Alt&lt;-!!!
+  2:+2*3&#x2F;4     07        Alt-&gt;div
+  2:+2*3&#x2F;4     08         div-&gt;Seq
+  2:+2*3&#x2F;4     09          Seq-&gt;Drop
+  2:+2*3&#x2F;4     10 Drop-&gt;Equal
+   :           10 Drop&lt;-!!!
+   :           09          Seq&lt;-!!!
+   :           08         div&lt;-!!!
+   :           07        Alt&lt;-!!!
+   :           06       Depth&lt;-!!!
+  2:+2*3&#x2F;4     05      Seq&lt;-[]
+  2:+2*3&#x2F;4     04     prd&lt;-[1.0]
+  2:+2*3&#x2F;4     03    Seq&lt;-[Prd(Any[1.0])]
+  2:+2*3&#x2F;4     03    Seq-&gt;Depth
+  2:+2*3&#x2F;4     04     Depth-&gt;Alt
+  2:+2*3&#x2F;4     05      Alt-&gt;add
+  2:+2*3&#x2F;4     06       add-&gt;Drop
+  2:+2*3&#x2F;4     07        Drop-&gt;Equal
+  3:2*3&#x2F;4      07        Drop&lt;-[&quot;+&quot;]
+  3:2*3&#x2F;4      06       add&lt;-[]
+  3:2*3&#x2F;4      06       add-&gt;prd
+  3:2*3&#x2F;4      07        prd-&gt;Seq
+  3:2*3&#x2F;4      08         Seq-&gt;neg
+  3:2*3&#x2F;4      09          Alt-&gt;Seq
+  3:2*3&#x2F;4      10 Seq-&gt;Drop
+  3:2*3&#x2F;4      11  Drop-&gt;Equal
+   :           11  Drop&lt;-!!!
+   :           10 Seq&lt;-!!!
+   :           09          Alt&lt;-!!!
+  3:2*3&#x2F;4      09          Alt-&gt;Transform
+  3:2*3&#x2F;4      10 Transform-&gt;Pattern
+  4:*3&#x2F;4       10 Transform&lt;-[&quot;2&quot;]
+  4:*3&#x2F;4       09          Alt&lt;-[2.0]
+  4:*3&#x2F;4       08         Seq&lt;-[2.0]
+  4:*3&#x2F;4       08         Seq-&gt;Depth
+  4:*3&#x2F;4       09          Depth-&gt;Alt
+  4:*3&#x2F;4       10 Alt-&gt;mul
+  4:*3&#x2F;4       11  mul-&gt;Drop
+  4:*3&#x2F;4       12   Drop-&gt;Equal
+  5:3&#x2F;4        12   Drop&lt;-[&quot;*&quot;]
+  5:3&#x2F;4        11  mul&lt;-[]
+  5:3&#x2F;4        11  mul-&gt;neg
+  5:3&#x2F;4        12   Alt-&gt;Seq
+  5:3&#x2F;4        13    Seq-&gt;Drop
+  5:3&#x2F;4        14     Drop-&gt;Equal
+   :           14     Drop&lt;-!!!
+   :           13    Seq&lt;-!!!
+   :           12   Alt&lt;-!!!
+  5:3&#x2F;4        12   Alt-&gt;Transform
+  5:3&#x2F;4        13    Transform-&gt;Pattern
+  6:&#x2F;4         13    Transform&lt;-[&quot;3&quot;]
+  6:&#x2F;4         12   Alt&lt;-[3.0]
+  6:&#x2F;4         11  mul&lt;-[3.0]
+  6:&#x2F;4         10 Alt&lt;-[3.0]
+  6:&#x2F;4         09          Depth&lt;-[3.0]
+  6:&#x2F;4         09          Depth-&gt;Alt
+  6:&#x2F;4         10 Alt-&gt;mul
+  6:&#x2F;4         11  mul-&gt;Drop
+  6:&#x2F;4         12   Drop-&gt;Equal
+   :           12   Drop&lt;-!!!
+   :           11  mul&lt;-!!!
+   :           10 Alt&lt;-!!!
+  6:&#x2F;4         10 Alt-&gt;div
+  6:&#x2F;4         11  div-&gt;Seq
+  6:&#x2F;4         12   Seq-&gt;Drop
+  6:&#x2F;4         13    Drop-&gt;Equal
+  7:4          13    Drop&lt;-[&quot;&#x2F;&quot;]
+  7:4          12   Seq&lt;-[]
+  7:4          12   Seq-&gt;neg
+  7:4          13    Alt-&gt;Seq
+  7:4          14     Seq-&gt;Drop
+  7:4          15      Drop-&gt;Equal
+   :           15      Drop&lt;-!!!
+   :           14     Seq&lt;-!!!
+   :           13    Alt&lt;-!!!
+  7:4          13    Alt-&gt;Transform
+  7:4          14     Transform-&gt;Pattern
+  8:           14     Transform&lt;-[&quot;4&quot;]
+  8:           13    Alt&lt;-[4.0]
+  8:           12   Seq&lt;-[4.0]
+  8:           11  div&lt;-[4.0]
+  8:           10 Alt&lt;-[Inv(4.0)]
+  8:           09          Depth&lt;-[Inv(4.0)]
+  8:           09          Depth-&gt;Alt
+  8:           10 Alt-&gt;mul
+  8:           11  mul-&gt;Drop
+  8:           12   Drop-&gt;Equal
+   :           12   Drop&lt;-!!!
+   :           11  mul&lt;-!!!
+   :           10 Alt&lt;-!!!
+  8:           10 Alt-&gt;div
+  8:           11  div-&gt;Seq
+  8:           12   Seq-&gt;Drop
+  8:           13    Drop-&gt;Equal
+   :           13    Drop&lt;-!!!
+   :           12   Seq&lt;-!!!
+   :           11  div&lt;-!!!
+   :           10 Alt&lt;-!!!
+   :           09          Depth&lt;-!!!
+  8:           08         Seq&lt;-[3.0, Inv(4.0)]
+  8:           07        prd&lt;-[2.0, 3.0, Inv(4.0)]
+  8:           06       add&lt;-[Prd(Any[2.0, 3.0, Inv(4.0)])]
+  8:           05      Alt&lt;-[Prd(Any[2.0, 3.0, Inv(4.0)])]
+  8:           04     Depth&lt;-[Prd(Any[2.0, 3.0, Inv(4.0)])]
+  8:           04     Depth-&gt;Alt
+  8:           05      Alt-&gt;add
+  8:           06       add-&gt;Drop
+  8:           07        Drop-&gt;Equal
+   :           07        Drop&lt;-!!!
+   :           06       add&lt;-!!!
+   :           05      Alt&lt;-!!!
+  8:           05      Alt-&gt;sub
+  8:           06       sub-&gt;Seq
+  8:           07        Seq-&gt;Drop
+  8:           08         Drop-&gt;Equal
+   :           08         Drop&lt;-!!!
+   :           07        Seq&lt;-!!!
+   :           06       sub&lt;-!!!
+   :           05      Alt&lt;-!!!
+   :           04     Depth&lt;-!!!
+  8:           03    Seq&lt;-[Prd(Any[2.0, 3.0, Inv(4.0)])]
+  8:           02   Transform&lt;-[Prd(Any[1.0]), Prd(Any[2.0, 3.0, Inv(4.0)])]
+  8:           01  all&lt;-[Sum(Any[Prd(Any[1.0]), Prd(Any...0, Inv(4.0)])])]
+  8:           01  all-&gt;Eos
+  8:           01  all&lt;-[]
+  8:           00 Trace&lt;-[Sum(Any[Prd(Any[1.0]), Prd(Any...0, Inv(4.0)])])]
+ 1 = 1 
+1:-1 = -11+2*3&#x2F;4   
+ 01+1 = 20
+ 1-1 = 0Trace
+-&gt;all-1-1 = -2
+
+  81.0 = 1.0:
+           0-1.0 = -1.01
+  all--1.0 = 1.0-&gt;
+Eos
+   :1+2 = 3.0          
+ 01+2*3&#x2F;4 = 2.52
+  all&lt;-!!!
+  1:1+2*3&#x2F;4    01 Main.CoreTest.Neg(Main.CoreTest.Prd(Any[7.0, Inv(0.0), Inv(2.0), Inv(Neg(0.0))])) Inf Inf 
+allMain.CoreTest.Inv(Main.CoreTest.Neg(0.0)) -Inf-&gt;
+sumMain.CoreTest.Inv(Main.CoreTest.Prd(Any[Neg(Sum(Any[Prd(Any[0.0])]))])) -Inf
+
+ Main.CoreTest.Inv(Main.CoreTest.Sum(Any[Prd(Any[Neg(Sum(Any[Prd(Any[0.0])]))])])) -Inf 
+0Main.CoreTest.Neg(Main.CoreTest.Prd(Any[7.0, Inv(0.0), Inv(2.0), Inv(Sum(Any[Prd(Any[Neg(Sum(Any[Prd(Any[0.0])]))])])), 3.0])) Inf Inf:
+1+2*3&#x2F;4    Inf Main.CoreTest.Sum(Any[Prd(Any[-9.0]), Neg(Prd(Any[7.0, Inv(0.0), Inv(2.0), Inv(Sum(Any[Prd(Any[Neg(Sum(Any[Prd(Any[0.0])]))])])), 3.0])), Neg(Prd(Any[7.0, Inv(Neg(Sum(Any[Prd(Any[9.0]), Prd(Any[5.0])])))])), Prd(Any[5.0]), Neg(Prd(Any[7.0]))]) Inf0
+2expr (6.0)*(4.0-3.0) 
+  Transform6.0 6.0-&gt;
+Seqexpr 3.0-8.0+7.0*3.0+5.0&#x2F;4.0*1.0
+
+  17.25 17.251
+:expr -8.0+5.0+-0.0*6.0*3.0&#x2F;8.0-0.0&#x2F;1.0*8.0-4.0-6.0+2*3&#x2F;4    
+ 0-13.0 -13.01
+ expr 8.0-6.0+7.0*5.0-7.0-1.0-0.0-9.0-0.0&#x2F;1.0*8.0   
+Seq-&gt;20.0 20.0Depth
+
+expr (((2.0&#x2F;2.0)))-9.0-9.0&#x2F;7.0+1.0-8.0&#x2F;-4.0+6.0*3.0*7.0-4.0&#x2F;4.0-7.0-6.0+5.0*6.0-9.0&#x2F;2.0 
+ 2131.21428571428572 131.21428571428572:
++2*3&#x2F;4    expr -(2.0)+9.0 
+047.0 7.0 
+    expr (5.0-0.0)&#x2F;5.0*(4.0)+4.0+-7.0-8.0*0.0-5.0*8.0Depth
+-&gt;Alt-39.0 -39.0
+
+ expr (3.0)-5.0+5.0+8.0*0.0+5.0+-3.0*3.0+7.0*0.0 
+2:-1.0 -1.0+2*3&#x2F;4    
+ expr -0.0*9.0&#x2F;1.0*0.0-((-3.0))+6.0&#x2F;0.00
+5 Inf Inf     
+Altexpr 7.0+7.0+-9.0*1.0&#x2F;(4.0)&#x2F;(9.0-0.0*1.0)-9.0+1.0-&gt;
+add
+5.75 5.75 
+ expr 2.0&#x2F;1.0+2.0-(3.0*5.0&#x2F;0.0)+(-(5.0)&#x2F;2.0)3
+:2*3&#x2F;4     -Inf -Inf 
+0expr 5.0+9.0-2.0*7.0&#x2F;0.0&#x2F;8.0&#x2F;(5.0*4.0)&#x2F;9.0+2.06
+       -Inf -Infadd
+-&gt;expr (6.0&#x2F;5.0)*(3.0)&#x2F;7.0+4.0*8.0+0.0&#x2F;(3.0+8.0)+2.0&#x2F;6.0prd
+
+ 32.84761904761905 32.84761904761905 
+3expr (((8.0*9.0))&#x2F;7.0)-7.0-2.0*6.0+(4.0)-1.0*(-7.0)&#x2F;3.0*3.0*9.0&#x2F;2.0&#x2F;0.0&#x2F;8.0&#x2F;4.0:
+2*3&#x2F;4      Inf Inf0
+7expr (5.0&#x2F;1.0*2.0)*1.0+(3.0)&#x2F;7.0-7.0&#x2F;-8.0-9.0-2.0*8.0-5.0&#x2F;9.0&#x2F;4.0 
+       prd-13.83531746031746 -13.83531746031746-&gt;
+Seqexpr 7.0&#x2F;0.0+-7.0-9.0
+
+  Inf Inf4
+:expr 2.0+5.0*7.0&#x2F;(2.0)&#x2F;-9.0*9.0*8.0*3&#x2F;4      
+ 0-138.0 -138.01
+ expr (5.0)&#x2F;3.0&#x2F;6.0+0.0*6.0-2.0+6.0*3.0+7.0&#x2F;4.0+5.0&#x2F;1.0&#x2F;7.0        
+Seq-&gt;18.742063492063494 18.742063492063494Depth
+
+expr ((4.0))+7.0&#x2F;5.0-2.0-0.0-0.0-6.0-5.0&#x2F;9.0*0.0*5.0&#x2F;1.0+0.0&#x2F;9.0+8.0-9.0*2.0 
+ 6-12.6 -12.6:
+&#x2F;4        expr (7.0)*-((7.0*9.0))+8.0*((0.0)+2.0-2.0) 
+09-441.0 -441.0 
+         calc okDepth
+-&gt;one levelAlt
+
+    66::ab        &#x2F;4          0101  AltTrace-&gt;-&gt;divDot
+
+    22::&#x2F;4        b           110 0  div-&gt;TraceSeq&lt;-
+[&#39;a&#39;] 
+ multiple7 
+:  4         2  :212ab        :  b           0 Seq00-&gt; 0neg 
+Trace -&gt;Trace Dot-&gt;7
+Depth:   :
+4                       1300 0:    b         Alt -&gt;Trace0Transform&lt;-!!!
+1
+    Depth7-&gt;:Dot4         
+  14  1    :Transform          -&gt; Pattern0
+1   :             Depth14&lt;- [&#39;b&#39;]    
+Transform &lt;-!!!
+    :3          :           13  0   1Alt &lt;-!!!
+  Depth -&gt;7Dot:
+4            :           13  0   1Alt -&gt; TransformDepth
+&lt;-!!!
+    33::4                     140 0     Transform-&gt;TraceSeq&lt;-
+[&#39;b&#39;] 
+  2 :24         : b         15  0     0Seq -&gt;DropTrace
+-&gt; Depth 
+7 : 4         2 :16b                 0Drop1-&gt; Equal 
+Depth   :-&gt;          Dot 
+16   :                  Drop0&lt;-!!!
+1   :             Depth15&lt;-!!!
+        Seq2&lt;-!!!
+:   :b                     0141      TransformTrace&lt;-!!!
+&lt;-   :[]          
+ 13 debug ok  
+   2aAlt:b&lt;-!!!
+b         c   : d          0e 0f12 g h  TraceiSeq-&gt;j&lt;-!!!
+Depthk 
+l    :m6          n: o&#x2F;4        0p 0q12 r s  TracetSeq&lt;-!!!
+u-&gt;vDropw
+x y z6
+:0&#x2F;4        1 2133 4   5Drop6-&gt;7Equal8
+9   :          Any [13&quot; a   bDropc&lt;-!!!
+d   :e          f g12h i  jSeqk&lt;-!!!
+l   :m          &quot; ]11
+  Anydiv[&lt;-!!!
+&quot;   :a          b c10d efAltg&lt;-!!!
+h   :i          j k0l9m n         oDepthp&lt;-!!!
+q r s6t:u&#x2F;4        v w0x8y z        \Seqn&lt;-0[3.0]1
+2 3 465:&quot;&#x2F;4        ] 
+07Any [       &quot;prda&lt;-b[2.0, 3.0]c
+d e f6g:h&#x2F;4        i j0k6l m      &quot;add]&lt;-
+[Prd(Any[2.0, 3.0])]
+Any [ &quot;6a:b&#x2F;4        c d0e5f g     hAlti&lt;-j[Prd(Any[2.0, 3.0])]k
+l m n6o:p&#x2F;4        q r0s4t u    vDepthw&lt;-x[Prd(Any[2.0, 3.0])]y
+z \ n60:1&#x2F;4        2 30445 &quot;    ]Depth
+-&gt;Alt 
+  6 ,61: &#x2F;4          :0abcde...\n5  0     0Alt -&gt;addTrace
+-&gt; Transform 
+6 : &#x2F;4        1 ,011         :addabcde...\n-&gt; Drop0
+1    6Transform:-&gt;&#x2F;4        Seq 
+0 1  1       ,Drop1-&gt; Equal 
+:   :abcde...\n            0077           SeqDrop-&gt;&lt;-!!!
+Depth   :
+             066, 1       add &lt;-!!!
+:   :abcde...\n            0055          DepthAlt-&gt;&lt;-!!!
+Pattern 
+  1 :1&#x2F;4        , 20 5  :     bcdef...\nAlt -&gt;0sub3
+      Depth6&lt;-:[&quot;a&quot;]&#x2F;4        
+  0 66 ,      2sub -&gt; Seq:
+bcdef...\n   033: &#x2F;4            Depth0-&gt;7Pattern 
+        Seq -&gt;1Drop,
+3    6::cdefg...\n&#x2F;4          0088             DepthDrop&lt;--&gt;[&quot;b&quot;]Equal
+
+    :           1 ,033           :Dropcdefg...\n&lt;-!!!
+    :0          3  0   7Depth -&gt;       PatternSeq
+&lt;-!!!
+    :           1 ,044         :subdefgh...\n&lt;-!!!
+    :0          3  0   5Depth &lt;-     [&quot;c&quot;]Alt
+&lt;-!!!
+    :           1 ,044       :Depthdefgh...\n&lt;-!!!
+  0 33 :   &#x2F;4        Depth -&gt;0Pattern3
+      Seq1&lt;-,[Prd(Any[2.0, 3.0])]5
+    :6efghi...\n: &#x2F;4        0 30 2    Depth  &lt;-Transform[&quot;d&quot;]&lt;-
+[Prd(Any[1.0]), Prd(Any[2.0, 3.0])] 
+  6 ,65: &#x2F;4          :0efghi...\n1  0 3all &lt;-   [Sum(Any[Prd(Any[1.0]), Prd(Any[2.0, 3.0])])]Depth
+-&gt; Pattern 
+6 : &#x2F;4        1 ,066    :allfghij...\n-&gt; Eos0
+3   :               Depth0&lt;-1[&quot;e&quot;] 
+  all &lt;-!!!
+1 , 66 : 1+2*3&#x2F;4   : fghij...\n0 10 3  all   -&gt;Depthsum-&gt;
+Pattern 
+  1 :11+2*3&#x2F;4   , 70 2  :  ghijk...\nTransform -&gt;0Seq3
+      Depth2&lt;-:[&quot;f&quot;]+2*3&#x2F;4    
+  0 33 ,   7Seq -&gt; Depth:
+ghijk...\n   033: +2*3&#x2F;4        Depth0-&gt;4Pattern 
+     Depth -&gt;1Alt,
+8    2::hijkl...\n+2*3&#x2F;4      0055          DepthAlt&lt;--&gt;[&quot;g&quot;]add
+
+    33,:82*3&#x2F;4        0:6hijkl...\n        0add3-&gt; prd   
+Depth -&gt; Pattern3
+: 2*3&#x2F;4       10,79          prd:-&gt;ijklm...\nSeq 
+0 4  4   :Depth*3&#x2F;4      &lt;- [&quot;h&quot;]0
+8           1Seq,-&gt;9Depth 
+  : ijklm...\n4 :0*3&#x2F;4      3  0   9Depth -&gt;         PatternDepth
+-&gt; Alt 
+1 , 101 ::*3&#x2F;4      jklmn...\n  100 3 Alt   -&gt;Depthmul&lt;-
+[&quot;i&quot;] 
+  1 :13&#x2F;4       , 1011  : jklmn...\nmul -&gt;0neg3
+      Depth5-&gt;:Pattern3&#x2F;4       
+  12  1  ,Alt11-&gt; Transform:
+klmno...\n   033: 3&#x2F;4           Depth13&lt;- [&quot;j&quot;]   
+Transform -&gt; Pattern1
+,   :11            :13klmno...\n     0Transform3&lt;-!!!
+    :             Depth -&gt;12Pattern 
+   Alt &lt;-!!!
+1 , 121 ::3&#x2F;4       lmnop...\n  120 3   Alt   -&gt;DepthTransform&lt;-
+[&quot;k&quot;] 
+  1 :13&#x2F;4       , 1213  :   lmnop...\nTransform -&gt;0Seq3
+      Depth5-&gt;:Pattern3&#x2F;4       
+  14  1    ,Seq13-&gt; Drop:
+mnopq...\n   033: 3&#x2F;4           Depth15&lt;- [&quot;l&quot;]     
+Drop -&gt; Equal1
+,   :13            :15mnopq...\n       0Drop3&lt;-!!!
+    :             Depth -&gt;14Pattern 
+     Seq &lt;-!!!
+1   :,          14  13: nopqr...\n    Transform0&lt;-!!!
+3   :               Depth12&lt;- [&quot;m&quot;]  
+Alt &lt;-!!!
+    :1          , 1411  : nopqr...\nmul &lt;-!!!
+0 4  4   :Depth*3&#x2F;4      -&gt; Pattern11
+    mul1-&gt;,Drop15
+  : opqrs...\n4 :0*3&#x2F;4      3  12    Depth  &lt;-Drop[&quot;n&quot;]-&gt;
+Equal 
+    :1          , 1512  :  opqrs...\nDrop &lt;-!!!
+0   :3               11Depth -&gt; Patternmul
+&lt;-!!!
+    :           1 ,1016  :Altpqrst...\n&lt;-!!!
+  0 33 :   *3&#x2F;4      Depth &lt;-10[&quot;o&quot;] 
+ Alt -&gt;1div,
+16   :4pqrst...\n: *3&#x2F;4      0 311      Depthdiv-&gt;-&gt;PatternSeq
+
+    44,:17*3&#x2F;4        :12qrstu...\n    0Seq3-&gt; Drop   
+Depth &lt;- [&quot;p&quot;]4
+: *3&#x2F;4        113, 17    Drop:-&gt;qrstu...\nEqual 
+0   :3               13Depth -&gt;   PatternDrop
+&lt;-!!!
+    :           1 ,1218    :Seqrstuv...\n&lt;-!!!
+    :0          3  11    Depth &lt;-div[&quot;q&quot;]&lt;-!!!
+
+   :             110, 18 Alt:&lt;-!!!
+rstuv...\n   :           0 30 9    Depth         -&gt;DepthPattern&lt;-!!!
+
+    11:,*3&#x2F;4      19  0:8stuvwxyz\n          0Seq3&lt;- []   
+Depth &lt;- [&quot;r&quot;]4
+: *3&#x2F;4        10,719         :prdstuvwxyz\n&lt;- [2.0]0
+3      4Depth:-&gt;*3&#x2F;4      Pattern 
+0 1  1      ,add20&lt;- [Prd(Any[2.0])]:
+tuvwxyz\n    033: *3&#x2F;4          Depth0&lt;-5[&quot;s&quot;] 
+      Alt &lt;-1[Prd(Any[2.0])],
+20   :4tuvwxyz\n : *3&#x2F;4      0 30 4    Depth    -&gt;DepthPattern&lt;-
+[Prd(Any[2.0])] 
+  4 ,421: *3&#x2F;4      : uvwxyz\n  0 40 3     Depth   -&gt;DepthAlt&lt;-
+[&quot;t&quot;] 
+  1 :1*3&#x2F;4      , 210 5: uvwxyz\n        Alt0-&gt;3add 
+    Depth -&gt;4Pattern:
+*3&#x2F;4         066, 22       add:-&gt;vwxyz\n   Drop 
+0 4  4   :Depth*3&#x2F;4      &lt;- [&quot;u&quot;]0
+7          1Drop,-&gt;22Equal 
+:   :vwxyz\n               0077            DepthDrop-&gt;&lt;-!!!
+Pattern   :
+             066, 23       add:&lt;-!!!
+wxyz\n       :           0 30 5    Depth     &lt;-Alt[&quot;v&quot;]&lt;-!!!
+
+    11:,*3&#x2F;4      23  0:5wxyz\n           0Alt3-&gt; sub   
+Depth -&gt; Pattern4
+: *3&#x2F;4        10,624        :subxyz\n     -&gt; Seq0
+3      4Depth:&lt;-*3&#x2F;4      [&quot;w&quot;] 
+0 1  1       ,Seq24-&gt; Drop:
+xyz\n        033: *3&#x2F;4          Depth0-&gt;8Pattern 
+         Drop -&gt;1Equal,
+25   :           : yz\n      0 80 3         Drop   &lt;-!!!
+Depth   :&lt;-          [&quot;x&quot;] 
+0 1  1       ,Seq25&lt;-!!!
+    ::          yz\n        0033           subDepth&lt;-!!!
+-&gt;   :Pattern          
+  0 55 ,     26Alt &lt;-!!!
+:   :z\n                   0044         DepthDepth&lt;-&lt;-!!!
+[&quot;y&quot;] 
+  1 :1*3&#x2F;4      , 260 3: z\n           Seq0&lt;-3[Prd(Any[2.0])] 
+    Depth -&gt;4Pattern:
+*3&#x2F;4         022, 27   Transform:&lt;-\n        [Prd(Any[1.0]), Prd(Any[2.0])] 
+0 4  4   :Depth*3&#x2F;4      &lt;- [&quot;z&quot;]0
+1    1all,&lt;-27[Sum(Any[Prd(Any[1.0]), Prd(Any[2.0])])] 
+: \n          40:3*3&#x2F;4           0Depth1-&gt; Pattern 
+all       :-&gt;          Eos 
+0   :3               0Depth1&lt;-!!!
+    all1&lt;-!!!
+, 27  2::\n        1+2*3&#x2F;4     0011     Seqall&lt;--&gt;[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;x&quot;, &quot;y&quot;, &quot;z&quot;]sum
+
+    11,:271+2*3&#x2F;4     :0\n        2  0  2Transform -&gt;  SeqSeq
+-&gt; Equal 
+2       ::          +2*3&#x2F;4      0033       SeqSeq&lt;-!!!
+-&gt; Depth 
+1 , 11 : +2*3&#x2F;4    : [unav...e]0 40 2     Depth  -&gt;SeqAlt-&gt;
+Depth 
+  1 :1+2*3&#x2F;4    , 260 5: [unav...e]      Alt0-&gt;3add 
+    Depth -&gt;3Pattern:
+2*3&#x2F;4            :           0 60 3       add   -&gt;Depthprd&lt;-!!!
+
+    33,:262*3&#x2F;4       :0[unav...e]7  0       2prd -&gt;  SeqSeq
+&lt;- [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;w&quot;, &quot;x&quot;, &quot;y&quot;] 
+4 : *3&#x2F;4      1 ,0262  :        [unav...e]Seq -&gt;0Depth2
+    :            Seq -&gt;0Equal8
+        :                  Seq &lt;-!!!
+0 3  3  :Seq2*3&#x2F;4     &lt;-!!!
+  0 88 ,        1Seq -&gt; neg:
+[unav...e]   022: 2*3&#x2F;4        Seq0-&gt;9Depth 
+          Alt -&gt;1Transform,
+25   :3[unav...e]: 2*3&#x2F;4     0 310     DepthTransform-&gt;-&gt;PatternPattern
+
+       :   :                      0101     TransformDepth&lt;-!!!
+&lt;-!!!
+   :             10,925           :Alt[unav...e]&lt;-!!!
+  0 22 :  2*3&#x2F;4     Seq &lt;-0[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;v&quot;, &quot;w&quot;, &quot;x&quot;]9
+            Alt1-&gt;,Transform25
+  : [unav...e]3 :02*3&#x2F;4     2  10   Seq-&gt;TransformEqual-&gt;
+Seq       :
+             022: 2*3&#x2F;4        Seq11&lt;-!!!
+    Seq1-&gt;,Drop1
+    :3[unav...e]: 2*3&#x2F;4     0 212      SeqDrop-&gt;-&gt;DepthEqual
+
+    :           1 ,1224    :Drop[unav...e]&lt;-!!!
+    :0          3  11    Depth -&gt;SeqPattern&lt;-!!!
+
+   :       :                      100 3 Transform   &lt;-!!!
+Depth   :&lt;-!!!
+             099, 24          Alt:&lt;-!!!
+[unav...e]   :           0 20 8   Seq        &lt;-Seq[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;u&quot;, &quot;v&quot;, &quot;w&quot;]&lt;-!!!
+
+   :             10,724         :prd[unav...e]&lt;-!!!
+    :0          2  0  6Seq -&gt;      Equaladd
+&lt;-!!!
+       :             20:2+2*3&#x2F;4        0Seq6&lt;-!!!
+         add1-&gt;,Drop1
+    :2[unav...e]: +2*3&#x2F;4    0 20 7   Seq       -&gt;DropDepth-&gt;
+Equal 
+    :1          , 230 7: [unav...e]        Drop0&lt;-!!!
+3   :               Depth0-&gt;6Pattern 
+             :add          &lt;-!!!
+    :0          3  0   5Depth &lt;-!!!
+      Alt &lt;-!!!
+1 , 232 ::+2*3&#x2F;4    [unav...e]  0022         AltSeq-&gt;&lt;-sub[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;t&quot;, &quot;u&quot;, &quot;v&quot;]
+
+    11:,+2*3&#x2F;4    23  0:6[unav...e]        0sub2-&gt; Seq  
+Seq -&gt; Equal2
+:       :+2*3&#x2F;4                0022           SeqSeq-&gt;&lt;-!!!
+Drop 
+  2 ,21: +2*3&#x2F;4      :0[unav...e]8  0        2Drop -&gt;  EqualSeq
+-&gt;   :Depth          
+  0 88 ,        22Drop &lt;-!!!
+:   :[unav...e]            0077            DepthSeq-&gt;&lt;-!!!
+Pattern   :
+                 :           0 60 3       sub   &lt;-!!!
+Depth   :&lt;-!!!
+             055, 22      Alt:&lt;-!!!
+[unav...e]   :           0 20 4   Seq    &lt;-Depth[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;s&quot;, &quot;t&quot;, &quot;u&quot;]&lt;-!!!
+
+    11:,+2*3&#x2F;4    22  0:3[unav...e]     0Seq2&lt;- []  
+Seq -&gt; Equal2
+:       :+2*3&#x2F;4                0022      TransformSeq&lt;-&lt;-!!!
+[Prd(Any[1.0])] 
+  2 ,21: +2*3&#x2F;4      :0[unav...e]1  0 2all &lt;-  [Sum(Any[Prd(Any[1.0])])]Seq
+-&gt; Depth 
+2 : +2*3&#x2F;4    1 ,0212  : [unav...e]all -&gt;0Eos3
+    :             Depth -&gt;0Pattern1
+        :           all &lt;-!!!
+0 1  1   :Depth1+2*3&#x2F;4   &lt;-!!!
+  0 11 , 21all -&gt;:sum[unav...e]
+  0 22 :  1+2*3&#x2F;4   Seq &lt;-0[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;r&quot;, &quot;s&quot;, &quot;t&quot;]2
+     Transform1-&gt;,Seq21
+  : [unav...e]2 :0+2*3&#x2F;4    2  0  3Seq -&gt;   EqualSeq
+-&gt;       :Depth          
+    :0          2  0  3Seq &lt;-!!!
+    Seq &lt;-!!!
+1 , 11 : 1+2*3&#x2F;4   : [unav...e]0 30 2    Seq  -&gt;Seqprd-&gt;
+Depth 
+  1 :11+2*3&#x2F;4   , 200 4: [unav...e]     prd0-&gt;3Seq 
+    Depth -&gt;2Pattern:
++2*3&#x2F;4           :           0 50 3      Seq   -&gt;DepthDepth&lt;-!!!
+
+    :           1 ,0202  :     [unav...e]Seq &lt;-!!!
+0 1  1  :Seq1+2*3&#x2F;4   &lt;- [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;q&quot;, &quot;r&quot;, &quot;s&quot;]0
+5        1Seq,-&gt;20neg 
+: [unav...e]  10:21+2*3&#x2F;4       0Seq6-&gt; Equal      
+Alt       :-&gt;          Transform 
+0 1  1  :Seq1+2*3&#x2F;4   &lt;-!!!
+  0 77 ,       1Transform -&gt; Pattern:
+[unav...e]   :           0 20 7   Seq       -&gt;TransformDepth&lt;-!!!
+
+   :             10,619        :Alt[unav...e]&lt;-!!!
+  0 33 :   1+2*3&#x2F;4   Depth -&gt;0Pattern6
+        :                Alt -&gt;0Transform3
+      Depth1&lt;-!!!
+: 1+2*3&#x2F;4     10,719         :Transform[unav...e]-&gt; Seq0
+2     1Seq:&lt;-1+2*3&#x2F;4   [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;p&quot;, &quot;q&quot;, &quot;r&quot;] 
+0 1  1        ,Seq19-&gt; Drop:
+[unav...e]   022: 1+2*3&#x2F;4      Seq0-&gt;9Equal 
+                :Drop          -&gt; Equal0
+2   :              Seq0&lt;-!!!
+9            1Drop,&lt;-!!!
+1   :             :0[unav...e]8  0        2Seq &lt;-!!!
+     :Seq          -&gt; Depth0
+7          1Transform,&lt;-!!!
+18   :           : [unav...e]0 60 3       Alt   &lt;-!!!
+Depth   :-&gt;          Pattern 
+0       :5                 0Seq3&lt;-!!!
+    :             Depth &lt;-!!!
+0 1  1    ,prd18&lt;-!!!
+    ::          [unav...e]  0022       SeqSeq&lt;-!!!
+&lt;-   :[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;o&quot;, &quot;p&quot;, &quot;q&quot;]          
+  0 22 ,  18Transform &lt;-!!!
+:   :[unav...e]            0011     Seqall-&gt;&lt;-!!!
+Equal   :
+                 :           0 00 2 Trace  &lt;-!!!
+Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,17 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,17 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;n&quot;, &quot;o&quot;, &quot;p&quot;]
+  1,17 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,16 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,16 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;m&quot;, &quot;n&quot;, &quot;o&quot;]
+  1,16 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,15 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,15 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;l&quot;, &quot;m&quot;, &quot;n&quot;]
+  1,15 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,14 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,14 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;k&quot;, &quot;l&quot;, &quot;m&quot;]
+  1,14 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,13 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,13 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;j&quot;, &quot;k&quot;, &quot;l&quot;]
+  1,13 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,12 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,12 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;i&quot;, &quot;j&quot;, &quot;k&quot;]
+  1,12 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,11 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,11 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;i&quot;, &quot;j&quot;]
+  1,11 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,10 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,10 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;i&quot;]
+  1,10 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,9  :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,9  :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;]
+  1,9  :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,8  :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,8  :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;]
+  1,8  :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,7  :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,7  :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;]
+  1,7  :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,6  :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,6  :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;]
+  1,6  :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,5  :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,5  :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+  1,5  :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,4  :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,4  :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+  1,4  :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,3  :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,3  :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;]
+  1,3  :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,2  :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,2  :[unav...e] 02   Seq&lt;-[&quot;a&quot;]
+  1,2  :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,1  :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,1  :[unav...e] 02   Seq&lt;-[]
+  1,1  :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+       :           02   Seq&lt;-!!!
+       :           01  Transform&lt;-!!!
+       :           00 Trace&lt;-!!!
+Any[&quot;abcdefghijklm&quot;]
+Any[&quot;abcdefghijklmnopqrstuvwxyz\n012345&quot;]
+  1,1  :abcde...\n 00 Trace-&gt;Transform
+  1,1  :abcde...\n 01  Transform-&gt;Seq
+  1,1  :abcde...\n 02   Seq-&gt;Depth
+  1,1  :abcde...\n 03    Depth-&gt;Pattern
+  1,2  :bcdef...\n 03    Depth&lt;-[&quot;a&quot;]
+  1,2  :bcdef...\n 03    Depth-&gt;Pattern
+  1,3  :cdefg...\n 03    Depth&lt;-[&quot;b&quot;]
+  1,3  :cdefg...\n 03    Depth-&gt;Pattern
+  1,4  :defgh...\n 03    Depth&lt;-[&quot;c&quot;]
+  1,4  :defgh...\n 03    Depth-&gt;Pattern
+  1,5  :efghi...\n 03    Depth&lt;-[&quot;d&quot;]
+  1,5  :efghi...\n 03    Depth-&gt;Pattern
+  1,6  :fghij...\n 03    Depth&lt;-[&quot;e&quot;]
+  1,6  :fghij...\n 03    Depth-&gt;Pattern
+  1,7  :ghijk...\n 03    Depth&lt;-[&quot;f&quot;]
+  1,7  :ghijk...\n 03    Depth-&gt;Pattern
+  1,8  :hijkl...\n 03    Depth&lt;-[&quot;g&quot;]
+  1,8  :hijkl...\n 03    Depth-&gt;Pattern
+  1,9  :ijklm...\n 03    Depth&lt;-[&quot;h&quot;]
+  1,9  :ijklm...\n 03    Depth-&gt;Pattern
+  1,10 :jklmn...\n 03    Depth&lt;-[&quot;i&quot;]
+  1,10 :jklmn...\n 03    Depth-&gt;Pattern
+  1,11 :klmno...\n 03    Depth&lt;-[&quot;j&quot;]
+  1,11 :klmno...\n 03    Depth-&gt;Pattern
+  1,12 :lmnop...\n 03    Depth&lt;-[&quot;k&quot;]
+  1,12 :lmnop...\n 03    Depth-&gt;Pattern
+  1,13 :mnopq...\n 03    Depth&lt;-[&quot;l&quot;]
+  1,13 :mnopq...\n 03    Depth-&gt;Pattern
+  1,14 :nopqr...\n 03    Depth&lt;-[&quot;m&quot;]
+  1,14 :nopqr...\n 03    Depth-&gt;Pattern
+  1,15 :opqrs...\n 03    Depth&lt;-[&quot;n&quot;]
+  1,15 :opqrs...\n 03    Depth-&gt;Pattern
+  1,16 :pqrst...\n 03    Depth&lt;-[&quot;o&quot;]
+  1,16 :pqrst...\n 03    Depth-&gt;Pattern
+  1,17 :qrstu...\n 03    Depth&lt;-[&quot;p&quot;]
+  1,17 :qrstu...\n 03    Depth-&gt;Pattern
+  1,18 :rstuv...\n 03    Depth&lt;-[&quot;q&quot;]
+  1,18 :rstuv...\n 03    Depth-&gt;Pattern
+  1,19 :stuvwxyz\n 03    Depth&lt;-[&quot;r&quot;]
+  1,19 :stuvwxyz\n 03    Depth-&gt;Pattern
+  1,20 :tuvwxyz\n  03    Depth&lt;-[&quot;s&quot;]
+  1,20 :tuvwxyz\n  03    Depth-&gt;Pattern
+  1,21 :uvwxyz\n   03    Depth&lt;-[&quot;t&quot;]
+  1,21 :uvwxyz\n   03    Depth-&gt;Pattern
+  1,22 :vwxyz\n    03    Depth&lt;-[&quot;u&quot;]
+  1,22 :vwxyz\n    03    Depth-&gt;Pattern
+  1,23 :wxyz\n     03    Depth&lt;-[&quot;v&quot;]
+  1,23 :wxyz\n     03    Depth-&gt;Pattern
+  1,24 :xyz\n      03    Depth&lt;-[&quot;w&quot;]
+  1,24 :xyz\n      03    Depth-&gt;Pattern
+  1,25 :yz\n       03    Depth&lt;-[&quot;x&quot;]
+  1,25 :yz\n       03    Depth-&gt;Pattern
+  1,26 :z\n        03    Depth&lt;-[&quot;y&quot;]
+  1,26 :z\n        03    Depth-&gt;Pattern
+  1,27 :\n         03    Depth&lt;-[&quot;z&quot;]
+  1,27 :\n         03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,27 :\n         02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;x&quot;, &quot;y&quot;, &quot;z&quot;]
+  1,27 :\n         02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,26 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,26 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;w&quot;, &quot;x&quot;, &quot;y&quot;]
+  1,26 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,25 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,25 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;v&quot;, &quot;w&quot;, &quot;x&quot;]
+  1,25 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,24 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,24 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;u&quot;, &quot;v&quot;, &quot;w&quot;]
+  1,24 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,23 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,23 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;t&quot;, &quot;u&quot;, &quot;v&quot;]
+  1,23 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,22 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,22 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;s&quot;, &quot;t&quot;, &quot;u&quot;]
+  1,22 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,21 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,21 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;r&quot;, &quot;s&quot;, &quot;t&quot;]
+  1,21 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,20 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,20 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;q&quot;, &quot;r&quot;, &quot;s&quot;]
+  1,20 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,19 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,19 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;p&quot;, &quot;q&quot;, &quot;r&quot;]
+  1,19 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,18 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,18 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;o&quot;, &quot;p&quot;, &quot;q&quot;]
+  1,18 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,17 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,17 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;n&quot;, &quot;o&quot;, &quot;p&quot;]
+  1,17 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,16 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,16 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;m&quot;, &quot;n&quot;, &quot;o&quot;]
+  1,16 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,15 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,15 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;l&quot;, &quot;m&quot;, &quot;n&quot;]
+  1,15 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,14 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,14 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;k&quot;, &quot;l&quot;, &quot;m&quot;]
+  1,14 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,13 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,13 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;j&quot;, &quot;k&quot;, &quot;l&quot;]
+  1,13 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,12 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,12 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, ..., &quot;i&quot;, &quot;j&quot;, &quot;k&quot;]
+  1,12 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,11 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,11 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;i&quot;, &quot;j&quot;]
+  1,11 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,10 :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,10 :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;i&quot;]
+  1,10 :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,9  :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,9  :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;]
+  1,9  :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,8  :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,8  :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;]
+  1,8  :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,7  :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,7  :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;]
+  1,7  :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,6  :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,6  :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;]
+  1,6  :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,5  :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,5  :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+  1,5  :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,4  :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,4  :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+  1,4  :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,3  :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,3  :[unav...e] 02   Seq&lt;-[&quot;a&quot;, &quot;b&quot;]
+  1,3  :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,2  :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,2  :[unav...e] 02   Seq&lt;-[&quot;a&quot;]
+  1,2  :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+  1,1  :[unav...e] 03    Depth-&gt;Pattern
+       :           03    Depth&lt;-!!!
+  1,1  :[unav...e] 02   Seq&lt;-[]
+  1,1  :[unav...e] 02   Seq-&gt;Equal
+       :           02   Seq&lt;-!!!
+  1,1  :[unav...e] 02   Seq-&gt;Depth
+       :           02   Seq&lt;-!!!
+       :           01  Transform&lt;-!!!
+       :           00 Trace&lt;-!!!
+Any[&quot;abcdefghijklm&quot;]
+Any[&quot;abcdefghijklmnopqrstuvwxyz\n012345&quot;]
+try ok
+Test Summary: | Pass  Total
+core          |  185    185
+ParserCombinator.Parsers.GML.GMLError(&quot;a is a list&quot;)
+graph Hello, I am a graph
+ node 1
+ node 2
+ node 3
+ edge Edge from node 1 to node 2: 1 - 2
+ edge Edge from node 2 to node 3: 2 - 3
+ edge Edge from node 3 to node 1: 3 - 1
+node 1
+node 2
+node 3
+edge 1 - 2
+edge 2 - 3
+edge 3 - 1
+Test Summary: | Pass  Total
+GML           |   28     28
+node 1
+node 2
+node 3
+edge 2 - 3
+edge 1 - 3
+edge 1 - 2
+fragments ok
+subgraphs ok
+  7.219094 seconds (8.95 M allocations: 315.307 MiB, 5.33% gc time)
+  0.695812 seconds (285.91 k allocations: 117.031 MiB, 38.28% gc time)
+  0.887427 seconds (698.53 k allocations: 135.789 MiB, 17.71% gc time)
+examples ok
+Test Summary: | Pass  Total
+DOT           |   83     83
+   Testing ParserCombinator tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: testing failed for unknown reasons.
+      Last evaluation was 1 day, 13 hours ago and took 30 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/ParserCombinator/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Nullables ──────── v0.0.8
+ Installed Compat ─────────── v2.2.0
+ Installed AutoHashEquals ─── v0.2.0
+ Installed ParserCombinator ─ v2.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [fae87a5f] + ParserCombinator v2.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [15f4f7f2] + AutoHashEquals v0.2.0
+  [34da2185] + Compat v2.2.0
+  [4d1e1d77] + Nullables v0.0.8
+  [fae87a5f] + ParserCombinator v2.0.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing ParserCombinator
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;jl_N0K5QQ&#x2F;Manifest.toml`
+  [15f4f7f2] AutoHashEquals v0.2.0
+  [34da2185] Compat v2.2.0
+  [4d1e1d77] Nullables v0.0.8
+  [fae87a5f] ParserCombinator v2.0.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+ERROR: LoadError: ArgumentError: Package Compat not found in current path:
+- Run `import Pkg; Pkg.add(&quot;Compat&quot;)` to install the Compat package.
+
+Stacktrace:
+ [1] require(::Module, ::Symbol) at .&#x2F;loading.jl:876
+ [2] include at .&#x2F;boot.jl:328 [inlined]
+ [3] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+ [4] include(::Module, ::String) at .&#x2F;Base.jl:31
+ [5] include(::String) at .&#x2F;client.jl:431
+ [6] top-level scope at none:5
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ParserCombinator&#x2F;Rc0cd&#x2F;test&#x2F;runtests.jl:8
+ERROR: Package ParserCombinator errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1288
+ [3] #test at .&#x2F;none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:245
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:233 [inlined]
+ [6] #test#61 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:230 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:230 [inlined]
+ [8] #test#60 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:229 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:228
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:228
+ [12] top-level scope at none:10
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: testing failed for unknown reasons.
+      Last evaluation was 1 day, 14 hours ago and took 34 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/ParserCombinator/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Nullables ──────── v0.0.8
+ Installed AutoHashEquals ─── v0.2.0
+ Installed Compat ─────────── v2.2.0
+ Installed ParserCombinator ─ v2.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [fae87a5f] + ParserCombinator v2.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [15f4f7f2] + AutoHashEquals v0.2.0
+  [34da2185] + Compat v2.2.0
+  [4d1e1d77] + Nullables v0.0.8
+  [fae87a5f] + ParserCombinator v2.0.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing ParserCombinator
+Status `&#x2F;tmp&#x2F;jl_HCdXua&#x2F;Manifest.toml`
+  [15f4f7f2] AutoHashEquals v0.2.0
+  [34da2185] Compat v2.2.0
+  [4d1e1d77] Nullables v0.0.8
+  [fae87a5f] ParserCombinator v2.0.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+ERROR: LoadError: ArgumentError: Package Compat not found in current path:
+- Run `import Pkg; Pkg.add(&quot;Compat&quot;)` to install the Compat package.
+
+Stacktrace:
+ [1] require(::Module, ::Symbol) at .&#x2F;loading.jl:885
+ [2] include(::String) at .&#x2F;client.jl:439
+ [3] top-level scope at none:6
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ParserCombinator&#x2F;Rc0cd&#x2F;test&#x2F;runtests.jl:8
+ERROR: Package ParserCombinator errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:274
+ [5] #test#56 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [6] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [7] #test#55 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [8] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [10] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [11] top-level scope at none:10
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

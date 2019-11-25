@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="MXNet">MXNet</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#MXNet">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: testing failed for unknown reasons.
+      Last evaluation was 1 day, 11 hours ago and took 4 minutes, 43 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/MXNet/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Reexport ─────────── v0.2.0
+ Installed Formatting ───────── v0.4.1
+ Installed URIParser ────────── v0.4.0
+ Installed OrderedCollections ─ v1.1.0
+ Installed BinDeps ──────────── v0.8.10
+ Installed MacroTools ───────── v0.5.2
+ Installed JSON ─────────────── v0.21.0
+ Installed MXNet ────────────── v1.5.0
+ Installed Parsers ──────────── v0.3.10
+ Installed Compat ───────────── v2.2.0
+ Installed DataStructures ───── v0.17.6
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [a7949054] + MXNet v1.5.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [34da2185] + Compat v2.2.0
+  [864edb3b] + DataStructures v0.17.6
+  [59287772] + Formatting v0.4.1
+  [682c06a0] + JSON v0.21.0
+  [a7949054] + MXNet v1.5.0
+  [1914dd2f] + MacroTools v0.5.2
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [189a3867] + Reexport v0.2.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building MXNet → `~&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;build.log`
+┌ Error: Error building `MXNet`: 
+│ Cloning into &#39;mxnet&#39;...
+│ Note: checking out &#39;1.5.0&#39;.
+│ 
+│ You are in &#39;detached HEAD&#39; state. You can look around, make experimental
+│ changes and commit them, and you can discard any commits you make in this
+│ state without impacting any branches by performing another checkout.
+│ 
+│ If you want to create a new branch to retain commits you create, you may
+│ do so (now or later) by using -b with the checkout command again. Example:
+│ 
+│   git checkout -b &lt;new-branch-name&gt;
+│ 
+│ HEAD is now at 75a9e187d [backport 1.5.x]Fix Cached_op with static_shape=true (#15298) (#15380)
+│ Submodule &#39;3rdparty&#x2F;dlpack&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;dlpack) registered for path &#39;3rdparty&#x2F;dlpack&#39;
+│ Submodule &#39;3rdparty&#x2F;dmlc-core&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;dmlc-core.git) registered for path &#39;3rdparty&#x2F;dmlc-core&#39;
+│ Submodule &#39;3rdparty&#x2F;googletest&#39; (https:&#x2F;&#x2F;github.com&#x2F;google&#x2F;googletest.git) registered for path &#39;3rdparty&#x2F;googletest&#39;
+│ Submodule &#39;3rdparty&#x2F;mkldnn&#39; (https:&#x2F;&#x2F;github.com&#x2F;intel&#x2F;mkl-dnn.git) registered for path &#39;3rdparty&#x2F;mkldnn&#39;
+│ Submodule &#39;3rdparty&#x2F;mshadow&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;mshadow.git) registered for path &#39;3rdparty&#x2F;mshadow&#39;
+│ Submodule &#39;3rdparty&#x2F;nvidia_cub&#39; (https:&#x2F;&#x2F;github.com&#x2F;NVlabs&#x2F;cub.git) registered for path &#39;3rdparty&#x2F;nvidia_cub&#39;
+│ Submodule &#39;3rdparty&#x2F;onnx-tensorrt&#39; (https:&#x2F;&#x2F;github.com&#x2F;onnx&#x2F;onnx-tensorrt.git) registered for path &#39;3rdparty&#x2F;onnx-tensorrt&#39;
+│ Submodule &#39;3rdparty&#x2F;openmp&#39; (https:&#x2F;&#x2F;github.com&#x2F;llvm-mirror&#x2F;openmp) registered for path &#39;3rdparty&#x2F;openmp&#39;
+│ Submodule &#39;3rdparty&#x2F;ps-lite&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;ps-lite) registered for path &#39;3rdparty&#x2F;ps-lite&#39;
+│ Submodule &#39;3rdparty&#x2F;tvm&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;tvm) registered for path &#39;3rdparty&#x2F;tvm&#39;
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dlpack&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;googletest&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mshadow&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;nvidia_cub&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;onnx-tensorrt&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;openmp&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;ps-lite&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#39;...
+│ Submodule path &#39;3rdparty&#x2F;dlpack&#39;: checked out &#39;10892ac964f1af7c81aae145cd3fab78bbccd297&#39;
+│ Submodule path &#39;3rdparty&#x2F;dmlc-core&#39;: checked out &#39;3943914eed66470bd010df581e29e4dca4f7df6f&#39;
+│ Submodule path &#39;3rdparty&#x2F;googletest&#39;: checked out &#39;eb9225ce361affe561592e0912320b9db84985d0&#39;
+│ Submodule path &#39;3rdparty&#x2F;mkldnn&#39;: checked out &#39;41bee20d7eb4a67feeeeb8d597b3598994eb1959&#39;
+│ Submodule path &#39;3rdparty&#x2F;mshadow&#39;: checked out &#39;1d79ecfdb4c9234537e1bf5148f44a1af54501ec&#39;
+│ Submodule path &#39;3rdparty&#x2F;nvidia_cub&#39;: checked out &#39;c3cceac115c072fb63df1836ff46d8c60d9eb304&#39;
+│ Submodule path &#39;3rdparty&#x2F;onnx-tensorrt&#39;: checked out &#39;1e209e546061173ccc37b25bbca69a795c6c86e4&#39;
+│ Submodule &#39;third_party&#x2F;onnx&#39; (https:&#x2F;&#x2F;github.com&#x2F;onnx&#x2F;onnx.git) registered for path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#39;
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#39;...
+│ Submodule path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#39;: checked out &#39;765f5ee823a67a866f4bd28a9860e81f3c811ce8&#39;
+│ Submodule &#39;third_party&#x2F;benchmark&#39; (https:&#x2F;&#x2F;github.com&#x2F;google&#x2F;benchmark.git) registered for path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;benchmark&#39;
+│ Submodule &#39;third_party&#x2F;pybind11&#39; (https:&#x2F;&#x2F;github.com&#x2F;pybind&#x2F;pybind11.git) registered for path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;pybind11&#39;
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;benchmark&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;pybind11&#39;...
+│ Submodule path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;benchmark&#39;: checked out &#39;e776aa0275e293707b6a0901e0e8d8a8a3679508&#39;
+│ Submodule path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;pybind11&#39;: checked out &#39;a1041190c8b8ff0cd9e2f0752248ad5e3789ea0c&#39;
+│ Submodule &#39;tools&#x2F;clang&#39; (https:&#x2F;&#x2F;github.com&#x2F;wjakob&#x2F;clang-cindex-python3) registered for path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;pybind11&#x2F;tools&#x2F;clang&#39;
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;pybind11&#x2F;tools&#x2F;clang&#39;...
+│ Submodule path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;pybind11&#x2F;tools&#x2F;clang&#39;: checked out &#39;6a00cbc4a9b8e68b71caf7f774b3f9c753ae84d5&#39;
+│ Submodule path &#39;3rdparty&#x2F;openmp&#39;: checked out &#39;37c72127e90360a020f351f18d9cccfc30e5145a&#39;
+│ Submodule path &#39;3rdparty&#x2F;ps-lite&#39;: checked out &#39;8a763892a973afc1acd3d4b469d05bb338a83a6e&#39;
+│ Submodule path &#39;3rdparty&#x2F;tvm&#39;: checked out &#39;21935dcbf56ad3bd66ebff9891a6bc3865b8106d&#39;
+│ Submodule &#39;HalideIR&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;HalideIR) registered for path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;HalideIR&#39;
+│ Submodule &#39;dlpack&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;dlpack) registered for path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;dlpack&#39;
+│ Submodule &#39;dmlc-core&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;dmlc-core) registered for path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;dmlc-core&#39;
+│ Submodule &#39;3rdparty&#x2F;rang&#39; (https:&#x2F;&#x2F;github.com&#x2F;agauniyal&#x2F;rang) registered for path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;rang&#39;
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;HalideIR&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;dlpack&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;dmlc-core&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;rang&#39;...
+│ Submodule path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;HalideIR&#39;: checked out &#39;ec9585a5a5df3de91e8916ac2d27a4a509eac5fc&#39;
+│ Submodule path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;dlpack&#39;: checked out &#39;5c792cef3aee54ad8b7000111c9dc1797f327b59&#39;
+│ Submodule path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;dmlc-core&#39;: checked out &#39;82bf4c2e2af312b3d52513aa727483803a2f8734&#39;
+│ Submodule path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;rang&#39;: checked out &#39;cabe04d6d6b05356fa8f9741704924788f0dd762&#39;
+│ &#39;..&#x2F;..&#x2F;cblas.h&#39; -&gt; &#39;include&#x2F;cblas.h&#39;
+│ Makefile:219: &quot;USE_LAPACK disabled because libraries were not found&quot;
+│ Makefile:345: WARNING: Significant performance increases can be achieved by installing and enabling gperftools or jemalloc development packages
+│ mkdir -p &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;build&#x2F;install
+│ cd &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn &amp;&amp; rm -rf external &amp;&amp; cd scripts &amp;&amp; .&#x2F;prepare_mkl.sh &amp;&amp; cd .. &amp;&amp; cp -a external&#x2F;*&#x2F;* &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;build&#x2F;install&#x2F;.
+│ cd &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core; make libdmlc.a USE_SSE=1 config=&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;config.mk; cd &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ cd &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;nnvm; make lib&#x2F;libnnvm.a DMLC_CORE_PATH=&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core; cd &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ make[1]: Entering directory &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#39;
+│ make[1]: Entering directory &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;nnvm&#39;
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;core&#x2F;pass.o src&#x2F;core&#x2F;pass.cc &gt;build&#x2F;src&#x2F;core&#x2F;pass.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;core&#x2F;symbolic.o src&#x2F;core&#x2F;symbolic.cc &gt;build&#x2F;src&#x2F;core&#x2F;symbolic.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;core&#x2F;graph.o src&#x2F;core&#x2F;graph.cc &gt;build&#x2F;src&#x2F;core&#x2F;graph.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;c_api&#x2F;c_api_error.o src&#x2F;c_api&#x2F;c_api_error.cc &gt;build&#x2F;src&#x2F;c_api&#x2F;c_api_error.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;order_mutation.o src&#x2F;pass&#x2F;order_mutation.cc &gt;build&#x2F;src&#x2F;pass&#x2F;order_mutation.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;correct_layout.o src&#x2F;pass&#x2F;correct_layout.cc &gt;build&#x2F;src&#x2F;pass&#x2F;correct_layout.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;core&#x2F;node.o src&#x2F;core&#x2F;node.cc &gt;build&#x2F;src&#x2F;core&#x2F;node.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;c_api&#x2F;c_api_graph.o src&#x2F;c_api&#x2F;c_api_graph.cc &gt;build&#x2F;src&#x2F;c_api&#x2F;c_api_graph.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;core&#x2F;op.o src&#x2F;core&#x2F;op.cc &gt;build&#x2F;src&#x2F;core&#x2F;op.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;c_api&#x2F;c_api_symbolic.o src&#x2F;c_api&#x2F;c_api_symbolic.cc &gt;build&#x2F;src&#x2F;c_api&#x2F;c_api_symbolic.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;gradient.o src&#x2F;pass&#x2F;gradient.cc &gt;build&#x2F;src&#x2F;pass&#x2F;gradient.d
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o line_split.o src&#x2F;io&#x2F;line_split.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o indexed_recordio_split.o src&#x2F;io&#x2F;indexed_recordio_split.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o recordio_split.o src&#x2F;io&#x2F;recordio_split.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o input_split_base.o src&#x2F;io&#x2F;input_split_base.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o io.o src&#x2F;io.cc
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;saveload_json.o src&#x2F;pass&#x2F;saveload_json.cc &gt;build&#x2F;src&#x2F;pass&#x2F;saveload_json.d
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o filesys.o src&#x2F;io&#x2F;filesys.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o local_filesys.o src&#x2F;io&#x2F;local_filesys.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o data.o src&#x2F;data.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o recordio.o src&#x2F;recordio.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o config.o src&#x2F;config.cc
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;plan_memory.o src&#x2F;pass&#x2F;plan_memory.cc &gt;build&#x2F;src&#x2F;pass&#x2F;plan_memory.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;print_graph_ir.o src&#x2F;pass&#x2F;print_graph_ir.cc &gt;build&#x2F;src&#x2F;pass&#x2F;print_graph_ir.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;place_device.o src&#x2F;pass&#x2F;place_device.cc &gt;build&#x2F;src&#x2F;pass&#x2F;place_device.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;infer_shape_type.o src&#x2F;pass&#x2F;infer_shape_type.cc &gt;build&#x2F;src&#x2F;pass&#x2F;infer_shape_type.d
+│   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+│                                  Dload  Upload   Total   Spent    Left  Speed
+│   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   621    0   621    0     0   1853      0 --:--:-- --:--:-- --:--:--  1870
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;core&#x2F;pass.cc -o build&#x2F;src&#x2F;core&#x2F;pass.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;core&#x2F;graph.cc -o build&#x2F;src&#x2F;core&#x2F;graph.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;gradient.cc -o build&#x2F;src&#x2F;pass&#x2F;gradient.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;c_api&#x2F;c_api_error.cc -o build&#x2F;src&#x2F;c_api&#x2F;c_api_error.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;saveload_json.cc -o build&#x2F;src&#x2F;pass&#x2F;saveload_json.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;place_device.cc -o build&#x2F;src&#x2F;pass&#x2F;place_device.o
+│   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;core&#x2F;symbolic.cc -o build&#x2F;src&#x2F;core&#x2F;symbolic.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;plan_memory.cc -o build&#x2F;src&#x2F;pass&#x2F;plan_memory.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;c_api&#x2F;c_api_graph.cc -o build&#x2F;src&#x2F;c_api&#x2F;c_api_graph.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;c_api&#x2F;c_api_symbolic.cc -o build&#x2F;src&#x2F;c_api&#x2F;c_api_symbolic.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;order_mutation.cc -o build&#x2F;src&#x2F;pass&#x2F;order_mutation.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;core&#x2F;node.cc -o build&#x2F;src&#x2F;core&#x2F;node.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;infer_shape_type.cc -o build&#x2F;src&#x2F;pass&#x2F;infer_shape_type.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;core&#x2F;op.cc -o build&#x2F;src&#x2F;core&#x2F;op.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;correct_layout.cc -o build&#x2F;src&#x2F;pass&#x2F;correct_layout.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;print_graph_ir.cc -o build&#x2F;src&#x2F;pass&#x2F;print_graph_ir.o
+│   1 66.4M    1 1307k    0     0   751k      0  0:01:30  0:00:01  0:01:29 1257k  9 66.4M    9 6622k    0     0  2457k      0  0:00:27  0:00:02  0:00:25 3316k 15 66.4M   15 10.0M    0     0  2786k      0  0:00:24  0:00:03  0:00:21 3436k 20 66.4M   20 13.5M    0     0  2958k      0  0:00:23  0:00:04  0:00:19 3475k 24 66.4M   24 16.0M    0     0  2862k      0  0:00:23  0:00:05  0:00:18 3258k 28 66.4M   28 19.2M    0     0  2934k      0  0:00:23  0:00:06  0:00:17 3699k 33 66.4M   33 22.3M    0     0  2968k      0  0:00:22  0:00:07  0:00:15 3244k 38 66.4M   38 25.5M    0     0  3004k      0  0:00:22  0:00:08  0:00:14 3164k 43 66.4M   43 28.8M    0     0  3041k      0  0:00:22  0:00:09  0:00:13 3120k 48 66.4M   48 32.0M    0     0  3070k      0  0:00:22  0:00:10  0:00:12 3310k 52 66.4M   52 35.1M    0     0  3079k      0  0:00:22  0:00:11  0:00:11 3274k 55 66.4M   55 37.2M    0     0  3001k      0  0:00:22  0:00:12  0:00:10 3053k 58 66.4M   58 39.1M    0     0  2930k      0  0:00:23  0:00:13  0:00:10 2802k 61 66.4M   61 41.1M    0     0  2868k      0  0:00:23  0:00:14  0:00:09 2532k 64 66.4M   64 42.9M    0     0  2804k      0  0:00:24  0:00:15  0:00:09 2233k 67 66.4M   67 44.6M    0     0  2736k      0  0:00:24  0:00:16  0:00:08 1932k 69 66.4M   69 46.4M    0     0  2687k      0  0:00:25  0:00:17  0:00:08 1889k 72 66.4M   72 48.4M    0     0  2655k      0  0:00:25  0:00:18  0:00:07 1900k 75 66.4M   75 50.4M    0     0  2621k      0  0:00:25  0:00:19  0:00:06 1896k 78 66.4M   78 52.4M    0     0  2591k      0  0:00:26  0:00:20  0:00:06 1926k 81 66.4M   81 54.4M    0     0  2563k      0  0:00:26  0:00:21  0:00:05 1992k 84 66.4M   84 56.4M    0     0  2545k      0  0:00:26  0:00:22  0:00:04 2043k 88 66.4M   88 58.5M    0     0  2529k      0  0:00:26  0:00:23  0:00:03 2061k 91 66.4M   91 60.8M    0     0  2524k      0  0:00:26  0:00:24  0:00:02 2138k 95 66.4M   95 63.5M    0     0  2533k      0  0:00:26  0:00:25  0:00:01 2291k100 66.4M  100 66.4M    0     0  2556k      0  0:00:26  0:00:26 --:--:-- 2522k
+│ Downloaded and unpacked Intel(R) MKL small libraries to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;external
+│ cmake &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn -DCMAKE_INSTALL_PREFIX=&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;build&#x2F;install -B&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;build -DARCH_OPT_FLAGS=&quot;-mtune=generic&quot; -DWITH_TEST=OFF -DWITH_EXAMPLE=OFF
+│ &#x2F;bin&#x2F;sh: 1: cmake: not found
+│ mkldnn.mk:41: recipe for target &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;build&#x2F;install&#x2F;lib&#x2F;libmkldnn.so.0&#39; failed
+│ make: *** [&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;build&#x2F;install&#x2F;lib&#x2F;libmkldnn.so.0] Error 127
+│ make: *** Waiting for unfinished jobs....
+│ ar crv lib&#x2F;libnnvm.a build&#x2F;src&#x2F;c_api&#x2F;c_api_symbolic.o build&#x2F;src&#x2F;c_api&#x2F;c_api_graph.o build&#x2F;src&#x2F;c_api&#x2F;c_api_error.o build&#x2F;src&#x2F;core&#x2F;pass.o build&#x2F;src&#x2F;core&#x2F;symbolic.o build&#x2F;src&#x2F;core&#x2F;node.o build&#x2F;src&#x2F;core&#x2F;op.o build&#x2F;src&#x2F;core&#x2F;graph.o build&#x2F;src&#x2F;pass&#x2F;gradient.o build&#x2F;src&#x2F;pass&#x2F;infer_shape_type.o build&#x2F;src&#x2F;pass&#x2F;correct_layout.o build&#x2F;src&#x2F;pass&#x2F;order_mutation.o build&#x2F;src&#x2F;pass&#x2F;plan_memory.o build&#x2F;src&#x2F;pass&#x2F;print_graph_ir.o build&#x2F;src&#x2F;pass&#x2F;saveload_json.o build&#x2F;src&#x2F;pass&#x2F;place_device.o
+│ a - build&#x2F;src&#x2F;c_api&#x2F;c_api_symbolic.o
+│ a - build&#x2F;src&#x2F;c_api&#x2F;c_api_graph.o
+│ a - build&#x2F;src&#x2F;c_api&#x2F;c_api_error.o
+│ a - build&#x2F;src&#x2F;core&#x2F;pass.o
+│ a - build&#x2F;src&#x2F;core&#x2F;symbolic.o
+│ a - build&#x2F;src&#x2F;core&#x2F;node.o
+│ a - build&#x2F;src&#x2F;core&#x2F;op.o
+│ a - build&#x2F;src&#x2F;core&#x2F;graph.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;gradient.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;infer_shape_type.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;correct_layout.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;order_mutation.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;plan_memory.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;print_graph_ir.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;saveload_json.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;place_device.o
+│ make[1]: Leaving directory &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;nnvm&#39;
+│ ar cr libdmlc.a line_split.o indexed_recordio_split.o recordio_split.o input_split_base.o io.o filesys.o local_filesys.o data.o recordio.o config.o
+│ make[1]: Leaving directory &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#39;
+│ [ Info: Did not find a CUDA installation, using CPU-only version of MXNet.
+│ ┌ Warning: special characters &quot;#{}()[]&lt;&gt;|&amp;*?~;&quot; should now be quoted in commands
+│ │   caller = #shell_parse#335(::String, ::Function, ::String, ::Bool) at shell.jl:100
+│ └ @ Base .&#x2F;shell.jl:100
+│ [ Info: USE_JULIA_BLAS -&gt; true
+│ [ Info: Attempting to create directory &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src
+│ [ Info: Attempting to create directory &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;usr&#x2F;lib
+│ [ Info: Attempting to create directory &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ ERROR: LoadError: failed process: Process(`make -j32 USE_BLAS=openblas &#39;MSHADOW_LDFLAGS=-lm &#x2F;opt&#x2F;julia&#x2F;bin&#x2F;..&#x2F;lib&#x2F;julia&#x2F;libopenblas64_.so&#39;`, ProcessExited(2)) [2]
+│ Stacktrace:
+│  [1] error(::String, ::Base.Process, ::String, ::Int64, ::String) at .&#x2F;error.jl:42
+│  [2] pipeline_error at .&#x2F;process.jl:705 [inlined]
+│  [3] #run#505(::Bool, ::Function, ::Cmd) at .&#x2F;process.jl:663
+│  [4] run(::Cmd) at .&#x2F;process.jl:661
+│  [5] run(::BinDeps.SynchronousStepCollection) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;BinDeps.jl:521 (repeats 2 times)
+│  [6] satisfy!(::BinDeps.LibraryDependency, ::Array{DataType,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:944
+│  [7] satisfy!(::BinDeps.LibraryDependency) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:922
+│  [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:977
+│  [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;build.jl:284
+│  [10] include at .&#x2F;boot.jl:317 [inlined]
+│  [11] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+│  [12] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+│  [13] include(::String) at .&#x2F;client.jl:392
+│  [14] top-level scope at none:0
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;build.jl:112
+└ @ Pkg.Operations &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1096
+   Testing MXNet
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;tmp7jxNWs&#x2F;Manifest.toml`
+  [9e28174c] BinDeps v0.8.10
+  [34da2185] Compat v2.2.0
+  [864edb3b] DataStructures v0.17.6
+  [59287772] Formatting v0.4.1
+  [682c06a0] JSON v0.21.0
+  [a7949054] MXNet v1.5.0
+  [1914dd2f] MacroTools v0.5.2
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [189a3867] Reexport v0.2.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+ERROR: LoadError: LoadError: Cannot find or load libmxnet.so. Please see the document on how to build it.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;src&#x2F;base.jl:61
+ [3] include at .&#x2F;boot.jl:317 [inlined]
+ [4] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+ [5] include at .&#x2F;sysimg.jl:29 [inlined]
+ [6] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;src&#x2F;MXNet.jl:25
+ [7] top-level scope at none:0
+ [8] include at .&#x2F;boot.jl:317 [inlined]
+ [9] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+ [10] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+ [11] top-level scope at none:2
+ [12] eval at .&#x2F;boot.jl:319 [inlined]
+ [13] eval(::Expr) at .&#x2F;client.jl:393
+ [14] top-level scope at .&#x2F;none:3
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;src&#x2F;base.jl:57
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;src&#x2F;MXNet.jl:138
+ERROR: LoadError: Failed to precompile MXNet [a7949054-b901-59c6-b8e3-7238c29bf7f0] to &#x2F;root&#x2F;.julia&#x2F;compiled&#x2F;v1.0&#x2F;MXNet&#x2F;Sc0jU.ji.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at .&#x2F;loading.jl:1203
+ [3] _require(::Base.PkgId) at .&#x2F;loading.jl:960
+ [4] require(::Base.PkgId) at .&#x2F;loading.jl:858
+ [5] require(::Module, ::Symbol) at .&#x2F;loading.jl:853
+ [6] include at .&#x2F;boot.jl:317 [inlined]
+ [7] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+ [8] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+ [9] include(::String) at .&#x2F;client.jl:392
+ [10] top-level scope at none:0
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;test&#x2F;runtests.jl:19
+ERROR: Package MXNet errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1357
+ [3] #test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:278
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:263 [inlined]
+ [6] #test#43 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [8] #test#42 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [10] #test#41 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258 [inlined]
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258
+ [12] top-level scope at none:0
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: testing failed for unknown reasons.
+      Last evaluation was 1 day, 15 hours ago and took 3 minutes, 36 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/MXNet/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Reexport ─────────── v0.2.0
+ Installed Formatting ───────── v0.4.1
+ Installed Parsers ──────────── v0.3.10
+ Installed Compat ───────────── v2.2.0
+ Installed OrderedCollections ─ v1.1.0
+ Installed DataStructures ───── v0.17.6
+ Installed JSON ─────────────── v0.21.0
+ Installed MXNet ────────────── v1.5.0
+ Installed URIParser ────────── v0.4.0
+ Installed MacroTools ───────── v0.5.2
+ Installed BinDeps ──────────── v0.8.10
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [a7949054] + MXNet v1.5.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [34da2185] + Compat v2.2.0
+  [864edb3b] + DataStructures v0.17.6
+  [59287772] + Formatting v0.4.1
+  [682c06a0] + JSON v0.21.0
+  [a7949054] + MXNet v1.5.0
+  [1914dd2f] + MacroTools v0.5.2
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [189a3867] + Reexport v0.2.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building MXNet → `~&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;build.log`
+┌ Error: Error building `MXNet`: 
+│ Cloning into &#39;mxnet&#39;...
+│ Note: checking out &#39;1.5.0&#39;.
+│ 
+│ You are in &#39;detached HEAD&#39; state. You can look around, make experimental
+│ changes and commit them, and you can discard any commits you make in this
+│ state without impacting any branches by performing another checkout.
+│ 
+│ If you want to create a new branch to retain commits you create, you may
+│ do so (now or later) by using -b with the checkout command again. Example:
+│ 
+│   git checkout -b &lt;new-branch-name&gt;
+│ 
+│ HEAD is now at 75a9e187d [backport 1.5.x]Fix Cached_op with static_shape=true (#15298) (#15380)
+│ Submodule &#39;3rdparty&#x2F;dlpack&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;dlpack) registered for path &#39;3rdparty&#x2F;dlpack&#39;
+│ Submodule &#39;3rdparty&#x2F;dmlc-core&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;dmlc-core.git) registered for path &#39;3rdparty&#x2F;dmlc-core&#39;
+│ Submodule &#39;3rdparty&#x2F;googletest&#39; (https:&#x2F;&#x2F;github.com&#x2F;google&#x2F;googletest.git) registered for path &#39;3rdparty&#x2F;googletest&#39;
+│ Submodule &#39;3rdparty&#x2F;mkldnn&#39; (https:&#x2F;&#x2F;github.com&#x2F;intel&#x2F;mkl-dnn.git) registered for path &#39;3rdparty&#x2F;mkldnn&#39;
+│ Submodule &#39;3rdparty&#x2F;mshadow&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;mshadow.git) registered for path &#39;3rdparty&#x2F;mshadow&#39;
+│ Submodule &#39;3rdparty&#x2F;nvidia_cub&#39; (https:&#x2F;&#x2F;github.com&#x2F;NVlabs&#x2F;cub.git) registered for path &#39;3rdparty&#x2F;nvidia_cub&#39;
+│ Submodule &#39;3rdparty&#x2F;onnx-tensorrt&#39; (https:&#x2F;&#x2F;github.com&#x2F;onnx&#x2F;onnx-tensorrt.git) registered for path &#39;3rdparty&#x2F;onnx-tensorrt&#39;
+│ Submodule &#39;3rdparty&#x2F;openmp&#39; (https:&#x2F;&#x2F;github.com&#x2F;llvm-mirror&#x2F;openmp) registered for path &#39;3rdparty&#x2F;openmp&#39;
+│ Submodule &#39;3rdparty&#x2F;ps-lite&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;ps-lite) registered for path &#39;3rdparty&#x2F;ps-lite&#39;
+│ Submodule &#39;3rdparty&#x2F;tvm&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;tvm) registered for path &#39;3rdparty&#x2F;tvm&#39;
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dlpack&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;googletest&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mshadow&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;nvidia_cub&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;onnx-tensorrt&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;openmp&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;ps-lite&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#39;...
+│ Submodule path &#39;3rdparty&#x2F;dlpack&#39;: checked out &#39;10892ac964f1af7c81aae145cd3fab78bbccd297&#39;
+│ Submodule path &#39;3rdparty&#x2F;dmlc-core&#39;: checked out &#39;3943914eed66470bd010df581e29e4dca4f7df6f&#39;
+│ Submodule path &#39;3rdparty&#x2F;googletest&#39;: checked out &#39;eb9225ce361affe561592e0912320b9db84985d0&#39;
+│ Submodule path &#39;3rdparty&#x2F;mkldnn&#39;: checked out &#39;41bee20d7eb4a67feeeeb8d597b3598994eb1959&#39;
+│ Submodule path &#39;3rdparty&#x2F;mshadow&#39;: checked out &#39;1d79ecfdb4c9234537e1bf5148f44a1af54501ec&#39;
+│ Submodule path &#39;3rdparty&#x2F;nvidia_cub&#39;: checked out &#39;c3cceac115c072fb63df1836ff46d8c60d9eb304&#39;
+│ Submodule path &#39;3rdparty&#x2F;onnx-tensorrt&#39;: checked out &#39;1e209e546061173ccc37b25bbca69a795c6c86e4&#39;
+│ Submodule &#39;third_party&#x2F;onnx&#39; (https:&#x2F;&#x2F;github.com&#x2F;onnx&#x2F;onnx.git) registered for path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#39;
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#39;...
+│ Submodule path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#39;: checked out &#39;765f5ee823a67a866f4bd28a9860e81f3c811ce8&#39;
+│ Submodule &#39;third_party&#x2F;benchmark&#39; (https:&#x2F;&#x2F;github.com&#x2F;google&#x2F;benchmark.git) registered for path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;benchmark&#39;
+│ Submodule &#39;third_party&#x2F;pybind11&#39; (https:&#x2F;&#x2F;github.com&#x2F;pybind&#x2F;pybind11.git) registered for path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;pybind11&#39;
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;benchmark&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;pybind11&#39;...
+│ Submodule path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;benchmark&#39;: checked out &#39;e776aa0275e293707b6a0901e0e8d8a8a3679508&#39;
+│ Submodule path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;pybind11&#39;: checked out &#39;a1041190c8b8ff0cd9e2f0752248ad5e3789ea0c&#39;
+│ Submodule &#39;tools&#x2F;clang&#39; (https:&#x2F;&#x2F;github.com&#x2F;wjakob&#x2F;clang-cindex-python3) registered for path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;pybind11&#x2F;tools&#x2F;clang&#39;
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;pybind11&#x2F;tools&#x2F;clang&#39;...
+│ Submodule path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;pybind11&#x2F;tools&#x2F;clang&#39;: checked out &#39;6a00cbc4a9b8e68b71caf7f774b3f9c753ae84d5&#39;
+│ Submodule path &#39;3rdparty&#x2F;openmp&#39;: checked out &#39;37c72127e90360a020f351f18d9cccfc30e5145a&#39;
+│ Submodule path &#39;3rdparty&#x2F;ps-lite&#39;: checked out &#39;8a763892a973afc1acd3d4b469d05bb338a83a6e&#39;
+│ Submodule path &#39;3rdparty&#x2F;tvm&#39;: checked out &#39;21935dcbf56ad3bd66ebff9891a6bc3865b8106d&#39;
+│ Submodule &#39;HalideIR&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;HalideIR) registered for path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;HalideIR&#39;
+│ Submodule &#39;dlpack&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;dlpack) registered for path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;dlpack&#39;
+│ Submodule &#39;dmlc-core&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;dmlc-core) registered for path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;dmlc-core&#39;
+│ Submodule &#39;3rdparty&#x2F;rang&#39; (https:&#x2F;&#x2F;github.com&#x2F;agauniyal&#x2F;rang) registered for path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;rang&#39;
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;HalideIR&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;dlpack&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;dmlc-core&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;rang&#39;...
+│ Submodule path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;HalideIR&#39;: checked out &#39;ec9585a5a5df3de91e8916ac2d27a4a509eac5fc&#39;
+│ Submodule path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;dlpack&#39;: checked out &#39;5c792cef3aee54ad8b7000111c9dc1797f327b59&#39;
+│ Submodule path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;dmlc-core&#39;: checked out &#39;82bf4c2e2af312b3d52513aa727483803a2f8734&#39;
+│ Submodule path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;rang&#39;: checked out &#39;cabe04d6d6b05356fa8f9741704924788f0dd762&#39;
+│ &#39;..&#x2F;..&#x2F;cblas.h&#39; -&gt; &#39;include&#x2F;cblas.h&#39;
+│ Makefile:219: &quot;USE_LAPACK disabled because libraries were not found&quot;
+│ Makefile:345: WARNING: Significant performance increases can be achieved by installing and enabling gperftools or jemalloc development packages
+│ mkdir -p &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;build&#x2F;install
+│ cd &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn &amp;&amp; rm -rf external &amp;&amp; cd scripts &amp;&amp; .&#x2F;prepare_mkl.sh &amp;&amp; cd .. &amp;&amp; cp -a external&#x2F;*&#x2F;* &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;build&#x2F;install&#x2F;.
+│ cd &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core; make libdmlc.a USE_SSE=1 config=&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;config.mk; cd &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ make[1]: Entering directory &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#39;
+│ cd &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;nnvm; make lib&#x2F;libnnvm.a DMLC_CORE_PATH=&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core; cd &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ make[1]: Entering directory &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;nnvm&#39;
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o line_split.o src&#x2F;io&#x2F;line_split.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o indexed_recordio_split.o src&#x2F;io&#x2F;indexed_recordio_split.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o recordio_split.o src&#x2F;io&#x2F;recordio_split.cc
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;c_api&#x2F;c_api_graph.o src&#x2F;c_api&#x2F;c_api_graph.cc &gt;build&#x2F;src&#x2F;c_api&#x2F;c_api_graph.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;c_api&#x2F;c_api_error.o src&#x2F;c_api&#x2F;c_api_error.cc &gt;build&#x2F;src&#x2F;c_api&#x2F;c_api_error.d
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o input_split_base.o src&#x2F;io&#x2F;input_split_base.cc
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;core&#x2F;pass.o src&#x2F;core&#x2F;pass.cc &gt;build&#x2F;src&#x2F;core&#x2F;pass.d
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o io.o src&#x2F;io.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o filesys.o src&#x2F;io&#x2F;filesys.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o local_filesys.o src&#x2F;io&#x2F;local_filesys.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o data.o src&#x2F;data.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o recordio.o src&#x2F;recordio.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o config.o src&#x2F;config.cc
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;c_api&#x2F;c_api_symbolic.o src&#x2F;c_api&#x2F;c_api_symbolic.cc &gt;build&#x2F;src&#x2F;c_api&#x2F;c_api_symbolic.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;core&#x2F;symbolic.o src&#x2F;core&#x2F;symbolic.cc &gt;build&#x2F;src&#x2F;core&#x2F;symbolic.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;core&#x2F;node.o src&#x2F;core&#x2F;node.cc &gt;build&#x2F;src&#x2F;core&#x2F;node.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;core&#x2F;graph.o src&#x2F;core&#x2F;graph.cc &gt;build&#x2F;src&#x2F;core&#x2F;graph.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;core&#x2F;op.o src&#x2F;core&#x2F;op.cc &gt;build&#x2F;src&#x2F;core&#x2F;op.d
+│   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+│                                  Dload  Upload   Total   Spent    Left  Speed
+│   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;order_mutation.o src&#x2F;pass&#x2F;order_mutation.cc &gt;build&#x2F;src&#x2F;pass&#x2F;order_mutation.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;print_graph_ir.o src&#x2F;pass&#x2F;print_graph_ir.cc &gt;build&#x2F;src&#x2F;pass&#x2F;print_graph_ir.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;plan_memory.o src&#x2F;pass&#x2F;plan_memory.cc &gt;build&#x2F;src&#x2F;pass&#x2F;plan_memory.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;infer_shape_type.o src&#x2F;pass&#x2F;infer_shape_type.cc &gt;build&#x2F;src&#x2F;pass&#x2F;infer_shape_type.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;gradient.o src&#x2F;pass&#x2F;gradient.cc &gt;build&#x2F;src&#x2F;pass&#x2F;gradient.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;saveload_json.o src&#x2F;pass&#x2F;saveload_json.cc &gt;build&#x2F;src&#x2F;pass&#x2F;saveload_json.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;correct_layout.o src&#x2F;pass&#x2F;correct_layout.cc &gt;build&#x2F;src&#x2F;pass&#x2F;correct_layout.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;place_device.o src&#x2F;pass&#x2F;place_device.cc &gt;build&#x2F;src&#x2F;pass&#x2F;place_device.d
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;c_api&#x2F;c_api_graph.cc -o build&#x2F;src&#x2F;c_api&#x2F;c_api_graph.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;core&#x2F;pass.cc -o build&#x2F;src&#x2F;core&#x2F;pass.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;core&#x2F;symbolic.cc -o build&#x2F;src&#x2F;core&#x2F;symbolic.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;core&#x2F;op.cc -o build&#x2F;src&#x2F;core&#x2F;op.o
+│ 100   621    0   621    0     0   2148      0 --:--:-- --:--:-- --:--:--  2148
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;correct_layout.cc -o build&#x2F;src&#x2F;pass&#x2F;correct_layout.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;plan_memory.cc -o build&#x2F;src&#x2F;pass&#x2F;plan_memory.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;saveload_json.cc -o build&#x2F;src&#x2F;pass&#x2F;saveload_json.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;print_graph_ir.cc -o build&#x2F;src&#x2F;pass&#x2F;print_graph_ir.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;infer_shape_type.cc -o build&#x2F;src&#x2F;pass&#x2F;infer_shape_type.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;core&#x2F;graph.cc -o build&#x2F;src&#x2F;core&#x2F;graph.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;c_api&#x2F;c_api_error.cc -o build&#x2F;src&#x2F;c_api&#x2F;c_api_error.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;order_mutation.cc -o build&#x2F;src&#x2F;pass&#x2F;order_mutation.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;c_api&#x2F;c_api_symbolic.cc -o build&#x2F;src&#x2F;c_api&#x2F;c_api_symbolic.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;core&#x2F;node.cc -o build&#x2F;src&#x2F;core&#x2F;node.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;gradient.cc -o build&#x2F;src&#x2F;pass&#x2F;gradient.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;place_device.cc -o build&#x2F;src&#x2F;pass&#x2F;place_device.o
+│   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  1 66.4M    1  814k    0     0   501k      0  0:02:15  0:00:01  0:02:14  841k  7 66.4M    7 5306k    0     0  1931k      0  0:00:35  0:00:02  0:00:33 2540k 10 66.4M   10 6826k    0     0  1884k      0  0:00:36  0:00:03  0:00:33 2301k 12 66.4M   12 8458k    0     0  1809k      0  0:00:37  0:00:04  0:00:33 2106k 14 66.4M   14  9.9M    0     0  1808k      0  0:00:37  0:00:05  0:00:32 2046k 17 66.4M   17 11.7M    0     0  1820k      0  0:00:37  0:00:06  0:00:31 2249k 19 66.4M   19 13.0M    0     0  1758k      0  0:00:38  0:00:07  0:00:31 1659k 21 66.4M   21 14.5M    0     0  1715k      0  0:00:39  0:00:08  0:00:31 1594k 24 66.4M   24 16.1M    0     0  1714k      0  0:00:39  0:00:09  0:00:30 1624k 26 66.4M   26 17.4M    0     0  1681k      0  0:00:40  0:00:10  0:00:30 1539k 28 66.4M   28 18.8M    0     0  1660k      0  0:00:41  0:00:11  0:00:30 1449k 30 66.4M   30 20.3M    0     0  1648k      0  0:00:41  0:00:12  0:00:29 1482k 32 66.4M   32 21.5M    0     0  1620k      0  0:00:42  0:00:13  0:00:29 1452k 34 66.4M   34 22.8M    0     0  1600k      0  0:00:42  0:00:14  0:00:28 1379k 36 66.4M   36 24.2M    0     0  1588k      0  0:00:42  0:00:15  0:00:27 1389k 38 66.4M   38 25.6M    0     0  1584k      0  0:00:42  0:00:16  0:00:26 1407k 40 66.4M   40 27.1M    0     0  1577k      0  0:00:43  0:00:17  0:00:26 1398k 43 66.4M   43 28.6M    0     0  1574k      0  0:00:43  0:00:18  0:00:25 1451kar crv lib&#x2F;libnnvm.a build&#x2F;src&#x2F;c_api&#x2F;c_api_symbolic.o build&#x2F;src&#x2F;c_api&#x2F;c_api_graph.o build&#x2F;src&#x2F;c_api&#x2F;c_api_error.o build&#x2F;src&#x2F;core&#x2F;pass.o build&#x2F;src&#x2F;core&#x2F;symbolic.o build&#x2F;src&#x2F;core&#x2F;node.o build&#x2F;src&#x2F;core&#x2F;op.o build&#x2F;src&#x2F;core&#x2F;graph.o build&#x2F;src&#x2F;pass&#x2F;gradient.o build&#x2F;src&#x2F;pass&#x2F;infer_shape_type.o build&#x2F;src&#x2F;pass&#x2F;correct_layout.o build&#x2F;src&#x2F;pass&#x2F;order_mutation.o build&#x2F;src&#x2F;pass&#x2F;plan_memory.o build&#x2F;src&#x2F;pass&#x2F;print_graph_ir.o build&#x2F;src&#x2F;pass&#x2F;saveload_json.o build&#x2F;src&#x2F;pass&#x2F;place_device.o
+│ a - build&#x2F;src&#x2F;c_api&#x2F;c_api_symbolic.o
+│ a - build&#x2F;src&#x2F;c_api&#x2F;c_api_graph.o
+│ a - build&#x2F;src&#x2F;c_api&#x2F;c_api_error.o
+│ a - build&#x2F;src&#x2F;core&#x2F;pass.o
+│ a - build&#x2F;src&#x2F;core&#x2F;symbolic.o
+│ a - build&#x2F;src&#x2F;core&#x2F;node.o
+│ a - build&#x2F;src&#x2F;core&#x2F;op.o
+│ a - build&#x2F;src&#x2F;core&#x2F;graph.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;gradient.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;infer_shape_type.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;correct_layout.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;order_mutation.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;plan_memory.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;print_graph_ir.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;saveload_json.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;place_device.o
+│ make[1]: Leaving directory &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;nnvm&#39;
+│  45 66.4M   45 30.1M    0     0  1571k      0  0:00:43  0:00:19  0:00:24 1489k 47 66.4M   47 31.7M    0     0  1577k      0  0:00:43  0:00:20  0:00:23 1544k 50 66.4M   50 33.3M    0     0  1582k      0  0:00:43  0:00:21  0:00:22 1574k 52 66.4M   52 34.7M    0     0  1573k      0  0:00:43  0:00:22  0:00:21 1556k 53 66.4M   53 35.7M    0     0  1551k      0  0:00:43  0:00:23  0:00:20 1463k 54 66.4M   54 36.5M    0     0  1522k      0  0:00:44  0:00:24  0:00:20 1326k 56 66.4M   56 37.3M    0     0  1492k      0  0:00:45  0:00:25  0:00:20 1141k 57 66.4M   57 38.1M    0     0  1467k      0  0:00:46  0:00:26  0:00:20  972k 58 66.4M   58 38.8M    0     0  1441k      0  0:00:47  0:00:27  0:00:20  840k 59 66.4M   59 39.6M    0     0  1417k      0  0:00:48  0:00:28  0:00:20  790k 60 66.4M   60 40.4M    0     0  1399k      0  0:00:48  0:00:29  0:00:19  795k 62 66.4M   62 41.3M    0     0  1381k      0  0:00:49  0:00:30  0:00:19  815kar cr libdmlc.a line_split.o indexed_recordio_split.o recordio_split.o input_split_base.o io.o filesys.o local_filesys.o data.o recordio.o config.o
+│ make[1]: Leaving directory &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#39;
+│  63 66.4M   63 42.2M    0     0  1368k      0  0:00:49  0:00:31  0:00:18  841k 64 66.4M   64 43.1M    0     0  1353k      0  0:00:50  0:00:32  0:00:18  870k 66 66.4M   66 43.9M    0     0  1339k      0  0:00:50  0:00:33  0:00:17  892k 67 66.4M   67 44.9M    0     0  1328k      0  0:00:51  0:00:34  0:00:17  910k 69 66.4M   69 45.8M    0     0  1319k      0  0:00:51  0:00:35  0:00:16  938k 70 66.4M   70 46.9M    0     0  1311k      0  0:00:51  0:00:36  0:00:15  953k 72 66.4M   72 47.9M    0     0  1306k      0  0:00:52  0:00:37  0:00:15  995k 73 66.4M   73 49.1M    0     0  1302k      0  0:00:52  0:00:38  0:00:14 1054k 75 66.4M   75 50.0M    0     0  1292k      0  0:00:52  0:00:39  0:00:13 1046k 76 66.4M   76 50.6M    0     0  1278k      0  0:00:53  0:00:40  0:00:13  985k 77 66.4M   77 51.4M    0     0  1265k      0  0:00:53  0:00:41  0:00:12  927k 78 66.4M   78 52.2M    0     0  1255k      0  0:00:54  0:00:42  0:00:12  879k 79 66.4M   79 53.1M    0     0  1248k      0  0:00:54  0:00:43  0:00:11  827k 81 66.4M   81 54.1M    0     0  1242k      0  0:00:54  0:00:44  0:00:10  842k 83 66.4M   83 55.1M    0     0  1239k      0  0:00:54  0:00:45  0:00:09  921k 84 66.4M   84 56.3M    0     0  1237k      0  0:00:55  0:00:46  0:00:09 1004k 86 66.4M   86 57.4M    0     0  1235k      0  0:00:55  0:00:47  0:00:08 1059k 87 66.4M   87 58.3M    0     0  1229k      0  0:00:55  0:00:48  0:00:07 1068k 88 66.4M   88 59.1M    0     0  1221k      0  0:00:55  0:00:49  0:00:06 1032k 89 66.4M   89 59.5M    0     0  1204k      0  0:00:56  0:00:50  0:00:06  888k 90 66.4M   90 59.8M    0     0  1186k      0  0:00:57  0:00:51  0:00:06  715k 90 66.4M   90 60.2M    0     0  1172k      0  0:00:58  0:00:52  0:00:06  572k 91 66.4M   91 60.6M    0     0  1159k      0  0:00:58  0:00:53  0:00:05  473k 92 66.4M   92 61.2M    0     0  1147k      0  0:00:59  0:00:54  0:00:05  424k 93 66.4M   93 61.8M    0     0  1139k      0  0:00:59  0:00:55  0:00:04  479k 94 66.4M   94 62.6M    0     0  1132k      0  0:01:00  0:00:56  0:00:04  566k 95 66.4M   95 63.6M    0     0  1132k      0  0:01:00  0:00:57  0:00:03  708k 97 66.4M   97 64.5M    0     0  1127k      0  0:01:00  0:00:58  0:00:02  783k 98 66.4M   98 65.3M    0     0  1122k      0  0:01:00  0:00:59  0:00:01  836k 99 66.4M   99 66.1M    0     0  1118k      0  0:01:00  0:01:00 --:--:--  881k100 66.4M  100 66.4M    0     0  1116k      0  0:01:00  0:01:00 --:--:--  914k
+│ Downloaded and unpacked Intel(R) MKL small libraries to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;external
+│ cmake &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn -DCMAKE_INSTALL_PREFIX=&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;build&#x2F;install -B&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;build -DARCH_OPT_FLAGS=&quot;-mtune=generic&quot; -DWITH_TEST=OFF -DWITH_EXAMPLE=OFF
+│ &#x2F;bin&#x2F;sh: 1: cmake: not found
+│ mkldnn.mk:41: recipe for target &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;build&#x2F;install&#x2F;lib&#x2F;libmkldnn.so.0&#39; failed
+│ make: *** [&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;build&#x2F;install&#x2F;lib&#x2F;libmkldnn.so.0] Error 127
+│ [ Info: Did not find a CUDA installation, using CPU-only version of MXNet.
+│ ┌ Warning: special characters &quot;#{}()[]&lt;&gt;|&amp;*?~;&quot; should now be quoted in commands
+│ │   caller = #shell_parse#353(::String, ::typeof(Base.shell_parse), ::String, ::Bool) at shell.jl:100
+│ └ @ Base .&#x2F;shell.jl:100
+│ [ Info: USE_JULIA_BLAS -&gt; true
+│ [ Info: Attempting to create directory &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src
+│ [ Info: Attempting to create directory &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;usr&#x2F;lib
+│ [ Info: Attempting to create directory &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ ERROR: LoadError: failed process: Process(`make -j32 USE_BLAS=openblas &#39;MSHADOW_LDFLAGS=-lm &#x2F;opt&#x2F;julia&#x2F;bin&#x2F;..&#x2F;lib&#x2F;julia&#x2F;libopenblas64_.so&#39;`, ProcessExited(2)) [2]
+│ 
+│ Stacktrace:
+│  [1] pipeline_error at .&#x2F;process.jl:813 [inlined]
+│  [2] #run#536(::Bool, ::typeof(run), ::Cmd) at .&#x2F;process.jl:728
+│  [3] run(::Cmd) at .&#x2F;process.jl:726
+│  [4] run(::BinDeps.SynchronousStepCollection) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;BinDeps.jl:521 (repeats 2 times)
+│  [5] satisfy!(::BinDeps.LibraryDependency, ::Array{DataType,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:944
+│  [6] satisfy!(::BinDeps.LibraryDependency) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:922
+│  [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:977
+│  [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;build.jl:284
+│  [9] include at .&#x2F;boot.jl:328 [inlined]
+│  [10] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+│  [11] include(::Module, ::String) at .&#x2F;Base.jl:31
+│  [12] include(::String) at .&#x2F;client.jl:431
+│  [13] top-level scope at none:5
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;build.jl:112
+└ @ Pkg.Operations &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;backwards_compatible_isolation.jl:647
+   Testing MXNet
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;jl_2suwNg&#x2F;Manifest.toml`
+  [9e28174c] BinDeps v0.8.10
+  [34da2185] Compat v2.2.0
+  [864edb3b] DataStructures v0.17.6
+  [59287772] Formatting v0.4.1
+  [682c06a0] JSON v0.21.0
+  [a7949054] MXNet v1.5.0
+  [1914dd2f] MacroTools v0.5.2
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [189a3867] Reexport v0.2.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+ERROR: LoadError: LoadError: Cannot find or load libmxnet.so. Please see the document on how to build it.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;src&#x2F;base.jl:61
+ [3] include at .&#x2F;boot.jl:328 [inlined]
+ [4] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+ [5] include at .&#x2F;Base.jl:31 [inlined]
+ [6] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;src&#x2F;MXNet.jl:25
+ [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;src&#x2F;MXNet.jl:138
+ [8] include at .&#x2F;boot.jl:328 [inlined]
+ [9] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+ [10] include(::Module, ::String) at .&#x2F;Base.jl:31
+ [11] top-level scope at none:2
+ [12] eval at .&#x2F;boot.jl:330 [inlined]
+ [13] eval(::Expr) at .&#x2F;client.jl:432
+ [14] top-level scope at .&#x2F;none:3
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;src&#x2F;base.jl:57
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;src&#x2F;MXNet.jl:138
+ERROR: LoadError: Failed to precompile MXNet [a7949054-b901-59c6-b8e3-7238c29bf7f0] to &#x2F;root&#x2F;.julia&#x2F;compiled&#x2F;v1.2&#x2F;MXNet&#x2F;Sc0jU.ji.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at .&#x2F;loading.jl:1253
+ [3] _require(::Base.PkgId) at .&#x2F;loading.jl:1013
+ [4] require(::Base.PkgId) at .&#x2F;loading.jl:911
+ [5] require(::Module, ::Symbol) at .&#x2F;loading.jl:906
+ [6] include at .&#x2F;boot.jl:328 [inlined]
+ [7] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+ [8] include(::Module, ::String) at .&#x2F;Base.jl:31
+ [9] include(::String) at .&#x2F;client.jl:431
+ [10] top-level scope at none:5
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;test&#x2F;runtests.jl:19
+ERROR: Package MXNet errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1288
+ [3] #test at .&#x2F;none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:245
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:233 [inlined]
+ [6] #test#61 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:230 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:230 [inlined]
+ [8] #test#60 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:229 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:228
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:228
+ [12] top-level scope at none:10
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: testing failed for unknown reasons.
+      Last evaluation was 1 day, 15 hours ago and took 3 minutes, 26 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/MXNet/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Reexport ─────────── v0.2.0
+ Installed URIParser ────────── v0.4.0
+ Installed Parsers ──────────── v0.3.10
+ Installed OrderedCollections ─ v1.1.0
+ Installed BinDeps ──────────── v0.8.10
+ Installed MacroTools ───────── v0.5.2
+ Installed JSON ─────────────── v0.21.0
+ Installed MXNet ────────────── v1.5.0
+ Installed Formatting ───────── v0.4.1
+ Installed DataStructures ───── v0.17.6
+ Installed Compat ───────────── v2.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [a7949054] + MXNet v1.5.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [34da2185] + Compat v2.2.0
+  [864edb3b] + DataStructures v0.17.6
+  [59287772] + Formatting v0.4.1
+  [682c06a0] + JSON v0.21.0
+  [a7949054] + MXNet v1.5.0
+  [1914dd2f] + MacroTools v0.5.2
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [189a3867] + Reexport v0.2.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building MXNet → `~&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;build.log`
+┌ Error: Error building `MXNet`: 
+│ Cloning into &#39;mxnet&#39;...
+│ Note: checking out &#39;1.5.0&#39;.
+│ 
+│ You are in &#39;detached HEAD&#39; state. You can look around, make experimental
+│ changes and commit them, and you can discard any commits you make in this
+│ state without impacting any branches by performing another checkout.
+│ 
+│ If you want to create a new branch to retain commits you create, you may
+│ do so (now or later) by using -b with the checkout command again. Example:
+│ 
+│   git checkout -b &lt;new-branch-name&gt;
+│ 
+│ HEAD is now at 75a9e187d [backport 1.5.x]Fix Cached_op with static_shape=true (#15298) (#15380)
+│ Submodule &#39;3rdparty&#x2F;dlpack&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;dlpack) registered for path &#39;3rdparty&#x2F;dlpack&#39;
+│ Submodule &#39;3rdparty&#x2F;dmlc-core&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;dmlc-core.git) registered for path &#39;3rdparty&#x2F;dmlc-core&#39;
+│ Submodule &#39;3rdparty&#x2F;googletest&#39; (https:&#x2F;&#x2F;github.com&#x2F;google&#x2F;googletest.git) registered for path &#39;3rdparty&#x2F;googletest&#39;
+│ Submodule &#39;3rdparty&#x2F;mkldnn&#39; (https:&#x2F;&#x2F;github.com&#x2F;intel&#x2F;mkl-dnn.git) registered for path &#39;3rdparty&#x2F;mkldnn&#39;
+│ Submodule &#39;3rdparty&#x2F;mshadow&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;mshadow.git) registered for path &#39;3rdparty&#x2F;mshadow&#39;
+│ Submodule &#39;3rdparty&#x2F;nvidia_cub&#39; (https:&#x2F;&#x2F;github.com&#x2F;NVlabs&#x2F;cub.git) registered for path &#39;3rdparty&#x2F;nvidia_cub&#39;
+│ Submodule &#39;3rdparty&#x2F;onnx-tensorrt&#39; (https:&#x2F;&#x2F;github.com&#x2F;onnx&#x2F;onnx-tensorrt.git) registered for path &#39;3rdparty&#x2F;onnx-tensorrt&#39;
+│ Submodule &#39;3rdparty&#x2F;openmp&#39; (https:&#x2F;&#x2F;github.com&#x2F;llvm-mirror&#x2F;openmp) registered for path &#39;3rdparty&#x2F;openmp&#39;
+│ Submodule &#39;3rdparty&#x2F;ps-lite&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;ps-lite) registered for path &#39;3rdparty&#x2F;ps-lite&#39;
+│ Submodule &#39;3rdparty&#x2F;tvm&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;tvm) registered for path &#39;3rdparty&#x2F;tvm&#39;
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dlpack&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;googletest&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mshadow&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;nvidia_cub&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;onnx-tensorrt&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;openmp&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;ps-lite&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#39;...
+│ Submodule path &#39;3rdparty&#x2F;dlpack&#39;: checked out &#39;10892ac964f1af7c81aae145cd3fab78bbccd297&#39;
+│ Submodule path &#39;3rdparty&#x2F;dmlc-core&#39;: checked out &#39;3943914eed66470bd010df581e29e4dca4f7df6f&#39;
+│ Submodule path &#39;3rdparty&#x2F;googletest&#39;: checked out &#39;eb9225ce361affe561592e0912320b9db84985d0&#39;
+│ Submodule path &#39;3rdparty&#x2F;mkldnn&#39;: checked out &#39;41bee20d7eb4a67feeeeb8d597b3598994eb1959&#39;
+│ Submodule path &#39;3rdparty&#x2F;mshadow&#39;: checked out &#39;1d79ecfdb4c9234537e1bf5148f44a1af54501ec&#39;
+│ Submodule path &#39;3rdparty&#x2F;nvidia_cub&#39;: checked out &#39;c3cceac115c072fb63df1836ff46d8c60d9eb304&#39;
+│ Submodule path &#39;3rdparty&#x2F;onnx-tensorrt&#39;: checked out &#39;1e209e546061173ccc37b25bbca69a795c6c86e4&#39;
+│ Submodule &#39;third_party&#x2F;onnx&#39; (https:&#x2F;&#x2F;github.com&#x2F;onnx&#x2F;onnx.git) registered for path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#39;
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#39;...
+│ Submodule path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#39;: checked out &#39;765f5ee823a67a866f4bd28a9860e81f3c811ce8&#39;
+│ Submodule &#39;third_party&#x2F;benchmark&#39; (https:&#x2F;&#x2F;github.com&#x2F;google&#x2F;benchmark.git) registered for path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;benchmark&#39;
+│ Submodule &#39;third_party&#x2F;pybind11&#39; (https:&#x2F;&#x2F;github.com&#x2F;pybind&#x2F;pybind11.git) registered for path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;pybind11&#39;
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;benchmark&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;pybind11&#39;...
+│ Submodule path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;benchmark&#39;: checked out &#39;e776aa0275e293707b6a0901e0e8d8a8a3679508&#39;
+│ Submodule path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;pybind11&#39;: checked out &#39;a1041190c8b8ff0cd9e2f0752248ad5e3789ea0c&#39;
+│ Submodule &#39;tools&#x2F;clang&#39; (https:&#x2F;&#x2F;github.com&#x2F;wjakob&#x2F;clang-cindex-python3) registered for path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;pybind11&#x2F;tools&#x2F;clang&#39;
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;pybind11&#x2F;tools&#x2F;clang&#39;...
+│ Submodule path &#39;3rdparty&#x2F;onnx-tensorrt&#x2F;third_party&#x2F;onnx&#x2F;third_party&#x2F;pybind11&#x2F;tools&#x2F;clang&#39;: checked out &#39;6a00cbc4a9b8e68b71caf7f774b3f9c753ae84d5&#39;
+│ Submodule path &#39;3rdparty&#x2F;openmp&#39;: checked out &#39;37c72127e90360a020f351f18d9cccfc30e5145a&#39;
+│ Submodule path &#39;3rdparty&#x2F;ps-lite&#39;: checked out &#39;8a763892a973afc1acd3d4b469d05bb338a83a6e&#39;
+│ Submodule path &#39;3rdparty&#x2F;tvm&#39;: checked out &#39;21935dcbf56ad3bd66ebff9891a6bc3865b8106d&#39;
+│ Submodule &#39;HalideIR&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;HalideIR) registered for path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;HalideIR&#39;
+│ Submodule &#39;dlpack&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;dlpack) registered for path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;dlpack&#39;
+│ Submodule &#39;dmlc-core&#39; (https:&#x2F;&#x2F;github.com&#x2F;dmlc&#x2F;dmlc-core) registered for path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;dmlc-core&#39;
+│ Submodule &#39;3rdparty&#x2F;rang&#39; (https:&#x2F;&#x2F;github.com&#x2F;agauniyal&#x2F;rang) registered for path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;rang&#39;
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;HalideIR&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;dlpack&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;dmlc-core&#39;...
+│ Cloning into &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;rang&#39;...
+│ Submodule path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;HalideIR&#39;: checked out &#39;ec9585a5a5df3de91e8916ac2d27a4a509eac5fc&#39;
+│ Submodule path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;dlpack&#39;: checked out &#39;5c792cef3aee54ad8b7000111c9dc1797f327b59&#39;
+│ Submodule path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;dmlc-core&#39;: checked out &#39;82bf4c2e2af312b3d52513aa727483803a2f8734&#39;
+│ Submodule path &#39;3rdparty&#x2F;tvm&#x2F;3rdparty&#x2F;rang&#39;: checked out &#39;cabe04d6d6b05356fa8f9741704924788f0dd762&#39;
+│ &#39;..&#x2F;..&#x2F;cblas.h&#39; -&gt; &#39;include&#x2F;cblas.h&#39;
+│ Makefile:219: &quot;USE_LAPACK disabled because libraries were not found&quot;
+│ Makefile:345: WARNING: Significant performance increases can be achieved by installing and enabling gperftools or jemalloc development packages
+│ mkdir -p &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;build&#x2F;install
+│ cd &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn &amp;&amp; rm -rf external &amp;&amp; cd scripts &amp;&amp; .&#x2F;prepare_mkl.sh &amp;&amp; cd .. &amp;&amp; cp -a external&#x2F;*&#x2F;* &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;build&#x2F;install&#x2F;.
+│ cd &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core; make libdmlc.a USE_SSE=1 config=&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;config.mk; cd &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ cd &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;nnvm; make lib&#x2F;libnnvm.a DMLC_CORE_PATH=&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core; cd &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ make[1]: Entering directory &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;nnvm&#39;
+│ make[1]: Entering directory &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#39;
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;c_api&#x2F;c_api_error.o src&#x2F;c_api&#x2F;c_api_error.cc &gt;build&#x2F;src&#x2F;c_api&#x2F;c_api_error.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;core&#x2F;pass.o src&#x2F;core&#x2F;pass.cc &gt;build&#x2F;src&#x2F;core&#x2F;pass.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;core&#x2F;graph.o src&#x2F;core&#x2F;graph.cc &gt;build&#x2F;src&#x2F;core&#x2F;graph.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;c_api&#x2F;c_api_symbolic.o src&#x2F;c_api&#x2F;c_api_symbolic.cc &gt;build&#x2F;src&#x2F;c_api&#x2F;c_api_symbolic.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;c_api&#x2F;c_api_graph.o src&#x2F;c_api&#x2F;c_api_graph.cc &gt;build&#x2F;src&#x2F;c_api&#x2F;c_api_graph.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;core&#x2F;symbolic.o src&#x2F;core&#x2F;symbolic.cc &gt;build&#x2F;src&#x2F;core&#x2F;symbolic.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;core&#x2F;node.o src&#x2F;core&#x2F;node.cc &gt;build&#x2F;src&#x2F;core&#x2F;node.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;core&#x2F;op.o src&#x2F;core&#x2F;op.cc &gt;build&#x2F;src&#x2F;core&#x2F;op.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;gradient.o src&#x2F;pass&#x2F;gradient.cc &gt;build&#x2F;src&#x2F;pass&#x2F;gradient.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;infer_shape_type.o src&#x2F;pass&#x2F;infer_shape_type.cc &gt;build&#x2F;src&#x2F;pass&#x2F;infer_shape_type.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;correct_layout.o src&#x2F;pass&#x2F;correct_layout.cc &gt;build&#x2F;src&#x2F;pass&#x2F;correct_layout.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;order_mutation.o src&#x2F;pass&#x2F;order_mutation.cc &gt;build&#x2F;src&#x2F;pass&#x2F;order_mutation.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;plan_memory.o src&#x2F;pass&#x2F;plan_memory.cc &gt;build&#x2F;src&#x2F;pass&#x2F;plan_memory.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;print_graph_ir.o src&#x2F;pass&#x2F;print_graph_ir.cc &gt;build&#x2F;src&#x2F;pass&#x2F;print_graph_ir.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;saveload_json.o src&#x2F;pass&#x2F;saveload_json.cc &gt;build&#x2F;src&#x2F;pass&#x2F;saveload_json.d
+│ g++ -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -MM -MT build&#x2F;src&#x2F;pass&#x2F;place_device.o src&#x2F;pass&#x2F;place_device.cc &gt;build&#x2F;src&#x2F;pass&#x2F;place_device.d
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o line_split.o src&#x2F;io&#x2F;line_split.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o indexed_recordio_split.o src&#x2F;io&#x2F;indexed_recordio_split.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o recordio_split.o src&#x2F;io&#x2F;recordio_split.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o input_split_base.o src&#x2F;io&#x2F;input_split_base.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o io.o src&#x2F;io.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o filesys.o src&#x2F;io&#x2F;filesys.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o local_filesys.o src&#x2F;io&#x2F;local_filesys.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o data.o src&#x2F;data.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o recordio.o src&#x2F;recordio.cc
+│ g++ -c -O3 -Wall -Wno-unknown-pragmas -Iinclude -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -DMXNET_USE_LAPACK -msse2 -o config.o src&#x2F;config.cc
+│   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+│                                  Dload  Upload   Total   Spent    Left  Speed
+│   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;correct_layout.cc -o build&#x2F;src&#x2F;pass&#x2F;correct_layout.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;core&#x2F;op.cc -o build&#x2F;src&#x2F;core&#x2F;op.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;plan_memory.cc -o build&#x2F;src&#x2F;pass&#x2F;plan_memory.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;c_api&#x2F;c_api_graph.cc -o build&#x2F;src&#x2F;c_api&#x2F;c_api_graph.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;c_api&#x2F;c_api_error.cc -o build&#x2F;src&#x2F;c_api&#x2F;c_api_error.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;core&#x2F;pass.cc -o build&#x2F;src&#x2F;core&#x2F;pass.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;core&#x2F;node.cc -o build&#x2F;src&#x2F;core&#x2F;node.o
+│ 100   621    0   621    0     0   1678      0 --:--:-- --:--:-- --:--:--  1831
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;c_api&#x2F;c_api_symbolic.cc -o build&#x2F;src&#x2F;c_api&#x2F;c_api_symbolic.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;core&#x2F;symbolic.cc -o build&#x2F;src&#x2F;core&#x2F;symbolic.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;gradient.cc -o build&#x2F;src&#x2F;pass&#x2F;gradient.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;saveload_json.cc -o build&#x2F;src&#x2F;pass&#x2F;saveload_json.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;print_graph_ir.cc -o build&#x2F;src&#x2F;pass&#x2F;print_graph_ir.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;core&#x2F;graph.cc -o build&#x2F;src&#x2F;core&#x2F;graph.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;infer_shape_type.cc -o build&#x2F;src&#x2F;pass&#x2F;infer_shape_type.o
+│   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;place_device.cc -o build&#x2F;src&#x2F;pass&#x2F;place_device.o
+│ g++ -c -std=c++11 -Wall -O2 -Iinclude -fPIC -I..&#x2F;include -I..&#x2F;3rdparty&#x2F;dlpack&#x2F;include -I..&#x2F;3rdparty&#x2F;HalideIR&#x2F;src -I..&#x2F;topi&#x2F;include -I&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#x2F;include  -c src&#x2F;pass&#x2F;order_mutation.cc -o build&#x2F;src&#x2F;pass&#x2F;order_mutation.o
+│   0 66.4M    0  270k    0     0   173k      0  0:06:32  0:00:01  0:06:31  331k 10 66.4M   10 7383k    0     0  2822k      0  0:00:24  0:00:02  0:00:22 3941k 20 66.4M   20 13.9M    0     0  4015k      0  0:00:16  0:00:03  0:00:13 5074k 29 66.4M   29 19.8M    0     0  4458k      0  0:00:15  0:00:04  0:00:11 5326k 35 66.4M   35 23.8M    0     0  4389k      0  0:00:15  0:00:05  0:00:10 5065k 41 66.4M   41 27.2M    0     0  4257k      0  0:00:15  0:00:06  0:00:09 5530k 46 66.4M   46 31.0M    0     0  4205k      0  0:00:16  0:00:07  0:00:09 4938k 51 66.4M   51 34.0M    0     0  4070k      0  0:00:16  0:00:08  0:00:08 4108k 55 66.4M   55 36.9M    0     0  3962k      0  0:00:17  0:00:09  0:00:08 3510k 60 66.4M   60 40.0M    0     0  3886k      0  0:00:17  0:00:10  0:00:07 3325k 64 66.4M   64 43.1M    0     0  3826k      0  0:00:17  0:00:11  0:00:06 3260k 69 66.4M   69 46.3M    0     0  3782k      0  0:00:18  0:00:12  0:00:06 3141k 74 66.4M   74 49.5M    0     0  3742k      0  0:00:18  0:00:13  0:00:05 3182k 79 66.4M   79 52.8M    0     0  3715k      0  0:00:18  0:00:14  0:00:04 3243k 84 66.4M   84 55.9M    0     0  3675k      0  0:00:18  0:00:15  0:00:03 3233k 88 66.4M   88 58.5M    0     0  3622k      0  0:00:18  0:00:16  0:00:02 3149k 92 66.4M   92 61.3M    0     0  3575k      0  0:00:19  0:00:17  0:00:02 3056k 95 66.4M   95 63.6M    0     0  3509k      0  0:00:19  0:00:18  0:00:01 2879k 98 66.4M   98 65.7M    0     0  3439k      0  0:00:19  0:00:19 --:--:-- 2640k100 66.4M  100 66.4M    0     0  3411k      0  0:00:19  0:00:19 --:--:-- 2471k
+│ Downloaded and unpacked Intel(R) MKL small libraries to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;external
+│ cmake &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn -DCMAKE_INSTALL_PREFIX=&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;build&#x2F;install -B&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;build -DARCH_OPT_FLAGS=&quot;-mtune=generic&quot; -DWITH_TEST=OFF -DWITH_EXAMPLE=OFF
+│ &#x2F;bin&#x2F;sh: 1: cmake: not found
+│ mkldnn.mk:41: recipe for target &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;build&#x2F;install&#x2F;lib&#x2F;libmkldnn.so.0&#39; failed
+│ make: *** [&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;mkldnn&#x2F;build&#x2F;install&#x2F;lib&#x2F;libmkldnn.so.0] Error 127
+│ make: *** Waiting for unfinished jobs....
+│ ar crv lib&#x2F;libnnvm.a build&#x2F;src&#x2F;c_api&#x2F;c_api_symbolic.o build&#x2F;src&#x2F;c_api&#x2F;c_api_graph.o build&#x2F;src&#x2F;c_api&#x2F;c_api_error.o build&#x2F;src&#x2F;core&#x2F;pass.o build&#x2F;src&#x2F;core&#x2F;symbolic.o build&#x2F;src&#x2F;core&#x2F;node.o build&#x2F;src&#x2F;core&#x2F;op.o build&#x2F;src&#x2F;core&#x2F;graph.o build&#x2F;src&#x2F;pass&#x2F;gradient.o build&#x2F;src&#x2F;pass&#x2F;infer_shape_type.o build&#x2F;src&#x2F;pass&#x2F;correct_layout.o build&#x2F;src&#x2F;pass&#x2F;order_mutation.o build&#x2F;src&#x2F;pass&#x2F;plan_memory.o build&#x2F;src&#x2F;pass&#x2F;print_graph_ir.o build&#x2F;src&#x2F;pass&#x2F;saveload_json.o build&#x2F;src&#x2F;pass&#x2F;place_device.o
+│ a - build&#x2F;src&#x2F;c_api&#x2F;c_api_symbolic.o
+│ a - build&#x2F;src&#x2F;c_api&#x2F;c_api_graph.o
+│ a - build&#x2F;src&#x2F;c_api&#x2F;c_api_error.o
+│ a - build&#x2F;src&#x2F;core&#x2F;pass.o
+│ a - build&#x2F;src&#x2F;core&#x2F;symbolic.o
+│ a - build&#x2F;src&#x2F;core&#x2F;node.o
+│ a - build&#x2F;src&#x2F;core&#x2F;op.o
+│ a - build&#x2F;src&#x2F;core&#x2F;graph.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;gradient.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;infer_shape_type.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;correct_layout.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;order_mutation.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;plan_memory.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;print_graph_ir.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;saveload_json.o
+│ a - build&#x2F;src&#x2F;pass&#x2F;place_device.o
+│ make[1]: Leaving directory &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;tvm&#x2F;nnvm&#39;
+│ ar cr libdmlc.a line_split.o indexed_recordio_split.o recordio_split.o input_split_base.o io.o filesys.o local_filesys.o data.o recordio.o config.o
+│ make[1]: Leaving directory &#39;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet&#x2F;3rdparty&#x2F;dmlc-core&#39;
+│ [ Info: Did not find a CUDA installation, using CPU-only version of MXNet.
+│ ┌ Warning: Parsing command &quot;$exe7z e mxnet.7z *\\build\\* *\\lib\\* -y -ousr\\lib&quot;. Special characters &quot;#{}()[]&lt;&gt;|&amp;*?~;&quot; should now be quoted in commands
+│ │   caller = shell_parse(::String, ::Bool; special::String) at shell.jl:107
+│ └ @ Base .&#x2F;shell.jl:107
+│ [ Info: USE_JULIA_BLAS -&gt; true
+│ [ Info: Attempting to create directory &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src
+│ [ Info: Attempting to create directory &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;usr&#x2F;lib
+│ [ Info: Attempting to create directory &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;src&#x2F;mxnet
+│ ERROR: LoadError: failed process: Process(`make -j32 USE_BLAS=openblas &#39;MSHADOW_LDFLAGS=-lm &#x2F;opt&#x2F;julia&#x2F;bin&#x2F;..&#x2F;lib&#x2F;julia&#x2F;libopenblas64_.so&#39;`, ProcessExited(2)) [2]
+│ 
+│ Stacktrace:
+│  [1] pipeline_error at .&#x2F;process.jl:525 [inlined]
+│  [2] run(::Cmd; wait::Bool) at .&#x2F;process.jl:440
+│  [3] run(::Cmd) at .&#x2F;process.jl:438
+│  [4] run(::BinDeps.SynchronousStepCollection) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;BinDeps.jl:521 (repeats 2 times)
+│  [5] satisfy!(::BinDeps.LibraryDependency, ::Array{DataType,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:944
+│  [6] satisfy!(::BinDeps.LibraryDependency) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:922
+│  [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:977
+│  [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;build.jl:284
+│  [9] include(::String) at .&#x2F;client.jl:439
+│  [10] top-level scope at none:5
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;deps&#x2F;build.jl:112
+└ @ Pkg.Operations &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;backwards_compatible_isolation.jl:601
+   Testing MXNet
+ Resolving package versions...
+Status `&#x2F;tmp&#x2F;jl_I1jq4l&#x2F;Manifest.toml`
+  [9e28174c] BinDeps v0.8.10
+  [34da2185] Compat v2.2.0
+  [864edb3b] DataStructures v0.17.6
+  [59287772] Formatting v0.4.1
+  [682c06a0] JSON v0.21.0
+  [a7949054] MXNet v1.5.0
+  [1914dd2f] MacroTools v0.5.2
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [189a3867] Reexport v0.2.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+ERROR: LoadError: LoadError: Cannot find or load libmxnet.so. Please see the document on how to build it.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;src&#x2F;base.jl:61
+ [3] include(::Module, ::String) at .&#x2F;Base.jl:377
+ [4] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;src&#x2F;MXNet.jl:25
+ [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;src&#x2F;MXNet.jl:138
+ [6] include(::Module, ::String) at .&#x2F;Base.jl:377
+ [7] top-level scope at none:2
+ [8] eval at .&#x2F;boot.jl:331 [inlined]
+ [9] eval(::Expr) at .&#x2F;client.jl:449
+ [10] top-level scope at .&#x2F;none:3
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;src&#x2F;base.jl:57
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;src&#x2F;MXNet.jl:138
+ERROR: LoadError: Failed to precompile MXNet [a7949054-b901-59c6-b8e3-7238c29bf7f0] to &#x2F;root&#x2F;.julia&#x2F;compiled&#x2F;v1.4&#x2F;MXNet&#x2F;Sc0jU_JLJm1.ji.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at .&#x2F;loading.jl:1263
+ [3] _require(::Base.PkgId) at .&#x2F;loading.jl:1022
+ [4] require(::Base.PkgId) at .&#x2F;loading.jl:920
+ [5] require(::Module, ::Symbol) at .&#x2F;loading.jl:915
+ [6] include(::String) at .&#x2F;client.jl:439
+ [7] top-level scope at none:6
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MXNet&#x2F;XoVCW&#x2F;test&#x2F;runtests.jl:19
+ERROR: Package MXNet errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:274
+ [5] #test#56 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [6] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [7] #test#55 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [8] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [10] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [11] top-level scope at none:10
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

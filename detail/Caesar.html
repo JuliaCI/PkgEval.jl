@@ -1,0 +1,2561 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="Caesar">Caesar</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#Caesar">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 9 hours ago and took 23 minutes, 19 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Caesar/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed VersionParsing ────────────── v1.1.3
+ Installed ColorTypes ────────────────── v0.8.0
+ Installed Requires ──────────────────── v0.5.2
+ Installed CommonSubexpressions ──────── v0.2.0
+ Installed Mongoc ────────────────────── v0.2.1
+ Installed DocStringExtensions ───────── v0.8.1
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed Graphics ──────────────────── v0.4.0
+ Installed Neo4j ─────────────────────── v2.0.0
+ Installed Inflate ───────────────────── v0.1.1
+ Installed Arpack ────────────────────── v0.3.1
+ Installed DiffEqDiffTools ───────────── v1.4.0
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed ArrayInterface ────────────── v1.2.1
+ Installed FFTW ──────────────────────── v1.1.0
+ Installed ApproxManifoldProducts ────── v0.1.2
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed KernelDensityEstimate ─────── v0.5.2
+ Installed RoME ──────────────────────── v0.4.4
+ Installed Parsers ───────────────────── v0.3.10
+ Installed DiffRules ─────────────────── v0.1.0
+ Installed PositiveFactorizations ────── v0.2.3
+ Installed FixedPointNumbers ─────────── v0.6.1
+ Installed DataStructures ────────────── v0.17.6
+ Installed Graphs ────────────────────── v0.10.3
+ Installed MacroTools ────────────────── v0.5.2
+ Installed NLsolve ───────────────────── v4.2.0
+ Installed Reexport ──────────────────── v0.2.0
+ Installed Conda ─────────────────────── v1.3.0
+ Installed Polynomials ───────────────── v0.6.0
+ Installed BinDeps ───────────────────── v0.8.10
+ Installed GraphPlot ─────────────────── v0.3.1
+ Installed Rotations ─────────────────── v0.12.0
+ Installed SpecialFunctions ──────────── v0.8.0
+ Installed MappedArrays ──────────────── v0.2.2
+ Installed ImageMagick ───────────────── v0.7.5
+ Installed CloudGraphs ───────────────── v0.1.2
+ Installed YAML ──────────────────────── v0.3.2
+ Installed Compose ───────────────────── v0.7.3
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed MetaGraphs ────────────────── v0.6.4
+ Installed JSON ──────────────────────── v0.21.0
+ Installed FunctionalStateMachine ────── v0.1.3
+ Installed PDMats ────────────────────── v0.9.10
+ Installed Distributions ─────────────── v0.21.8
+ Installed LCMCore ───────────────────── v0.6.1
+ Installed OffsetArrays ──────────────── v0.11.1
+ Installed DistributedFactorGraphs ───── v0.4.2
+ Installed ProgressMeter ─────────────── v1.2.0
+ Installed Distances ─────────────────── v0.8.2
+ Installed IniFile ───────────────────── v0.5.0
+ Installed AbstractFFTs ──────────────── v0.5.0
+ Installed URIParser ─────────────────── v0.4.0
+ Installed StaticArrays ──────────────── v0.12.1
+ Installed Colors ────────────────────── v0.9.6
+ Installed CoordinateTransformations ─── v0.5.0
+ Installed MbedTLS ───────────────────── v0.6.8
+ Installed DataFrames ────────────────── v0.19.4
+ Installed Nullables ─────────────────── v0.0.8
+ Installed Unmarshal ─────────────────── v0.2.1
+ Installed IncrementalInference ──────── v0.7.11
+ Installed DiffResults ───────────────── v0.0.4
+ Installed ArnoldiMethod ─────────────── v0.0.4
+ Installed UnsafeArrays ──────────────── v1.0.0
+ Installed LineSearches ──────────────── v7.0.1
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed SimpleTraits ──────────────── v0.9.1
+ Installed FillArrays ────────────────── v0.7.4
+ Installed FileIO ────────────────────── v1.0.7
+ Installed StatsBase ─────────────────── v0.32.0
+ Installed HTTP ──────────────────────── v0.8.8
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed FastIOBuffers ─────────────── v0.3.1
+ Installed NLSolversBase ─────────────── v7.5.0
+ Installed Missings ──────────────────── v0.4.3
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed Optim ─────────────────────── v0.19.4
+ Installed ImageCore ─────────────────── v0.8.5
+ Installed TableTraits ───────────────── v1.0.0
+ Installed Combinatorics ─────────────── v0.7.0
+ Installed CodecZlib ─────────────────── v0.6.0
+ Installed Codecs ────────────────────── v0.5.0
+ Installed Rmath ─────────────────────── v0.5.1
+ Installed JLD2 ──────────────────────── v0.1.8
+ Installed PaddedViews ───────────────── v0.4.2
+ Installed QuadGK ────────────────────── v2.1.1
+ Installed Parameters ────────────────── v0.12.0
+ Installed LightGraphs ───────────────── v1.3.0
+ Installed TransformUtils ────────────── v0.2.2
+ Installed ForwardDiff ───────────────── v0.10.6
+ Installed Caesar ────────────────────── v0.4.2
+ Installed Calculus ──────────────────── v0.5.1
+ Installed ZMQ ───────────────────────── v1.0.0
+ Installed Tables ────────────────────── v0.2.11
+ Installed JSON2 ─────────────────────── v0.3.1
+ Installed IterTools ─────────────────── v1.3.0
+ Installed StatsFuns ─────────────────── v0.9.0
+ Installed Compat ────────────────────── v2.2.0
+ Installed Measures ──────────────────── v0.3.0
+ Installed TranscodingStreams ────────── v0.9.5
+ Installed ProtoBuf ──────────────────── v0.7.0
+ Installed OrderedCollections ────────── v1.1.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [62eebf14] + Caesar v0.4.2
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [621f4979] + AbstractFFTs v0.5.0
+  [9bbbb610] + ApproxManifoldProducts v0.1.2
+  [ec485272] + ArnoldiMethod v0.0.4
+  [7d9fca2a] + Arpack v0.3.1
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [62eebf14] + Caesar v0.4.2
+  [49dc2e85] + Calculus v0.5.1
+  [324d7699] + CategoricalArrays v0.7.3
+  [39d38320] + CloudGraphs v0.1.2
+  [944b1d66] + CodecZlib v0.6.0
+  [19ecbf4d] + Codecs v0.5.0
+  [3da002f7] + ColorTypes v0.8.0
+  [5ae59095] + Colors v0.9.6
+  [861a8166] + Combinatorics v0.7.0
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [a81c6b42] + Compose v0.7.3
+  [8f4d0f93] + Conda v1.3.0
+  [150eb455] + CoordinateTransformations v0.5.0
+  [9a962f9c] + DataAPI v1.1.0
+  [a93c6f00] + DataFrames v0.19.4
+  [864edb3b] + DataStructures v0.17.6
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [b4f34e82] + Distances v0.8.2
+  [b5cc3c7e] + DistributedFactorGraphs v0.4.2
+  [31c24e10] + Distributions v0.21.8
+  [ffbed154] + DocStringExtensions v0.8.1
+  [7a1cc6ca] + FFTW v1.1.0
+  [6ccb8d0d] + FastIOBuffers v0.3.1
+  [5789e2e9] + FileIO v1.0.7
+  [1a297f60] + FillArrays v0.7.4
+  [53c48c17] + FixedPointNumbers v0.6.1
+  [f6369f11] + ForwardDiff v0.10.6
+  [3e9e306e] + FunctionalStateMachine v0.1.3
+  [a2cc645c] + GraphPlot v0.3.1
+  [a2bd30eb] + Graphics v0.4.0
+  [86223c79] + Graphs v0.10.3
+  [cd3eb016] + HTTP v0.8.8
+  [a09fc81d] + ImageCore v0.8.5
+  [6218d12a] + ImageMagick v0.7.5
+  [904591bb] + IncrementalInference v0.7.11
+  [d25df0c9] + Inflate v0.1.1
+  [83e8ac13] + IniFile v0.5.0
+  [41ab1584] + InvertedIndices v1.0.0
+  [c8e1da08] + IterTools v1.3.0
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [033835bb] + JLD2 v0.1.8
+  [682c06a0] + JSON v0.21.0
+  [2535ab7d] + JSON2 v0.3.1
+  [2472808a] + KernelDensityEstimate v0.5.2
+  [0ea44823] + LCMCore v0.6.1
+  [093fc24a] + LightGraphs v1.3.0
+  [d3d80556] + LineSearches v7.0.1
+  [1914dd2f] + MacroTools v0.5.2
+  [dbb5928d] + MappedArrays v0.2.2
+  [739be429] + MbedTLS v0.6.8
+  [442fdcdd] + Measures v0.3.0
+  [626554b9] + MetaGraphs v0.6.4
+  [e1d29d7a] + Missings v0.4.3
+  [4fe8b98c] + Mongoc v0.2.1
+  [d41bc354] + NLSolversBase v7.5.0
+  [2774e3e8] + NLsolve v4.2.0
+  [77ba4419] + NaNMath v0.3.3
+  [d2adbeaf] + Neo4j v2.0.0
+  [4d1e1d77] + Nullables v0.0.8
+  [6fe1bfb0] + OffsetArrays v0.11.1
+  [429524aa] + Optim v0.19.4
+  [bac558e1] + OrderedCollections v1.1.0
+  [90014a1f] + PDMats v0.9.10
+  [5432bcbf] + PaddedViews v0.4.2
+  [d96e819e] + Parameters v0.12.0
+  [69de0a69] + Parsers v0.3.10
+  [f27b6e38] + Polynomials v0.6.0
+  [2dfb63ee] + PooledArrays v0.5.2
+  [85a6dd25] + PositiveFactorizations v0.2.3
+  [92933f4c] + ProgressMeter v1.2.0
+  [3349acd9] + ProtoBuf v0.7.0
+  [1fd47b50] + QuadGK v2.1.1
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [79098fc4] + Rmath v0.5.1
+  [91fb55c2] + RoME v0.4.4
+  [6038ab10] + Rotations v0.12.0
+  [699a6c99] + SimpleTraits v0.9.1
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [2913bbd2] + StatsBase v0.32.0
+  [4c63d2b9] + StatsFuns v0.9.0
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [3bb67fe8] + TranscodingStreams v0.9.5
+  [9b8138ad] + TransformUtils v0.2.2
+  [30578b45] + URIParser v0.4.0
+  [cbff2730] + Unmarshal v0.2.1
+  [c4a57d5a] + UnsafeArrays v1.0.0
+  [81def892] + VersionParsing v1.1.3
+  [ddb6d928] + YAML v0.3.2
+  [c2297ded] + ZMQ v1.0.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [7b1f6079] + FileWatching 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [9abbd945] + Profile 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Mongoc ──────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;N4NkA&#x2F;deps&#x2F;build.log`
+  Building Arpack ──────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+  Building Conda ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building FFTW ────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFTW&#x2F;loJ3F&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+  Building ImageMagick ─────→ `~&#x2F;.julia&#x2F;packages&#x2F;ImageMagick&#x2F;vMfoS&#x2F;deps&#x2F;build.log`
+  Building LCMCore ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;LCMCore&#x2F;cPbOB&#x2F;deps&#x2F;build.log`
+  Building MbedTLS ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;MbedTLS&#x2F;X4xar&#x2F;deps&#x2F;build.log`
+┌ Error: Error building `LCMCore`: 
+│ ┌ Warning: Some registries failed to update:
+│ │     — &#x2F;root&#x2F;.julia&#x2F;registries&#x2F;General — failed to fetch from repo
+│ └ @ Pkg.API &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:162
+│ ERROR: LoadError: None of the selected providers can install dependency glib.
+│ Use BinDeps.debug(package_name) to see available providers
+│ 
+│ Stacktrace:
+│  [1] error(::String) at .&#x2F;error.jl:33
+│  [2] satisfy!(::BinDeps.LibraryDependency, ::Array{DataType,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:949
+│  [3] satisfy!(::BinDeps.LibraryDependency) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:922
+│  [4] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:977
+│  [5] include at .&#x2F;boot.jl:317 [inlined]
+│  [6] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+│  [7] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+│  [8] include(::String) at .&#x2F;client.jl:392
+│  [9] top-level scope at none:0
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LCMCore&#x2F;cPbOB&#x2F;deps&#x2F;build.jl:75
+│   Updating registry at `~&#x2F;.julia&#x2F;registries&#x2F;General`
+│   Updating git-repo `https:&#x2F;&#x2F;github.com&#x2F;JuliaRegistries&#x2F;General.git`
+│ [?25l[2K[?25h Installed CMakeWrapper ─ v0.2.3
+│  Installed CMake ──────── v1.1.1
+│  Installed Compat ─────── v2.1.0
+│  Installed Homebrew ───── v0.7.1
+│  Installed Parameters ─── v0.10.3
+│  Installed JSON ───────── v0.20.0
+│   Building CMake ───→ `~&#x2F;.julia&#x2F;packages&#x2F;CMake&#x2F;ZGawK&#x2F;deps&#x2F;build.log`
+│   Building Homebrew → `~&#x2F;.julia&#x2F;packages&#x2F;Homebrew&#x2F;s09IX&#x2F;deps&#x2F;build.log`
+└ @ Pkg.Operations &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1096
+  Building CodecZlib ───────→ `~&#x2F;.julia&#x2F;packages&#x2F;CodecZlib&#x2F;5t9zO&#x2F;deps&#x2F;build.log`
+  Building Rmath ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+  Building ZMQ ─────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;ZMQ&#x2F;ABGOx&#x2F;deps&#x2F;build.log`
+   Testing Caesar
+    Status `&#x2F;tmp&#x2F;tmp9UJnXA&#x2F;Manifest.toml`
+  [621f4979] AbstractFFTs v0.5.0
+  [9bbbb610] ApproxManifoldProducts v0.1.2
+  [ec485272] ArnoldiMethod v0.0.4
+  [7d9fca2a] Arpack v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [62eebf14] Caesar v0.4.2
+  [49dc2e85] Calculus v0.5.1
+  [324d7699] CategoricalArrays v0.7.3
+  [39d38320] CloudGraphs v0.1.2
+  [944b1d66] CodecZlib v0.6.0
+  [19ecbf4d] Codecs v0.5.0
+  [3da002f7] ColorTypes v0.8.0
+  [5ae59095] Colors v0.9.6
+  [861a8166] Combinatorics v0.7.0
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [a81c6b42] Compose v0.7.3
+  [8f4d0f93] Conda v1.3.0
+  [150eb455] CoordinateTransformations v0.5.0
+  [9a962f9c] DataAPI v1.1.0
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [b5cc3c7e] DistributedFactorGraphs v0.4.2
+  [31c24e10] Distributions v0.21.8
+  [ffbed154] DocStringExtensions v0.8.1
+  [7a1cc6ca] FFTW v1.1.0
+  [6ccb8d0d] FastIOBuffers v0.3.1
+  [5789e2e9] FileIO v1.0.7
+  [1a297f60] FillArrays v0.7.4
+  [53c48c17] FixedPointNumbers v0.6.1
+  [f6369f11] ForwardDiff v0.10.6
+  [3e9e306e] FunctionalStateMachine v0.1.3
+  [a2cc645c] GraphPlot v0.3.1
+  [a2bd30eb] Graphics v0.4.0
+  [86223c79] Graphs v0.10.3
+  [cd3eb016] HTTP v0.8.8
+  [a09fc81d] ImageCore v0.8.5
+  [6218d12a] ImageMagick v0.7.5
+  [904591bb] IncrementalInference v0.7.11
+  [d25df0c9] Inflate v0.1.1
+  [83e8ac13] IniFile v0.5.0
+  [41ab1584] InvertedIndices v1.0.0
+  [c8e1da08] IterTools v1.3.0
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [033835bb] JLD2 v0.1.8
+  [682c06a0] JSON v0.21.0
+  [2535ab7d] JSON2 v0.3.1
+  [2472808a] KernelDensityEstimate v0.5.2
+  [0ea44823] LCMCore v0.6.1
+  [093fc24a] LightGraphs v1.3.0
+  [d3d80556] LineSearches v7.0.1
+  [1914dd2f] MacroTools v0.5.2
+  [dbb5928d] MappedArrays v0.2.2
+  [739be429] MbedTLS v0.6.8
+  [442fdcdd] Measures v0.3.0
+  [626554b9] MetaGraphs v0.6.4
+  [e1d29d7a] Missings v0.4.3
+  [4fe8b98c] Mongoc v0.2.1
+  [d41bc354] NLSolversBase v7.5.0
+  [2774e3e8] NLsolve v4.2.0
+  [77ba4419] NaNMath v0.3.3
+  [d2adbeaf] Neo4j v2.0.0
+  [4d1e1d77] Nullables v0.0.8
+  [6fe1bfb0] OffsetArrays v0.11.1
+  [429524aa] Optim v0.19.4
+  [bac558e1] OrderedCollections v1.1.0
+  [90014a1f] PDMats v0.9.10
+  [5432bcbf] PaddedViews v0.4.2
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [f27b6e38] Polynomials v0.6.0
+  [2dfb63ee] PooledArrays v0.5.2
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [92933f4c] ProgressMeter v1.2.0
+  [3349acd9] ProtoBuf v0.7.0
+  [1fd47b50] QuadGK v2.1.1
+  [3cdcf5f2] RecipesBase v0.7.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [79098fc4] Rmath v0.5.1
+  [91fb55c2] RoME v0.4.4
+  [6038ab10] Rotations v0.12.0
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [3bb67fe8] TranscodingStreams v0.9.5
+  [9b8138ad] TransformUtils v0.2.2
+  [30578b45] URIParser v0.4.0
+  [cbff2730] Unmarshal v0.2.1
+  [c4a57d5a] UnsafeArrays v1.0.0
+  [81def892] VersionParsing v1.1.3
+  [ddb6d928] YAML v0.3.2
+  [c2297ded] ZMQ v1.0.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [7b1f6079] FileWatching  [`@stdlib&#x2F;FileWatching`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [9abbd945] Profile  [`@stdlib&#x2F;Profile`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+[ Info: Multithreaded  convolutions possible, Threads.nthreads()=1.  See `addFactor!(.;threadmodel=MultiThreaded)`.
+[ Info: KernelDensityEstimate.FORCE_EVAL_DIRECT = true
+[ Info: KernelDensityEstimate.FORCE_EVAL_DIRECT = true
+WARNING: ignoring conflicting import of IncrementalInference.compare into RoME
+WARNING: Method definition convert(Type{Base.Dict{String, Any}}, IncrementalInference.Prior{T} where T) in module IncrementalInference at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;IncrementalInference&#x2F;7z9j0&#x2F;src&#x2F;DefaultNodeTypes.jl:89 overwritten in module ZmqCaesar at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;factors&#x2F;factorSerialization.jl:11.
+WARNING: Method definition convert(Type{IncrementalInference.Prior{T} where T}, Base.Dict{String, Any}) in module IncrementalInference at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;IncrementalInference&#x2F;7z9j0&#x2F;src&#x2F;DefaultNodeTypes.jl:98 overwritten in module ZmqCaesar at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;factors&#x2F;factorSerialization.jl:20.
+WARNING: Method definition convert(Type{RoME.Pose2Point2BearingRange{B, R} where R&lt;:Union{IncrementalInference.AliasingScalarSampler, KernelDensityEstimate.BallTreeDensity, Distributions.Distribution{F, S} where S&lt;:Distributions.ValueSupport where F&lt;:Distributions.VariateForm} where B&lt;:Union{IncrementalInference.AliasingScalarSampler, KernelDensityEstimate.BallTreeDensity, Distributions.Distribution{F, S} where S&lt;:Distributions.ValueSupport where F&lt;:Distributions.VariateForm}}, Base.Dict{String, Any}) in module ZmqCaesar at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;factors&#x2F;factorSerialization.jl:60 overwritten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;factors&#x2F;factorSerialization.jl:72.
+┌ Warning: Replacing docs for `Base.convert :: Tuple{Type{RoME.Pose2Point2BearingRange},Dict{String,Any}}` in module `Caesar.ZmqCaesar`
+└ @ Base.Docs docs&#x2F;Docs.jl:223
+WARNING: Method definition convert(Type{RoME.PartialPose3XYYaw{T1, T2} where T2 where T1}, Base.Dict{String, Any}) in module RoME at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;RoME&#x2F;iDAXw&#x2F;src&#x2F;factors&#x2F;PartialPose3.jl:237 overwritten in module ZmqCaesar at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;factors&#x2F;factorSerialization.jl:94.
+WARNING: Method definition convert(Type{RoME.PartialPriorRollPitchZ{T1, T2} where T2 where T1}, Base.Dict{String, Any}) in module RoME at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;RoME&#x2F;iDAXw&#x2F;src&#x2F;factors&#x2F;PartialPose3.jl:90 overwritten in module ZmqCaesar at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;factors&#x2F;factorSerialization.jl:106.
+[ Info: [ZMQ Server] Plotting endpoints are disabled in ZMQ server. Please call &#39;using RoMEPlotting&#39; before &#39;using Caesar&#39; if you would like to enable them.
+WARNING: Method definition isopen(ZMQ.Socket) in module ZMQ at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ZMQ&#x2F;ABGOx&#x2F;src&#x2F;socket.jl:23 overwritten in module ZmqCaesar at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;ZmqServer.jl:66.
+WARNING: could not import Base.compare into Caesar
+[ Info: Adding graph visualization tools.
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x0&#39;...
+requestDict = Dict{String,Any}(&quot;payload&quot;=&gt;Dict{String,Any}(&quot;variables&quot;=&gt;&quot;true&quot;,&quot;factors&quot;=&gt;&quot;true&quot;),&quot;request&quot;=&gt;&quot;ls&quot;)
+[ Info: Adding factor of type &#39;Prior&#39; to variables &#39;Any[&quot;x0&quot;]&#39;...
+[ Info: try doautoinit! of x0
+requestDict = Dict{String,Any}(&quot;payload&quot;=&gt;Dict{String,Any}(&quot;variables&quot;=&gt;&quot;true&quot;,&quot;factors&quot;=&gt;&quot;true&quot;),&quot;request&quot;=&gt;&quot;ls&quot;)
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x1&#39;...
+odoFactCmd = Dict{String, Any}(&quot;request&quot; =&gt; &quot;addFactor&quot;, &quot;payload&quot; =&gt; JSON.parse(JSON.json(FactorRequest([&quot;x$(i - 1)&quot;, &quot;x$(i)&quot;], &quot;Pose2Pose2&quot;, factor)))) = Dict{String,Any}(&quot;payload&quot;=&gt;Dict{String,Any}(&quot;variables&quot;=&gt;Any[&quot;x0&quot;, &quot;x1&quot;],&quot;factorType&quot;=&gt;&quot;Pose2Pose2&quot;,&quot;factor&quot;=&gt;Dict{String,Any}(&quot;measurement&quot;=&gt;Any[Dict{String,Any}(&quot;distType&quot;=&gt;&quot;MvNormal&quot;,&quot;mean&quot;=&gt;Any[10.0, 0.0, 1.0472],&quot;cov&quot;=&gt;Any[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1])])),&quot;request&quot;=&gt;&quot;addFactor&quot;)
+[ Info: Adding factor of type &#39;Pose2Pose2&#39; to variables &#39;Any[&quot;x0&quot;, &quot;x1&quot;]&#39;...
+[ Info: try doautoinit! of x0
+[ Info: init with useinitfct Symbol[:x0f1]
+[ Info: do init of x0
+[ Info: try doautoinit! of x1
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x2&#39;...
+odoFactCmd = Dict{String, Any}(&quot;request&quot; =&gt; &quot;addFactor&quot;, &quot;payload&quot; =&gt; JSON.parse(JSON.json(FactorRequest([&quot;x$(i - 1)&quot;, &quot;x$(i)&quot;], &quot;Pose2Pose2&quot;, factor)))) = Dict{String,Any}(&quot;payload&quot;=&gt;Dict{String,Any}(&quot;variables&quot;=&gt;Any[&quot;x1&quot;, &quot;x2&quot;],&quot;factorType&quot;=&gt;&quot;Pose2Pose2&quot;,&quot;factor&quot;=&gt;Dict{String,Any}(&quot;measurement&quot;=&gt;Any[Dict{String,Any}(&quot;distType&quot;=&gt;&quot;MvNormal&quot;,&quot;mean&quot;=&gt;Any[10.0, 0.0, 1.0472],&quot;cov&quot;=&gt;Any[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1])])),&quot;request&quot;=&gt;&quot;addFactor&quot;)
+[ Info: Adding factor of type &#39;Pose2Pose2&#39; to variables &#39;Any[&quot;x1&quot;, &quot;x2&quot;]&#39;...
+[ Info: try doautoinit! of x1
+[ Info: init with useinitfct Symbol[:x0x1f1]
+[ Info: do init of x1
+[ Info: try doautoinit! of x2
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x3&#39;...
+odoFactCmd = Dict{String, Any}(&quot;request&quot; =&gt; &quot;addFactor&quot;, &quot;payload&quot; =&gt; JSON.parse(JSON.json(FactorRequest([&quot;x$(i - 1)&quot;, &quot;x$(i)&quot;], &quot;Pose2Pose2&quot;, factor)))) = Dict{String,Any}(&quot;payload&quot;=&gt;Dict{String,Any}(&quot;variables&quot;=&gt;Any[&quot;x2&quot;, &quot;x3&quot;],&quot;factorType&quot;=&gt;&quot;Pose2Pose2&quot;,&quot;factor&quot;=&gt;Dict{String,Any}(&quot;measurement&quot;=&gt;Any[Dict{String,Any}(&quot;distType&quot;=&gt;&quot;MvNormal&quot;,&quot;mean&quot;=&gt;Any[10.0, 0.0, 1.0472],&quot;cov&quot;=&gt;Any[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1])])),&quot;request&quot;=&gt;&quot;addFactor&quot;)
+[ Info: Adding factor of type &#39;Pose2Pose2&#39; to variables &#39;Any[&quot;x2&quot;, &quot;x3&quot;]&#39;...
+[ Info: try doautoinit! of x2
+[ Info: init with useinitfct Symbol[:x1x2f1]
+[ Info: do init of x2
+[ Info: try doautoinit! of x3
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x4&#39;...
+[ Info: Adding factor of type &#39;Pose2Pose2&#39; to variables &#39;Any[&quot;x3&quot;, &quot;x4&quot;]&#39;...
+odoFactCmd = Dict{String, Any}(&quot;request&quot; =&gt; &quot;addFactor&quot;, &quot;payload&quot; =&gt; JSON.parse(JSON.json(FactorRequest([&quot;x$(i - 1)&quot;, &quot;x$(i)&quot;], &quot;Pose2Pose2&quot;, factor)))) = Dict{String,Any}(&quot;payload&quot;=&gt;Dict{String,Any}(&quot;variables&quot;=&gt;Any[&quot;x3&quot;, &quot;x4&quot;],&quot;factorType&quot;=&gt;&quot;Pose2Pose2&quot;,&quot;factor&quot;=&gt;Dict{String,Any}(&quot;measurement&quot;=&gt;Any[Dict{String,Any}(&quot;distType&quot;=&gt;&quot;MvNormal&quot;,&quot;mean&quot;=&gt;Any[10.0, 0.0, 1.0472],&quot;cov&quot;=&gt;Any[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1])])),&quot;request&quot;=&gt;&quot;addFactor&quot;)
+[ Info: try doautoinit! of x3
+[ Info: init with useinitfct Symbol[:x2x3f1]
+[ Info: do init of x3
+[ Info: try doautoinit! of x4
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x5&#39;...
+odoFactCmd = Dict{String, Any}(&quot;request&quot; =&gt; &quot;addFactor&quot;, &quot;payload&quot; =&gt; JSON.parse(JSON.json(FactorRequest([&quot;x$(i - 1)&quot;, &quot;x$(i)&quot;], &quot;Pose2Pose2&quot;, factor)))) = Dict{String,Any}(&quot;payload&quot;=&gt;Dict{String,Any}(&quot;variables&quot;=&gt;Any[&quot;x4&quot;, &quot;x5&quot;],&quot;factorType&quot;=&gt;&quot;Pose2Pose2&quot;,&quot;factor&quot;=&gt;Dict{String,Any}(&quot;measurement&quot;=&gt;Any[Dict{String,Any}(&quot;distType&quot;=&gt;&quot;MvNormal&quot;,&quot;mean&quot;=&gt;Any[10.0, 0.0, 1.0472],&quot;cov&quot;=&gt;Any[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1])])),&quot;request&quot;=&gt;&quot;addFactor&quot;)
+[ Info: Adding factor of type &#39;Pose2Pose2&#39; to variables &#39;Any[&quot;x4&quot;, &quot;x5&quot;]&#39;...
+[ Info: try doautoinit! of x4
+[ Info: init with useinitfct Symbol[:x3x4f1]
+[ Info: do init of x4
+[ Info: try doautoinit! of x5
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x6&#39;...
+odoFactCmd = Dict{String, Any}(&quot;request&quot; =&gt; &quot;addFactor&quot;, &quot;payload&quot; =&gt; JSON.parse(JSON.json(FactorRequest([&quot;x$(i - 1)&quot;, &quot;x$(i)&quot;], &quot;Pose2Pose2&quot;, factor)))) = Dict{String,Any}(&quot;payload&quot;=&gt;Dict{String,Any}(&quot;variables&quot;=&gt;Any[&quot;x5&quot;, &quot;x6&quot;],&quot;factorType&quot;=&gt;&quot;Pose2Pose2&quot;,&quot;factor&quot;=&gt;Dict{String,Any}(&quot;measurement&quot;=&gt;Any[Dict{String,Any}(&quot;distType&quot;=&gt;&quot;MvNormal&quot;,&quot;mean&quot;=&gt;Any[10.0, 0.0, 1.0472],&quot;cov&quot;=&gt;Any[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1])])),&quot;request&quot;=&gt;&quot;addFactor&quot;)
+[ Info: Adding factor of type &#39;Pose2Pose2&#39; to variables &#39;Any[&quot;x5&quot;, &quot;x6&quot;]&#39;...
+[ Info: try doautoinit! of x5
+[ Info: init with useinitfct Symbol[:x4x5f1]
+[ Info: do init of x5
+[ Info: try doautoinit! of x6
+requestDict = Dict{String,Any}(&quot;payload&quot;=&gt;Dict{String,Any}(&quot;variables&quot;=&gt;&quot;true&quot;,&quot;factors&quot;=&gt;&quot;true&quot;),&quot;request&quot;=&gt;&quot;ls&quot;)
+┌ Warning: deprecated batchSolve! in favor of new solveTree! interface with the same and more functionality.
+└ @ IncrementalInference ~&#x2F;.julia&#x2F;packages&#x2F;IncrementalInference&#x2F;7z9j0&#x2F;src&#x2F;SolverAPI.jl:228
+
+Building Bayes net...
+[ Info: 
+[ Info: Eliminating x5
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x5
+Si = Symbol[:x6, :x4]
+[ Info: 
+[ Info: Eliminating x3
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x3
+Si = Symbol[:x4, :x2]
+[ Info: 
+[ Info: Eliminating x1
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x1
+Si = Symbol[:x2, :x0]
+[ Info: 
+[ Info: Eliminating x0
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x0
+[ Info: Looking at x2x0f1
+[ Info:    - Breaking link x2x0f1-&gt;x0...
+[ Info:      - Original links: Symbol[:x2, :x0]
+[ Info:      - New links: Symbol[:x2]
+[ Info: x2x0f1 still has links to other variables, readding it back...
+Si = Symbol[:x2]
+[ Info: 
+[ Info: Eliminating x4
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x4
+[ Info: Looking at x4x2f1
+[ Info:    - Breaking link x4x2f1-&gt;x4...
+[ Info:      - Original links: Symbol[:x4, :x2]
+[ Info:      - New links: Symbol[:x2]
+[ Info: x4x2f1 still has links to other variables, readding it back...
+[ Info: Looking at x6x4f1
+[ Info:    - Breaking link x6x4f1-&gt;x4...
+[ Info:      - Original links: Symbol[:x6, :x4]
+[ Info:      - New links: Symbol[:x6]
+[ Info: x6x4f1 still has links to other variables, readding it back...
+[ Info: 
+[ Info: Eliminating x2
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x2
+[ Info: Looking at x2f1
+[ Info:    - Breaking link x2f1-&gt;x2...
+[ Info:      - Original links: Symbol[:x2]
+[ Info:      - New links: Symbol[]
+[ Info: x2f1 doesn&#39;t have any other links, not adding it back...
+[ Info: Looking at x2f2
+[ Info:    - Breaking link x2f2-&gt;x2...
+[ Info:      - Original links: Symbol[:x2]
+[ Info:      - New links: Symbol[]
+[ Info: x2f2 doesn&#39;t have any other links, not adding it back...
+[ Info: Looking at x2x6f1
+[ Info:    - Breaking link x2x6f1-&gt;x2...
+[ Info:      - Original links: Symbol[:x2, :x6]
+[ Info:      - New links: Symbol[:x6]
+[ Info: x2x6f1 still has links to other variables, readding it back...
+[ Info: Looking at x2f3
+[ Info:    - Breaking link x2f3-&gt;x2...
+[ Info:      - Original links: Symbol[:x2]
+[ Info:      - New links: Symbol[]
+[ Info: x2f3 doesn&#39;t have any other links, not adding it back...
+[ Info: 
+[ Info: Eliminating x6
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x6
+[ Info: Looking at x6f1
+[ Info:    - Breaking link x6f1-&gt;x6...
+[ Info:      - Original links: Symbol[:x6]
+[ Info:      - New links: Symbol[]
+[ Info: x6f1 doesn&#39;t have any other links, not adding it back...
+[ Info: Looking at x6f3
+[ Info:    - Breaking link x6f3-&gt;x6...
+[ Info:      - Original links: Symbol[:x6]
+[ Info:      - New links: Symbol[]
+[ Info: x6f3 doesn&#39;t have any other links, not adding it back...
+[ Info: Looking at x6f2
+[ Info:    - Breaking link x6f2-&gt;x6...
+[ Info:      - Original links: Symbol[:x6]
+[ Info:      - New links: Symbol[]
+[ Info: x6f2 doesn&#39;t have any other links, not adding it back...
+Si = Symbol[:x2, :x6]
+Si = Symbol[:x6]
+Find potential functions for each clique
+[ Info: Get potentials x0,x1,: x2,
+[ Info: using all factors among cliq variables
+[ Info: finding all frontals for down WIP
+[ Info: Get potentials x3,: x4,x2,
+[ Info: using all factors among cliq variables
+[ Info: finding all frontals for down WIP
+[ Info: Get potentials x5,: x6,x4,
+[ Info: using all factors among cliq variables
+[ Info: finding all frontals for down WIP
+[ Info: Get potentials x6,x2,x4,: 
+[ Info: using all factors among cliq variables
+[ Info: finding all frontals for down WIP
+[ Info: cliq=1 adding factor that is no in separator, x5
+[ Info: cliq=1 adding factor that is no in separator, x3
+[ Info: cliq=1 adding factor that is no in separator, x1
+[ Info: cliq=1 adding factor that is no in separator, x3
+[ Info: cliq=1 adding factor that is no in separator, x5
+Bayes Tree
+[ Info: Solving over the Bayes (Junction) tree.
+[ Info: Do tree based init-inference on tree
+State machine iter=1
+State machine iter=2
+State machine iter=3
+State machine iter=4
+State machine iter=1
+State machine iter=2
+State machine iter=3
+State machine iter=4
+State machine iter=5
+State machine iter=6
+State machine iter=7
+State machine iter=8
+[ Info: up w 0 msgs
+State machine iter=1[ Info: ---------- successive fnc approx ------------x0,x1,: x2,
+[ Info: #1	 -- 
+
+State machine iter=2[ Info: ---------- successive fnc approx ------------x0,x1,: x2,
+[ Info: #1	 -- 
+
+State machine iter=3[ Info: [2x0p,d3,N100],
+
+[ Info: [2x0p,d3,N100],
+State machine iter=4[ Info: #2	 -- 
+
+[ Info: [2x0p,d3,N100],
+State machine iter=5[ Info: [2x0p,d3,N100],
+
+[ Info: #3	 -- 
+State machine iter=6[ Info: [2x0p,d3,N100],
+
+[ Info: [2x0p,d3,N100],
+State machine iter=7[ Info: fmcmc! -- solverData(vert=x2).inferdim=9.0
+
+[ Info: fmcmc! -- solverData(vert=x0).inferdim=12.0
+State machine iter=8[ Info: fmcmc! -- solverData(vert=x1).inferdim=18.0
+
+[ Info: Outgoing msg density on: 
+[ Info: up w 0 msgs
+[ Info: prepCliqInitMsgsUp, seps=Symbol[:x2]
+State machine iter=1[ Info: ---------- successive fnc approx ------------x3,: x4,x2,
+
+[ Info: #1	 -- 
+State machine iter=2
+[ Info: ---------- successive fnc approx ------------x3,: x4,x2,
+[ Info: #1	 -- 
+State machine iter=3[ Info: [2x0p,d3,N100],
+
+[ Info: #2	 -- 
+State machine iter=4[ Info: [2x0p,d3,N100],
+
+[ Info: #3	 -- 
+State machine iter=5[ Info: [2x0p,d3,N100],
+
+[ Info: fmcmc! -- solverData(vert=x4).inferdim=9.0
+State machine iter=6[ Info: fmcmc! -- solverData(vert=x2).inferdim=9.0
+
+[ Info: fmcmc! -- solverData(vert=x3).inferdim=18.0
+State machine iter=7[ Info: Outgoing msg density on: 
+
+[ Info: prepCliqInitMsgsUp, seps=Symbol[:x4, :x2]
+State machine iter=8
+[ Info: up w 0 msgs
+State machine iter=9[ Info: ---------- successive fnc approx ------------x5,: x6,x4,
+
+[ Info: #1	 -- 
+State machine iter=10[ Info: ---------- successive fnc approx ------------x5,: x6,x4,
+
+[ Info: #1	 -- 
+[ Info: [2x0p,d3,N100],
+State machine iter=9[ Info: #2	 -- 
+
+[ Info: [2x0p,d3,N100],
+State machine iter=10[ Info: #3	 -- 
+
+[ Info: [2x0p,d3,N100],
+[ Info: fmcmc! -- solverData(vert=x6).inferdim=9.0
+[ Info: fmcmc! -- solverData(vert=x4).inferdim=9.0
+[ Info: fmcmc! -- solverData(vert=x5).inferdim=18.0
+[ Info: Outgoing msg density on: 
+[ Info: prepCliqInitMsgsUp, seps=Symbol[:x6, :x4]
+State machine iter=5
+State machine iter=6
+[ Info: up w 3 msgs
+State machine iter=9[ Info: inp.sendmsgs[x2].inferdim=9.0
+
+[ Info: inp.sendmsgs[x2].inferdim=9.0
+State machine iter=10[ Info: inp.sendmsgs[x4].inferdim=9.0
+
+[ Info: inp.sendmsgs[x6].inferdim=9.0
+[ Info: inp.sendmsgs[x4].inferdim=9.0
+[ Info: ---------- successive fnc approx ------------x6,x2,x4,: 
+[ Info: #1	 -- 
+[ Info: fmcmc! -- solverData(vert=x6).inferdim=9.0
+[ Info: ---------- successive fnc approx ------------x6,x2,x4,: 
+[ Info: #1	 -- 
+[ Info: [2x0p,d3,N100],
+[ Info: [2x0p,d3,N100],
+[ Info: fmcmc! -- solverData(vert=x6).inferdim=9.0
+[ Info: fmcmc! -- solverData(vert=x2).inferdim=18.0
+[ Info: fmcmc! -- solverData(vert=x4).inferdim=18.0
+[ Info: Outgoing msg density on: 
+[ Info: prepCliqInitMsgsUp, seps=Symbol[]
+State machine iter=7
+State machine iter=8
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [4.91658, 0.106762, -0.196077]
+varMean = getKDEMean(bel) = [2.4265, 0.401359, 0.0522829]
+varPpe = deepcopy(varMax) = [4.91658, 0.106762, -0.196077]
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [16.7828, 3.97379, 1.81002]
+varMean = getKDEMean(bel) = [14.6949, 6.96349, 1.94189]
+varPpe = deepcopy(varMax) = [16.7828, 3.97379, 1.81002]
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [ Info: transferUpdateSubGraph! -- syms=Symbol[:x6, :x2, :x4]
+[ Info: sym=x6, mem size of val=(3, 100) and (3, 100)
+┌ Warning: Deprecated
+└ @ IncrementalInference ~&#x2F;.julia&#x2F;packages&#x2F;IncrementalInference&#x2F;7z9j0&#x2F;src&#x2F;FactorGraphTypes.jl:362
+┌ Warning: hasVariable() deprecated, please use exists()
+└ @ DistributedFactorGraphs ~&#x2F;.julia&#x2F;packages&#x2F;DistributedFactorGraphs&#x2F;DCZjB&#x2F;src&#x2F;services&#x2F;AbstractDFG.jl:461
+[-2.41609, 13.6199, -2.5349]
+varMean = getKDEMean(bel) = [-0.750437, 12.9837, -1.80667]
+varPpe = deepcopy(varMax) = [-2.41609, 13.6199, -2.5349]
+[ Info: sym=x2, mem size of val=(3, 100) and (3, 100)
+┌ Warning: Deprecated
+└ @ IncrementalInference ~&#x2F;.julia&#x2F;packages&#x2F;IncrementalInference&#x2F;7z9j0&#x2F;src&#x2F;FactorGraphTypes.jl:362
+┌ Warning: hasVariable() deprecated, please use exists()
+└ @ DistributedFactorGraphs ~&#x2F;.julia&#x2F;packages&#x2F;DistributedFactorGraphs&#x2F;DCZjB&#x2F;src&#x2F;services&#x2F;AbstractDFG.jl:461
+[ Info: sym=x4, mem size of val=(3, 100) and (3, 100)
+┌ Warning: Deprecated
+└ @ IncrementalInference ~&#x2F;.julia&#x2F;packages&#x2F;IncrementalInference&#x2F;7z9j0&#x2F;src&#x2F;FactorGraphTypes.jl:362
+┌ Warning: hasVariable() deprecated, please use exists()
+└ @ DistributedFactorGraphs ~&#x2F;.julia&#x2F;packages&#x2F;DistributedFactorGraphs&#x2F;DCZjB&#x2F;src&#x2F;services&#x2F;AbstractDFG.jl:461
+State machine iter=11
+[ Info: [2x0p,d3,N100],
+State machine iter=11[ Info: [2x0p,d3,N100],
+
+[ Info: [2x0p,d3,N100],
+[ Info: [2x0p,d3,N100],
+State machine iter=11[ Info: [2x0p,d3,N100],
+[ Info: [2x0p,d3,N100],
+
+[ Info: [2x0p,d3,N100],
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [ Info: [2x0p,d3,N100],
+[11.8342, 14.9883, 2.85065]
+varMean = getKDEMean(bel) = [9.79671, 14.7278, 0.323509]
+varPpe = deepcopy(varMax) = [11.8342, 14.9883, 2.85065]
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [-0.147719, -0.0898683, -0.17986]
+varMean = getKDEMean(bel) = [0.0717428, -0.0879028, -0.182136]
+varPpe = deepcopy(varMax) = [-0.147719, -0.0898683, -0.17986]
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [9.88904, -1.86085, 0.978061]
+varMean = getKDEMean(bel) = [9.58729, -1.18199, 0.89336]
+varPpe = deepcopy(varMax) = [9.88904, -1.86085, 0.978061]
+State machine iter=9
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [-2.76827, 8.07211, -1.13093]
+varMean = getKDEMean(bel) = [-2.28497, 6.71019, -1.04426]
+varPpe = deepcopy(varMax) = [-2.76827, 8.07211, -1.13093]
+State machine iter=12
+State machine iter=12
+State machine iter=12
+[ Info: Finished tree based init-inference
+[ Info: Adding factor of type &#39;IDontExistAsAFactor&#39; to variables &#39;Any[&quot;x0&quot;]&#39;...
+Test Summary: | Pass  Total
+ZMQ Interface |   40     40
+   Testing Caesar tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 13 hours ago and took 14 minutes, 27 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Caesar/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Missings ──────────────────── v0.4.3
+ Installed Inflate ───────────────────── v0.1.1
+ Installed YAML ──────────────────────── v0.3.2
+ Installed Arpack ────────────────────── v0.3.1
+ Installed MbedTLS ───────────────────── v0.7.0
+ Installed ProtoBuf ──────────────────── v0.7.0
+ Installed IncrementalInference ──────── v0.7.11
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed TableTraits ───────────────── v1.0.0
+ Installed AbstractFFTs ──────────────── v0.5.0
+ Installed LineSearches ──────────────── v7.0.1
+ Installed PDMats ────────────────────── v0.9.10
+ Installed DataFrames ────────────────── v0.19.4
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed CommonSubexpressions ──────── v0.2.0
+ Installed Mongoc ────────────────────── v0.2.1
+ Installed Colors ────────────────────── v0.9.6
+ Installed StatsBase ─────────────────── v0.32.0
+ Installed Codecs ────────────────────── v0.5.0
+ Installed JLD2 ──────────────────────── v0.1.8
+ Installed Conda ─────────────────────── v1.3.0
+ Installed Neo4j ─────────────────────── v2.0.0
+ Installed Measures ──────────────────── v0.3.0
+ Installed StatsFuns ─────────────────── v0.9.0
+ Installed URIParser ─────────────────── v0.4.0
+ Installed Polynomials ───────────────── v0.6.0
+ Installed NLSolversBase ─────────────── v7.5.0
+ Installed LCMCore ───────────────────── v0.6.1
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed DocStringExtensions ───────── v0.8.1
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed Requires ──────────────────── v0.5.2
+ Installed Compose ───────────────────── v0.7.3
+ Installed KernelDensityEstimate ─────── v0.5.2
+ Installed ZMQ ───────────────────────── v1.0.0
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed DistributedFactorGraphs ───── v0.4.2
+ Installed Reexport ──────────────────── v0.2.0
+ Installed ForwardDiff ───────────────── v0.10.6
+ Installed Compat ────────────────────── v2.2.0
+ Installed Rmath ─────────────────────── v0.5.1
+ Installed OffsetArrays ──────────────── v0.11.1
+ Installed OrderedCollections ────────── v1.1.0
+ Installed TransformUtils ────────────── v0.2.2
+ Installed CloudGraphs ───────────────── v0.1.2
+ Installed JSON2 ─────────────────────── v0.3.1
+ Installed IniFile ───────────────────── v0.5.0
+ Installed MetaGraphs ────────────────── v0.6.4
+ Installed IterTools ─────────────────── v1.3.0
+ Installed CoordinateTransformations ─── v0.5.0
+ Installed Calculus ──────────────────── v0.5.1
+ Installed Tables ────────────────────── v0.2.11
+ Installed MappedArrays ──────────────── v0.2.2
+ Installed Unmarshal ─────────────────── v0.2.1
+ Installed Combinatorics ─────────────── v0.7.0
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed DataStructures ────────────── v0.17.6
+ Installed FixedPointNumbers ─────────── v0.6.1
+ Installed Parsers ───────────────────── v0.3.10
+ Installed LightGraphs ───────────────── v1.3.0
+ Installed FillArrays ────────────────── v0.7.4
+ Installed DiffEqDiffTools ───────────── v1.4.0
+ Installed Distributions ─────────────── v0.21.8
+ Installed DiffRules ─────────────────── v0.1.0
+ Installed TranscodingStreams ────────── v0.9.5
+ Installed Graphs ────────────────────── v0.10.3
+ Installed JSON ──────────────────────── v0.21.0
+ Installed CodecZlib ─────────────────── v0.6.0
+ Installed Graphics ──────────────────── v0.4.0
+ Installed FunctionalStateMachine ────── v0.1.3
+ Installed ArrayInterface ────────────── v1.2.1
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed DiffResults ───────────────── v0.0.4
+ Installed RoME ──────────────────────── v0.4.4
+ Installed StaticArrays ──────────────── v0.12.1
+ Installed HTTP ──────────────────────── v0.8.8
+ Installed SimpleTraits ──────────────── v0.9.1
+ Installed PaddedViews ───────────────── v0.4.2
+ Installed FFTW ──────────────────────── v1.1.0
+ Installed ImageCore ─────────────────── v0.8.5
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed Parameters ────────────────── v0.12.0
+ Installed FastIOBuffers ─────────────── v0.3.1
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed QuadGK ────────────────────── v2.1.1
+ Installed ApproxManifoldProducts ────── v0.1.2
+ Installed NLsolve ───────────────────── v4.2.0
+ Installed VersionParsing ────────────── v1.1.3
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed Distances ─────────────────── v0.8.2
+ Installed Caesar ────────────────────── v0.4.2
+ Installed ColorTypes ────────────────── v0.8.0
+ Installed MacroTools ────────────────── v0.5.2
+ Installed ImageMagick ───────────────── v0.7.5
+ Installed SpecialFunctions ──────────── v0.8.0
+ Installed PositiveFactorizations ────── v0.2.3
+ Installed GraphPlot ─────────────────── v0.3.1
+ Installed Nullables ─────────────────── v0.0.8
+ Installed UnsafeArrays ──────────────── v1.0.0
+ Installed Rotations ─────────────────── v0.12.0
+ Installed BinDeps ───────────────────── v0.8.10
+ Installed Optim ─────────────────────── v0.19.4
+ Installed ArnoldiMethod ─────────────── v0.0.4
+ Installed ProgressMeter ─────────────── v1.2.0
+ Installed FileIO ────────────────────── v1.0.7
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [62eebf14] + Caesar v0.4.2
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [621f4979] + AbstractFFTs v0.5.0
+  [9bbbb610] + ApproxManifoldProducts v0.1.2
+  [ec485272] + ArnoldiMethod v0.0.4
+  [7d9fca2a] + Arpack v0.3.1
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [62eebf14] + Caesar v0.4.2
+  [49dc2e85] + Calculus v0.5.1
+  [324d7699] + CategoricalArrays v0.7.3
+  [39d38320] + CloudGraphs v0.1.2
+  [944b1d66] + CodecZlib v0.6.0
+  [19ecbf4d] + Codecs v0.5.0
+  [3da002f7] + ColorTypes v0.8.0
+  [5ae59095] + Colors v0.9.6
+  [861a8166] + Combinatorics v0.7.0
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [a81c6b42] + Compose v0.7.3
+  [8f4d0f93] + Conda v1.3.0
+  [150eb455] + CoordinateTransformations v0.5.0
+  [9a962f9c] + DataAPI v1.1.0
+  [a93c6f00] + DataFrames v0.19.4
+  [864edb3b] + DataStructures v0.17.6
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [b4f34e82] + Distances v0.8.2
+  [b5cc3c7e] + DistributedFactorGraphs v0.4.2
+  [31c24e10] + Distributions v0.21.8
+  [ffbed154] + DocStringExtensions v0.8.1
+  [7a1cc6ca] + FFTW v1.1.0
+  [6ccb8d0d] + FastIOBuffers v0.3.1
+  [5789e2e9] + FileIO v1.0.7
+  [1a297f60] + FillArrays v0.7.4
+  [53c48c17] + FixedPointNumbers v0.6.1
+  [f6369f11] + ForwardDiff v0.10.6
+  [3e9e306e] + FunctionalStateMachine v0.1.3
+  [a2cc645c] + GraphPlot v0.3.1
+  [a2bd30eb] + Graphics v0.4.0
+  [86223c79] + Graphs v0.10.3
+  [cd3eb016] + HTTP v0.8.8
+  [a09fc81d] + ImageCore v0.8.5
+  [6218d12a] + ImageMagick v0.7.5
+  [904591bb] + IncrementalInference v0.7.11
+  [d25df0c9] + Inflate v0.1.1
+  [83e8ac13] + IniFile v0.5.0
+  [41ab1584] + InvertedIndices v1.0.0
+  [c8e1da08] + IterTools v1.3.0
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [033835bb] + JLD2 v0.1.8
+  [682c06a0] + JSON v0.21.0
+  [2535ab7d] + JSON2 v0.3.1
+  [2472808a] + KernelDensityEstimate v0.5.2
+  [0ea44823] + LCMCore v0.6.1
+  [093fc24a] + LightGraphs v1.3.0
+  [d3d80556] + LineSearches v7.0.1
+  [1914dd2f] + MacroTools v0.5.2
+  [dbb5928d] + MappedArrays v0.2.2
+  [739be429] + MbedTLS v0.7.0
+  [442fdcdd] + Measures v0.3.0
+  [626554b9] + MetaGraphs v0.6.4
+  [e1d29d7a] + Missings v0.4.3
+  [4fe8b98c] + Mongoc v0.2.1
+  [d41bc354] + NLSolversBase v7.5.0
+  [2774e3e8] + NLsolve v4.2.0
+  [77ba4419] + NaNMath v0.3.3
+  [d2adbeaf] + Neo4j v2.0.0
+  [4d1e1d77] + Nullables v0.0.8
+  [6fe1bfb0] + OffsetArrays v0.11.1
+  [429524aa] + Optim v0.19.4
+  [bac558e1] + OrderedCollections v1.1.0
+  [90014a1f] + PDMats v0.9.10
+  [5432bcbf] + PaddedViews v0.4.2
+  [d96e819e] + Parameters v0.12.0
+  [69de0a69] + Parsers v0.3.10
+  [f27b6e38] + Polynomials v0.6.0
+  [2dfb63ee] + PooledArrays v0.5.2
+  [85a6dd25] + PositiveFactorizations v0.2.3
+  [92933f4c] + ProgressMeter v1.2.0
+  [3349acd9] + ProtoBuf v0.7.0
+  [1fd47b50] + QuadGK v2.1.1
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [79098fc4] + Rmath v0.5.1
+  [91fb55c2] + RoME v0.4.4
+  [6038ab10] + Rotations v0.12.0
+  [699a6c99] + SimpleTraits v0.9.1
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [2913bbd2] + StatsBase v0.32.0
+  [4c63d2b9] + StatsFuns v0.9.0
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [3bb67fe8] + TranscodingStreams v0.9.5
+  [9b8138ad] + TransformUtils v0.2.2
+  [30578b45] + URIParser v0.4.0
+  [cbff2730] + Unmarshal v0.2.1
+  [c4a57d5a] + UnsafeArrays v1.0.0
+  [81def892] + VersionParsing v1.1.3
+  [ddb6d928] + YAML v0.3.2
+  [c2297ded] + ZMQ v1.0.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [7b1f6079] + FileWatching 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [9abbd945] + Profile 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building MbedTLS ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;MbedTLS&#x2F;a1JFn&#x2F;deps&#x2F;build.log`
+  Building Arpack ──────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+  Building Mongoc ──────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;N4NkA&#x2F;deps&#x2F;build.log`
+  Building Conda ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building LCMCore ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;LCMCore&#x2F;cPbOB&#x2F;deps&#x2F;build.log`
+┌ Error: Error building `LCMCore`: 
+│ ┌ Warning: Some registries failed to update:
+│ │     — &#x2F;root&#x2F;.julia&#x2F;registries&#x2F;General — failed to fetch from repo
+│ └ @ Pkg.Types &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Types.jl:1171
+│ ERROR: LoadError: None of the selected providers can install dependency glib.
+│ Use BinDeps.debug(package_name) to see available providers
+│ 
+│ Stacktrace:
+│  [1] error(::String) at .&#x2F;error.jl:33
+│  [2] satisfy!(::BinDeps.LibraryDependency, ::Array{DataType,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:949
+│  [3] satisfy!(::BinDeps.LibraryDependency) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:922
+│  [4] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:977
+│  [5] include at .&#x2F;boot.jl:328 [inlined]
+│  [6] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+│  [7] include(::Module, ::String) at .&#x2F;Base.jl:31
+│  [8] include(::String) at .&#x2F;client.jl:431
+│  [9] top-level scope at none:5
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LCMCore&#x2F;cPbOB&#x2F;deps&#x2F;build.jl:75
+│ Activating environment at `~&#x2F;.julia&#x2F;packages&#x2F;LCMCore&#x2F;cPbOB&#x2F;deps&#x2F;Project.toml`
+│   Updating registry at `~&#x2F;.julia&#x2F;registries&#x2F;General`
+│   Updating git-repo `https:&#x2F;&#x2F;github.com&#x2F;JuliaRegistries&#x2F;General.git`
+│ [?25l[2K[?25h Installed CMakeWrapper ─ v0.2.3
+│  Installed Compat ─────── v2.1.0
+│  Installed CMake ──────── v1.1.1
+│  Installed Parameters ─── v0.10.3
+│  Installed Homebrew ───── v0.7.1
+│  Installed JSON ───────── v0.20.0
+│   Building CMake ───→ `~&#x2F;.julia&#x2F;packages&#x2F;CMake&#x2F;ZGawK&#x2F;deps&#x2F;build.log`
+│   Building Homebrew → `~&#x2F;.julia&#x2F;packages&#x2F;Homebrew&#x2F;s09IX&#x2F;deps&#x2F;build.log`
+└ @ Pkg.Operations &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;backwards_compatible_isolation.jl:647
+  Building ZMQ ─────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;ZMQ&#x2F;ABGOx&#x2F;deps&#x2F;build.log`
+  Building Rmath ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+  Building CodecZlib ───────→ `~&#x2F;.julia&#x2F;packages&#x2F;CodecZlib&#x2F;5t9zO&#x2F;deps&#x2F;build.log`
+  Building FFTW ────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFTW&#x2F;loJ3F&#x2F;deps&#x2F;build.log`
+  Building ImageMagick ─────→ `~&#x2F;.julia&#x2F;packages&#x2F;ImageMagick&#x2F;vMfoS&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing Caesar
+    Status `&#x2F;tmp&#x2F;jl_J4etB8&#x2F;Manifest.toml`
+  [621f4979] AbstractFFTs v0.5.0
+  [9bbbb610] ApproxManifoldProducts v0.1.2
+  [ec485272] ArnoldiMethod v0.0.4
+  [7d9fca2a] Arpack v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [62eebf14] Caesar v0.4.2
+  [49dc2e85] Calculus v0.5.1
+  [324d7699] CategoricalArrays v0.7.3
+  [39d38320] CloudGraphs v0.1.2
+  [944b1d66] CodecZlib v0.6.0
+  [19ecbf4d] Codecs v0.5.0
+  [3da002f7] ColorTypes v0.8.0
+  [5ae59095] Colors v0.9.6
+  [861a8166] Combinatorics v0.7.0
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [a81c6b42] Compose v0.7.3
+  [8f4d0f93] Conda v1.3.0
+  [150eb455] CoordinateTransformations v0.5.0
+  [9a962f9c] DataAPI v1.1.0
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [b5cc3c7e] DistributedFactorGraphs v0.4.2
+  [31c24e10] Distributions v0.21.8
+  [ffbed154] DocStringExtensions v0.8.1
+  [7a1cc6ca] FFTW v1.1.0
+  [6ccb8d0d] FastIOBuffers v0.3.1
+  [5789e2e9] FileIO v1.0.7
+  [1a297f60] FillArrays v0.7.4
+  [53c48c17] FixedPointNumbers v0.6.1
+  [f6369f11] ForwardDiff v0.10.6
+  [3e9e306e] FunctionalStateMachine v0.1.3
+  [a2cc645c] GraphPlot v0.3.1
+  [a2bd30eb] Graphics v0.4.0
+  [86223c79] Graphs v0.10.3
+  [cd3eb016] HTTP v0.8.8
+  [a09fc81d] ImageCore v0.8.5
+  [6218d12a] ImageMagick v0.7.5
+  [904591bb] IncrementalInference v0.7.11
+  [d25df0c9] Inflate v0.1.1
+  [83e8ac13] IniFile v0.5.0
+  [41ab1584] InvertedIndices v1.0.0
+  [c8e1da08] IterTools v1.3.0
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [033835bb] JLD2 v0.1.8
+  [682c06a0] JSON v0.21.0
+  [2535ab7d] JSON2 v0.3.1
+  [2472808a] KernelDensityEstimate v0.5.2
+  [0ea44823] LCMCore v0.6.1
+  [093fc24a] LightGraphs v1.3.0
+  [d3d80556] LineSearches v7.0.1
+  [1914dd2f] MacroTools v0.5.2
+  [dbb5928d] MappedArrays v0.2.2
+  [739be429] MbedTLS v0.7.0
+  [442fdcdd] Measures v0.3.0
+  [626554b9] MetaGraphs v0.6.4
+  [e1d29d7a] Missings v0.4.3
+  [4fe8b98c] Mongoc v0.2.1
+  [d41bc354] NLSolversBase v7.5.0
+  [2774e3e8] NLsolve v4.2.0
+  [77ba4419] NaNMath v0.3.3
+  [d2adbeaf] Neo4j v2.0.0
+  [4d1e1d77] Nullables v0.0.8
+  [6fe1bfb0] OffsetArrays v0.11.1
+  [429524aa] Optim v0.19.4
+  [bac558e1] OrderedCollections v1.1.0
+  [90014a1f] PDMats v0.9.10
+  [5432bcbf] PaddedViews v0.4.2
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [f27b6e38] Polynomials v0.6.0
+  [2dfb63ee] PooledArrays v0.5.2
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [92933f4c] ProgressMeter v1.2.0
+  [3349acd9] ProtoBuf v0.7.0
+  [1fd47b50] QuadGK v2.1.1
+  [3cdcf5f2] RecipesBase v0.7.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [79098fc4] Rmath v0.5.1
+  [91fb55c2] RoME v0.4.4
+  [6038ab10] Rotations v0.12.0
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [3bb67fe8] TranscodingStreams v0.9.5
+  [9b8138ad] TransformUtils v0.2.2
+  [30578b45] URIParser v0.4.0
+  [cbff2730] Unmarshal v0.2.1
+  [c4a57d5a] UnsafeArrays v1.0.0
+  [81def892] VersionParsing v1.1.3
+  [ddb6d928] YAML v0.3.2
+  [c2297ded] ZMQ v1.0.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [7b1f6079] FileWatching  [`@stdlib&#x2F;FileWatching`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [9abbd945] Profile  [`@stdlib&#x2F;Profile`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+[ Info: Multithreaded  convolutions possible, Threads.nthreads()=1.  See `addFactor!(.;threadmodel=MultiThreaded)`.
+[ Info: KernelDensityEstimate.FORCE_EVAL_DIRECT = true
+[ Info: KernelDensityEstimate.FORCE_EVAL_DIRECT = true
+WARNING: ignoring conflicting import of IncrementalInference.compare into RoME
+WARNING: Method definition convert(Type{Base.Dict{String, Any}}, IncrementalInference.Prior{T} where T) in module IncrementalInference at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;IncrementalInference&#x2F;7z9j0&#x2F;src&#x2F;DefaultNodeTypes.jl:89 overwritten in module ZmqCaesar at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;factors&#x2F;factorSerialization.jl:11.
+  ** incremental compilation may be fatally broken for this module **
+
+WARNING: Method definition convert(Type{IncrementalInference.Prior{T} where T}, Base.Dict{String, Any}) in module IncrementalInference at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;IncrementalInference&#x2F;7z9j0&#x2F;src&#x2F;DefaultNodeTypes.jl:98 overwritten in module ZmqCaesar at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;factors&#x2F;factorSerialization.jl:20.
+  ** incremental compilation may be fatally broken for this module **
+
+WARNING: Method definition convert(Type{RoME.Pose2Point2BearingRange{B, R} where R&lt;:Union{IncrementalInference.AliasingScalarSampler, KernelDensityEstimate.BallTreeDensity, Distributions.Distribution{F, S} where S&lt;:Distributions.ValueSupport where F&lt;:Distributions.VariateForm} where B&lt;:Union{IncrementalInference.AliasingScalarSampler, KernelDensityEstimate.BallTreeDensity, Distributions.Distribution{F, S} where S&lt;:Distributions.ValueSupport where F&lt;:Distributions.VariateForm}}, Base.Dict{String, Any}) in module ZmqCaesar at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;factors&#x2F;factorSerialization.jl:60 overwritten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;factors&#x2F;factorSerialization.jl:72.
+  ** incremental compilation may be fatally broken for this module **
+
+┌ Warning: Replacing docs for `Base.convert :: Tuple{Type{RoME.Pose2Point2BearingRange},Dict{String,Any}}` in module `Caesar.ZmqCaesar`
+└ @ Base.Docs docs&#x2F;Docs.jl:223
+WARNING: Method definition convert(Type{RoME.PartialPose3XYYaw{T1, T2} where T2 where T1}, Base.Dict{String, Any}) in module RoME at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;RoME&#x2F;iDAXw&#x2F;src&#x2F;factors&#x2F;PartialPose3.jl:237 overwritten in module ZmqCaesar at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;factors&#x2F;factorSerialization.jl:94.
+  ** incremental compilation may be fatally broken for this module **
+
+WARNING: Method definition convert(Type{RoME.PartialPriorRollPitchZ{T1, T2} where T2 where T1}, Base.Dict{String, Any}) in module RoME at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;RoME&#x2F;iDAXw&#x2F;src&#x2F;factors&#x2F;PartialPose3.jl:90 overwritten in module ZmqCaesar at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;factors&#x2F;factorSerialization.jl:106.
+  ** incremental compilation may be fatally broken for this module **
+
+[ Info: [ZMQ Server] Plotting endpoints are disabled in ZMQ server. Please call &#39;using RoMEPlotting&#39; before &#39;using Caesar&#39; if you would like to enable them.
+WARNING: Method definition isopen(ZMQ.Socket) in module ZMQ at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ZMQ&#x2F;ABGOx&#x2F;src&#x2F;socket.jl:23 overwritten in module ZmqCaesar at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;ZmqServer.jl:66.
+  ** incremental compilation may be fatally broken for this module **
+
+WARNING: could not import Base.compare into Caesar
+[ Info: Adding graph visualization tools.
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x0&#39;...
+requestDict = Dict{String,Any}(&quot;payload&quot; =&gt; Dict{String,Any}(&quot;variables&quot; =&gt; &quot;true&quot;,&quot;factors&quot; =&gt; &quot;true&quot;),&quot;request&quot; =&gt; &quot;ls&quot;)
+[ Info: Adding factor of type &#39;Prior&#39; to variables &#39;Any[&quot;x0&quot;]&#39;...
+[ Info: try doautoinit! of x0
+requestDict = Dict{String,Any}(&quot;payload&quot; =&gt; Dict{String,Any}(&quot;variables&quot; =&gt; &quot;true&quot;,&quot;factors&quot; =&gt; &quot;true&quot;),&quot;request&quot; =&gt; &quot;ls&quot;)
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x1&#39;...
+odoFactCmd = Dict{String, Any}(&quot;request&quot; =&gt; &quot;addFactor&quot;, &quot;payload&quot; =&gt; JSON.parse(JSON.json(FactorRequest([&quot;x$(i - 1)&quot;, &quot;x$(i)&quot;], &quot;Pose2Pose2&quot;, factor)))) = Dict{String,Any}(&quot;payload&quot; =&gt; Dict{String,Any}(&quot;variables&quot; =&gt; Any[&quot;x0&quot;, &quot;x1&quot;],&quot;factorType&quot; =&gt; &quot;Pose2Pose2&quot;,&quot;factor&quot; =&gt; Dict{String,Any}(&quot;measurement&quot; =&gt; Any[Dict{String,Any}(&quot;distType&quot; =&gt; &quot;MvNormal&quot;,&quot;mean&quot; =&gt; Any[10.0, 0.0, 1.0471975511965976],&quot;cov&quot; =&gt; Any[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1])])),&quot;request&quot; =&gt; &quot;addFactor&quot;)
+[ Info: Adding factor of type &#39;Pose2Pose2&#39; to variables &#39;Any[&quot;x0&quot;, &quot;x1&quot;]&#39;...
+[ Info: try doautoinit! of x0
+[ Info: init with useinitfct Symbol[:x0f1]
+[ Info: do init of x0
+[ Info: try doautoinit! of x1
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x2&#39;...
+odoFactCmd = Dict{String, Any}(&quot;request&quot; =&gt; &quot;addFactor&quot;, &quot;payload&quot; =&gt; JSON.parse(JSON.json(FactorRequest([&quot;x$(i - 1)&quot;, &quot;x$(i)&quot;], &quot;Pose2Pose2&quot;, factor)))) = Dict{String,Any}(&quot;payload&quot; =&gt; Dict{String,Any}(&quot;variables&quot; =&gt; Any[&quot;x1&quot;, &quot;x2&quot;],&quot;factorType&quot; =&gt; &quot;Pose2Pose2&quot;,&quot;factor&quot; =&gt; Dict{String,Any}(&quot;measurement&quot; =&gt; Any[Dict{String,Any}(&quot;distType&quot; =&gt; &quot;MvNormal&quot;,&quot;mean&quot; =&gt; Any[10.0, 0.0, 1.0471975511965976],&quot;cov&quot; =&gt; Any[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1])])),&quot;request&quot; =&gt; &quot;addFactor&quot;)
+[ Info: Adding factor of type &#39;Pose2Pose2&#39; to variables &#39;Any[&quot;x1&quot;, &quot;x2&quot;]&#39;...
+[ Info: try doautoinit! of x1
+[ Info: init with useinitfct Symbol[:x0x1f1]
+[ Info: do init of x1
+[ Info: try doautoinit! of x2
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x3&#39;...
+odoFactCmd = Dict{String, Any}(&quot;request&quot; =&gt; &quot;addFactor&quot;, &quot;payload&quot; =&gt; JSON.parse(JSON.json(FactorRequest([&quot;x$(i - 1)&quot;, &quot;x$(i)&quot;], &quot;Pose2Pose2&quot;, factor)))) = Dict{String,Any}(&quot;payload&quot; =&gt; Dict{String,Any}(&quot;variables&quot; =&gt; Any[&quot;x2&quot;, &quot;x3&quot;],&quot;factorType&quot; =&gt; &quot;Pose2Pose2&quot;,&quot;factor&quot; =&gt; Dict{String,Any}(&quot;measurement&quot; =&gt; Any[Dict{String,Any}(&quot;distType&quot; =&gt; &quot;MvNormal&quot;,&quot;mean&quot; =&gt; Any[10.0, 0.0, 1.0471975511965976],&quot;cov&quot; =&gt; Any[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1])])),&quot;request&quot; =&gt; &quot;addFactor&quot;)
+[ Info: Adding factor of type &#39;Pose2Pose2&#39; to variables &#39;Any[&quot;x2&quot;, &quot;x3&quot;]&#39;...
+[ Info: try doautoinit! of x2
+[ Info: init with useinitfct Symbol[:x1x2f1]
+[ Info: do init of x2
+[ Info: try doautoinit! of x3
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x4&#39;...
+odoFactCmd = Dict{String, Any}(&quot;request&quot; =&gt; &quot;addFactor&quot;, &quot;payload&quot; =&gt; JSON.parse(JSON.json(FactorRequest([&quot;x$(i - 1)&quot;, &quot;x$(i)&quot;], &quot;Pose2Pose2&quot;, factor)))) = Dict{String,Any}(&quot;payload&quot; =&gt; Dict{String,Any}(&quot;variables&quot; =&gt; Any[&quot;x3&quot;, &quot;x4&quot;],&quot;factorType&quot; =&gt; &quot;Pose2Pose2&quot;,&quot;factor&quot; =&gt; Dict{String,Any}(&quot;measurement&quot; =&gt; Any[Dict{String,Any}(&quot;distType&quot; =&gt; &quot;MvNormal&quot;,&quot;mean&quot; =&gt; Any[10.0, 0.0, 1.0471975511965976],&quot;cov&quot; =&gt; Any[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1])])),&quot;request&quot; =&gt; &quot;addFactor&quot;)
+[ Info: Adding factor of type &#39;Pose2Pose2&#39; to variables &#39;Any[&quot;x3&quot;, &quot;x4&quot;]&#39;...
+[ Info: try doautoinit! of x3
+[ Info: init with useinitfct Symbol[:x2x3f1]
+[ Info: do init of x3
+[ Info: try doautoinit! of x4
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x5&#39;...
+odoFactCmd = Dict{String, Any}(&quot;request&quot; =&gt; &quot;addFactor&quot;, &quot;payload&quot; =&gt; JSON.parse(JSON.json(FactorRequest([&quot;x$(i - 1)&quot;, &quot;x$(i)&quot;], &quot;Pose2Pose2&quot;, factor)))) = Dict{String,Any}(&quot;payload&quot; =&gt; Dict{String,Any}(&quot;variables&quot; =&gt; Any[&quot;x4&quot;, &quot;x5&quot;],&quot;factorType&quot; =&gt; &quot;Pose2Pose2&quot;,&quot;factor&quot; =&gt; Dict{String,Any}(&quot;measurement&quot; =&gt; Any[Dict{String,Any}(&quot;distType&quot; =&gt; &quot;MvNormal&quot;,&quot;mean&quot; =&gt; Any[10.0, 0.0, 1.0471975511965976],&quot;cov&quot; =&gt; Any[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1])])),&quot;request&quot; =&gt; &quot;addFactor&quot;)
+[ Info: Adding factor of type &#39;Pose2Pose2&#39; to variables &#39;Any[&quot;x4&quot;, &quot;x5&quot;]&#39;...
+[ Info: try doautoinit! of x4
+[ Info: init with useinitfct Symbol[:x3x4f1]
+[ Info: do init of x4
+[ Info: try doautoinit! of x5
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x6&#39;...
+odoFactCmd = Dict{String, Any}(&quot;request&quot; =&gt; &quot;addFactor&quot;, &quot;payload&quot; =&gt; JSON.parse(JSON.json(FactorRequest([&quot;x$(i - 1)&quot;, &quot;x$(i)&quot;], &quot;Pose2Pose2&quot;, factor)))) = Dict{String,Any}(&quot;payload&quot; =&gt; Dict{String,Any}(&quot;variables&quot; =&gt; Any[&quot;x5&quot;, &quot;x6&quot;],&quot;factorType&quot; =&gt; &quot;Pose2Pose2&quot;,&quot;factor&quot; =&gt; Dict{String,Any}(&quot;measurement&quot; =&gt; Any[Dict{String,Any}(&quot;distType&quot; =&gt; &quot;MvNormal&quot;,&quot;mean&quot; =&gt; Any[10.0, 0.0, 1.0471975511965976],&quot;cov&quot; =&gt; Any[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1])])),&quot;request&quot; =&gt; &quot;addFactor&quot;)
+[ Info: Adding factor of type &#39;Pose2Pose2&#39; to variables &#39;Any[&quot;x5&quot;, &quot;x6&quot;]&#39;...
+[ Info: try doautoinit! of x5
+[ Info: init with useinitfct Symbol[:x4x5f1]
+[ Info: do init of x5
+[ Info: try doautoinit! of x6
+requestDict = Dict{String,Any}(&quot;payload&quot; =&gt; Dict{String,Any}(&quot;variables&quot; =&gt; &quot;true&quot;,&quot;factors&quot; =&gt; &quot;true&quot;),&quot;request&quot; =&gt; &quot;ls&quot;)
+┌ Warning: deprecated batchSolve! in favor of new solveTree! interface with the same and more functionality.
+└ @ IncrementalInference ~&#x2F;.julia&#x2F;packages&#x2F;IncrementalInference&#x2F;7z9j0&#x2F;src&#x2F;SolverAPI.jl:228
+
+Building Bayes net...
+[ Info: 
+[ Info: Eliminating x5
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x5
+Si = Symbol[:x6, :x4]
+[ Info: 
+[ Info: Eliminating x3
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x3
+Si = Symbol[:x4, :x2]
+[ Info: 
+[ Info: Eliminating x1
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x1
+Si = Symbol[:x2, :x0]
+[ Info: 
+[ Info: Eliminating x0
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x0
+[ Info: Looking at x2x0f1
+[ Info:    - Breaking link x2x0f1-&gt;x0...
+[ Info:      - Original links: Symbol[:x2, :x0]
+[ Info:      - New links: Symbol[:x2]
+[ Info: x2x0f1 still has links to other variables, readding it back...
+Si = Symbol[:x2]
+[ Info: 
+[ Info: Eliminating x4
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x4
+[ Info: Looking at x4x2f1
+[ Info:    - Breaking link x4x2f1-&gt;x4...
+[ Info:      - Original links: Symbol[:x4, :x2]
+[ Info:      - New links: Symbol[:x2]
+[ Info: x4x2f1 still has links to other variables, readding it back...
+[ Info: Looking at x6x4f1
+[ Info:    - Breaking link x6x4f1-&gt;x4...
+[ Info:      - Original links: Symbol[:x6, :x4]
+[ Info:      - New links: Symbol[:x6]
+[ Info: x6x4f1 still has links to other variables, readding it back...
+Si = Symbol[:x2, :x6]
+[ Info: 
+[ Info: Eliminating x2
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x2
+[ Info: Looking at x2f1
+[ Info:    - Breaking link x2f1-&gt;x2...
+[ Info:      - Original links: Symbol[:x2]
+[ Info:      - New links: Symbol[]
+[ Info: x2f1 doesn&#39;t have any other links, not adding it back...
+[ Info: Looking at x2f2
+[ Info:    - Breaking link x2f2-&gt;x2...
+[ Info:      - Original links: Symbol[:x2]
+[ Info:      - New links: Symbol[]
+[ Info: x2f2 doesn&#39;t have any other links, not adding it back...
+[ Info: Looking at x2x6f1
+[ Info:    - Breaking link x2x6f1-&gt;x2...
+[ Info:      - Original links: Symbol[:x2, :x6]
+[ Info:      - New links: Symbol[:x6]
+[ Info: x2x6f1 still has links to other variables, readding it back...
+[ Info: Looking at x2f3
+[ Info:    - Breaking link x2f3-&gt;x2...
+[ Info:      - Original links: Symbol[:x2]
+[ Info:      - New links: Symbol[]
+[ Info: x2f3 doesn&#39;t have any other links, not adding it back...
+Si = Symbol[:x6]
+[ Info: 
+[ Info: Eliminating x6
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x6
+[ Info: Looking at x6f1
+[ Info:    - Breaking link x6f1-&gt;x6...
+[ Info:      - Original links: Symbol[:x6]
+[ Info:      - New links: Symbol[]
+[ Info: x6f1 doesn&#39;t have any other links, not adding it back...
+[ Info: Looking at x6f3
+[ Info:    - Breaking link x6f3-&gt;x6...
+[ Info:      - Original links: Symbol[:x6]
+[ Info:      - New links: Symbol[]
+[ Info: x6f3 doesn&#39;t have any other links, not adding it back...
+[ Info: Looking at x6f2
+[ Info:    - Breaking link x6f2-&gt;x6...
+[ Info:      - Original links: Symbol[:x6]
+[ Info:      - New links: Symbol[]
+[ Info: x6f2 doesn&#39;t have any other links, not adding it back...
+Find potential functions for each clique
+[ Info: Get potentials x0,x1,: x2,
+[ Info: using all factors among cliq variables
+[ Info: finding all frontals for down WIP
+[ Info: Get potentials x3,: x4,x2,
+[ Info: using all factors among cliq variables
+[ Info: finding all frontals for down WIP
+[ Info: Get potentials x5,: x6,x4,
+[ Info: using all factors among cliq variables
+[ Info: finding all frontals for down WIP
+[ Info: Get potentials x6,x2,x4,: 
+[ Info: using all factors among cliq variables
+[ Info: finding all frontals for down WIP
+[ Info: cliq=1 adding factor that is no in separator, x5
+[ Info: cliq=1 adding factor that is no in separator, x3
+[ Info: cliq=1 adding factor that is no in separator, x1
+[ Info: cliq=1 adding factor that is no in separator, x3
+[ Info: cliq=1 adding factor that is no in separator, x5
+Bayes Tree
+[ Info: Solving over the Bayes (Junction) tree.
+[ Info: Do tree based init-inference on tree
+State machine iter=1
+State machine iter=2
+State machine iter=3
+State machine iter=4
+State machine iter=1
+State machine iter=2
+State machine iter=3
+State machine iter=4
+State machine iter=5
+State machine iter=6
+State machine iter=7
+State machine iter=8
+[ Info: up w 0 msgs
+[ Info: ---------- successive fnc approx ------------x0,x1,: x2,
+[ Info: #1	 -- 
+State machine iter=1
+State machine iter=2[ Info: ---------- successive fnc approx ------------x0,x1,: x2,
+
+[ Info: #1	 -- 
+State machine iter=3[ Info: [2x0p,d3,N100],
+
+[ Info: [2x0p,d3,N100],
+State machine iter=4[ Info: #2	 -- 
+
+[ Info: [2x0p,d3,N100],
+State machine iter=5[ Info: [2x0p,d3,N100],
+
+[ Info: #3	 -- 
+State machine iter=6[ Info: [2x0p,d3,N100],
+
+[ Info: [2x0p,d3,N100],
+State machine iter=7[ Info: fmcmc! -- solverData(vert=x2).inferdim=9.0
+
+[ Info: fmcmc! -- solverData(vert=x0).inferdim=12.0
+State machine iter=8[ Info: fmcmc! -- solverData(vert=x1).inferdim=18.0
+[ Info: Outgoing msg density on: 
+
+[ Info: up w 0 msgs
+[ Info: prepCliqInitMsgsUp, seps=Symbol[:x2]
+[ Info: ---------- successive fnc approx ------------x3,: x4,x2,
+State machine iter=1
+State machine iter=2
+State machine iter=3[ Info: #1	 -- 
+[ Info: ---------- successive fnc approx ------------x3,: x4,x2,
+[ Info: #1	 -- 
+[ Info: [2x0p,d3,N100],
+
+[ Info: #2	 -- 
+State machine iter=4[ Info: [2x0p,d3,N100],
+
+[ Info: #3	 -- 
+State machine iter=5[ Info: [2x0p,d3,N100],
+
+[ Info: fmcmc! -- solverData(vert=x4).inferdim=9.0
+State machine iter=6
+[ Info: fmcmc! -- solverData(vert=x2).inferdim=9.0
+State machine iter=7
+[ Info: fmcmc! -- solverData(vert=x3).inferdim=18.0
+[ Info: Outgoing msg density on: 
+[ Info: prepCliqInitMsgsUp, seps=Symbol[:x4, :x2]
+State machine iter=8
+[ Info: up w 0 msgs
+State machine iter=9[ Info: ---------- successive fnc approx ------------x5,: x6,x4,
+[ Info: #1	 -- 
+
+State machine iter=10
+[ Info: ---------- successive fnc approx ------------x5,: x6,x4,
+[ Info: #1	 -- 
+[ Info: [2x0p,d3,N100],
+State machine iter=9[ Info: #2	 -- 
+
+[ Info: [2x0p,d3,N100],
+State machine iter=10
+[ Info: #3	 -- 
+[ Info: [2x0p,d3,N100],
+[ Info: fmcmc! -- solverData(vert=x6).inferdim=9.0
+[ Info: fmcmc! -- solverData(vert=x4).inferdim=9.0
+[ Info: fmcmc! -- solverData(vert=x5).inferdim=18.0
+[ Info: Outgoing msg density on: 
+[ Info: prepCliqInitMsgsUp, seps=Symbol[:x6, :x4]
+State machine iter=5
+State machine iter=6
+[ Info: up w 3 msgs
+[ Info: inp.sendmsgs[x2].inferdim=9.0
+[ Info: inp.sendmsgs[x2].inferdim=9.0
+[ Info: inp.sendmsgs[x4].inferdim=9.0
+[ Info: inp.sendmsgs[x6].inferdim=9.0
+[ Info: inp.sendmsgs[x4].inferdim=9.0
+[ Info: ---------- successive fnc approx ------------x6,x2,x4,: 
+[ Info: #1	 -- 
+State machine iter=9
+State machine iter=10
+[ Info: fmcmc! -- solverData(vert=x6).inferdim=9.0
+[ Info: ---------- successive fnc approx ------------x6,x2,x4,: 
+[ Info: #1	 -- 
+[ Info: [2x0p,d3,N100],
+[ Info: [2x0p,d3,N100],
+[ Info: fmcmc! -- solverData(vert=x6).inferdim=9.0
+[ Info: fmcmc! -- solverData(vert=x2).inferdim=18.0
+[ Info: fmcmc! -- solverData(vert=x4).inferdim=18.0
+[ Info: Outgoing msg density on: 
+[ Info: prepCliqInitMsgsUp, seps=Symbol[]
+State machine iter=7
+State machine iter=8
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [-0.4508021825008973, -0.8331518379455973, -0.18737806049539246]
+varMean = getKDEMean(bel) = [0.5130562368751518, -0.14419037384108815, -0.07264019717727664]
+varPpe = deepcopy(varMax) = [-0.4508021825008973, -0.8331518379455973, -0.18737806049539246]
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [17.519128786641737, 1.9018789592302687, 1.7032215037759044]
+varMean = getKDEMean(bel) = [16.44971733873799, 0.9579298074784832, 1.2092469702034494]
+varPpe = deepcopy(varMax) = [17.519128786641737, 1.9018789592302687, 1.7032215037759044]
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [4.158169751140913, 16.275975507916964, -2.34401001524084]
+varMean = getKDEMean(bel) = [4.970917529982849, 13.51195619473389, -1.3211775340766432]
+varPpe = deepcopy(varMax) = [4.158169751140913, 16.275975507916964, -2.34401001524084]
+[ Info: transferUpdateSubGraph! -- syms=Symbol[:x6, :x2, :x4]
+[ Info: sym=x6, mem size of val=(3, 100) and (3, 100)
+┌ Warning: Deprecated
+└ @ IncrementalInference ~&#x2F;.julia&#x2F;packages&#x2F;IncrementalInference&#x2F;7z9j0&#x2F;src&#x2F;FactorGraphTypes.jl:362
+┌ Warning: hasVariable() deprecated, please use exists()
+└ @ DistributedFactorGraphs ~&#x2F;.julia&#x2F;packages&#x2F;DistributedFactorGraphs&#x2F;DCZjB&#x2F;src&#x2F;services&#x2F;AbstractDFG.jl:461
+[ Info: sym=x2, mem size of val=(3, 100) and (3, 100)
+┌ Warning: Deprecated
+└ @ IncrementalInference ~&#x2F;.julia&#x2F;packages&#x2F;IncrementalInference&#x2F;7z9j0&#x2F;src&#x2F;FactorGraphTypes.jl:362
+┌ Warning: hasVariable() deprecated, please use exists()
+└ @ DistributedFactorGraphs ~&#x2F;.julia&#x2F;packages&#x2F;DistributedFactorGraphs&#x2F;DCZjB&#x2F;src&#x2F;services&#x2F;AbstractDFG.jl:461
+[ Info: sym=x4, mem size of val=(3, 100) and (3, 100)
+┌ Warning: Deprecated
+└ @ IncrementalInference ~&#x2F;.julia&#x2F;packages&#x2F;IncrementalInference&#x2F;7z9j0&#x2F;src&#x2F;FactorGraphTypes.jl:362
+┌ Warning: hasVariable() deprecated, please use exists()
+└ @ DistributedFactorGraphs ~&#x2F;.julia&#x2F;packages&#x2F;DistributedFactorGraphs&#x2F;DCZjB&#x2F;src&#x2F;services&#x2F;AbstractDFG.jl:461
+State machine iter=11
+[ Info: [2x0p,d3,N100],
+State machine iter=11[ Info: [2x0p,d3,N100],
+
+[ Info: [2x0p,d3,N100],
+[ Info: [2x0p,d3,N100],
+State machine iter=11[ Info: [2x0p,d3,N100],
+[ Info: [2x0p,d3,N100],
+
+[ Info: [2x0p,d3,N100],
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [14.07035048027922, 10.15733944193094, 2.5003219861888737][ Info: [2x0p,d3,N100],
+
+varMean = getKDEMean(bel) = [15.402573978254257, 9.410532051089685, 1.250803655994072]
+varPpe = deepcopy(varMax) = [14.07035048027922, 10.15733944193094, 2.5003219861888737]
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [0.1643760873885732, 0.13818396406416744, -0.5295776876385676]
+varMean = getKDEMean(bel) = [0.13269830574240207, 0.163059681531217, -0.2130261932795406]
+varPpe = deepcopy(varMax) = [0.1643760873885732, 0.13818396406416744, -0.5295776876385676]
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [8.695780682851968, -4.580419516784187, 0.607717100475732]
+varMean = getKDEMean(bel) = [9.024451844679858, -3.3453709049632323, 0.5896816065543442]
+varPpe = deepcopy(varMax) = [8.695780682851968, -4.580419516784187, 0.607717100475732]
+State machine iter=9
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [-1.8877224383711602, 8.702198814221413, -1.233145145184675]
+varMean = getKDEMean(bel) = [-1.4347578588151462, 7.6416837577075, -1.1251074354442256]
+varPpe = deepcopy(varMax) = [-1.8877224383711602, 8.702198814221413, -1.233145145184675]
+State machine iter=12
+State machine iter=12
+State machine iter=12
+[ Info: Finished tree based init-inference
+[ Info: Adding factor of type &#39;IDontExistAsAFactor&#39; to variables &#39;Any[&quot;x0&quot;]&#39;...
+Test Summary: | Pass  Total
+ZMQ Interface |   40     40
+   Testing Caesar tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 13 hours ago and took 17 minutes, 14 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Caesar/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed DiffEqDiffTools ───────────── v1.4.0
+ Installed FillArrays ────────────────── v0.7.4
+ Installed Distances ─────────────────── v0.8.2
+ Installed DiffResults ───────────────── v0.0.4
+ Installed RoME ──────────────────────── v0.4.4
+ Installed Optim ─────────────────────── v0.19.4
+ Installed BinDeps ───────────────────── v0.8.10
+ Installed AbstractFFTs ──────────────── v0.5.0
+ Installed Combinatorics ─────────────── v0.7.0
+ Installed MetaGraphs ────────────────── v0.6.4
+ Installed Rotations ─────────────────── v0.12.0
+ Installed VersionParsing ────────────── v1.1.3
+ Installed TranscodingStreams ────────── v0.9.5
+ Installed Neo4j ─────────────────────── v2.0.0
+ Installed ArrayInterface ────────────── v1.2.1
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed Missings ──────────────────── v0.4.3
+ Installed JSON2 ─────────────────────── v0.3.1
+ Installed Inflate ───────────────────── v0.1.1
+ Installed ProtoBuf ──────────────────── v0.7.0
+ Installed ForwardDiff ───────────────── v0.10.6
+ Installed Rmath ─────────────────────── v0.5.1
+ Installed LineSearches ──────────────── v7.0.1
+ Installed NLSolversBase ─────────────── v7.5.0
+ Installed Graphs ────────────────────── v0.10.3
+ Installed Tables ────────────────────── v0.2.11
+ Installed Graphics ──────────────────── v0.4.0
+ Installed Parameters ────────────────── v0.12.0
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed Reexport ──────────────────── v0.2.0
+ Installed Calculus ──────────────────── v0.5.1
+ Installed TransformUtils ────────────── v0.2.2
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed CodecZlib ─────────────────── v0.6.0
+ Installed FastIOBuffers ─────────────── v0.3.1
+ Installed JSON ──────────────────────── v0.21.0
+ Installed Distributions ─────────────── v0.21.8
+ Installed OffsetArrays ──────────────── v0.11.1
+ Installed Compose ───────────────────── v0.7.3
+ Installed MappedArrays ──────────────── v0.2.2
+ Installed FunctionalStateMachine ────── v0.1.3
+ Installed HTTP ──────────────────────── v0.8.8
+ Installed DiffRules ─────────────────── v0.1.0
+ Installed DataStructures ────────────── v0.17.6
+ Installed Polynomials ───────────────── v0.6.0
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed Arpack ────────────────────── v0.3.1
+ Installed IniFile ───────────────────── v0.5.0
+ Installed GraphPlot ─────────────────── v0.3.1
+ Installed MbedTLS ───────────────────── v0.7.0
+ Installed QuadGK ────────────────────── v2.1.1
+ Installed CoordinateTransformations ─── v0.5.0
+ Installed Parsers ───────────────────── v0.3.10
+ Installed UnsafeArrays ──────────────── v1.0.0
+ Installed FixedPointNumbers ─────────── v0.6.1
+ Installed ProgressMeter ─────────────── v1.2.0
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed DistributedFactorGraphs ───── v0.4.2
+ Installed JLD2 ──────────────────────── v0.1.8
+ Installed Codecs ────────────────────── v0.5.0
+ Installed URIParser ─────────────────── v0.4.0
+ Installed SimpleTraits ──────────────── v0.9.1
+ Installed Nullables ─────────────────── v0.0.8
+ Installed Requires ──────────────────── v0.5.2
+ Installed PositiveFactorizations ────── v0.2.3
+ Installed StaticArrays ──────────────── v0.12.1
+ Installed StatsFuns ─────────────────── v0.9.0
+ Installed KernelDensityEstimate ─────── v0.5.2
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed PaddedViews ───────────────── v0.4.2
+ Installed NLsolve ───────────────────── v4.2.0
+ Installed ZMQ ───────────────────────── v1.0.0
+ Installed CloudGraphs ───────────────── v0.1.2
+ Installed Unmarshal ─────────────────── v0.2.1
+ Installed YAML ──────────────────────── v0.3.2
+ Installed CommonSubexpressions ──────── v0.2.0
+ Installed DocStringExtensions ───────── v0.8.1
+ Installed StatsBase ─────────────────── v0.32.0
+ Installed ImageCore ─────────────────── v0.8.5
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed TableTraits ───────────────── v1.0.0
+ Installed ImageMagick ───────────────── v0.7.5
+ Installed PDMats ────────────────────── v0.9.10
+ Installed ArnoldiMethod ─────────────── v0.0.4
+ Installed Mongoc ────────────────────── v0.2.1
+ Installed Conda ─────────────────────── v1.3.0
+ Installed IterTools ─────────────────── v1.3.0
+ Installed MacroTools ────────────────── v0.5.2
+ Installed OrderedCollections ────────── v1.1.0
+ Installed LightGraphs ───────────────── v1.3.0
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed ApproxManifoldProducts ────── v0.1.2
+ Installed LCMCore ───────────────────── v0.6.1
+ Installed DataFrames ────────────────── v0.19.4
+ Installed ColorTypes ────────────────── v0.8.0
+ Installed FFTW ──────────────────────── v1.1.0
+ Installed SpecialFunctions ──────────── v0.8.0
+ Installed FileIO ────────────────────── v1.0.7
+ Installed Measures ──────────────────── v0.3.0
+ Installed Compat ────────────────────── v2.2.0
+ Installed Caesar ────────────────────── v0.4.2
+ Installed IncrementalInference ──────── v0.7.11
+ Installed Colors ────────────────────── v0.9.6
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [62eebf14] + Caesar v0.4.2
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [621f4979] + AbstractFFTs v0.5.0
+  [9bbbb610] + ApproxManifoldProducts v0.1.2
+  [ec485272] + ArnoldiMethod v0.0.4
+  [7d9fca2a] + Arpack v0.3.1
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [62eebf14] + Caesar v0.4.2
+  [49dc2e85] + Calculus v0.5.1
+  [324d7699] + CategoricalArrays v0.7.3
+  [39d38320] + CloudGraphs v0.1.2
+  [944b1d66] + CodecZlib v0.6.0
+  [19ecbf4d] + Codecs v0.5.0
+  [3da002f7] + ColorTypes v0.8.0
+  [5ae59095] + Colors v0.9.6
+  [861a8166] + Combinatorics v0.7.0
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [a81c6b42] + Compose v0.7.3
+  [8f4d0f93] + Conda v1.3.0
+  [150eb455] + CoordinateTransformations v0.5.0
+  [9a962f9c] + DataAPI v1.1.0
+  [a93c6f00] + DataFrames v0.19.4
+  [864edb3b] + DataStructures v0.17.6
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [b4f34e82] + Distances v0.8.2
+  [b5cc3c7e] + DistributedFactorGraphs v0.4.2
+  [31c24e10] + Distributions v0.21.8
+  [ffbed154] + DocStringExtensions v0.8.1
+  [7a1cc6ca] + FFTW v1.1.0
+  [6ccb8d0d] + FastIOBuffers v0.3.1
+  [5789e2e9] + FileIO v1.0.7
+  [1a297f60] + FillArrays v0.7.4
+  [53c48c17] + FixedPointNumbers v0.6.1
+  [f6369f11] + ForwardDiff v0.10.6
+  [3e9e306e] + FunctionalStateMachine v0.1.3
+  [a2cc645c] + GraphPlot v0.3.1
+  [a2bd30eb] + Graphics v0.4.0
+  [86223c79] + Graphs v0.10.3
+  [cd3eb016] + HTTP v0.8.8
+  [a09fc81d] + ImageCore v0.8.5
+  [6218d12a] + ImageMagick v0.7.5
+  [904591bb] + IncrementalInference v0.7.11
+  [d25df0c9] + Inflate v0.1.1
+  [83e8ac13] + IniFile v0.5.0
+  [41ab1584] + InvertedIndices v1.0.0
+  [c8e1da08] + IterTools v1.3.0
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [033835bb] + JLD2 v0.1.8
+  [682c06a0] + JSON v0.21.0
+  [2535ab7d] + JSON2 v0.3.1
+  [2472808a] + KernelDensityEstimate v0.5.2
+  [0ea44823] + LCMCore v0.6.1
+  [093fc24a] + LightGraphs v1.3.0
+  [d3d80556] + LineSearches v7.0.1
+  [1914dd2f] + MacroTools v0.5.2
+  [dbb5928d] + MappedArrays v0.2.2
+  [739be429] + MbedTLS v0.7.0
+  [442fdcdd] + Measures v0.3.0
+  [626554b9] + MetaGraphs v0.6.4
+  [e1d29d7a] + Missings v0.4.3
+  [4fe8b98c] + Mongoc v0.2.1
+  [d41bc354] + NLSolversBase v7.5.0
+  [2774e3e8] + NLsolve v4.2.0
+  [77ba4419] + NaNMath v0.3.3
+  [d2adbeaf] + Neo4j v2.0.0
+  [4d1e1d77] + Nullables v0.0.8
+  [6fe1bfb0] + OffsetArrays v0.11.1
+  [429524aa] + Optim v0.19.4
+  [bac558e1] + OrderedCollections v1.1.0
+  [90014a1f] + PDMats v0.9.10
+  [5432bcbf] + PaddedViews v0.4.2
+  [d96e819e] + Parameters v0.12.0
+  [69de0a69] + Parsers v0.3.10
+  [f27b6e38] + Polynomials v0.6.0
+  [2dfb63ee] + PooledArrays v0.5.2
+  [85a6dd25] + PositiveFactorizations v0.2.3
+  [92933f4c] + ProgressMeter v1.2.0
+  [3349acd9] + ProtoBuf v0.7.0
+  [1fd47b50] + QuadGK v2.1.1
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [79098fc4] + Rmath v0.5.1
+  [91fb55c2] + RoME v0.4.4
+  [6038ab10] + Rotations v0.12.0
+  [699a6c99] + SimpleTraits v0.9.1
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [2913bbd2] + StatsBase v0.32.0
+  [4c63d2b9] + StatsFuns v0.9.0
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [3bb67fe8] + TranscodingStreams v0.9.5
+  [9b8138ad] + TransformUtils v0.2.2
+  [30578b45] + URIParser v0.4.0
+  [cbff2730] + Unmarshal v0.2.1
+  [c4a57d5a] + UnsafeArrays v1.0.0
+  [81def892] + VersionParsing v1.1.3
+  [ddb6d928] + YAML v0.3.2
+  [c2297ded] + ZMQ v1.0.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [7b1f6079] + FileWatching 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [9abbd945] + Profile 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Rmath ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+  Building CodecZlib ───────→ `~&#x2F;.julia&#x2F;packages&#x2F;CodecZlib&#x2F;5t9zO&#x2F;deps&#x2F;build.log`
+  Building Arpack ──────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+  Building MbedTLS ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;MbedTLS&#x2F;a1JFn&#x2F;deps&#x2F;build.log`
+  Building ZMQ ─────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;ZMQ&#x2F;ABGOx&#x2F;deps&#x2F;build.log`
+  Building Conda ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building FFTW ────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFTW&#x2F;loJ3F&#x2F;deps&#x2F;build.log`
+  Building ImageMagick ─────→ `~&#x2F;.julia&#x2F;packages&#x2F;ImageMagick&#x2F;vMfoS&#x2F;deps&#x2F;build.log`
+  Building Mongoc ──────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;N4NkA&#x2F;deps&#x2F;build.log`
+  Building LCMCore ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;LCMCore&#x2F;cPbOB&#x2F;deps&#x2F;build.log`
+Path `&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LCMCore&#x2F;cPbOB` exists and looks like the correct package. Using existing path.
+ Installed CMake ──────── v1.1.2
+ Installed CMakeWrapper ─ v0.2.3
+ Installed Homebrew ───── v0.7.1
+  Updating `&#x2F;tmp&#x2F;jl_2nOg9k&#x2F;Project.toml`
+  [d5fb7624] + CMakeWrapper v0.2.3
+  [d9be37ee] + Homebrew v0.7.1
+  [0ea44823] + LCMCore v0.6.1 [`~&#x2F;.julia&#x2F;packages&#x2F;LCMCore&#x2F;cPbOB`]
+  Updating `&#x2F;tmp&#x2F;jl_2nOg9k&#x2F;Manifest.toml`
+  [631607c0] + CMake v1.1.2
+  [d5fb7624] + CMakeWrapper v0.2.3
+  [d9be37ee] + Homebrew v0.7.1
+  [682c06a0] + JSON v0.21.0
+  [0ea44823] ~ LCMCore v0.6.1 ⇒ v0.6.1 [`~&#x2F;.julia&#x2F;packages&#x2F;LCMCore&#x2F;cPbOB`]
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [69de0a69] + Parsers v0.3.10
+  Building Homebrew → `~&#x2F;.julia&#x2F;packages&#x2F;Homebrew&#x2F;s09IX&#x2F;deps&#x2F;build.log`
+  Building CMake ───→ `~&#x2F;.julia&#x2F;packages&#x2F;CMake&#x2F;nSK2r&#x2F;deps&#x2F;build.log`
+┌ Error: Error building `LCMCore`: 
+│ [?25l[2K[?25hActivating environment at `~&#x2F;.julia&#x2F;packages&#x2F;LCMCore&#x2F;cPbOB&#x2F;deps&#x2F;Project.toml`
+│   Updating registry at `~&#x2F;.julia&#x2F;registries&#x2F;General`
+│   Updating git-repo `https:&#x2F;&#x2F;github.com&#x2F;JuliaRegistries&#x2F;General.git`
+│ ┌ Warning: Some registries failed to update:
+│ │     — &#x2F;root&#x2F;.julia&#x2F;registries&#x2F;General — failed to fetch from repo
+│ └ @ Pkg.Types &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:1081
+│  Installed Compat ───── v2.1.0
+│  Installed CMake ────── v1.1.1
+│  Installed Parameters ─ v0.10.3
+│  Installed JSON ─────── v0.20.0
+│   Building CMake → `~&#x2F;.julia&#x2F;packages&#x2F;CMake&#x2F;ZGawK&#x2F;deps&#x2F;build.log`
+│ ERROR: LoadError: None of the selected providers can install dependency glib.
+│ Use BinDeps.debug(package_name) to see available providers
+│ 
+│ Stacktrace:
+│  [1] error(::String) at .&#x2F;error.jl:33
+│  [2] satisfy!(::BinDeps.LibraryDependency, ::Array{DataType,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:949
+│  [3] satisfy!(::BinDeps.LibraryDependency) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:922
+│  [4] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:977
+│  [5] include(::String) at .&#x2F;client.jl:439
+│  [6] top-level scope at none:5
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LCMCore&#x2F;cPbOB&#x2F;deps&#x2F;build.jl:75
+└ @ Pkg.Operations &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:848
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing Caesar
+Status `&#x2F;tmp&#x2F;jl_Thsxzg&#x2F;Manifest.toml`
+  [621f4979] AbstractFFTs v0.5.0
+  [9bbbb610] ApproxManifoldProducts v0.1.2
+  [ec485272] ArnoldiMethod v0.0.4
+  [7d9fca2a] Arpack v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [62eebf14] Caesar v0.4.2
+  [49dc2e85] Calculus v0.5.1
+  [324d7699] CategoricalArrays v0.7.3
+  [39d38320] CloudGraphs v0.1.2
+  [944b1d66] CodecZlib v0.6.0
+  [19ecbf4d] Codecs v0.5.0
+  [3da002f7] ColorTypes v0.8.0
+  [5ae59095] Colors v0.9.6
+  [861a8166] Combinatorics v0.7.0
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [a81c6b42] Compose v0.7.3
+  [8f4d0f93] Conda v1.3.0
+  [150eb455] CoordinateTransformations v0.5.0
+  [9a962f9c] DataAPI v1.1.0
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [b5cc3c7e] DistributedFactorGraphs v0.4.2
+  [31c24e10] Distributions v0.21.8
+  [ffbed154] DocStringExtensions v0.8.1
+  [7a1cc6ca] FFTW v1.1.0
+  [6ccb8d0d] FastIOBuffers v0.3.1
+  [5789e2e9] FileIO v1.0.7
+  [1a297f60] FillArrays v0.7.4
+  [53c48c17] FixedPointNumbers v0.6.1
+  [f6369f11] ForwardDiff v0.10.6
+  [3e9e306e] FunctionalStateMachine v0.1.3
+  [a2cc645c] GraphPlot v0.3.1
+  [a2bd30eb] Graphics v0.4.0
+  [86223c79] Graphs v0.10.3
+  [cd3eb016] HTTP v0.8.8
+  [a09fc81d] ImageCore v0.8.5
+  [6218d12a] ImageMagick v0.7.5
+  [904591bb] IncrementalInference v0.7.11
+  [d25df0c9] Inflate v0.1.1
+  [83e8ac13] IniFile v0.5.0
+  [41ab1584] InvertedIndices v1.0.0
+  [c8e1da08] IterTools v1.3.0
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [033835bb] JLD2 v0.1.8
+  [682c06a0] JSON v0.21.0
+  [2535ab7d] JSON2 v0.3.1
+  [2472808a] KernelDensityEstimate v0.5.2
+  [0ea44823] LCMCore v0.6.1
+  [093fc24a] LightGraphs v1.3.0
+  [d3d80556] LineSearches v7.0.1
+  [1914dd2f] MacroTools v0.5.2
+  [dbb5928d] MappedArrays v0.2.2
+  [739be429] MbedTLS v0.7.0
+  [442fdcdd] Measures v0.3.0
+  [626554b9] MetaGraphs v0.6.4
+  [e1d29d7a] Missings v0.4.3
+  [4fe8b98c] Mongoc v0.2.1
+  [d41bc354] NLSolversBase v7.5.0
+  [2774e3e8] NLsolve v4.2.0
+  [77ba4419] NaNMath v0.3.3
+  [d2adbeaf] Neo4j v2.0.0
+  [4d1e1d77] Nullables v0.0.8
+  [6fe1bfb0] OffsetArrays v0.11.1
+  [429524aa] Optim v0.19.4
+  [bac558e1] OrderedCollections v1.1.0
+  [90014a1f] PDMats v0.9.10
+  [5432bcbf] PaddedViews v0.4.2
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [f27b6e38] Polynomials v0.6.0
+  [2dfb63ee] PooledArrays v0.5.2
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [92933f4c] ProgressMeter v1.2.0
+  [3349acd9] ProtoBuf v0.7.0
+  [1fd47b50] QuadGK v2.1.1
+  [3cdcf5f2] RecipesBase v0.7.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [79098fc4] Rmath v0.5.1
+  [91fb55c2] RoME v0.4.4
+  [6038ab10] Rotations v0.12.0
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [3bb67fe8] TranscodingStreams v0.9.5
+  [9b8138ad] TransformUtils v0.2.2
+  [30578b45] URIParser v0.4.0
+  [cbff2730] Unmarshal v0.2.1
+  [c4a57d5a] UnsafeArrays v1.0.0
+  [81def892] VersionParsing v1.1.3
+  [ddb6d928] YAML v0.3.2
+  [c2297ded] ZMQ v1.0.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [7b1f6079] FileWatching  [`@stdlib&#x2F;FileWatching`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [9abbd945] Profile  [`@stdlib&#x2F;Profile`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+[ Info: Multithreaded  convolutions possible, Threads.nthreads()=1.  See `addFactor!(.;threadmodel=MultiThreaded)`.
+[ Info: KernelDensityEstimate.FORCE_EVAL_DIRECT = true
+[ Info: KernelDensityEstimate.FORCE_EVAL_DIRECT = true
+WARNING: ignoring conflicting import of IncrementalInference.compare into RoME
+WARNING: Method definition convert(Type{Base.Dict{String, Any}}, IncrementalInference.Prior{T} where T) in module IncrementalInference at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;IncrementalInference&#x2F;7z9j0&#x2F;src&#x2F;DefaultNodeTypes.jl:89 overwritten in module ZmqCaesar at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;factors&#x2F;factorSerialization.jl:11.
+  ** incremental compilation may be fatally broken for this module **
+
+WARNING: Method definition convert(Type{IncrementalInference.Prior{T} where T}, Base.Dict{String, Any}) in module IncrementalInference at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;IncrementalInference&#x2F;7z9j0&#x2F;src&#x2F;DefaultNodeTypes.jl:98 overwritten in module ZmqCaesar at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;factors&#x2F;factorSerialization.jl:20.
+  ** incremental compilation may be fatally broken for this module **
+
+WARNING: Method definition convert(Type{RoME.Pose2Point2BearingRange{B, R} where R&lt;:Union{IncrementalInference.AliasingScalarSampler, KernelDensityEstimate.BallTreeDensity, Distributions.Distribution{F, S} where S&lt;:Distributions.ValueSupport where F&lt;:Distributions.VariateForm} where B&lt;:Union{IncrementalInference.AliasingScalarSampler, KernelDensityEstimate.BallTreeDensity, Distributions.Distribution{F, S} where S&lt;:Distributions.ValueSupport where F&lt;:Distributions.VariateForm}}, Base.Dict{String, Any}) in module ZmqCaesar at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;factors&#x2F;factorSerialization.jl:60 overwritten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;factors&#x2F;factorSerialization.jl:72.
+  ** incremental compilation may be fatally broken for this module **
+
+┌ Warning: Replacing docs for `Base.convert :: Tuple{Type{RoME.Pose2Point2BearingRange},Dict{String,Any}}` in module `Caesar.ZmqCaesar`
+└ @ Base.Docs docs&#x2F;Docs.jl:223
+WARNING: Method definition convert(Type{RoME.PartialPose3XYYaw{T1, T2} where T2 where T1}, Base.Dict{String, Any}) in module RoME at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;RoME&#x2F;iDAXw&#x2F;src&#x2F;factors&#x2F;PartialPose3.jl:237 overwritten in module ZmqCaesar at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;factors&#x2F;factorSerialization.jl:94.
+  ** incremental compilation may be fatally broken for this module **
+
+WARNING: Method definition convert(Type{RoME.PartialPriorRollPitchZ{T1, T2} where T2 where T1}, Base.Dict{String, Any}) in module RoME at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;RoME&#x2F;iDAXw&#x2F;src&#x2F;factors&#x2F;PartialPose3.jl:90 overwritten in module ZmqCaesar at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;factors&#x2F;factorSerialization.jl:106.
+  ** incremental compilation may be fatally broken for this module **
+
+[ Info: [ZMQ Server] Plotting endpoints are disabled in ZMQ server. Please call &#39;using RoMEPlotting&#39; before &#39;using Caesar&#39; if you would like to enable them.
+WARNING: Method definition isopen(ZMQ.Socket) in module ZMQ at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ZMQ&#x2F;ABGOx&#x2F;src&#x2F;socket.jl:23 overwritten in module ZmqCaesar at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Caesar&#x2F;lM6pI&#x2F;src&#x2F;zmq&#x2F;services&#x2F;ZmqServer.jl:66.
+  ** incremental compilation may be fatally broken for this module **
+
+WARNING: could not import Base.compare into Caesar
+[ Info: Adding graph visualization tools.
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x0&#39;...
+requestDict = Dict{String,Any}(&quot;payload&quot; =&gt; Dict{String,Any}(&quot;variables&quot; =&gt; &quot;true&quot;,&quot;factors&quot; =&gt; &quot;true&quot;),&quot;request&quot; =&gt; &quot;ls&quot;)
+[ Info: Adding factor of type &#39;Prior&#39; to variables &#39;Any[&quot;x0&quot;]&#39;...
+[ Info: try doautoinit! of x0
+requestDict = Dict{String,Any}(&quot;payload&quot; =&gt; Dict{String,Any}(&quot;variables&quot; =&gt; &quot;true&quot;,&quot;factors&quot; =&gt; &quot;true&quot;),&quot;request&quot; =&gt; &quot;ls&quot;)
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x1&#39;...
+odoFactCmd = Dict{String, Any}(&quot;request&quot; =&gt; &quot;addFactor&quot;, &quot;payload&quot; =&gt; JSON.parse(JSON.json(FactorRequest([&quot;x$(i - 1)&quot;, &quot;x$(i)&quot;], &quot;Pose2Pose2&quot;, factor)))) = Dict{String,Any}(&quot;payload&quot; =&gt; Dict{String,Any}(&quot;variables&quot; =&gt; Any[&quot;x0&quot;, &quot;x1&quot;],&quot;factorType&quot; =&gt; &quot;Pose2Pose2&quot;,&quot;factor&quot; =&gt; Dict{String,Any}(&quot;measurement&quot; =&gt; Any[Dict{String,Any}(&quot;distType&quot; =&gt; &quot;MvNormal&quot;,&quot;mean&quot; =&gt; Any[10.0, 0.0, 1.0471975511965976],&quot;cov&quot; =&gt; Any[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1])])),&quot;request&quot; =&gt; &quot;addFactor&quot;)
+[ Info: Adding factor of type &#39;Pose2Pose2&#39; to variables &#39;Any[&quot;x0&quot;, &quot;x1&quot;]&#39;...
+[ Info: try doautoinit! of x0
+[ Info: init with useinitfct [:x0f1]
+[ Info: do init of x0
+[ Info: try doautoinit! of x1
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x2&#39;...
+odoFactCmd = Dict{String, Any}(&quot;request&quot; =&gt; &quot;addFactor&quot;, &quot;payload&quot; =&gt; JSON.parse(JSON.json(FactorRequest([&quot;x$(i - 1)&quot;, &quot;x$(i)&quot;], &quot;Pose2Pose2&quot;, factor)))) = Dict{String,Any}(&quot;payload&quot; =&gt; Dict{String,Any}(&quot;variables&quot; =&gt; Any[&quot;x1&quot;, &quot;x2&quot;],&quot;factorType&quot; =&gt; &quot;Pose2Pose2&quot;,&quot;factor&quot; =&gt; Dict{String,Any}(&quot;measurement&quot; =&gt; Any[Dict{String,Any}(&quot;distType&quot; =&gt; &quot;MvNormal&quot;,&quot;mean&quot; =&gt; Any[10.0, 0.0, 1.0471975511965976],&quot;cov&quot; =&gt; Any[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1])])),&quot;request&quot; =&gt; &quot;addFactor&quot;)
+[ Info: Adding factor of type &#39;Pose2Pose2&#39; to variables &#39;Any[&quot;x1&quot;, &quot;x2&quot;]&#39;...
+[ Info: try doautoinit! of x1
+[ Info: init with useinitfct [:x0x1f1]
+[ Info: do init of x1
+[ Info: try doautoinit! of x2
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x3&#39;...
+[ Info: Adding factor of type &#39;Pose2Pose2&#39; to variables &#39;Any[&quot;x2&quot;, &quot;x3&quot;]&#39;...
+odoFactCmd = Dict{String, Any}(&quot;request&quot; =&gt; &quot;addFactor&quot;, &quot;payload&quot; =&gt; JSON.parse(JSON.json(FactorRequest([&quot;x$(i - 1)&quot;, &quot;x$(i)&quot;], &quot;Pose2Pose2&quot;, factor)))) = Dict{String,Any}(&quot;payload&quot; =&gt; Dict{String,Any}(&quot;variables&quot; =&gt; Any[&quot;x2&quot;, &quot;x3&quot;],&quot;factorType&quot; =&gt; &quot;Pose2Pose2&quot;,&quot;factor&quot; =&gt; Dict{String,Any}(&quot;measurement&quot; =&gt; Any[Dict{String,Any}(&quot;distType&quot; =&gt; &quot;MvNormal&quot;,&quot;mean&quot; =&gt; Any[10.0, 0.0, 1.0471975511965976],&quot;cov&quot; =&gt; Any[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1])])),&quot;request&quot; =&gt; &quot;addFactor&quot;)
+[ Info: try doautoinit! of x2
+[ Info: init with useinitfct [:x1x2f1]
+[ Info: do init of x2
+[ Info: try doautoinit! of x3
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x4&#39;...
+[ Info: Adding factor of type &#39;Pose2Pose2&#39; to variables &#39;Any[&quot;x3&quot;, &quot;x4&quot;]&#39;...
+[ Info: try doautoinit! of x3
+[ Info: init with useinitfct [:x2x3f1]
+[ Info: do init of x3
+odoFactCmd = Dict{String, Any}(&quot;request&quot; =&gt; &quot;addFactor&quot;, &quot;payload&quot; =&gt; JSON.parse(JSON.json(FactorRequest([&quot;x$(i - 1)&quot;, &quot;x$(i)&quot;], &quot;Pose2Pose2&quot;, factor)))) = Dict{String,Any}(&quot;payload&quot; =&gt; Dict{String,Any}(&quot;variables&quot; =&gt; Any[&quot;x3&quot;, &quot;x4&quot;],&quot;factorType&quot; =&gt; &quot;Pose2Pose2&quot;,&quot;factor&quot; =&gt; Dict{String,Any}(&quot;measurement&quot; =&gt; Any[Dict{String,Any}(&quot;distType&quot; =&gt; &quot;MvNormal&quot;,&quot;mean&quot; =&gt; Any[10.0, 0.0, 1.0471975511965976],&quot;cov&quot; =&gt; Any[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1])])),&quot;request&quot; =&gt; &quot;addFactor&quot;)
+[ Info: try doautoinit! of x4
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x5&#39;...
+odoFactCmd = Dict{String, Any}(&quot;request&quot; =&gt; &quot;addFactor&quot;, &quot;payload&quot; =&gt; JSON.parse(JSON.json(FactorRequest([&quot;x$(i - 1)&quot;, &quot;x$(i)&quot;], &quot;Pose2Pose2&quot;, factor)))) = Dict{String,Any}(&quot;payload&quot; =&gt; Dict{String,Any}(&quot;variables&quot; =&gt; Any[&quot;x4&quot;, &quot;x5&quot;],&quot;factorType&quot; =&gt; &quot;Pose2Pose2&quot;,&quot;factor&quot; =&gt; Dict{String,Any}(&quot;measurement&quot; =&gt; Any[Dict{String,Any}(&quot;distType&quot; =&gt; &quot;MvNormal&quot;,&quot;mean&quot; =&gt; Any[10.0, 0.0, 1.0471975511965976],&quot;cov&quot; =&gt; Any[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1])])),&quot;request&quot; =&gt; &quot;addFactor&quot;)
+[ Info: Adding factor of type &#39;Pose2Pose2&#39; to variables &#39;Any[&quot;x4&quot;, &quot;x5&quot;]&#39;...
+[ Info: try doautoinit! of x4
+[ Info: init with useinitfct [:x3x4f1]
+[ Info: do init of x4
+[ Info: try doautoinit! of x5
+[ Info: Adding variable of type &#39;Pose2&#39; with id &#39;x6&#39;...
+odoFactCmd = Dict{String, Any}(&quot;request&quot; =&gt; &quot;addFactor&quot;, &quot;payload&quot; =&gt; JSON.parse(JSON.json(FactorRequest([&quot;x$(i - 1)&quot;, &quot;x$(i)&quot;], &quot;Pose2Pose2&quot;, factor)))) = Dict{String,Any}(&quot;payload&quot; =&gt; Dict{String,Any}(&quot;variables&quot; =&gt; Any[&quot;x5&quot;, &quot;x6&quot;],&quot;factorType&quot; =&gt; &quot;Pose2Pose2&quot;,&quot;factor&quot; =&gt; Dict{String,Any}(&quot;measurement&quot; =&gt; Any[Dict{String,Any}(&quot;distType&quot; =&gt; &quot;MvNormal&quot;,&quot;mean&quot; =&gt; Any[10.0, 0.0, 1.0471975511965976],&quot;cov&quot; =&gt; Any[0.1, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.1])])),&quot;request&quot; =&gt; &quot;addFactor&quot;)
+[ Info: Adding factor of type &#39;Pose2Pose2&#39; to variables &#39;Any[&quot;x5&quot;, &quot;x6&quot;]&#39;...
+[ Info: try doautoinit! of x5
+[ Info: init with useinitfct [:x4x5f1]
+[ Info: do init of x5
+[ Info: try doautoinit! of x6
+requestDict = Dict{String,Any}(&quot;payload&quot; =&gt; Dict{String,Any}(&quot;variables&quot; =&gt; &quot;true&quot;,&quot;factors&quot; =&gt; &quot;true&quot;),&quot;request&quot; =&gt; &quot;ls&quot;)
+┌ Warning: deprecated batchSolve! in favor of new solveTree! interface with the same and more functionality.
+└ @ IncrementalInference ~&#x2F;.julia&#x2F;packages&#x2F;IncrementalInference&#x2F;7z9j0&#x2F;src&#x2F;SolverAPI.jl:228
+
+Building Bayes net...
+[ Info: 
+[ Info: Eliminating x5
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x5
+Si = [:x6, :x4]
+[ Info: 
+[ Info: Eliminating x3
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x3
+Si = [:x4, :x2]
+[ Info: 
+[ Info: Eliminating x1
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x1
+Si = [:x2, :x0]
+[ Info: 
+[ Info: Eliminating x0
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x0
+[ Info: Looking at x2x0f1
+[ Info:    - Breaking link x2x0f1-&gt;x0...
+[ Info:      - Original links: [:x2, :x0]
+[ Info:      - New links: [:x2]
+[ Info: x2x0f1 still has links to other variables, readding it back...
+Si = [:x2]
+[ Info: 
+[ Info: Eliminating x4
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x4
+[ Info: Looking at x4x2f1
+[ Info:    - Breaking link x4x2f1-&gt;x4...
+[ Info:      - Original links: [:x4, :x2]
+[ Info:      - New links: [:x2]
+[ Info: x4x2f1 still has links to other variables, readding it back...
+[ Info: Looking at x6x4f1
+[ Info:    - Breaking link x6x4f1-&gt;x4...
+[ Info:      - Original links: [:x6, :x4]
+[ Info:      - New links: [:x6]
+[ Info: x6x4f1 still has links to other variables, readding it back...
+Si = [:x2, :x6]
+[ Info: 
+[ Info: Eliminating x2
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x2
+[ Info: Looking at x2f1
+[ Info:    - Breaking link x2f1-&gt;x2...
+[ Info:      - Original links: [:x2]
+[ Info:      - New links: Symbol[]
+[ Info: x2f1 doesn&#39;t have any other links, not adding it back...
+[ Info: Looking at x2f2
+[ Info:    - Breaking link x2f2-&gt;x2...
+[ Info:      - Original links: [:x2]
+[ Info:      - New links: Symbol[]
+[ Info: x2f2 doesn&#39;t have any other links, not adding it back...
+[ Info: Looking at x2x6f1
+[ Info:    - Breaking link x2x6f1-&gt;x2...
+[ Info:      - Original links: [:x2, :x6]
+[ Info:      - New links: [:x6]
+[ Info: x2x6f1 still has links to other variables, readding it back...
+[ Info: Looking at x2f3
+[ Info:    - Breaking link x2f3-&gt;x2...
+[ Info:      - Original links: [:x2]
+[ Info:      - New links: Symbol[]
+[ Info: x2f3 doesn&#39;t have any other links, not adding it back...
+Si = [:x6]
+[ Info: 
+[ Info: Eliminating x6
+[ Info: ===============
+[ Info: 
+[ Info:  - Removing x6
+[ Info: Looking at x6f1
+[ Info:    - Breaking link x6f1-&gt;x6...
+[ Info:      - Original links: [:x6]
+[ Info:      - New links: Symbol[]
+[ Info: x6f1 doesn&#39;t have any other links, not adding it back...
+[ Info: Looking at x6f3
+[ Info:    - Breaking link x6f3-&gt;x6...
+[ Info:      - Original links: [:x6]
+[ Info:      - New links: Symbol[]
+[ Info: x6f3 doesn&#39;t have any other links, not adding it back...
+[ Info: Looking at x6f2
+[ Info:    - Breaking link x6f2-&gt;x6...
+[ Info:      - Original links: [:x6]
+[ Info:      - New links: Symbol[]
+[ Info: x6f2 doesn&#39;t have any other links, not adding it back...
+Find potential functions for each clique
+[ Info: Get potentials x0,x1,: x2,
+[ Info: using all factors among cliq variables
+[ Info: finding all frontals for down WIP
+[ Info: Get potentials x3,: x4,x2,
+[ Info: using all factors among cliq variables
+[ Info: finding all frontals for down WIP
+[ Info: Get potentials x5,: x6,x4,
+[ Info: using all factors among cliq variables
+[ Info: finding all frontals for down WIP
+[ Info: Get potentials x6,x2,x4,: 
+[ Info: using all factors among cliq variables
+[ Info: finding all frontals for down WIP
+[ Info: cliq=1 adding factor that is no in separator, x5
+[ Info: cliq=1 adding factor that is no in separator, x3
+[ Info: cliq=1 adding factor that is no in separator, x1
+[ Info: cliq=1 adding factor that is no in separator, x3
+[ Info: cliq=1 adding factor that is no in separator, x5
+Bayes Tree
+[ Info: Solving over the Bayes (Junction) tree.
+[ Info: Do tree based init-inference on tree
+State machine iter=1
+State machine iter=2
+State machine iter=3
+State machine iter=4
+State machine iter=1
+State machine iter=2
+State machine iter=3
+State machine iter=4
+State machine iter=5
+State machine iter=6
+State machine iter=7
+State machine iter=8
+[ Info: up w 0 msgs
+State machine iter=1[ Info: ---------- successive fnc approx ------------x0,x1,: x2,
+[ Info: #1	 -- 
+
+State machine iter=2[ Info: ---------- successive fnc approx ------------x0,x1,: x2,
+[ Info: #1	 -- 
+
+State machine iter=3[ Info: [2x0p,d3,N100],
+
+[ Info: [2x0p,d3,N100],
+State machine iter=4[ Info: #2	 -- 
+
+[ Info: [2x0p,d3,N100],
+State machine iter=5
+[ Info: [2x0p,d3,N100],
+[ Info: #3	 -- 
+State machine iter=6[ Info: [2x0p,d3,N100],
+
+[ Info: [2x0p,d3,N100],
+State machine iter=7[ Info: fmcmc! -- solverData(vert=x2).inferdim=9.0
+
+[ Info: fmcmc! -- solverData(vert=x0).inferdim=12.0
+State machine iter=8[ Info: fmcmc! -- solverData(vert=x1).inferdim=18.0
+[ Info: Outgoing msg density on: 
+
+[ Info: up w 0 msgs
+State machine iter=1[ Info: prepCliqInitMsgsUp, seps=[:x2]
+[ Info: ---------- successive fnc approx ------------x3,: x4,x2,
+
+[ Info: #1	 -- 
+State machine iter=2
+State machine iter=3[ Info: ---------- successive fnc approx ------------x3,: x4,x2,
+[ Info: #1	 -- 
+[ Info: [2x0p,d3,N100],
+
+[ Info: #2	 -- 
+State machine iter=4
+[ Info: [2x0p,d3,N100],
+[ Info: #3	 -- 
+State machine iter=5
+[ Info: [2x0p,d3,N100],
+[ Info: fmcmc! -- solverData(vert=x4).inferdim=9.0
+State machine iter=6[ Info: fmcmc! -- solverData(vert=x2).inferdim=9.0
+
+[ Info: fmcmc! -- solverData(vert=x3).inferdim=18.0
+State machine iter=7[ Info: Outgoing msg density on: 
+
+[ Info: prepCliqInitMsgsUp, seps=[:x4, :x2]
+State machine iter=8
+[ Info: up w 0 msgs
+State machine iter=9[ Info: ---------- successive fnc approx ------------x5,: x6,x4,
+
+[ Info: #1	 -- 
+State machine iter=10[ Info: ---------- successive fnc approx ------------x5,: x6,x4,
+[ Info: #1	 -- 
+
+[ Info: [2x0p,d3,N100],
+State machine iter=9[ Info: #2	 -- 
+
+[ Info: [2x0p,d3,N100],
+State machine iter=10
+[ Info: #3	 -- 
+[ Info: [2x0p,d3,N100],
+[ Info: fmcmc! -- solverData(vert=x6).inferdim=9.0
+[ Info: fmcmc! -- solverData(vert=x4).inferdim=9.0
+[ Info: fmcmc! -- solverData(vert=x5).inferdim=18.0
+[ Info: Outgoing msg density on: 
+[ Info: prepCliqInitMsgsUp, seps=[:x6, :x4]
+State machine iter=5
+State machine iter=6
+[ Info: up w 3 msgs
+State machine iter=9[ Info: inp.sendmsgs[x2].inferdim=9.0
+
+[ Info: inp.sendmsgs[x2].inferdim=9.0
+State machine iter=10[ Info: inp.sendmsgs[x4].inferdim=9.0
+[ Info: inp.sendmsgs[x6].inferdim=9.0
+
+[ Info: inp.sendmsgs[x4].inferdim=9.0
+[ Info: ---------- successive fnc approx ------------x6,x2,x4,: 
+[ Info: #1	 -- 
+[ Info: fmcmc! -- solverData(vert=x6).inferdim=9.0
+[ Info: ---------- successive fnc approx ------------x6,x2,x4,: 
+[ Info: #1	 -- 
+[ Info: [2x0p,d3,N100],
+[ Info: [2x0p,d3,N100],
+[ Info: fmcmc! -- solverData(vert=x6).inferdim=9.0
+[ Info: fmcmc! -- solverData(vert=x2).inferdim=18.0
+[ Info: fmcmc! -- solverData(vert=x4).inferdim=18.0
+[ Info: Outgoing msg density on: 
+[ Info: prepCliqInitMsgsUp, seps=Symbol[]
+State machine iter=7
+State machine iter=8
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [1.831109453357819, -2.4935262635480027, 0.06075939805912662]
+varMean = getKDEMean(bel) = [1.606911231182972, -1.1874271078982053, 0.1500257867617038]
+varPpe = deepcopy(varMax) = [1.831109453357819, -2.4935262635480027, 0.06075939805912662]
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [16.152581645901417, 1.15999966520909, 1.5554373072140448]
+varMean = getKDEMean(bel) = [14.824523582825137, 5.046870269436461, 1.8219086485699192]
+varPpe = deepcopy(varMax) = [16.152581645901417, 1.15999966520909, 1.5554373072140448]
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [-2.728810321728407, 14.35310543771381, -1.7512923650316983]
+varMean = getKDEMean(bel) = [-1.2057611412509912, 13.223863609210332, -1.6415301475930346]
+varPpe = deepcopy(varMax) = [-2.728810321728407, 14.35310543771381, -1.7512923650316983]
+[ Info: transferUpdateSubGraph! -- syms=[:x6, :x2, :x4]
+[ Info: sym=x6, mem size of val=(3, 100) and (3, 100)
+┌ Warning: Deprecated
+└ @ IncrementalInference ~&#x2F;.julia&#x2F;packages&#x2F;IncrementalInference&#x2F;7z9j0&#x2F;src&#x2F;FactorGraphTypes.jl:362
+┌ Warning: hasVariable() deprecated, please use exists()
+└ @ DistributedFactorGraphs ~&#x2F;.julia&#x2F;packages&#x2F;DistributedFactorGraphs&#x2F;DCZjB&#x2F;src&#x2F;services&#x2F;AbstractDFG.jl:461
+[ Info: sym=x2, mem size of val=(3, 100) and (3, 100)
+┌ Warning: Deprecated
+└ @ IncrementalInference ~&#x2F;.julia&#x2F;packages&#x2F;IncrementalInference&#x2F;7z9j0&#x2F;src&#x2F;FactorGraphTypes.jl:362
+┌ Warning: hasVariable() deprecated, please use exists()
+└ @ DistributedFactorGraphs ~&#x2F;.julia&#x2F;packages&#x2F;DistributedFactorGraphs&#x2F;DCZjB&#x2F;src&#x2F;services&#x2F;AbstractDFG.jl:461
+[ Info: sym=x4, mem size of val=(3, 100) and (3, 100)
+┌ Warning: Deprecated
+└ @ IncrementalInference ~&#x2F;.julia&#x2F;packages&#x2F;IncrementalInference&#x2F;7z9j0&#x2F;src&#x2F;FactorGraphTypes.jl:362
+┌ Warning: hasVariable() deprecated, please use exists()
+└ @ DistributedFactorGraphs ~&#x2F;.julia&#x2F;packages&#x2F;DistributedFactorGraphs&#x2F;DCZjB&#x2F;src&#x2F;services&#x2F;AbstractDFG.jl:461
+State machine iter=11
+[ Info: [2x0p,d3,N100],
+State machine iter=11[ Info: [2x0p,d3,N100],
+
+[ Info: [2x0p,d3,N100],
+[ Info: [2x0p,d3,N100],
+State machine iter=11[ Info: [2x0p,d3,N100],
+[ Info: [2x0p,d3,N100],
+
+[ Info: [2x0p,d3,N100],
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [ Info: [2x0p,d3,N100],
+[17.09676270767048, 12.028295375167405, 2.785618431310098]
+varMean = getKDEMean(bel) = [12.331897490465899, 12.80160766892878, 0.6302326619078469]
+varPpe = deepcopy(varMax) = [17.09676270767048, 12.028295375167405, 2.785618431310098]
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [0.8898496867577624, -0.6324794894381378, -0.10793266009276879]
+varMean = getKDEMean(bel) = [-0.14498895238765155, -0.024199302271071553, -0.11063601803327805]
+varPpe = deepcopy(varMax) = [0.8898496867577624, -0.6324794894381378, -0.10793266009276879]
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [9.165321380423574, -1.2486603088035868, 0.6984533090941218]
+varMean = getKDEMean(bel) = [8.693234107610131, -1.2899860395897031, 0.772656145583467]
+varPpe = deepcopy(varMax) = [9.165321380423574, -1.2486603088035868, 0.6984533090941218]
+State machine iter=9
+varMax = getKDEMax(bel, addop=ops[1], diffop=ops[2]) = [-4.336798049420909, 5.714519573270869, -0.9026934659592764]
+varMean = getKDEMean(bel) = [-3.3493500831139618, 4.6529922023008785, -0.8343995942707939]
+varPpe = deepcopy(varMax) = [-4.336798049420909, 5.714519573270869, -0.9026934659592764]
+State machine iter=12
+State machine iter=12
+State machine iter=12
+[ Info: Finished tree based init-inference
+[ Info: Adding factor of type &#39;IDontExistAsAFactor&#39; to variables &#39;Any[&quot;x0&quot;]&#39;...
+Test Summary: | Pass  Total
+ZMQ Interface |   40     40
+   Testing Caesar tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

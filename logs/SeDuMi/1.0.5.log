@@ -1,0 +1,118 @@
+ Resolving package versions...
+ Installed SeDuMi ───────────── v0.2.0
+ Installed MATLAB ───────────── v0.7.3
+ Installed Parsers ──────────── v0.3.10
+ Installed OrderedCollections ─ v1.1.0
+ Installed BenchmarkTools ───── v0.4.3
+ Installed JSON ─────────────── v0.21.0
+ Installed MathOptInterface ─── v0.9.7
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [a895aaad] + SeDuMi v0.2.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [682c06a0] + JSON v0.21.0
+  [10e44e05] + MATLAB v0.7.3
+  [b8f27783] + MathOptInterface v0.9.7
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [a895aaad] + SeDuMi v0.2.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+   Testing SeDuMi
+ Resolving package versions...
+    Status `/tmp/tmp1UiRrQ/Manifest.toml`
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [682c06a0] JSON v0.21.0
+  [10e44e05] MATLAB v0.7.3
+  [b8f27783] MathOptInterface v0.9.7
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [a895aaad] SeDuMi v0.2.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: InitError: failed process: Process(`which matlab`, ProcessExited(1)) [1]
+Stacktrace:
+ [1] error(::String, ::Base.Process, ::String, ::Int64, ::String) at ./error.jl:42
+ [2] pipeline_error at ./process.jl:705 [inlined]
+ [3] read(::Cmd) at ./process.jl:636
+ [4] read(::Cmd, ::Type{String}) at ./process.jl:645
+ [5] matlab_homepath() at /root/.julia/packages/MATLAB/cVrxc/src/mxbase.jl:8
+ [6] matlab_libpath at /root/.julia/packages/MATLAB/cVrxc/src/mxbase.jl:37 [inlined]
+ [7] __init__() at /root/.julia/packages/MATLAB/cVrxc/src/MATLAB.jl:72
+ [8] _include_from_serialized(::String, ::Array{Any,1}) at ./loading.jl:633
+ [9] _require_from_serialized(::String) at ./loading.jl:684
+ [10] _require(::Base.PkgId) at ./loading.jl:967
+ [11] require(::Base.PkgId) at ./loading.jl:858
+ [12] require(::Module, ::Symbol) at ./loading.jl:853
+ [13] include at ./boot.jl:317 [inlined]
+ [14] include_relative(::Module, ::String) at ./loading.jl:1044
+ [15] include(::Module, ::String) at ./sysimg.jl:29
+ [16] top-level scope at none:2
+ [17] eval at ./boot.jl:319 [inlined]
+ [18] eval(::Expr) at ./client.jl:393
+ [19] top-level scope at ./none:3
+during initialization of module MATLAB
+in expression starting at /root/.julia/packages/SeDuMi/TRCVe/src/SeDuMi.jl:4
+ERROR: LoadError: LoadError: Failed to precompile SeDuMi [a895aaad-f784-5544-9392-bb281339c1b2] to /root/.julia/compiled/v1.0/SeDuMi/hS7XJ.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1203
+ [3] _require(::Base.PkgId) at ./loading.jl:960
+ [4] require(::Base.PkgId) at ./loading.jl:858
+ [5] require(::Module, ::Symbol) at ./loading.jl:853
+ [6] include at ./boot.jl:317 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1044
+ [8] include(::Module, ::String) at ./sysimg.jl:29
+ [9] include(::String) at ./client.jl:392
+ [10] top-level scope at none:0
+ [11] include at ./boot.jl:317 [inlined]
+ [12] include_relative(::Module, ::String) at ./loading.jl:1044
+ [13] include(::Module, ::String) at ./sysimg.jl:29
+ [14] include(::String) at ./client.jl:392
+ [15] top-level scope at none:0
+in expression starting at /root/.julia/packages/SeDuMi/TRCVe/test/lp.jl:2
+in expression starting at /root/.julia/packages/SeDuMi/TRCVe/test/runtests.jl:1
+ERROR: Package SeDuMi errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

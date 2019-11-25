@@ -1,0 +1,118 @@
+ Resolving package versions...
+ Installed AbstractTrees ── v0.2.1
+ Installed Gumbo ────────── v0.5.1
+ Installed Cascadia ─────── v0.4.0
+ Installed BinaryProvider ─ v0.5.8
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [54eefc05] + Cascadia v0.4.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [1520ce14] + AbstractTrees v0.2.1
+  [b99e7846] + BinaryProvider v0.5.8
+  [54eefc05] + Cascadia v0.4.0
+  [708ec375] + Gumbo v0.5.1
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  Building Gumbo → `~/.julia/packages/Gumbo/G7Qbw/deps/build.log`
+   Testing Cascadia
+ Resolving package versions...
+ Installed Parsers ─ v0.3.10
+ Installed JSON ──── v0.21.0
+    Status `/tmp/tmpa3eMI5/Manifest.toml`
+  [1520ce14] AbstractTrees v0.2.1
+  [b99e7846] BinaryProvider v0.5.8
+  [54eefc05] Cascadia v0.4.0
+  [708ec375] Gumbo v0.5.1
+  [682c06a0] JSON v0.21.0
+  [69de0a69] Parsers v0.3.10
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Test Success         for address
+Test Success         for *
+Test Success         for #foo
+Test Success         for li#t1
+Test Success         for *#t4
+Test Success         for .t1
+Test Success         for p.t1
+Test Success         for div.teST
+Test Success         for .t1.fail
+Test Success         for p.t1.t2
+Test Success         for p[title]
+Test Success         for address[title="foo"]
+Test Success         for [    	title        ~=       foo    ]
+Test Success         for [title~="hello world"]
+Test Success         for [lang|="en"]
+Test Success         for [title^="foo"]
+Test Success         for [title$="bar"]
+Test Success         for [title*="bar"]
+Test Success         for .t1:not(.t2)
+Test Success         for div:not(.t1)
+WARNING: both AbstractTrees and Gumbo export "children"; uses of it in module Cascadia must be qualified
+Test Failure (known) for li:nth-child(odd) Expected 2, got 0
+Test Failure (known) for li:nth-child(even) Expected 1, got 0
+Test Failure (known) for li:nth-child(-n+2) Expected 2, got 0
+Test Failure (known) for li:nth-child(3n+1) Expected 1, got 0
+Test Failure (known) for li:nth-last-child(odd) Expected 2, got 0
+Test Failure (known) for li:nth-last-child(even) Expected 2, got 0
+Test Failure (known) for li:nth-last-child(-n+2) Expected 2, got 0
+Test Failure (known) for li:nth-last-child(3n+1) Expected 2, got 0
+Test Failure (known) for span:first-child Expected 1, got 0
+Test Failure (known) for span:last-child Expected 1, got 0
+Test Failure (known) for p:nth-of-type(2) Expected 1, got 0
+Test Failure (known) for p:nth-last-of-type(2) Expected 1, got 0
+Test Failure (known) for p:last-of-type Expected 1, got 0
+Test Failure (known) for p:first-of-type Expected 1, got 0
+Test Failure (known) for p:only-child Expected 1, got 0
+Test Failure (known) for p:only-of-type Expected 1, got 0
+Test Success         for :empty
+Test Success         for div p
+Test Success         for div table p
+Test Success         for div > p
+Test Success         for p ~ p
+Test Success         for p + p
+Test Success         for li, p
+Test Success         for p +/*This is a comment*/ p
+Test Success         for p:contains("that wraps")
+Test Success         for p:containsOwn("that wraps")
+Test Success         for :containsOwn("inner")
+Test Success         for p:containsOwn("block")
+Test Success         for div:has(#p1)
+Test Success         for div:has(:containsOwn("2"))
+Test Failure (known) for body :has(:containsOwn("2")) Expected 2, got 1
+Test Success         for body :haschild(:containsOwn("2"))
+Test Success         for p:matches([\d])
+Test Success         for p:matches([a-z])
+Test Success         for p:matches([a-zA-Z])
+Test Success         for p:matches([^\d])
+Test Success         for p:matches(^(0|a))
+Test Success         for p:matches(^\d+$)
+Test Success         for p:not(:matches(^\d+$))
+Test Success         for div :matchesOwn(^\d+$)
+Test Failure (known) for [href#=(fina)]:not([href#=(\/\/[^\/]+untrusted)]) Expected 2, got 0
+Test Failure (known) for [href#=(^https:\/\/[^\/]*\/?news)] Expected 1, got 0
+Test Success         for :input
+Total test failures: 19 / 63
+   Testing Cascadia tests passed 

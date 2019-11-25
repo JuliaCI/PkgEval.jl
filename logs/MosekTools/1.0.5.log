@@ -1,0 +1,429 @@
+ Resolving package versions...
+ Installed Parsers ──────────── v0.3.10
+ Installed MosekTools ───────── v0.9.1
+ Installed OrderedCollections ─ v1.1.0
+ Installed BenchmarkTools ───── v0.4.3
+ Installed JSON ─────────────── v0.21.0
+ Installed Mosek ────────────── v1.1.0
+ Installed MathOptInterface ─── v0.9.7
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [1ec41992] + MosekTools v0.9.1
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [682c06a0] + JSON v0.21.0
+  [b8f27783] + MathOptInterface v0.9.7
+  [6405355b] + Mosek v1.1.0
+  [1ec41992] + MosekTools v0.9.1
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Mosek → `~/.julia/packages/Mosek/8uaKp/deps/build.log`
+   Testing MosekTools
+ Resolving package versions...
+    Status `/tmp/tmpoYIhnO/Manifest.toml`
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [682c06a0] JSON v0.21.0
+  [b8f27783] MathOptInterface v0.9.7
+  [6405355b] Mosek v1.1.0
+  [1ec41992] MosekTools v0.9.1
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Test Summary: | Pass  Total
+SolverName    |    1      1
+Test Summary: | Pass  Total
+Parameters    |   12     12
+Test Summary:            | Pass  Total
+supports_default_copy_to |    2      2
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+  Expression: MOI.get(model, MOI.ConstraintSet(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.SingleVariable,MathOptInterface.ZeroOne}}(MathOptInterface.ConstraintIndex{MathOptInterface.SingleVariable,MathOptInterface.ZeroOne}(1))
+  No exception thrown
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##13#14")), ::MathOptInterface.ZeroOne, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.ZeroOne, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+  Expression: MOI.get(model, MOI.ConstraintSet(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.SingleVariable,MathOptInterface.Integer}}(MathOptInterface.ConstraintIndex{MathOptInterface.SingleVariable,MathOptInterface.Integer}(1))
+  No exception thrown
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##13#14")), ::MathOptInterface.Integer, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.Integer, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258
+  Expression: MOI.get(model, MOI.ConstraintFunction(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64},MathOptInterface.EqualTo{Float64}}}(MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64},MathOptInterface.EqualTo{Float64}}(1))
+      Thrown: AssertionError("s.size[id] == 1")
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [3] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##17#18")), ::MathOptInterface.EqualTo{Float64}, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:251
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+  Expression: MOI.get(model, MOI.ConstraintSet(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64},MathOptInterface.EqualTo{Float64}}}(MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64},MathOptInterface.EqualTo{Float64}}(1))
+      Thrown: AssertionError("s.size[id] == 1")
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##17#18")), ::MathOptInterface.EqualTo{Float64}, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.EqualTo{Float64}, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258
+  Expression: MOI.get(model, MOI.ConstraintFunction(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64},MathOptInterface.LessThan{Float64}}}(MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64},MathOptInterface.LessThan{Float64}}(1))
+      Thrown: AssertionError("s.size[id] == 1")
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##17#18")), ::MathOptInterface.LessThan{Float64}, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.LessThan{Float64}, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+  Expression: MOI.get(model, MOI.ConstraintSet(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64},MathOptInterface.LessThan{Float64}}}(MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64},MathOptInterface.LessThan{Float64}}(1))
+      Thrown: AssertionError("s.size[id] == 1")
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##17#18")), ::MathOptInterface.LessThan{Float64}, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.LessThan{Float64}, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258
+  Expression: MOI.get(model, MOI.ConstraintFunction(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64},MathOptInterface.GreaterThan{Float64}}}(MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64},MathOptInterface.GreaterThan{Float64}}(1))
+      Thrown: AssertionError("s.size[id] == 1")
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##17#18")), ::MathOptInterface.GreaterThan{Float64}, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.GreaterThan{Float64}, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+  Expression: MOI.get(model, MOI.ConstraintSet(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64},MathOptInterface.GreaterThan{Float64}}}(MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64},MathOptInterface.GreaterThan{Float64}}(1))
+      Thrown: AssertionError("s.size[id] == 1")
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##17#18")), ::MathOptInterface.GreaterThan{Float64}, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.GreaterThan{Float64}, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258
+  Expression: MOI.get(model, MOI.ConstraintFunction(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64},MathOptInterface.Interval{Float64}}}(MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64},MathOptInterface.Interval{Float64}}(1))
+      Thrown: AssertionError("s.size[id] == 1")
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##17#18")), ::MathOptInterface.Interval{Float64}, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.Interval{Float64}, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+  Expression: MOI.get(model, MOI.ConstraintSet(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64},MathOptInterface.Interval{Float64}}}(MathOptInterface.ConstraintIndex{MathOptInterface.ScalarAffineFunction{Float64},MathOptInterface.Interval{Float64}}(1))
+      Thrown: AssertionError("s.size[id] == 1")
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##17#18")), ::MathOptInterface.Interval{Float64}, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.Interval{Float64}, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:256
+  Expression: MOI.delete(model, c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.ExponentialCone}}(MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.ExponentialCone}(1))
+      Thrown: Mosek.MosekError(1203, "The index value -1 occurring in argument 'k' is too small.")
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##15#16")), ::MathOptInterface.ExponentialCone, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:256
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.ExponentialCone, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258
+  Expression: MOI.get(model, MOI.ConstraintFunction(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.ExponentialCone}}(MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.ExponentialCone}(1))
+      Thrown: Mosek.MosekError(1203, "The index value -1 occurring in argument 'k' is too small.")
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [3] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##15#16")), ::MathOptInterface.ExponentialCone, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:251
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+  Expression: MOI.get(model, MOI.ConstraintSet(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.ExponentialCone}}(MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.ExponentialCone}(1))
+      Thrown: Mosek.MosekError(1203, "The index value -1 occurring in argument 'k' is too small.")
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [3] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##15#16")), ::MathOptInterface.ExponentialCone, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:251
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:256
+  Expression: MOI.delete(model, c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.DualExponentialCone}}(MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.DualExponentialCone}(1))
+      Thrown: Mosek.MosekError(1203, "The index value -1 occurring in argument 'k' is too small.")
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##15#16")), ::MathOptInterface.DualExponentialCone, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:256
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.DualExponentialCone, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258
+  Expression: MOI.get(model, MOI.ConstraintFunction(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.DualExponentialCone}}(MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.DualExponentialCone}(1))
+      Thrown: Mosek.MosekError(1203, "The index value -1 occurring in argument 'k' is too small.")
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [3] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##15#16")), ::MathOptInterface.DualExponentialCone, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:251
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+  Expression: MOI.get(model, MOI.ConstraintSet(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.DualExponentialCone}}(MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.DualExponentialCone}(1))
+      Thrown: Mosek.MosekError(1203, "The index value -1 occurring in argument 'k' is too small.")
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [3] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##15#16")), ::MathOptInterface.DualExponentialCone, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:251
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:256
+  Expression: MOI.delete(model, c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.PowerCone{Float64}}}(MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.PowerCone{Float64}}(1))
+      Thrown: Mosek.MosekError(1203, "The index value -1 occurring in argument 'k' is too small.")
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##15#16")), ::MathOptInterface.PowerCone{Float64}, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:256
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.PowerCone{Float64}, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258
+  Expression: MOI.get(model, MOI.ConstraintFunction(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.PowerCone{Float64}}}(MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.PowerCone{Float64}}(1))
+      Thrown: Mosek.MosekError(1203, "The index value -1 occurring in argument 'k' is too small.")
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [3] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##15#16")), ::MathOptInterface.PowerCone{Float64}, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:251
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+  Expression: MOI.get(model, MOI.ConstraintSet(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.PowerCone{Float64}}}(MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.PowerCone{Float64}}(1))
+      Thrown: Mosek.MosekError(1203, "The index value -1 occurring in argument 'k' is too small.")
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [3] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##15#16")), ::MathOptInterface.PowerCone{Float64}, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:251
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:256
+  Expression: MOI.delete(model, c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.DualPowerCone{Float64}}}(MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.DualPowerCone{Float64}}(1))
+      Thrown: Mosek.MosekError(1203, "The index value -1 occurring in argument 'k' is too small.")
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##15#16")), ::MathOptInterface.DualPowerCone{Float64}, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:256
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.DualPowerCone{Float64}, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258
+  Expression: MOI.get(model, MOI.ConstraintFunction(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.DualPowerCone{Float64}}}(MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.DualPowerCone{Float64}}(1))
+      Thrown: Mosek.MosekError(1203, "The index value -1 occurring in argument 'k' is too small.")
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [3] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##15#16")), ::MathOptInterface.DualPowerCone{Float64}, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:251
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+  Expression: MOI.get(model, MOI.ConstraintSet(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.DualPowerCone{Float64}}}(MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.DualPowerCone{Float64}}(1))
+      Thrown: Mosek.MosekError(1203, "The index value -1 occurring in argument 'k' is too small.")
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [3] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##15#16")), ::MathOptInterface.DualPowerCone{Float64}, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:251
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:256
+  Expression: MOI.delete(model, c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.SecondOrderCone}}(MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.SecondOrderCone}(1))
+      Thrown: Mosek.MosekError(1203, "The index value -1 occurring in argument 'k' is too small.")
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##15#16")), ::MathOptInterface.SecondOrderCone, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:256
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.SecondOrderCone, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258
+  Expression: MOI.get(model, MOI.ConstraintFunction(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.SecondOrderCone}}(MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.SecondOrderCone}(1))
+      Thrown: Mosek.MosekError(1203, "The index value -1 occurring in argument 'k' is too small.")
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##15#16")), ::MathOptInterface.SecondOrderCone, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.SecondOrderCone, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+  Expression: MOI.get(model, MOI.ConstraintSet(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.SecondOrderCone}}(MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.SecondOrderCone}(1))
+      Thrown: Mosek.MosekError(1203, "The index value -1 occurring in argument 'k' is too small.")
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##15#16")), ::MathOptInterface.SecondOrderCone, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.SecondOrderCone, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:256
+  Expression: MOI.delete(model, c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.RotatedSecondOrderCone}}(MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.RotatedSecondOrderCone}(1))
+      Thrown: Mosek.MosekError(1203, "The index value -1 occurring in argument 'k' is too small.")
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##15#16")), ::MathOptInterface.RotatedSecondOrderCone, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:256
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.RotatedSecondOrderCone, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258
+  Expression: MOI.get(model, MOI.ConstraintFunction(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.RotatedSecondOrderCone}}(MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.RotatedSecondOrderCone}(1))
+      Thrown: Mosek.MosekError(1203, "The index value -1 occurring in argument 'k' is too small.")
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##15#16")), ::MathOptInterface.RotatedSecondOrderCone, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:258
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.RotatedSecondOrderCone, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+delete: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+  Expression: MOI.get(model, MOI.ConstraintSet(), c_index)
+    Expected: MathOptInterface.InvalidIndex{MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.RotatedSecondOrderCone}}(MathOptInterface.ConstraintIndex{MathOptInterface.VectorOfVariables,MathOptInterface.RotatedSecondOrderCone}(1))
+      Thrown: Mosek.MosekError(1203, "The index value -1 occurring in argument 'k' is too small.")
+Stacktrace:
+ [1] #basic_constraint_test_helper#44(::Bool, ::Bool, ::Bool, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::getfield(MathOptInterface.Test, Symbol("##15#16")), ::MathOptInterface.RotatedSecondOrderCone, ::Int64) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:261
+ [2] (::getfield(MathOptInterface.Test, Symbol("#kw##basic_constraint_test_helper")))(::NamedTuple{(:delete, :get_constraint_function, :get_constraint_set),Tuple{Bool,Bool,Bool}}, ::typeof(MathOptInterface.Test.basic_constraint_test_helper), ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}, ::Function, ::MathOptInterface.RotatedSecondOrderCone, ::Int64) at ./none:0
+ [3] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:135 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] #basic_constraint_tests#25(::Bool, ::Bool, ::Bool, ::Array{Tuple{DataType,DataType},1}, ::Array{Any,1}, ::Function, ::MosekModel, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/UnitTests/basic_constraint_tests.jl:134
+Test Summary:                                                                            | Pass  Fail  Total
+Basic                                                                                    |  236    28    264
+  Linear                                                                                 |  158    10    168
+    MathOptInterface.SingleVariable-MathOptInterface.EqualTo{Float64}                    |   16           16
+    MathOptInterface.SingleVariable-MathOptInterface.LessThan{Float64}                   |   16           16
+    MathOptInterface.SingleVariable-MathOptInterface.GreaterThan{Float64}                |   16           16
+    MathOptInterface.SingleVariable-MathOptInterface.Interval{Float64}                   |   16           16
+    MathOptInterface.SingleVariable-MathOptInterface.ZeroOne                             |   15     1     16
+      add_constraint                                                                     |    8            8
+      ListOfConstraintIndices                                                            |    1            1
+      is_valid                                                                           |    1            1
+      delete                                                                             |    4     1      5
+    MathOptInterface.SingleVariable-MathOptInterface.Integer                             |   15     1     16
+      add_constraint                                                                     |    8            8
+      ListOfConstraintIndices                                                            |    1            1
+      is_valid                                                                           |    1            1
+      delete                                                                             |    4     1      5
+    MathOptInterface.ScalarAffineFunction{Float64}-MathOptInterface.EqualTo{Float64}     |   16     2     18
+      add_constraint                                                                     |    8            8
+      ListOfConstraintIndices                                                            |    1            1
+      add_constraints                                                                    |    2            2
+      is_valid                                                                           |    1            1
+      delete                                                                             |    3     2      5
+    MathOptInterface.ScalarAffineFunction{Float64}-MathOptInterface.LessThan{Float64}    |   16     2     18
+      add_constraint                                                                     |    8            8
+      ListOfConstraintIndices                                                            |    1            1
+      add_constraints                                                                    |    2            2
+      is_valid                                                                           |    1            1
+      delete                                                                             |    3     2      5
+    MathOptInterface.ScalarAffineFunction{Float64}-MathOptInterface.GreaterThan{Float64} |   16     2     18
+      add_constraint                                                                     |    8            8
+      ListOfConstraintIndices                                                            |    1            1
+      add_constraints                                                                    |    2            2
+      is_valid                                                                           |    1            1
+      delete                                                                             |    3     2      5
+    MathOptInterface.ScalarAffineFunction{Float64}-MathOptInterface.Interval{Float64}    |   16     2     18
+      add_constraint                                                                     |    8            8
+      ListOfConstraintIndices                                                            |    1            1
+      add_constraints                                                                    |    2            2
+      is_valid                                                                           |    1            1
+      delete                                                                             |    3     2      5
+  Conic                                                                                  |   78    18     96
+    MathOptInterface.VectorOfVariables-MathOptInterface.ExponentialCone                  |   13     3     16
+      add_constraint                                                                     |    8            8
+      ListOfConstraintIndices                                                            |    1            1
+      is_valid                                                                           |    1            1
+      delete                                                                             |    2     3      5
+    MathOptInterface.VectorOfVariables-MathOptInterface.DualExponentialCone              |   13     3     16
+      add_constraint                                                                     |    8            8
+      ListOfConstraintIndices                                                            |    1            1
+      is_valid                                                                           |    1            1
+      delete                                                                             |    2     3      5
+    MathOptInterface.VectorOfVariables-MathOptInterface.PowerCone{Float64}               |   13     3     16
+      add_constraint                                                                     |    8            8
+      ListOfConstraintIndices                                                            |    1            1
+      is_valid                                                                           |    1            1
+      delete                                                                             |    2     3      5
+    MathOptInterface.VectorOfVariables-MathOptInterface.DualPowerCone{Float64}           |   13     3     16
+      add_constraint                                                                     |    8            8
+      ListOfConstraintIndices                                                            |    1            1
+      is_valid                                                                           |    1            1
+      delete                                                                             |    2     3      5
+    MathOptInterface.VectorOfVariables-MathOptInterface.SecondOrderCone                  |   13     3     16
+      add_constraint                                                                     |    8            8
+      ListOfConstraintIndices                                                            |    1            1
+      is_valid                                                                           |    1            1
+      delete                                                                             |    2     3      5
+    MathOptInterface.VectorOfVariables-MathOptInterface.RotatedSecondOrderCone           |   13     3     16
+      add_constraint                                                                     |    8            8
+      ListOfConstraintIndices                                                            |    1            1
+      is_valid                                                                           |    1            1
+      delete                                                                             |    2     3      5
+ERROR: LoadError: Some tests did not pass: 236 passed, 28 failed, 0 errored, 0 broken.
+in expression starting at /root/.julia/packages/MosekTools/ywNQy/test/runtests.jl:73
+ERROR: Package MosekTools errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

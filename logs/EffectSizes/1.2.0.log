@@ -1,0 +1,78 @@
+ Resolving package versions...
+ Installed EffectSizes ─ v0.1.0
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [e248de7e] + EffectSizes v0.1.0
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [e248de7e] + EffectSizes v0.1.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+   Testing EffectSizes
+ Resolving package versions...
+    Status `/tmp/jl_9THHos/Manifest.toml`
+  [e248de7e] EffectSizes v0.1.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+ERROR: LoadError: ArgumentError: Package EffectSizes does not have Distributions in its dependencies:
+- If you have EffectSizes checked out for development and have
+  added Distributions as a dependency but haven't updated your primary
+  environment's manifest file, try `Pkg.resolve()`.
+- Otherwise you may need to report an issue with EffectSizes
+Stacktrace:
+ [1] require(::Module, ::Symbol) at ./loading.jl:889
+ [2] include at ./boot.jl:328 [inlined]
+ [3] include_relative(::Module, ::String) at ./loading.jl:1094
+ [4] include(::Module, ::String) at ./Base.jl:31
+ [5] top-level scope at none:2
+ [6] eval at ./boot.jl:330 [inlined]
+ [7] eval(::Expr) at ./client.jl:432
+ [8] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/EffectSizes/q00Qs/src/EffectSizes.jl:20
+ERROR: LoadError: Failed to precompile EffectSizes [e248de7e-9197-5860-972e-353a2af44d75] to /root/.julia/compiled/v1.2/EffectSizes/xyd0X.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1253
+ [3] _require(::Base.PkgId) at ./loading.jl:1013
+ [4] require(::Base.PkgId) at ./loading.jl:911
+ [5] require(::Module, ::Symbol) at ./loading.jl:906
+ [6] include at ./boot.jl:328 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1094
+ [8] include(::Module, ::String) at ./Base.jl:31
+ [9] include(::String) at ./client.jl:431
+ [10] top-level scope at none:5
+in expression starting at /root/.julia/packages/EffectSizes/q00Qs/test/runtests.jl:1
+ERROR: Package EffectSizes errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1288
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

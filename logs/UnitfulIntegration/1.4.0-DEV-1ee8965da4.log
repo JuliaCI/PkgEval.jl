@@ -1,0 +1,74 @@
+ Resolving package versions...
+ Installed UnitfulIntegration ─ v0.1.0
+ Installed Unitful ──────────── v0.17.0
+ Installed OrderedCollections ─ v1.1.0
+ Installed QuadGK ───────────── v2.1.1
+ Installed DataStructures ───── v0.17.6
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [6043864f] + UnitfulIntegration v0.1.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [864edb3b] + DataStructures v0.17.6
+  [bac558e1] + OrderedCollections v1.1.0
+  [1fd47b50] + QuadGK v2.1.1
+  [1986cc42] + Unitful v0.17.0
+  [6043864f] + UnitfulIntegration v0.1.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+   Testing UnitfulIntegration
+Status `/tmp/jl_cMtYAe/Manifest.toml`
+  [864edb3b] DataStructures v0.17.6
+  [bac558e1] OrderedCollections v1.1.0
+  [1fd47b50] QuadGK v2.1.1
+  [1986cc42] Unitful v0.17.0
+  [6043864f] UnitfulIntegration v0.1.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+Error During Test at /root/.julia/packages/UnitfulIntegration/2hVoW/test/runtests.jl:12
+  Test threw exception
+  Expression: (QuadGK.quadgk(ustrip, 0.0m, 1.0m, atol=0.0m))[1] ≈ 0.5m
+  MethodError: no method matching do_quadgk(::typeof(ustrip), ::Array{Quantity{Float64,𝐋,Unitful.FreeUnits{(m,),𝐋,nothing}},1}, ::Int64, ::Type{Float64}, ::Quantity{Float64,𝐋,Unitful.FreeUnits{(m,),𝐋,nothing}}, ::Float64, ::Int64, ::typeof(LinearAlgebra.norm))
+  Closest candidates are:
+    do_quadgk(::F, !Matched::Tuple{Vararg{T,N}}, ::Any, ::Any, ::Any, ::Any, ::Any) where {T, N, F} at /root/.julia/packages/QuadGK/eCeeM/src/adapt.jl:7
+  Stacktrace:
+   [1] _do_quadgk(::typeof(ustrip), ::Array{Quantity{Float64,𝐋,Unitful.FreeUnits{(m,),𝐋,nothing}},1}, ::Int64, ::Type{Float64}, ::Quantity{Float64,𝐋,Unitful.FreeUnits{(m,),𝐋,nothing}}, ::Float64, ::Int64, ::Function) at /root/.julia/packages/UnitfulIntegration/2hVoW/src/UnitfulIntegration.jl:65
+   [2] quadgk(::Function, ::Quantity{Float64,𝐋,Unitful.FreeUnits{(m,),𝐋,nothing}}, ::Quantity{Float64,𝐋,Unitful.FreeUnits{(m,),𝐋,nothing}}; atol::Quantity{Float64,𝐋,Unitful.FreeUnits{(m,),𝐋,nothing}}, rtol::Float64, maxevals::Int64, order::Int64, norm::Function) at /root/.julia/packages/UnitfulIntegration/2hVoW/src/UnitfulIntegration.jl:25
+   [3] top-level scope at /root/.julia/packages/UnitfulIntegration/2hVoW/test/runtests.jl:12
+   [4] include(::String) at ./client.jl:439
+   [5] top-level scope at none:6
+   [6] eval(::Module, ::Any) at ./boot.jl:331
+   [7] exec_options(::Base.JLOptions) at ./client.jl:264
+   [8] _start() at ./client.jl:484
+  
+ERROR: LoadError: There was an error during testing
+in expression starting at /root/.julia/packages/UnitfulIntegration/2hVoW/test/runtests.jl:12
+ERROR: Package UnitfulIntegration errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

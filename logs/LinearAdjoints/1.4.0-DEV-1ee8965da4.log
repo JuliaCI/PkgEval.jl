@@ -1,0 +1,75 @@
+ Resolving package versions...
+ Installed Calculus ─────── v0.5.1
+ Installed LinearAdjoints ─ v0.1.0
+ Installed MetaProgTools ── v0.6.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [3201237a] + LinearAdjoints v0.1.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [49dc2e85] + Calculus v0.5.1
+  [3201237a] + LinearAdjoints v0.1.0
+  [b1909ce5] + MetaProgTools v0.6.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [8dfed614] + Test 
+   Testing LinearAdjoints
+Status `/tmp/jl_Kb6M4a/Manifest.toml`
+  [49dc2e85] Calculus v0.5.1
+  [3201237a] LinearAdjoints v0.1.0
+  [b1909ce5] MetaProgTools v0.6.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [8dfed614] Test  [`@stdlib/Test`]
+ERROR: LoadError: ArgumentError: Package LinearAdjoints does not have GeostatInversion in its dependencies:
+- If you have LinearAdjoints checked out for development and have
+  added GeostatInversion as a dependency but haven't updated your primary
+  environment's manifest file, try `Pkg.resolve()`.
+- Otherwise you may need to report an issue with LinearAdjoints
+Stacktrace:
+ [1] require(::Module, ::Symbol) at ./loading.jl:898
+ [2] include(::Module, ::String) at ./Base.jl:377
+ [3] top-level scope at none:2
+ [4] eval at ./boot.jl:331 [inlined]
+ [5] eval(::Expr) at ./client.jl:449
+ [6] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/LinearAdjoints/8k7Mu/src/LinearAdjoints.jl:4
+ERROR: LoadError: Failed to precompile LinearAdjoints [3201237a-9847-11e9-0d2a-6d530c977506] to /root/.julia/compiled/v1.4/LinearAdjoints/xiA48_QLztf.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1263
+ [3] _require(::Base.PkgId) at ./loading.jl:1022
+ [4] require(::Base.PkgId) at ./loading.jl:920
+ [5] require(::Module, ::Symbol) at ./loading.jl:915
+ [6] include(::String) at ./client.jl:439
+ [7] top-level scope at none:6
+in expression starting at /root/.julia/packages/LinearAdjoints/8k7Mu/test/runtests.jl:2
+ERROR: Package LinearAdjoints errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

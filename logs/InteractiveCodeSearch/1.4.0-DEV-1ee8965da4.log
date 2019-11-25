@@ -1,0 +1,97 @@
+ Resolving package versions...
+ Installed InteractiveCodeSearch ─ v0.3.1
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [54eb57ff] + InteractiveCodeSearch v0.3.1
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [54eb57ff] + InteractiveCodeSearch v0.3.1
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing InteractiveCodeSearch
+Status `/tmp/jl_oTNv7p/Manifest.toml`
+  [54eb57ff] InteractiveCodeSearch v0.3.1
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+┌ Warning: Matcher rofi not installed.
+│ See https://github.com/DaveDavenport/rofi for how to install rofi.
+│ 
+│ For terminal usage, `peco` is recommended.
+│ See https://github.com/peco/peco for how to install peco.
+│ 
+└ @ InteractiveCodeSearch ~/.julia/packages/InteractiveCodeSearch/bvRfv/src/InteractiveCodeSearch.jl:559
+Test Summary: | Pass  Total
+read_stdout   |    2      2
+Test Summary: | Pass  Total
+parse_loc     |    1      1
+Test Summary:   | Pass  Total
+list_locatables |    4      4
+Test Summary:  | Pass  Total
+module_methods |    4      4
+[ Info: No (interesting) method found
+Test Summary: | Pass  Total
+choose_method |    7      7
+find_source_file: Error During Test at /root/.julia/packages/InteractiveCodeSearch/bvRfv/test/runtests.jl:105
+  Got exception outside of a @test
+  UndefVarError: clone not defined
+  Stacktrace:
+   [1] macro expansion at /root/.julia/packages/InteractiveCodeSearch/bvRfv/test/runtests.jl:106 [inlined]
+   [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [3] top-level scope at /root/.julia/packages/InteractiveCodeSearch/bvRfv/test/runtests.jl:106
+   [4] include(::String) at ./client.jl:439
+   [5] top-level scope at none:6
+   [6] eval(::Module, ::Any) at ./boot.jl:331
+   [7] exec_options(::Base.JLOptions) at ./client.jl:264
+   [8] _start() at ./client.jl:484
+  
+Test Summary:    | Error  Total
+find_source_file |     1      1
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /root/.julia/packages/InteractiveCodeSearch/bvRfv/test/runtests.jl:105
+ERROR: Package InteractiveCodeSearch errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

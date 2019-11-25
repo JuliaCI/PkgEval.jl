@@ -1,0 +1,192 @@
+ Resolving package versions...
+ Installed TestSetExtensions ─ v2.0.0
+ Installed DeepDiffs ───────── v1.1.0
+ Installed Compat ──────────── v2.2.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [98d24dd4] + TestSetExtensions v2.0.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [34da2185] + Compat v2.2.0
+  [ab62b9b5] + DeepDiffs v1.1.0
+  [98d24dd4] + TestSetExtensions v2.0.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing TestSetExtensions
+ Resolving package versions...
+ Installed Suppressor ─ v0.1.1
+Status `/tmp/jl_GLQNxI/Manifest.toml`
+  [34da2185] Compat v2.2.0
+  [ab62b9b5] DeepDiffs v1.1.0
+  [fd094767] Suppressor v0.1.1
+  [98d24dd4] TestSetExtensions v2.0.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib/SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+[ Info: You should see 3 failing tests with pretty diffs...
+
+=====================================================
+Nice Diffs: Test Failed
+  Expression: [3, 5, 6, 1, 6, 8] == [3, 5, 6, 1, 9, 8]
+
+Diff:
+[3, 5, 6, 1, (-)6, (+)9, 8]
+
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/TestSetExtensions/lB7xG/diffdemo.jl:5 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+ [3] top-level scope at /root/.julia/packages/TestSetExtensions/lB7xG/diffdemo.jl:5
+=====================================================
+
+=====================================================
+Nice Diffs: Test Failed
+  Expression: "Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit, sed do\neiusmod tempor incididunt ut\nlabore et dolore magna aliqua.\nUt enim ad minim veniam, quis nostrud\nexercitation ullamco aboris." == "Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit, sed do\neiusmod temper incididunt ut\nlabore et dolore magna aliqua.\nUt enim ad minim veniam, quis nostrud\nexercitation ullamco aboris."
+
+Diff:
+"""
+  Lorem ipsum dolor sit amet,
+  consectetur adipiscing elit, sed do
+- eiusmod tempor incididunt ut
++ eiusmod temper incididunt ut
+  labore et dolore magna aliqua.
+  Ut enim ad minim veniam, quis nostrud
+  exercitation ullamco aboris."""
+
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/TestSetExtensions/lB7xG/diffdemo.jl:6 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+ [3] top-level scope at /root/.julia/packages/TestSetExtensions/lB7xG/diffdemo.jl:5
+=====================================================
+
+=====================================================
+Nice Diffs: Test Failed
+  Expression: Dict(:foo => "bar", :baz => [1, 4, 5], :biz => nothing) == Dict(:baz => [1, 7, 5], :biz => 42)
+
+Diff:
+[Dict{Symbol, Any}, (-):biz => nothing, (-):baz => [1, 4, 5], (-):foo => "bar", (+):biz => 42, (+):baz => [1, 7, 5]]
+
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/TestSetExtensions/lB7xG/diffdemo.jl:18 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+ [3] top-level scope at /root/.julia/packages/TestSetExtensions/lB7xG/diffdemo.jl:5
+=====================================================
+
+
+Test Summary: | Fail  Total
+Nice Diffs    |    3      3
+[ Info: These 4 failing tests don't have pretty diffs to display
+
+=====================================================
+No pretty diff for matrices: Test Failed
+  Expression: [1 2; 3 4] == [1 4; 3 4]
+
+Diff:
+nothing
+
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/TestSetExtensions/lB7xG/test/runtests.jl:27 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+ [3] macro expansion at /root/.julia/packages/TestSetExtensions/lB7xG/test/runtests.jl:27 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+ [5] top-level scope at /root/.julia/packages/TestSetExtensions/lB7xG/test/runtests.jl:26
+=====================================================
+
+=====================================================
+don't diff non-equality: 
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/TestSetExtensions/lB7xG/test/runtests.jl:30 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+ [3] macro expansion at /root/.julia/packages/TestSetExtensions/lB7xG/test/runtests.jl:30 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+ [5] top-level scope at /root/.julia/packages/TestSetExtensions/lB7xG/test/runtests.jl:26
+=====================================================
+
+=====================================================
+don't diff non-comparisons: Test Failed at /root/.julia/packages/TestSetExtensions/lB7xG/test/runtests.jl:33
+  Expression: iseven(7)
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/TestSetExtensions/lB7xG/test/runtests.jl:33 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+ [3] macro expansion at /root/.julia/packages/TestSetExtensions/lB7xG/test/runtests.jl:33 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+ [5] top-level scope at /root/.julia/packages/TestSetExtensions/lB7xG/test/runtests.jl:26
+=====================================================
+
+=====================================================
+errors don't have diffs either: Error During Test at /root/.julia/packages/TestSetExtensions/lB7xG/test/runtests.jl:35
+  Got exception outside of a @test
+  This test is supposed to throw an error
+  Stacktrace:
+   [1] macro expansion at /root/.julia/packages/TestSetExtensions/lB7xG/test/runtests.jl:36 [inlined]
+   [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [3] macro expansion at /root/.julia/packages/TestSetExtensions/lB7xG/test/runtests.jl:36 [inlined]
+   [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [5] top-level scope at /root/.julia/packages/TestSetExtensions/lB7xG/test/runtests.jl:26
+   [6] include(::String) at ./client.jl:439
+   [7] top-level scope at none:6
+   [8] eval(::Module, ::Any) at ./boot.jl:331
+   [9] exec_options(::Base.JLOptions) at ./client.jl:264
+   [10] _start() at ./client.jl:484
+  
+=====================================================
+
+
+Test Summary:                    | Fail  Error  Total
+not-pretty                       |    3      1      4
+  No pretty diff for matrices    |    1             1
+  don't diff non-equality        |    1             1
+  don't diff non-comparisons     |    1             1
+  errors don't have diffs either |           1      1
+.
+file1: ..
+file2: ..
+file3: ..
+...
+file1: ..
+file3: ..
+....
+
+Test Summary:           | Pass  Total
+TextSetExtensions Tests |   18     18
+   Testing TestSetExtensions tests passed 

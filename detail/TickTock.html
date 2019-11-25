@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="TickTock">TickTock</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#TickTock">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 12 hours ago and took 42 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/TickTock/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed TickTock ─ v1.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [9ff05d80] + TickTock v1.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [9ff05d80] + TickTock v1.0.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing TickTock
+    Status `&#x2F;tmp&#x2F;tmpXy43Vk&#x2F;Manifest.toml`
+  [9ff05d80] TickTock v1.0.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+[ Info:  started timer at: 2019-11-23T22:39:40.818
+1         [ Info: TickTock: &quot;TickTock alarm&quot; alarm for 0 hours, 0 minutes, 10 seconds
+[ Info: TickTock: &quot;TickTock alarm&quot; alarm for 0 hours, 0 minutes, 5 seconds
+[ Info:          4.217686986s: 4 seconds, 217 milliseconds
+[ Info:  started timer at: 2019-11-23T22:39:45.966
+[ Info:  started timer at: 2019-11-23T22:39:46.05
+[ Info:  started timer at: 2019-11-23T22:39:46.147
+[ Info:          0.006476149s: 6 milliseconds
+Make 10 timers
+[ Info:  started timer at: 2019-11-23T22:39:46.174
+[ Info:  started timer at: 2019-11-23T22:39:47.177
+[ Info:  started timer at: 2019-11-23T22:39:48.179
+[ Info:  started timer at: 2019-11-23T22:39:49.181
+[ Info:  started timer at: 2019-11-23T22:39:50.183
+[ Info: TickTock alarm
+[ Info:          5.099384677s: 5 seconds, 99 milliseconds
+This is an alarm. Do not be alarmed.
+[ Info:  started timer at: 2019-11-23T22:39:51.185
+[ Info:  started timer at: 2019-11-23T22:39:52.188
+[ Info:  started timer at: 2019-11-23T22:39:53.19
+[ Info:  started timer at: 2019-11-23T22:39:54.193
+[ Info:  started timer at: 2019-11-23T22:39:55.195
+[ Info: TickTock alarm
+test alarm has fired
+[ Info:         10.185498759s: 10 seconds, 185 milliseconds
+Check that there are 10 timers
+wait a second
+Print all the timers
+10        9         8         [ Info:          2.171751793s: 2 seconds, 171 milliseconds
+7         6         5         [ Info:           3.17356348s: 3 seconds, 173 milliseconds
+[ Info:          4.176087329s: 4 seconds, 176 milliseconds
+[ Info:          5.178573537s: 5 seconds, 178 milliseconds
+[ Info:          6.181031311s: 6 seconds, 181 milliseconds
+[ Info:          7.183782202s: 7 seconds, 183 milliseconds
+4         [ Info:           8.18536851s: 8 seconds, 185 milliseconds
+3         2         1         [ Info:          9.187776229s: 9 seconds, 187 milliseconds
+[ Info:           10.1896952s: 10 seconds, 189 milliseconds
+[ Info:         11.192234248s: 11 seconds, 192 milliseconds
+Check that the most recent timer is more than 1 second
+  2.198990325
+Finish 10 timers and show canonical
+[ Info:          2.507090286s: 2 seconds, 507 milliseconds
+[ Info:           3.59739281s: 3 seconds, 597 milliseconds
+[ Info:          4.646463874s: 4 seconds, 646 milliseconds
+[ Info:          5.683984532s: 5 seconds, 683 milliseconds
+[ Info:          6.720537531s: 6 seconds, 720 milliseconds
+[ Info:          7.763795345s: 7 seconds, 763 milliseconds
+[ Info:          8.802220109s: 8 seconds, 802 milliseconds
+[ Info:          9.838344404s: 9 seconds, 838 milliseconds
+[ Info:         10.873920799s: 10 seconds, 873 milliseconds
+[ Info:         11.909061927s: 11 seconds, 909 milliseconds
+   Testing TickTock tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 10 hours ago and took 30 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/TickTock/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed TickTock ─ v1.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [9ff05d80] + TickTock v1.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [9ff05d80] + TickTock v1.0.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing TickTock
+    Status `&#x2F;tmp&#x2F;jl_Ptq4y9&#x2F;Manifest.toml`
+  [9ff05d80] TickTock v1.0.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+[ Info:  started timer at: 2019-11-24T00:30:32.017
+1         [ Info: TickTock: &quot;TickTock alarm&quot; alarm for 0 hours, 0 minutes, 10 seconds
+[ Info: TickTock: &quot;TickTock alarm&quot; alarm for 0 hours, 0 minutes, 5 seconds
+[ Info:          3.762643492s: 3 seconds, 762 milliseconds
+[ Info:  started timer at: 2019-11-24T00:30:36.7
+[ Info:  started timer at: 2019-11-24T00:30:36.758
+[ Info:  started timer at: 2019-11-24T00:30:36.834
+[ Info:          0.006237356s: 6 milliseconds
+Make 10 timers
+[ Info:  started timer at: 2019-11-24T00:30:36.861
+[ Info:  started timer at: 2019-11-24T00:30:37.863
+[ Info:  started timer at: 2019-11-24T00:30:38.865
+[ Info:  started timer at: 2019-11-24T00:30:39.867
+[ Info:  started timer at: 2019-11-24T00:30:40.869
+This is an alarm. Do not be alarmed.
+[ Info: TickTock alarm
+[ Info:          5.080127496s: 5 seconds, 80 milliseconds
+[ Info:  started timer at: 2019-11-24T00:30:41.87
+[ Info:  started timer at: 2019-11-24T00:30:42.872
+[ Info:  started timer at: 2019-11-24T00:30:43.875
+[ Info:  started timer at: 2019-11-24T00:30:44.877
+[ Info:  started timer at: 2019-11-24T00:30:45.879
+test alarm has fired
+[ Info: TickTock alarm
+[ Info:         10.138612162s: 10 seconds, 138 milliseconds
+Check that there are 10 timers
+wait a second
+Print all the timers
+10        9         8         7         6         5         4         3         2         1         [ Info:          2.017833289s: 2 seconds, 17 milliseconds
+[ Info:          3.019585043s: 3 seconds, 19 milliseconds
+[ Info:          4.021900875s: 4 seconds, 21 milliseconds
+[ Info:          5.024241752s: 5 seconds, 24 milliseconds
+[ Info:          6.026522162s: 6 seconds, 26 milliseconds
+[ Info:          7.027407441s: 7 seconds, 27 milliseconds
+[ Info:          8.029832249s: 8 seconds, 29 milliseconds
+[ Info:          9.031504386s: 9 seconds, 31 milliseconds
+[ Info:         10.033832375s: 10 seconds, 33 milliseconds
+[ Info:         11.035759912s: 11 seconds, 35 milliseconds
+Check that the most recent timer is more than 1 second
+  2.031155529
+Finish 10 timers and show canonical
+[ Info:          2.173346339s: 2 seconds, 173 milliseconds
+[ Info:          3.204063988s: 3 seconds, 204 milliseconds
+[ Info:          4.233868021s: 4 seconds, 233 milliseconds
+[ Info:          5.269623105s: 5 seconds, 269 milliseconds
+[ Info:          6.299565175s: 6 seconds, 299 milliseconds
+[ Info:          7.327794923s: 7 seconds, 327 milliseconds
+[ Info:          8.356688577s: 8 seconds, 356 milliseconds
+[ Info:          9.384646535s: 9 seconds, 384 milliseconds
+[ Info:          10.41187818s: 10 seconds, 411 milliseconds
+[ Info:         11.438906078s: 11 seconds, 438 milliseconds
+   Testing TickTock tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 10 hours ago and took 32 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/TickTock/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed TickTock ─ v1.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [9ff05d80] + TickTock v1.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [9ff05d80] + TickTock v1.0.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing TickTock
+Status `&#x2F;tmp&#x2F;jl_WhBjUW&#x2F;Manifest.toml`
+  [9ff05d80] TickTock v1.0.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+[ Info:  started timer at: 2019-11-24T01:04:14.271
+1         [ Info: TickTock: &quot;TickTock alarm&quot; alarm for 0 hours, 0 minutes, 10 seconds
+[ Info: TickTock: &quot;TickTock alarm&quot; alarm for 0 hours, 0 minutes, 5 seconds
+[ Info:          4.311350912s: 4 seconds, 311 milliseconds
+[ Info:  started timer at: 2019-11-24T01:04:19.338
+[ Info:  started timer at: 2019-11-24T01:04:19.4
+[ Info:  started timer at: 2019-11-24T01:04:19.451
+[ Info:          0.006142859s: 6 milliseconds
+Make 10 timers
+[ Info:  started timer at: 2019-11-24T01:04:19.48
+[ Info:  started timer at: 2019-11-24T01:04:20.482
+[ Info:  started timer at: 2019-11-24T01:04:21.485
+[ Info:  started timer at: 2019-11-24T01:04:22.487
+[ Info:  started timer at: 2019-11-24T01:04:23.489
+[ Info: TickTock alarm
+This is an alarm. Do not be alarmed.
+[ Info:          5.054044287s: 5 seconds, 54 milliseconds
+[ Info:  started timer at: 2019-11-24T01:04:24.49
+[ Info:  started timer at: 2019-11-24T01:04:25.493
+[ Info:  started timer at: 2019-11-24T01:04:26.495
+[ Info:  started timer at: 2019-11-24T01:04:27.497
+[ Info:  started timer at: 2019-11-24T01:04:28.499
+[ Info: TickTock alarm
+test alarm has fired
+[ Info:         10.117329391s: 10 seconds, 117 milliseconds
+Check that there are 10 timers
+wait a second
+Print all the timers
+10        [ Info:          2.053748775s: 2 seconds, 53 milliseconds
+9         [ Info:          3.055310791s: 3 seconds, 55 milliseconds
+8         7         [ Info:          4.057756707s: 4 seconds, 57 milliseconds
+[ Info:          5.059904207s: 5 seconds, 59 milliseconds
+6         [ Info:          6.062324917s: 6 seconds, 62 milliseconds
+5         [ Info:          7.063321924s: 7 seconds, 63 milliseconds
+4         [ Info:          8.065752865s: 8 seconds, 65 milliseconds
+3         2         [ Info:          9.067482836s: 9 seconds, 67 milliseconds
+1         [ Info:         10.070068564s: 10 seconds, 70 milliseconds
+[ Info:         11.072381404s: 11 seconds, 72 milliseconds
+Check that the most recent timer is more than 1 second
+  2.074195935
+Finish 10 timers and show canonical
+[ Info:          2.641747092s: 2 seconds, 641 milliseconds
+[ Info:          3.643610972s: 3 seconds, 643 milliseconds
+[ Info:          4.646222292s: 4 seconds, 646 milliseconds
+[ Info:          5.648533463s: 5 seconds, 648 milliseconds
+[ Info:          6.651095271s: 6 seconds, 651 milliseconds
+[ Info:          7.652244818s: 7 seconds, 652 milliseconds
+[ Info:           8.65483425s: 8 seconds, 654 milliseconds
+[ Info:          9.656707142s: 9 seconds, 656 milliseconds
+[ Info:          10.65941924s: 10 seconds, 659 milliseconds
+[ Info:         11.661888177s: 11 seconds, 661 milliseconds
+   Testing TickTock tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

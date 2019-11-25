@@ -1,0 +1,92 @@
+ Resolving package versions...
+ Installed Requires ───── v0.5.2
+ Installed TaylorSeries ─ v0.10.1
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [6aa5eb33] + TaylorSeries v0.10.1
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [ae029012] + Requires v0.5.2
+  [6aa5eb33] + TaylorSeries v0.10.1
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [8dfed614] + Test 
+   Testing TaylorSeries
+ Resolving package versions...
+ Installed RecipesBase ───────── v0.7.0
+ Installed ErrorfreeArithmetic ─ v0.4.0
+ Installed StaticArrays ──────── v0.12.1
+ Installed FastRounding ──────── v0.2.0
+ Installed SetRounding ───────── v0.2.0
+ Installed IntervalArithmetic ── v0.16.1
+ Installed CRlibm ────────────── v0.7.1
+  Building CRlibm → `~/.julia/packages/CRlibm/2S9DB/deps/build.log`
+    Status `/tmp/jl_AClush/Manifest.toml`
+  [96374032] CRlibm v0.7.1
+  [90fa49ef] ErrorfreeArithmetic v0.4.0
+  [fa42c844] FastRounding v0.2.0
+  [d1acc4aa] IntervalArithmetic v0.16.1
+  [3cdcf5f2] RecipesBase v0.7.0
+  [ae029012] Requires v0.5.2
+  [3cc68bcd] SetRounding v0.2.0
+  [90137ffa] StaticArrays v0.12.1
+  [6aa5eb33] TaylorSeries v0.10.1
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+Test Summary:                | Pass  Total
+Tests for Taylor1 expansions |  322    322
+Test Summary:                              | Pass  Total
+Test `inv` for `Matrix{Taylor1{Float64}}`` |   90     90
+Test Summary:                     | Pass  Total
+Matrix multiplication for Taylor1 |   16     16
+┌ Info: Parameters for `TaylorN` and `HomogeneousPolynomial`:
+│ Maximum order       = 6
+│ Number of variables = 2
+│ Variable names      = ["x", "y"]
+└ Variable symbols    = Symbol[:x, :y]
+ 1  -->  x²
+ 2  -->  x y
+ 3  -->  y²
+Test Summary:                               | Pass  Total
+Tests for HomogeneousPolynomial and TaylorN |  455    455
+Test Summary:                   | Pass  Total
+Integrate for several variables |    6      6
+Test Summary:                              | Pass  Total
+Tests with mixtures of Taylor1 and TaylorN |  168    168
+Test Summary:              | Pass  Total
+Tests with nested Taylor1s |    6      6
+Test Summary:      | Pass  Total
+Mutating functions |   54     54
+Test Summary:                                       | Pass  Total
+Tests Taylor1 and TaylorN expansions over Intervals |   40     40
+Test Summary:                        | Pass  Total
+Broadcasting with Taylor1 expansions |   26     26
+Test Summary:                                       | Pass  Total
+Broadcasting with HomogeneousPolynomial and TaylorN |   27     27
+Test Summary:                                 | Pass  Total
+Broadcasting with mixtures Taylor1{TalorN{T}} |   15     15
+Test Summary:                                 | Pass  Total
+Broadcasting with mixtures TaylorN{Talor1{T}} |   14     14
+Test Summary:                                     | Pass  Total
+Testing an identity proved by Euler (8 variables) |    2      2
+Test Summary:                                  | Pass  Total
+Test inspired by Fateman (takes a few seconds) |    2      2
+   Testing TaylorSeries tests passed 

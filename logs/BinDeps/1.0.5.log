@@ -1,0 +1,57 @@
+ Resolving package versions...
+ Installed URIParser ─ v0.4.0
+ Installed Compat ──── v2.2.0
+ Installed BinDeps ─── v0.8.10
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [9e28174c] + BinDeps v0.8.10
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [34da2185] + Compat v2.2.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing BinDeps
+ERROR: The following package names could not be resolved:
+ * HttpParser (not found in project, manifest or registry)
+Please specify by known `name=uuid`.
+Stacktrace:
+ [1] pkgerror(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #ensure_resolved#43(::Bool, ::Function, ::Pkg.Types.EnvCache, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:900
+ [3] #ensure_resolved at ./none:0 [inlined]
+ [4] pkg2_test_target_compatibility!(::Pkg.Types.Context, ::String, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:987
+ [5] collect_target_deps!(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}, ::Pkg.Types.PackageSpec, ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:959
+ [6] #with_dependencies_loadable_at_toplevel#37(::Bool, ::Function, ::getfield(Pkg.Operations, Symbol("##67#69")){Pkg.Types.Context,getfield(Pkg.Operations, Symbol("##66#68")){Pkg.Types.Context,Array{Any,1},Cmd,Pkg.Types.PackageSpec},Pkg.Types.PackageSpec}, ::Pkg.Types.Context, ::Pkg.Types.PackageSpec) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:859
+ [7] #with_dependencies_loadable_at_toplevel at ./none:0 [inlined]
+ [8] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1347
+ [9] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [10] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [11] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [12] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [13] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [14] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [15] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [16] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [17] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [18] top-level scope at none:0

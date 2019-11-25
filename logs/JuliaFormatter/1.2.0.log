@@ -1,0 +1,101 @@
+ Resolving package versions...
+ Installed Tokenize ─────── v0.5.6
+ Installed CSTParser ────── v1.0.0
+ Installed JuliaFormatter ─ v0.1.30
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [98e50ef6] + JuliaFormatter v0.1.30
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [00ebfdb7] + CSTParser v1.0.0
+  [98e50ef6] + JuliaFormatter v0.1.30
+  [0796e94c] + Tokenize v0.5.6
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+   Testing JuliaFormatter
+    Status `/tmp/jl_NmW9CV/Manifest.toml`
+  [00ebfdb7] CSTParser v1.0.0
+  [98e50ef6] JuliaFormatter v0.1.30
+  [0796e94c] Tokenize v0.5.6
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+Splitpath issue: Test Failed at /root/.julia/packages/JuliaFormatter/1faQL/test/runtests.jl:3416
+  Expression: occursin("JuliaFormatter", dirs[end - 1])
+   Evaluated: occursin("JuliaFormatter", "1faQL")
+Stacktrace:
+ [1] top-level scope at /root/.julia/packages/JuliaFormatter/1faQL/test/runtests.jl:3416
+ [2] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+ [3] top-level scope at /root/.julia/packages/JuliaFormatter/1faQL/test/runtests.jl:3413
+ [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+ [5] top-level scope at /root/.julia/packages/JuliaFormatter/1faQL/test/runtests.jl:36
+Test Summary:                     | Pass  Fail  Total
+All                               |  539     1    540
+  basic                           |    6            6
+  format toggle                   |    7            7
+  dot op                          |    4            4
+  toplevel                        |    2            2
+  for = vs in normalization       |   10           10
+  always eq to in                 |   12           12
+  tuples                          |    9            9
+  curly                           |   10           10
+  where op                        |    5            5
+  unary ops                       |    3            3
+  binary ops                      |   76           76
+  op chain                        |    1            1
+  comparison chain                |    1            1
+  single line block               |    1            1
+  func call                       |   15           15
+  macro call                      |    8            8
+  begin                           |    8            8
+  quote                           |    7            7
+  do                              |    5            5
+  for                             |    8            8
+  while                           |    5            5
+  let                             |    9            9
+  structs                         |    6            6
+  try                             |   11           11
+  if                              |    2            2
+  docs                            |   11           11
+  strings                         |   17           17
+  comments                        |   29           29
+  pretty                          |   54           54
+  nesting                         |   60           60
+  nesting line offset             |   48           48
+  additional length               |   42           42
+  Trailing zeros                  |    5            5
+  Leading zeros                   |    5            5
+  issue 77                        |    9            9
+  multi-variable `for` and `let`  |    7            7
+  single newline at end of file   |    1            1
+  trailing comma - breaking cases |    3            3
+  comphrehensions types           |    4            4
+  Splitpath issue                 |    2     1      3
+  invisbrackets                   |   11           11
+ERROR: LoadError: Some tests did not pass: 539 passed, 1 failed, 0 errored, 0 broken.
+in expression starting at /root/.julia/packages/JuliaFormatter/1faQL/test/runtests.jl:34
+ERROR: Package JuliaFormatter errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1288
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

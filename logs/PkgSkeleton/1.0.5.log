@@ -1,0 +1,150 @@
+ Resolving package versions...
+ Installed ArgCheck ──────────── v1.0.1
+ Installed DocStringExtensions ─ v0.8.1
+ Installed PkgSkeleton ───────── v0.3.1
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [d254efa0] + PkgSkeleton v0.3.1
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [dce04be8] + ArgCheck v1.0.1
+  [ffbed154] + DocStringExtensions v0.8.1
+  [d254efa0] + PkgSkeleton v0.3.1
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing PkgSkeleton
+ Resolving package versions...
+    Status `/tmp/tmpB68HT6/Manifest.toml`
+  [dce04be8] ArgCheck v1.0.1
+  [ffbed154] DocStringExtensions v0.8.1
+  [d254efa0] PkgSkeleton v0.3.1
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Test Summary:      | Pass  Total
+replacement values |    5      5
+Test Summary:        | Pass  Total
+template directories |    4      4
+Test Summary:          | Pass  Total
+package name from path |    5      5
+Test Summary:     | Pass  Total
+multiple replaces |    1      1
+[ Info: getting template values
+[ Info: copy and substitute
+[ Info: initializing git repository
+[ Info: adding documenter (completing the Manifest.toml for docs)
+  Updating registry at `~/.julia/registries/General`
+  Updating git-repo `https://github.com/JuliaRegistries/General.git`
+[?25l[2K[?25h┌ Warning: Some registries failed to update:
+│     — /root/.julia/registries/General — failed to fetch from repo
+└ @ Pkg.API /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:162
+ Resolving package versions...
+ Installed Parsers ──── v0.3.10
+ Installed JSON ─────── v0.21.0
+ Installed Documenter ─ v0.23.4
+  Updating `/tmp/tmpz6esfL/Foo/docs/Project.toml`
+  [e30172f5] + Documenter v0.23.4
+  Updating `/tmp/tmpz6esfL/Foo/docs/Manifest.toml`
+  [ffbed154] + DocStringExtensions v0.8.1
+  [e30172f5] + Documenter v0.23.4
+  [682c06a0] + JSON v0.21.0
+  [69de0a69] + Parsers v0.3.10
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+┌ Info: successfully generated Foo
+└   dest_dir = "/tmp/tmpz6esfL/Foo"
+[ Info: test documentation (instantiation)
+package generation and checks: Error During Test at /root/.julia/packages/PkgSkeleton/ZWIs1/test/runtests.jl:92
+  Got exception outside of a @test
+  IOError: could not spawn `julia --project=docs -e 'using Pkg; Pkg.instantiate(); Pkg.develop(PackageSpec(path=pwd()))'`: no such file or directory (ENOENT)
+  Stacktrace:
+   [1] _jl_spawn(::String, ::Array{String,1}, ::Cmd, ::Tuple{RawFD,RawFD,RawFD}) at ./process.jl:367
+   [2] #495 at ./process.jl:509 [inlined]
+   [3] setup_stdio(::getfield(Base, Symbol("##495#496")){Cmd,Base.Process}, ::Tuple{RawFD,RawFD,RawFD}) at ./process.jl:490
+   [4] #_spawn#494(::Nothing, ::Function, ::Cmd, ::Tuple{RawFD,RawFD,RawFD}) at ./process.jl:508
+   [5] _spawn at ./process.jl:504 [inlined]
+   [6] #run#505(::Bool, ::Function, ::Cmd) at ./process.jl:662
+   [7] run at ./process.jl:661 [inlined]
+   [8] (::getfield(Main, Symbol("##4#6")))() at /root/.julia/packages/PkgSkeleton/ZWIs1/test/runtests.jl:103
+   [9] cd(::getfield(Main, Symbol("##4#6")), ::String) at ./file.jl:96
+   [10] (::getfield(Main, Symbol("##3#5")))(::String) at /root/.julia/packages/PkgSkeleton/ZWIs1/test/runtests.jl:101
+   [11] mktempdir(::getfield(Main, Symbol("##3#5")), ::String) at ./file.jl:581
+   [12] mktempdir(::Function) at ./file.jl:579
+   [13] macro expansion at /root/.julia/packages/PkgSkeleton/ZWIs1/test/runtests.jl:93 [inlined]
+   [14] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [15] top-level scope at /root/.julia/packages/PkgSkeleton/ZWIs1/test/runtests.jl:93
+   [16] include at ./boot.jl:317 [inlined]
+   [17] include_relative(::Module, ::String) at ./loading.jl:1044
+   [18] include(::Module, ::String) at ./sysimg.jl:29
+   [19] include(::String) at ./client.jl:392
+   [20] top-level scope at none:0
+   [21] eval(::Module, ::Any) at ./boot.jl:319
+   [22] exec_options(::Base.JLOptions) at ./client.jl:243
+   [23] _start() at ./client.jl:425
+Test Summary:                 | Pass  Error  Total
+package generation and checks |    4      1      5
+ERROR: LoadError: Some tests did not pass: 4 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /root/.julia/packages/PkgSkeleton/ZWIs1/test/runtests.jl:92
+ERROR: Package PkgSkeleton errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

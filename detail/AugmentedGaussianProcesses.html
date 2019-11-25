@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="AugmentedGaussianProcesses">AugmentedGaussianProcesses</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#AugmentedGaussianProcesses">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package is missing a dependency.
+      Last evaluation was 1 day, 17 hours ago and took 1 minute, 27 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/AugmentedGaussianProcesses/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed RecipesBase ──────────────── v0.7.0
+ Installed FastGaussQuadrature ──────── v0.4.0
+ Installed ValueHistories ───────────── v0.5.1
+ Installed Arpack ───────────────────── v0.3.1
+ Installed Expectations ─────────────── v1.1.1
+ Installed DataStructures ───────────── v0.17.6
+ Installed BinaryProvider ───────────── v0.5.8
+ Installed AugmentedGaussianProcesses ─ v0.3.5
+ Installed DataAPI ──────────────────── v1.1.0
+ Installed PDMats ───────────────────── v0.9.10
+ Installed Distances ────────────────── v0.8.2
+ Installed SpecialFunctions ─────────── v0.8.0
+ Installed BinDeps ──────────────────── v0.8.10
+ Installed StaticArrays ─────────────── v0.12.1
+ Installed URIParser ────────────────── v0.4.0
+ Installed SortingAlgorithms ────────── v0.3.1
+ Installed Missings ─────────────────── v0.4.3
+ Installed FileIO ───────────────────── v1.0.7
+ Installed OrderedCollections ───────── v1.1.0
+ Installed StatsBase ────────────────── v0.32.0
+ Installed LaTeXStrings ─────────────── v1.0.3
+ Installed CodecZlib ────────────────── v0.6.0
+ Installed NearestNeighbors ─────────── v0.4.3
+ Installed Rmath ────────────────────── v0.5.1
+ Installed Distributions ────────────── v0.21.8
+ Installed QuadGK ───────────────────── v2.1.1
+ Installed StatsFuns ────────────────── v0.9.0
+ Installed JLD2 ─────────────────────── v0.1.8
+ Installed Compat ───────────────────── v2.2.0
+ Installed TranscodingStreams ───────── v0.9.5
+ Installed Clustering ───────────────── v0.13.3
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [38eea1fd] + AugmentedGaussianProcesses v0.3.5
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [7d9fca2a] + Arpack v0.3.1
+  [38eea1fd] + AugmentedGaussianProcesses v0.3.5
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [aaaa29a8] + Clustering v0.13.3
+  [944b1d66] + CodecZlib v0.6.0
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [b4f34e82] + Distances v0.8.2
+  [31c24e10] + Distributions v0.21.8
+  [2fe49d83] + Expectations v1.1.1
+  [442a2c76] + FastGaussQuadrature v0.4.0
+  [5789e2e9] + FileIO v1.0.7
+  [033835bb] + JLD2 v0.1.8
+  [b964fa9f] + LaTeXStrings v1.0.3
+  [e1d29d7a] + Missings v0.4.3
+  [b8a86587] + NearestNeighbors v0.4.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [90014a1f] + PDMats v0.9.10
+  [1fd47b50] + QuadGK v2.1.1
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [79098fc4] + Rmath v0.5.1
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [2913bbd2] + StatsBase v0.32.0
+  [4c63d2b9] + StatsFuns v0.9.0
+  [3bb67fe8] + TranscodingStreams v0.9.5
+  [30578b45] + URIParser v0.4.0
+  [98cad3c8] + ValueHistories v0.5.1
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [9abbd945] + Profile 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Arpack ──────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+  Building CodecZlib ───────→ `~&#x2F;.julia&#x2F;packages&#x2F;CodecZlib&#x2F;5t9zO&#x2F;deps&#x2F;build.log`
+  Building Rmath ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+   Testing AugmentedGaussianProcesses
+    Status `&#x2F;tmp&#x2F;tmpufsc48&#x2F;Manifest.toml`
+  [7d9fca2a] Arpack v0.3.1
+  [38eea1fd] AugmentedGaussianProcesses v0.3.5
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [aaaa29a8] Clustering v0.13.3
+  [944b1d66] CodecZlib v0.6.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [b4f34e82] Distances v0.8.2
+  [31c24e10] Distributions v0.21.8
+  [2fe49d83] Expectations v1.1.1
+  [442a2c76] FastGaussQuadrature v0.4.0
+  [5789e2e9] FileIO v1.0.7
+  [033835bb] JLD2 v0.1.8
+  [b964fa9f] LaTeXStrings v1.0.3
+  [e1d29d7a] Missings v0.4.3
+  [b8a86587] NearestNeighbors v0.4.3
+  [bac558e1] OrderedCollections v1.1.0
+  [90014a1f] PDMats v0.9.10
+  [1fd47b50] QuadGK v2.1.1
+  [3cdcf5f2] RecipesBase v0.7.0
+  [79098fc4] Rmath v0.5.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [3bb67fe8] TranscodingStreams v0.9.5
+  [30578b45] URIParser v0.4.0
+  [98cad3c8] ValueHistories v0.5.1
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [9abbd945] Profile  [`@stdlib&#x2F;Profile`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+ERROR: LoadError: LoadError: LoadError: ArgumentError: Package AugmentedGaussianProcesses does not have GradDescent in its dependencies:
+- If you have AugmentedGaussianProcesses checked out for development and have
+  added GradDescent as a dependency but haven&#39;t updated your primary
+  environment&#39;s manifest file, try `Pkg.resolve()`.
+- Otherwise you may need to report an issue with AugmentedGaussianProcesses
+Stacktrace:
+ [1] require(::Module, ::Symbol) at .&#x2F;loading.jl:836
+ [2] include at .&#x2F;boot.jl:317 [inlined]
+ [3] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+ [4] include at .&#x2F;sysimg.jl:29 [inlined]
+ [5] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AugmentedGaussianProcesses&#x2F;D72xd&#x2F;src&#x2F;kernels&#x2F;KernelModule.jl:9
+ [6] top-level scope at none:0
+ [7] include at .&#x2F;boot.jl:317 [inlined]
+ [8] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+ [9] include at .&#x2F;sysimg.jl:29 [inlined]
+ [10] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AugmentedGaussianProcesses&#x2F;D72xd&#x2F;src&#x2F;AugmentedGaussianProcesses.jl:6
+ [11] top-level scope at none:0
+ [12] include at .&#x2F;boot.jl:317 [inlined]
+ [13] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+ [14] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+ [15] top-level scope at none:2
+ [16] eval at .&#x2F;boot.jl:319 [inlined]
+ [17] eval(::Expr) at .&#x2F;client.jl:393
+ [18] top-level scope at .&#x2F;none:3
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AugmentedGaussianProcesses&#x2F;D72xd&#x2F;src&#x2F;kernels&#x2F;hyperparameters&#x2F;HyperParametersModule.jl:3
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AugmentedGaussianProcesses&#x2F;D72xd&#x2F;src&#x2F;kernels&#x2F;KernelModule.jl:14
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AugmentedGaussianProcesses&#x2F;D72xd&#x2F;src&#x2F;AugmentedGaussianProcesses.jl:31
+ERROR: LoadError: Failed to precompile AugmentedGaussianProcesses [38eea1fd-7d7d-5162-9d08-f89d0f2e271e] to &#x2F;root&#x2F;.julia&#x2F;compiled&#x2F;v1.0&#x2F;AugmentedGaussianProcesses&#x2F;RnusI.ji.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at .&#x2F;loading.jl:1203
+ [3] _require(::Base.PkgId) at .&#x2F;loading.jl:960
+ [4] require(::Base.PkgId) at .&#x2F;loading.jl:858
+ [5] require(::Module, ::Symbol) at .&#x2F;loading.jl:853
+ [6] include at .&#x2F;boot.jl:317 [inlined]
+ [7] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+ [8] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+ [9] include(::String) at .&#x2F;client.jl:392
+ [10] top-level scope at none:0
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AugmentedGaussianProcesses&#x2F;D72xd&#x2F;test&#x2F;runtests.jl:1
+ERROR: Package AugmentedGaussianProcesses errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1357
+ [3] #test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:278
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:263 [inlined]
+ [6] #test#43 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [8] #test#42 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [10] #test#41 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258 [inlined]
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258
+ [12] top-level scope at none:0
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 10 hours ago and took 25 minutes, 5 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/AugmentedGaussianProcesses/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Showoff ───────────────────── v0.3.1
+ Installed Missings ──────────────────── v0.4.3
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed TableTraits ───────────────── v1.0.0
+ Installed LineSearches ──────────────── v7.0.1
+ Installed NearestNeighbors ──────────── v0.4.3
+ Installed DataFrames ────────────────── v0.19.4
+ Installed AbstractFFTs ──────────────── v0.5.0
+ Installed PDMats ────────────────────── v0.9.10
+ Installed Conda ─────────────────────── v1.3.0
+ Installed RangeArrays ───────────────── v0.3.1
+ Installed CommonSubexpressions ──────── v0.2.0
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed AugmentedGaussianProcesses ── v0.6.0
+ Installed StatsBase ─────────────────── v0.32.0
+ Installed URIParser ─────────────────── v0.4.0
+ Installed AxisAlgorithms ────────────── v1.0.0
+ Installed Requires ──────────────────── v0.5.2
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed StatsFuns ─────────────────── v0.8.0
+ Installed NLSolversBase ─────────────── v7.5.0
+ Installed InplaceOps ────────────────── v0.3.0
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed Reexport ──────────────────── v0.2.0
+ Installed OffsetArrays ──────────────── v0.11.1
+ Installed OrderedCollections ────────── v1.1.0
+ Installed ForwardDiff ───────────────── v0.10.6
+ Installed Compat ────────────────────── v2.2.0
+ Installed Tables ────────────────────── v0.2.11
+ Installed Rmath ─────────────────────── v0.6.0
+ Installed AdvancedHMC ───────────────── v0.2.13
+ Installed IterTools ─────────────────── v1.3.0
+ Installed KernelDensity ─────────────── v0.5.1
+ Installed Calculus ──────────────────── v0.5.1
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed ArgCheck ──────────────────── v1.0.1
+ Installed DataStructures ────────────── v0.17.6
+ Installed Parsers ───────────────────── v0.3.10
+ Installed FillArrays ────────────────── v0.7.4
+ Installed DiffRules ─────────────────── v0.1.0
+ Installed DiffEqDiffTools ───────────── v1.4.0
+ Installed Distributions ─────────────── v0.21.8
+ Installed FastGaussQuadrature ───────── v0.4.0
+ Installed JSON ──────────────────────── v0.21.0
+ Installed Ratios ────────────────────── v0.3.1
+ Installed ArrayInterface ────────────── v1.2.1
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed DiffResults ───────────────── v0.0.4
+ Installed MCMCChains ────────────────── v0.3.15
+ Installed StaticArrays ──────────────── v0.12.1
+ Installed Parameters ────────────────── v0.12.0
+ Installed IntervalSets ──────────────── v0.3.2
+ Installed FFTW ──────────────────────── v1.1.0
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed GradDescent ───────────────── v0.3.1
+ Installed QuadGK ────────────────────── v2.1.1
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed WoodburyMatrices ──────────── v0.4.1
+ Installed LazyArrays ────────────────── v0.13.1
+ Installed VersionParsing ────────────── v1.1.3
+ Installed Distances ─────────────────── v0.8.2
+ Installed KernelFunctions ───────────── v0.2.1
+ Installed MacroTools ────────────────── v0.5.2
+ Installed PositiveFactorizations ────── v0.2.3
+ Installed Interpolations ────────────── v0.12.5
+ Installed AxisArrays ────────────────── v0.3.3
+ Installed SpecialFunctions ──────────── v0.8.0
+ Installed BinDeps ───────────────────── v0.8.10
+ Installed ProgressMeter ─────────────── v1.2.0
+ Installed Arpack ────────────────────── v0.3.1
+ Installed Optim ─────────────────────── v0.19.4
+ Installed Clustering ────────────────── v0.13.3
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [38eea1fd] + AugmentedGaussianProcesses v0.6.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [621f4979] + AbstractFFTs v0.5.0
+  [0bf59076] + AdvancedHMC v0.2.13
+  [dce04be8] + ArgCheck v1.0.1
+  [7d9fca2a] + Arpack v0.3.1
+  [4fba245c] + ArrayInterface v1.2.1
+  [38eea1fd] + AugmentedGaussianProcesses v0.6.0
+  [13072b0f] + AxisAlgorithms v1.0.0
+  [39de3d68] + AxisArrays v0.3.3
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [324d7699] + CategoricalArrays v0.7.3
+  [aaaa29a8] + Clustering v0.13.3
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [8f4d0f93] + Conda v1.3.0
+  [9a962f9c] + DataAPI v1.1.0
+  [a93c6f00] + DataFrames v0.19.4
+  [864edb3b] + DataStructures v0.17.6
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [b4f34e82] + Distances v0.8.2
+  [31c24e10] + Distributions v0.21.8
+  [7a1cc6ca] + FFTW v1.1.0
+  [442a2c76] + FastGaussQuadrature v0.4.0
+  [1a297f60] + FillArrays v0.7.4
+  [f6369f11] + ForwardDiff v0.10.6
+  [e1397348] + GradDescent v0.3.1
+  [505f98c9] + InplaceOps v0.3.0
+  [a98d9a8b] + Interpolations v0.12.5
+  [8197267c] + IntervalSets v0.3.2
+  [41ab1584] + InvertedIndices v1.0.0
+  [c8e1da08] + IterTools v1.3.0
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [682c06a0] + JSON v0.21.0
+  [5ab0869b] + KernelDensity v0.5.1
+  [ec8451be] + KernelFunctions v0.2.1
+  [5078a376] + LazyArrays v0.13.1
+  [d3d80556] + LineSearches v7.0.1
+  [c7f686f2] + MCMCChains v0.3.15
+  [1914dd2f] + MacroTools v0.5.2
+  [e1d29d7a] + Missings v0.4.3
+  [d41bc354] + NLSolversBase v7.5.0
+  [77ba4419] + NaNMath v0.3.3
+  [b8a86587] + NearestNeighbors v0.4.3
+  [6fe1bfb0] + OffsetArrays v0.11.1
+  [429524aa] + Optim v0.19.4
+  [bac558e1] + OrderedCollections v1.1.0
+  [90014a1f] + PDMats v0.9.10
+  [d96e819e] + Parameters v0.12.0
+  [69de0a69] + Parsers v0.3.10
+  [2dfb63ee] + PooledArrays v0.5.2
+  [85a6dd25] + PositiveFactorizations v0.2.3
+  [92933f4c] + ProgressMeter v1.2.0
+  [1fd47b50] + QuadGK v2.1.1
+  [b3c3ace0] + RangeArrays v0.3.1
+  [c84ed2f1] + Ratios v0.3.1
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [79098fc4] + Rmath v0.6.0
+  [992d4aef] + Showoff v0.3.1
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [2913bbd2] + StatsBase v0.32.0
+  [4c63d2b9] + StatsFuns v0.8.0
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [30578b45] + URIParser v0.4.0
+  [81def892] + VersionParsing v1.1.3
+  [efce3f68] + WoodburyMatrices v0.4.1
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Conda ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building Rmath ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;BoBag&#x2F;deps&#x2F;build.log`
+  Building FFTW ────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFTW&#x2F;loJ3F&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+  Building Arpack ──────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+   Testing AugmentedGaussianProcesses
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;jl_Dw1kjS&#x2F;Manifest.toml`
+  [621f4979] AbstractFFTs v0.5.0
+  [0bf59076] AdvancedHMC v0.2.13
+  [dce04be8] ArgCheck v1.0.1
+  [7d9fca2a] Arpack v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [38eea1fd] AugmentedGaussianProcesses v0.6.0
+  [13072b0f] AxisAlgorithms v1.0.0
+  [39de3d68] AxisArrays v0.3.3
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [324d7699] CategoricalArrays v0.7.3
+  [aaaa29a8] Clustering v0.13.3
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [8f4d0f93] Conda v1.3.0
+  [9a962f9c] DataAPI v1.1.0
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [31c24e10] Distributions v0.21.8
+  [7a1cc6ca] FFTW v1.1.0
+  [442a2c76] FastGaussQuadrature v0.4.0
+  [1a297f60] FillArrays v0.7.4
+  [f6369f11] ForwardDiff v0.10.6
+  [e1397348] GradDescent v0.3.1
+  [505f98c9] InplaceOps v0.3.0
+  [a98d9a8b] Interpolations v0.12.5
+  [8197267c] IntervalSets v0.3.2
+  [41ab1584] InvertedIndices v1.0.0
+  [c8e1da08] IterTools v1.3.0
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [682c06a0] JSON v0.21.0
+  [5ab0869b] KernelDensity v0.5.1
+  [ec8451be] KernelFunctions v0.2.1
+  [5078a376] LazyArrays v0.13.1
+  [d3d80556] LineSearches v7.0.1
+  [c7f686f2] MCMCChains v0.3.15
+  [1914dd2f] MacroTools v0.5.2
+  [e1d29d7a] Missings v0.4.3
+  [d41bc354] NLSolversBase v7.5.0
+  [77ba4419] NaNMath v0.3.3
+  [b8a86587] NearestNeighbors v0.4.3
+  [6fe1bfb0] OffsetArrays v0.11.1
+  [429524aa] Optim v0.19.4
+  [bac558e1] OrderedCollections v1.1.0
+  [90014a1f] PDMats v0.9.10
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [2dfb63ee] PooledArrays v0.5.2
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [92933f4c] ProgressMeter v1.2.0
+  [1fd47b50] QuadGK v2.1.1
+  [b3c3ace0] RangeArrays v0.3.1
+  [c84ed2f1] Ratios v0.3.1
+  [3cdcf5f2] RecipesBase v0.7.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [79098fc4] Rmath v0.6.0
+  [992d4aef] Showoff v0.3.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.8.0
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [30578b45] URIParser v0.4.0
+  [81def892] VersionParsing v1.1.3
+  [efce3f68] WoodburyMatrices v0.4.1
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+┌ Warning: `lgamma(x::Real)` is deprecated, use `(logabsgamma(x))[1]` instead.
+│   caller = lstirling_asym(::BigFloat) at misc.jl:56
+└ @ StatsFuns ~&#x2F;.julia&#x2F;packages&#x2F;StatsFuns&#x2F;2QE7p&#x2F;src&#x2F;misc.jl:56
+WARNING: Method definition deepcopy(GradDescent.Optimizer) in module GradDescent at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GradDescent&#x2F;C4qjb&#x2F;src&#x2F;AbstractOptimizer.jl:22 overwritten in module AugmentedGaussianProcesses at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AugmentedGaussianProcesses&#x2F;8kAgJ&#x2F;src&#x2F;functions&#x2F;utils.jl:71.
+  ** incremental compilation may be fatally broken for this module **
+
+Starting training Gaussian Process with a Gaussian likelihood infered by Analytic Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:06:03[K
+  iter:  10
+  ELBO:  624.055311605656[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:03:18[K
+  iter:  20
+  ELBO:  635.6749526747976[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:02:18[K
+  iter:  30
+  ELBO:  589.8717573567224[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:01:46[K
+  iter:  40
+  ELBO:  662.1781749169041[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:01:26[K
+  iter:  50
+  ELBO:  623.42314174303[A[ATraining ended after 50 iterations. Total number of iterations 50
+Starting training Variational Gaussian Process with a Student-t likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:21:04[K
+  iter:  10
+  ELBO:  -152.22527095522108[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:13:44[K
+  iter:  20
+  ELBO:  -150.83076430626667[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:11:36[K
+  iter:  30
+  ELBO:  -149.87410204825318[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:09:33[K
+  iter:  40
+  ELBO:  -149.3256010303903[A[ATraining ended after 50 iterations. Total number of iterations 50
+
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:08:17[K
+  iter:  50
+  ELBO:  -149.0933024080821[A[A┌ Info: Regression Error
+└   err = 0.42423310223482874
+Starting training Variational Gaussian Process with a Laplace likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:06:01[K
+  iter:  10
+  ELBO:  -566.2257858667443[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:06:35[K
+  iter:  20
+  ELBO:  -568.6837211638699[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:06:24[K
+  iter:  30
+  ELBO:  -570.2704750617671[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:05:52[K
+  iter:  40
+  ELBO:  -571.5108565720996[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:05:08[K
+  iter:  50
+  ELBO:  -572.6758898614406[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Regression Error
+└   err = 0.4018312504927921
+Starting training Variational Gaussian Process with a Gaussian likelihood with heteroscedastic noise infered by Analytic Variational Inference  with 100 samples with 2 features and 2 latent GPs
+Training Progress:   2%|▋                               |  ETA: 0:15:58[K
+  iter:  10
+  ELBO:  -151.9180420076005[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:12:48[K
+  iter:  20
+  ELBO:  -148.26280976292938[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:10:12[K
+  iter:  30
+  ELBO:  -145.84117325437848[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:08:48[K
+  iter:  40
+  ELBO:  -143.96603507457547[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:07:44[K
+  iter:  50
+  ELBO:  -142.62347058957954[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Regression Error
+└   err = 0.6697049944693384
+Starting training Variational Gaussian Process with a Bayesian SVM infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:05:43[K
+  iter:  10
+  ELBO:  69.36594915000717[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:05:11[K
+  iter:  20
+  ELBO:  81.76959815146418[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:04:48[K
+  iter:  30
+  ELBO:  93.11305693561651[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:03:58[K
+  iter:  40
+  ELBO:  102.88460405823886[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:04:01[K
+  iter:  50
+  ELBO:  111.76775053360485[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Classification Error
+└   err = 0.02
+Starting training Variational Gaussian Process with a Bernoulli Likelihood with Logistic Link infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:07:46[K
+  iter:  10
+  ELBO:  -15.454964035157495[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:05:59[K
+  iter:  20
+  ELBO:  -12.921811247673368[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:05:27[K
+  iter:  30
+  ELBO:  -10.525979508328298[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:05:18[K
+  iter:  40
+  ELBO:  -8.35820090724456[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:05:15[K
+  iter:  50
+  ELBO:  -6.439785930008044[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Classification Error
+└   err = 0.06
+Starting training Variational Gaussian Process with a Logistic-Softmax Likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 5 latent GPs
+┌ Warning: `lgamma(x::Real)` is deprecated, use `(logabsgamma(x))[1]` instead.
+│   caller = mapreduce_impl(::typeof(SpecialFunctions.lgamma), ::typeof(Base.add_sum), ::Array{Float64,1}, ::Int64, ::Int64, ::Int64) at reduce.jl:163
+└ @ Base .&#x2F;reduce.jl:163
+┌ Warning: `lgamma(x::Real)` is deprecated, use `(logabsgamma(x))[1]` instead.
+│   caller = mapreduce_impl(::typeof(SpecialFunctions.lgamma), ::typeof(Base.add_sum), ::Array{Float64,1}, ::Int64, ::Int64, ::Int64) at reduce.jl:163
+└ @ Base .&#x2F;reduce.jl:163
+┌ Warning: `lgamma(x::Real)` is deprecated, use `(logabsgamma(x))[1]` instead.
+│   caller = macro expansion at reduce.jl:166 [inlined]
+└ @ Core .&#x2F;reduce.jl:166
+Training Progress:   2%|▋                               |  ETA: 0:25:14[K
+  iter:  10
+  ELBO:  -35.39357854978404[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:25:10[K
+  iter:  20
+  ELBO:  -34.45020609542739[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:22:14[K
+  iter:  30
+  ELBO:  -33.487615772216785[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:19:21[K
+  iter:  40
+  ELBO:  -32.51198464266844[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:18:06[K
+  iter:  50
+  ELBO:  -31.532388431562154[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Multiclass Error
+└   err = 0.27
+Starting training Variational Gaussian Process with a Poisson Likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+┌ Warning: `lfactorial(x)` is deprecated, use `logfactorial(x)` instead.
+│   caller = mapreduce_impl(::typeof(SpecialFunctions.lfactorial), ::typeof(Base.add_sum), ::SubArray{Int64,1,Array{Int64,1},Tuple{UnitRange{Int64}},true}, ::Int64, ::Int64, ::Int64) at reduce.jl:163
+└ @ Base .&#x2F;reduce.jl:163
+┌ Warning: `lfactorial(x)` is deprecated, use `logfactorial(x)` instead.
+│   caller = mapreduce_impl(::typeof(SpecialFunctions.lfactorial), ::typeof(Base.add_sum), ::SubArray{Int64,1,Array{Int64,1},Tuple{UnitRange{Int64}},true}, ::Int64, ::Int64, ::Int64) at reduce.jl:163
+└ @ Base .&#x2F;reduce.jl:163
+┌ Warning: `lfactorial(x)` is deprecated, use `logfactorial(x)` instead.
+│   caller = macro expansion at reduce.jl:166 [inlined]
+└ @ Core .&#x2F;reduce.jl:166
+Training Progress:   2%|▋                               |  ETA: 0:04:07[K
+  iter:  10
+  ELBO:  -127.88298349900529[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:02:19[K
+  iter:  20
+  ELBO:  -127.29460423970073[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:01:41[K
+  iter:  30
+  ELBO:  -126.78849653827106[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:01:22[K
+  iter:  40
+  ELBO:  -126.35342619265163[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Event Error
+└   err = 0.7098173135397421
+Starting training Variational Gaussian Process with a Negative Binomial Likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:06:23[K
+  iter:  10
+  ELBO:  -721.0880180049672[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:05:13[K
+  iter:  20
+  ELBO:  -722.0593597319071[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:04:22[K
+  iter:  30
+  ELBO:  -724.994236824439[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:03:41[K
+  iter:  40
+  ELBO:  -729.9041714833322[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:03:39[K
+  iter:  50
+  ELBO:  -736.0449100226724[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Event Error
+└   err = 17.843017416604642
+Starting training Sparse Variational Gaussian Process with a Gaussian likelihood infered by Analytic Stochastic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:17:40[K
+  iter:  10
+  ELBO:  -17079.797227277846[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:10:30[K
+  iter:  20
+  ELBO:  -8599.59797723481[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:07:17[K
+  iter:  30
+  ELBO:  -5242.0108842236[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:05:57[K
+  iter:  40
+  ELBO:  -3289.1278946429898[A[ATraining ended after 50 iterations. Total number of iterations 50
+
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:04:47[K
+  iter:  50
+  ELBO:  -2128.3613840619128[A[A┌ Info: Regression Error
+└   err = 0.1916643120593336
+Starting training Sparse Variational Gaussian Process with a Gaussian likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:10:25[K
+  iter:  10
+  ELBO:  -9899.639904103533[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:06:09[K
+  iter:  20
+  ELBO:  -5426.53917339238[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:06:29[K
+  iter:  30
+  ELBO:  -2843.9384952479813[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:05:43[K
+  iter:  40
+  ELBO:  -1750.2504312954482[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:05:31Training ended after 50 iterations. Total number of iterations 50
+[K
+  iter:  50
+  ELBO:  -1244.9903501916308[A[A┌ Info: Regression Error
+└   err = 0.1924079838340166
+Starting training Sparse Variational Gaussian Process with a Student-t likelihood infered by Analytic Stochastic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:04:35[K
+  iter:  10
+  ELBO:  -154.46487995526218[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:04:25[K
+  iter:  20
+  ELBO:  -154.20442389905526[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:04:21[K
+  iter:  30
+  ELBO:  -148.2764637134125[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:04:00[K
+  iter:  40
+  ELBO:  -144.72141927861892[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:03:39[K
+  iter:  50
+  ELBO:  -149.6070600895726[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Regression Error
+└   err = 0.3743704345526695
+Starting training Sparse Variational Gaussian Process with a Student-t likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:01:25[K
+  iter:  10
+  ELBO:  -153.04344847573242[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:02:21[K
+  iter:  20
+  ELBO:  -149.9963940377222[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:03:37[K
+  iter:  30
+  ELBO:  -147.76024176104508[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:03:51[K
+  iter:  40
+  ELBO:  -146.24357901950052[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:03:41[K
+  iter:  50
+  ELBO:  -145.29013276252704[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Regression Error
+└   err = 0.41590173469563896
+Starting training Sparse Variational Gaussian Process with a Laplace likelihood infered by Analytic Stochastic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:02:39[K
+  iter:  10
+  ELBO:  -484.5442622874363[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:03:20[K
+  iter:  20
+  ELBO:  -508.18249577862673[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:04:31[K
+  iter:  30
+  ELBO:  -529.6422203331739[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:04:32[K
+  iter:  40
+  ELBO:  -535.1785651152691[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:04:43[K
+  iter:  50
+  ELBO:  -539.2752458689337[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Regression Error
+└   err = 0.3667928989461938
+Starting training Sparse Variational Gaussian Process with a Laplace likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:06:05[K
+  iter:  10
+  ELBO:  -532.2261019516801[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:05:25[K
+  iter:  20
+  ELBO:  -541.9117945690705[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:05:17[K
+  iter:  30
+  ELBO:  -550.4257458267433[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:05:13[K
+  iter:  40
+  ELBO:  -557.2638921738725[A[ATraining ended after 50 iterations. Total number of iterations 50
+
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:04:38[K
+  iter:  50
+  ELBO:  -562.3300006862518[A[A┌ Info: Regression Error
+└   err = 0.4045807937532465
+Starting training Sparse Variational Gaussian Process with a Bayesian SVM infered by Analytic Stochastic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:06:34[K
+  iter:  10
+  ELBO:  65.9218130002265[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:06:39[K
+  iter:  20
+  ELBO:  76.82715598619467[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:06:36[K
+  iter:  30
+  ELBO:  73.98349532366112[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:06:24[K
+  iter:  40
+  ELBO:  74.00915532136804[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:05:28[K
+  iter:  50
+  ELBO:  97.50413919760504[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Classification Error
+└   err = 0.08
+Starting training Sparse Variational Gaussian Process with a Bayesian SVM infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:07:24[K
+  iter:  10
+  ELBO:  68.98355584076891[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:05:58[K
+  iter:  20
+  ELBO:  76.787456588064[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:05:28[K
+  iter:  30
+  ELBO:  84.52423904711733[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:05:15[K
+  iter:  40
+  ELBO:  92.20667838057358[A[ATraining ended after 50 iterations. Total number of iterations 50
+
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:04:53[K
+  iter:  50
+  ELBO:  99.92516828116736[A[A┌ Info: Classification Error
+└   err = 0.1
+Starting training Sparse Variational Gaussian Process with a Bernoulli Likelihood with Logistic Link infered by Analytic Stochastic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:04:04[K
+  iter:  10
+  ELBO:  -27.75104254692645[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:03:38[K
+  iter:  20
+  ELBO:  -28.644634401176212[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:03:37[K
+  iter:  30
+  ELBO:  -27.546234465921838[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:03:25[K
+  iter:  40
+  ELBO:  -30.51475110270535[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:03:07[K
+  iter:  50
+  ELBO:  -24.39375109216409[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Classification Error
+└   err = 0.09
+Starting training Sparse Variational Gaussian Process with a Bernoulli Likelihood with Logistic Link infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:02:22[K
+  iter:  10
+  ELBO:  -26.854802201157163[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:04:53[K
+  iter:  20
+  ELBO:  -25.465444295531935[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:04:51[K
+  iter:  30
+  ELBO:  -24.217839663708514[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:04:32[K
+  iter:  40
+  ELBO:  -23.223133523714495[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:03:49[K
+  iter:  50
+  ELBO:  -22.567557185060817[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Classification Error
+└   err = 0.12
+Starting training Sparse Variational Gaussian Process with a Logistic-Softmax Likelihood infered by Analytic Stochastic Variational Inference  with 100 samples with 2 features and 5 latent GPs
+Training Progress:   2%|▋                               |  ETA: 0:26:34[K
+  iter:  10
+  ELBO:  -49.35338984675457[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:27:28[K
+  iter:  20
+  ELBO:  -41.16411651416658[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:20:54[K
+  iter:  30
+  ELBO:  -44.22525228539841[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:19:13[K
+  iter:  40
+  ELBO:  -43.97645560619128[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:18:12[K
+  iter:  50
+  ELBO:  -44.02003833619243[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Multiclass Error
+└   err = 0.15
+Starting training Sparse Variational Gaussian Process with a Logistic-Softmax Likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 5 latent GPs
+Training Progress:   2%|▋                               |  ETA: 0:17:01[K
+  iter:  10
+  ELBO:  -36.0747705571992[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:18:46[K
+  iter:  20
+  ELBO:  -34.447820192248074[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:19:25[K
+  iter:  30
+  ELBO:  -32.802672579842024[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:18:30[K
+  iter:  40
+  ELBO:  -31.14870691577414[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:17:18[K
+  iter:  50
+  ELBO:  -29.50121146723596[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Multiclass Error
+└   err = 0.33
+Starting training Sparse Variational Gaussian Process with a Poisson Likelihood infered by Analytic Stochastic Variational Inference  with 100 samples with 2 features and 1 latent GP
+┌ Warning: `lfactorial(x)` is deprecated, use `logfactorial(x)` instead.
+│   caller = mapreduce_first at reduce.jl:301 [inlined]
+└ @ Core .&#x2F;reduce.jl:301
+┌ Warning: `lfactorial(x)` is deprecated, use `logfactorial(x)` instead.
+│   caller = mapfoldl_impl(::typeof(SpecialFunctions.lfactorial), ::typeof(Base.add_sum), ::NamedTuple{(:init,),Tuple{Float64}}, ::SubArray{Int64,1,Array{Int64,1},Tuple{Array{Int64,1}},false}, ::Tuple{Base.OneTo{Int64},Int64}) at reduce.jl:45
+└ @ Base .&#x2F;reduce.jl:45
+┌ Warning: `lfactorial(x)` is deprecated, use `logfactorial(x)` instead.
+│   caller = mapfoldl_impl(::typeof(SpecialFunctions.lfactorial), ::typeof(Base.add_sum), ::NamedTuple{(:init,),Tuple{Float64}}, ::SubArray{Int64,1,Array{Int64,1},Tuple{Array{Int64,1}},false}, ::Tuple{Base.OneTo{Int64},Int64}) at reduce.jl:49
+└ @ Base .&#x2F;reduce.jl:49
+Training Progress:   2%|▋                               |  ETA: 0:03:04[K
+  iter:  10
+  ELBO:  -139.1590242099698[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:01:48[K
+  iter:  20
+  ELBO:  -133.03364964276955[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:01:56[K
+  iter:  30
+  ELBO:  -140.48091147463396[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:02:25[K
+  iter:  40
+  ELBO:  -144.3885844875022[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:02:14[K
+  iter:  50
+  ELBO:  -141.88303814571918[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Event Error
+└   err = 0.7510338044696269
+Starting training Sparse Variational Gaussian Process with a Poisson Likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:06:56[K
+  iter:  10
+  ELBO:  -145.46229622545312[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:04:48[K
+  iter:  20
+  ELBO:  -144.11699398013732[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:03:59[K
+  iter:  30
+  ELBO:  -142.9752894637628[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:03:51[K
+  iter:  40
+  ELBO:  -142.03652823774974[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:04:01[K
+  iter:  50
+  ELBO:  -141.2761343201774[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Event Error
+└   err = 0.7455536649032811
+Starting training Sparse Variational Gaussian Process with a Negative Binomial Likelihood infered by Analytic Stochastic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:04:29[K
+  iter:  10
+  ELBO:  -545.1836920779126[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:02:33[K
+  iter:  20
+  ELBO:  -431.2933407778883[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:01:55[K
+  iter:  30
+  ELBO:  -410.62566331071366[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:01:49[K
+  iter:  40
+  ELBO:  -416.39633750835185[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:02:52[K
+  iter:  50
+  ELBO:  -463.3876033077153[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Event Error
+└   err = 7.459339822755599
+Starting training Sparse Variational Gaussian Process with a Negative Binomial Likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:06:15[K
+  iter:  10
+  ELBO:  -432.4950813465152[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:03:59[K
+  iter:  20
+  ELBO:  -421.0483910091723[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:02:50[K
+  iter:  30
+  ELBO:  -413.58238983648744[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:04:18[K
+  iter:  40
+  ELBO:  -409.54252852983427[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:03:43[K
+  iter:  50
+  ELBO:  -408.2247063170038[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Event Error
+└   err = 7.530005362003772
+Test Summary:                      | Pass  Total
+Augmented Gaussian Process Testing |   79     79
+   Testing AugmentedGaussianProcesses tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 15 hours ago and took 12 minutes, 39 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/AugmentedGaussianProcesses/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed DiffEqDiffTools ───────────── v1.4.0
+ Installed FillArrays ────────────────── v0.7.4
+ Installed Distances ─────────────────── v0.8.2
+ Installed DiffResults ───────────────── v0.0.4
+ Installed NearestNeighbors ──────────── v0.4.3
+ Installed Optim ─────────────────────── v0.19.4
+ Installed AugmentedGaussianProcesses ── v0.6.0
+ Installed Missings ──────────────────── v0.4.3
+ Installed ArrayInterface ────────────── v1.2.1
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed BinDeps ───────────────────── v0.8.10
+ Installed ForwardDiff ───────────────── v0.10.6
+ Installed VersionParsing ────────────── v1.1.3
+ Installed AbstractFFTs ──────────────── v0.5.0
+ Installed Rmath ─────────────────────── v0.6.0
+ Installed LineSearches ──────────────── v7.0.1
+ Installed Reexport ──────────────────── v0.2.0
+ Installed NLSolversBase ─────────────── v7.5.0
+ Installed Parameters ────────────────── v0.12.0
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed Tables ────────────────────── v0.2.11
+ Installed Calculus ──────────────────── v0.5.1
+ Installed Clustering ────────────────── v0.13.3
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed JSON ──────────────────────── v0.21.0
+ Installed OffsetArrays ──────────────── v0.11.1
+ Installed KernelDensity ─────────────── v0.5.1
+ Installed Distributions ─────────────── v0.21.8
+ Installed DiffRules ─────────────────── v0.1.0
+ Installed DataStructures ────────────── v0.17.6
+ Installed LazyArrays ────────────────── v0.13.1
+ Installed AxisArrays ────────────────── v0.3.3
+ Installed InplaceOps ────────────────── v0.3.0
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed ProgressMeter ─────────────── v1.2.0
+ Installed Parsers ───────────────────── v0.3.10
+ Installed QuadGK ────────────────────── v2.1.1
+ Installed Arpack ────────────────────── v0.3.1
+ Installed Ratios ────────────────────── v0.3.1
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed StaticArrays ──────────────── v0.12.1
+ Installed Requires ──────────────────── v0.5.2
+ Installed URIParser ─────────────────── v0.4.0
+ Installed PositiveFactorizations ────── v0.2.3
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed StatsFuns ─────────────────── v0.8.0
+ Installed FastGaussQuadrature ───────── v0.4.0
+ Installed WoodburyMatrices ──────────── v0.4.1
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed AxisAlgorithms ────────────── v1.0.0
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed CommonSubexpressions ──────── v0.2.0
+ Installed AdvancedHMC ───────────────── v0.2.13
+ Installed StatsBase ─────────────────── v0.32.0
+ Installed PDMats ────────────────────── v0.9.10
+ Installed TableTraits ───────────────── v1.0.0
+ Installed IntervalSets ──────────────── v0.3.2
+ Installed Conda ─────────────────────── v1.3.0
+ Installed MacroTools ────────────────── v0.5.2
+ Installed MCMCChains ────────────────── v0.3.15
+ Installed IterTools ─────────────────── v1.3.0
+ Installed ArgCheck ──────────────────── v1.0.1
+ Installed OrderedCollections ────────── v1.1.0
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed Showoff ───────────────────── v0.3.1
+ Installed FFTW ──────────────────────── v1.1.0
+ Installed Compat ────────────────────── v2.2.0
+ Installed RangeArrays ───────────────── v0.3.1
+ Installed SpecialFunctions ──────────── v0.8.0
+ Installed Interpolations ────────────── v0.12.5
+ Installed GradDescent ───────────────── v0.3.1
+ Installed DataFrames ────────────────── v0.19.4
+ Installed KernelFunctions ───────────── v0.2.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [38eea1fd] + AugmentedGaussianProcesses v0.6.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [621f4979] + AbstractFFTs v0.5.0
+  [0bf59076] + AdvancedHMC v0.2.13
+  [dce04be8] + ArgCheck v1.0.1
+  [7d9fca2a] + Arpack v0.3.1
+  [4fba245c] + ArrayInterface v1.2.1
+  [38eea1fd] + AugmentedGaussianProcesses v0.6.0
+  [13072b0f] + AxisAlgorithms v1.0.0
+  [39de3d68] + AxisArrays v0.3.3
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [324d7699] + CategoricalArrays v0.7.3
+  [aaaa29a8] + Clustering v0.13.3
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [8f4d0f93] + Conda v1.3.0
+  [9a962f9c] + DataAPI v1.1.0
+  [a93c6f00] + DataFrames v0.19.4
+  [864edb3b] + DataStructures v0.17.6
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [b4f34e82] + Distances v0.8.2
+  [31c24e10] + Distributions v0.21.8
+  [7a1cc6ca] + FFTW v1.1.0
+  [442a2c76] + FastGaussQuadrature v0.4.0
+  [1a297f60] + FillArrays v0.7.4
+  [f6369f11] + ForwardDiff v0.10.6
+  [e1397348] + GradDescent v0.3.1
+  [505f98c9] + InplaceOps v0.3.0
+  [a98d9a8b] + Interpolations v0.12.5
+  [8197267c] + IntervalSets v0.3.2
+  [41ab1584] + InvertedIndices v1.0.0
+  [c8e1da08] + IterTools v1.3.0
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [682c06a0] + JSON v0.21.0
+  [5ab0869b] + KernelDensity v0.5.1
+  [ec8451be] + KernelFunctions v0.2.1
+  [5078a376] + LazyArrays v0.13.1
+  [d3d80556] + LineSearches v7.0.1
+  [c7f686f2] + MCMCChains v0.3.15
+  [1914dd2f] + MacroTools v0.5.2
+  [e1d29d7a] + Missings v0.4.3
+  [d41bc354] + NLSolversBase v7.5.0
+  [77ba4419] + NaNMath v0.3.3
+  [b8a86587] + NearestNeighbors v0.4.3
+  [6fe1bfb0] + OffsetArrays v0.11.1
+  [429524aa] + Optim v0.19.4
+  [bac558e1] + OrderedCollections v1.1.0
+  [90014a1f] + PDMats v0.9.10
+  [d96e819e] + Parameters v0.12.0
+  [69de0a69] + Parsers v0.3.10
+  [2dfb63ee] + PooledArrays v0.5.2
+  [85a6dd25] + PositiveFactorizations v0.2.3
+  [92933f4c] + ProgressMeter v1.2.0
+  [1fd47b50] + QuadGK v2.1.1
+  [b3c3ace0] + RangeArrays v0.3.1
+  [c84ed2f1] + Ratios v0.3.1
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [79098fc4] + Rmath v0.6.0
+  [992d4aef] + Showoff v0.3.1
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [2913bbd2] + StatsBase v0.32.0
+  [4c63d2b9] + StatsFuns v0.8.0
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [30578b45] + URIParser v0.4.0
+  [81def892] + VersionParsing v1.1.3
+  [efce3f68] + WoodburyMatrices v0.4.1
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Rmath ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;BoBag&#x2F;deps&#x2F;build.log`
+  Building Arpack ──────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+  Building Conda ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building FFTW ────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFTW&#x2F;loJ3F&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing AugmentedGaussianProcesses
+ Resolving package versions...
+Status `&#x2F;tmp&#x2F;jl_4oWXJy&#x2F;Manifest.toml`
+  [621f4979] AbstractFFTs v0.5.0
+  [0bf59076] AdvancedHMC v0.2.13
+  [dce04be8] ArgCheck v1.0.1
+  [7d9fca2a] Arpack v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [38eea1fd] AugmentedGaussianProcesses v0.6.0
+  [13072b0f] AxisAlgorithms v1.0.0
+  [39de3d68] AxisArrays v0.3.3
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [324d7699] CategoricalArrays v0.7.3
+  [aaaa29a8] Clustering v0.13.3
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [8f4d0f93] Conda v1.3.0
+  [9a962f9c] DataAPI v1.1.0
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [31c24e10] Distributions v0.21.8
+  [7a1cc6ca] FFTW v1.1.0
+  [442a2c76] FastGaussQuadrature v0.4.0
+  [1a297f60] FillArrays v0.7.4
+  [f6369f11] ForwardDiff v0.10.6
+  [e1397348] GradDescent v0.3.1
+  [505f98c9] InplaceOps v0.3.0
+  [a98d9a8b] Interpolations v0.12.5
+  [8197267c] IntervalSets v0.3.2
+  [41ab1584] InvertedIndices v1.0.0
+  [c8e1da08] IterTools v1.3.0
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [682c06a0] JSON v0.21.0
+  [5ab0869b] KernelDensity v0.5.1
+  [ec8451be] KernelFunctions v0.2.1
+  [5078a376] LazyArrays v0.13.1
+  [d3d80556] LineSearches v7.0.1
+  [c7f686f2] MCMCChains v0.3.15
+  [1914dd2f] MacroTools v0.5.2
+  [e1d29d7a] Missings v0.4.3
+  [d41bc354] NLSolversBase v7.5.0
+  [77ba4419] NaNMath v0.3.3
+  [b8a86587] NearestNeighbors v0.4.3
+  [6fe1bfb0] OffsetArrays v0.11.1
+  [429524aa] Optim v0.19.4
+  [bac558e1] OrderedCollections v1.1.0
+  [90014a1f] PDMats v0.9.10
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [2dfb63ee] PooledArrays v0.5.2
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [92933f4c] ProgressMeter v1.2.0
+  [1fd47b50] QuadGK v2.1.1
+  [b3c3ace0] RangeArrays v0.3.1
+  [c84ed2f1] Ratios v0.3.1
+  [3cdcf5f2] RecipesBase v0.7.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [79098fc4] Rmath v0.6.0
+  [992d4aef] Showoff v0.3.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.8.0
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [30578b45] URIParser v0.4.0
+  [81def892] VersionParsing v1.1.3
+  [efce3f68] WoodburyMatrices v0.4.1
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+┌ Warning: `lgamma(x::Real)` is deprecated, use `(logabsgamma(x))[1]` instead.
+│   caller = lstirling_asym(::BigFloat) at misc.jl:56
+└ @ StatsFuns ~&#x2F;.julia&#x2F;packages&#x2F;StatsFuns&#x2F;2QE7p&#x2F;src&#x2F;misc.jl:56
+WARNING: Method definition deepcopy(GradDescent.Optimizer) in module GradDescent at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GradDescent&#x2F;C4qjb&#x2F;src&#x2F;AbstractOptimizer.jl:22 overwritten in module AugmentedGaussianProcesses at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AugmentedGaussianProcesses&#x2F;8kAgJ&#x2F;src&#x2F;functions&#x2F;utils.jl:71.
+  ** incremental compilation may be fatally broken for this module **
+
+Starting training Gaussian Process with a Gaussian likelihood infered by Analytic Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:08:02[K
+  iter:  10
+  ELBO:  624.055311605656[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:03:04[K
+  iter:  30
+  ELBO:  589.8717573567224[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:02:20[K
+  iter:  40
+  ELBO:  662.1781749169041[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:01:53[K
+  iter:  50
+  ELBO:  623.42314174303[A[ATraining ended after 50 iterations. Total number of iterations 50
+Starting training Variational Gaussian Process with a Student-t likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:16:42[K
+  iter:  10
+  ELBO:  -152.22527095522108[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:08:32[K
+  iter:  20
+  ELBO:  -150.83076430626667[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:06:01[K
+  iter:  30
+  ELBO:  -149.87410204825318[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:04:57[K
+  iter:  40
+  ELBO:  -149.3256010303903[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:04:36[K
+  iter:  50
+  ELBO:  -149.0933024080821[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Regression Error
+└   err = 0.42423310223482874
+Starting training Variational Gaussian Process with a Laplace likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:05:12[K
+  iter:  10
+  ELBO:  -566.2257858667443[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:02:59[K
+  iter:  20
+  ELBO:  -568.6837211638699[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:02:25[K
+  iter:  30
+  ELBO:  -570.2704750617671[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:02:18[K
+  iter:  40
+  ELBO:  -571.5108565720996[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:03:08[K
+  iter:  50
+  ELBO:  -572.6758898614406[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Regression Error
+└   err = 0.4018312504927921
+Starting training Variational Gaussian Process with a Gaussian likelihood with heteroscedastic noise infered by Analytic Variational Inference  with 100 samples with 2 features and 2 latent GPs
+Training Progress:   2%|▋                               |  ETA: 0:12:08[K
+  iter:  10
+  ELBO:  -151.9180420076005[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:11:14[K
+  iter:  20
+  ELBO:  -148.26280976292938[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:10:37[K
+  iter:  30
+  ELBO:  -145.84117325437848[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:11:20[K
+  iter:  40
+  ELBO:  -143.96603507457547[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:09:44[K
+  iter:  50
+  ELBO:  -142.62347058957954[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Regression Error
+└   err = 0.6697049944693384
+Starting training Variational Gaussian Process with a Bayesian SVM infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:03:20[K
+  iter:  10
+  ELBO:  69.36594915000717[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:01:45[K
+  iter:  20
+  ELBO:  81.76959815146418[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:01:13[K
+  iter:  30
+  ELBO:  93.11305693561651[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:00:58[K
+  iter:  40
+  ELBO:  102.88460405823886[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:00:48[K
+  iter:  50
+  ELBO:  111.76775053360485[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Classification Error
+└   err = 0.02
+Starting training Variational Gaussian Process with a Bernoulli Likelihood with Logistic Link infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:01:26[K
+  iter:  10
+  ELBO:  -15.454964035157495[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:01:09[K
+  iter:  20
+  ELBO:  -12.921811247673368[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:01:10[K
+  iter:  30
+  ELBO:  -10.525979508328298[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:01:48[K
+  iter:  40
+  ELBO:  -8.35820090724456[A[ATraining ended after 50 iterations. Total number of iterations 50
+
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:01:51[K
+  iter:  50
+  ELBO:  -6.439785930008044[A[A┌ Info: Classification Error
+└   err = 0.06
+Starting training Variational Gaussian Process with a Logistic-Softmax Likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 5 latent GPs
+┌ Warning: `lgamma(x::Real)` is deprecated, use `(logabsgamma(x))[1]` instead.
+│   caller = mapreduce_impl(::typeof(SpecialFunctions.lgamma), ::typeof(Base.add_sum), ::Array{Float64,1}, ::Int64, ::Int64, ::Int64) at reduce.jl:155
+└ @ Base .&#x2F;reduce.jl:155
+┌ Warning: `lgamma(x::Real)` is deprecated, use `(logabsgamma(x))[1]` instead.
+│   caller = mapreduce_impl(::typeof(SpecialFunctions.lgamma), ::typeof(Base.add_sum), ::Array{Float64,1}, ::Int64, ::Int64, ::Int64) at reduce.jl:155
+└ @ Base .&#x2F;reduce.jl:155
+┌ Warning: `lgamma(x::Real)` is deprecated, use `(logabsgamma(x))[1]` instead.
+│   caller = macro expansion at reduce.jl:158 [inlined]
+└ @ Core .&#x2F;reduce.jl:158
+Training Progress:   2%|▋                               |  ETA: 0:14:30[K
+  iter:  10
+  ELBO:  -35.39357854978404[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:09:08[K
+  iter:  20
+  ELBO:  -34.45020609542739[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:06:45[K
+  iter:  30
+  ELBO:  -33.487615772216785[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:05:27[K
+  iter:  40
+  ELBO:  -32.51198464266844[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:04:31[K
+  iter:  50
+  ELBO:  -31.532388431562154[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Multiclass Error
+└   err = 0.27
+Starting training Variational Gaussian Process with a Poisson Likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+┌ Warning: `lfactorial(x)` is deprecated, use `logfactorial(x)` instead.
+│   caller = mapreduce_impl(::typeof(SpecialFunctions.lfactorial), ::typeof(Base.add_sum), ::SubArray{Int64,1,Array{Int64,1},Tuple{UnitRange{Int64}},true}, ::Int64, ::Int64, ::Int64) at reduce.jl:155
+└ @ Base .&#x2F;reduce.jl:155
+┌ Warning: `lfactorial(x)` is deprecated, use `logfactorial(x)` instead.
+│   caller = mapreduce_impl(::typeof(SpecialFunctions.lfactorial), ::typeof(Base.add_sum), ::SubArray{Int64,1,Array{Int64,1},Tuple{UnitRange{Int64}},true}, ::Int64, ::Int64, ::Int64) at reduce.jl:155
+└ @ Base .&#x2F;reduce.jl:155
+┌ Warning: `lfactorial(x)` is deprecated, use `logfactorial(x)` instead.
+│   caller = macro expansion at reduce.jl:158 [inlined]
+└ @ Core .&#x2F;reduce.jl:158
+Training Progress:   2%|▋                               |  ETA: 0:01:36[K
+  iter:  10
+  ELBO:  -127.88298349900529[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:00:53[K
+  iter:  20
+  ELBO:  -127.29460423970073[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:00:31[K
+  iter:  40
+  ELBO:  -126.35342619265163[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Event Error
+└   err = 0.7098173135397421
+Starting training Variational Gaussian Process with a Negative Binomial Likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:01:36[K
+  iter:  10
+  ELBO:  -721.0880180049672[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:01:09[K
+  iter:  20
+  ELBO:  -722.0593597319071[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:00:53[K
+  iter:  30
+  ELBO:  -724.994236824439[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:00:44[K
+  iter:  40
+  ELBO:  -729.9041714833322[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:00:41[K
+  iter:  50
+  ELBO:  -736.0449100226724[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Event Error
+└   err = 17.843017416604642
+Starting training Sparse Variational Gaussian Process with a Gaussian likelihood infered by Analytic Stochastic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:14:03[K
+  iter:  10
+  ELBO:  -17079.797227277846[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:04:38[K
+  iter:  30
+  ELBO:  -5242.0108842236[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:03:31[K
+  iter:  40
+  ELBO:  -3289.1278946429898[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:02:53[K
+  iter:  50
+  ELBO:  -2128.3613840619128[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Regression Error
+└   err = 0.1916643120593336
+Starting training Sparse Variational Gaussian Process with a Gaussian likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:07:55[K
+  iter:  10
+  ELBO:  -9899.639904103533[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:03:59[K
+  iter:  20
+  ELBO:  -5426.53917339238[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Regression Error
+└   err = 0.1924079838340166
+Starting training Sparse Variational Gaussian Process with a Student-t likelihood infered by Analytic Stochastic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:01:21[K
+  iter:  10
+  ELBO:  -154.46487995526218[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:00:46[K
+  iter:  20
+  ELBO:  -154.20442389905526[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:00:33[K
+  iter:  30
+  ELBO:  -148.2764637134125[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:00:22[K
+  iter:  50
+  ELBO:  -149.6070600895726[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Regression Error
+└   err = 0.3743704345526695
+Starting training Sparse Variational Gaussian Process with a Student-t likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   4%|█▎                              |  ETA: 0:00:07[K
+  iter:  20
+  ELBO:  -149.9963940377222[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:00:08[K
+  iter:  30
+  ELBO:  -147.76024176104508[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:00:07[K
+  iter:  50
+  ELBO:  -145.29013276252704[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Regression Error
+└   err = 0.41590173469563896
+Starting training Sparse Variational Gaussian Process with a Laplace likelihood infered by Analytic Stochastic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:00:20[K
+  iter:  10
+  ELBO:  -484.5442622874363[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:00:22[K
+  iter:  20
+  ELBO:  -508.18249577862673[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:00:14[K
+  iter:  40
+  ELBO:  -535.1785651152691[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Regression Error
+└   err = 0.3667928989461938
+Starting training Sparse Variational Gaussian Process with a Laplace likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:00:24[K
+  iter:  10
+  ELBO:  -532.2261019516801[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:00:20[K
+  iter:  20
+  ELBO:  -541.9117945690705[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:00:16[K
+  iter:  40
+  ELBO:  -557.2638921738725[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:00:14[K
+  iter:  50
+  ELBO:  -562.3300006862518[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Regression Error
+└   err = 0.4045807937532465
+Starting training Sparse Variational Gaussian Process with a Bayesian SVM infered by Analytic Stochastic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:01:03[K
+  iter:  10
+  ELBO:  65.9218130002265[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:00:25[K
+  iter:  30
+  ELBO:  73.98349532366112[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:00:22[K
+  iter:  40
+  ELBO:  74.00915532136804[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:00:19[K
+  iter:  50
+  ELBO:  97.50413919760504[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Classification Error
+└   err = 0.08
+Starting training Sparse Variational Gaussian Process with a Bayesian SVM infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:02:17[K
+  iter:  10
+  ELBO:  68.98355584076891[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:01:49[K
+  iter:  20
+  ELBO:  76.787456588064[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:01:29[K
+  iter:  30
+  ELBO:  84.52423904711733[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:01:09[K
+  iter:  40
+  ELBO:  92.20667838057358[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:00:58[K
+  iter:  50
+  ELBO:  99.92516828116736[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Classification Error
+└   err = 0.1
+Starting training Sparse Variational Gaussian Process with a Bernoulli Likelihood with Logistic Link infered by Analytic Stochastic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:00:54[K
+  iter:  10
+  ELBO:  -27.75104254692645[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:00:35[K
+  iter:  20
+  ELBO:  -28.644634401176212[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:00:31[K
+  iter:  30
+  ELBO:  -27.546234465921838[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:00:30[K
+  iter:  40
+  ELBO:  -30.51475110270535[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:00:31[K
+  iter:  50
+  ELBO:  -24.39375109216409[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Classification Error
+└   err = 0.09
+Starting training Sparse Variational Gaussian Process with a Bernoulli Likelihood with Logistic Link infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:00:14[K
+  iter:  10
+  ELBO:  -26.854802201157163[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:00:23[K
+  iter:  20
+  ELBO:  -25.465444295531935[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:00:35[K
+  iter:  30
+  ELBO:  -24.217839663708514[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:00:48[K
+  iter:  40
+  ELBO:  -23.223133523714495[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:00:48[K
+  iter:  50
+  ELBO:  -22.567557185060817[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Classification Error
+└   err = 0.12
+Starting training Sparse Variational Gaussian Process with a Logistic-Softmax Likelihood infered by Analytic Stochastic Variational Inference  with 100 samples with 2 features and 5 latent GPs
+Training Progress:   2%|▋                               |  ETA: 0:07:58[K
+  iter:  10
+  ELBO:  -49.35338984675457[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:04:40[K
+  iter:  20
+  ELBO:  -41.16411651416658[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:03:40[K
+  iter:  30
+  ELBO:  -44.22525228539841[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:03:01[K
+  iter:  40
+  ELBO:  -43.97645560619128[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:02:43[K
+  iter:  50
+  ELBO:  -44.02003833619243[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Multiclass Error
+└   err = 0.15
+Starting training Sparse Variational Gaussian Process with a Logistic-Softmax Likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 5 latent GPs
+Training Progress:   2%|▋                               |  ETA: 0:00:58[K
+  iter:  10
+  ELBO:  -36.0747705571992[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:01:44[K
+  iter:  20
+  ELBO:  -34.447820192248074[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:01:50[K
+  iter:  30
+  ELBO:  -32.802672579842024[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:01:55[K
+  iter:  40
+  ELBO:  -31.14870691577414[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:01:43[K
+  iter:  50
+  ELBO:  -29.50121146723596[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Multiclass Error
+└   err = 0.33
+Starting training Sparse Variational Gaussian Process with a Poisson Likelihood infered by Analytic Stochastic Variational Inference  with 100 samples with 2 features and 1 latent GP
+┌ Warning: `lfactorial(x)` is deprecated, use `logfactorial(x)` instead.
+│   caller = mapreduce_first at reduce.jl:293 [inlined]
+└ @ Core .&#x2F;reduce.jl:293
+┌ Warning: `lfactorial(x)` is deprecated, use `logfactorial(x)` instead.
+│   caller = mapfoldl_impl(::typeof(SpecialFunctions.lfactorial), ::typeof(Base.add_sum), ::NamedTuple{(:init,),Tuple{Float64}}, ::SubArray{Int64,1,Array{Int64,1},Tuple{Array{Int64,1}},false}, ::Tuple{Base.OneTo{Int64},Int64}) at reduce.jl:45
+└ @ Base .&#x2F;reduce.jl:45
+┌ Warning: `lfactorial(x)` is deprecated, use `logfactorial(x)` instead.
+│   caller = mapfoldl_impl(::typeof(SpecialFunctions.lfactorial), ::typeof(Base.add_sum), ::NamedTuple{(:init,),Tuple{Float64}}, ::SubArray{Int64,1,Array{Int64,1},Tuple{Array{Int64,1}},false}, ::Tuple{Base.OneTo{Int64},Int64}) at reduce.jl:49
+└ @ Base .&#x2F;reduce.jl:49
+Training Progress:   2%|▋                               |  ETA: 0:01:33[K
+  iter:  10
+  ELBO:  -139.1590242099698[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:01:21[K
+  iter:  20
+  ELBO:  -133.03364964276955[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:01:01[K
+  iter:  30
+  ELBO:  -140.48091147463396[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:00:49[K
+  iter:  40
+  ELBO:  -144.3885844875022[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:00:44[K
+  iter:  50
+  ELBO:  -141.88303814571918[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Event Error
+└   err = 0.7510338044696269
+Starting training Sparse Variational Gaussian Process with a Poisson Likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:00:28[K
+  iter:  10
+  ELBO:  -145.46229622545312[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:00:49[K
+  iter:  20
+  ELBO:  -144.11699398013732[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:00:46[K
+  iter:  30
+  ELBO:  -142.9752894637628[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:00:49[K
+  iter:  40
+  ELBO:  -142.03652823774974[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:00:46[K
+  iter:  50
+  ELBO:  -141.2761343201774[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Event Error
+└   err = 0.7455536649032811
+Starting training Sparse Variational Gaussian Process with a Negative Binomial Likelihood infered by Analytic Stochastic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   2%|▋                               |  ETA: 0:01:03[K
+  iter:  10
+  ELBO:  -545.1836920779126[A[A
+
+[K[A[K[ATraining Progress:   4%|█▎                              |  ETA: 0:01:17[K
+  iter:  20
+  ELBO:  -431.2933407778883[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:01:02[K
+  iter:  30
+  ELBO:  -410.62566331071366[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:01:06[K
+  iter:  40
+  ELBO:  -416.39633750835185[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Event Error
+└   err = 7.459339822755599
+Starting training Sparse Variational Gaussian Process with a Negative Binomial Likelihood infered by Analytic Variational Inference  with 100 samples with 2 features and 1 latent GP
+Training Progress:   4%|█▎                              |  ETA: 0:00:15[K
+  iter:  20
+  ELBO:  -421.0483910091723[A[A
+
+[K[A[K[ATraining Progress:   6%|█▉                              |  ETA: 0:00:19[K
+  iter:  30
+  ELBO:  -413.58238983648744[A[A
+
+[K[A[K[ATraining Progress:   8%|██▌                             |  ETA: 0:00:24[K
+  iter:  40
+  ELBO:  -409.54252852983427[A[A
+
+[K[A[K[ATraining Progress:  10%|███▎                            |  ETA: 0:00:22[K
+  iter:  50
+  ELBO:  -408.2247063170038[A[ATraining ended after 50 iterations. Total number of iterations 50
+┌ Info: Event Error
+└   err = 7.530005362003772
+Test Summary:                      | Pass  Total
+Augmented Gaussian Process Testing |   79     79
+   Testing AugmentedGaussianProcesses tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

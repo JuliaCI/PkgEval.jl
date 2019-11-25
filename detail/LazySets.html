@@ -1,0 +1,2487 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="LazySets">LazySets</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#LazySets">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 14 hours ago and took 41 minutes, 14 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/LazySets/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Requires ────────────── v0.5.2
+ Installed NaNMath ─────────────── v0.3.3
+ Installed DiffRules ───────────── v0.1.0
+ Installed Parsers ─────────────── v0.3.10
+ Installed CommonSubexpressions ── v0.2.0
+ Installed BinaryProvider ──────── v0.5.8
+ Installed LazySets ────────────── v1.23.0
+ Installed JuMP ────────────────── v0.20.1
+ Installed Reexport ────────────── v0.2.0
+ Installed ErrorfreeArithmetic ─── v0.4.0
+ Installed SetRounding ─────────── v0.2.0
+ Installed MathProgBase ────────── v0.7.7
+ Installed RecipesBase ─────────── v0.7.0
+ Installed DataStructures ──────── v0.17.6
+ Installed IntervalArithmetic ──── v0.15.2
+ Installed BinDeps ─────────────── v0.8.10
+ Installed JSON ────────────────── v0.21.0
+ Installed SpecialFunctions ────── v0.8.0
+ Installed FastRounding ────────── v0.2.0
+ Installed URIParser ───────────── v0.4.0
+ Installed MathOptInterface ────── v0.9.7
+ Installed DiffResults ─────────── v0.0.4
+ Installed StaticArrays ────────── v0.12.1
+ Installed OrderedCollections ──── v1.1.0
+ Installed GLPKMathProgInterface ─ v0.4.4
+ Installed Calculus ────────────── v0.5.1
+ Installed BenchmarkTools ──────── v0.4.3
+ Installed ForwardDiff ─────────── v0.9.0
+ Installed Compat ──────────────── v2.2.0
+ Installed GLPK ────────────────── v0.11.4
+ Installed CRlibm ──────────────── v0.7.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [b4f0291d] + LazySets v1.23.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [96374032] + CRlibm v0.7.1
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [864edb3b] + DataStructures v0.17.6
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [90fa49ef] + ErrorfreeArithmetic v0.4.0
+  [fa42c844] + FastRounding v0.2.0
+  [f6369f11] + ForwardDiff v0.9.0
+  [60bf3e95] + GLPK v0.11.4
+  [3c7084bd] + GLPKMathProgInterface v0.4.4
+  [d1acc4aa] + IntervalArithmetic v0.15.2
+  [682c06a0] + JSON v0.21.0
+  [4076af6c] + JuMP v0.20.1
+  [b4f0291d] + LazySets v1.23.0
+  [b8f27783] + MathOptInterface v0.9.7
+  [fdba3010] + MathProgBase v0.7.7
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [3cc68bcd] + SetRounding v0.2.0
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+  Building CRlibm ──────────→ `~&#x2F;.julia&#x2F;packages&#x2F;CRlibm&#x2F;2S9DB&#x2F;deps&#x2F;build.log`
+  Building GLPK ────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;GLPK&#x2F;lOaTT&#x2F;deps&#x2F;build.log`
+   Testing LazySets
+ Resolving package versions...
+ Installed Expokit ───────────────────── v0.2.0
+ Installed IntervalMatrices ──────────── v0.2.3
+ Installed CDDLib ────────────────────── v0.5.3
+ Installed Makie ─────────────────────── v0.9.5
+ Installed Plots ─────────────────────── v0.27.0
+ Installed Polyhedra ─────────────────── v0.5.6
+ Installed Distributions ─────────────── v0.21.8
+ Installed TaylorModels ──────────────── v0.3.0
+ Installed VersionParsing ────────────── v1.1.3
+ Installed ColorTypes ────────────────── v0.8.0
+ Installed Packing ───────────────────── v0.3.0
+ Installed Optim ─────────────────────── v0.18.1
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed DocStringExtensions ───────── v0.8.1
+ Installed Espresso ──────────────────── v0.6.0
+ Installed Arpack ────────────────────── v0.3.1
+ Installed RecursiveArrayTools ───────── v1.0.2
+ Installed Graphics ──────────────────── v0.4.0
+ Installed DiffEqDiffTools ───────────── v0.14.0
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed FFTW ──────────────────────── v1.1.0
+ Installed ArrayInterface ────────────── v1.2.1
+ Installed ColorBrewer ───────────────── v0.4.0
+ Installed ImageAxes ─────────────────── v0.6.1
+ Installed NamedArrays ───────────────── v0.9.3
+ Installed FixedPointNumbers ─────────── v0.6.1
+ Installed Contour ───────────────────── v0.5.1
+ Installed MeshIO ────────────────────── v0.3.1
+ Installed TaylorSeries ──────────────── v0.10.1
+ Installed GR ────────────────────────── v0.42.0
+ Installed FreeType ──────────────────── v2.1.1
+ Installed FunctionWrappers ──────────── v1.0.0
+ Installed PositiveFactorizations ────── v0.2.3
+ Installed MacroTools ────────────────── v0.5.2
+ Installed KernelDensity ─────────────── v0.5.1
+ Installed ComputationalResources ────── v0.3.0
+ Installed AxisArrays ────────────────── v0.3.3
+ Installed Conda ─────────────────────── v1.3.0
+ Installed Polynomials ───────────────── v0.6.0
+ Installed WoodburyMatrices ──────────── v0.4.1
+ Installed SignedDistanceFields ──────── v0.4.0
+ Installed Rotations ─────────────────── v0.12.0
+ Installed Showoff ───────────────────── v0.3.1
+ Installed ImageMagick ───────────────── v0.7.5
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed MappedArrays ──────────────── v0.2.2
+ Installed TreeViews ─────────────────── v0.3.0
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed AxisAlgorithms ────────────── v1.0.0
+ Installed Documenter ────────────────── v0.24.0
+ Installed ImageTransformations ──────── v0.8.0
+ Installed CustomUnitRanges ──────────── v0.2.0
+ Installed FreeTypeAbstraction ───────── v0.4.2
+ Installed CatIndices ────────────────── v0.2.0
+ Installed Roots ─────────────────────── v0.8.3
+ Installed PDMats ────────────────────── v0.9.10
+ Installed GeometryTypes ─────────────── v0.7.6
+ Installed OffsetArrays ──────────────── v0.11.1
+ Installed StructArrays ──────────────── v0.4.0
+ Installed AbstractFFTs ──────────────── v0.5.0
+ Installed Distances ─────────────────── v0.8.2
+ Installed ParameterJuMP ─────────────── v0.1.2
+ Installed TiledIteration ────────────── v0.2.3
+ Installed PlotUtils ─────────────────── v0.6.1
+ Installed Widgets ───────────────────── v0.6.2
+ Installed DiffEqBase ────────────────── v6.2.3
+ Installed Loess ─────────────────────── v0.5.0
+ Installed CoordinateTransformations ─── v0.5.0
+ Installed FFTViews ──────────────────── v0.3.0
+ Installed ImageFiltering ────────────── v0.6.5
+ Installed Colors ────────────────────── v0.9.6
+ Installed IntervalSets ──────────────── v0.3.2
+ Installed IndirectArrays ────────────── v0.5.0
+ Installed Ratios ────────────────────── v0.3.1
+ Installed IdentityRanges ────────────── v0.3.0
+ Installed FFMPEG ────────────────────── v0.2.3
+ Installed RangeArrays ───────────────── v0.3.1
+ Installed ColorVectorSpace ──────────── v0.7.1
+ Installed IterativeSolvers ──────────── v0.8.1
+ Installed LineSearches ──────────────── v7.0.1
+ Installed StatsMakie ────────────────── v0.0.6
+ Installed PlotThemes ────────────────── v0.4.0
+ Installed FileIO ────────────────────── v1.0.7
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed SimpleTraits ──────────────── v0.9.1
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed ModernGL ──────────────────── v1.0.0
+ Installed Missings ──────────────────── v0.4.3
+ Installed NLSolversBase ─────────────── v7.5.0
+ Installed UnicodeFun ────────────────── v0.4.0
+ Installed Observables ───────────────── v0.2.3
+ Installed ImageCore ─────────────────── v0.8.5
+ Installed Interpolations ────────────── v0.12.5
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed Combinatorics ─────────────── v0.7.0
+ Installed TableTraits ───────────────── v1.0.0
+ Installed Rmath ─────────────────────── v0.5.1
+ Installed PaddedViews ───────────────── v0.4.2
+ Installed QuadGK ────────────────────── v2.1.1
+ Installed Parameters ────────────────── v0.12.0
+ Installed MuladdMacro ───────────────── v0.2.1
+ Installed CMake ─────────────────────── v1.1.2
+ Installed FreqTables ────────────────── v0.3.1
+ Installed Tables ────────────────────── v0.2.11
+ Installed IterTools ─────────────────── v1.3.0
+ Installed GLMakie ───────────────────── v0.0.8
+ Installed GLFW ──────────────────────── v3.1.0
+ Installed StatsFuns ─────────────────── v0.9.0
+ Installed RecursiveFactorization ────── v0.1.0
+ Installed Measures ──────────────────── v0.3.0
+ Installed TaylorIntegration ─────────── v0.7.0
+ Installed AbstractPlotting ──────────── v0.9.10
+   Cloning [2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91] StatsBase from https:&#x2F;&#x2F;github.com&#x2F;JuliaStats&#x2F;StatsBase.jl.git
+[?25l    Fetching: [&gt;                                        ]  0.0 %[2K[?25h[ Info: Installed StatsBase ─────────────────── v0.32.0
+  Building CDDLib ─────→ `~&#x2F;.julia&#x2F;packages&#x2F;CDDLib&#x2F;AcD7T&#x2F;deps&#x2F;build.log`
+  Building GR ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;GR&#x2F;f1Iqi&#x2F;deps&#x2F;build.log`
+  Building FFMPEG ─────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFMPEG&#x2F;bkWgb&#x2F;deps&#x2F;build.log`
+  Building Plots ──────→ `~&#x2F;.julia&#x2F;packages&#x2F;Plots&#x2F;Iuc9S&#x2F;deps&#x2F;build.log`
+  Building Arpack ─────→ `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+  Building Conda ──────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building FFTW ───────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFTW&#x2F;loJ3F&#x2F;deps&#x2F;build.log`
+  Building FreeType ───→ `~&#x2F;.julia&#x2F;packages&#x2F;FreeType&#x2F;2dE5w&#x2F;deps&#x2F;build.log`
+  Building ImageMagick → `~&#x2F;.julia&#x2F;packages&#x2F;ImageMagick&#x2F;vMfoS&#x2F;deps&#x2F;build.log`
+  Building Rmath ──────→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+  Building CMake ──────→ `~&#x2F;.julia&#x2F;packages&#x2F;CMake&#x2F;nSK2r&#x2F;deps&#x2F;build.log`
+  Building GLFW ───────→ `~&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;build.log`
+┌ Error: Error building `GLFW`: 
+│ -- The C compiler identification is GNU 7.4.0
+│ -- Check for working C compiler: &#x2F;usr&#x2F;bin&#x2F;cc
+│ -- Check for working C compiler: &#x2F;usr&#x2F;bin&#x2F;cc -- works
+│ -- Detecting C compiler ABI info
+│ -- Detecting C compiler ABI info - done
+│ -- Detecting C compile features
+│ -- Detecting C compile features - done
+│ -- Looking for pthread.h
+│ -- Looking for pthread.h - found
+│ -- Looking for pthread_create
+│ -- Looking for pthread_create - not found
+│ -- Looking for pthread_create in pthreads
+│ -- Looking for pthread_create in pthreads - not found
+│ -- Looking for pthread_create in pthread
+│ -- Looking for pthread_create in pthread - found
+│ -- Found Threads: TRUE  
+│ -- Using X11 for window creation
+│ CMake Error at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CMake&#x2F;nSK2r&#x2F;deps&#x2F;downloads&#x2F;cmake-3.12.3-Linux-x86_64&#x2F;share&#x2F;cmake-3.12&#x2F;Modules&#x2F;FindX11.cmake:429 (message):
+│   Could not find X11
+│ Call Stack (most recent call first):
+│   CMakeLists.txt:205 (find_package)
+│ 
+│ 
+│ -- Configuring incomplete, errors occurred!
+│ See also &quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;usr&#x2F;downloads&#x2F;src&#x2F;build&#x2F;CMakeFiles&#x2F;CMakeOutput.log&quot;.
+│ See also &quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;usr&#x2F;downloads&#x2F;src&#x2F;build&#x2F;CMakeFiles&#x2F;CMakeError.log&quot;.
+│ [ Info: Downloading https:&#x2F;&#x2F;github.com&#x2F;glfw&#x2F;glfw&#x2F;archive&#x2F;3.3.tar.gz to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;usr&#x2F;downloads&#x2F;src.tar.gz...
+│ [ Info: Unpacking &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;usr&#x2F;downloads&#x2F;src.tar.gz into &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;usr&#x2F;downloads&#x2F;src
+│ ┌ Warning: 
+│ │ ================================================================
+│ │ ================================================================
+│ │ === Building GLFW has failed. Most common problem is,        ===
+│ │ === that you don&#39;t have x-org installed.                     ===
+│ │ === You can install it via: `sudo apt-get install xorg-dev`  ===
+│ │ ================================================================
+│ │ ================================================================
+│ └ @ Main ~&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;build.jl:56
+│ ERROR: LoadError: failed process: Process(`&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CMake&#x2F;nSK2r&#x2F;deps&#x2F;usr&#x2F;bin&#x2F;cmake -DBUILD_SHARED_LIBS=on -DGLFW_BUILD_DOCS=OFF -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF ..`, ProcessExited(1)) [1]
+│ Stacktrace:
+│  [1] error(::String, ::Base.Process, ::String, ::Int64, ::String) at .&#x2F;error.jl:42
+│  [2] pipeline_error at .&#x2F;process.jl:705 [inlined]
+│  [3] #run#505(::Bool, ::Function, ::Cmd) at .&#x2F;process.jl:663
+│  [4] run at .&#x2F;process.jl:661 [inlined]
+│  [5] (::getfield(Main, Symbol(&quot;##9#10&quot;)))() at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;build.jl:51
+│  [6] cd(::getfield(Main, Symbol(&quot;##9#10&quot;)), ::String) at .&#x2F;file.jl:96
+│  [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;build.jl:43
+│  [8] include at .&#x2F;boot.jl:317 [inlined]
+│  [9] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+│  [10] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+│  [11] include(::String) at .&#x2F;client.jl:392
+│  [12] top-level scope at none:0
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;build.jl:21
+│ [20:20:38] #=#=#                                                                         [20:20:39] ##O#- #                                                                       [20:20:39] ##O=#  #                                                                      [20:20:39] #=#=-#  #                                                                     [20:20:39] -#O#- #   #                                                                   [20:20:39]  -#O#-  #   #                                                                 [20:20:39]   -#O=#  #    #                                                               [20:20:39]    -#O=#   #   #                                                              [20:20:40] 
+└ @ Pkg.Operations &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1096
+  Building GLMakie ────→ `~&#x2F;.julia&#x2F;packages&#x2F;GLMakie&#x2F;5wmnA&#x2F;deps&#x2F;build.log`
+┌ Error: Error building `GLMakie`: 
+│ ERROR: LoadError: GLFW not installed properly, run Pkg.build(&quot;GLFW&quot;), restart Julia and try again
+│ Stacktrace:
+│  [1] error(::String) at .&#x2F;error.jl:33
+│  [2] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;src&#x2F;GLFW.jl:5
+│  [3] include at .&#x2F;boot.jl:317 [inlined]
+│  [4] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+│  [5] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+│  [6] top-level scope at none:2
+│  [7] eval at .&#x2F;boot.jl:319 [inlined]
+│  [8] eval(::Expr) at .&#x2F;client.jl:393
+│  [9] top-level scope at .&#x2F;none:3
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;src&#x2F;GLFW.jl:4
+│ ERROR: LoadError: OpenGL&#x2F;GLFW wasn&#39;t installed correctly. This likely means,
+│ you don&#39;t have an OpenGL capable Graphic Card,
+│ you don&#39;t have the newest video driver installed,
+│ or the GLFW build failed. If you&#39;re on linux and `]build` GLFW failed,
+│ try manually adding `sudo apt-get install libglfw3` and then `]build GLMakie`.
+│ If you&#39;re on a headless server, you still need to install x-server and
+│ proper GPU drivers. You can take inspiration from this article
+│ on how to get Makie running on a headless system:
+│ https:&#x2F;&#x2F;nextjournal.com&#x2F;sdanisch&#x2F;makie-1.0
+│ If you don&#39;t have a GPU, there is also a Cairo software backend
+│ for Makie which you can use:
+│ https:&#x2F;&#x2F;github.com&#x2F;JuliaPlots&#x2F;CairoMakie.jl.
+│ Please check the below error and open an issue at:
+│ https:&#x2F;&#x2F;github.com&#x2F;JuliaPlots&#x2F;GLMakie.jl.
+│ After you fixed your OpenGL install, please run `]build GLMakie` again!
+│ GLMakie will still load, but will be disabled as a default backend for Makie
+│ 
+│ Stacktrace:
+│  [1] error(::String) at .&#x2F;error.jl:33
+│  [2] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLMakie&#x2F;5wmnA&#x2F;deps&#x2F;build.jl:28
+│  [3] include at .&#x2F;boot.jl:317 [inlined]
+│  [4] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+│  [5] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+│  [6] include(::String) at .&#x2F;client.jl:392
+│  [7] top-level scope at none:0
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLMakie&#x2F;5wmnA&#x2F;deps&#x2F;build.jl:19
+└ @ Pkg.Operations &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1096
+    Status `&#x2F;tmp&#x2F;tmpKzWVFr&#x2F;Manifest.toml`
+  [621f4979] AbstractFFTs v0.5.0
+  [537997a7] AbstractPlotting v0.9.10
+  [7d9fca2a] Arpack v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [13072b0f] AxisAlgorithms v1.0.0
+  [39de3d68] AxisArrays v0.3.3
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [3391f64e] CDDLib v0.5.3
+  [631607c0] CMake v1.1.2
+  [96374032] CRlibm v0.7.1
+  [49dc2e85] Calculus v0.5.1
+  [aafaddc9] CatIndices v0.2.0
+  [324d7699] CategoricalArrays v0.7.3
+  [a2cac450] ColorBrewer v0.4.0
+  [3da002f7] ColorTypes v0.8.0
+  [c3611d14] ColorVectorSpace v0.7.1
+  [5ae59095] Colors v0.9.6
+  [861a8166] Combinatorics v0.7.0
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [ed09eef8] ComputationalResources v0.3.0
+  [8f4d0f93] Conda v1.3.0
+  [d38c429a] Contour v0.5.1
+  [150eb455] CoordinateTransformations v0.5.0
+  [dc8bdbbb] CustomUnitRanges v0.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [2b5f629d] DiffEqBase v6.2.3
+  [01453d9d] DiffEqDiffTools v0.14.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [31c24e10] Distributions v0.21.8
+  [ffbed154] DocStringExtensions v0.8.1
+  [e30172f5] Documenter v0.24.0
+  [90fa49ef] ErrorfreeArithmetic v0.4.0
+  [6912e4f1] Espresso v0.6.0
+  [a1e7a1ef] Expokit v0.2.0
+  [c87230d0] FFMPEG v0.2.3
+  [4f61f5a4] FFTViews v0.3.0
+  [7a1cc6ca] FFTW v1.1.0
+  [fa42c844] FastRounding v0.2.0
+  [5789e2e9] FileIO v1.0.7
+  [53c48c17] FixedPointNumbers v0.6.1
+  [f6369f11] ForwardDiff v0.9.0
+  [b38be410] FreeType v2.1.1
+  [663a7486] FreeTypeAbstraction v0.4.2
+  [da1fdf0e] FreqTables v0.3.1
+  [069b7b12] FunctionWrappers v1.0.0
+  [f7f18e0c] GLFW v3.1.0
+  [e9467ef8] GLMakie v0.0.8
+  [60bf3e95] GLPK v0.11.4
+  [3c7084bd] GLPKMathProgInterface v0.4.4
+  [28b8d3ca] GR v0.42.0
+  [4d00f742] GeometryTypes v0.7.6
+  [a2bd30eb] Graphics v0.4.0
+  [bbac6d45] IdentityRanges v0.3.0
+  [2803e5a7] ImageAxes v0.6.1
+  [a09fc81d] ImageCore v0.8.5
+  [6a3955dd] ImageFiltering v0.6.5
+  [6218d12a] ImageMagick v0.7.5
+  [02fcd773] ImageTransformations v0.8.0
+  [9b13fd28] IndirectArrays v0.5.0
+  [a98d9a8b] Interpolations v0.12.5
+  [d1acc4aa] IntervalArithmetic v0.15.2
+  [5c1f47dc] IntervalMatrices v0.2.3
+  [8197267c] IntervalSets v0.3.2
+  [41ab1584] InvertedIndices v1.0.0
+  [c8e1da08] IterTools v1.3.0
+  [42fd0dbc] IterativeSolvers v0.8.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [682c06a0] JSON v0.21.0
+  [4076af6c] JuMP v0.20.1
+  [5ab0869b] KernelDensity v0.5.1
+  [b4f0291d] LazySets v1.23.0
+  [d3d80556] LineSearches v7.0.1
+  [4345ca2d] Loess v0.5.0
+  [1914dd2f] MacroTools v0.5.2
+  [ee78f7c6] Makie v0.9.5
+  [dbb5928d] MappedArrays v0.2.2
+  [b8f27783] MathOptInterface v0.9.7
+  [fdba3010] MathProgBase v0.7.7
+  [442fdcdd] Measures v0.3.0
+  [7269a6da] MeshIO v0.3.1
+  [e1d29d7a] Missings v0.4.3
+  [66fc600b] ModernGL v1.0.0
+  [46d2c3a1] MuladdMacro v0.2.1
+  [d41bc354] NLSolversBase v7.5.0
+  [77ba4419] NaNMath v0.3.3
+  [86f7a689] NamedArrays v0.9.3
+  [510215fc] Observables v0.2.3
+  [6fe1bfb0] OffsetArrays v0.11.1
+  [429524aa] Optim v0.18.1
+  [bac558e1] OrderedCollections v1.1.0
+  [90014a1f] PDMats v0.9.10
+  [19eb6ba3] Packing v0.3.0
+  [5432bcbf] PaddedViews v0.4.2
+  [774612a8] ParameterJuMP v0.1.2
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [ccf2f8ad] PlotThemes v0.4.0
+  [995b91a9] PlotUtils v0.6.1
+  [91a5bcdd] Plots v0.27.0
+  [67491407] Polyhedra v0.5.6
+  [f27b6e38] Polynomials v0.6.0
+  [2dfb63ee] PooledArrays v0.5.2
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [1fd47b50] QuadGK v2.1.1
+  [b3c3ace0] RangeArrays v0.3.1
+  [c84ed2f1] Ratios v0.3.1
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [f2c3362d] RecursiveFactorization v0.1.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [79098fc4] Rmath v0.5.1
+  [f2b01f46] Roots v0.8.3
+  [6038ab10] Rotations v0.12.0
+  [3cc68bcd] SetRounding v0.2.0
+  [992d4aef] Showoff v0.3.1
+  [73760f76] SignedDistanceFields v0.4.0
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [65254759] StatsMakie v0.0.6
+  [09ab397b] StructArrays v0.4.0
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [92b13dbe] TaylorIntegration v0.7.0
+  [314ce334] TaylorModels v0.3.0
+  [6aa5eb33] TaylorSeries v0.10.1
+  [06e1c1a7] TiledIteration v0.2.3
+  [a2a6695c] TreeViews v0.3.0
+  [30578b45] URIParser v0.4.0
+  [1cfade01] UnicodeFun v0.4.0
+  [81def892] VersionParsing v1.1.3
+  [cc8bc4a8] Widgets v0.6.2
+  [efce3f68] WoodburyMatrices v0.4.1
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Test Summary: | Pass  Total
+LazySets.Util |   48     48
+ 29.609996 seconds (24.02 M allocations: 1.196 GiB, 3.94% gc time)
+Test Summary:        | Pass  Total
+LazySets.Comparisons |   10     10
+  0.445625 seconds (295.08 k allocations: 13.785 MiB, 2.62% gc time)
+Test Summary:     | Pass  Total
+LazySets.Interior |   16     16
+  4.179786 seconds (3.47 M allocations: 180.851 MiB, 3.29% gc time)
+Test Summary:   | Pass  Total
+LazySets.CDDLib |    3      3
+  0.142853 seconds (100.54 k allocations: 4.934 MiB, 8.30% gc time)
+Test Summary:      | Pass  Total
+LazySets.Singleton |  150    150
+ 61.818891 seconds (87.38 M allocations: 4.585 GiB, 5.90% gc time)
+Test Summary:  | Pass  Total
+LazySets.Ball1 |   81     81
+  6.710159 seconds (4.14 M allocations: 210.411 MiB, 3.22% gc time)
+Test Summary:  | Pass  Total
+LazySets.Ball2 |   76     76
+  9.064559 seconds (8.14 M allocations: 424.281 MiB, 5.05% gc time)
+Test Summary:  | Pass  Total
+LazySets.Ballp |   36     36
+  1.941745 seconds (1.52 M allocations: 76.668 MiB, 3.88% gc time)
+Test Summary:    | Pass  Total
+LazySets.BallInf |  113    113
+ 94.692397 seconds (152.42 M allocations: 7.930 GiB, 6.44% gc time)
+Test Summary:           | Pass  Total
+LazySets.Hyperrectangle |  234    234
+ 55.195593 seconds (34.89 M allocations: 1.761 GiB, 4.17% gc time)
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+Test Summary:    | Pass  Total
+LazySets.Polygon |  554    554
+ 77.357731 seconds (46.56 M allocations: 2.402 GiB, 5.01% gc time)
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+Test Summary:     | Pass  Total
+LazySets.Polytope |  191    191
+239.491370 seconds (503.59 M allocations: 26.109 GiB, 9.76% gc time)
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+Test Summary:       | Pass  Total
+LazySets.Polyhedron |  109    109
+ 32.114222 seconds (44.07 M allocations: 2.310 GiB, 9.22% gc time)
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+Test Summary:     | Pass  Total
+LazySets.Zonotope |  193    193
+ 38.684878 seconds (34.15 M allocations: 1.683 GiB, 5.48% gc time)
+Test Summary:    | Pass  Total
+LazySets.ZeroSet |   51     51
+  6.383093 seconds (2.64 M allocations: 144.466 MiB, 2.55% gc time)
+Test Summary:     | Pass  Total
+LazySets.EmptySet |   83     83
+  1.787011 seconds (718.03 k allocations: 41.242 MiB, 3.25% gc time)
+Test Summary:      | Pass  Total
+LazySets.Ellipsoid |   50     50
+  8.129525 seconds (5.34 M allocations: 280.428 MiB, 6.94% gc time)
+Test Summary:       | Pass  Total
+LazySets.Hyperplane |   93     93
+ 12.098740 seconds (10.15 M allocations: 552.704 MiB, 7.19% gc time)
+Test Summary:      | Pass  Total
+LazySets.HalfSpace |  111    111
+  3.215885 seconds (1.64 M allocations: 83.518 MiB, 4.82% gc time)
+Test Summary:     | Pass  Total
+LazySets.Interval |  165    165
+ 15.151585 seconds (10.35 M allocations: 502.252 MiB, 8.29% gc time)
+Test Summary:        | Pass  Total
+LazySets.LineSegment |  174    174
+ 11.483250 seconds (4.05 M allocations: 215.212 MiB, 3.13% gc time)
+Test Summary: | Pass  Total
+LazySets.Line |   51     51
+  3.150959 seconds (2.13 M allocations: 108.343 MiB, 7.63% gc time)
+Test Summary:     | Pass  Total
+LazySets.Universe |   97     97
+  4.258897 seconds (1.79 M allocations: 96.110 MiB, 3.78% gc time)
+Test Summary:     | Pass  Total
+LazySets.Bloating |   52     52
+  4.301247 seconds (2.20 M allocations: 116.227 MiB, 6.75% gc time)
+Test Summary:         | Pass  Total
+LazySets.Intersection |   87     87
+ 31.240219 seconds (25.49 M allocations: 1.367 GiB, 10.19% gc time)
+Test Summary:       | Pass  Total
+LazySets.ConvexHull |   90     90
+  4.336110 seconds (2.67 M allocations: 141.306 MiB, 5.17% gc time)
+Test Summary:           | Pass  Total
+LazySets.ExponentialMap |   52     52
+ 33.793123 seconds (26.44 M allocations: 1.344 GiB, 7.73% gc time)
+Test Summary:      | Pass  Total
+LazySets.LinearMap |  107    107
+  8.424070 seconds (3.49 M allocations: 177.152 MiB, 3.93% gc time)
+Test Summary:         | Pass  Total
+LazySets.MinkowskiSum |  153    153
+ 15.150331 seconds (6.94 M allocations: 364.861 MiB, 8.68% gc time)
+Test Summary:             | Pass  Total
+LazySets.CartesianProduct |  297    297
+ 25.445629 seconds (16.50 M allocations: 833.358 MiB, 6.30% gc time)
+Test Summary:     | Pass  Total
+LazySets.ResetMap |   54     54
+  7.086501 seconds (2.88 M allocations: 147.643 MiB, 5.14% gc time)
+Test Summary:                  | Pass  Total
+LazySets.SymmetricIntervalHull |   42     42
+  4.947812 seconds (1.78 M allocations: 94.324 MiB, 3.84% gc time)
+Test Summary:                 | Pass  Total
+LazySets.concrete_convex_hull |   98     98
+  9.983303 seconds (3.02 M allocations: 158.420 MiB, 3.85% gc time)
+Test Summary:        | Pass  Total
+LazySets.Translation |   50     50
+  6.165262 seconds (2.48 M allocations: 134.276 MiB, 3.21% gc time)
+Test Summary:      | Pass  Total
+LazySets.AffineMap |   44     44
+  6.781595 seconds (3.08 M allocations: 162.060 MiB, 5.65% gc time)
+Test Summary:       | Pass  Total
+LazySets.CompactSet |   18     18
+  0.336770 seconds (86.28 k allocations: 4.697 MiB)
+Test Summary:       | Pass  Total
+LazySets.Complement |   39     39
+  1.789675 seconds (530.95 k allocations: 27.020 MiB, 4.44% gc time)
+Test Summary:               | Pass  Total
+LazySets.PolynomialZonotope |    9      9
+  4.605272 seconds (2.67 M allocations: 141.255 MiB, 8.48% gc time)
+Test Summary:          | Pass  Total
+LazySets.Rectification |  124    124
+ 16.860344 seconds (8.70 M allocations: 444.083 MiB, 6.55% gc time)
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+Test Summary:     | Pass  Total
+LazySets.UnionSet |  107    107
+ 14.358911 seconds (6.11 M allocations: 314.677 MiB, 6.34% gc time)
+Test Summary:    | Pass  Total
+LazySets.samples |    3      3
+  1.850271 seconds (1.64 M allocations: 83.874 MiB, 9.27% gc time)
+┌ Warning: Problem is unbounded, but unbounded ray is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:97
+┌ Warning: Problem is unbounded, but unbounded ray is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:97
+Test Summary:                             | Pass  Total
+LazySets.Approximations.overapproximation |  197    197
+ 76.177289 seconds (66.89 M allocations: 3.413 GiB, 8.48% gc time)
+Test Summary:                              | Pass  Total
+LazySets.Approximations.underapproximation |    3      3
+  1.022388 seconds (476.96 k allocations: 25.442 MiB, 6.70% gc time)
+Test Summary:                               | Pass  Total
+LazySets.Approximations.template_directions |  210    210
+ 11.272463 seconds (7.77 M allocations: 406.615 MiB, 6.21% gc time)
+Test Summary:                             | Pass  Total
+LazySets.Approximations.box_approximation |   56     56
+  4.954004 seconds (2.90 M allocations: 149.907 MiB, 8.15% gc time)
+Test Summary:                                 | Pass  Total
+LazySets.Approximations.ballinf_approximation |   15     15
+  0.996836 seconds (701.39 k allocations: 37.666 MiB, 8.44% gc time)
+Test Summary:                          | Pass  Total
+LazySets.Approximations.radiusdiameter |   63     63
+  2.115976 seconds (1.13 M allocations: 56.476 MiB, 3.81% gc time)
+Test Summary:                     | Pass  Total
+LazySets.Approximations.decompose |   53     53
+ 15.077880 seconds (9.99 M allocations: 517.913 MiB, 5.97% gc time)
+Test Summary:                              | Pass  Total
+LazySets.Approximations.hausdorff_distance |    7      7
+  3.072893 seconds (1.60 M allocations: 86.298 MiB, 5.00% gc time)
+Test Summary:              | Pass  Total
+LazySets.binary_operations |    4      4
+174.493611 seconds (136.34 M allocations: 7.022 GiB, 6.88% gc time)
+Test Summary:       | Pass  Total
+LazySets.interfaces |   14     14
+  6.669569 seconds (5.34 M allocations: 331.165 MiB, 7.49% gc time)
+┌ Warning: received a polyhedron with no vertices during plotting
+└ @ LazySets ~&#x2F;.julia&#x2F;packages&#x2F;LazySets&#x2F;a4KpL&#x2F;src&#x2F;Interfaces&#x2F;AbstractPolyhedron_functions.jl:483
+┌ Warning: received a polyhedron with no vertices during plotting
+└ @ LazySets ~&#x2F;.julia&#x2F;packages&#x2F;LazySets&#x2F;a4KpL&#x2F;src&#x2F;Interfaces&#x2F;AbstractPolyhedron_functions.jl:483
+Test Summary:     | Pass  Total
+LazySets.plotting |   10     10
+116.854906 seconds (81.33 M allocations: 4.032 GiB, 9.17% gc time)
+[ Info: SetupBuildDirectory: setting up build directory.
+[ Info: Doctest: running doctests.
+[ Info: Skipped ExpandTemplates step (doctest only).
+[ Info: Skipped CrossReferences step (doctest only).
+[ Info: Skipped CheckDocument step (doctest only).
+[ Info: Skipped Populate step (doctest only).
+[ Info: Skipped RenderDocument step (doctest only).
+Test Summary:     | Pass  Total
+LazySets.doctests |    1      1
+ 93.663773 seconds (52.64 M allocations: 3.136 GiB, 10.47% gc time)
+   Testing LazySets tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 11 hours ago and took 31 minutes, 40 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/LazySets/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed URIParser ───────────── v0.4.0
+ Installed SetRounding ─────────── v0.2.0
+ Installed Requires ────────────── v0.5.2
+ Installed Reexport ────────────── v0.2.0
+ Installed CommonSubexpressions ── v0.2.0
+ Installed ErrorfreeArithmetic ─── v0.4.0
+ Installed BinaryProvider ──────── v0.5.8
+ Installed LazySets ────────────── v1.23.0
+ Installed RecipesBase ─────────── v0.7.0
+ Installed Calculus ────────────── v0.5.1
+ Installed ForwardDiff ─────────── v0.9.0
+ Installed Compat ──────────────── v2.2.0
+ Installed OrderedCollections ──── v1.1.0
+ Installed MathProgBase ────────── v0.7.7
+ Installed IntervalArithmetic ──── v0.16.1
+ Installed Parsers ─────────────── v0.3.10
+ Installed JuMP ────────────────── v0.20.1
+ Installed DiffRules ───────────── v0.1.0
+ Installed DataStructures ──────── v0.17.6
+ Installed JSON ────────────────── v0.21.0
+ Installed FastRounding ────────── v0.2.0
+ Installed NaNMath ─────────────── v0.3.3
+ Installed StaticArrays ────────── v0.12.1
+ Installed DiffResults ─────────── v0.0.4
+ Installed BenchmarkTools ──────── v0.4.3
+ Installed GLPKMathProgInterface ─ v0.4.4
+ Installed GLPK ────────────────── v0.11.4
+ Installed BinDeps ─────────────── v0.8.10
+ Installed MathOptInterface ────── v0.9.7
+ Installed SpecialFunctions ────── v0.8.0
+ Installed CRlibm ──────────────── v0.7.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [b4f0291d] + LazySets v1.23.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [96374032] + CRlibm v0.7.1
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [864edb3b] + DataStructures v0.17.6
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [90fa49ef] + ErrorfreeArithmetic v0.4.0
+  [fa42c844] + FastRounding v0.2.0
+  [f6369f11] + ForwardDiff v0.9.0
+  [60bf3e95] + GLPK v0.11.4
+  [3c7084bd] + GLPKMathProgInterface v0.4.4
+  [d1acc4aa] + IntervalArithmetic v0.16.1
+  [682c06a0] + JSON v0.21.0
+  [4076af6c] + JuMP v0.20.1
+  [b4f0291d] + LazySets v1.23.0
+  [b8f27783] + MathOptInterface v0.9.7
+  [fdba3010] + MathProgBase v0.7.7
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [3cc68bcd] + SetRounding v0.2.0
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building GLPK ────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;GLPK&#x2F;lOaTT&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+  Building CRlibm ──────────→ `~&#x2F;.julia&#x2F;packages&#x2F;CRlibm&#x2F;2S9DB&#x2F;deps&#x2F;build.log`
+   Testing LazySets
+ Resolving package versions...
+ Installed Expokit ───────────────────── v0.2.0
+ Installed IntervalMatrices ──────────── v0.2.3
+ Installed CDDLib ────────────────────── v0.5.3
+ Installed Makie ─────────────────────── v0.9.5
+ Installed Distributions ─────────────── v0.21.8
+ Installed Documenter ────────────────── v0.24.0
+ Installed Optim ─────────────────────── v0.18.1
+ Installed Missings ──────────────────── v0.4.3
+ Installed Arpack ────────────────────── v0.3.1
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed Polyhedra ─────────────────── v0.5.6
+ Installed ComputationalResources ────── v0.3.0
+ Installed Plots ─────────────────────── v0.27.0
+ Installed TaylorModels ──────────────── v0.3.0
+ Installed Showoff ───────────────────── v0.3.1
+ Installed CatIndices ────────────────── v0.2.0
+ Installed LineSearches ──────────────── v7.0.1
+ Installed AbstractFFTs ──────────────── v0.5.0
+ Installed Contour ───────────────────── v0.5.1
+ Installed NamedArrays ───────────────── v0.9.3
+ Installed PDMats ────────────────────── v0.9.10
+ Installed Colors ────────────────────── v0.9.6
+ Installed StatsBase ─────────────────── v0.32.0
+ Installed RangeArrays ───────────────── v0.3.1
+ Installed FreeTypeAbstraction ───────── v0.4.2
+ Installed Conda ─────────────────────── v1.3.0
+ Installed FreeType ──────────────────── v2.1.1
+ Installed Measures ──────────────────── v0.3.0
+ Installed StatsFuns ─────────────────── v0.9.0
+ Installed GLFW ──────────────────────── v3.1.0
+ Installed DiffEqBase ────────────────── v6.2.3
+ Installed AxisAlgorithms ────────────── v1.0.0
+ Installed Polynomials ───────────────── v0.6.0
+ Installed ModernGL ──────────────────── v1.0.0
+ Installed NLSolversBase ─────────────── v7.5.0
+ Installed DocStringExtensions ───────── v0.8.1
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed ColorBrewer ───────────────── v0.4.0
+ Installed IdentityRanges ────────────── v0.3.0
+ Installed ParameterJuMP ─────────────── v0.1.2
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed UnicodeFun ────────────────── v0.4.0
+ Installed OffsetArrays ──────────────── v0.11.1
+ Installed Espresso ──────────────────── v0.6.0
+ Installed Rmath ─────────────────────── v0.5.1
+ Installed FunctionWrappers ──────────── v1.0.0
+ Installed Widgets ───────────────────── v0.6.2
+ Installed CoordinateTransformations ─── v0.5.0
+ Installed Tables ────────────────────── v0.2.11
+ Installed Observables ───────────────── v0.2.3
+ Installed IterTools ─────────────────── v1.3.0
+ Installed SignedDistanceFields ──────── v0.4.0
+ Installed FreqTables ────────────────── v0.3.1
+ Installed StructArrays ──────────────── v0.4.0
+ Installed Loess ─────────────────────── v0.5.0
+ Installed KernelDensity ─────────────── v0.5.1
+ Installed MappedArrays ──────────────── v0.2.2
+ Installed TableTraits ───────────────── v1.0.0
+ Installed TreeViews ─────────────────── v0.3.0
+ Installed Combinatorics ─────────────── v0.7.0
+ Installed ColorVectorSpace ──────────── v0.7.1
+ Installed DiffEqDiffTools ───────────── v0.14.0
+ Installed FixedPointNumbers ─────────── v0.6.1
+ Installed RecursiveFactorization ────── v0.1.0
+ Installed GR ────────────────────────── v0.42.0
+ Installed ImageAxes ─────────────────── v0.6.1
+ Installed IterativeSolvers ──────────── v0.8.1
+ Installed Roots ─────────────────────── v0.8.3
+ Installed Graphics ──────────────────── v0.4.0
+ Installed FFMPEG ────────────────────── v0.2.3
+ Installed ImageFiltering ────────────── v0.6.5
+ Installed ImageTransformations ──────── v0.8.0
+ Installed RecursiveArrayTools ───────── v1.0.2
+ Installed ArrayInterface ────────────── v1.2.1
+ Installed Ratios ────────────────────── v0.3.1
+ Installed CustomUnitRanges ──────────── v0.2.0
+ Installed SimpleTraits ──────────────── v0.9.1
+ Installed MuladdMacro ───────────────── v0.2.1
+ Installed MeshIO ────────────────────── v0.3.1
+ Installed PaddedViews ───────────────── v0.4.2
+ Installed GLMakie ───────────────────── v0.0.8
+ Installed TiledIteration ────────────── v0.2.3
+ Installed FFTW ──────────────────────── v1.1.0
+ Installed ImageCore ─────────────────── v0.8.5
+ Installed IntervalSets ──────────────── v0.3.2
+ Installed Parameters ────────────────── v0.12.0
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed Interpolations ────────────── v0.12.5
+ Installed GeometryTypes ─────────────── v0.7.6
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed QuadGK ────────────────────── v2.1.1
+ Installed CMake ─────────────────────── v1.1.2
+ Installed WoodburyMatrices ──────────── v0.4.1
+ Installed PlotUtils ─────────────────── v0.6.1
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed IndirectArrays ────────────── v0.5.0
+ Installed Packing ───────────────────── v0.3.0
+ Installed VersionParsing ────────────── v1.1.3
+ Installed Distances ─────────────────── v0.8.2
+ Installed MacroTools ────────────────── v0.5.2
+ Installed TaylorSeries ──────────────── v0.10.1
+ Installed ColorTypes ────────────────── v0.8.0
+ Installed FFTViews ──────────────────── v0.3.0
+ Installed AxisArrays ────────────────── v0.3.3
+ Installed ImageMagick ───────────────── v0.7.5
+ Installed StatsMakie ────────────────── v0.0.6
+ Installed PositiveFactorizations ────── v0.2.3
+ Installed Rotations ─────────────────── v0.12.0
+ Installed PlotThemes ────────────────── v0.4.0
+ Installed FileIO ────────────────────── v1.0.7
+ Installed TaylorIntegration ─────────── v0.7.0
+ Installed AbstractPlotting ──────────── v0.9.10
+  Building CDDLib ─────→ `~&#x2F;.julia&#x2F;packages&#x2F;CDDLib&#x2F;AcD7T&#x2F;deps&#x2F;build.log`
+  Building GR ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;GR&#x2F;f1Iqi&#x2F;deps&#x2F;build.log`
+  Building FFMPEG ─────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFMPEG&#x2F;bkWgb&#x2F;deps&#x2F;build.log`
+  Building Plots ──────→ `~&#x2F;.julia&#x2F;packages&#x2F;Plots&#x2F;Iuc9S&#x2F;deps&#x2F;build.log`
+  Building Arpack ─────→ `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+  Building Conda ──────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building FreeType ───→ `~&#x2F;.julia&#x2F;packages&#x2F;FreeType&#x2F;2dE5w&#x2F;deps&#x2F;build.log`
+  Building CMake ──────→ `~&#x2F;.julia&#x2F;packages&#x2F;CMake&#x2F;nSK2r&#x2F;deps&#x2F;build.log`
+  Building GLFW ───────→ `~&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;build.log`
+┌ Error: Error building `GLFW`: 
+│ -- The C compiler identification is GNU 7.4.0
+│ -- Check for working C compiler: &#x2F;usr&#x2F;bin&#x2F;cc
+│ -- Check for working C compiler: &#x2F;usr&#x2F;bin&#x2F;cc -- works
+│ -- Detecting C compiler ABI info
+│ -- Detecting C compiler ABI info - done
+│ -- Detecting C compile features
+│ -- Detecting C compile features - done
+│ -- Looking for pthread.h
+│ -- Looking for pthread.h - found
+│ -- Looking for pthread_create
+│ -- Looking for pthread_create - not found
+│ -- Looking for pthread_create in pthreads
+│ -- Looking for pthread_create in pthreads - not found
+│ -- Looking for pthread_create in pthread
+│ -- Looking for pthread_create in pthread - found
+│ -- Found Threads: TRUE  
+│ -- Using X11 for window creation
+│ CMake Error at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CMake&#x2F;nSK2r&#x2F;deps&#x2F;downloads&#x2F;cmake-3.12.3-Linux-x86_64&#x2F;share&#x2F;cmake-3.12&#x2F;Modules&#x2F;FindX11.cmake:429 (message):
+│   Could not find X11
+│ Call Stack (most recent call first):
+│   CMakeLists.txt:205 (find_package)
+│ 
+│ 
+│ -- Configuring incomplete, errors occurred!
+│ See also &quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;usr&#x2F;downloads&#x2F;src&#x2F;build&#x2F;CMakeFiles&#x2F;CMakeOutput.log&quot;.
+│ See also &quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;usr&#x2F;downloads&#x2F;src&#x2F;build&#x2F;CMakeFiles&#x2F;CMakeError.log&quot;.
+│ [ Info: Downloading https:&#x2F;&#x2F;github.com&#x2F;glfw&#x2F;glfw&#x2F;archive&#x2F;3.3.tar.gz to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;usr&#x2F;downloads&#x2F;src.tar.gz...
+│ [ Info: Unpacking &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;usr&#x2F;downloads&#x2F;src.tar.gz into &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;usr&#x2F;downloads&#x2F;src
+│ ┌ Warning: 
+│ │ ================================================================
+│ │ ================================================================
+│ │ === Building GLFW has failed. Most common problem is,        ===
+│ │ === that you don&#39;t have x-org installed.                     ===
+│ │ === You can install it via: `sudo apt-get install xorg-dev`  ===
+│ │ ================================================================
+│ │ ================================================================
+│ └ @ Main ~&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;build.jl:56
+│ ERROR: LoadError: failed process: Process(`&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CMake&#x2F;nSK2r&#x2F;deps&#x2F;usr&#x2F;bin&#x2F;cmake -DBUILD_SHARED_LIBS=on -DGLFW_BUILD_DOCS=OFF -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF ..`, ProcessExited(1)) [1]
+│ 
+│ Stacktrace:
+│  [1] pipeline_error at .&#x2F;process.jl:813 [inlined]
+│  [2] #run#536(::Bool, ::typeof(run), ::Cmd) at .&#x2F;process.jl:728
+│  [3] run at .&#x2F;process.jl:726 [inlined]
+│  [4] (::getfield(Main, Symbol(&quot;##9#10&quot;)))() at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;build.jl:51
+│  [5] cd(::getfield(Main, Symbol(&quot;##9#10&quot;)), ::String) at .&#x2F;file.jl:96
+│  [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;build.jl:43
+│  [7] include at .&#x2F;boot.jl:328 [inlined]
+│  [8] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+│  [9] include(::Module, ::String) at .&#x2F;Base.jl:31
+│  [10] include(::String) at .&#x2F;client.jl:431
+│  [11] top-level scope at none:5
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;build.jl:21
+│ [23:43:06] #=#=#                                                                         [23:43:06] ##O#- #                                                                       [23:43:07] ##O=#  #                                                                      [23:43:07] #=#=-#  #                                                                     [23:43:07] -#O#- #   #                                                                   [23:43:07] -=#=#   #   #                                                                 [23:43:07]  -=#=-#  #    #                                                               [23:43:07]   -=#=-#   #   #                                                              [23:43:07]    -=#=-#    #   #                                                            [23:43:07] 
+└ @ Pkg.Operations &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;backwards_compatible_isolation.jl:647
+  Building Rmath ──────→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+  Building FFTW ───────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFTW&#x2F;loJ3F&#x2F;deps&#x2F;build.log`
+  Building ImageMagick → `~&#x2F;.julia&#x2F;packages&#x2F;ImageMagick&#x2F;vMfoS&#x2F;deps&#x2F;build.log`
+  Building GLMakie ────→ `~&#x2F;.julia&#x2F;packages&#x2F;GLMakie&#x2F;5wmnA&#x2F;deps&#x2F;build.log`
+┌ Error: Error building `GLMakie`: 
+│ ERROR: LoadError: GLFW not installed properly, run Pkg.build(&quot;GLFW&quot;), restart Julia and try again
+│ Stacktrace:
+│  [1] error(::String) at .&#x2F;error.jl:33
+│  [2] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;src&#x2F;GLFW.jl:5
+│  [3] include at .&#x2F;boot.jl:328 [inlined]
+│  [4] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+│  [5] include(::Module, ::String) at .&#x2F;Base.jl:31
+│  [6] top-level scope at none:2
+│  [7] eval at .&#x2F;boot.jl:330 [inlined]
+│  [8] eval(::Expr) at .&#x2F;client.jl:432
+│  [9] top-level scope at .&#x2F;none:3
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;src&#x2F;GLFW.jl:4
+│ ERROR: LoadError: OpenGL&#x2F;GLFW wasn&#39;t installed correctly. This likely means,
+│ you don&#39;t have an OpenGL capable Graphic Card,
+│ you don&#39;t have the newest video driver installed,
+│ or the GLFW build failed. If you&#39;re on linux and `]build` GLFW failed,
+│ try manually adding `sudo apt-get install libglfw3` and then `]build GLMakie`.
+│ If you&#39;re on a headless server, you still need to install x-server and
+│ proper GPU drivers. You can take inspiration from this article
+│ on how to get Makie running on a headless system:
+│ https:&#x2F;&#x2F;nextjournal.com&#x2F;sdanisch&#x2F;makie-1.0
+│ If you don&#39;t have a GPU, there is also a Cairo software backend
+│ for Makie which you can use:
+│ https:&#x2F;&#x2F;github.com&#x2F;JuliaPlots&#x2F;CairoMakie.jl.
+│ Please check the below error and open an issue at:
+│ https:&#x2F;&#x2F;github.com&#x2F;JuliaPlots&#x2F;GLMakie.jl.
+│ After you fixed your OpenGL install, please run `]build GLMakie` again!
+│ GLMakie will still load, but will be disabled as a default backend for Makie
+│ 
+│ Stacktrace:
+│  [1] error(::String) at .&#x2F;error.jl:33
+│  [2] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLMakie&#x2F;5wmnA&#x2F;deps&#x2F;build.jl:28
+│  [3] include at .&#x2F;boot.jl:328 [inlined]
+│  [4] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+│  [5] include(::Module, ::String) at .&#x2F;Base.jl:31
+│  [6] include(::String) at .&#x2F;client.jl:431
+│  [7] top-level scope at none:5
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLMakie&#x2F;5wmnA&#x2F;deps&#x2F;build.jl:19
+│ caused by [exception 1]
+│ Failed to precompile GLFW [f7f18e0c-5ee9-5ccd-a5bf-e8befd85ed98] to &#x2F;root&#x2F;.julia&#x2F;compiled&#x2F;v1.2&#x2F;GLFW&#x2F;n8HlT.ji.
+│ Stacktrace:
+│  [1] error(::String) at .&#x2F;error.jl:33
+│  [2] compilecache(::Base.PkgId, ::String) at .&#x2F;loading.jl:1253
+│  [3] _require(::Base.PkgId) at .&#x2F;loading.jl:1013
+│  [4] require(::Base.PkgId) at .&#x2F;loading.jl:911
+│  [5] require(::Module, ::Symbol) at .&#x2F;loading.jl:906
+│  [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLMakie&#x2F;5wmnA&#x2F;deps&#x2F;build.jl:20
+│  [7] include at .&#x2F;boot.jl:328 [inlined]
+│  [8] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+│  [9] include(::Module, ::String) at .&#x2F;Base.jl:31
+│  [10] include(::String) at .&#x2F;client.jl:431
+│  [11] top-level scope at none:5
+└ @ Pkg.Operations &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;backwards_compatible_isolation.jl:647
+    Status `&#x2F;tmp&#x2F;jl_3OAulY&#x2F;Manifest.toml`
+  [621f4979] AbstractFFTs v0.5.0
+  [537997a7] AbstractPlotting v0.9.10
+  [7d9fca2a] Arpack v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [13072b0f] AxisAlgorithms v1.0.0
+  [39de3d68] AxisArrays v0.3.3
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [3391f64e] CDDLib v0.5.3
+  [631607c0] CMake v1.1.2
+  [96374032] CRlibm v0.7.1
+  [49dc2e85] Calculus v0.5.1
+  [aafaddc9] CatIndices v0.2.0
+  [324d7699] CategoricalArrays v0.7.3
+  [a2cac450] ColorBrewer v0.4.0
+  [3da002f7] ColorTypes v0.8.0
+  [c3611d14] ColorVectorSpace v0.7.1
+  [5ae59095] Colors v0.9.6
+  [861a8166] Combinatorics v0.7.0
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [ed09eef8] ComputationalResources v0.3.0
+  [8f4d0f93] Conda v1.3.0
+  [d38c429a] Contour v0.5.1
+  [150eb455] CoordinateTransformations v0.5.0
+  [dc8bdbbb] CustomUnitRanges v0.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [2b5f629d] DiffEqBase v6.2.3
+  [01453d9d] DiffEqDiffTools v0.14.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [31c24e10] Distributions v0.21.8
+  [ffbed154] DocStringExtensions v0.8.1
+  [e30172f5] Documenter v0.24.0
+  [90fa49ef] ErrorfreeArithmetic v0.4.0
+  [6912e4f1] Espresso v0.6.0
+  [a1e7a1ef] Expokit v0.2.0
+  [c87230d0] FFMPEG v0.2.3
+  [4f61f5a4] FFTViews v0.3.0
+  [7a1cc6ca] FFTW v1.1.0
+  [fa42c844] FastRounding v0.2.0
+  [5789e2e9] FileIO v1.0.7
+  [53c48c17] FixedPointNumbers v0.6.1
+  [f6369f11] ForwardDiff v0.9.0
+  [b38be410] FreeType v2.1.1
+  [663a7486] FreeTypeAbstraction v0.4.2
+  [da1fdf0e] FreqTables v0.3.1
+  [069b7b12] FunctionWrappers v1.0.0
+  [f7f18e0c] GLFW v3.1.0
+  [e9467ef8] GLMakie v0.0.8
+  [60bf3e95] GLPK v0.11.4
+  [3c7084bd] GLPKMathProgInterface v0.4.4
+  [28b8d3ca] GR v0.42.0
+  [4d00f742] GeometryTypes v0.7.6
+  [a2bd30eb] Graphics v0.4.0
+  [bbac6d45] IdentityRanges v0.3.0
+  [2803e5a7] ImageAxes v0.6.1
+  [a09fc81d] ImageCore v0.8.5
+  [6a3955dd] ImageFiltering v0.6.5
+  [6218d12a] ImageMagick v0.7.5
+  [02fcd773] ImageTransformations v0.8.0
+  [9b13fd28] IndirectArrays v0.5.0
+  [a98d9a8b] Interpolations v0.12.5
+  [d1acc4aa] IntervalArithmetic v0.16.1
+  [5c1f47dc] IntervalMatrices v0.2.3
+  [8197267c] IntervalSets v0.3.2
+  [41ab1584] InvertedIndices v1.0.0
+  [c8e1da08] IterTools v1.3.0
+  [42fd0dbc] IterativeSolvers v0.8.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [682c06a0] JSON v0.21.0
+  [4076af6c] JuMP v0.20.1
+  [5ab0869b] KernelDensity v0.5.1
+  [b4f0291d] LazySets v1.23.0
+  [d3d80556] LineSearches v7.0.1
+  [4345ca2d] Loess v0.5.0
+  [1914dd2f] MacroTools v0.5.2
+  [ee78f7c6] Makie v0.9.5
+  [dbb5928d] MappedArrays v0.2.2
+  [b8f27783] MathOptInterface v0.9.7
+  [fdba3010] MathProgBase v0.7.7
+  [442fdcdd] Measures v0.3.0
+  [7269a6da] MeshIO v0.3.1
+  [e1d29d7a] Missings v0.4.3
+  [66fc600b] ModernGL v1.0.0
+  [46d2c3a1] MuladdMacro v0.2.1
+  [d41bc354] NLSolversBase v7.5.0
+  [77ba4419] NaNMath v0.3.3
+  [86f7a689] NamedArrays v0.9.3
+  [510215fc] Observables v0.2.3
+  [6fe1bfb0] OffsetArrays v0.11.1
+  [429524aa] Optim v0.18.1
+  [bac558e1] OrderedCollections v1.1.0
+  [90014a1f] PDMats v0.9.10
+  [19eb6ba3] Packing v0.3.0
+  [5432bcbf] PaddedViews v0.4.2
+  [774612a8] ParameterJuMP v0.1.2
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [ccf2f8ad] PlotThemes v0.4.0
+  [995b91a9] PlotUtils v0.6.1
+  [91a5bcdd] Plots v0.27.0
+  [67491407] Polyhedra v0.5.6
+  [f27b6e38] Polynomials v0.6.0
+  [2dfb63ee] PooledArrays v0.5.2
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [1fd47b50] QuadGK v2.1.1
+  [b3c3ace0] RangeArrays v0.3.1
+  [c84ed2f1] Ratios v0.3.1
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [f2c3362d] RecursiveFactorization v0.1.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [79098fc4] Rmath v0.5.1
+  [f2b01f46] Roots v0.8.3
+  [6038ab10] Rotations v0.12.0
+  [3cc68bcd] SetRounding v0.2.0
+  [992d4aef] Showoff v0.3.1
+  [73760f76] SignedDistanceFields v0.4.0
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [65254759] StatsMakie v0.0.6
+  [09ab397b] StructArrays v0.4.0
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [92b13dbe] TaylorIntegration v0.7.0
+  [314ce334] TaylorModels v0.3.0
+  [6aa5eb33] TaylorSeries v0.10.1
+  [06e1c1a7] TiledIteration v0.2.3
+  [a2a6695c] TreeViews v0.3.0
+  [30578b45] URIParser v0.4.0
+  [1cfade01] UnicodeFun v0.4.0
+  [81def892] VersionParsing v1.1.3
+  [cc8bc4a8] Widgets v0.6.2
+  [efce3f68] WoodburyMatrices v0.4.1
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Test Summary: | Pass  Total
+LazySets.Util |   48     48
+ 18.585408 seconds (20.30 M allocations: 1.014 GiB, 3.98% gc time)
+Test Summary:        | Pass  Total
+LazySets.Comparisons |   10     10
+  0.299933 seconds (234.54 k allocations: 10.905 MiB)
+Test Summary:     | Pass  Total
+LazySets.Interior |   16     16
+  2.454255 seconds (2.55 M allocations: 131.634 MiB, 3.44% gc time)
+Test Summary:   | Pass  Total
+LazySets.CDDLib |    3      3
+  0.110709 seconds (135.76 k allocations: 7.461 MiB, 10.47% gc time)
+Test Summary:      | Pass  Total
+LazySets.Singleton |  150    150
+ 69.863847 seconds (90.97 M allocations: 4.916 GiB, 5.76% gc time)
+Test Summary:  | Pass  Total
+LazySets.Ball1 |   81     81
+  4.826099 seconds (3.50 M allocations: 176.915 MiB, 3.35% gc time)
+Test Summary:  | Pass  Total
+LazySets.Ball2 |   76     76
+  8.372962 seconds (7.64 M allocations: 402.792 MiB, 5.19% gc time)
+Test Summary:  | Pass  Total
+LazySets.Ballp |   36     36
+  1.982190 seconds (1.39 M allocations: 70.583 MiB, 4.16% gc time)
+Test Summary:    | Pass  Total
+LazySets.BallInf |  113    113
+ 77.748491 seconds (86.15 M allocations: 4.597 GiB, 7.27% gc time)
+Test Summary:           | Pass  Total
+LazySets.Hyperrectangle |  234    234
+ 43.024490 seconds (31.26 M allocations: 1.580 GiB, 4.22% gc time)
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+Test Summary:    | Pass  Total
+LazySets.Polygon |  551    551
+ 56.971422 seconds (36.27 M allocations: 1.888 GiB, 4.68% gc time)
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+Test Summary:     | Pass  Total
+LazySets.Polytope |  191    191
+154.631113 seconds (203.13 M allocations: 10.807 GiB, 9.02% gc time)
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+Test Summary:       | Pass  Total
+LazySets.Polyhedron |  109    109
+ 18.717244 seconds (16.73 M allocations: 886.541 MiB, 6.98% gc time)
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+Test Summary:     | Pass  Total
+LazySets.Zonotope |  193    193
+ 43.882287 seconds (36.18 M allocations: 1.844 GiB, 7.75% gc time)
+Test Summary:    | Pass  Total
+LazySets.ZeroSet |   51     51
+  2.537839 seconds (1.53 M allocations: 79.762 MiB, 4.28% gc time)
+Test Summary:     | Pass  Total
+LazySets.EmptySet |   83     83
+  1.084180 seconds (308.01 k allocations: 17.029 MiB, 2.32% gc time)
+Test Summary:      | Pass  Total
+LazySets.Ellipsoid |   50     50
+  3.797585 seconds (2.75 M allocations: 138.327 MiB, 6.16% gc time)
+Test Summary:       | Pass  Total
+LazySets.Hyperplane |   93     93
+ 10.693349 seconds (12.23 M allocations: 662.608 MiB, 7.75% gc time)
+Test Summary:      | Pass  Total
+LazySets.HalfSpace |  111    111
+  2.992408 seconds (1.61 M allocations: 84.870 MiB, 4.04% gc time)
+Test Summary:     | Pass  Total
+LazySets.Interval |  165    165
+ 12.843042 seconds (8.97 M allocations: 432.401 MiB, 5.78% gc time)
+Test Summary:        | Pass  Total
+LazySets.LineSegment |  174    174
+  7.655588 seconds (2.49 M allocations: 130.852 MiB, 2.30% gc time)
+Test Summary: | Pass  Total
+LazySets.Line |   51     51
+  2.095493 seconds (871.46 k allocations: 43.939 MiB, 3.80% gc time)
+Test Summary:     | Pass  Total
+LazySets.Universe |   97     97
+  2.930286 seconds (991.58 k allocations: 51.049 MiB, 3.26% gc time)
+Test Summary:     | Pass  Total
+LazySets.Bloating |   52     52
+  1.928103 seconds (667.40 k allocations: 35.617 MiB, 2.21% gc time)
+Test Summary:         | Pass  Total
+LazySets.Intersection |   87     87
+ 26.315189 seconds (22.07 M allocations: 1.174 GiB, 10.49% gc time)
+Test Summary:       | Pass  Total
+LazySets.ConvexHull |   90     90
+  2.754611 seconds (1.86 M allocations: 96.028 MiB, 5.05% gc time)
+Test Summary:           | Pass  Total
+LazySets.ExponentialMap |   52     52
+ 29.138385 seconds (24.15 M allocations: 1.213 GiB, 9.07% gc time)
+Test Summary:      | Pass  Total
+LazySets.LinearMap |  107    107
+  4.607891 seconds (2.07 M allocations: 108.198 MiB, 3.80% gc time)
+Test Summary:         | Pass  Total
+LazySets.MinkowskiSum |  153    153
+  9.157642 seconds (4.04 M allocations: 207.012 MiB, 4.92% gc time)
+Test Summary:             | Pass  Total
+LazySets.CartesianProduct |  297    297
+ 23.492814 seconds (17.65 M allocations: 896.901 MiB, 6.77% gc time)
+Test Summary:     | Pass  Total
+LazySets.ResetMap |   54     54
+  5.657226 seconds (2.48 M allocations: 129.269 MiB, 4.18% gc time)
+Test Summary:                  | Pass  Total
+LazySets.SymmetricIntervalHull |   42     42
+  1.978703 seconds (1.15 M allocations: 59.705 MiB, 5.18% gc time)
+Test Summary:                 | Pass  Total
+LazySets.concrete_convex_hull |   98     98
+  5.019860 seconds (1.37 M allocations: 68.330 MiB, 2.46% gc time)
+Test Summary:        | Pass  Total
+LazySets.Translation |   50     50
+  3.406761 seconds (1.61 M allocations: 86.218 MiB, 5.44% gc time)
+Test Summary:      | Pass  Total
+LazySets.AffineMap |   44     44
+  4.175190 seconds (2.37 M allocations: 123.309 MiB, 5.65% gc time)
+Test Summary:       | Pass  Total
+LazySets.CompactSet |   18     18
+  0.233107 seconds (61.17 k allocations: 3.177 MiB)
+Test Summary:       | Pass  Total
+LazySets.Complement |   39     39
+  1.450372 seconds (391.38 k allocations: 19.536 MiB, 3.77% gc time)
+Test Summary:               | Pass  Total
+LazySets.PolynomialZonotope |    9      9
+  2.506990 seconds (1.89 M allocations: 97.540 MiB, 11.18% gc time)
+Test Summary:          | Pass  Total
+LazySets.Rectification |  124    124
+ 13.096172 seconds (7.65 M allocations: 390.094 MiB, 6.44% gc time)
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+Test Summary:     | Pass  Total
+LazySets.UnionSet |  107    107
+  9.543089 seconds (4.59 M allocations: 236.256 MiB, 3.70% gc time)
+Test Summary:    | Pass  Total
+LazySets.samples |    3      3
+  1.548010 seconds (1.74 M allocations: 89.850 MiB, 12.04% gc time)
+┌ Warning: Problem is unbounded, but unbounded ray is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:97
+┌ Warning: Problem is unbounded, but unbounded ray is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:97
+Test Summary:                             | Pass  Total
+LazySets.Approximations.overapproximation |  197    197
+144.263279 seconds (71.84 M allocations: 4.048 GiB, 5.67% gc time)
+Test Summary:                              | Pass  Total
+LazySets.Approximations.underapproximation |    3      3
+  0.389574 seconds (210.59 k allocations: 10.818 MiB)
+Test Summary:                               | Pass  Total
+LazySets.Approximations.template_directions |  210    210
+  8.887419 seconds (5.46 M allocations: 281.760 MiB, 7.04% gc time)
+Test Summary:                             | Pass  Total
+LazySets.Approximations.box_approximation |   56     56
+  3.904763 seconds (2.29 M allocations: 117.515 MiB, 5.35% gc time)
+Test Summary:                                 | Pass  Total
+LazySets.Approximations.ballinf_approximation |   15     15
+  1.115508 seconds (525.71 k allocations: 29.175 MiB, 7.50% gc time)
+Test Summary:                          | Pass  Total
+LazySets.Approximations.radiusdiameter |   63     63
+  2.659710 seconds (953.41 k allocations: 48.130 MiB, 5.47% gc time)
+Test Summary:                     | Pass  Total
+LazySets.Approximations.decompose |   53     53
+ 16.709854 seconds (11.58 M allocations: 598.814 MiB, 7.46% gc time)
+Test Summary:                              | Pass  Total
+LazySets.Approximations.hausdorff_distance |    7      7
+  1.572817 seconds (879.17 k allocations: 47.604 MiB, 6.47% gc time)
+Test Summary:              | Pass  Total
+LazySets.binary_operations |    4      4
+112.202824 seconds (62.23 M allocations: 3.210 GiB, 5.56% gc time)
+Test Summary:       | Pass  Total
+LazySets.interfaces |   14     14
+  3.093066 seconds (626.79 k allocations: 93.864 MiB, 6.19% gc time)
+┌ Warning: received a polyhedron with no vertices during plotting
+└ @ LazySets ~&#x2F;.julia&#x2F;packages&#x2F;LazySets&#x2F;a4KpL&#x2F;src&#x2F;Interfaces&#x2F;AbstractPolyhedron_functions.jl:483
+┌ Warning: received a polyhedron with no vertices during plotting
+└ @ LazySets ~&#x2F;.julia&#x2F;packages&#x2F;LazySets&#x2F;a4KpL&#x2F;src&#x2F;Interfaces&#x2F;AbstractPolyhedron_functions.jl:483
+Test Summary:     | Pass  Total
+LazySets.plotting |   10     10
+110.131522 seconds (80.92 M allocations: 4.063 GiB, 9.22% gc time)
+[ Info: SetupBuildDirectory: setting up build directory.
+[ Info: Doctest: running doctests.
+[ Info: Skipped ExpandTemplates step (doctest only).
+[ Info: Skipped CrossReferences step (doctest only).
+[ Info: Skipped CheckDocument step (doctest only).
+[ Info: Skipped Populate step (doctest only).
+[ Info: Skipped RenderDocument step (doctest only).
+Test Summary:     | Pass  Total
+LazySets.doctests |    1      1
+ 86.095377 seconds (53.85 M allocations: 3.212 GiB, 10.39% gc time)
+   Testing LazySets tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 11 hours ago and took 30 minutes, 56 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/LazySets/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed RecipesBase ─────────── v0.7.0
+ Installed FastRounding ────────── v0.2.0
+ Installed Reexport ────────────── v0.2.0
+ Installed DiffResults ─────────── v0.0.4
+ Installed BinDeps ─────────────── v0.8.10
+ Installed GLPK ────────────────── v0.11.4
+ Installed ForwardDiff ─────────── v0.9.0
+ Installed LazySets ────────────── v1.23.0
+ Installed GLPKMathProgInterface ─ v0.4.4
+ Installed Calculus ────────────── v0.5.1
+ Installed DiffRules ───────────── v0.1.0
+ Installed JSON ────────────────── v0.21.0
+ Installed DataStructures ──────── v0.17.6
+ Installed BenchmarkTools ──────── v0.4.3
+ Installed IntervalArithmetic ──── v0.16.1
+ Installed Parsers ─────────────── v0.3.10
+ Installed URIParser ───────────── v0.4.0
+ Installed Requires ────────────── v0.5.2
+ Installed CRlibm ──────────────── v0.7.1
+ Installed StaticArrays ────────── v0.12.1
+ Installed CommonSubexpressions ── v0.2.0
+ Installed MathProgBase ────────── v0.7.7
+ Installed SetRounding ─────────── v0.2.0
+ Installed NaNMath ─────────────── v0.3.3
+ Installed JuMP ────────────────── v0.20.1
+ Installed MathOptInterface ────── v0.9.7
+ Installed ErrorfreeArithmetic ─── v0.4.0
+ Installed OrderedCollections ──── v1.1.0
+ Installed BinaryProvider ──────── v0.5.8
+ Installed SpecialFunctions ────── v0.8.0
+ Installed Compat ──────────────── v2.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [b4f0291d] + LazySets v1.23.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [96374032] + CRlibm v0.7.1
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [864edb3b] + DataStructures v0.17.6
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [90fa49ef] + ErrorfreeArithmetic v0.4.0
+  [fa42c844] + FastRounding v0.2.0
+  [f6369f11] + ForwardDiff v0.9.0
+  [60bf3e95] + GLPK v0.11.4
+  [3c7084bd] + GLPKMathProgInterface v0.4.4
+  [d1acc4aa] + IntervalArithmetic v0.16.1
+  [682c06a0] + JSON v0.21.0
+  [4076af6c] + JuMP v0.20.1
+  [b4f0291d] + LazySets v1.23.0
+  [b8f27783] + MathOptInterface v0.9.7
+  [fdba3010] + MathProgBase v0.7.7
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [3cc68bcd] + SetRounding v0.2.0
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building GLPK ────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;GLPK&#x2F;lOaTT&#x2F;deps&#x2F;build.log`
+  Building CRlibm ──────────→ `~&#x2F;.julia&#x2F;packages&#x2F;CRlibm&#x2F;2S9DB&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing LazySets
+ Resolving package versions...
+ Installed Expokit ───────────────────── v0.2.0
+ Installed IntervalMatrices ──────────── v0.2.3
+ Installed CDDLib ────────────────────── v0.5.3
+ Installed Makie ─────────────────────── v0.9.5
+ Installed Distributions ─────────────── v0.21.8
+ Installed Optim ─────────────────────── v0.18.1
+ Installed Documenter ────────────────── v0.24.0
+ Installed Plots ─────────────────────── v0.27.0
+ Installed Polyhedra ─────────────────── v0.5.6
+ Installed Distances ─────────────────── v0.8.2
+ Installed NamedArrays ───────────────── v0.9.3
+ Installed DiffEqDiffTools ───────────── v0.14.0
+ Installed RecursiveFactorization ────── v0.1.0
+ Installed TaylorModels ──────────────── v0.3.0
+ Installed VersionParsing ────────────── v1.1.3
+ Installed Combinatorics ─────────────── v0.7.0
+ Installed AbstractFFTs ──────────────── v0.5.0
+ Installed ImageFiltering ────────────── v0.6.5
+ Installed ArrayInterface ────────────── v1.2.1
+ Installed ColorVectorSpace ──────────── v0.7.1
+ Installed TaylorSeries ──────────────── v0.10.1
+ Installed Rotations ─────────────────── v0.12.0
+ Installed Missings ──────────────────── v0.4.3
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed TreeViews ─────────────────── v0.3.0
+ Installed ImageAxes ─────────────────── v0.6.1
+ Installed GLFW ──────────────────────── v3.1.0
+ Installed LineSearches ──────────────── v7.0.1
+ Installed Rmath ─────────────────────── v0.5.1
+ Installed FreeTypeAbstraction ───────── v0.4.2
+ Installed Parameters ────────────────── v0.12.0
+ Installed Graphics ──────────────────── v0.4.0
+ Installed Tables ────────────────────── v0.2.11
+ Installed NLSolversBase ─────────────── v7.5.0
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed IdentityRanges ────────────── v0.3.0
+ Installed StructArrays ──────────────── v0.4.0
+ Installed PlotThemes ────────────────── v0.4.0
+ Installed FreqTables ────────────────── v0.3.1
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed DiffEqBase ────────────────── v6.2.3
+ Installed OffsetArrays ──────────────── v0.11.1
+ Installed ComputationalResources ────── v0.3.0
+ Installed MappedArrays ──────────────── v0.2.2
+ Installed CMake ─────────────────────── v1.1.2
+ Installed GeometryTypes ─────────────── v0.7.6
+ Installed KernelDensity ─────────────── v0.5.1
+ Installed ModernGL ──────────────────── v1.0.0
+ Installed Polynomials ───────────────── v0.6.0
+ Installed MeshIO ────────────────────── v0.3.1
+ Installed GLMakie ───────────────────── v0.0.8
+ Installed Packing ───────────────────── v0.3.0
+ Installed AxisArrays ────────────────── v0.3.3
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed FunctionWrappers ──────────── v1.0.0
+ Installed MuladdMacro ───────────────── v0.2.1
+ Installed FFTViews ──────────────────── v0.3.0
+ Installed CustomUnitRanges ──────────── v0.2.0
+ Installed QuadGK ────────────────────── v2.1.1
+ Installed FixedPointNumbers ─────────── v0.6.1
+ Installed CoordinateTransformations ─── v0.5.0
+ Installed Arpack ────────────────────── v0.3.1
+ Installed ParameterJuMP ─────────────── v0.1.2
+ Installed GR ────────────────────────── v0.42.0
+ Installed Contour ───────────────────── v0.5.1
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed Ratios ────────────────────── v0.3.1
+ Installed Widgets ───────────────────── v0.6.2
+ Installed SimpleTraits ──────────────── v0.9.1
+ Installed Espresso ──────────────────── v0.6.0
+ Installed IndirectArrays ────────────── v0.5.0
+ Installed PositiveFactorizations ────── v0.2.3
+ Installed CatIndices ────────────────── v0.2.0
+ Installed IterativeSolvers ──────────── v0.8.1
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed StatsFuns ─────────────────── v0.9.0
+ Installed PlotUtils ─────────────────── v0.6.1
+ Installed TiledIteration ────────────── v0.2.3
+ Installed RecursiveArrayTools ───────── v1.0.2
+ Installed PaddedViews ───────────────── v0.4.2
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed Roots ─────────────────────── v0.8.3
+ Installed WoodburyMatrices ──────────── v0.4.1
+ Installed AxisAlgorithms ────────────── v1.0.0
+ Installed FreeType ──────────────────── v2.1.1
+ Installed DocStringExtensions ───────── v0.8.1
+ Installed StatsBase ─────────────────── v0.32.0
+ Installed ImageCore ─────────────────── v0.8.5
+ Installed TableTraits ───────────────── v1.0.0
+ Installed PDMats ────────────────────── v0.9.10
+ Installed ImageMagick ───────────────── v0.7.5
+ Installed IntervalSets ──────────────── v0.3.2
+ Installed Observables ───────────────── v0.2.3
+ Installed FFMPEG ────────────────────── v0.2.3
+ Installed Interpolations ────────────── v0.12.5
+ Installed IterTools ─────────────────── v1.3.0
+ Installed SignedDistanceFields ──────── v0.4.0
+ Installed Conda ─────────────────────── v1.3.0
+ Installed MacroTools ────────────────── v0.5.2
+ Installed Loess ─────────────────────── v0.5.0
+ Installed UnicodeFun ────────────────── v0.4.0
+ Installed ImageTransformations ──────── v0.8.0
+ Installed ColorTypes ────────────────── v0.8.0
+ Installed Measures ──────────────────── v0.3.0
+ Installed Showoff ───────────────────── v0.3.1
+ Installed FFTW ──────────────────────── v1.1.0
+ Installed FileIO ────────────────────── v1.0.7
+ Installed StatsMakie ────────────────── v0.0.6
+ Installed ColorBrewer ───────────────── v0.4.0
+ Installed RangeArrays ───────────────── v0.3.1
+ Installed Colors ────────────────────── v0.9.6
+ Installed TaylorIntegration ─────────── v0.7.0
+ Installed AbstractPlotting ──────────── v0.9.10
+  Building CDDLib ─────→ `~&#x2F;.julia&#x2F;packages&#x2F;CDDLib&#x2F;AcD7T&#x2F;deps&#x2F;build.log`
+  Building GR ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;GR&#x2F;f1Iqi&#x2F;deps&#x2F;build.log`
+  Building FFMPEG ─────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFMPEG&#x2F;bkWgb&#x2F;deps&#x2F;build.log`
+  Building Plots ──────→ `~&#x2F;.julia&#x2F;packages&#x2F;Plots&#x2F;Iuc9S&#x2F;deps&#x2F;build.log`
+  Building CMake ──────→ `~&#x2F;.julia&#x2F;packages&#x2F;CMake&#x2F;nSK2r&#x2F;deps&#x2F;build.log`
+  Building GLFW ───────→ `~&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;build.log`
+┌ Error: Error building `GLFW`: 
+│ -- The C compiler identification is GNU 7.4.0
+│ -- Check for working C compiler: &#x2F;usr&#x2F;bin&#x2F;cc
+│ -- Check for working C compiler: &#x2F;usr&#x2F;bin&#x2F;cc -- works
+│ -- Detecting C compiler ABI info
+│ -- Detecting C compiler ABI info - done
+│ -- Detecting C compile features
+│ -- Detecting C compile features - done
+│ -- Looking for pthread.h
+│ -- Looking for pthread.h - found
+│ -- Looking for pthread_create
+│ -- Looking for pthread_create - not found
+│ -- Looking for pthread_create in pthreads
+│ -- Looking for pthread_create in pthreads - not found
+│ -- Looking for pthread_create in pthread
+│ -- Looking for pthread_create in pthread - found
+│ -- Found Threads: TRUE  
+│ -- Using X11 for window creation
+│ CMake Error at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CMake&#x2F;nSK2r&#x2F;deps&#x2F;downloads&#x2F;cmake-3.12.3-Linux-x86_64&#x2F;share&#x2F;cmake-3.12&#x2F;Modules&#x2F;FindX11.cmake:429 (message):
+│   Could not find X11
+│ Call Stack (most recent call first):
+│   CMakeLists.txt:205 (find_package)
+│ 
+│ 
+│ -- Configuring incomplete, errors occurred!
+│ See also &quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;usr&#x2F;downloads&#x2F;src&#x2F;build&#x2F;CMakeFiles&#x2F;CMakeOutput.log&quot;.
+│ See also &quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;usr&#x2F;downloads&#x2F;src&#x2F;build&#x2F;CMakeFiles&#x2F;CMakeError.log&quot;.
+│ [ Info: Downloading https:&#x2F;&#x2F;github.com&#x2F;glfw&#x2F;glfw&#x2F;archive&#x2F;3.3.tar.gz to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;usr&#x2F;downloads&#x2F;src.tar.gz...
+│ [ Info: Unpacking &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;usr&#x2F;downloads&#x2F;src.tar.gz into &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;usr&#x2F;downloads&#x2F;src
+│ ┌ Warning: 
+│ │ ================================================================
+│ │ ================================================================
+│ │ === Building GLFW has failed. Most common problem is,        ===
+│ │ === that you don&#39;t have x-org installed.                     ===
+│ │ === You can install it via: `sudo apt-get install xorg-dev`  ===
+│ │ ================================================================
+│ │ ================================================================
+│ └ @ Main ~&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;build.jl:56
+│ ERROR: LoadError: failed process: Process(`&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CMake&#x2F;nSK2r&#x2F;deps&#x2F;usr&#x2F;bin&#x2F;cmake -DBUILD_SHARED_LIBS=on -DGLFW_BUILD_DOCS=OFF -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF ..`, ProcessExited(1)) [1]
+│ 
+│ Stacktrace:
+│  [1] pipeline_error at .&#x2F;process.jl:525 [inlined]
+│  [2] run(::Cmd; wait::Bool) at .&#x2F;process.jl:440
+│  [3] run at .&#x2F;process.jl:438 [inlined]
+│  [4] (::var&quot;#9#10&quot;)() at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;build.jl:51
+│  [5] cd(::var&quot;#9#10&quot;, ::String) at .&#x2F;file.jl:104
+│  [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;build.jl:43
+│  [7] include(::String) at .&#x2F;client.jl:439
+│  [8] top-level scope at none:5
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;deps&#x2F;build.jl:21
+│ [23:26:12] #=#=#                                                                         [23:26:12] ##O#- #                                                                       [23:26:13] ##O=#  #                                                                      [23:26:13] #=#=-#  #                                                                     [23:26:13] -#O#- #   #                                                                   [23:26:13]  -#O#-  #   #                                                                 [23:26:13]   -#O=#  #    #                                                               [23:26:13]    -#O=#   #   #                                                              [23:26:13] 
+└ @ Pkg.Operations &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;backwards_compatible_isolation.jl:601
+  Building Rmath ──────→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+  Building Conda ──────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building FFTW ───────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFTW&#x2F;loJ3F&#x2F;deps&#x2F;build.log`
+  Building FreeType ───→ `~&#x2F;.julia&#x2F;packages&#x2F;FreeType&#x2F;2dE5w&#x2F;deps&#x2F;build.log`
+  Building ImageMagick → `~&#x2F;.julia&#x2F;packages&#x2F;ImageMagick&#x2F;vMfoS&#x2F;deps&#x2F;build.log`
+  Building GLMakie ────→ `~&#x2F;.julia&#x2F;packages&#x2F;GLMakie&#x2F;5wmnA&#x2F;deps&#x2F;build.log`
+┌ Error: Error building `GLMakie`: 
+│ ERROR: LoadError: GLFW not installed properly, run Pkg.build(&quot;GLFW&quot;), restart Julia and try again
+│ Stacktrace:
+│  [1] error(::String) at .&#x2F;error.jl:33
+│  [2] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;src&#x2F;GLFW.jl:5
+│  [3] include(::Module, ::String) at .&#x2F;Base.jl:377
+│  [4] top-level scope at none:2
+│  [5] eval at .&#x2F;boot.jl:331 [inlined]
+│  [6] eval(::Expr) at .&#x2F;client.jl:449
+│  [7] top-level scope at .&#x2F;none:3
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLFW&#x2F;e257h&#x2F;src&#x2F;GLFW.jl:4
+│ ERROR: LoadError: OpenGL&#x2F;GLFW wasn&#39;t installed correctly. This likely means,
+│ you don&#39;t have an OpenGL capable Graphic Card,
+│ you don&#39;t have the newest video driver installed,
+│ or the GLFW build failed. If you&#39;re on linux and `]build` GLFW failed,
+│ try manually adding `sudo apt-get install libglfw3` and then `]build GLMakie`.
+│ If you&#39;re on a headless server, you still need to install x-server and
+│ proper GPU drivers. You can take inspiration from this article
+│ on how to get Makie running on a headless system:
+│ https:&#x2F;&#x2F;nextjournal.com&#x2F;sdanisch&#x2F;makie-1.0
+│ If you don&#39;t have a GPU, there is also a Cairo software backend
+│ for Makie which you can use:
+│ https:&#x2F;&#x2F;github.com&#x2F;JuliaPlots&#x2F;CairoMakie.jl.
+│ Please check the below error and open an issue at:
+│ https:&#x2F;&#x2F;github.com&#x2F;JuliaPlots&#x2F;GLMakie.jl.
+│ After you fixed your OpenGL install, please run `]build GLMakie` again!
+│ GLMakie will still load, but will be disabled as a default backend for Makie
+│ 
+│ Stacktrace:
+│  [1] error(::String) at .&#x2F;error.jl:33
+│  [2] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLMakie&#x2F;5wmnA&#x2F;deps&#x2F;build.jl:28
+│  [3] include(::String) at .&#x2F;client.jl:439
+│  [4] top-level scope at none:5
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLMakie&#x2F;5wmnA&#x2F;deps&#x2F;build.jl:19
+│ caused by [exception 1]
+│ Failed to precompile GLFW [f7f18e0c-5ee9-5ccd-a5bf-e8befd85ed98] to &#x2F;root&#x2F;.julia&#x2F;compiled&#x2F;v1.4&#x2F;GLFW&#x2F;n8HlT_O9VQt.ji.
+│ Stacktrace:
+│  [1] error(::String) at .&#x2F;error.jl:33
+│  [2] compilecache(::Base.PkgId, ::String) at .&#x2F;loading.jl:1263
+│  [3] _require(::Base.PkgId) at .&#x2F;loading.jl:1022
+│  [4] require(::Base.PkgId) at .&#x2F;loading.jl:920
+│  [5] require(::Module, ::Symbol) at .&#x2F;loading.jl:915
+│  [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GLMakie&#x2F;5wmnA&#x2F;deps&#x2F;build.jl:20
+│  [7] include(::String) at .&#x2F;client.jl:439
+│  [8] top-level scope at none:5
+└ @ Pkg.Operations &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;backwards_compatible_isolation.jl:601
+  Building Arpack ─────→ `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+Status `&#x2F;tmp&#x2F;jl_1IhvWt&#x2F;Manifest.toml`
+  [621f4979] AbstractFFTs v0.5.0
+  [537997a7] AbstractPlotting v0.9.10
+  [7d9fca2a] Arpack v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [13072b0f] AxisAlgorithms v1.0.0
+  [39de3d68] AxisArrays v0.3.3
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [3391f64e] CDDLib v0.5.3
+  [631607c0] CMake v1.1.2
+  [96374032] CRlibm v0.7.1
+  [49dc2e85] Calculus v0.5.1
+  [aafaddc9] CatIndices v0.2.0
+  [324d7699] CategoricalArrays v0.7.3
+  [a2cac450] ColorBrewer v0.4.0
+  [3da002f7] ColorTypes v0.8.0
+  [c3611d14] ColorVectorSpace v0.7.1
+  [5ae59095] Colors v0.9.6
+  [861a8166] Combinatorics v0.7.0
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [ed09eef8] ComputationalResources v0.3.0
+  [8f4d0f93] Conda v1.3.0
+  [d38c429a] Contour v0.5.1
+  [150eb455] CoordinateTransformations v0.5.0
+  [dc8bdbbb] CustomUnitRanges v0.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [2b5f629d] DiffEqBase v6.2.3
+  [01453d9d] DiffEqDiffTools v0.14.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [31c24e10] Distributions v0.21.8
+  [ffbed154] DocStringExtensions v0.8.1
+  [e30172f5] Documenter v0.24.0
+  [90fa49ef] ErrorfreeArithmetic v0.4.0
+  [6912e4f1] Espresso v0.6.0
+  [a1e7a1ef] Expokit v0.2.0
+  [c87230d0] FFMPEG v0.2.3
+  [4f61f5a4] FFTViews v0.3.0
+  [7a1cc6ca] FFTW v1.1.0
+  [fa42c844] FastRounding v0.2.0
+  [5789e2e9] FileIO v1.0.7
+  [53c48c17] FixedPointNumbers v0.6.1
+  [f6369f11] ForwardDiff v0.9.0
+  [b38be410] FreeType v2.1.1
+  [663a7486] FreeTypeAbstraction v0.4.2
+  [da1fdf0e] FreqTables v0.3.1
+  [069b7b12] FunctionWrappers v1.0.0
+  [f7f18e0c] GLFW v3.1.0
+  [e9467ef8] GLMakie v0.0.8
+  [60bf3e95] GLPK v0.11.4
+  [3c7084bd] GLPKMathProgInterface v0.4.4
+  [28b8d3ca] GR v0.42.0
+  [4d00f742] GeometryTypes v0.7.6
+  [a2bd30eb] Graphics v0.4.0
+  [bbac6d45] IdentityRanges v0.3.0
+  [2803e5a7] ImageAxes v0.6.1
+  [a09fc81d] ImageCore v0.8.5
+  [6a3955dd] ImageFiltering v0.6.5
+  [6218d12a] ImageMagick v0.7.5
+  [02fcd773] ImageTransformations v0.8.0
+  [9b13fd28] IndirectArrays v0.5.0
+  [a98d9a8b] Interpolations v0.12.5
+  [d1acc4aa] IntervalArithmetic v0.16.1
+  [5c1f47dc] IntervalMatrices v0.2.3
+  [8197267c] IntervalSets v0.3.2
+  [41ab1584] InvertedIndices v1.0.0
+  [c8e1da08] IterTools v1.3.0
+  [42fd0dbc] IterativeSolvers v0.8.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [682c06a0] JSON v0.21.0
+  [4076af6c] JuMP v0.20.1
+  [5ab0869b] KernelDensity v0.5.1
+  [b4f0291d] LazySets v1.23.0
+  [d3d80556] LineSearches v7.0.1
+  [4345ca2d] Loess v0.5.0
+  [1914dd2f] MacroTools v0.5.2
+  [ee78f7c6] Makie v0.9.5
+  [dbb5928d] MappedArrays v0.2.2
+  [b8f27783] MathOptInterface v0.9.7
+  [fdba3010] MathProgBase v0.7.7
+  [442fdcdd] Measures v0.3.0
+  [7269a6da] MeshIO v0.3.1
+  [e1d29d7a] Missings v0.4.3
+  [66fc600b] ModernGL v1.0.0
+  [46d2c3a1] MuladdMacro v0.2.1
+  [d41bc354] NLSolversBase v7.5.0
+  [77ba4419] NaNMath v0.3.3
+  [86f7a689] NamedArrays v0.9.3
+  [510215fc] Observables v0.2.3
+  [6fe1bfb0] OffsetArrays v0.11.1
+  [429524aa] Optim v0.18.1
+  [bac558e1] OrderedCollections v1.1.0
+  [90014a1f] PDMats v0.9.10
+  [19eb6ba3] Packing v0.3.0
+  [5432bcbf] PaddedViews v0.4.2
+  [774612a8] ParameterJuMP v0.1.2
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [ccf2f8ad] PlotThemes v0.4.0
+  [995b91a9] PlotUtils v0.6.1
+  [91a5bcdd] Plots v0.27.0
+  [67491407] Polyhedra v0.5.6
+  [f27b6e38] Polynomials v0.6.0
+  [2dfb63ee] PooledArrays v0.5.2
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [1fd47b50] QuadGK v2.1.1
+  [b3c3ace0] RangeArrays v0.3.1
+  [c84ed2f1] Ratios v0.3.1
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [f2c3362d] RecursiveFactorization v0.1.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [79098fc4] Rmath v0.5.1
+  [f2b01f46] Roots v0.8.3
+  [6038ab10] Rotations v0.12.0
+  [3cc68bcd] SetRounding v0.2.0
+  [992d4aef] Showoff v0.3.1
+  [73760f76] SignedDistanceFields v0.4.0
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [65254759] StatsMakie v0.0.6
+  [09ab397b] StructArrays v0.4.0
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [92b13dbe] TaylorIntegration v0.7.0
+  [314ce334] TaylorModels v0.3.0
+  [6aa5eb33] TaylorSeries v0.10.1
+  [06e1c1a7] TiledIteration v0.2.3
+  [a2a6695c] TreeViews v0.3.0
+  [30578b45] URIParser v0.4.0
+  [1cfade01] UnicodeFun v0.4.0
+  [81def892] VersionParsing v1.1.3
+  [cc8bc4a8] Widgets v0.6.2
+  [efce3f68] WoodburyMatrices v0.4.1
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+WARNING: Method definition dot(Any, Any, Any) in module LinearAlgebra at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:906 overwritten in module Optim at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Optim&#x2F;Agd3B&#x2F;src&#x2F;multivariate&#x2F;precon.jl:23.
+  ** incremental compilation may be fatally broken for this module **
+
+Test Summary: | Pass  Total
+LazySets.Util |   48     48
+ 18.593387 seconds (18.06 M allocations: 900.742 MiB, 4.93% gc time)
+Test Summary:        | Pass  Total
+LazySets.Comparisons |   10     10
+  0.330659 seconds (230.49 k allocations: 10.765 MiB)
+Test Summary:     | Pass  Total
+LazySets.Interior |   16     16
+  2.625784 seconds (2.18 M allocations: 110.608 MiB, 2.09% gc time)
+Test Summary:   | Pass  Total
+LazySets.CDDLib |    3      3
+  0.100397 seconds (132.13 k allocations: 7.193 MiB)
+Test Summary:      | Pass  Total
+LazySets.Singleton |  150    150
+ 94.805460 seconds (157.27 M allocations: 8.907 GiB, 5.14% gc time)
+Test Summary:  | Pass  Total
+LazySets.Ball1 |   81     81
+  6.131465 seconds (3.45 M allocations: 170.802 MiB, 2.63% gc time)
+Test Summary:  | Pass  Total
+LazySets.Ball2 |   76     76
+  8.908166 seconds (7.36 M allocations: 389.097 MiB, 3.31% gc time)
+Test Summary:  | Pass  Total
+LazySets.Ballp |   36     36
+  2.137008 seconds (1.19 M allocations: 59.486 MiB, 2.51% gc time)
+Test Summary:    | Pass  Total
+LazySets.BallInf |  113    113
+ 86.783486 seconds (106.27 M allocations: 5.973 GiB, 5.61% gc time)
+Test Summary:           | Pass  Total
+LazySets.Hyperrectangle |  234    234
+ 55.616964 seconds (38.79 M allocations: 1.998 GiB, 3.17% gc time)
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+Test Summary:    | Pass  Total
+LazySets.Polygon |  550    550
+ 47.930889 seconds (28.28 M allocations: 1.418 GiB, 2.52% gc time)
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+Test Summary:     | Pass  Total
+LazySets.Polytope |  191    191
+151.059416 seconds (181.36 M allocations: 9.651 GiB, 4.99% gc time)
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+Test Summary:       | Pass  Total
+LazySets.Polyhedron |  109    109
+ 16.609536 seconds (11.68 M allocations: 630.123 MiB, 2.85% gc time)
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+Test Summary:     | Pass  Total
+LazySets.Zonotope |  193    193
+ 46.123019 seconds (32.23 M allocations: 1.604 GiB, 2.63% gc time)
+Test Summary:    | Pass  Total
+LazySets.ZeroSet |   51     51
+  3.713943 seconds (1.45 M allocations: 74.482 MiB, 2.98% gc time)
+Test Summary:     | Pass  Total
+LazySets.EmptySet |   83     83
+  1.565788 seconds (325.29 k allocations: 17.482 MiB)
+Test Summary:      | Pass  Total
+LazySets.Ellipsoid |   50     50
+  4.408833 seconds (2.81 M allocations: 138.920 MiB, 2.70% gc time)
+Test Summary:       | Pass  Total
+LazySets.Hyperplane |   93     93
+  9.059118 seconds (10.20 M allocations: 551.259 MiB, 4.68% gc time)
+Test Summary:      | Pass  Total
+LazySets.HalfSpace |  111    111
+  2.776713 seconds (1.46 M allocations: 74.797 MiB)
+Test Summary:     | Pass  Total
+LazySets.Interval |  165    165
+ 14.292113 seconds (8.13 M allocations: 386.852 MiB, 2.18% gc time)
+Test Summary:        | Pass  Total
+LazySets.LineSegment |  174    174
+  8.400926 seconds (2.50 M allocations: 128.712 MiB, 1.42% gc time)
+Test Summary: | Pass  Total
+LazySets.Line |   51     51
+  2.357423 seconds (874.88 k allocations: 43.671 MiB, 3.17% gc time)
+Test Summary:     | Pass  Total
+LazySets.Universe |   97     97
+  3.653130 seconds (1.01 M allocations: 51.220 MiB)
+Test Summary:     | Pass  Total
+LazySets.Bloating |   52     52
+  2.295475 seconds (571.94 k allocations: 29.773 MiB)
+Test Summary:         | Pass  Total
+LazySets.Intersection |   87     87
+ 25.699814 seconds (21.33 M allocations: 1.138 GiB, 4.12% gc time)
+Test Summary:       | Pass  Total
+LazySets.ConvexHull |   90     90
+  3.444644 seconds (1.69 M allocations: 86.011 MiB)
+Test Summary:           | Pass  Total
+LazySets.ExponentialMap |   52     52
+ 32.323995 seconds (22.88 M allocations: 1.128 GiB, 6.12% gc time)
+Test Summary:      | Pass  Total
+LazySets.LinearMap |  107    107
+  5.984540 seconds (1.90 M allocations: 97.404 MiB, 3.49% gc time)
+Test Summary:         | Pass  Total
+LazySets.MinkowskiSum |  153    153
+  9.640566 seconds (3.92 M allocations: 197.698 MiB, 2.92% gc time)
+Test Summary:             | Pass  Total
+LazySets.CartesianProduct |  297    297
+ 27.324824 seconds (15.85 M allocations: 793.359 MiB, 3.04% gc time)
+Test Summary:     | Pass  Total
+LazySets.ResetMap |   54     54
+  5.736962 seconds (2.40 M allocations: 123.143 MiB, 1.99% gc time)
+Test Summary:                  | Pass  Total
+LazySets.SymmetricIntervalHull |   42     42
+  2.508818 seconds (1.11 M allocations: 56.836 MiB, 3.99% gc time)
+Test Summary:                 | Pass  Total
+LazySets.concrete_convex_hull |   98     98
+  5.406991 seconds (1.34 M allocations: 65.159 MiB, 2.66% gc time)
+Test Summary:        | Pass  Total
+LazySets.Translation |   50     50
+  4.070291 seconds (1.54 M allocations: 81.759 MiB, 2.64% gc time)
+Test Summary:      | Pass  Total
+LazySets.AffineMap |   44     44
+  4.746721 seconds (2.35 M allocations: 120.989 MiB, 2.75% gc time)
+Test Summary:       | Pass  Total
+LazySets.CompactSet |   18     18
+  0.272092 seconds (60.51 k allocations: 3.119 MiB)
+Test Summary:       | Pass  Total
+LazySets.Complement |   39     39
+  1.552097 seconds (401.50 k allocations: 19.923 MiB)
+Test Summary:               | Pass  Total
+LazySets.PolynomialZonotope |    9      9
+  2.444197 seconds (1.85 M allocations: 94.334 MiB, 3.55% gc time)
+Test Summary:          | Pass  Total
+LazySets.Rectification |  124    124
+ 12.745517 seconds (7.01 M allocations: 353.301 MiB, 2.48% gc time)
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+Test Summary:     | Pass  Total
+LazySets.UnionSet |  107    107
+ 11.402467 seconds (4.34 M allocations: 219.868 MiB, 1.08% gc time)
+Test Summary:    | Pass  Total
+LazySets.samples |    3      3
+  1.555446 seconds (1.33 M allocations: 67.469 MiB, 4.63% gc time)
+┌ Warning: Problem is unbounded, but unbounded ray is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:97
+┌ Warning: Problem is unbounded, but unbounded ray is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:97
+Test Summary:                             | Pass  Total
+LazySets.Approximations.overapproximation |  197    197
+ 59.583056 seconds (37.36 M allocations: 1.919 GiB, 3.36% gc time)
+Test Summary:                              | Pass  Total
+LazySets.Approximations.underapproximation |    3      3
+  0.693677 seconds (219.36 k allocations: 11.030 MiB)
+Test Summary:                               | Pass  Total
+LazySets.Approximations.template_directions |  210    210
+ 13.739921 seconds (7.05 M allocations: 376.724 MiB, 3.73% gc time)
+Test Summary:                             | Pass  Total
+LazySets.Approximations.box_approximation |   56     56
+  4.032154 seconds (2.07 M allocations: 104.606 MiB, 2.63% gc time)
+Test Summary:                                 | Pass  Total
+LazySets.Approximations.ballinf_approximation |   15     15
+  0.719731 seconds (419.84 k allocations: 22.887 MiB)
+Test Summary:                          | Pass  Total
+LazySets.Approximations.radiusdiameter |   63     63
+  2.839423 seconds (762.36 k allocations: 37.027 MiB, 5.69% gc time)
+Test Summary:                     | Pass  Total
+LazySets.Approximations.decompose |   53     53
+ 18.377246 seconds (10.69 M allocations: 536.925 MiB, 4.15% gc time)
+Test Summary:                              | Pass  Total
+LazySets.Approximations.hausdorff_distance |    7      7
+  1.494643 seconds (733.89 k allocations: 37.413 MiB)
+Test Summary:              | Pass  Total
+LazySets.binary_operations |    4      4
+124.763895 seconds (59.40 M allocations: 3.016 GiB, 2.00% gc time)
+Test Summary:       | Pass  Total
+LazySets.interfaces |   14     14
+  3.878116 seconds (625.26 k allocations: 95.316 MiB, 3.66% gc time)
+┌ Warning: received a polyhedron with no vertices during plotting
+└ @ LazySets ~&#x2F;.julia&#x2F;packages&#x2F;LazySets&#x2F;a4KpL&#x2F;src&#x2F;Interfaces&#x2F;AbstractPolyhedron_functions.jl:483
+┌ Warning: received a polyhedron with no vertices during plotting
+└ @ LazySets ~&#x2F;.julia&#x2F;packages&#x2F;LazySets&#x2F;a4KpL&#x2F;src&#x2F;Interfaces&#x2F;AbstractPolyhedron_functions.jl:483
+Test Summary:     | Pass  Total
+LazySets.plotting |   10     10
+107.671252 seconds (69.71 M allocations: 3.414 GiB, 3.66% gc time)
+[ Info: SetupBuildDirectory: setting up build directory.
+[ Info: Doctest: running doctests.
+┌ Error: doctest failure in ~&#x2F;.julia&#x2F;packages&#x2F;LazySets&#x2F;a4KpL&#x2F;src&#x2F;Approximations&#x2F;template_directions.jl:270-278
+│ 
+│ ```jldoctest; filter = r&quot;2246[0-9]*e-16&quot;
+│ julia&gt; using LazySets.Approximations: PolarDirections
+│ 
+│ julia&gt; pd = PolarDirections(2)
+│ PolarDirections{Float64}(2, Array{Float64,1}[[1.0, 0.0], [-1.0, 1.22465e-16]])
+│ 
+│ julia&gt; pd.Nφ
+│ 2
+│ ```
+│ 
+│ Subexpression:
+│ 
+│ pd = PolarDirections(2)
+│ 
+│ Evaluated output:
+│ 
+│ PolarDirections{Float64}(2, [[1.0, 0.0], [-1.0, 1.2246467991473532e-16]])
+│ 
+│ Expected output:
+│ 
+│ PolarDirections{Float64}(2, Array{Float64,1}[[1.0, 0.0], [-1.0, 1.22465e-16]])
+│ 
+│   diff =
+│    Warning: Diff output requires color.
+│    PolarDirections{Float64}(2, Array{Float64,1}[[1.0, [[1.0, 0.0], [-1.0, 1.22465e-16]])1.2246467991473532e-16]])
+└ @ Documenter.DocTests ~&#x2F;.julia&#x2F;packages&#x2F;Documenter&#x2F;STY11&#x2F;src&#x2F;DocTests.jl:364
+┌ Error: doctest failure in ~&#x2F;.julia&#x2F;packages&#x2F;LazySets&#x2F;a4KpL&#x2F;src&#x2F;Approximations&#x2F;template_directions.jl:349-357
+│ 
+│ ```jldoctest spherical_directions; filter = r&quot;1232[0-9]*e-17.*2246[0-9]*e-16.*1232[0-9]*e-17&quot;
+│ julia&gt; using LazySets.Approximations: SphericalDirections
+│ 
+│ julia&gt; sd = SphericalDirections(3)
+│ SphericalDirections{Float64}(3, 3, Array{Float64,1}[[0.0, 0.0, 1.0], [0.0, 0.0, -1.0], [1.0, 0.0, 6.12323e-17], [-1.0, 1.22465e-16, 6.12323e-17]])
+│ 
+│ julia&gt; sd.Nθ, sd.Nφ 
+│ (3, 3)
+│ ```
+│ 
+│ Subexpression:
+│ 
+│ sd = SphericalDirections(3)
+│ 
+│ Evaluated output:
+│ 
+│ SphericalDirections{Float64}(3, 3, [[0.0, 0.0, 1.0], [0.0, 0.0, -1.0], [1.0, 0.0, 6.123233995736766e-17], [-1.0, 1.2246467991473532e-16, 6.123233995736766e-17]])
+│ 
+│ Expected output:
+│ 
+│ SphericalDirections{Float64}(3, 3, Array{Float64,1}[[0.0, 0.0, 1.0], [0.0, 0.0, -1.0], [1.0, 0.0, 6.12323e-17], [-1.0, 1.22465e-16, 6.12323e-17]])
+│ 
+│   diff =
+│    Warning: Diff output requires color.
+│    SphericalDirections{Float64}(3, 3, Array{Float64,1}[[0.0, [[0.0, 0.0, 1.0], [0.0, 0.0, -1.0], [1.0, 0.0, 6.12323e-17], 6.123233995736766e-17], [-1.0, 1.22465e-16, 6.12323e-17]])1.2246467991473532e-16, 6.123233995736766e-17]])
+└ @ Documenter.DocTests ~&#x2F;.julia&#x2F;packages&#x2F;Documenter&#x2F;STY11&#x2F;src&#x2F;DocTests.jl:364
+┌ Error: doctest failure in ~&#x2F;.julia&#x2F;packages&#x2F;LazySets&#x2F;a4KpL&#x2F;src&#x2F;LazyOperations&#x2F;CartesianProduct.jl:769-776
+│ 
+│ ```jldoctest
+│ julia&gt; using LazySets: block_to_dimension_indices
+│ 
+│ julia&gt; cpa = CartesianProductArray([BallInf(zeros(n), 1.0) for n in [1, 3, 2, 3]]);
+│ 
+│ julia&gt; block_to_dimension_indices(cpa, [2, 4, 8])
+│ (Tuple{Int64,Int64}[(-1, -1), (2, 4), (-1, -1), (7, 9)], 2)
+│ ```
+│ 
+│ Subexpression:
+│ 
+│ block_to_dimension_indices(cpa, [2, 4, 8])
+│ 
+│ Evaluated output:
+│ 
+│ ([(-1, -1), (2, 4), (-1, -1), (7, 9)], 2)
+│ 
+│ Expected output:
+│ 
+│ (Tuple{Int64,Int64}[(-1, -1), (2, 4), (-1, -1), (7, 9)], 2)
+│ 
+│   diff =
+│    Warning: Diff output requires color.
+│    (Tuple{Int64,Int64}[(-1, ([(-1, -1), (2, 4), (-1, -1), (7, 9)], 2)
+└ @ Documenter.DocTests ~&#x2F;.julia&#x2F;packages&#x2F;Documenter&#x2F;STY11&#x2F;src&#x2F;DocTests.jl:364
+┌ Error: doctest failure in ~&#x2F;.julia&#x2F;packages&#x2F;LazySets&#x2F;a4KpL&#x2F;src&#x2F;Sets&#x2F;VPolytope.jl:60-71
+│ 
+│ ```jldoctest
+│ julia&gt; v = VPolytope();
+│ 
+│ julia&gt; dim(v) &gt; 0
+│ false
+│ 
+│ julia&gt; v = VPolytope([ones(3)])
+│ VPolytope{Float64}(Array{Float64,1}[[1.0, 1.0, 1.0]])
+│ 
+│ julia&gt; dim(v) == 3
+│ true
+│ 
+│ ```
+│ 
+│ Subexpression:
+│ 
+│ v = VPolytope([ones(3)])
+│ 
+│ Evaluated output:
+│ 
+│ VPolytope{Float64}([[1.0, 1.0, 1.0]])
+│ 
+│ Expected output:
+│ 
+│ VPolytope{Float64}(Array{Float64,1}[[1.0, 1.0, 1.0]])
+│ 
+│   diff =
+│    Warning: Diff output requires color.
+│    VPolytope{Float64}(Array{Float64,1}[[1.0, VPolytope{Float64}([[1.0, 1.0, 1.0]])
+└ @ Documenter.DocTests ~&#x2F;.julia&#x2F;packages&#x2F;Documenter&#x2F;STY11&#x2F;src&#x2F;DocTests.jl:364
+┌ Error: Doctesting failed
+│   exception =
+│    `makedocs` encountered a doctest error. Terminating build
+│    Stacktrace:
+│     [1] error(::String) at .&#x2F;error.jl:33
+│     [2] runner(::Type{Documenter.Builder.Doctest}, ::Documenter.Documents.Document) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Documenter&#x2F;STY11&#x2F;src&#x2F;Builder.jl:204
+│     [3] dispatch(::Type{Documenter.Builder.DocumentPipeline}, ::Documenter.Documents.Document) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Documenter&#x2F;STY11&#x2F;src&#x2F;Utilities&#x2F;Selectors.jl:167
+│     [4] #2 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Documenter&#x2F;STY11&#x2F;src&#x2F;Documenter.jl:237 [inlined]
+│     [5] cd(::Documenter.var&quot;#2#3&quot;{Documenter.Documents.Document}, ::String) at .&#x2F;file.jl:104
+│     [6] makedocs(; debug::Bool, format::Documenter.Writers.HTMLWriter.HTML, kwargs::Base.Iterators.Pairs{Symbol,Any,NTuple{5,Symbol},NamedTuple{(:root, :source, :sitename, :doctest, :modules),Tuple{String,String,String,Symbol,Array{Module,1}}}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Documenter&#x2F;STY11&#x2F;src&#x2F;Documenter.jl:236
+│     [7] (::Documenter.var&quot;#all_doctests#30&quot;{Bool,Array{Module,1}})() at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Documenter&#x2F;STY11&#x2F;src&#x2F;Documenter.jl:745
+│     [8] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Documenter&#x2F;STY11&#x2F;src&#x2F;Documenter.jl:761 [inlined]
+│     [9] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+│     [10] doctest(::String, ::Array{Module,1}; fix::Bool, testset::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Documenter&#x2F;STY11&#x2F;src&#x2F;Documenter.jl:761
+│     [11] doctest(::Module; manual::Bool, testset::Nothing, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Documenter&#x2F;STY11&#x2F;src&#x2F;Documenter.jl:704
+│     [12] doctest(::Module) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Documenter&#x2F;STY11&#x2F;src&#x2F;Documenter.jl:691
+│     [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LazySets&#x2F;a4KpL&#x2F;test&#x2F;runtests.jl:170
+│     [14] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+│     [15] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LazySets&#x2F;a4KpL&#x2F;test&#x2F;runtests.jl:170
+│     [16] top-level scope at util.jl:162
+│     [17] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LazySets&#x2F;a4KpL&#x2F;test&#x2F;runtests.jl:170
+│     [18] include(::String) at .&#x2F;client.jl:439
+│     [19] top-level scope at none:6
+│     [20] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+│     [21] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+│     [22] _start() at .&#x2F;client.jl:484
+└ @ Documenter ~&#x2F;.julia&#x2F;packages&#x2F;Documenter&#x2F;STY11&#x2F;src&#x2F;Documenter.jl:754
+Doctests: LazySets: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Documenter&#x2F;STY11&#x2F;src&#x2F;Documenter.jl:761
+  Expression: all_doctests()
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Documenter&#x2F;STY11&#x2F;src&#x2F;Documenter.jl:761 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+ [3] doctest(::String, ::Array{Module,1}; fix::Bool, testset::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Documenter&#x2F;STY11&#x2F;src&#x2F;Documenter.jl:761
+Test Summary:        | Fail  Total
+LazySets.doctests    |    1      1
+  Doctests: LazySets |    1      1
+ERROR: LoadError: Some tests did not pass: 0 passed, 1 failed, 0 errored, 0 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LazySets&#x2F;a4KpL&#x2F;test&#x2F;runtests.jl:167
+ERROR: Package LazySets errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:274
+ [5] #test#56 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [6] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [7] #test#55 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [8] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [10] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [11] top-level scope at none:10
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

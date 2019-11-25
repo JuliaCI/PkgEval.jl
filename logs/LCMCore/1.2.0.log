@@ -1,0 +1,120 @@
+ Resolving package versions...
+ Installed FastIOBuffers ─ v0.3.1
+ Installed UnsafeArrays ── v1.0.0
+ Installed LCMCore ─────── v0.6.1
+ Installed StaticArrays ── v0.12.1
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [0ea44823] + LCMCore v0.6.1
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [6ccb8d0d] + FastIOBuffers v0.3.1
+  [0ea44823] + LCMCore v0.6.1
+  [90137ffa] + StaticArrays v0.12.1
+  [c4a57d5a] + UnsafeArrays v1.0.0
+  [ade2ca70] + Dates 
+  [7b1f6079] + FileWatching 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4ec0a83e] + Unicode 
+  Building LCMCore → `~/.julia/packages/LCMCore/cPbOB/deps/build.log`
+┌ Error: Error building `LCMCore`: 
+│ ┌ Warning: Some registries failed to update:
+│ │     — /root/.julia/registries/General — failed to fetch from repo
+│ └ @ Pkg.Types /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:1171
+│ ERROR: LoadError: None of the selected providers can install dependency glib.
+│ Use BinDeps.debug(package_name) to see available providers
+│ 
+│ Stacktrace:
+│  [1] error(::String) at ./error.jl:33
+│  [2] satisfy!(::BinDeps.LibraryDependency, ::Array{DataType,1}) at /root/.julia/packages/BinDeps/ZEval/src/dependencies.jl:949
+│  [3] satisfy!(::BinDeps.LibraryDependency) at /root/.julia/packages/BinDeps/ZEval/src/dependencies.jl:922
+│  [4] top-level scope at /root/.julia/packages/BinDeps/ZEval/src/dependencies.jl:977
+│  [5] include at ./boot.jl:328 [inlined]
+│  [6] include_relative(::Module, ::String) at ./loading.jl:1094
+│  [7] include(::Module, ::String) at ./Base.jl:31
+│  [8] include(::String) at ./client.jl:431
+│  [9] top-level scope at none:5
+│ in expression starting at /root/.julia/packages/LCMCore/cPbOB/deps/build.jl:75
+│ Activating environment at `~/.julia/packages/LCMCore/cPbOB/deps/Project.toml`
+│   Updating registry at `~/.julia/registries/General`
+│   Updating git-repo `https://github.com/JuliaRegistries/General.git`
+│ [?25l[2K[?25h Installed CMakeWrapper ─────── v0.2.3
+│  Installed URIParser ────────── v0.4.0
+│  Installed OrderedCollections ─ v1.1.0
+│  Installed CMake ────────────── v1.1.1
+│  Installed Compat ───────────── v2.1.0
+│  Installed Parameters ───────── v0.10.3
+│  Installed Homebrew ─────────── v0.7.1
+│  Installed JSON ─────────────── v0.20.0
+│  Installed BinDeps ──────────── v0.8.10
+│   Building CMake ───→ `~/.julia/packages/CMake/ZGawK/deps/build.log`
+│   Building Homebrew → `~/.julia/packages/Homebrew/s09IX/deps/build.log`
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:647
+   Testing LCMCore
+ Resolving package versions...
+    Status `/tmp/jl_bRQuTo/Manifest.toml`
+  [6ccb8d0d] FastIOBuffers v0.3.1
+  [0ea44823] LCMCore v0.6.1
+  [90137ffa] StaticArrays v0.12.1
+  [c4a57d5a] UnsafeArrays v1.0.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [7b1f6079] FileWatching  [`@stdlib/FileWatching`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: LCMCore not properly installed. Please run
+Pkg.build("LCMCore")
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] top-level scope at /root/.julia/packages/LCMCore/cPbOB/src/LCMCore.jl:13
+ [3] include at ./boot.jl:328 [inlined]
+ [4] include_relative(::Module, ::String) at ./loading.jl:1094
+ [5] include(::Module, ::String) at ./Base.jl:31
+ [6] top-level scope at none:2
+ [7] eval at ./boot.jl:330 [inlined]
+ [8] eval(::Expr) at ./client.jl:432
+ [9] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/LCMCore/cPbOB/src/LCMCore.jl:12
+ERROR: LoadError: Failed to precompile LCMCore [0ea44823-1ff1-5b9a-8293-5fd55a38e746] to /root/.julia/compiled/v1.2/LCMCore/S61eA.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1253
+ [3] _require(::Base.PkgId) at ./loading.jl:1013
+ [4] require(::Base.PkgId) at ./loading.jl:911
+ [5] require(::Module, ::Symbol) at ./loading.jl:906
+ [6] include at ./boot.jl:328 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1094
+ [8] include(::Module, ::String) at ./Base.jl:31
+ [9] include(::String) at ./client.jl:431
+ [10] top-level scope at none:5
+in expression starting at /root/.julia/packages/LCMCore/cPbOB/test/runtests.jl:2
+ERROR: Package LCMCore errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1288
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

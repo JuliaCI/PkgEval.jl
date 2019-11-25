@@ -1,0 +1,96 @@
+ Installed ArgCheck ──────────── v1.0.1
+ Installed StanDump ──────────── v0.2.0
+ Installed StanRun ───────────── v0.2.1
+ Installed OrderedCollections ── v1.1.0
+ Installed Parameters ────────── v0.12.0
+ Installed DocStringExtensions ─ v0.8.1
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [d49c3b98] + StanRun v0.2.1
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [dce04be8] + ArgCheck v1.0.1
+  [ffbed154] + DocStringExtensions v0.8.1
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [9713c8f3] + StanDump v0.2.0
+  [d49c3b98] + StanRun v0.2.1
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing StanRun
+ Resolving package versions...
+Status `/tmp/jl_A7dGVo/Manifest.toml`
+  [dce04be8] ArgCheck v1.0.1
+  [ffbed154] DocStringExtensions v0.8.1
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [9713c8f3] StanDump v0.2.0
+  [d49c3b98] StanRun v0.2.1
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+cmdstan run and results: Error During Test at /root/.julia/packages/StanRun/E3YcJ/test/runtests.jl:3
+  Got exception outside of a @test
+  The environment variable JULIA_CMDSTAN_HOME needs to be set.
+  Stacktrace:
+   [1] (::StanRun.var"#1#2")() at /root/.julia/packages/StanRun/E3YcJ/src/StanRun.jl:25
+   [2] (::Base.var"#459#460"{StanRun.var"#1#2"})(::String) at ./env.jl:81
+   [3] access_env at ./env.jl:43 [inlined]
+   [4] get at ./env.jl:81 [inlined]
+   [5] get_cmdstan_home at /root/.julia/packages/StanRun/E3YcJ/src/StanRun.jl:24 [inlined]
+   [6] StanModel(::String) at /root/.julia/packages/StanRun/E3YcJ/src/StanRun.jl:82
+   [7] top-level scope at /root/.julia/packages/StanRun/E3YcJ/test/runtests.jl:11
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/StanRun/E3YcJ/test/runtests.jl:5
+   [10] include(::String) at ./client.jl:439
+   [11] top-level scope at none:6
+   [12] eval(::Module, ::Any) at ./boot.jl:331
+   [13] exec_options(::Base.JLOptions) at ./client.jl:264
+   [14] _start() at ./client.jl:484
+  
+Test Summary:           | Error  Total
+cmdstan run and results |     1      1
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /root/.julia/packages/StanRun/E3YcJ/test/runtests.jl:3
+ERROR: Package StanRun errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

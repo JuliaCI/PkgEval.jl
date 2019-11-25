@@ -1,0 +1,71 @@
+ Resolving package versions...
+ Installed EzXML ────────── v0.9.4
+ Installed AcuteML ──────── v0.1.0
+ Installed BinaryProvider ─ v0.5.8
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [6b84a0a3] + AcuteML v0.1.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [6b84a0a3] + AcuteML v0.1.0
+  [b99e7846] + BinaryProvider v0.5.8
+  [8f5d6c58] + EzXML v0.9.4
+  [8f399da3] + Libdl 
+  [de0858da] + Printf 
+  [ea8e919c] + SHA 
+  [4ec0a83e] + Unicode 
+  Building EzXML → `~/.julia/packages/EzXML/G0JeY/deps/build.log`
+   Testing AcuteML
+ Resolving package versions...
+    Status `/tmp/tmp6cRnIj/Manifest.toml`
+  [6b84a0a3] AcuteML v0.1.0
+  [b99e7846] BinaryProvider v0.5.8
+  [8f5d6c58] EzXML v0.9.4
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+constructor: Error During Test at /root/.julia/packages/AcuteML/0eRbF/test/runtests.jl:39
+  Got exception outside of a @test
+  UndefVarError: isnothing not defined
+  Stacktrace:
+   [1] addelementOne!(::Node, ::String, ::Int64, ::Int64) at /root/.julia/packages/AcuteML/0eRbF/src/utilities.jl:486
+   [2] #Person#3(::Int64, ::String, ::Float64, ::Array{String,1}, ::Int64, ::Type) at /root/.julia/packages/AcuteML/0eRbF/src/AcuteML.jl:484
+   [3] (::getfield(Core, Symbol("#kw#Type")))(::NamedTuple{(:age, :field, :courses, :id),Tuple{Int64,String,Array{String,1},Int64}}, ::Type{Person}) at ./none:0
+   [4] macro expansion at /root/.julia/packages/AcuteML/0eRbF/test/runtests.jl:41 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/AcuteML/0eRbF/test/runtests.jl:41
+   [7] include at ./boot.jl:317 [inlined]
+   [8] include_relative(::Module, ::String) at ./loading.jl:1044
+   [9] include(::Module, ::String) at ./sysimg.jl:29
+   [10] include(::String) at ./client.jl:392
+   [11] top-level scope at none:0
+   [12] eval(::Module, ::Any) at ./boot.jl:319
+   [13] exec_options(::Base.JLOptions) at ./client.jl:243
+   [14] _start() at ./client.jl:425
+Test Summary: | Error  Total
+constructor   |     1      1
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /root/.julia/packages/AcuteML/0eRbF/test/runtests.jl:39
+ERROR: Package AcuteML errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

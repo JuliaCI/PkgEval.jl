@@ -1,0 +1,65 @@
+ Resolving package versions...
+ Installed MATLAB ─ v0.7.3
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [10e44e05] + MATLAB v0.7.3
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [10e44e05] + MATLAB v0.7.3
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [8dfed614] + Test 
+   Testing MATLAB
+ Resolving package versions...
+Status `/tmp/jl_2r9ZYt/Manifest.toml`
+  [10e44e05] MATLAB v0.7.3
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [8dfed614] Test  [`@stdlib/Test`]
+ERROR: LoadError: InitError: failed process: Process(`which matlab`, ProcessExited(1)) [1]
+
+Stacktrace:
+ [1] pipeline_error at ./process.jl:525 [inlined]
+ [2] read(::Cmd) at ./process.jl:412
+ [3] read(::Cmd, ::Type{String}) at ./process.jl:421
+ [4] matlab_homepath() at /root/.julia/packages/MATLAB/cVrxc/src/mxbase.jl:8
+ [5] matlab_libpath at /root/.julia/packages/MATLAB/cVrxc/src/mxbase.jl:37 [inlined]
+ [6] __init__() at /root/.julia/packages/MATLAB/cVrxc/src/MATLAB.jl:72
+ [7] _include_from_serialized(::String, ::Array{Any,1}) at ./loading.jl:690
+ [8] _require_from_serialized(::String) at ./loading.jl:741
+ [9] _require(::Base.PkgId) at ./loading.jl:1032
+ [10] require(::Base.PkgId) at ./loading.jl:920
+ [11] require(::Module, ::Symbol) at ./loading.jl:915
+ [12] include(::String) at ./client.jl:439
+ [13] top-level scope at none:6
+during initialization of module MATLAB
+in expression starting at /root/.julia/packages/MATLAB/cVrxc/test/runtests.jl:1
+ERROR: Package MATLAB errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

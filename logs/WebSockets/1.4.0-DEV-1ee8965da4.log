@@ -1,0 +1,291 @@
+ Resolving package versions...
+ Installed IniFile ──────── v0.5.0
+ Installed MbedTLS ──────── v0.7.0
+ Installed WebSockets ───── v1.5.2
+ Installed BinaryProvider ─ v0.5.8
+ Installed HTTP ─────────── v0.8.8
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [104b5d7c] + WebSockets v1.5.2
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [cd3eb016] + HTTP v0.8.8
+  [83e8ac13] + IniFile v0.5.0
+  [739be429] + MbedTLS v0.7.0
+  [104b5d7c] + WebSockets v1.5.2
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+  Building MbedTLS → `~/.julia/packages/MbedTLS/a1JFn/deps/build.log`
+   Testing WebSockets
+Status `/tmp/jl_tz252b/Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [cd3eb016] HTTP v0.8.8
+  [83e8ac13] IniFile v0.5.0
+  [739be429] MbedTLS v0.7.0
+  [104b5d7c] WebSockets v1.5.2
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+
+Base.Show
+
+WebsocketLogger
+Limiting large data structures: Test Failed at /root/.julia/packages/WebSockets/pc4iW/test/test_websocketlogger.jl:209
+  Expression: genmsg("msg", a=fill(1.00001, 100, 100), b=fill(2.00002, 10, 10)) == replace("┌ PREFIX msg\n│   a =\n│    100×100 Array{Float64,2}:\n│     1.00001  1.00001  1.00001  1.00001  …  1.00001  1.00001  1.00001\n│     1.00001  1.00001  1.00001  1.00001     1.00001  1.00001  1.00001\n│     1.00001  1.00001  1.00001  1.00001     1.00001  1.00001  1.00001\n│     ⋮                                   ⋱                           EOL\n│     1.00001  1.00001  1.00001  1.00001     1.00001  1.00001  1.00001\n│     1.00001  1.00001  1.00001  1.00001     1.00001  1.00001  1.00001\n│   b =\n│    10×10 Array{Float64,2}:\n│     2.00002  2.00002  2.00002  2.00002  …  2.00002  2.00002  2.00002\n│     2.00002  2.00002  2.00002  2.00002     2.00002  2.00002  2.00002\n│     2.00002  2.00002  2.00002  2.00002     2.00002  2.00002  2.00002\n│     ⋮                                   ⋱                           EOL\n│     2.00002  2.00002  2.00002  2.00002     2.00002  2.00002  2.00002\n│     2.00002  2.00002  2.00002  2.00002     2.00002  2.00002  2.00002\n└ SUFFIX\n", "EOL" => "")
+   Evaluated: "┌ PREFIX msg\n│   a =\n│    100×100 Array{Float64,2}:\n│     1.00001  1.00001  1.00001  1.00001  …  1.00001  1.00001  1.00001\n│     1.00001  1.00001  1.00001  1.00001     1.00001  1.00001  1.00001\n│     1.00001  1.00001  1.00001  1.00001     1.00001  1.00001  1.00001\n│     ⋮                                   ⋱                    \n│     1.00001  1.00001  1.00001  1.00001     1.00001  1.00001  1.00001\n│     1.00001  1.00001  1.00001  1.00001     1.00001  1.00001  1.00001\n│   b =\n│    10×10 Array{Float64,2}:\n│     2.00002  2.00002  2.00002  2.00002  …  2.00002  2.00002  2.00002\n│     2.00002  2.00002  2.00002  2.00002     2.00002  2.00002  2.00002\n│     2.00002  2.00002  2.00002  2.00002     2.00002  2.00002  2.00002\n│     ⋮                                   ⋱                    \n│     2.00002  2.00002  2.00002  2.00002     2.00002  2.00002  2.00002\n│     2.00002  2.00002  2.00002  2.00002     2.00002  2.00002  2.00002\n└ SUFFIX\n" == "┌ PREFIX msg\n│   a =\n│    100×100 Array{Float64,2}:\n│     1.00001  1.00001  1.00001  1.00001  …  1.00001  1.00001  1.00001\n│     1.00001  1.00001  1.00001  1.00001     1.00001  1.00001  1.00001\n│     1.00001  1.00001  1.00001  1.00001     1.00001  1.00001  1.00001\n│     ⋮                                   ⋱                           \n│     1.00001  1.00001  1.00001  1.00001     1.00001  1.00001  1.00001\n│     1.00001  1.00001  1.00001  1.00001     1.00001  1.00001  1.00001\n│   b =\n│    10×10 Array{Float64,2}:\n│     2.00002  2.00002  2.00002  2.00002  …  2.00002  2.00002  2.00002\n│     2.00002  2.00002  2.00002  2.00002     2.00002  2.00002  2.00002\n│     2.00002  2.00002  2.00002  2.00002     2.00002  2.00002  2.00002\n│     ⋮                                   ⋱                           \n│     2.00002  2.00002  2.00002  2.00002     2.00002  2.00002  2.00002\n│     2.00002  2.00002  2.00002  2.00002     2.00002  2.00002  2.00002\n└ SUFFIX\n"
+Stacktrace:
+ [1] top-level scope at /root/.julia/packages/WebSockets/pc4iW/test/test_websocketlogger.jl:209
+ [2] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+ [3] top-level scope at /root/.julia/packages/WebSockets/pc4iW/test/test_websocketlogger.jl:209
+ [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+ [5] top-level scope at /root/.julia/packages/WebSockets/pc4iW/test/test_websocketlogger.jl:18
+
+Fragment and unit
+┌ Info: Provoking close handshake from protocol error without a peer. Waits 10s, 'a reasonable time'.
+└  29 s @Main ~/.julia/packages/WebSockets/pc4iW/test/frametest.jl:204
+
+Handshake
+
+Client test
+┌ Info: Start server which accepts websocket upgrades including with subprotocol 'xml' and immediately closes, following protocol.
+└  56 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_test.jl:8
+┌ Info: Open client without subprotocol.
+└  58 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_test.jl:20
+┌ Info: Open client with approved subprotocol.
+└  67 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_test.jl:26
+┌ Info: Open with unknown subprotocol.
+└  70 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_test.jl:32
+┌ Info: Try to open a websocket with uknown port. Takes a few seconds.
+└  72 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_test.jl:37
+┌ Info: Try open with uknown scheme.
+└  83 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_test.jl:48
+┌ Info: start a client websocket that irritates by closing the TCP stream
+│  connection without a websocket closing handshake. This
+│  throws an error in the server coroutine, which can't be
+│  captured on the server side.
+└  84 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_test.jl:69
+┌ Info: Check that the server is still running regardless.
+└  87 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_test.jl:78
+┌ Info: Open with a ws client handler that throws a domain error.
+└  89 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_test.jl:83
+┌ Info: Stop the server in morse code.
+└  92 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_test.jl:87
+┌ Info: Emulate a correct first accept response from server, with BufferStream socket.
+└  94 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_test.jl:91
+┌ Info: Emulate an incorrect first accept response from server.
+└  95 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_test.jl:111
+
+Client_listen
+┌ Info: Listen: Open, http response, close. Repeat three times. Takes a while.
+└  97 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_listen_test.jl:13
+Status(1): 200
+Status(2): 200
+Status(3): 200
+┌ Info: Listen: Client side initates message exchange.
+└  100 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_listen_test.jl:24
+┌ Debug: WebSocket(server, CONNECTED) received OPCODE_PING
+└  103 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:378
+┌ Debug: WebSocket(client, CONNECTED) received OPCODE_PING
+└  103 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:381
+┌ Debug: WebSocketClosedError("ws|server respond to OPCODE_CLOSE  No reason ")
+└  103 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:721
+┌ Info: Listen: Server side initates message exchange.
+└  103 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_listen_test.jl:31
+┌ Debug: WebSocket(client, CONNECTED) received OPCODE_PING
+└  105 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:378
+┌ Debug: WebSocket(server, CONNECTED) received OPCODE_PING
+└  105 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:381
+┌ Debug: WebSocketClosedError("ws|client respond to OPCODE_CLOSE  No reason ")
+└  105 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:721
+┌ Info: Listen: Server side initates message exchange. Close from within server side handler.
+└  105 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_listen_test.jl:38
+┌ Debug: WebSocket(client, CONNECTED) received OPCODE_PING
+└  105 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:378
+┌ Debug: WebSocket(server, CONNECTED) received OPCODE_PING
+└  105 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:381
+┌ Debug: WebSocketClosedError("ws|client respond to OPCODE_CLOSE 1000:Normal")
+└  105 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:721
+
+Client_serverWS
+┌ Info: External server http request
+└  106 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_serverWS_test.jl:28
+┌ Info: String to IPAddr conversion
+└  107 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_serverWS_test.jl:31
+┌ Info: ServerWS: Open, http response, close. Repeat three times. Takes a while.
+└  107 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_serverWS_test.jl:37
+┌ Info: ServerWS: Client side initates message exchange.
+└  108 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_serverWS_test.jl:47
+┌ Debug: WebSocket(server, CONNECTED) received OPCODE_PING
+└  108 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:378
+┌ Debug: WebSocket(client, CONNECTED) received OPCODE_PING
+└  108 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:381
+┌ Debug: WebSocketClosedError("ws|server respond to OPCODE_CLOSE  No reason ")
+└  108 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:721
+┌ Info: ServerWS: Server side initates message exchange.
+└  108 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_serverWS_test.jl:54
+┌ Debug: WebSocket(client, CONNECTED) received OPCODE_PING
+└  108 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:378
+┌ Debug: WebSocket(server, CONNECTED) received OPCODE_PING
+└  108 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:381
+┌ Debug: WebSocketClosedError("ws|client respond to OPCODE_CLOSE  No reason ")
+└  108 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:721
+┌ Info: ServerWS: Server side initates message exchange. Close from within server side handler.
+└  108 s @Main ~/.julia/packages/WebSockets/pc4iW/test/client_serverWS_test.jl:61
+┌ Debug: WebSocket(client, CONNECTED) received OPCODE_PING
+└  108 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:378
+┌ Debug: WebSocket(server, CONNECTED) received OPCODE_PING
+└  108 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:381
+┌ Debug: WebSocketClosedError("ws|client respond to OPCODE_CLOSE 1000:Normal")
+└  108 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:721
+
+Abrupt close & error handling
+┌ Info: Start a server with a ws handler that is unresponsive. 
+│ Close from client side. The  close handshake aborts after 10.0 seconds...
+└  110 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:14
+1
+2
+3
+4
+5
+6
+7
+8
+9
+┌ Info: Start a server with a ws handler that always reads guarded.
+└  121 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:32
+10
+┌ Info: Attempt to read guarded from a closing ws|client. Check for return false.
+└  124 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:44
+┌ Debug: WebSocketClosedError("ws|server respond to OPCODE_CLOSE  No reason ")
+└  126 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:721
+┌ Debug: ErrorException("Attempt to read from closed WebSocket|client. First isopen(ws), or use readguarded(ws)!")
+└  127 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:721
+┌ Info: Attempt to write guarded from a closing ws|client. Check for return false.
+└  128 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:54
+┌ Debug: WebSocketClosedError("ws|server respond to OPCODE_CLOSE  No reason ")
+└  130 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:721
+┌ Debug: Base.IOError("stream is closed or unusable", 0)
+└  130 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:681
+┌ Info: Attempt to read from closing ws|client. Check caught error.
+└  131 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:64
+┌ Debug: WebSocketClosedError("ws|server respond to OPCODE_CLOSE  No reason ")
+└  134 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:721
+┌ Info: Attempt to write to a closing ws|client (this takes some time, there is no check
+│       in WebSockets against it). Check caught error.
+└  135 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:78
+┌ Debug: WebSocketClosedError("ws|server respond to OPCODE_CLOSE  No reason ")
+└  137 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:721
+┌ Debug: WebSocketClosedError("ws|server respond to OPCODE_CLOSE  No reason ")
+└  137 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:721
+┌ Debug: WebSocketClosedError("ws|server respond to OPCODE_CLOSE  No reason ")
+└  137 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:721
+┌ Debug: WebSocketClosedError("ws|server respond to OPCODE_CLOSE  No reason ")
+└  139 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:721
+┌ Debug: WebSocketClosedError("ws|server respond to OPCODE_CLOSE  No reason ")
+└  146 s @WebSockets ~/.julia/packages/WebSockets/pc4iW/src/WebSockets.jl:721
+WebSocketClosedError(" while open ws|client: stream is closed or unusable")┌ Info: Start a server. The wshandler use global channels for inspecting caught errors.
+└  146 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:94
+┌ Info: Open a ws|client, close it out of protocol. Check server error on channel.
+└  151 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:112
+┌ Info: Start a server. Errors are output on built-in channel
+└  155 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:129
+┌ Info: Open a ws|client, close it out of protocol. Check server error on server.out channel.
+└  159 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:141
+┌ Info: Open ws|clients, close using every status code from RFC 6455 7.4.1
+│   Verify error messages on server.out reflect the codes.
+└  165 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:163
+┌ Info: Closing ws|client with reason 1010 Missing Extension
+└  167 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:167
+┌ Info: Closing ws|client with reason 1012 Service Restart
+└  170 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:167
+┌ Info: Closing ws|client with reason 1006 Abnormal Closure- reserved
+└  171 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:167
+┌ Info: Closing ws|client with reason 1003 Unsupported Data
+└  173 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:167
+┌ Info: Closing ws|client with reason 1007 Invalid frame payload data
+└  174 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:167
+┌ Info: Closing ws|client with reason 1001 Going Away
+└  175 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:167
+┌ Info: Closing ws|client with reason 1009 Message too big
+└  177 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:167
+┌ Info: Closing ws|client with reason 1000 Normal
+└  178 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:167
+┌ Info: Closing ws|client with reason 1008 Policy Violation
+└  179 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:167
+┌ Info: Closing ws|client with reason 1005 No Status Recvd- reserved
+└  180 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:167
+┌ Info: Closing ws|client with reason 1013 Try Again Later
+└  182 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:167
+┌ Info: Closing ws|client with reason 1004 Reserved
+└  183 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:167
+┌ Info: Closing ws|client with reason 1015 TLS Handshake
+└  184 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:167
+┌ Info: Closing ws|client with reason 1002 Protocol Error
+└  186 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:167
+┌ Info: Closing ws|client with reason 1014 Bad Gateway
+└  187 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:167
+┌ Info: Closing ws|client with reason 1011 Internal Error
+└  188 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:167
+┌ Info: Open a ws|client, close it using a status code from RFC 6455 7.4.1
+│  and also a custom reason string. Verify error messages on server.out reflect the codes.
+└  190 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:186
+┌ Info: Closing ws|client with reason1000 Normal and goodbye!
+└  191 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:191
+┌ Info: Open a ws|client. Throw an InterruptException to it. Check that the ws|server
+│  error shows the reason for the close.
+└  194 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:200
+┌ Info: Trigger check_upgrade WebSocketErrors 
+└  206 s @Main ~/.julia/packages/WebSockets/pc4iW/test/error_test.jl:219
+Test Summary:                              | Pass  Fail  Total
+WebSockets                                 | 1040     1   1041
+  Base.show                                |   33           33
+  WebSocketLogger                          |   56     1     57
+    WebSocketLogger                        |   35     1     36
+      Default metadata formatting          |    9            9
+      Prefix and suffix layout             |    4            4
+      Metadata suffix, right justification |    7            7
+      Limiting large data structures       |    1     1      2
+    WebSocketLogger_special                |   21           21
+  Fragment and unit                        |  823          823
+  Handshake                                |   27           27
+  Client                                   |   13           13
+  Client_listen                            |   18           18
+  Client_serverWS                          |   20           20
+  Abrupt close & error handling            |   50           50
+ERROR: LoadError: Some tests did not pass: 1040 passed, 1 failed, 0 errored, 0 broken.
+in expression starting at /root/.julia/packages/WebSockets/pc4iW/test/runtests.jl:7
+ERROR: Package WebSockets errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="OpSel">OpSel</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#OpSel">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>skipped</strong>: package is not supported by this Julia version.
+      Last evaluation was 1 day, 12 hours ago and took empty period.
+    </p>
+
+    <p>
+      
+      No log was generated.
+    </p>
+
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 16 hours ago and took 5 minutes, 18 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/OpSel/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Missings ──────────────────── v0.4.3
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed URIParser ─────────────────── v0.4.0
+ Installed TableTraits ───────────────── v1.0.0
+ Installed CommonSubexpressions ──────── v0.2.0
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed DataFrames ────────────────── v0.19.4
+ Installed OpSel ─────────────────────── v0.1.0
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed Reexport ──────────────────── v0.2.0
+ Installed Compat ────────────────────── v2.2.0
+ Installed ForwardDiff ───────────────── v0.10.6
+ Installed MathProgBase ──────────────── v0.7.7
+ Installed Tables ────────────────────── v0.2.11
+ Installed OrderedCollections ────────── v1.1.0
+ Installed Calculus ──────────────────── v0.5.1
+ Installed DiffRules ─────────────────── v0.1.0
+ Installed Parsers ───────────────────── v0.3.10
+ Installed JuMP ──────────────────────── v0.20.1
+ Installed DataStructures ────────────── v0.17.6
+ Installed JSON ──────────────────────── v0.21.0
+ Installed StaticArrays ──────────────── v0.12.1
+ Installed DiffResults ───────────────── v0.0.4
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed BenchmarkTools ────────────── v0.4.3
+ Installed MathOptInterface ──────────── v0.9.7
+ Installed BinDeps ───────────────────── v0.8.10
+ Installed SpecialFunctions ──────────── v0.8.0
+ Installed Ipopt ─────────────────────── v0.6.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [099ba0d8] + OpSel v0.1.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [324d7699] + CategoricalArrays v0.7.3
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [a93c6f00] + DataFrames v0.19.4
+  [864edb3b] + DataStructures v0.17.6
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [f6369f11] + ForwardDiff v0.10.6
+  [41ab1584] + InvertedIndices v1.0.0
+  [b6b21f68] + Ipopt v0.6.1
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [682c06a0] + JSON v0.21.0
+  [4076af6c] + JuMP v0.20.1
+  [b8f27783] + MathOptInterface v0.9.7
+  [fdba3010] + MathProgBase v0.7.7
+  [e1d29d7a] + Missings v0.4.3
+  [77ba4419] + NaNMath v0.3.3
+  [099ba0d8] + OpSel v0.1.0
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [2dfb63ee] + PooledArrays v0.5.2
+  [189a3867] + Reexport v0.2.0
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+  Building Ipopt ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Ipopt&#x2F;ruIXY&#x2F;deps&#x2F;build.log`
+   Testing OpSel
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;jl_Fz8DAV&#x2F;Manifest.toml`
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [324d7699] CategoricalArrays v0.7.3
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [f6369f11] ForwardDiff v0.10.6
+  [41ab1584] InvertedIndices v1.0.0
+  [b6b21f68] Ipopt v0.6.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [682c06a0] JSON v0.21.0
+  [4076af6c] JuMP v0.20.1
+  [b8f27783] MathOptInterface v0.9.7
+  [fdba3010] MathProgBase v0.7.7
+  [e1d29d7a] Missings v0.4.3
+  [77ba4419] NaNMath v0.3.3
+  [099ba0d8] OpSel v0.1.0
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [2dfb63ee] PooledArrays v0.5.2
+  [189a3867] Reexport v0.2.0
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Z = 2045, N_s = 14, N = 2800, theta = 0.03571428571428571
+
+******************************************************************************
+This program contains Ipopt, a library for large-scale nonlinear optimization.
+ Ipopt is released as open source code under the Eclipse Public License (EPL).
+         For more information visit http:&#x2F;&#x2F;projects.coin-or.org&#x2F;Ipopt
+******************************************************************************
+
+This is Ipopt version 3.12.10, running with linear solver mumps.
+NOTE: Other linear solvers might be more efficient (see Ipopt documentation).
+
+Number of nonzeros in equality constraint Jacobian...:     2045
+Number of nonzeros in inequality constraint Jacobian.:    30081
+Number of nonzeros in Lagrangian Hessian.............:     6036
+
+Total number of variables............................:     2045
+                     variables with only lower bounds:        0
+                variables with lower and upper bounds:        0
+                     variables with only upper bounds:        0
+Total number of equality constraints.................:        1
+Total number of inequality constraints...............:     4091
+        inequality constraints with only lower bounds:        0
+   inequality constraints with lower and upper bounds:        0
+        inequality constraints with only upper bounds:     4091
+
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+   0 -0.0000000e+00 1.00e+00 2.90e-01  -1.0 0.00e+00    -  0.00e+00 0.00e+00   0
+   1 -2.0245767e+02 6.17e-01 2.18e+00  -1.7 1.57e-01    -  1.00e+00 3.83e-01h  1
+   2 -2.5345910e+02 2.65e-01 3.99e+00  -1.7 9.93e-02    -  1.00e+00 5.71e-01h  1
+   3 -3.0977733e+02 8.80e-02 5.93e+00  -1.7 3.12e-02    -  1.00e+00 6.67e-01h  1
+   4 -3.2160359e+02 2.48e-02 9.39e+00  -1.7 1.77e-02    -  1.00e+00 7.18e-01h  1
+   5 -3.2948097e+02 1.42e-02 6.76e+01  -1.7 6.57e-03    -  1.00e+00 4.27e-01h  1
+   6 -3.3041401e+02 4.43e-03 6.19e+01  -1.7 1.71e-03    -  1.00e+00 6.88e-01h  1
+   7 -3.3201918e+02 2.09e-03 2.58e+02  -1.7 1.36e-03    -  1.00e+00 5.29e-01h  1
+   8 -3.3206985e+02 8.00e-04 4.58e+02  -1.7 2.44e-04    -  1.00e+00 6.16e-01h  1
+   9 -3.3237163e+02 3.42e-04 1.27e+03  -1.7 2.42e-04    -  1.00e+00 5.73e-01h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  10 -3.3237492e+02 1.39e-04 2.88e+03  -1.7 3.76e-05    -  1.00e+00 5.92e-01h  1
+  11 -3.3242817e+02 5.76e-05 7.08e+03  -1.7 4.19e-05    -  1.00e+00 5.86e-01h  1
+  12 -3.3242833e+02 4.06e-05 2.87e+04  -1.7 6.23e-06    -  1.00e+00 2.96e-01f  2
+  13 -3.3243597e+02 7.40e-06 1.38e+04  -1.7 7.07e-06    -  1.00e+00 8.18e-01h  1
+  14 -3.3243743e+02 5.55e-06 1.81e+05  -1.7 2.53e-06    -  1.00e+00 2.49e-01f  2
+  15 -3.3243957e+02 2.53e-07 2.00e+04  -1.7 1.26e-06    -  1.00e+00 9.54e-01h  1
+  16 -3.3243945e+02 1.73e-07 8.12e+05  -1.7 1.37e-07    -  1.00e+00 3.19e-01f  2
+  17 -3.3243949e+02 6.49e-13 2.30e-06  -1.7 3.23e-08    -  1.00e+00 1.00e+00h  1
+  18 -3.3255390e+02 7.91e-13 2.38e+04  -5.7 2.39e-04    -  9.88e-01 1.00e+00f  1
+  19 -3.3772965e+02 7.46e-13 2.37e+04  -5.7 3.02e-01    -  1.84e-03 5.75e-02f  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  20 -3.5002135e+02 1.29e-03 2.12e+04  -5.7 4.57e-02    -  1.06e-01 5.89e-01f  1
+  21 -3.5716425e+02 1.19e-03 1.87e+04  -5.7 4.86e-02    -  1.18e-01 2.85e-01h  1
+  22 -3.6074876e+02 1.18e-03 1.53e+04  -5.7 1.01e-01    -  1.81e-01 1.09e-01h  1
+  23 -3.6534792e+02 1.14e-03 1.16e+04  -5.7 8.38e-02    -  2.46e-01 1.58e-01h  1
+  24 -3.7410262e+02 1.23e-03 1.10e+04  -5.7 6.31e-02    -  4.91e-02 2.37e-01f  1
+  25 -3.7960064e+02 1.22e-03 9.90e+03  -5.7 6.21e-02    -  9.84e-02 1.41e-01h  1
+  26 -3.8630974e+02 1.33e-03 8.07e+03  -5.7 7.35e-02    -  1.85e-01 1.93e-01h  1
+  27 -3.9364995e+02 1.33e-03 6.80e+03  -5.7 5.47e-02    -  1.58e-01 2.44e-01h  1
+  28 -4.0413809e+02 1.51e-03 5.95e+03  -5.7 3.67e-02    -  1.26e-01 3.20e-01f  1
+  29 -4.0770429e+02 1.36e-03 4.64e+03  -5.7 2.37e-02    -  2.20e-01 1.48e-01h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  30 -4.1274713e+02 1.23e-03 3.46e+03  -5.7 2.62e-02    -  2.54e-01 2.14e-01f  1
+  31 -4.1980970e+02 1.11e-03 2.88e+03  -5.7 1.99e-02    -  1.68e-01 3.37e-01f  1
+  32 -4.2426380e+02 9.13e-04 2.20e+03  -5.7 1.61e-02    -  2.36e-01 2.98e-01f  1
+  33 -4.2912260e+02 6.94e-04 1.46e+03  -5.7 1.45e-02    -  3.37e-01 4.20e-01f  1
+  34 -4.3303730e+02 4.52e-04 8.78e+02  -5.7 9.20e-03    -  3.97e-01 5.24e-01f  1
+  35 -4.3567823e+02 2.23e-04 6.14e+02  -5.7 5.83e-03    -  3.01e-01 6.68e-01f  1
+  36 -4.3714565e+02 3.65e-05 1.08e+02  -5.7 5.19e-03    -  8.25e-01 1.00e+00f  1
+  37 -4.3721427e+02 4.44e-16 2.60e-06  -5.7 8.36e-04    -  1.00e+00 1.00e+00h  1
+  38 -4.3871316e+02 1.82e-05 4.09e+00  -8.6 2.51e-03    -  7.76e-01 7.97e-01f  1
+  39 -4.3910600e+02 2.70e-06 2.24e+00  -8.6 7.16e-04    -  9.28e-01 9.79e-01h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  40 -4.3911615e+02 5.37e-08 6.72e-02  -8.6 1.23e-04    -  9.78e-01 1.00e+00f  1
+  41 -4.3911628e+02 3.33e-16 4.88e-09  -8.6 3.03e-05    -  1.00e+00 1.00e+00h  1
+
+Number of Iterations....: 41
+
+                                   (scaled)                 (unscaled)
+Objective...............:  -8.2384635286027919e-01   -4.3911628492217517e+02
+Dual infeasibility......:   4.8805531838169713e-09    2.6013714511233238e-06
+Constraint violation....:   3.3306690738754696e-16    3.3306690738754696e-16
+Complementarity.........:   4.4684712318714910e-09    2.3817286801217435e-06
+Overall NLP error.......:   4.8805531838169713e-09    2.6013714511233238e-06
+
+
+Number of objective function evaluations             = 45
+Number of objective gradient evaluations             = 42
+Number of equality constraint evaluations            = 45
+Number of inequality constraint evaluations          = 45
+Number of equality constraint Jacobian evaluations   = 42
+Number of inequality constraint Jacobian evaluations = 42
+Number of Lagrangian Hessian evaluations             = 41
+Total CPU secs in IPOPT (w&#x2F;o function evaluations)   =      7.109
+Total CPU secs in NLP function evaluations           =      1.764
+
+EXIT: Optimal Solution Found.
+=== Result Summary ===
+JuMP status = LOCALLY_SOLVED
+Z = 2045, N_s = 14, N = 2800
+gx = 439.116285, xAx = 0.071429, 2theta = 0.071429
+time(s): build = 5.826, solver = 37.291, total = 43.117
+Z = 200, N = 50, theta = 0.016714999999999997
+This is Ipopt version 3.12.10, running with linear solver mumps.
+NOTE: Other linear solvers might be more efficient (see Ipopt documentation).
+
+Number of nonzeros in equality constraint Jacobian...:      200
+Number of nonzeros in inequality constraint Jacobian.:     2700
+Number of nonzeros in Lagrangian Hessian.............:      550
+
+Total number of variables............................:      200
+                     variables with only lower bounds:        0
+                variables with lower and upper bounds:        0
+                     variables with only upper bounds:        0
+Total number of equality constraints.................:        1
+Total number of inequality constraints...............:      401
+        inequality constraints with only lower bounds:        0
+   inequality constraints with lower and upper bounds:        0
+        inequality constraints with only upper bounds:      401
+
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+   0 -0.0000000e+00 1.00e+00 6.15e+00  -1.0 0.00e+00    -  0.00e+00 0.00e+00   0
+   1 -1.3922826e+01 8.72e-01 1.26e+01  -1.0 1.37e-01    -  1.00e+00 1.28e-01h  1
+   2 -1.5800200e+01 2.19e-01 6.27e+00  -1.0 2.99e-02    -  1.00e+00 7.49e-01h  1
+   3 -2.1296514e+01 1.41e-01 5.53e+01  -1.0 2.05e-02    -  1.00e+00 3.54e-01h  1
+   4 -2.1630297e+01 3.58e-02 3.17e+01  -1.0 1.16e-02    -  1.00e+00 7.47e-01h  1
+   5 -2.2578297e+01 1.65e-02 1.51e+02  -1.0 3.86e-03    -  1.00e+00 5.39e-01h  1
+   6 -2.2539676e+01 6.45e-03 2.92e+02  -1.0 1.53e-03    -  1.00e+00 6.09e-01h  1
+   7 -2.2715205e+01 2.73e-03 7.87e+02  -1.0 7.11e-04    -  1.00e+00 5.76e-01h  1
+   8 -2.2707021e+01 1.12e-03 1.82e+03  -1.0 2.55e-04    -  1.00e+00 5.90e-01h  1
+   9 -2.2737663e+01 4.66e-04 4.46e+03  -1.0 1.24e-04    -  1.00e+00 5.84e-01h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  10 -2.2736206e+01 1.92e-04 1.07e+04  -1.0 4.35e-05    -  1.00e+00 5.87e-01h  1
+  11 -2.2741487e+01 7.93e-05 2.57e+04  -1.0 2.13e-05    -  1.00e+00 5.87e-01h  1
+  12 -2.2741358e+01 5.59e-05 1.05e+05  -1.0 7.41e-06    -  1.00e+00 2.95e-01f  2
+  13 -2.2741926e+01 1.04e-05 5.16e+04  -1.0 5.55e-06    -  1.00e+00 8.14e-01h  1
+  14 -2.2742073e+01 7.85e-06 6.75e+05  -1.0 1.19e-06    -  1.00e+00 2.46e-01f  2
+  15 -2.2742265e+01 6.22e-07 1.32e+05  -1.0 8.16e-07    -  1.00e+00 9.21e-01h  1
+  16 -2.2742253e+01 4.43e-07 3.51e+06  -1.0 5.40e-08    -  1.00e+00 2.87e-01f  2
+  17 -2.2742260e+01 0.00e+00 1.00e-06  -1.0 4.46e-08    -  1.00e+00 1.00e+00h  1
+  18 -2.3469414e+01 2.22e-16 1.95e+06  -8.6 6.56e-03    -  7.85e-01 1.00e+00f  1
+  19 -2.5836304e+01 1.33e-03 9.43e+05  -8.6 2.97e-02    -  5.16e-01 8.15e-01f  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  20 -2.6222452e+01 3.80e-03 3.59e+05  -8.6 1.71e-02    -  6.19e-01 2.48e-01f  1
+  21 -2.6342694e+01 2.87e-03 2.67e+05  -8.6 3.19e-02    -  2.57e-01 4.50e-01f  1
+In iteration 21, 1 Slack too small, adjusting variable bound
+  22 -2.6298556e+01 2.00e-03 1.54e+05  -8.6 1.89e-02    -  4.25e-01 3.43e-01h  1
+  23 -2.6217699e+01 7.49e-04 9.09e+04  -8.6 1.10e-02    -  4.08e-01 8.62e-01h  1
+  24 -2.6145201e+01 8.64e-05 6.55e+04  -8.6 3.75e-03    -  2.79e-01 1.00e+00h  1
+  25 -2.6145461e+01 9.82e-06 1.93e+04  -8.6 1.52e-03    -  7.06e-01 1.00e+00h  1
+  26 -2.6153037e+01 5.68e-06 1.68e+04  -8.6 1.12e-03    -  1.31e-01 1.00e+00h  1
+  27 -2.6154383e+01 9.32e-07 1.57e+03  -8.6 5.09e-04    -  9.06e-01 1.00e+00h  1
+  28 -2.6155464e+01 6.07e-07 8.85e+01  -8.6 3.38e-04    -  9.44e-01 1.00e+00h  1
+  29 -2.6155598e+01 9.82e-08 7.77e+00  -8.6 1.32e-04    -  9.12e-01 1.00e+00h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  30 -2.6155621e+01 9.41e-09 2.27e+00  -8.6 7.26e-05    -  6.26e-01 1.00e+00h  1
+  31 -2.6155625e+01 9.75e-10 1.70e-03  -8.6 3.48e-05    -  9.97e-01 1.00e+00h  1
+  32 -2.6155625e+01 4.37e-10 1.68e-07  -8.6 2.54e-05    -  1.00e+00 1.00e+00h  1
+  33 -2.6155625e+01 8.48e-11 3.89e-08  -8.6 1.25e-05    -  1.00e+00 1.00e+00h  1
+  34 -2.6155625e+01 0.00e+00 8.13e-09  -8.6 5.73e-06    -  1.00e+00 1.00e+00h  1
+
+Number of Iterations....: 34
+
+                                   (scaled)                 (unscaled)
+Objective...............:  -1.3847747204547463e+01   -2.6155624919949247e+01
+Dual infeasibility......:   8.1319591060946550e-09    1.5359644359591584e-08
+Constraint violation....:   0.0000000000000000e+00    0.0000000000000000e+00
+Complementarity.........:   6.9540333528768238e-09    1.3134778196913745e-08
+Overall NLP error.......:   8.1319591060946550e-09    1.5359644359591584e-08
+
+
+Number of objective function evaluations             = 38
+Number of objective gradient evaluations             = 35
+Number of equality constraint evaluations            = 38
+Number of inequality constraint evaluations          = 38
+Number of equality constraint Jacobian evaluations   = 35
+Number of inequality constraint Jacobian evaluations = 35
+Number of Lagrangian Hessian evaluations             = 34
+Total CPU secs in IPOPT (w&#x2F;o function evaluations)   =      0.104
+Total CPU secs in NLP function evaluations           =      0.005
+
+EXIT: Optimal Solution Found.
+=== SOCP Result Summary ===
+JuMP status = LOCALLY_SOLVED
+sum(x_socp) = 0.999996, gx = 26.155540, xAx = 0.033430, 2theta = 0.033430
+======= Before swap c_obj = -41.483965
+iter2 = 1, c_obj = -29.510364, gx = 27.044800, xAx = 0.041800, best_f = 63, best_v = 121
+iter2 = 2, c_obj = -20.269719, gx = 26.825800, xAx = 0.040400, best_f = 71, best_v = 78
+iter2 = 3, c_obj = -11.162274, gx = 26.473600, xAx = 0.039000, best_f = 57, best_v = 195
+iter2 = 4, c_obj = -3.258806, gx = 26.268800, xAx = 0.037800, best_f = 93, best_v = 150
+iter2 = 5, c_obj = 3.269683, gx = 26.040400, xAx = 0.036800, best_f = 88, best_v = 129
+iter2 = 6, c_obj = 8.527194, gx = 25.892400, xAx = 0.036000, best_f = 55, best_v = 143
+iter2 = 7, c_obj = 13.723706, gx = 25.683400, xAx = 0.035200, best_f = 169, best_v = 128
+iter2 = 8, c_obj = 18.852217, gx = 25.406400, xAx = 0.034400, best_f = 70, best_v = 105
+iter2 = 9, c_obj = 23.962729, gx = 25.111400, xAx = 0.033600, best_f = 58, best_v = 171
+iter2 = 10, c_obj = 25.066400, gx = 25.066400, xAx = 0.033400, best_f = 92, best_v = 66
+iter2 = 11, c_obj = 25.072600, gx = 25.072600, xAx = 0.033400, best_f = 139, best_v = 115
+iter2 = 12, c_obj = 25.090400, gx = 25.090400, xAx = 0.033400, best_f = 109, best_v = 63
+No swap c_obj = 25.090400, gx = 25.090400, xAx = 0.033400
+Finished ... iter2 = 13, before_cobj = -41.483965, after_cobj = 25.090400
+sum(x_sa) = 1.000000, gx = 25.090400, xAx = 0.033400, 2theta = 0.033430
+SOCP = 26.155540, STEEP = 25.090400, gap = 4.072330%
+time(s): build = 0.656, solver = 0.132, steep = 6.564, total = 7.352
+Test Summary: |
+OpSel.jl      | No tests
+   Testing OpSel tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 11 hours ago and took 4 minutes, 58 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/OpSel/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Missings ──────────────────── v0.4.3
+ Installed Tables ────────────────────── v0.2.11
+ Installed Reexport ──────────────────── v0.2.0
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed DiffResults ───────────────── v0.0.4
+ Installed OpSel ─────────────────────── v0.1.0
+ Installed BinDeps ───────────────────── v0.8.10
+ Installed ForwardDiff ───────────────── v0.10.6
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed JSON ──────────────────────── v0.21.0
+ Installed DiffRules ─────────────────── v0.1.0
+ Installed DataStructures ────────────── v0.17.6
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed Calculus ──────────────────── v0.5.1
+ Installed BenchmarkTools ────────────── v0.4.3
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed URIParser ─────────────────── v0.4.0
+ Installed Parsers ───────────────────── v0.3.10
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed StaticArrays ──────────────── v0.12.1
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed Ipopt ─────────────────────── v0.6.1
+ Installed MathProgBase ──────────────── v0.7.7
+ Installed CommonSubexpressions ──────── v0.2.0
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed TableTraits ───────────────── v1.0.0
+ Installed OrderedCollections ────────── v1.1.0
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed MathOptInterface ──────────── v0.9.7
+ Installed SpecialFunctions ──────────── v0.8.0
+ Installed DataFrames ────────────────── v0.19.4
+ Installed Compat ────────────────────── v2.2.0
+ Installed JuMP ──────────────────────── v0.20.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [099ba0d8] + OpSel v0.1.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [324d7699] + CategoricalArrays v0.7.3
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [a93c6f00] + DataFrames v0.19.4
+  [864edb3b] + DataStructures v0.17.6
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [f6369f11] + ForwardDiff v0.10.6
+  [41ab1584] + InvertedIndices v1.0.0
+  [b6b21f68] + Ipopt v0.6.1
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [682c06a0] + JSON v0.21.0
+  [4076af6c] + JuMP v0.20.1
+  [b8f27783] + MathOptInterface v0.9.7
+  [fdba3010] + MathProgBase v0.7.7
+  [e1d29d7a] + Missings v0.4.3
+  [77ba4419] + NaNMath v0.3.3
+  [099ba0d8] + OpSel v0.1.0
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [2dfb63ee] + PooledArrays v0.5.2
+  [189a3867] + Reexport v0.2.0
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Ipopt ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Ipopt&#x2F;ruIXY&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing OpSel
+ Resolving package versions...
+Status `&#x2F;tmp&#x2F;jl_KE7YWB&#x2F;Manifest.toml`
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [324d7699] CategoricalArrays v0.7.3
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [f6369f11] ForwardDiff v0.10.6
+  [41ab1584] InvertedIndices v1.0.0
+  [b6b21f68] Ipopt v0.6.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [682c06a0] JSON v0.21.0
+  [4076af6c] JuMP v0.20.1
+  [b8f27783] MathOptInterface v0.9.7
+  [fdba3010] MathProgBase v0.7.7
+  [e1d29d7a] Missings v0.4.3
+  [77ba4419] NaNMath v0.3.3
+  [099ba0d8] OpSel v0.1.0
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [2dfb63ee] PooledArrays v0.5.2
+  [189a3867] Reexport v0.2.0
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Z = 2045, N_s = 14, N = 2800, theta = 0.03571428571428571
+
+******************************************************************************
+This program contains Ipopt, a library for large-scale nonlinear optimization.
+ Ipopt is released as open source code under the Eclipse Public License (EPL).
+         For more information visit http:&#x2F;&#x2F;projects.coin-or.org&#x2F;Ipopt
+******************************************************************************
+
+This is Ipopt version 3.12.10, running with linear solver mumps.
+NOTE: Other linear solvers might be more efficient (see Ipopt documentation).
+
+Number of nonzeros in equality constraint Jacobian...:     2045
+Number of nonzeros in inequality constraint Jacobian.:    30081
+Number of nonzeros in Lagrangian Hessian.............:     6036
+
+Total number of variables............................:     2045
+                     variables with only lower bounds:        0
+                variables with lower and upper bounds:        0
+                     variables with only upper bounds:        0
+Total number of equality constraints.................:        1
+Total number of inequality constraints...............:     4091
+        inequality constraints with only lower bounds:        0
+   inequality constraints with lower and upper bounds:        0
+        inequality constraints with only upper bounds:     4091
+
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+   0 -0.0000000e+00 1.00e+00 2.90e-01  -1.0 0.00e+00    -  0.00e+00 0.00e+00   0
+   1 -2.0245767e+02 6.17e-01 2.18e+00  -1.7 1.57e-01    -  1.00e+00 3.83e-01h  1
+   2 -2.5345910e+02 2.65e-01 3.99e+00  -1.7 9.93e-02    -  1.00e+00 5.71e-01h  1
+   3 -3.0977733e+02 8.80e-02 5.93e+00  -1.7 3.12e-02    -  1.00e+00 6.67e-01h  1
+   4 -3.2160359e+02 2.48e-02 9.39e+00  -1.7 1.77e-02    -  1.00e+00 7.18e-01h  1
+   5 -3.2948097e+02 1.42e-02 6.76e+01  -1.7 6.57e-03    -  1.00e+00 4.27e-01h  1
+   6 -3.3041401e+02 4.43e-03 6.19e+01  -1.7 1.71e-03    -  1.00e+00 6.88e-01h  1
+   7 -3.3201918e+02 2.09e-03 2.58e+02  -1.7 1.36e-03    -  1.00e+00 5.29e-01h  1
+   8 -3.3206985e+02 8.00e-04 4.58e+02  -1.7 2.44e-04    -  1.00e+00 6.16e-01h  1
+   9 -3.3237163e+02 3.42e-04 1.27e+03  -1.7 2.42e-04    -  1.00e+00 5.73e-01h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  10 -3.3237492e+02 1.39e-04 2.88e+03  -1.7 3.76e-05    -  1.00e+00 5.92e-01h  1
+  11 -3.3242817e+02 5.76e-05 7.08e+03  -1.7 4.19e-05    -  1.00e+00 5.86e-01h  1
+  12 -3.3242833e+02 4.06e-05 2.87e+04  -1.7 6.23e-06    -  1.00e+00 2.96e-01f  2
+  13 -3.3243597e+02 7.40e-06 1.38e+04  -1.7 7.07e-06    -  1.00e+00 8.18e-01h  1
+  14 -3.3243743e+02 5.55e-06 1.81e+05  -1.7 2.53e-06    -  1.00e+00 2.49e-01f  2
+  15 -3.3243957e+02 2.53e-07 2.00e+04  -1.7 1.26e-06    -  1.00e+00 9.54e-01h  1
+  16 -3.3243945e+02 1.73e-07 8.12e+05  -1.7 1.37e-07    -  1.00e+00 3.19e-01f  2
+  17 -3.3243949e+02 6.49e-13 2.30e-06  -1.7 3.23e-08    -  1.00e+00 1.00e+00h  1
+  18 -3.3255390e+02 7.91e-13 2.38e+04  -5.7 2.39e-04    -  9.88e-01 1.00e+00f  1
+  19 -3.3772965e+02 7.46e-13 2.37e+04  -5.7 3.02e-01    -  1.84e-03 5.75e-02f  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  20 -3.5002135e+02 1.29e-03 2.12e+04  -5.7 4.57e-02    -  1.06e-01 5.89e-01f  1
+  21 -3.5716425e+02 1.19e-03 1.87e+04  -5.7 4.86e-02    -  1.18e-01 2.85e-01h  1
+  22 -3.6074876e+02 1.18e-03 1.53e+04  -5.7 1.01e-01    -  1.81e-01 1.09e-01h  1
+  23 -3.6534792e+02 1.14e-03 1.16e+04  -5.7 8.38e-02    -  2.46e-01 1.58e-01h  1
+  24 -3.7410262e+02 1.23e-03 1.10e+04  -5.7 6.31e-02    -  4.91e-02 2.37e-01f  1
+  25 -3.7960064e+02 1.22e-03 9.90e+03  -5.7 6.21e-02    -  9.84e-02 1.41e-01h  1
+  26 -3.8630974e+02 1.33e-03 8.07e+03  -5.7 7.35e-02    -  1.85e-01 1.93e-01h  1
+  27 -3.9364995e+02 1.33e-03 6.80e+03  -5.7 5.47e-02    -  1.58e-01 2.44e-01h  1
+  28 -4.0413809e+02 1.51e-03 5.95e+03  -5.7 3.67e-02    -  1.26e-01 3.20e-01f  1
+  29 -4.0770429e+02 1.36e-03 4.64e+03  -5.7 2.37e-02    -  2.20e-01 1.48e-01h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  30 -4.1274713e+02 1.23e-03 3.46e+03  -5.7 2.62e-02    -  2.54e-01 2.14e-01f  1
+  31 -4.1980970e+02 1.11e-03 2.88e+03  -5.7 1.99e-02    -  1.68e-01 3.37e-01f  1
+  32 -4.2426380e+02 9.13e-04 2.20e+03  -5.7 1.61e-02    -  2.36e-01 2.98e-01f  1
+  33 -4.2912260e+02 6.94e-04 1.46e+03  -5.7 1.45e-02    -  3.37e-01 4.20e-01f  1
+  34 -4.3303730e+02 4.52e-04 8.78e+02  -5.7 9.20e-03    -  3.97e-01 5.24e-01f  1
+  35 -4.3567823e+02 2.23e-04 6.14e+02  -5.7 5.83e-03    -  3.01e-01 6.68e-01f  1
+  36 -4.3714565e+02 3.65e-05 1.08e+02  -5.7 5.19e-03    -  8.25e-01 1.00e+00f  1
+  37 -4.3721427e+02 4.44e-16 2.60e-06  -5.7 8.36e-04    -  1.00e+00 1.00e+00h  1
+  38 -4.3871316e+02 1.82e-05 4.09e+00  -8.6 2.51e-03    -  7.76e-01 7.97e-01f  1
+  39 -4.3910600e+02 2.70e-06 2.24e+00  -8.6 7.16e-04    -  9.28e-01 9.79e-01h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  40 -4.3911615e+02 5.37e-08 6.72e-02  -8.6 1.23e-04    -  9.78e-01 1.00e+00f  1
+  41 -4.3911628e+02 3.33e-16 4.88e-09  -8.6 3.03e-05    -  1.00e+00 1.00e+00h  1
+
+Number of Iterations....: 41
+
+                                   (scaled)                 (unscaled)
+Objective...............:  -8.2384635286027919e-01   -4.3911628492217517e+02
+Dual infeasibility......:   4.8805531838169713e-09    2.6013714511233238e-06
+Constraint violation....:   3.3306690738754696e-16    3.3306690738754696e-16
+Complementarity.........:   4.4684712318714910e-09    2.3817286801217435e-06
+Overall NLP error.......:   4.8805531838169713e-09    2.6013714511233238e-06
+
+
+Number of objective function evaluations             = 45
+Number of objective gradient evaluations             = 42
+Number of equality constraint evaluations            = 45
+Number of inequality constraint evaluations          = 45
+Number of equality constraint Jacobian evaluations   = 42
+Number of inequality constraint Jacobian evaluations = 42
+Number of Lagrangian Hessian evaluations             = 41
+Total CPU secs in IPOPT (w&#x2F;o function evaluations)   =      6.800
+Total CPU secs in NLP function evaluations           =      2.063
+
+EXIT: Optimal Solution Found.
+=== Result Summary ===
+JuMP status = LOCALLY_SOLVED
+Z = 2045, N_s = 14, N = 2800
+gx = 439.116285, xAx = 0.071429, 2theta = 0.071429
+time(s): build = 5.964, solver = 37.138, total = 43.101
+Z = 200, N = 50, theta = 0.016714999999999997
+This is Ipopt version 3.12.10, running with linear solver mumps.
+NOTE: Other linear solvers might be more efficient (see Ipopt documentation).
+
+Number of nonzeros in equality constraint Jacobian...:      200
+Number of nonzeros in inequality constraint Jacobian.:     2700
+Number of nonzeros in Lagrangian Hessian.............:      550
+
+Total number of variables............................:      200
+                     variables with only lower bounds:        0
+                variables with lower and upper bounds:        0
+                     variables with only upper bounds:        0
+Total number of equality constraints.................:        1
+Total number of inequality constraints...............:      401
+        inequality constraints with only lower bounds:        0
+   inequality constraints with lower and upper bounds:        0
+        inequality constraints with only upper bounds:      401
+
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+   0 -0.0000000e+00 1.00e+00 6.15e+00  -1.0 0.00e+00    -  0.00e+00 0.00e+00   0
+   1 -1.3922826e+01 8.72e-01 1.26e+01  -1.0 1.37e-01    -  1.00e+00 1.28e-01h  1
+   2 -1.5800200e+01 2.19e-01 6.27e+00  -1.0 2.99e-02    -  1.00e+00 7.49e-01h  1
+   3 -2.1296514e+01 1.41e-01 5.53e+01  -1.0 2.05e-02    -  1.00e+00 3.54e-01h  1
+   4 -2.1630297e+01 3.58e-02 3.17e+01  -1.0 1.16e-02    -  1.00e+00 7.47e-01h  1
+   5 -2.2578297e+01 1.65e-02 1.51e+02  -1.0 3.86e-03    -  1.00e+00 5.39e-01h  1
+   6 -2.2539676e+01 6.45e-03 2.92e+02  -1.0 1.53e-03    -  1.00e+00 6.09e-01h  1
+   7 -2.2715205e+01 2.73e-03 7.87e+02  -1.0 7.11e-04    -  1.00e+00 5.76e-01h  1
+   8 -2.2707021e+01 1.12e-03 1.82e+03  -1.0 2.55e-04    -  1.00e+00 5.90e-01h  1
+   9 -2.2737663e+01 4.66e-04 4.46e+03  -1.0 1.24e-04    -  1.00e+00 5.84e-01h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  10 -2.2736206e+01 1.92e-04 1.07e+04  -1.0 4.35e-05    -  1.00e+00 5.87e-01h  1
+  11 -2.2741487e+01 7.93e-05 2.57e+04  -1.0 2.13e-05    -  1.00e+00 5.87e-01h  1
+  12 -2.2741358e+01 5.59e-05 1.05e+05  -1.0 7.41e-06    -  1.00e+00 2.95e-01f  2
+  13 -2.2741926e+01 1.04e-05 5.16e+04  -1.0 5.55e-06    -  1.00e+00 8.14e-01h  1
+  14 -2.2742073e+01 7.85e-06 6.75e+05  -1.0 1.19e-06    -  1.00e+00 2.46e-01f  2
+  15 -2.2742265e+01 6.22e-07 1.32e+05  -1.0 8.16e-07    -  1.00e+00 9.21e-01h  1
+  16 -2.2742253e+01 4.43e-07 3.51e+06  -1.0 5.40e-08    -  1.00e+00 2.87e-01f  2
+  17 -2.2742260e+01 0.00e+00 1.00e-06  -1.0 4.46e-08    -  1.00e+00 1.00e+00h  1
+  18 -2.3469414e+01 2.22e-16 1.95e+06  -8.6 6.56e-03    -  7.85e-01 1.00e+00f  1
+  19 -2.5836304e+01 1.33e-03 9.43e+05  -8.6 2.97e-02    -  5.16e-01 8.15e-01f  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  20 -2.6222452e+01 3.80e-03 3.59e+05  -8.6 1.71e-02    -  6.19e-01 2.48e-01f  1
+  21 -2.6342694e+01 2.87e-03 2.67e+05  -8.6 3.19e-02    -  2.57e-01 4.50e-01f  1
+In iteration 21, 1 Slack too small, adjusting variable bound
+  22 -2.6298556e+01 2.00e-03 1.54e+05  -8.6 1.89e-02    -  4.25e-01 3.43e-01h  1
+  23 -2.6217699e+01 7.49e-04 9.09e+04  -8.6 1.10e-02    -  4.08e-01 8.62e-01h  1
+  24 -2.6145201e+01 8.64e-05 6.55e+04  -8.6 3.75e-03    -  2.79e-01 1.00e+00h  1
+  25 -2.6145461e+01 9.82e-06 1.93e+04  -8.6 1.52e-03    -  7.06e-01 1.00e+00h  1
+  26 -2.6153037e+01 5.68e-06 1.68e+04  -8.6 1.12e-03    -  1.31e-01 1.00e+00h  1
+  27 -2.6154383e+01 9.32e-07 1.57e+03  -8.6 5.09e-04    -  9.06e-01 1.00e+00h  1
+  28 -2.6155464e+01 6.07e-07 8.85e+01  -8.6 3.38e-04    -  9.44e-01 1.00e+00h  1
+  29 -2.6155598e+01 9.82e-08 7.77e+00  -8.6 1.32e-04    -  9.12e-01 1.00e+00h  1
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+  30 -2.6155621e+01 9.41e-09 2.27e+00  -8.6 7.26e-05    -  6.26e-01 1.00e+00h  1
+  31 -2.6155625e+01 9.75e-10 1.70e-03  -8.6 3.48e-05    -  9.97e-01 1.00e+00h  1
+  32 -2.6155625e+01 4.37e-10 1.68e-07  -8.6 2.54e-05    -  1.00e+00 1.00e+00h  1
+  33 -2.6155625e+01 8.48e-11 3.89e-08  -8.6 1.25e-05    -  1.00e+00 1.00e+00h  1
+  34 -2.6155625e+01 0.00e+00 8.13e-09  -8.6 5.73e-06    -  1.00e+00 1.00e+00h  1
+
+Number of Iterations....: 34
+
+                                   (scaled)                 (unscaled)
+Objective...............:  -1.3847747204547463e+01   -2.6155624919949247e+01
+Dual infeasibility......:   8.1319591060946550e-09    1.5359644359591584e-08
+Constraint violation....:   0.0000000000000000e+00    0.0000000000000000e+00
+Complementarity.........:   6.9540333528768238e-09    1.3134778196913745e-08
+Overall NLP error.......:   8.1319591060946550e-09    1.5359644359591584e-08
+
+
+Number of objective function evaluations             = 38
+Number of objective gradient evaluations             = 35
+Number of equality constraint evaluations            = 38
+Number of inequality constraint evaluations          = 38
+Number of equality constraint Jacobian evaluations   = 35
+Number of inequality constraint Jacobian evaluations = 35
+Number of Lagrangian Hessian evaluations             = 34
+Total CPU secs in IPOPT (w&#x2F;o function evaluations)   =      0.081
+Total CPU secs in NLP function evaluations           =      0.004
+
+EXIT: Optimal Solution Found.
+=== SOCP Result Summary ===
+JuMP status = LOCALLY_SOLVED
+sum(x_socp) = 0.999996, gx = 26.155540, xAx = 0.033430, 2theta = 0.033430
+======= Before swap c_obj = -41.483965
+iter2 = 1, c_obj = -29.510364, gx = 27.044800, xAx = 0.041800, best_f = 63, best_v = 121
+iter2 = 2, c_obj = -20.269719, gx = 26.825800, xAx = 0.040400, best_f = 71, best_v = 78
+iter2 = 3, c_obj = -11.162274, gx = 26.473600, xAx = 0.039000, best_f = 57, best_v = 195
+iter2 = 4, c_obj = -3.258806, gx = 26.268800, xAx = 0.037800, best_f = 93, best_v = 150
+iter2 = 5, c_obj = 3.269683, gx = 26.040400, xAx = 0.036800, best_f = 88, best_v = 129
+iter2 = 6, c_obj = 8.527194, gx = 25.892400, xAx = 0.036000, best_f = 55, best_v = 143
+iter2 = 7, c_obj = 13.723706, gx = 25.683400, xAx = 0.035200, best_f = 169, best_v = 128
+iter2 = 8, c_obj = 18.852217, gx = 25.406400, xAx = 0.034400, best_f = 70, best_v = 105
+iter2 = 9, c_obj = 23.962729, gx = 25.111400, xAx = 0.033600, best_f = 58, best_v = 171
+iter2 = 10, c_obj = 25.066400, gx = 25.066400, xAx = 0.033400, best_f = 92, best_v = 66
+iter2 = 11, c_obj = 25.072600, gx = 25.072600, xAx = 0.033400, best_f = 139, best_v = 115
+iter2 = 12, c_obj = 25.090400, gx = 25.090400, xAx = 0.033400, best_f = 109, best_v = 63
+No swap c_obj = 25.090400, gx = 25.090400, xAx = 0.033400
+Finished ... iter2 = 13, before_cobj = -41.483965, after_cobj = 25.090400
+sum(x_sa) = 1.000000, gx = 25.090400, xAx = 0.033400, 2theta = 0.033430
+SOCP = 26.155540, STEEP = 25.090400, gap = 4.072330%
+time(s): build = 0.750, solver = 0.114, steep = 3.871, total = 4.735
+Test Summary: |
+OpSel.jl      | No tests
+   Testing OpSel tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

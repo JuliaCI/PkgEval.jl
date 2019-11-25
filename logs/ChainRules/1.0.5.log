@@ -1,0 +1,1424 @@
+ Resolving package versions...
+ Installed Reexport ─────── v0.2.0
+ Installed Requires ─────── v0.5.2
+ Installed ChainRulesCore ─ v0.4.0
+ Installed ChainRules ───── v0.2.3
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [082447d4] + ChainRules v0.2.3
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [082447d4] + ChainRules v0.2.3
+  [d360d2e6] + ChainRulesCore v0.4.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing ChainRules
+ Resolving package versions...
+ Installed NaNMath ─────────── v0.3.3
+ Installed BinDeps ─────────── v0.8.10
+ Installed Compat ──────────── v2.2.0
+ Installed FiniteDifferences ─ v0.9.0
+ Installed BinaryProvider ──── v0.5.8
+ Installed SpecialFunctions ── v0.8.0
+ Installed URIParser ───────── v0.4.0
+  Building SpecialFunctions → `~/.julia/packages/SpecialFunctions/ne2iw/deps/build.log`
+    Status `/tmp/tmp7osTGQ/Manifest.toml`
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [082447d4] ChainRules v0.2.3
+  [d360d2e6] ChainRulesCore v0.4.0
+  [34da2185] Compat v2.2.0
+  [26cc04aa] FiniteDifferences v0.9.0
+  [77ba4419] NaNMath v0.3.3
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [276daf66] SpecialFunctions v0.8.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib/SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+WARNING: Method definition rrule(typeof(Base.sum), AbstractArray{#s677, N} where N where #s677<:Real) in module ChainRules at /root/.julia/packages/ChainRules/ziOpP/src/rulesets/Base/mapreduce.jl:61 overwritten at /root/.julia/packages/ChainRules/ziOpP/src/rulesets/Base/mapreduce.jl:76.
+Testing ChainRules.jl
+sincos: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Float64, ::Tuple{Float64}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::Number, !Matched::Number; atol, rtol, nans) at floatfuncs.jl:273
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(sincos), ::Tuple{Float64,Float64}, ::Tuple{Float64,Float64}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [3] rrule_test(::Function, ::Tuple{Float64,Float64}, ::Tuple{Float64,Float64}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/base.jl:78 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/base.jl:74 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/base.jl:55 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/base.jl:3 [inlined]
+   [11] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [12] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/base.jl:2
+identity: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Float64, ::Tuple{Float64}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::Number, !Matched::Number; atol, rtol, nans) at floatfuncs.jl:273
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(identity), ::Float64, ::Tuple{Float64,Float64}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [3] rrule_test(::Function, ::Float64, ::Tuple{Float64,Float64}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/base.jl:152 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/base.jl:151 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/base.jl:2
+identity: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Array{Float64,1}, ::Tuple{Array{Float64,1}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(identity), ::Array{Float64,1}, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [3] rrule_test(::Function, ::Array{Float64,1}, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/base.jl:153 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/base.jl:151 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/base.jl:2
+mapreduce: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:25
+  Test threw exception
+  Expression: ≈(x̄_ad, x̄_fd, atol=1.0e-9, rtol=1.0e-9)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; atol=1.0e-9, rtol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:atol, :rtol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##600#603")){Array{Float64,2},typeof(abs2),Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:atol, :rtol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##600#603")){Array{Float64,2},typeof(abs2),Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:25 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:12 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:2
+Vector: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Array{Float64,1}, ::Tuple{Array{Float64,1}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##600#603")){Float64,typeof(identity),Array{Float64,1}}}, ::Tuple{Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##600#603")){Float64,typeof(identity),Array{Float64,1}}}, ::Tuple{Array{Float64,1}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(sum), ::Float64, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Function, ::Float64, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:39 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:37 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:36 [inlined]
+   [11] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [12] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:2
+Matrix: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##600#603")){Float64,typeof(identity),Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##600#603")){Float64,typeof(identity),Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(sum), ::Float64, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Function, ::Float64, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:44 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:42 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:36 [inlined]
+   [11] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [12] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:2
+Array{T, 3}: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Array{Float64,3}, ::Tuple{Array{Float64,3}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##600#603")){Float64,typeof(identity),Array{Float64,3}}}, ::Tuple{Array{Float64,3}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##600#603")){Float64,typeof(identity),Array{Float64,3}}}, ::Tuple{Array{Float64,3}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(sum), ::Float64, ::Tuple{Array{Float64,3},Array{Float64,3}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Function, ::Float64, ::Tuple{Array{Float64,3},Array{Float64,3}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:49 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:47 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:36 [inlined]
+   [11] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [12] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:2
+keyword arguments: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:65
+  Test threw exception
+  Expression: ≈(x̄_ad, x̄_fd, atol=1.0e-9, rtol=1.0e-9)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; atol=1.0e-9, rtol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:atol, :rtol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##600#603")){Array{Float64,2},typeof(identity),Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:atol, :rtol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##600#603")){Array{Float64,2},typeof(identity),Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:65 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:58 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:36 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Base/mapreduce.jl:2
+ Basic: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Array{Float64,1}, ::Tuple{Array{Float64,1}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##630#632")){Float64,getfield(ChainRules, Symbol("#sum_pullback#622")){getfield(ChainRules, Symbol("#sum_pullback#620")){getfield(ChainRules, Symbol("#mapreduce_pullback#602")){typeof(identity),Array{Float64,1}}}},Int64}}, ::Tuple{Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##630#632")){Float64,getfield(ChainRules, Symbol("#sum_pullback#622")){getfield(ChainRules, Symbol("#sum_pullback#620")){getfield(ChainRules, Symbol("#mapreduce_pullback#602")){typeof(identity),Array{Float64,1}}}},Int64}}, ::Tuple{Array{Float64,1}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(mean), ::Float64, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Function, ::Float64, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Statistics/statistics.jl:6 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Statistics/statistics.jl:6 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Statistics/statistics.jl:2
+with dims kwargs: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Statistics/statistics.jl:31
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-9, atol=1.0e-9)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Statistics/statistics.jl:31 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Statistics/statistics.jl:25 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/Statistics/statistics.jl:2
+ inv: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(inv), ::Array{Float64,2}, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [3] rrule_test(::Function, ::Array{Float64,2}, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/dense.jl:37 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/dense.jl:34 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/dense.jl:7
+det: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##724#726")){Float64,Array{Float64,2},Float64}}, ::Tuple{Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##724#726")){Float64,Array{Float64,2},Float64}}, ::Tuple{Array{Float64,2}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(det), ::Float64, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Function, ::Float64, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/dense.jl:43 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/dense.jl:40 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/dense.jl:7
+logdet: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##728#730")){Float64,Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##728#730")){Float64,Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(logdet), ::Float64, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Function, ::Float64, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/dense.jl:49 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/dense.jl:46 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/dense.jl:7
+tr: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Diagonal{Float64,Array{Float64,1}}, ::Tuple{Array{Float64,2}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##732#734")){Float64,Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##732#734")){Float64,Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(tr), ::Float64, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Function, ::Float64, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/dense.jl:54 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/dense.jl:52 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/dense.jl:7
+Diagonal: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Array{Float64,1}, ::Tuple{Array{Float64,1}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##772#774")){Array{Float64,2}}}, ::Tuple{Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##772#774")){Array{Float64,2}}}, ::Tuple{Array{Float64,1}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Type, ::Array{Float64,2}, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Type, ::Array{Float64,2}, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:4 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:3 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:2
+Diagonal: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Array{Float64,1}, ::Tuple{Array{Float64,1}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##772#774")){Diagonal{Float64,Array{Float64,1}}}}, ::Tuple{Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##772#774")){Diagonal{Float64,Array{Float64,1}}}}, ::Tuple{Array{Float64,1}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Type, ::Diagonal{Float64,Array{Float64,1}}, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Type, ::Diagonal{Float64,Array{Float64,1}}, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:6 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:3 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:2
+Diagonal: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Array{Float64,1}, ::Tuple{Array{Float64,1}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##772#774")){Diagonal{Float64,Array{Float64,1}}}}, ::Tuple{Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##772#774")){Diagonal{Float64,Array{Float64,1}}}}, ::Tuple{Array{Float64,1}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Type, ::Diagonal{Float64,Array{Float64,1}}, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Type, ::Diagonal{Float64,Array{Float64,1}}, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:8 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:3 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:2
+diag: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Diagonal{Float64,Array{Float64,1}}, ::Tuple{Array{Float64,2}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##775#777")){Array{Float64,1}}}, ::Tuple{Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##775#777")){Array{Float64,1}}}, ::Tuple{Array{Float64,2}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(diag), ::Array{Float64,1}, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Function, ::Array{Float64,1}, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:21 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:20 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:2
+diag: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Diagonal{Float64,Array{Float64,1}}, ::Tuple{Diagonal{Float64,Array{Float64,1}}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##775#777")){Array{Float64,1}}}, ::Tuple{Diagonal{Float64,Array{Float64,1}}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##775#777")){Array{Float64,1}}}, ::Tuple{Diagonal{Float64,Array{Float64,1}}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(diag), ::Array{Float64,1}, ::Tuple{Diagonal{Float64,Array{Float64,1}},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Function, ::Array{Float64,1}, ::Tuple{Diagonal{Float64,Array{Float64,1}},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:22 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:20 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:2
+diag: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Diagonal{Float64,Array{Float64,1}}, ::Tuple{Array{Float64,2}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##775#777")){Array{Float64,1}}}, ::Tuple{Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##775#777")){Array{Float64,1}}}, ::Tuple{Array{Float64,2}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(diag), ::Array{Float64,1}, ::Tuple{Array{Float64,2},Diagonal{Float64,Array{Float64,1}}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Function, ::Array{Float64,1}, ::Tuple{Array{Float64,2},Diagonal{Float64,Array{Float64,1}}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:23 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:20 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:2
+diag: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Diagonal{Float64,Array{Float64,1}}, ::Tuple{Diagonal{Float64,Array{Float64,1}}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##775#777")){Array{Float64,1}}}, ::Tuple{Diagonal{Float64,Array{Float64,1}}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##775#777")){Array{Float64,1}}}, ::Tuple{Diagonal{Float64,Array{Float64,1}}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(diag), ::Array{Float64,1}, ::Tuple{Diagonal{Float64,Array{Float64,1}},Diagonal{Float64,Array{Float64,1}}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Function, ::Array{Float64,1}, ::Tuple{Diagonal{Float64,Array{Float64,1}},Diagonal{Float64,Array{Float64,1}}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:24 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:20 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:2
+Symmetric: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##783#785")){Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##783#785")){Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Type, ::Array{Float64,2}, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Type, ::Array{Float64,2}, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:28 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:27 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:2
+Adjoint: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Adjoint{Float64,Array{Float64,2}}, ::Tuple{Array{Float64,2}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##786#788")){Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##786#788")){Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Type, ::Array{Float64,2}, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Type, ::Array{Float64,2}, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:34 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1156 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:30 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:2
+Adjoint: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Base.ReshapedArray{Float64,1,Adjoint{Float64,Array{Float64,2}},Tuple{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64}}}, ::Tuple{Array{Float64,1}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##789#791")){Array{Float64,2}}}, ::Tuple{Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##789#791")){Array{Float64,2}}}, ::Tuple{Array{Float64,1}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Type, ::Array{Float64,2}, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Type, ::Array{Float64,2}, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:35 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1156 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:30 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:2
+adjoint: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Adjoint{Float64,Array{Float64,2}}, ::Tuple{Array{Float64,2}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##792#794")){Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##792#794")){Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(adjoint), ::Array{Float64,2}, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Function, ::Array{Float64,2}, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:34 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1156 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:30 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:2
+adjoint: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Base.ReshapedArray{Float64,1,Adjoint{Float64,Array{Float64,2}},Tuple{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64}}}, ::Tuple{Array{Float64,1}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##795#797")){Array{Float64,2}}}, ::Tuple{Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##795#797")){Array{Float64,2}}}, ::Tuple{Array{Float64,1}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(adjoint), ::Array{Float64,2}, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Function, ::Array{Float64,2}, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:35 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1156 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:30 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:2
+Transpose: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Transpose{Float64,Array{Float64,2}}, ::Tuple{Array{Float64,2}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##798#800")){Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##798#800")){Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Type, ::Array{Float64,2}, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Type, ::Array{Float64,2}, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:34 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1156 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:30 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:2
+Transpose: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Base.ReshapedArray{Float64,1,Transpose{Float64,Array{Float64,2}},Tuple{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64}}}, ::Tuple{Array{Float64,1}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##801#803")){Array{Float64,2}}}, ::Tuple{Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##801#803")){Array{Float64,2}}}, ::Tuple{Array{Float64,1}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Type, ::Array{Float64,2}, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Type, ::Array{Float64,2}, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:35 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1156 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:30 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:2
+transpose: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Transpose{Float64,Array{Float64,2}}, ::Tuple{Array{Float64,2}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##804#806")){Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##804#806")){Array{Float64,2}}}, ::Tuple{Array{Float64,2}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(transpose), ::Array{Float64,2}, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Function, ::Array{Float64,2}, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:34 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1156 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:30 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:2
+transpose: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Base.ReshapedArray{Float64,1,Transpose{Float64,Array{Float64,2}},Tuple{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64}}}, ::Tuple{Array{Float64,1}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##807#809")){Array{Float64,2}}}, ::Tuple{Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##807#809")){Array{Float64,2}}}, ::Tuple{Array{Float64,1}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(transpose), ::Array{Float64,2}, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Function, ::Array{Float64,2}, ::Tuple{Array{Float64,1},Array{Float64,1}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:35 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1156 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:30 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:2
+UpperTriangular: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##810#812")){UpperTriangular{Float64,Array{Float64,2}}}}, ::Tuple{Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##810#812")){UpperTriangular{Float64,Array{Float64,2}}}}, ::Tuple{Array{Float64,2}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Type, ::UpperTriangular{Float64,Array{Float64,2}}, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Type, ::UpperTriangular{Float64,Array{Float64,2}}, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:40 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1156 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:37 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:2
+LowerTriangular: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] #isapprox#16(::Base.Iterators.Pairs{Symbol,Float64,Tuple{Symbol,Symbol},NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}}, ::Function, ::Thunk{getfield(ChainRules, Symbol("##813#815")){LowerTriangular{Float64,Array{Float64,2}}}}, ::Tuple{Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:216
+   [2] (::getfield(Base, Symbol("#kw##isapprox")))(::NamedTuple{(:rtol, :atol),Tuple{Float64,Float64}}, ::typeof(isapprox), ::Thunk{getfield(ChainRules, Symbol("##813#815")){LowerTriangular{Float64,Array{Float64,2}}}}, ::Tuple{Array{Float64,2}}) at ./none:0
+   [3] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [4] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Type, ::LowerTriangular{Float64,Array{Float64,2}}, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [5] rrule_test(::Type, ::LowerTriangular{Float64,Array{Float64,2}}, ::Tuple{Array{Float64,2},Array{Float64,2}}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [6] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:40 [inlined]
+   [7] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1156 [inlined]
+   [8] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:37 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/structured.jl:2
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+svd: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22
+  Test threw exception
+  Expression: ≈(X̄_ad, X̄_fd, rtol=1.0e-6, atol=1.0e-6)
+  MethodError: no method matching isapprox(::Array{Float64,2}, ::Tuple{Array{Float64,2}}; rtol=1.0e-6, atol=1.0e-6)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::AbstractArray, !Matched::AbstractArray; atol, rtol, nans, norm) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/generic.jl:1339
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:22 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:5 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/LinearAlgebra/factorization.jl:4
+ ┌ Warning: `lgamma(x::Real)` is deprecated, use `(logabsgamma(x))[1]` instead.
+│   caller = rrule(::typeof(lgamma), ::Float64) at rule_definition_tools.jl:207
+└ @ ChainRules.SpecialFunctionsGlue ~/.julia/packages/ChainRulesCore/7Zuuq/src/rule_definition_tools.jl:207
+┌ Warning: `lgamma(x::Real)` is deprecated, use `(logabsgamma(x))[1]` instead.
+│   caller = macro expansion at test_util.jl:30 [inlined]
+└ @ Core ~/.julia/packages/ChainRules/ziOpP/test/test_util.jl:30
+┌ Warning: `lgamma(x::Real)` is deprecated, use `(logabsgamma(x))[1]` instead.
+│   caller = fdm(::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::typeof(lgamma), ::Float64, ::Val{true}) at methods.jl:222
+└ @ FiniteDifferences ~/.julia/packages/FiniteDifferences/SExlu/src/methods.jl:222
+┌ Warning: `lgamma(x::Real)` is deprecated, use `(logabsgamma(x))[1]` instead.
+│   caller = _mapreduce(::getfield(FiniteDifferences, Symbol("##20#22")){typeof(lgamma),Float64,Array{Int64,1},Array{Float64,1},Float64}, ::typeof(Base.add_sum), ::IndexLinear, ::Base.OneTo{Int64}) at methods.jl:263
+└ @ Base ~/.julia/packages/FiniteDifferences/SExlu/src/methods.jl:263
+┌ Warning: `lgamma(x::Real)` is deprecated, use `(logabsgamma(x))[1]` instead.
+│   caller = _mapreduce(::getfield(FiniteDifferences, Symbol("##20#22")){typeof(lgamma),Float64,Array{Int64,1},Array{Float64,1},Float64}, ::typeof(Base.add_sum), ::IndexLinear, ::Base.OneTo{Int64}) at methods.jl:263
+└ @ Base ~/.julia/packages/FiniteDifferences/SExlu/src/methods.jl:263
+┌ Warning: `lgamma(x::Real)` is deprecated, use `(logabsgamma(x))[1]` instead.
+│   caller = #20 at methods.jl:263 [inlined]
+└ @ Core ~/.julia/packages/FiniteDifferences/SExlu/src/methods.jl:263
+┌ Warning: `lgamma(x::Real)` is deprecated, use `(logabsgamma(x))[1]` instead.
+│   caller = #20 at methods.jl:263 [inlined]
+└ @ Core ~/.julia/packages/FiniteDifferences/SExlu/src/methods.jl:263
+┌ Warning: `lgamma(x::Real)` is deprecated, use `(logabsgamma(x))[1]` instead.
+│   caller = _mapreduce(::getfield(FiniteDifferences, Symbol("##20#22")){typeof(lgamma),Float64,UnitRange{Int64},Array{Float64,1},Float64}, ::typeof(Base.add_sum), ::IndexLinear, ::Base.OneTo{Int64}) at methods.jl:263
+└ @ Base ~/.julia/packages/FiniteDifferences/SExlu/src/methods.jl:263
+┌ Warning: `lgamma(x::Real)` is deprecated, use `(logabsgamma(x))[1]` instead.
+│   caller = _mapreduce(::getfield(FiniteDifferences, Symbol("##20#22")){typeof(lgamma),Float64,UnitRange{Int64},Array{Float64,1},Float64}, ::typeof(Base.add_sum), ::IndexLinear, ::Base.OneTo{Int64}) at methods.jl:263
+└ @ Base ~/.julia/packages/FiniteDifferences/SExlu/src/methods.jl:263
+┌ Warning: `lgamma(x::Real)` is deprecated, use `(logabsgamma(x))[1]` instead.
+│   caller = frule(::typeof(lgamma), ::Float64) at rule_definition_tools.jl:178
+└ @ ChainRules.SpecialFunctionsGlue ~/.julia/packages/ChainRulesCore/7Zuuq/src/rule_definition_tools.jl:178
+log gamma and co: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Float64, ::Tuple{Float64}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::Number, !Matched::Number; atol, rtol, nans) at floatfuncs.jl:273
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(logabsgamma), ::Tuple{Float64,Float64}, ::Tuple{Float64,Float64}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [3] rrule_test(::Function, ::Tuple{Float64,Float64}, ::Tuple{Float64,Float64}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/packages/SpecialFunctions.jl:56 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/packages/SpecialFunctions.jl:40
+log gamma and co: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Float64, ::Tuple{Float64}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::Number, !Matched::Number; atol, rtol, nans) at floatfuncs.jl:273
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(logabsgamma), ::Tuple{Float64,Float64}, ::Tuple{Float64,Float64}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [3] rrule_test(::Function, ::Tuple{Float64,Float64}, ::Tuple{Float64,Float64}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/packages/SpecialFunctions.jl:56 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/packages/SpecialFunctions.jl:40
+log gamma and co: Error During Test at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+  Test threw exception
+  Expression: isapprox(x̄_ad, x̄_fd; rtol=rtol, atol=atol, kwargs...)
+  MethodError: no method matching isapprox(::Float64, ::Tuple{Float64}; rtol=1.0e-9, atol=1.0e-9)
+  Closest candidates are:
+    isapprox(!Matched::Missing, ::Any; kwargs...) at missing.jl:69
+    isapprox(::Any, !Matched::Missing; kwargs...) at missing.jl:70
+    isapprox(::Number, !Matched::Number; atol, rtol, nans) at floatfuncs.jl:273
+    ...
+  Stacktrace:
+   [1] eval_test(::Expr, ::Expr, ::LineNumberNode) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:241
+   [2] #rrule_test#12(::Float64, ::Float64, ::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::typeof(logabsgamma), ::Tuple{Float64,Float64}, ::Tuple{Float64,Float64}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:140
+   [3] rrule_test(::Function, ::Tuple{Float64,Float64}, ::Tuple{Float64,Float64}) at /root/.julia/packages/ChainRules/ziOpP/test/test_util.jl:124
+   [4] macro expansion at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/packages/SpecialFunctions.jl:56 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] top-level scope at /root/.julia/packages/ChainRules/ziOpP/test/rulesets/packages/SpecialFunctions.jl:40
+┌ Warning: `lgamma(x::Number)` is deprecated, use `loggamma(x)` instead.
+│   caller = rrule(::typeof(lgamma), ::Complex{Float64}) at rule_definition_tools.jl:207
+└ @ ChainRules.SpecialFunctionsGlue ~/.julia/packages/ChainRulesCore/7Zuuq/src/rule_definition_tools.jl:207
+┌ Warning: `lgamma(x::Number)` is deprecated, use `loggamma(x)` instead.
+│   caller = macro expansion at test_util.jl:30 [inlined]
+└ @ Core ~/.julia/packages/ChainRules/ziOpP/test/test_util.jl:30
+┌ Warning: `lgamma(x::Number)` is deprecated, use `loggamma(x)` instead.
+│   caller = fdm(::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::getfield(Main, Symbol("##4#6")){typeof(lgamma),Complex{Float64}}, ::Int64, ::Val{true}) at test_util.jl:50
+└ @ FiniteDifferences ~/.julia/packages/ChainRules/ziOpP/test/test_util.jl:50
+┌ Warning: `lgamma(x::Number)` is deprecated, use `loggamma(x)` instead.
+│   caller = #4 at test_util.jl:50 [inlined]
+└ @ Core ~/.julia/packages/ChainRules/ziOpP/test/test_util.jl:50
+┌ Warning: `lgamma(x::Number)` is deprecated, use `loggamma(x)` instead.
+│   caller = #4 at test_util.jl:50 [inlined]
+└ @ Core ~/.julia/packages/ChainRules/ziOpP/test/test_util.jl:50
+┌ Warning: `lgamma(x::Number)` is deprecated, use `loggamma(x)` instead.
+│   caller = #4 at test_util.jl:50 [inlined]
+└ @ Core ~/.julia/packages/ChainRules/ziOpP/test/test_util.jl:50
+┌ Warning: `lgamma(x::Number)` is deprecated, use `loggamma(x)` instead.
+│   caller = #4 at test_util.jl:50 [inlined]
+└ @ Core ~/.julia/packages/ChainRules/ziOpP/test/test_util.jl:50
+┌ Warning: `lgamma(x::Number)` is deprecated, use `loggamma(x)` instead.
+│   caller = #4 at test_util.jl:50 [inlined]
+└ @ Core ~/.julia/packages/ChainRules/ziOpP/test/test_util.jl:50
+┌ Warning: `lgamma(x::Number)` is deprecated, use `loggamma(x)` instead.
+│   caller = #4 at test_util.jl:50 [inlined]
+└ @ Core ~/.julia/packages/ChainRules/ziOpP/test/test_util.jl:50
+┌ Warning: `lgamma(x::Number)` is deprecated, use `loggamma(x)` instead.
+│   caller = fdm(::FiniteDifferences.Central{UnitRange{Int64},Array{Float64,1}}, ::getfield(Main, Symbol("##5#7")){typeof(lgamma),Complex{Float64}}, ::Int64, ::Val{true}) at test_util.jl:51
+└ @ FiniteDifferences ~/.julia/packages/ChainRules/ziOpP/test/test_util.jl:51
+┌ Warning: `lgamma(x::Number)` is deprecated, use `loggamma(x)` instead.
+│   caller = #5 at test_util.jl:51 [inlined]
+└ @ Core ~/.julia/packages/ChainRules/ziOpP/test/test_util.jl:51
+┌ Warning: `lgamma(x::Number)` is deprecated, use `loggamma(x)` instead.
+│   caller = #5 at test_util.jl:51 [inlined]
+└ @ Core ~/.julia/packages/ChainRules/ziOpP/test/test_util.jl:51
+┌ Warning: `lgamma(x::Number)` is deprecated, use `loggamma(x)` instead.
+│   caller = #5 at test_util.jl:51 [inlined]
+└ @ Core ~/.julia/packages/ChainRules/ziOpP/test/test_util.jl:51
+┌ Warning: `lgamma(x::Number)` is deprecated, use `loggamma(x)` instead.
+│   caller = #5 at test_util.jl:51 [inlined]
+└ @ Core ~/.julia/packages/ChainRules/ziOpP/test/test_util.jl:51
+┌ Warning: `lgamma(x::Number)` is deprecated, use `loggamma(x)` instead.
+│   caller = #5 at test_util.jl:51 [inlined]
+└ @ Core ~/.julia/packages/ChainRules/ziOpP/test/test_util.jl:51
+┌ Warning: `lgamma(x::Number)` is deprecated, use `loggamma(x)` instead.
+│   caller = #5 at test_util.jl:51 [inlined]
+└ @ Core ~/.julia/packages/ChainRules/ziOpP/test/test_util.jl:51
+┌ Warning: `lgamma(x::Number)` is deprecated, use `loggamma(x)` instead.
+│   caller = frule(::typeof(lgamma), ::Complex{Float64}) at rule_definition_tools.jl:178
+└ @ ChainRules.SpecialFunctionsGlue ~/.julia/packages/ChainRulesCore/7Zuuq/src/rule_definition_tools.jl:178
+Test Summary:                                            | Pass  Error  Total
+ChainRules                                               | 7529     62   7591
+  helper functions                                       |   12            12
+  rulesets                                               | 7517     62   7579
+    Base                                                 | 1447      8   1455
+      base                                               | 1280      3   1283
+        Trig                                             |  568      1    569
+          Basics                                         |   56            56
+          Basics                                         |   72            72
+          Hyperbolic                                     |   42            42
+          Hyperbolic                                     |   54            54
+          Degrees                                        |   42            42
+          Inverses                                       |   42            42
+          Inverses                                       |   54            54
+          Inverse hyperbolic                             |   42            42
+          Inverse hyperbolic                             |   54            54
+          Inverse degrees                                |   42            42
+          Inverse degrees                                |   54            54
+          Multivariate                                   |   14      1     15
+            atan2                                        |    5             5
+            sincos                                       |    9      1     10
+        math                                             |  311           311
+        Unary complex functions                          |  224           224
+        *(x, y)                                          |   16            16
+        binary trig (hypot)                              |   16            16
+        binary trig (atan)                               |   16            16
+        identity                                         |   17      2     19
+        Constants                                        |   14            14
+        Constants                                        |   14            14
+        Constants                                        |   18            18
+        Constants                                        |   18            18
+        Constants                                        |   18            18
+        sign                                             |   30            30
+      reshape                                            |    9             9
+      hcat                                               |    5             5
+      vcat                                               |    5             5
+      fill                                               |    8             8
+      Maps and Reductions                                |  132      5    137
+        map                                              |   33            33
+        mapreduce                                        |   13      1     14
+        mapfoldl                                         |   13            13
+        mapfoldr                                         |   13            13
+        sum                                              |   60      4     64
+          Vector                                         |   12      1     13
+          Matrix                                         |   12      1     13
+          Array{T, 3}                                    |   12      1     13
+          function argument                              |   24            24
+          keyword arguments                              |           1      1
+      broadcast                                          |    8             8
+    Statistics                                           |   22      2     24
+      mean                                               |   22      2     24
+        Basic                                            |   10      1     11
+        with function arg                                |   12            12
+        with dims kwargs                                 |           1      1
+    LinearAlgebra                                        | 5137     49   5186
+      linalg                                             | 1299      4   1303
+        dot                                              |   66            66
+        inv                                              |   12      1     13
+        det                                              |   12      1     13
+        logdet                                           |   12      1     13
+        tr                                               |   12      1     13
+        *                                                |  500           500
+        /                                                |  260           260
+        \                                                |  360           360
+        norm                                             |   65            65
+      Structured Matrices                                |  200     18    218
+        Diagonal                                         |   30      3     33
+        ::Diagonal * ::AbstractVector                    |   20            20
+        diag                                             |   40      4     44
+        Symmetric                                        |   10      1     11
+        Adjoint                                          |   20      2     22
+        adjoint                                          |   20      2     22
+        Transpose                                        |   20      2     22
+        transpose                                        |   20      2     22
+        UpperTriangular                                  |   10      1     11
+        LowerTriangular                                  |   10      1     11
+      Factorizations                                     |  128     27    155
+        svd                                              |  102     27    129
+          Vt                                             |    1             1
+          Vt                                             |    1             1
+          Vt                                             |    1             1
+          Vt                                             |    1             1
+          Vt                                             |    1             1
+          Vt                                             |    1             1
+          Vt                                             |    1             1
+          Vt                                             |    1             1
+          Vt                                             |    1             1
+          accumulate!                                    |    9             9
+          Helper functions                               |    3             3
+        cholesky                                         |   26            26
+      BLAS                                               | 3510          3510
+    packages                                             |  911      3    914
+      SpecialFunctions                                   |  119           119
+      SpecialFunctions                                   |   84            84
+      SpecialFunctions                                   |   84            84
+      SpecialFunctions                                   |  133           133
+      SpecialFunctions                                   |  119           119
+      SpecialFunctions                                   |   84            84
+      SpecialFunctions                                   |  144           144
+      log gamma and co                                   |  144      3    147
+        SpecialFunctions.lgamma at 1.5, rrule            |    4             4
+        SpecialFunctions.lgamma at 1.5, frule            |    3             3
+        SpecialFunctions.loggamma at 1.5, rrule          |    4             4
+        SpecialFunctions.loggamma at 1.5, frule          |    3             3
+        SpecialFunctions.lgamma at 2.5, rrule            |    4             4
+        SpecialFunctions.lgamma at 2.5, frule            |    3             3
+        SpecialFunctions.loggamma at 2.5, rrule          |    4             4
+        SpecialFunctions.loggamma at 2.5, frule          |    3             3
+        SpecialFunctions.lgamma at 10.5, rrule           |    4             4
+        SpecialFunctions.lgamma at 10.5, frule           |    3             3
+        SpecialFunctions.loggamma at 10.5, rrule         |    4             4
+        SpecialFunctions.loggamma at 10.5, frule         |    3             3
+        SpecialFunctions.lgamma at -0.6, rrule           |    4             4
+        SpecialFunctions.lgamma at -0.6, frule           |    3             3
+        SpecialFunctions.lgamma at -2.6, rrule           |    4             4
+        SpecialFunctions.lgamma at -2.6, frule           |    3             3
+        SpecialFunctions.lgamma at -3.3, rrule           |    4             4
+        SpecialFunctions.lgamma at -3.3, frule           |    3             3
+        SpecialFunctions.lgamma at 1.6 + 1.6im, rrule    |    5             5
+        SpecialFunctions.lgamma at 1.6 + 1.6im, frule    |    4             4
+        SpecialFunctions.loggamma at 1.6 + 1.6im, rrule  |    5             5
+        SpecialFunctions.loggamma at 1.6 + 1.6im, frule  |    4             4
+        SpecialFunctions.lgamma at 1.6 - 1.6im, rrule    |    5             5
+        SpecialFunctions.lgamma at 1.6 - 1.6im, frule    |    4             4
+        SpecialFunctions.loggamma at 1.6 - 1.6im, rrule  |    5             5
+        SpecialFunctions.loggamma at 1.6 - 1.6im, frule  |    4             4
+        SpecialFunctions.lgamma at -4.6 + 1.6im, rrule   |    5             5
+        SpecialFunctions.lgamma at -4.6 + 1.6im, frule   |    4             4
+        SpecialFunctions.loggamma at -4.6 + 1.6im, rrule |    5             5
+        SpecialFunctions.loggamma at -4.6 + 1.6im, frule |    4             4
+ERROR: LoadError: Some tests did not pass: 7529 passed, 0 failed, 62 errored, 0 broken.
+in expression starting at /root/.julia/packages/ChainRules/ziOpP/test/runtests.jl:22
+ERROR: Package ChainRules errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

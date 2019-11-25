@@ -1,0 +1,77 @@
+ Resolving package versions...
+ Installed Fire ─ v0.1.0
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [652a1917] + Fire v0.1.0
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [652a1917] + Fire v0.1.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+   Testing Fire
+    Status `/tmp/jl_GHeNI3/Manifest.toml`
+  [652a1917] Fire v0.1.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+call: Error During Test at /root/.julia/packages/Fire/Ge5mF/test/runtests.jl:26
+  Test threw exception
+  Expression: length(read(#= /root/.julia/packages/Fire/Ge5mF/test/runtests.jl:26 =# Core.@cmd("julia \$f"))) == 0
+  IOError: could not spawn `julia /tmp/jl_zshFXG/test0.jl`: no such file or directory (ENOENT)
+  Stacktrace:
+   [1] _spawn_primitive(::String, ::Cmd, ::Array{Any,1}) at ./process.jl:401
+   [2] setup_stdios(::getfield(Base, Symbol("##526#527")){Cmd}, ::Array{Any,1}) at ./process.jl:414
+   [3] _spawn at ./process.jl:413 [inlined]
+   [4] #open#535(::Bool, ::Bool, ::typeof(open), ::Cmd, ::Base.DevNull) at ./process.jl:658
+   [5] open at ./process.jl:649 [inlined]
+   [6] open(::Cmd, ::String, ::Base.DevNull) at ./process.jl:629
+   [7] read(::Cmd) at ./process.jl:698
+   [8] top-level scope at /root/.julia/packages/Fire/Ge5mF/test/runtests.jl:26
+   [9] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+   [10] top-level scope at /root/.julia/packages/Fire/Ge5mF/test/runtests.jl:20
+  
+call: Error During Test at /root/.julia/packages/Fire/Ge5mF/test/runtests.jl:34
+  Test threw exception
+  Expression: length(read(#= /root/.julia/packages/Fire/Ge5mF/test/runtests.jl:34 =# Core.@cmd("julia \$f"))) != 0
+  IOError: could not spawn `julia /tmp/jl_zshFXG/test1.jl`: no such file or directory (ENOENT)
+  Stacktrace:
+   [1] _spawn_primitive(::String, ::Cmd, ::Array{Any,1}) at ./process.jl:401
+   [2] setup_stdios(::getfield(Base, Symbol("##526#527")){Cmd}, ::Array{Any,1}) at ./process.jl:414
+   [3] _spawn at ./process.jl:413 [inlined]
+   [4] #open#535(::Bool, ::Bool, ::typeof(open), ::Cmd, ::Base.DevNull) at ./process.jl:658
+   [5] open at ./process.jl:649 [inlined]
+   [6] open(::Cmd, ::String, ::Base.DevNull) at ./process.jl:629
+   [7] read(::Cmd) at ./process.jl:698
+   [8] top-level scope at /root/.julia/packages/Fire/Ge5mF/test/runtests.jl:34
+   [9] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+   [10] top-level scope at /root/.julia/packages/Fire/Ge5mF/test/runtests.jl:20
+  
+Test Summary: | Error  Total
+call          |     2      2
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 2 errored, 0 broken.
+in expression starting at /root/.julia/packages/Fire/Ge5mF/test/runtests.jl:19
+ERROR: Package Fire errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1288
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

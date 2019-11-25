@@ -1,0 +1,47 @@
+ Resolving package versions...
+ Installed REPLCompletions ─ v0.0.3
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [3fc713dc] + REPLCompletions v0.0.3
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [3fc713dc] + REPLCompletions v0.0.3
+   Testing REPLCompletions
+    Status `/tmp/tmpHkNfqw/Manifest.toml`
+  [3fc713dc] REPLCompletions v0.0.3
+ERROR: LoadError: UndefVarError: ByteString not defined
+Stacktrace:
+ [1] top-level scope at none:0
+ [2] include at ./boot.jl:317 [inlined]
+ [3] include_relative(::Module, ::String) at ./loading.jl:1044
+ [4] include(::Module, ::String) at ./sysimg.jl:29
+ [5] top-level scope at none:2
+ [6] eval at ./boot.jl:319 [inlined]
+ [7] eval(::Expr) at ./client.jl:393
+ [8] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/REPLCompletions/coXeH/src/REPLCompletions.jl:102
+ERROR: LoadError: Failed to precompile REPLCompletions [3fc713dc-8771-5a7b-b2d9-79d2995ff451] to /root/.julia/compiled/v1.0/REPLCompletions/yNDyy.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1203
+ [3] _require(::Base.PkgId) at ./loading.jl:960
+ [4] require(::Base.PkgId) at ./loading.jl:858
+ [5] require(::Module, ::Symbol) at ./loading.jl:853
+ [6] include at ./boot.jl:317 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1044
+ [8] include(::Module, ::String) at ./sysimg.jl:29
+ [9] include(::String) at ./client.jl:392
+ [10] top-level scope at none:0
+in expression starting at /root/.julia/packages/REPLCompletions/coXeH/test/runtests.jl:1
+ERROR: Package REPLCompletions errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

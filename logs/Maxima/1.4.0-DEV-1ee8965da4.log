@@ -1,0 +1,84 @@
+ Resolving package versions...
+ Installed ReplMaker ─ v0.2.3
+ Installed Maxima ──── v0.1.1
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [e6386f5f] + Maxima v0.1.1
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [e6386f5f] + Maxima v0.1.1
+  [b873ce64] + ReplMaker v0.2.3
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+   Testing Maxima
+Status `/tmp/jl_9YXHfQ/Manifest.toml`
+  [e6386f5f] Maxima v0.1.1
+  [b873ce64] ReplMaker v0.2.3
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: InitError: Looks like Maxima is either not installed or not in the path
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] Load(; args::Cmd) at /root/.julia/packages/Maxima/WhuEA/src/setup.jl:11
+ [3] Load() at /root/.julia/packages/Maxima/WhuEA/src/setup.jl:8
+ [4] __init__() at /root/.julia/packages/Maxima/WhuEA/src/setup.jl:5
+ [5] _include_from_serialized(::String, ::Array{Any,1}) at ./loading.jl:690
+ [6] _require_from_serialized(::String) at ./loading.jl:741
+ [7] _require(::Base.PkgId) at ./loading.jl:1032
+ [8] require(::Base.PkgId) at ./loading.jl:920
+ [9] require(::Module, ::Symbol) at ./loading.jl:915
+ [10] include(::String) at ./client.jl:439
+ [11] top-level scope at none:6
+during initialization of module Maxima
+in expression starting at /root/.julia/packages/Maxima/WhuEA/test/runtests.jl:3
+caused by [exception 1]
+IOError: could not spawn `maxima --version`: no such file or directory (ENOENT)
+Stacktrace:
+ [1] _spawn_primitive(::String, ::Cmd, ::Array{Any,1}) at ./process.jl:99
+ [2] #546 at ./process.jl:112 [inlined]
+ [3] setup_stdios(::Base.var"#546#547"{Cmd}, ::Array{Any,1}) at ./process.jl:196
+ [4] _spawn at ./process.jl:111 [inlined]
+ [5] open(::Cmd, ::Base.DevNull; write::Bool, read::Bool) at ./process.jl:370
+ [6] open at ./process.jl:361 [inlined]
+ [7] open(::Cmd, ::String, ::Base.DevNull) at ./process.jl:341
+ [8] read(::Cmd) at ./process.jl:410
+ [9] read(::Cmd, ::Type{String}) at ./process.jl:421
+ [10] Load(; args::Cmd) at /root/.julia/packages/Maxima/WhuEA/src/setup.jl:9
+ [11] Load() at /root/.julia/packages/Maxima/WhuEA/src/setup.jl:8
+ [12] __init__() at /root/.julia/packages/Maxima/WhuEA/src/setup.jl:5
+ [13] _include_from_serialized(::String, ::Array{Any,1}) at ./loading.jl:690
+ [14] _require_from_serialized(::String) at ./loading.jl:741
+ [15] _require(::Base.PkgId) at ./loading.jl:1032
+ [16] require(::Base.PkgId) at ./loading.jl:920
+ [17] require(::Module, ::Symbol) at ./loading.jl:915
+ [18] include(::String) at ./client.jl:439
+ [19] top-level scope at none:6
+ERROR: Package Maxima errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

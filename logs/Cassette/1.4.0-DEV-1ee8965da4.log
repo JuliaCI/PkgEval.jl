@@ -1,0 +1,95 @@
+ Resolving package versions...
+ Installed Cassette ─ v0.2.6
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [7057c7e9] + Cassette v0.2.6
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [7057c7e9] + Cassette v0.2.6
+   Testing Cassette
+ Resolving package versions...
+No changes
+Status `/tmp/jl_eG5JD5/Manifest.toml`
+  [7057c7e9] Cassette v0.2.6
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+running unit tests
+Test Summary: | Pass  Total
+unit tests    |   91     91
+  2.666494 seconds (2.43 M allocations: 122.770 MiB, 2.23% gc time)
+running misc. tests (w/o tagging)
+   running RosCtx test...done (took 10.515115976333618 seconds)
+   running HookCtx test...done (took 1.3799469470977783 seconds)
+   running SinCtx test...done (took 3.9599850177764893 seconds)
+   running FoldCtx test...done (took 0.11135506629943848 seconds)
+   running CountCtx test...done (took 8.397293090820312 seconds)
+   running CountCtx2 test...done (took 5.074566125869751 seconds)
+   running SqrCtx test...done (took 0.09443306922912598 seconds)
+   running CompCtx test...done (took 2.740769863128662 seconds)
+   running PassCtx test...done (took 12.748464107513428 seconds)
+   running PassFallbackCtx test...done (took 1.0213918685913086 seconds)
+   running WorldCtx test...done (took 12.725995063781738 seconds)
+   running TraceCtx test...misc. tests (w/o tagging): Test Failed at /root/.julia/packages/Cassette/YCOeN/test/misctests.jl:297
+  Expression: subtracekw == trace
+   Evaluated: Any[(haskey, (_y = 0.9255724791943023, _z = 0.5297361057419618), :_y) => Any[(isdefined, (_y = 0.9255724791943023, _z = 0.5297361057419618), :_y) => Any[]], (getindex, (_y = 0.9255724791943023, _z = 0.5297361057419618), :_y) => Any[(getfield, (_y = 0.9255724791943023, _z = 0.5297361057419618), :_y) => Any[]], (haskey, (_y = 0.9255724791943023, _z = 0.5297361057419618), :_z) => Any[(isdefined, (_y = 0.9255724791943023, _z = 0.5297361057419618), :_z) => Any[]], (getindex, (_y = 0.9255724791943023, _z = 0.5297361057419618), :_z) => Any[(getfield, (_y = 0.9255724791943023, _z = 0.5297361057419618), :_z) => Any[]], (Core.apply_type, NamedTuple, (:_y, :_z)) => Any[], (Base.structdiff, (_y = 0.9255724791943023, _z = 0.5297361057419618), NamedTuple{(:_y, :_z),T} where T<:Tuple) => Any[(Core.apply_type, NamedTuple, (), Tuple{}) => Any[], (NamedTuple{(),Tuple{}}, ()) => Any[(Core.apply_type, NamedTuple, (), Tuple{}) => Any[]]], (pairs, NamedTuple()) => Any[(keys, NamedTuple()) => Any[], (Base.Iterators.Pairs, NamedTuple(), ()) => Any[(Core.apply_type, Base.Iterators.Pairs, Union{}, Union{}, Tuple{}, NamedTuple{(),Tuple{}}) => Any[], (fieldtype, Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, 1) => Any[], (convert, NamedTuple{(),Tuple{}}, NamedTuple()) => Any[], (fieldtype, Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, 2) => Any[]]], (isempty, Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}()) => Any[(Base.isdone, Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}()) => Any[(tuple, ()) => Any[], (Core._apply_iterate, iterate, Base.isdone, ((),), ()) => Any[]], (!==, missing, missing) => Any[(===, missing, missing) => Any[], (!, true) => Any[(Core.Intrinsics.not_int, true) => Any[]]], (iterate, Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}()) => Any[(tuple, ()) => Any[], (Core._apply_iterate, iterate, iterate, ((),), ()) => Any[], (===, nothing, nothing) => Any[]], (===, nothing, nothing) => Any[]], (#trkwtest#63, 0.9255724791943023, 0.5297361057419618, trkwtest, 0.25193344279768626) => Any[(trtest, 0.25193344279768626, 0.9255724791943023, 0.5297361057419618) => Any[(*, 0.25193344279768626, 0.9255724791943023) => Any[(Core.Intrinsics.mul_float, 0.25193344279768626, 0.9255724791943023) => Any[]], (*, 0.9255724791943023, 0.5297361057419618) => Any[(Core.Intrinsics.mul_float, 0.9255724791943023, 0.5297361057419618) => Any[]], (+, 0.2331826612422104, 0.4903091607103227) => Any[(Core.Intrinsics.add_float, 0.2331826612422104, 0.4903091607103227) => Any[]]]]] == Any[(trtest, 0.25193344279768626, 0.9255724791943023, 0.5297361057419618) => Any[(*, 0.25193344279768626, 0.9255724791943023) => Any[(Core.Intrinsics.mul_float, 0.25193344279768626, 0.9255724791943023) => Any[]], (*, 0.9255724791943023, 0.5297361057419618) => Any[(Core.Intrinsics.mul_float, 0.9255724791943023, 0.5297361057419618) => Any[]], (+, 0.2331826612422104, 0.4903091607103227) => Any[(Core.Intrinsics.add_float, 0.2331826612422104, 0.4903091607103227) => Any[]]]]
+Stacktrace:
+ [1] top-level scope at /root/.julia/packages/Cassette/YCOeN/test/misctests.jl:297
+ [2] include(::String) at ./client.jl:439
+ [3] macro expansion at /root/.julia/packages/Cassette/YCOeN/test/runtests.jl:11 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+ [5] macro expansion at /root/.julia/packages/Cassette/YCOeN/test/runtests.jl:11 [inlined]
+ [6] top-level scope at ./util.jl:162 [inlined]
+ [7] top-level scope at /root/.julia/packages/Cassette/YCOeN/test/runtests.jl:0
+done (took 13.999556064605713 seconds)
+   running NestedReflectCtx test...misc. tests (w/o tagging): Error During Test at /root/.julia/packages/Cassette/YCOeN/test/runtests.jl:11
+  Got exception outside of a @test
+  LoadError: AssertionError: code_info.edges === nothing
+  Stacktrace:
+   [1] reflect(::Tuple, ::UInt64) at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:83
+   [2] reflect(::Tuple) at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:46
+   [3] top-level scope at /root/.julia/packages/Cassette/YCOeN/test/misctests.jl:329
+   [4] include(::String) at ./client.jl:439
+   [5] macro expansion at /root/.julia/packages/Cassette/YCOeN/test/runtests.jl:11 [inlined]
+   [6] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [7] macro expansion at /root/.julia/packages/Cassette/YCOeN/test/runtests.jl:11 [inlined]
+   [8] top-level scope at ./util.jl:162 [inlined]
+   [9] top-level scope at /root/.julia/packages/Cassette/YCOeN/test/runtests.jl:0
+   [10] include(::String) at ./client.jl:439
+   [11] top-level scope at none:6
+   [12] eval(::Module, ::Any) at ./boot.jl:331
+   [13] exec_options(::Base.JLOptions) at ./client.jl:264
+   [14] _start() at ./client.jl:484
+  in expression starting at /root/.julia/packages/Cassette/YCOeN/test/misctests.jl:329
+  
+Test Summary:             | Pass  Fail  Error  Total
+misc. tests (w/o tagging) |   75     1      1     77
+ERROR: LoadError: Some tests did not pass: 75 passed, 1 failed, 1 errored, 0 broken.
+in expression starting at /root/.julia/packages/Cassette/YCOeN/test/runtests.jl:11
+ERROR: Package Cassette errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

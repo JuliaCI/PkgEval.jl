@@ -1,0 +1,85 @@
+ Resolving package versions...
+ Installed Combinatorics ───── v0.7.0
+ Installed PolynomialFactors ─ v0.3.0
+ Installed RecipesBase ─────── v0.7.0
+ Installed Primes ──────────── v0.4.0
+ Installed Polynomials ─────── v0.6.0
+ Installed AbstractAlgebra ─── v0.7.1
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [ec145902] + PolynomialFactors v0.3.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [c3fe647b] + AbstractAlgebra v0.7.1
+  [861a8166] + Combinatorics v0.7.0
+  [ec145902] + PolynomialFactors v0.3.0
+  [f27b6e38] + Polynomials v0.6.0
+  [27ebfcd6] + Primes v0.4.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [8dfed614] + Test 
+   Testing PolynomialFactors
+Status `/tmp/jl_xbhb5S/Manifest.toml`
+  [c3fe647b] AbstractAlgebra v0.7.1
+  [861a8166] Combinatorics v0.7.0
+  [ec145902] PolynomialFactors v0.3.0
+  [f27b6e38] Polynomials v0.6.0
+  [27ebfcd6] Primes v0.4.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [8dfed614] Test  [`@stdlib/Test`]
+ERROR: LoadError: LoadError: UndefVarError: gfelem not defined
+Stacktrace:
+ [1] getproperty(::Module, ::Symbol) at ./Base.jl:26
+ [2] top-level scope at /root/.julia/packages/PolynomialFactors/dOBeW/src/polyutils.jl:6
+ [3] include(::Module, ::String) at ./Base.jl:377
+ [4] include(::String) at /root/.julia/packages/PolynomialFactors/dOBeW/src/PolynomialFactors.jl:2
+ [5] top-level scope at /root/.julia/packages/PolynomialFactors/dOBeW/src/PolynomialFactors.jl:17
+ [6] include(::Module, ::String) at ./Base.jl:377
+ [7] top-level scope at none:2
+ [8] eval at ./boot.jl:331 [inlined]
+ [9] eval(::Expr) at ./client.jl:449
+ [10] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/PolynomialFactors/dOBeW/src/polyutils.jl:6
+in expression starting at /root/.julia/packages/PolynomialFactors/dOBeW/src/PolynomialFactors.jl:17
+ERROR: LoadError: Failed to precompile PolynomialFactors [ec145902-31c2-532e-934a-7c64254c4b82] to /root/.julia/compiled/v1.4/PolynomialFactors/tfyZL_jz0gT.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1263
+ [3] _require(::Base.PkgId) at ./loading.jl:1022
+ [4] require(::Base.PkgId) at ./loading.jl:920
+ [5] require(::Module, ::Symbol) at ./loading.jl:915
+ [6] include(::String) at ./client.jl:439
+ [7] top-level scope at none:6
+in expression starting at /root/.julia/packages/PolynomialFactors/dOBeW/test/runtests.jl:1
+ERROR: Package PolynomialFactors errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

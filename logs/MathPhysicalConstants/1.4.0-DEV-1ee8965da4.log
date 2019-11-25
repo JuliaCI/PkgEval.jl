@@ -1,0 +1,41 @@
+ Resolving package versions...
+ Installed MathPhysicalConstants ─ v0.0.5
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [b5851bab] + MathPhysicalConstants v0.0.5
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [b5851bab] + MathPhysicalConstants v0.0.5
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+   Testing MathPhysicalConstants
+ERROR: Dependency `Test` in target `test` not listed in `deps` or `extras` section.
+
+Stacktrace:
+ [1] pkgerror(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] validate(::Pkg.Types.Project) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/project.jl:100
+ [3] Pkg.Types.Project(::Dict{String,Any}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/project.jl:123
+ [4] read_project(::IOStream; path::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/project.jl:140
+ [5] #32 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/project.jl:144 [inlined]
+ [6] open(::Pkg.Types.var"#32#33"{String}, ::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at ./io.jl:298
+ [7] open at ./io.jl:296 [inlined]
+ [8] read_project(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/project.jl:143
+ [9] read_package(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:453
+ [10] collect_target_deps!(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}, ::Pkg.Types.PackageSpec, ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:377
+ [11] with_dependencies_loadable_at_toplevel(::Pkg.Operations.var"#44#46"{Pkg.Types.Context,Pkg.Types.PackageSpec,Pkg.Operations.var"#43#45"{Pkg.Types.Context,Pkg.Types.PackageSpec,Array{String,1},Cmd}}, ::Pkg.Types.Context, ::Pkg.Types.PackageSpec; might_need_to_resolve::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:464
+ [12] backwards_compatibility_for_test(::Pkg.Types.Context, ::Pkg.Types.PackageSpec, ::String, ::Array{String,1}, ::Bool; julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:559
+ [13] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1357
+ [14] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [15] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [16] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [17] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [18] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [19] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [20] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [21] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [22] top-level scope at none:10

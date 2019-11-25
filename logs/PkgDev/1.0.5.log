@@ -1,0 +1,29 @@
+ Resolving package versions...
+ERROR: Unsatisfiable requirements detected for package RegistryTools [d1eb7eb1]:
+ RegistryTools [d1eb7eb1] log:
+ ├─possible versions are: 1.0.0 or uninstalled
+ ├─restricted by julia compatibility requirements to versions: uninstalled
+ └─restricted by compatibility requirements with PkgDev [149e707d] to versions: 1.0.0 — no versions left
+   └─PkgDev [149e707d] log:
+     ├─possible versions are: [1.0.0, 1.1.0, 1.2.0] or uninstalled
+     └─restricted to versions * by an explicit requirement, leaving only versions [1.0.0, 1.1.0, 1.2.0]
+Stacktrace:
+ [1] #propagate_constraints!#61(::Bool, ::Function, ::Pkg.GraphType.Graph, ::Set{Int64}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/GraphType.jl:1007
+ [2] propagate_constraints! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/GraphType.jl:948 [inlined]
+ [3] #simplify_graph!#121(::Bool, ::Function, ::Pkg.GraphType.Graph, ::Set{Int64}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/GraphType.jl:1462
+ [4] simplify_graph! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/GraphType.jl:1462 [inlined] (repeats 2 times)
+ [5] resolve_versions!(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}, ::Nothing) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:373
+ [6] resolve_versions! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:316 [inlined]
+ [7] #add_or_develop#62(::Array{Base.UUID,1}, ::Symbol, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1201
+ [8] #add_or_develop at ./none:0 [inlined]
+ [9] #add_or_develop#15(::Symbol, ::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:69
+ [10] #add_or_develop at ./none:0 [inlined]
+ [11] #add_or_develop#14 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:34 [inlined]
+ [12] #add_or_develop at ./none:0 [inlined]
+ [13] #add_or_develop#11 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:33 [inlined]
+ [14] #add_or_develop at ./none:0 [inlined]
+ [15] #add_or_develop#10 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:32 [inlined]
+ [16] #add_or_develop at ./none:0 [inlined]
+ [17] #add#20 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:74 [inlined]
+ [18] add(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:74
+ [19] top-level scope at none:0

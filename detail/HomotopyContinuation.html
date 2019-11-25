@@ -1,0 +1,2523 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="HomotopyContinuation">HomotopyContinuation</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#HomotopyContinuation">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 17 hours ago and took 13 minutes, 33 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/HomotopyContinuation/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed TreeViews ─────────────── v0.3.0
+ Installed Reexport ──────────────── v0.2.0
+ Installed OrderedCollections ────── v1.1.0
+ Installed MultivariatePolynomials ─ v0.2.9
+ Installed StaticPolynomials ─────── v1.3.3
+ Installed Parameters ────────────── v0.10.3
+ Installed StaticArrays ──────────── v0.10.3
+ Installed HomotopyContinuation ──── v0.7.1
+ Installed ProjectiveVectors ─────── v0.2.2
+ Installed FixedPolynomials ──────── v0.4.0
+ Installed ProgressMeter ─────────── v0.9.0
+ Installed DynamicPolynomials ────── v0.1.4
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [f213a82b] + HomotopyContinuation v0.7.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [7c1d4256] + DynamicPolynomials v0.1.4
+  [3dd14ad9] + FixedPolynomials v0.4.0
+  [f213a82b] + HomotopyContinuation v0.7.1
+  [102ac46a] + MultivariatePolynomials v0.2.9
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.10.3
+  [92933f4c] + ProgressMeter v0.9.0
+  [01f381cc] + ProjectiveVectors v0.2.2
+  [189a3867] + Reexport v0.2.0
+  [90137ffa] + StaticArrays v0.10.3
+  [62e018b1] + StaticPolynomials v1.3.3
+  [a2a6695c] + TreeViews v0.3.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing HomotopyContinuation
+ Resolving package versions...
+ Installed PolynomialTestSystems ─ v0.1.4
+    Status `&#x2F;tmp&#x2F;tmpBl9cuS&#x2F;Manifest.toml`
+  [7c1d4256] DynamicPolynomials v0.1.4
+  [3dd14ad9] FixedPolynomials v0.4.0
+  [f213a82b] HomotopyContinuation v0.7.1
+  [102ac46a] MultivariatePolynomials v0.2.9
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.10.3
+  [4c526841] PolynomialTestSystems v0.1.4
+  [92933f4c] ProgressMeter v0.9.0
+  [01f381cc] ProjectiveVectors v0.2.2
+  [189a3867] Reexport v0.2.0
+  [90137ffa] StaticArrays v0.10.3
+  [62e018b1] StaticPolynomials v1.3.3
+  [a2a6695c] TreeViews v0.3.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+┌ Warning: `tol=1.0e-8` is deprecated, use `accuracy=1.0e-8` instead.
+└ @ HomotopyContinuation ~&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;XplYZ&#x2F;src&#x2F;utilities&#x2F;misc.jl:61
+Tracking 120 paths...  27%|███████▊                     |  ETA: 0:00:02[K
+  # paths tracked:                  32
+  # non-singular solutions (real):  19 (4)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         19 (4)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 120 paths... 100%|█████████████████████████████| Time: 0:00:01[K
+  # paths tracked:                  120
+  # non-singular solutions (real):  70 (10)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         70 (10)
+Tracking 1024 paths...   3%|▉                           |  ETA: 0:00:06[K
+  # paths tracked:                  32
+  # non-singular solutions (real):  0 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         0 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...   6%|█▊                          |  ETA: 0:00:05[K
+  # paths tracked:                  64
+  # non-singular solutions (real):  2 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         2 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...   9%|██▋                         |  ETA: 0:00:05[K
+  # paths tracked:                  96
+  # non-singular solutions (real):  2 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         2 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  12%|███▌                        |  ETA: 0:00:05[K
+  # paths tracked:                  128
+  # non-singular solutions (real):  4 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         4 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  16%|████▍                       |  ETA: 0:00:05[K
+  # paths tracked:                  160
+  # non-singular solutions (real):  4 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         4 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  19%|█████▎                      |  ETA: 0:00:05[K
+  # paths tracked:                  192
+  # non-singular solutions (real):  6 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         6 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  22%|██████▏                     |  ETA: 0:00:04[K
+  # paths tracked:                  224
+  # non-singular solutions (real):  6 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         6 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  25%|███████                     |  ETA: 0:00:04[K
+  # paths tracked:                  256
+  # non-singular solutions (real):  6 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         6 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  28%|███████▉                    |  ETA: 0:00:04[K
+  # paths tracked:                  288
+  # non-singular solutions (real):  6 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         6 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  31%|████████▊                   |  ETA: 0:00:04[K
+  # paths tracked:                  320
+  # non-singular solutions (real):  8 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         8 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  34%|█████████▋                  |  ETA: 0:00:04[K
+  # paths tracked:                  352
+  # non-singular solutions (real):  8 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         8 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  38%|██████████▌                 |  ETA: 0:00:03[K
+  # paths tracked:                  384
+  # non-singular solutions (real):  11 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         11 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  41%|███████████▍                |  ETA: 0:00:03[K
+  # paths tracked:                  416
+  # non-singular solutions (real):  11 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         11 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  44%|████████████▎               |  ETA: 0:00:03[K
+  # paths tracked:                  448
+  # non-singular solutions (real):  12 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         12 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  47%|█████████████▏              |  ETA: 0:00:03[K
+  # paths tracked:                  480
+  # non-singular solutions (real):  12 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         12 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  50%|██████████████              |  ETA: 0:00:03[K
+  # paths tracked:                  512
+  # non-singular solutions (real):  12 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         12 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  53%|██████████████▉             |  ETA: 0:00:03[K
+  # paths tracked:                  544
+  # non-singular solutions (real):  12 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         12 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  56%|███████████████▊            |  ETA: 0:00:03[K
+  # paths tracked:                  576
+  # non-singular solutions (real):  12 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         12 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  59%|████████████████▋           |  ETA: 0:00:02[K
+  # paths tracked:                  608
+  # non-singular solutions (real):  12 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         12 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  62%|█████████████████▌          |  ETA: 0:00:02[K
+  # paths tracked:                  640
+  # non-singular solutions (real):  12 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         12 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  66%|██████████████████▍         |  ETA: 0:00:02[K
+  # paths tracked:                  672
+  # non-singular solutions (real):  12 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         12 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  69%|███████████████████▎        |  ETA: 0:00:02[K
+  # paths tracked:                  704
+  # non-singular solutions (real):  13 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         13 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  72%|████████████████████▏       |  ETA: 0:00:02[K
+  # paths tracked:                  736
+  # non-singular solutions (real):  13 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         13 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  75%|█████████████████████       |  ETA: 0:00:02[K
+  # paths tracked:                  768
+  # non-singular solutions (real):  14 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         14 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  78%|█████████████████████▉      |  ETA: 0:00:01[K
+  # paths tracked:                  800
+  # non-singular solutions (real):  14 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         14 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  81%|██████████████████████▊     |  ETA: 0:00:01[K
+  # paths tracked:                  832
+  # non-singular solutions (real):  15 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         15 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  84%|███████████████████████▋    |  ETA: 0:00:01[K
+  # paths tracked:                  864
+  # non-singular solutions (real):  15 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         15 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  88%|████████████████████████▌   |  ETA: 0:00:01[K
+  # paths tracked:                  896
+  # non-singular solutions (real):  16 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         16 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  91%|█████████████████████████▍  |  ETA: 0:00:01[K
+  # paths tracked:                  928
+  # non-singular solutions (real):  16 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         16 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  94%|██████████████████████████▎ |  ETA: 0:00:00[K
+  # paths tracked:                  960
+  # non-singular solutions (real):  16 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         16 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths...  97%|███████████████████████████▏|  ETA: 0:00:00[K
+  # paths tracked:                  992
+  # non-singular solutions (real):  16 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         16 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths... 100%|████████████████████████████| Time: 0:00:06[K
+  # paths tracked:                  1024
+  # non-singular solutions (real):  16 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         16 (0)
+
+
+
+
+[K[A[K[A[K[A[K[ATracking 1024 paths... 100%|████████████████████████████| Time: 0:00:06[K
+  # paths tracked:                  1024
+  # non-singular solutions (real):  16 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         16 (0)
+Tracking 320 paths...  10%|██▉                          |  ETA: 0:00:27[K
+  # paths tracked:                  32
+  # non-singular solutions (real):  3 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         3 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 320 paths...  20%|█████▊                       |  ETA: 0:00:13[K
+  # paths tracked:                  64
+  # non-singular solutions (real):  3 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         3 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 320 paths...  30%|████████▊                    |  ETA: 0:00:09[K
+  # paths tracked:                  96
+  # non-singular solutions (real):  5 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         5 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 320 paths...  40%|███████████▋                 |  ETA: 0:00:06[K
+  # paths tracked:                  128
+  # non-singular solutions (real):  6 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         6 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 320 paths...  50%|██████████████▌              |  ETA: 0:00:04[K
+  # paths tracked:                  160
+  # non-singular solutions (real):  7 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         7 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 320 paths...  60%|█████████████████▍           |  ETA: 0:00:03[K
+  # paths tracked:                  192
+  # non-singular solutions (real):  8 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         8 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 320 paths...  70%|████████████████████▎        |  ETA: 0:00:02[K
+  # paths tracked:                  224
+  # non-singular solutions (real):  8 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         8 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 320 paths...  80%|███████████████████████▎     |  ETA: 0:00:01[K
+  # paths tracked:                  256
+  # non-singular solutions (real):  10 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         10 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 320 paths...  90%|██████████████████████████▏  |  ETA: 0:00:01[K
+  # paths tracked:                  288
+  # non-singular solutions (real):  14 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         14 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 320 paths... 100%|█████████████████████████████| Time: 0:00:06[K
+  # paths tracked:                  320
+  # non-singular solutions (real):  16 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         16 (0)
+
+
+
+
+[K[A[K[A[K[A[K[ATracking 320 paths... 100%|█████████████████████████████| Time: 0:00:06[K
+  # paths tracked:                  320
+  # non-singular solutions (real):  16 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         16 (0)
+Tracking 216 paths...  15%|████▎                        |  ETA: 0:00:12[K
+  # paths tracked:                  32
+  # non-singular solutions (real):  10 (3)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         10 (3)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 216 paths...  30%|████████▋                    |  ETA: 0:00:05[K
+  # paths tracked:                  64
+  # non-singular solutions (real):  24 (5)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         24 (5)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 216 paths...  44%|████████████▉                |  ETA: 0:00:03[K
+  # paths tracked:                  96
+  # non-singular solutions (real):  39 (6)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         39 (6)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 216 paths...  59%|█████████████████▏           |  ETA: 0:00:02[K
+  # paths tracked:                  128
+  # non-singular solutions (real):  51 (7)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         51 (7)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 216 paths...  74%|█████████████████████▌       |  ETA: 0:00:01[K
+  # paths tracked:                  160
+  # non-singular solutions (real):  63 (7)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         63 (7)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 216 paths...  89%|█████████████████████████▊   |  ETA: 0:00:00[K
+  # paths tracked:                  192
+  # non-singular solutions (real):  76 (8)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         76 (8)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 216 paths... 100%|█████████████████████████████| Time: 0:00:03[K
+  # paths tracked:                  216
+  # non-singular solutions (real):  80 (8)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         80 (8)
+Tracking 576 paths...  11%|███▎                         |  ETA: 0:00:02[K
+  # paths tracked:                  64
+  # non-singular solutions (real):  0 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         0 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 576 paths...  17%|████▉                        |  ETA: 0:00:02[K
+  # paths tracked:                  96
+  # non-singular solutions (real):  0 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         0 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 576 paths...  22%|██████▌                      |  ETA: 0:00:02[K
+  # paths tracked:                  128
+  # non-singular solutions (real):  0 (0)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         0 (0)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 576 paths...  28%|████████                     |  ETA: 0:00:01[K
+  # paths tracked:                  160
+  # non-singular solutions (real):  1 (1)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         1 (1)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 576 paths...  33%|█████████▋                   |  ETA: 0:00:01[K
+  # paths tracked:                  192
+  # non-singular solutions (real):  1 (1)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         1 (1)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 576 paths...  44%|████████████▉                |  ETA: 0:00:01[K
+  # paths tracked:                  256
+  # non-singular solutions (real):  1 (1)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         1 (1)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 576 paths...  50%|██████████████▌              |  ETA: 0:00:01[K
+  # paths tracked:                  288
+  # non-singular solutions (real):  2 (1)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         2 (1)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 576 paths...  56%|████████████████▏            |  ETA: 0:00:01[K
+  # paths tracked:                  320
+  # non-singular solutions (real):  2 (1)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         2 (1)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 576 paths...  61%|█████████████████▊           |  ETA: 0:00:01[K
+  # paths tracked:                  352
+  # non-singular solutions (real):  3 (1)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         3 (1)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 576 paths...  72%|█████████████████████        |  ETA: 0:00:01[K
+  # paths tracked:                  416
+  # non-singular solutions (real):  3 (1)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         3 (1)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 576 paths...  78%|██████████████████████▌      |  ETA: 0:00:00[K
+  # paths tracked:                  448
+  # non-singular solutions (real):  3 (1)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         3 (1)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 576 paths...  83%|████████████████████████▏    |  ETA: 0:00:00[K
+  # paths tracked:                  480
+  # non-singular solutions (real):  3 (1)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         3 (1)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 576 paths...  89%|█████████████████████████▊   |  ETA: 0:00:00[K
+  # paths tracked:                  512
+  # non-singular solutions (real):  3 (1)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         3 (1)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 576 paths... 100%|█████████████████████████████| Time: 0:00:02[K
+  # paths tracked:                  576
+  # non-singular solutions (real):  4 (2)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         4 (2)
+
+
+
+
+[K[A[K[A[K[A[K[ATracking 576 paths... 100%|█████████████████████████████| Time: 0:00:02[K
+  # paths tracked:                  576
+  # non-singular solutions (real):  4 (2)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         4 (2)
+┌ Warning: `report_progress=false` is deprecated, use `show_progress=false` instead.
+└ @ HomotopyContinuation ~&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;XplYZ&#x2F;src&#x2F;utilities&#x2F;misc.jl:61
+Tracking 720 paths...   4%|█▎                           |  ETA: 0:00:03[K
+  # paths tracked:                  32
+  # non-singular solutions (real):  7 (2)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         7 (2)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 720 paths...   9%|██▋                          |  ETA: 0:00:02[K
+  # paths tracked:                  64
+  # non-singular solutions (real):  11 (3)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         11 (3)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 720 paths...  13%|███▉                         |  ETA: 0:00:02[K
+  # paths tracked:                  96
+  # non-singular solutions (real):  19 (5)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         19 (5)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 720 paths...  22%|██████▌                      |  ETA: 0:00:02[K
+  # paths tracked:                  160
+  # non-singular solutions (real):  30 (9)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         30 (9)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 720 paths...  31%|█████████                    |  ETA: 0:00:01[K
+  # paths tracked:                  224
+  # non-singular solutions (real):  46 (10)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         46 (10)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 720 paths...  40%|███████████▋                 |  ETA: 0:00:01[K
+  # paths tracked:                  288
+  # non-singular solutions (real):  62 (10)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         62 (10)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 720 paths...  44%|████████████▉                |  ETA: 0:00:01[K
+  # paths tracked:                  320
+  # non-singular solutions (real):  71 (11)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         71 (11)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 720 paths...  53%|███████████████▌             |  ETA: 0:00:01[K
+  # paths tracked:                  384
+  # non-singular solutions (real):  83 (12)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         83 (12)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 720 paths...  62%|██████████████████           |  ETA: 0:00:01[K
+  # paths tracked:                  448
+  # non-singular solutions (real):  98 (14)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         98 (14)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 720 paths...  71%|████████████████████▋        |  ETA: 0:00:00[K
+  # paths tracked:                  512
+  # non-singular solutions (real):  114 (21)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         114 (21)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 720 paths...  80%|███████████████████████▎     |  ETA: 0:00:00[K
+  # paths tracked:                  576
+  # non-singular solutions (real):  129 (22)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         129 (22)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 720 paths...  89%|█████████████████████████▊   |  ETA: 0:00:00[K
+  # paths tracked:                  640
+  # non-singular solutions (real):  140 (23)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         140 (23)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 720 paths...  98%|████████████████████████████▍|  ETA: 0:00:00[K
+  # paths tracked:                  704
+  # non-singular solutions (real):  153 (24)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         153 (24)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 720 paths... 100%|█████████████████████████████| Time: 0:00:02[K
+  # paths tracked:                  720
+  # non-singular solutions (real):  156 (24)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         156 (24)
+Tracking 5040 paths...   1%|▍                           |  ETA: 0:00:13[K
+  # paths tracked:                  64
+  # non-singular solutions (real):  12 (1)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         12 (1)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...   3%|▊                           |  ETA: 0:00:12[K
+  # paths tracked:                  128
+  # non-singular solutions (real):  28 (5)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         28 (5)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...   4%|█▏                          |  ETA: 0:00:12[K
+  # paths tracked:                  192
+  # non-singular solutions (real):  40 (8)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         40 (8)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...   5%|█▍                          |  ETA: 0:00:12[K
+  # paths tracked:                  256
+  # non-singular solutions (real):  53 (10)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         53 (10)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...   6%|█▊                          |  ETA: 0:00:12[K
+  # paths tracked:                  320
+  # non-singular solutions (real):  65 (11)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         65 (11)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...   8%|██▏                         |  ETA: 0:00:12[K
+  # paths tracked:                  384
+  # non-singular solutions (real):  78 (11)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         78 (11)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...   9%|██▌                         |  ETA: 0:00:12[K
+  # paths tracked:                  448
+  # non-singular solutions (real):  88 (13)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         88 (13)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  10%|██▉                         |  ETA: 0:00:12[K
+  # paths tracked:                  512
+  # non-singular solutions (real):  92 (13)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         92 (13)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  11%|███▎                        |  ETA: 0:00:12[K
+  # paths tracked:                  576
+  # non-singular solutions (real):  103 (13)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         103 (13)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  13%|███▌                        |  ETA: 0:00:11[K
+  # paths tracked:                  640
+  # non-singular solutions (real):  120 (14)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         120 (14)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  14%|███▉                        |  ETA: 0:00:11[K
+  # paths tracked:                  704
+  # non-singular solutions (real):  134 (15)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         134 (15)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  15%|████▎                       |  ETA: 0:00:11[K
+  # paths tracked:                  768
+  # non-singular solutions (real):  147 (16)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         147 (16)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  17%|████▋                       |  ETA: 0:00:11[K
+  # paths tracked:                  832
+  # non-singular solutions (real):  160 (16)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         160 (16)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  18%|█████                       |  ETA: 0:00:11[K
+  # paths tracked:                  896
+  # non-singular solutions (real):  173 (17)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         173 (17)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  19%|█████▍                      |  ETA: 0:00:10[K
+  # paths tracked:                  960
+  # non-singular solutions (real):  189 (17)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         189 (17)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  20%|█████▌                      |  ETA: 0:00:10[K
+  # paths tracked:                  992
+  # non-singular solutions (real):  194 (18)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         194 (18)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  20%|█████▊                      |  ETA: 0:00:11[K
+  # paths tracked:                  1024
+  # non-singular solutions (real):  197 (18)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         197 (18)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  22%|██████                      |  ETA: 0:00:11[K
+  # paths tracked:                  1088
+  # non-singular solutions (real):  206 (19)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         206 (19)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  23%|██████▍                     |  ETA: 0:00:10[K
+  # paths tracked:                  1152
+  # non-singular solutions (real):  218 (19)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         218 (19)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  24%|██████▊                     |  ETA: 0:00:10[K
+  # paths tracked:                  1216
+  # non-singular solutions (real):  233 (19)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         233 (19)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  25%|███████▏                    |  ETA: 0:00:10[K
+  # paths tracked:                  1280
+  # non-singular solutions (real):  249 (20)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         249 (20)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  27%|███████▌                    |  ETA: 0:00:10[K
+  # paths tracked:                  1344
+  # non-singular solutions (real):  260 (20)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         260 (20)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  28%|███████▉                    |  ETA: 0:00:10[K
+  # paths tracked:                  1408
+  # non-singular solutions (real):  269 (22)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         269 (22)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  29%|████████▏                   |  ETA: 0:00:09[K
+  # paths tracked:                  1472
+  # non-singular solutions (real):  279 (23)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         279 (23)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  30%|████████▍                   |  ETA: 0:00:09[K
+  # paths tracked:                  1504
+  # non-singular solutions (real):  281 (24)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         281 (24)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  31%|████████▊                   |  ETA: 0:00:09[K
+  # paths tracked:                  1568
+  # non-singular solutions (real):  294 (25)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         294 (25)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  32%|█████████▏                  |  ETA: 0:00:09[K
+  # paths tracked:                  1632
+  # non-singular solutions (real):  308 (26)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         308 (26)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  33%|█████████▎                  |  ETA: 0:00:09[K
+  # paths tracked:                  1664
+  # non-singular solutions (real):  315 (26)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         315 (26)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  34%|█████████▋                  |  ETA: 0:00:09[K
+  # paths tracked:                  1728
+  # non-singular solutions (real):  330 (27)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         330 (27)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  36%|██████████                  |  ETA: 0:00:09[K
+  # paths tracked:                  1792
+  # non-singular solutions (real):  344 (28)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         344 (28)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  36%|██████████▏                 |  ETA: 0:00:09[K
+  # paths tracked:                  1824
+  # non-singular solutions (real):  352 (28)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         352 (28)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  37%|██████████▎                 |  ETA: 0:00:09[K
+  # paths tracked:                  1856
+  # non-singular solutions (real):  357 (28)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         357 (28)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  37%|██████████▌                 |  ETA: 0:00:09[K
+  # paths tracked:                  1888
+  # non-singular solutions (real):  361 (28)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         361 (28)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  38%|██████████▋                 |  ETA: 0:00:09[K
+  # paths tracked:                  1920
+  # non-singular solutions (real):  365 (28)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         365 (28)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  39%|███████████                 |  ETA: 0:00:08[K
+  # paths tracked:                  1984
+  # non-singular solutions (real):  380 (28)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         380 (28)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  41%|███████████▍                |  ETA: 0:00:08[K
+  # paths tracked:                  2048
+  # non-singular solutions (real):  389 (28)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         389 (28)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  42%|███████████▊                |  ETA: 0:00:08[K
+  # paths tracked:                  2112
+  # non-singular solutions (real):  401 (28)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         401 (28)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  43%|███████████▉                |  ETA: 0:00:08[K
+  # paths tracked:                  2144
+  # non-singular solutions (real):  406 (28)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         406 (28)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  44%|████████████▎               |  ETA: 0:00:08[K
+  # paths tracked:                  2208
+  # non-singular solutions (real):  418 (29)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         418 (29)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  45%|████████████▋               |  ETA: 0:00:08[K
+  # paths tracked:                  2272
+  # non-singular solutions (real):  433 (29)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         433 (29)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  46%|█████████████               |  ETA: 0:00:08[K
+  # paths tracked:                  2336
+  # non-singular solutions (real):  445 (29)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         445 (29)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  48%|█████████████▍              |  ETA: 0:00:07[K
+  # paths tracked:                  2400
+  # non-singular solutions (real):  456 (29)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         456 (29)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  49%|█████████████▊              |  ETA: 0:00:07[K
+  # paths tracked:                  2464
+  # non-singular solutions (real):  472 (31)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         472 (31)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  50%|██████████████              |  ETA: 0:00:07[K
+  # paths tracked:                  2528
+  # non-singular solutions (real):  484 (31)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         484 (31)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  51%|██████████████▎             |  ETA: 0:00:07[K
+  # paths tracked:                  2560
+  # non-singular solutions (real):  487 (32)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         487 (32)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  52%|██████████████▋             |  ETA: 0:00:07[K
+  # paths tracked:                  2624
+  # non-singular solutions (real):  496 (33)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         496 (33)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  53%|██████████████▊             |  ETA: 0:00:07[K
+  # paths tracked:                  2656
+  # non-singular solutions (real):  504 (36)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         504 (36)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  53%|██████████████▉             |  ETA: 0:00:07[K
+  # paths tracked:                  2688
+  # non-singular solutions (real):  510 (36)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         510 (36)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  54%|███████████████▏            |  ETA: 0:00:07[K
+  # paths tracked:                  2720
+  # non-singular solutions (real):  515 (37)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         515 (37)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  55%|███████████████▌            |  ETA: 0:00:06[K
+  # paths tracked:                  2784
+  # non-singular solutions (real):  525 (39)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         525 (39)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  57%|███████████████▉            |  ETA: 0:00:06[K
+  # paths tracked:                  2848
+  # non-singular solutions (real):  541 (40)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         541 (40)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  58%|████████████████▏           |  ETA: 0:00:06[K
+  # paths tracked:                  2912
+  # non-singular solutions (real):  552 (40)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         552 (40)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  58%|████████████████▍           |  ETA: 0:00:06[K
+  # paths tracked:                  2944
+  # non-singular solutions (real):  557 (40)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         557 (40)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  60%|████████████████▊           |  ETA: 0:00:06[K
+  # paths tracked:                  3008
+  # non-singular solutions (real):  571 (41)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         571 (41)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  61%|█████████████████▏          |  ETA: 0:00:06[K
+  # paths tracked:                  3072
+  # non-singular solutions (real):  586 (41)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         586 (41)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  62%|█████████████████▎          |  ETA: 0:00:06[K
+  # paths tracked:                  3104
+  # non-singular solutions (real):  592 (41)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         592 (41)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  63%|█████████████████▋          |  ETA: 0:00:06[K
+  # paths tracked:                  3168
+  # non-singular solutions (real):  602 (41)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         602 (41)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  64%|██████████████████          |  ETA: 0:00:05[K
+  # paths tracked:                  3232
+  # non-singular solutions (real):  611 (42)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         611 (42)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  65%|██████████████████▎         |  ETA: 0:00:05[K
+  # paths tracked:                  3296
+  # non-singular solutions (real):  623 (43)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         623 (43)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  66%|██████████████████▌         |  ETA: 0:00:05[K
+  # paths tracked:                  3328
+  # non-singular solutions (real):  626 (43)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         626 (43)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  67%|██████████████████▋         |  ETA: 0:00:05[K
+  # paths tracked:                  3360
+  # non-singular solutions (real):  630 (43)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         630 (43)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  68%|███████████████████         |  ETA: 0:00:05[K
+  # paths tracked:                  3424
+  # non-singular solutions (real):  641 (43)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         641 (43)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  69%|███████████████████▍        |  ETA: 0:00:05[K
+  # paths tracked:                  3488
+  # non-singular solutions (real):  654 (43)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         654 (43)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  70%|███████████████████▊        |  ETA: 0:00:04[K
+  # paths tracked:                  3552
+  # non-singular solutions (real):  670 (44)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         670 (44)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  72%|████████████████████▏       |  ETA: 0:00:04[K
+  # paths tracked:                  3616
+  # non-singular solutions (real):  677 (44)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         677 (44)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  73%|████████████████████▌       |  ETA: 0:00:04[K
+  # paths tracked:                  3680
+  # non-singular solutions (real):  684 (45)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         684 (45)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  74%|████████████████████▊       |  ETA: 0:00:04[K
+  # paths tracked:                  3744
+  # non-singular solutions (real):  700 (45)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         700 (45)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  76%|█████████████████████▏      |  ETA: 0:00:04[K
+  # paths tracked:                  3808
+  # non-singular solutions (real):  705 (45)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         705 (45)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  76%|█████████████████████▍      |  ETA: 0:00:04[K
+  # paths tracked:                  3840
+  # non-singular solutions (real):  707 (45)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         707 (45)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  77%|█████████████████████▊      |  ETA: 0:00:03[K
+  # paths tracked:                  3904
+  # non-singular solutions (real):  718 (45)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         718 (45)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  79%|██████████████████████      |  ETA: 0:00:03[K
+  # paths tracked:                  3968
+  # non-singular solutions (real):  726 (45)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         726 (45)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  80%|██████████████████████▍     |  ETA: 0:00:03[K
+  # paths tracked:                  4032
+  # non-singular solutions (real):  749 (46)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         749 (46)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  81%|██████████████████████▋     |  ETA: 0:00:03[K
+  # paths tracked:                  4064
+  # non-singular solutions (real):  754 (47)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         754 (47)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  81%|██████████████████████▊     |  ETA: 0:00:03[K
+  # paths tracked:                  4096
+  # non-singular solutions (real):  761 (47)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         761 (47)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  83%|███████████████████████▏    |  ETA: 0:00:03[K
+  # paths tracked:                  4160
+  # non-singular solutions (real):  775 (48)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         775 (48)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  84%|███████████████████████▌    |  ETA: 0:00:02[K
+  # paths tracked:                  4224
+  # non-singular solutions (real):  784 (48)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         784 (48)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  84%|███████████████████████▋    |  ETA: 0:00:02[K
+  # paths tracked:                  4256
+  # non-singular solutions (real):  791 (48)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         791 (48)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  86%|████████████████████████    |  ETA: 0:00:02[K
+  # paths tracked:                  4320
+  # non-singular solutions (real):  801 (49)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         801 (49)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  87%|████████████████████████▍   |  ETA: 0:00:02[K
+  # paths tracked:                  4384
+  # non-singular solutions (real):  815 (52)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         815 (52)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  88%|████████████████████████▊   |  ETA: 0:00:02[K
+  # paths tracked:                  4448
+  # non-singular solutions (real):  825 (54)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         825 (54)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  89%|████████████████████████▉   |  ETA: 0:00:02[K
+  # paths tracked:                  4480
+  # non-singular solutions (real):  830 (54)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         830 (54)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  90%|█████████████████████████▎  |  ETA: 0:00:01[K
+  # paths tracked:                  4544
+  # non-singular solutions (real):  840 (54)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         840 (54)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  91%|█████████████████████████▋  |  ETA: 0:00:01[K
+  # paths tracked:                  4608
+  # non-singular solutions (real):  853 (55)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         853 (55)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  93%|██████████████████████████  |  ETA: 0:00:01[K
+  # paths tracked:                  4672
+  # non-singular solutions (real):  864 (55)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         864 (55)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  94%|██████████████████████████▎ |  ETA: 0:00:01[K
+  # paths tracked:                  4736
+  # non-singular solutions (real):  870 (55)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         870 (55)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  95%|██████████████████████████▌ |  ETA: 0:00:01[K
+  # paths tracked:                  4768
+  # non-singular solutions (real):  877 (55)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         877 (55)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  95%|██████████████████████████▋ |  ETA: 0:00:01[K
+  # paths tracked:                  4800
+  # non-singular solutions (real):  882 (55)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         882 (55)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  96%|██████████████████████████▉ |  ETA: 0:00:01[K
+  # paths tracked:                  4832
+  # non-singular solutions (real):  888 (55)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         888 (55)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  97%|███████████████████████████ |  ETA: 0:00:01[K
+  # paths tracked:                  4864
+  # non-singular solutions (real):  891 (55)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         891 (55)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  97%|███████████████████████████▎|  ETA: 0:00:00[K
+  # paths tracked:                  4896
+  # non-singular solutions (real):  896 (55)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         896 (55)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  98%|███████████████████████████▍|  ETA: 0:00:00[K
+  # paths tracked:                  4928
+  # non-singular solutions (real):  901 (55)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         901 (55)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  98%|███████████████████████████▌|  ETA: 0:00:00[K
+  # paths tracked:                  4960
+  # non-singular solutions (real):  908 (55)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         908 (55)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths...  99%|███████████████████████████▊|  ETA: 0:00:00[K
+  # paths tracked:                  4992
+  # non-singular solutions (real):  914 (55)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         914 (55)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths... 100%|███████████████████████████▉|  ETA: 0:00:00[K
+  # paths tracked:                  5024
+  # non-singular solutions (real):  921 (55)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         921 (55)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 5040 paths... 100%|████████████████████████████| Time: 0:00:15[K
+  # paths tracked:                  5040
+  # non-singular solutions (real):  924 (56)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         924 (56)
+Solutions found: 1 	 Time: 0:00:03[K
+  # paths tracked:              1
+  # loops generated:            1
+  # loops without change:       1
+  # solutions in current loop:  0
+  # real solutions:             1Solutions found: 21 	 Time: 0:00:00[K
+  # paths tracked:              210
+  # loops generated:            2
+  # loops without change:       1
+  # solutions in current loop:  0
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[ASolutions found: 21 	 Time: 0:00:00[K
+  # paths tracked:              808
+  # loops generated:            6
+  # loops without change:       5
+  # solutions in current loop:  0
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[ASolutions found: 21 	 Time: 0:00:00[K
+  # paths tracked:              1391
+  # loops generated:            10
+  # loops without change:       9
+  # solutions in current loop:  0
+  # real solutions:             1┌ Warning: None of the provided solutions is a valid start solution.
+└ @ HomotopyContinuation ~&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;XplYZ&#x2F;src&#x2F;monodromy.jl:614
+Solutions found: 15 	 Time: 0:00:00[K
+  # paths tracked:              103
+  # loops generated:            1
+  # loops without change:       0
+  # solutions in current loop:  14
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[ASolutions found: 21 	 Time: 0:00:00[K
+  # paths tracked:              380
+  # loops generated:            3
+  # loops without change:       1
+  # solutions in current loop:  0
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[ASolutions found: 21 	 Time: 0:00:00[K
+  # paths tracked:              655
+  # loops generated:            5
+  # loops without change:       3
+  # solutions in current loop:  0
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[ASolutions found: 21 	 Time: 0:00:00[K
+  # paths tracked:              1064
+  # loops generated:            8
+  # loops without change:       6
+  # solutions in current loop:  0
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[ASolutions found: 21 	 Time: 0:00:01[K
+  # paths tracked:              1630
+  # loops generated:            12
+  # loops without change:       10
+  # solutions in current loop:  0
+  # real solutions:             1Solutions found: 1 	 Time: 0:00:01[K
+  # paths tracked:              1
+  # loops generated:            1
+  # loops without change:       1
+  # solutions in current loop:  0
+  # real solutions:             1Solutions found: 15 	 Time: 0:00:00[K
+  # paths tracked:              103
+  # loops generated:            1
+  # loops without change:       0
+  # solutions in current loop:  14
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[ASolutions found: 21 	 Time: 0:00:00[K
+  # paths tracked:              399
+  # loops generated:            3
+  # loops without change:       1
+  # solutions in current loop:  0
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[ASolutions found: 21 	 Time: 0:00:00[K
+  # paths tracked:              935
+  # loops generated:            7
+  # loops without change:       5
+  # solutions in current loop:  0
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[ASolutions found: 21 	 Time: 0:00:00[K
+  # paths tracked:              1519
+  # loops generated:            11
+  # loops without change:       9
+  # solutions in current loop:  0
+  # real solutions:             1Solutions found: 21 	 Time: 0:00:00[K
+  # paths tracked:              263
+  # loops generated:            3
+  # loops without change:       1
+  # solutions in current loop:  0
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[ASolutions found: 21 	 Time: 0:00:00[K
+  # paths tracked:              393
+  # loops generated:            4
+  # loops without change:       2
+  # solutions in current loop:  0
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[ASolutions found: 21 	 Time: 0:00:00[K
+  # paths tracked:              963
+  # loops generated:            8
+  # loops without change:       6
+  # solutions in current loop:  0
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[ASolutions found: 21 	 Time: 0:00:00[K
+  # paths tracked:              1502
+  # loops generated:            12
+  # loops without change:       10
+  # solutions in current loop:  0
+  # real solutions:             1Solutions found: 21 	 Time: 0:00:00[K
+  # paths tracked:              381
+  # loops generated:            5
+  # loops without change:       0
+  # solutions in current loop:  6
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[ASolutions found: 21 	 Time: 0:00:00[K
+  # paths tracked:              957
+  # loops generated:            9
+  # loops without change:       4
+  # solutions in current loop:  0
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[ASolutions found: 21 	 Time: 0:00:00[K
+  # paths tracked:              1512
+  # loops generated:            13
+  # loops without change:       8
+  # solutions in current loop:  0
+  # real solutions:             1Solutions found: 1 	 Time: 0:00:01[K
+  # paths tracked:              1
+  # loops generated:            1
+  # loops without change:       1
+  # solutions in current loop:  0
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[ASolutions found: 2 	 Time: 0:00:01[K
+Solutions found: 1 	 Time: 0:00:01[K
+  # paths tracked:              1
+  # loops generated:            1
+  # loops without change:       1
+  # solutions in current loop:  0
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[ASolutions found: 5 	 Time: 0:00:03[K
+  # paths tracked:              3
+  # loops generated:            1
+  # loops without change:       0
+  # solutions in current loop:  4
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[ASolutions found: 21 	 Time: 0:00:03[K
+  # paths tracked:              111
+  # loops generated:            1
+  # loops without change:       0
+  # solutions in current loop:  20
+  # real solutions:             1Solutions found: 1 	 Time: 0:00:01[K
+  # paths tracked:              1
+  # loops generated:            1
+  # loops without change:       1
+  # solutions in current loop:  0
+  # real solutions:             1Solutions found: 1 	 Time: 0:00:01[K
+  # paths tracked:              1
+  # loops generated:            1
+  # loops without change:       1
+  # solutions in current loop:  0
+  # real solutions:             1Classes of solutions (modulo group action) found: 1 	 Time: 0:00:01[K
+  # paths tracked:              1
+  # loops generated:            1
+  # loops without change:       1
+  # solutions in current loop:  0
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[AClasses of solutions (modulo group action) found: 7 	 Time: 0:00:01[K
+Classes of solutions (modulo group action) found: 7 	 Time: 0:00:00[K
+  # paths tracked:              242
+  # loops generated:            5
+  # loops without change:       4
+  # solutions in current loop:  0
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[AClasses of solutions (modulo group action) found: 7 	 Time: 0:00:00[K
+  # paths tracked:              627
+  # loops generated:            13
+  # loops without change:       12
+  # solutions in current loop:  0
+  # real solutions:             1Classes of solutions (modulo group action) found: 1 	 Time: 0:00:02[K
+  # paths tracked:              1
+  # loops generated:            1
+  # loops without change:       1
+  # solutions in current loop:  0
+  # real solutions:             1[K[A[K[A[K[A[K[A[K[AClasses of solutions (modulo group action) found: 7 	 Time: 0:00:02[K
+Test Summary:        | Pass  Total
+HomotopyContinuation |  841    841
+   Testing HomotopyContinuation tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 10 hours ago and took 26 minutes, 9 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/HomotopyContinuation/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed ElasticArrays ─────────────── v1.0.0
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed DynamicPolynomials ────────── v0.3.3
+ Installed TableTraits ───────────────── v1.0.0
+ Installed GenericSchur ──────────────── v0.3.0
+ Installed HomotopyContinuation ──────── v1.2.1
+ Installed Polynomials ───────────────── v0.6.0
+ Installed Requires ──────────────────── v0.5.2
+ Installed Reexport ──────────────────── v0.2.0
+ Installed GenericSVD ────────────────── v0.2.2
+ Installed Tables ────────────────────── v0.2.11
+ Installed StaticPolynomials ─────────── v1.3.3
+ Installed MultivariatePolynomials ───── v0.3.2
+ Installed OrderedCollections ────────── v1.1.0
+ Installed DoubleFloats ──────────────── v0.9.13
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed ProjectiveVectors ─────────── v1.1.2
+ Installed Crayons ───────────────────── v4.0.1
+ Installed TreeViews ─────────────────── v0.3.0
+ Installed Parameters ────────────────── v0.12.0
+ Installed Quadmath ──────────────────── v0.5.2
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed StaticArrays ──────────────── v0.11.1
+ Installed Formatting ────────────────── v0.4.1
+ Installed ProgressMeter ─────────────── v1.2.0
+ Installed MixedSubdivisions ─────────── v0.3.4
+ Installed FixedPolynomials ──────────── v0.4.0
+ Installed PrettyTables ──────────────── v0.6.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [f213a82b] + HomotopyContinuation v1.2.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [a8cc5b0e] + Crayons v4.0.1
+  [9a962f9c] + DataAPI v1.1.0
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [497a8b3b] + DoubleFloats v0.9.13
+  [7c1d4256] + DynamicPolynomials v0.3.3
+  [fdbdab4c] + ElasticArrays v1.0.0
+  [3dd14ad9] + FixedPolynomials v0.4.0
+  [59287772] + Formatting v0.4.1
+  [01680d73] + GenericSVD v0.2.2
+  [c145ed77] + GenericSchur v0.3.0
+  [f213a82b] + HomotopyContinuation v1.2.1
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [291d046c] + MixedSubdivisions v0.3.4
+  [102ac46a] + MultivariatePolynomials v0.3.2
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [f27b6e38] + Polynomials v0.6.0
+  [08abe8d2] + PrettyTables v0.6.0
+  [92933f4c] + ProgressMeter v1.2.0
+  [01f381cc] + ProjectiveVectors v1.1.2
+  [be4d8f0f] + Quadmath v0.5.2
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [90137ffa] + StaticArrays v0.11.1
+  [62e018b1] + StaticPolynomials v1.3.3
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [a2a6695c] + TreeViews v0.3.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing HomotopyContinuation
+ Resolving package versions...
+ Installed PolynomialTestSystems ─ v0.1.4
+    Status `&#x2F;tmp&#x2F;jl_KL8noY&#x2F;Manifest.toml`
+  [a8cc5b0e] Crayons v4.0.1
+  [9a962f9c] DataAPI v1.1.0
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [497a8b3b] DoubleFloats v0.9.13
+  [7c1d4256] DynamicPolynomials v0.3.3
+  [fdbdab4c] ElasticArrays v1.0.0
+  [3dd14ad9] FixedPolynomials v0.4.0
+  [59287772] Formatting v0.4.1
+  [01680d73] GenericSVD v0.2.2
+  [c145ed77] GenericSchur v0.3.0
+  [f213a82b] HomotopyContinuation v1.2.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [291d046c] MixedSubdivisions v0.3.4
+  [102ac46a] MultivariatePolynomials v0.3.2
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [4c526841] PolynomialTestSystems v0.1.4
+  [f27b6e38] Polynomials v0.6.0
+  [08abe8d2] PrettyTables v0.6.0
+  [92933f4c] ProgressMeter v1.2.0
+  [01f381cc] ProjectiveVectors v1.1.2
+  [be4d8f0f] Quadmath v0.5.2
+  [3cdcf5f2] RecipesBase v0.7.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [90137ffa] StaticArrays v0.11.1
+  [62e018b1] StaticPolynomials v1.3.3
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [a2a6695c] TreeViews v0.3.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+┌ Warning: `setup!(tracker::CoreTracker, x₁, t₁, t₀; kwargs...)` is deprecated, use `init!(tracker, x₁, t₁, t₀; kwargs...)` instead.
+│   caller = top-level scope at core_tracker_test.jl:40
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;core_tracker_test.jl:40
+┌ Warning: Solutions are now automatically refined to maximal achievable accuracy.
+└ @ HomotopyContinuation ~&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;src&#x2F;core_tracker.jl:1422
+┌ Warning: `set_refinement_accuracy!` is deprecated. Solutions are now automatically refined to maximal achievable accuracy.
+└ @ HomotopyContinuation ~&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;src&#x2F;core_tracker.jl:1432
+┌ Warning: `max_refinement_iters` is deprecated. Solutions are now automatically refined to the maximal achievable accuracy.
+└ @ HomotopyContinuation ~&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;src&#x2F;core_tracker.jl:1443
+┌ Warning: `set_max_refinement_iters` is deprecated. Solutions are now automatically refined to the maximal achievable accuracy.
+└ @ HomotopyContinuation ~&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;src&#x2F;core_tracker.jl:1455
+Univariate singular: 2,3,4,5,6,7,8,9,10,11,12,
+Wilkinson: 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,
+Computing mixed cells... 1 	 Time: 0:00:00[K
+  mixed_volume:  10[K[AComputing mixed cells... 13 	 Time: 0:00:00[K
+  mixed_volume:  70
+Computing mixed cells... 391 	 Time: 0:00:00[K
+  mixed_volume:  6007[K[AComputing mixed cells... 860 	 Time: 0:00:00[K
+  mixed_volume:  12636
+Start solutions iterator: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;polyhedral_test.jl:32
+  Expression: length(iter)
+    Expected: OverflowError
+  No exception thrown
+Stacktrace:
+ [1] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;polyhedral_test.jl:32
+ [2] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;polyhedral_test.jl:3
+ [4] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+ [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;polyhedral_test.jl:2
+Tracking 120 paths...  27%|██████████▋                             |  ETA: 0:00:08[K
+  # paths tracked:                  32
+  # non-singular solutions (real):  20 (4)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         20 (4)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 120 paths... 100%|████████████████████████████████████████| Time: 0:00:03[K
+  # paths tracked:                  120
+  # non-singular solutions (real):  70 (10)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         70 (10)
+Tracking 216 paths...  30%|███████████▉                            |  ETA: 0:00:01[K
+  # paths tracked:                  64
+  # non-singular solutions (real):  24 (5)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         24 (5)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 216 paths...  44%|█████████████████▊                      |  ETA: 0:00:01[K
+  # paths tracked:                  96
+  # non-singular solutions (real):  38 (6)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         38 (6)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 216 paths...  59%|███████████████████████▊                |  ETA: 0:00:01[K
+  # paths tracked:                  128
+  # non-singular solutions (real):  49 (7)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         49 (7)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 216 paths...  74%|█████████████████████████████▋          |  ETA: 0:00:00[K
+  # paths tracked:                  160
+  # non-singular solutions (real):  60 (8)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         60 (8)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 216 paths...  89%|███████████████████████████████████▌    |  ETA: 0:00:00[K
+  # paths tracked:                  192
+  # non-singular solutions (real):  73 (8)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         73 (8)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 216 paths... 100%|████████████████████████████████████████| Time: 0:00:01[K
+  # paths tracked:                  216
+  # non-singular solutions (real):  80 (8)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         80 (8)
+┌ Warning: None of the provided solutions is a valid start solution.
+└ @ HomotopyContinuation ~&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;src&#x2F;monodromy.jl:794
+[ Info: Compute additional witnesses for completeness...
+[ Info: Found 2 additional witnesses
+[ Info: Compute trace...
+[ Info: Norm of trace: 1.7684693212842034e-13
+[ Info: Compute additional witnesses for completeness...
+[ Info: Found 36 additional witnesses
+[ Info: Compute trace...
+[ Info: Norm of trace: 1.3733706346343784e-12
+Test Summary:                | Pass  Fail  Total
+HomotopyContinuation         | 1410     1   1411
+  Utilities                  |  280          280
+  Norms                      |   18           18
+  LinearAlgebra              |   75           75
+  AffinePatches              |   22           22
+  Problems                   |   58           58
+  Systems                    |   59           59
+  Homotopies                 |  123          123
+  Predictors                 |   48           48
+  NewtonCorrector            |   21           21
+  CoreTracker                |   78           78
+  Valuation                  |   53           53
+  Cauchy Endgame             |   20           20
+  PathTracker                |  221          221
+  Polyhedral                 |   17     1     18
+    Start solutions iterator |   10     1     11
+    Tracking                 |    3            3
+    All affine solutions     |    4            4
+  Overdetermined systems     |    5            5
+  Solver                     |   77           77
+  Result                     |  139          139
+  Composition                |    9            9
+  Monodromy                  |   62           62
+  Root counts                |   23           23
+  path_info                  |    2            2
+ERROR: LoadError: Some tests did not pass: 1410 passed, 1 failed, 0 errored, 0 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;runtests.jl:28
+ERROR: Package HomotopyContinuation errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1288
+ [3] #test at .&#x2F;none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:245
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:233 [inlined]
+ [6] #test#61 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:230 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:230 [inlined]
+ [8] #test#60 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:229 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:228
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:228
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 15 hours ago and took 24 minutes, 25 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/HomotopyContinuation/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed GenericSVD ────────────────── v0.2.2
+ Installed TreeViews ─────────────────── v0.3.0
+ Installed Tables ────────────────────── v0.2.11
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed ProjectiveVectors ─────────── v1.1.2
+ Installed StaticPolynomials ─────────── v1.3.3
+ Installed HomotopyContinuation ──────── v1.2.1
+ Installed Reexport ──────────────────── v0.2.0
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed Parameters ────────────────── v0.12.0
+ Installed MixedSubdivisions ─────────── v0.3.4
+ Installed Formatting ────────────────── v0.4.1
+ Installed GenericSchur ──────────────── v0.3.0
+ Installed DoubleFloats ──────────────── v0.9.13
+ Installed Polynomials ───────────────── v0.6.0
+ Installed ProgressMeter ─────────────── v1.2.0
+ Installed Requires ──────────────────── v0.5.2
+ Installed DynamicPolynomials ────────── v0.3.3
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed ElasticArrays ─────────────── v1.0.0
+ Installed StaticArrays ──────────────── v0.11.1
+ Installed TableTraits ───────────────── v1.0.0
+ Installed Crayons ───────────────────── v4.0.1
+ Installed FixedPolynomials ──────────── v0.4.0
+ Installed OrderedCollections ────────── v1.1.0
+ Installed MultivariatePolynomials ───── v0.3.2
+ Installed Quadmath ──────────────────── v0.5.2
+ Installed PrettyTables ──────────────── v0.6.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [f213a82b] + HomotopyContinuation v1.2.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [a8cc5b0e] + Crayons v4.0.1
+  [9a962f9c] + DataAPI v1.1.0
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [497a8b3b] + DoubleFloats v0.9.13
+  [7c1d4256] + DynamicPolynomials v0.3.3
+  [fdbdab4c] + ElasticArrays v1.0.0
+  [3dd14ad9] + FixedPolynomials v0.4.0
+  [59287772] + Formatting v0.4.1
+  [01680d73] + GenericSVD v0.2.2
+  [c145ed77] + GenericSchur v0.3.0
+  [f213a82b] + HomotopyContinuation v1.2.1
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [291d046c] + MixedSubdivisions v0.3.4
+  [102ac46a] + MultivariatePolynomials v0.3.2
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [f27b6e38] + Polynomials v0.6.0
+  [08abe8d2] + PrettyTables v0.6.0
+  [92933f4c] + ProgressMeter v1.2.0
+  [01f381cc] + ProjectiveVectors v1.1.2
+  [be4d8f0f] + Quadmath v0.5.2
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [90137ffa] + StaticArrays v0.11.1
+  [62e018b1] + StaticPolynomials v1.3.3
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [a2a6695c] + TreeViews v0.3.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing HomotopyContinuation
+ Resolving package versions...
+ Installed PolynomialTestSystems ─ v0.1.4
+Status `&#x2F;tmp&#x2F;jl_YDEMp9&#x2F;Manifest.toml`
+  [a8cc5b0e] Crayons v4.0.1
+  [9a962f9c] DataAPI v1.1.0
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [497a8b3b] DoubleFloats v0.9.13
+  [7c1d4256] DynamicPolynomials v0.3.3
+  [fdbdab4c] ElasticArrays v1.0.0
+  [3dd14ad9] FixedPolynomials v0.4.0
+  [59287772] Formatting v0.4.1
+  [01680d73] GenericSVD v0.2.2
+  [c145ed77] GenericSchur v0.3.0
+  [f213a82b] HomotopyContinuation v1.2.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [291d046c] MixedSubdivisions v0.3.4
+  [102ac46a] MultivariatePolynomials v0.3.2
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [4c526841] PolynomialTestSystems v0.1.4
+  [f27b6e38] Polynomials v0.6.0
+  [08abe8d2] PrettyTables v0.6.0
+  [92933f4c] ProgressMeter v1.2.0
+  [01f381cc] ProjectiveVectors v1.1.2
+  [be4d8f0f] Quadmath v0.5.2
+  [3cdcf5f2] RecipesBase v0.7.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [90137ffa] StaticArrays v0.11.1
+  [62e018b1] StaticPolynomials v1.3.3
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [a2a6695c] TreeViews v0.3.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Constructor + basics: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;linear_algebra_test.jl:26
+  Expression: #= &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;linear_algebra_test.jl:26 =# @allocated(HC.factorize!(WS)) == 0
+   Evaluated: 34148408 == 0
+Stacktrace:
+ [1] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;linear_algebra_test.jl:26
+ [2] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;linear_algebra_test.jl:5
+ [4] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+ [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;linear_algebra_test.jl:4
+┌ Warning: `setup!(tracker::CoreTracker, x₁, t₁, t₀; kwargs...)` is deprecated, use `init!(tracker, x₁, t₁, t₀; kwargs...)` instead.
+│   caller = top-level scope at core_tracker_test.jl:40
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;core_tracker_test.jl:40
+┌ Warning: Solutions are now automatically refined to maximal achievable accuracy.
+└ @ HomotopyContinuation ~&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;src&#x2F;core_tracker.jl:1422
+┌ Warning: `set_refinement_accuracy!` is deprecated. Solutions are now automatically refined to maximal achievable accuracy.
+└ @ HomotopyContinuation ~&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;src&#x2F;core_tracker.jl:1432
+┌ Warning: `max_refinement_iters` is deprecated. Solutions are now automatically refined to the maximal achievable accuracy.
+└ @ HomotopyContinuation ~&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;src&#x2F;core_tracker.jl:1443
+┌ Warning: `set_max_refinement_iters` is deprecated. Solutions are now automatically refined to the maximal achievable accuracy.
+└ @ HomotopyContinuation ~&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;src&#x2F;core_tracker.jl:1455
+Allocations: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;core_tracker_test.jl:123
+  Expression: #= &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;core_tracker_test.jl:123 =# @allocated(track!(tracker, s, 1.0, 0.01)) == 0
+   Evaluated: 16 == 0
+Stacktrace:
+ [1] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;core_tracker_test.jl:123
+ [2] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;core_tracker_test.jl:118
+ [4] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+ [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;core_tracker_test.jl:2
+Allocations: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;core_tracker_test.jl:134
+  Expression: #= &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;core_tracker_test.jl:134 =# @allocated(track!(log_tracker, log_s, 0.0, -(log(0.01)))) == 0
+   Evaluated: 48 == 0
+Stacktrace:
+ [1] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;core_tracker_test.jl:134
+ [2] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;core_tracker_test.jl:118
+ [4] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+ [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;core_tracker_test.jl:2
+Univariate singular: 2,3,4,5,6,7,8,9,10,11,12,
+Wilkinson: 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,
+Computing mixed cells... 1 	 Time: 0:00:00[K
+  mixed_volume:  5[K[AComputing mixed cells... 14 	 Time: 0:00:00[K
+  mixed_volume:  70
+Computing mixed cells... 98 	 Time: 0:00:00[K
+  mixed_volume:  2126[K[AComputing mixed cells... 549 	 Time: 0:00:00[K
+  mixed_volume:  8350[K[AComputing mixed cells... 860 	 Time: 0:00:00[K
+  mixed_volume:  12636
+Start solutions iterator: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;polyhedral_test.jl:32
+  Expression: length(iter)
+    Expected: OverflowError
+  No exception thrown
+Stacktrace:
+ [1] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;polyhedral_test.jl:32
+ [2] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;polyhedral_test.jl:3
+ [4] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+ [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;polyhedral_test.jl:2
+Tracking 120 paths...  27%|██████████▋                             |  ETA: 0:00:01[K
+  # paths tracked:                  32
+  # non-singular solutions (real):  15 (2)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         15 (2)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 120 paths... 100%|████████████████████████████████████████| Time: 0:00:00[K
+  # paths tracked:                  120
+  # non-singular solutions (real):  70 (10)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         70 (10)
+Tracking 120 paths...  27%|██████████▋                             |  ETA: 0:00:08[K
+  # paths tracked:                  32
+  # non-singular solutions (real):  19 (3)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         19 (3)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 120 paths... 100%|████████████████████████████████████████| Time: 0:00:03[K
+  # paths tracked:                  120
+  # non-singular solutions (real):  70 (10)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         70 (10)
+Tracking 216 paths...  30%|███████████▉                            |  ETA: 0:00:01[K
+  # paths tracked:                  64
+  # non-singular solutions (real):  24 (5)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         24 (5)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 216 paths...  44%|█████████████████▊                      |  ETA: 0:00:01[K
+  # paths tracked:                  96
+  # non-singular solutions (real):  38 (6)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         38 (6)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 216 paths...  59%|███████████████████████▊                |  ETA: 0:00:01[K
+  # paths tracked:                  128
+  # non-singular solutions (real):  49 (7)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         49 (7)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 216 paths...  74%|█████████████████████████████▋          |  ETA: 0:00:00[K
+  # paths tracked:                  160
+  # non-singular solutions (real):  60 (8)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         60 (8)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 216 paths...  89%|███████████████████████████████████▌    |  ETA: 0:00:00[K
+  # paths tracked:                  192
+  # non-singular solutions (real):  73 (8)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         73 (8)[A[A[A[A
+
+
+
+[K[A[K[A[K[A[K[ATracking 216 paths... 100%|████████████████████████████████████████| Time: 0:00:01[K
+  # paths tracked:                  216
+  # non-singular solutions (real):  80 (8)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         80 (8)
+Tracking 125 paths...   1%|▍                                       |  ETA: 0:01:52[K
+  # paths tracked:                  1
+  # non-singular solutions (real):  1 (1)
+  # singular solutions (real):      0 (0)
+  # total solutions (real):         1 (1)[A[A[A[A┌ Warning: None of the provided solutions is a valid start solution.
+└ @ HomotopyContinuation ~&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;src&#x2F;monodromy.jl:794
+[ Info: Compute additional witnesses for completeness...
+[ Info: Found 2 additional witnesses
+[ Info: Compute trace...
+[ Info: Norm of trace: 2.7487830685268716e-15
+[ Info: Compute additional witnesses for completeness...
+[ Info: Found 36 additional witnesses
+[ Info: Compute trace...
+[ Info: Norm of trace: 1.4749504547930877e-12
+Test Summary:                              | Pass  Fail  Total
+HomotopyContinuation                       | 1407     4   1411
+  Utilities                                |  280          280
+  Norms                                    |   18           18
+  LinearAlgebra                            |   74     1     75
+    Constructor + basics                   |   16     1     17
+    ldiv                                   |    7            7
+    (Mixed precision) residual             |    3            3
+    (Mixed precision) iterative refinement |    6            6
+    rcond                                  |    4            4
+    inf norm est                           |    8            8
+    JacobianMonitor                        |    2            2
+    Forward error                          |   14           14
+    cond                                   |    3            3
+    JacobianMonitor ldiv updates           |    5            5
+    Hermite Normal Form                    |    6            6
+  AffinePatches                            |   22           22
+  Problems                                 |   58           58
+  Systems                                  |   59           59
+  Homotopies                               |  123          123
+  Predictors                               |   48           48
+  NewtonCorrector                          |   21           21
+  CoreTracker                              |   76     2     78
+    General                                |   34           34
+    log_homotopy                           |    3            3
+    deprecated                             |    4            4
+    Affine tracking                        |    7            7
+    Allocations                            |          2      2
+    LinearSystem                           |    7            7
+    FixedPatch continuation                |    4            4
+    coretracker_startsolutions             |    3            3
+    iterator                               |    5            5
+    Limit Accuracy &#x2F; Adaptive Precision    |    5            5
+    Change parameters                      |    1            1
+    (Multi-) projective                    |    3            3
+  Valuation                                |   53           53
+  Cauchy Endgame                           |   20           20
+  PathTracker                              |  221          221
+  Polyhedral                               |   17     1     18
+    Start solutions iterator               |   10     1     11
+    Tracking                               |    3            3
+    All affine solutions                   |    4            4
+  Overdetermined systems                   |    5            5
+  Solver                                   |   77           77
+  Result                                   |  139          139
+  Composition                              |    9            9
+  Monodromy                                |   62           62
+  Root counts                              |   23           23
+  path_info                                |    2            2
+ERROR: LoadError: Some tests did not pass: 1407 passed, 4 failed, 0 errored, 0 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;HomotopyContinuation&#x2F;UgDj8&#x2F;test&#x2F;runtests.jl:28
+ERROR: Package HomotopyContinuation errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:274
+ [5] #test#56 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [6] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [7] #test#55 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [8] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [10] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [11] top-level scope at none:10
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

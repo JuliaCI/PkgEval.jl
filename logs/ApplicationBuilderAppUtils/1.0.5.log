@@ -1,0 +1,71 @@
+ Resolving package versions...
+ Installed ApplicationBuilderAppUtils ─ v0.1.2
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [96374992] + ApplicationBuilderAppUtils v0.1.2
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [96374992] + ApplicationBuilderAppUtils v0.1.2
+   Testing ApplicationBuilderAppUtils
+ Resolving package versions...
+    Status `/tmp/tmpRbBYGL/Manifest.toml`
+  [96374992] ApplicationBuilderAppUtils v0.1.2
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+bundle_resources: Error During Test at /root/.julia/packages/ApplicationBuilderAppUtils/ZHqYH/test/ApplicationBuilderAppUtils.jl:27
+  Test threw exception
+  Expression: (splitpath(ApplicationBuilderAppUtils.get_bundle_resources_dir()))[end - 1:end] == ["MyApp", "res"]
+  UndefVarError: splitpath not defined
+  Stacktrace:
+   [1] (::getfield(Main.ApplicationBuilderAppUtilsTest, Symbol("##1#2")))(::String) at /root/.julia/packages/ApplicationBuilderAppUtils/ZHqYH/test/ApplicationBuilderAppUtils.jl:27
+   [2] with_tmp_PROGRAM_FILE(::getfield(Main.ApplicationBuilderAppUtilsTest, Symbol("##1#2")), ::String) at /root/.julia/packages/ApplicationBuilderAppUtils/ZHqYH/test/ApplicationBuilderAppUtils.jl:14
+   [3] macro expansion at /root/.julia/packages/ApplicationBuilderAppUtils/ZHqYH/test/ApplicationBuilderAppUtils.jl:26 [inlined]
+   [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [5] top-level scope at /root/.julia/packages/ApplicationBuilderAppUtils/ZHqYH/test/ApplicationBuilderAppUtils.jl:21
+ApplicationBuilderAppUtils: Error During Test at /root/.julia/packages/ApplicationBuilderAppUtils/ZHqYH/test/runtests.jl:3
+  Got exception outside of a @test
+  LoadError: syntax: unexpected "end"
+  Stacktrace:
+   [1] include at ./boot.jl:317 [inlined]
+   [2] include_relative(::Module, ::String) at ./loading.jl:1044
+   [3] include(::Module, ::String) at ./sysimg.jl:29
+   [4] include(::String) at ./client.jl:392
+   [5] macro expansion at /root/.julia/packages/ApplicationBuilderAppUtils/ZHqYH/test/runtests.jl:4 [inlined]
+   [6] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [7] top-level scope at /root/.julia/packages/ApplicationBuilderAppUtils/ZHqYH/test/runtests.jl:4
+   [8] include at ./boot.jl:317 [inlined]
+   [9] include_relative(::Module, ::String) at ./loading.jl:1044
+   [10] include(::Module, ::String) at ./sysimg.jl:29
+   [11] include(::String) at ./client.jl:392
+   [12] top-level scope at none:0
+   [13] eval(::Module, ::Any) at ./boot.jl:319
+   [14] exec_options(::Base.JLOptions) at ./client.jl:243
+   [15] _start() at ./client.jl:425
+  in expression starting at /root/.julia/packages/ApplicationBuilderAppUtils/ZHqYH/test/ApplicationBuilderAppUtils.jl:43
+Test Summary:              | Error  Total
+ApplicationBuilderAppUtils |     2      2
+  bundle_resources         |     1      1
+  empty program file       |        No tests
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 2 errored, 0 broken.
+in expression starting at /root/.julia/packages/ApplicationBuilderAppUtils/ZHqYH/test/runtests.jl:3
+ERROR: Package ApplicationBuilderAppUtils errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

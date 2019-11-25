@@ -1,0 +1,43 @@
+ Resolving package versions...
+ Installed InfoZIP ─ v0.2.0
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [f4508453] + InfoZIP v0.2.0
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [f4508453] + InfoZIP v0.2.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+   Testing InfoZIP
+ERROR: Compat `Julia` not listed in `deps` or `extras` section.
+Stacktrace:
+ [1] pkgerror(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] validate(::Pkg.Types.Project) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/project.jl:107
+ [3] Pkg.Types.Project(::Dict{String,Any}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/project.jl:123
+ [4] #read_project#37(::String, ::typeof(Pkg.Types.read_project), ::IOStream) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/project.jl:140
+ [5] #read_project at ./none:0 [inlined]
+ [6] #40 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/project.jl:144 [inlined]
+ [7] #open#312(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(open), ::getfield(Pkg.Types, Symbol("##40#41")){String}, ::String) at ./iostream.jl:375
+ [8] open at ./iostream.jl:373 [inlined]
+ [9] read_project(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/project.jl:143
+ [10] read_package(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:457
+ [11] collect_target_deps!(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}, ::Pkg.Types.PackageSpec, ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:411
+ [12] #with_dependencies_loadable_at_toplevel#27(::Bool, ::typeof(Pkg.Operations.with_dependencies_loadable_at_toplevel), ::getfield(Pkg.Operations, Symbol("##41#43")){Pkg.Types.Context,Pkg.Types.PackageSpec,getfield(Pkg.Operations, Symbol("##40#42")){Pkg.Types.Context,Pkg.Types.PackageSpec,Array{String,1},Cmd}}, ::Pkg.Types.Context, ::Pkg.Types.PackageSpec) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:509
+ [13] #with_dependencies_loadable_at_toplevel at ./none:0 [inlined]
+ [14] backwards_compatibility_for_test(::Pkg.Types.Context, ::Pkg.Types.PackageSpec, ::String, ::Array{String,1}, ::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:606
+ [15] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1263
+ [16] #test at ./none:0 [inlined]
+ [17] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [18] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [19] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [20] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [21] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [22] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [23] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [24] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [25] top-level scope at none:10

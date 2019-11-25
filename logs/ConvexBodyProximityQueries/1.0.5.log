@@ -1,0 +1,89 @@
+ Resolving package versions...
+ Installed StaticArrays ─────────────── v0.12.1
+ Installed ConvexBodyProximityQueries ─ v0.1.1
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [e9983d58] + ConvexBodyProximityQueries v0.1.1
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [e9983d58] + ConvexBodyProximityQueries v0.1.1
+  [90137ffa] + StaticArrays v0.12.1
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+   Testing ConvexBodyProximityQueries
+ Resolving package versions...
+ Installed IterTools ───────── v1.3.0
+ Installed ColorTypes ──────── v0.8.0
+ Installed FixedPointNumbers ─ v0.6.1
+ Installed GeometryTypes ───── v0.7.6
+    Status `/tmp/tmpUooAiN/Manifest.toml`
+  [3da002f7] ColorTypes v0.8.0
+  [e9983d58] ConvexBodyProximityQueries v0.1.1
+  [53c48c17] FixedPointNumbers v0.6.1
+  [4d00f742] GeometryTypes v0.7.6
+  [c8e1da08] IterTools v1.3.0
+  [90137ffa] StaticArrays v0.12.1
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+array of vertices: Test Failed at /root/.julia/packages/ConvexBodyProximityQueries/N0yNW/test/proximity.jl:80
+  Expression: all(ret[1] .≈ [1.914213562373095, 0.9142135623730953])
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/ConvexBodyProximityQueries/N0yNW/test/proximity.jl:80 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [3] macro expansion at /root/.julia/packages/ConvexBodyProximityQueries/N0yNW/test/proximity.jl:39 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] top-level scope at /root/.julia/packages/ConvexBodyProximityQueries/N0yNW/test/proximity.jl:37
+array of vertices: Test Failed at /root/.julia/packages/ConvexBodyProximityQueries/N0yNW/test/proximity.jl:81
+  Expression: all(ret[2] .≈ [2.0, 1.0])
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/ConvexBodyProximityQueries/N0yNW/test/proximity.jl:81 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [3] macro expansion at /root/.julia/packages/ConvexBodyProximityQueries/N0yNW/test/proximity.jl:39 [inlined]
+ [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [5] top-level scope at /root/.julia/packages/ConvexBodyProximityQueries/N0yNW/test/proximity.jl:37
+Test Summary:              | Pass  Fail  Total
+ConvexBodyProximityQueries |   55     2     57
+  support functions        |    8            8
+  projection operation     |    4            4
+  gjk (2D)                 |   28     2     30
+    array of vertices      |   13     2     15
+    sphere                 |    5            5
+    rectangle              |    5            5
+    cube                   |    5            5
+  gjk (3D)                 |   15           15
+ERROR: LoadError: Some tests did not pass: 55 passed, 2 failed, 0 errored, 0 broken.
+in expression starting at /root/.julia/packages/ConvexBodyProximityQueries/N0yNW/test/runtests.jl:6
+ERROR: Package ConvexBodyProximityQueries errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

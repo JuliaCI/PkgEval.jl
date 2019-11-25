@@ -1,0 +1,147 @@
+ Resolving package versions...
+ Installed URIParser ── v0.4.0
+ Installed Compat ───── v2.2.0
+ Installed JuliaPetra ─ v0.2.0
+ Installed MPI ──────── v0.7.2
+ Installed BinDeps ──── v0.8.10
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [0a7d185b] + JuliaPetra v0.2.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [34da2185] + Compat v2.2.0
+  [0a7d185b] + JuliaPetra v0.2.0
+  [da04e1cc] + MPI v0.7.2
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building MPI → `~/.julia/packages/MPI/U5ujD/deps/build.log`
+┌ Error: Error building `MPI`: 
+│ [ Info: Attempting to create directory /root/.julia/packages/MPI/U5ujD/deps/build
+│ [ Info: Changing directory to /root/.julia/packages/MPI/U5ujD/deps/build
+│ ERROR: LoadError: IOError: could not spawn `cmake -DCMAKE_INSTALL_PREFIX=/root/.julia/packages/MPI/U5ujD/deps/src -DCMAKE_LIB_INSTALL_PREFIX=/root/.julia/packages/MPI/U5ujD/deps/usr/lib ..`: no such file or directory (ENOENT)
+│ Stacktrace:
+│  [1] _jl_spawn(::String, ::Array{String,1}, ::Cmd, ::Tuple{RawFD,RawFD,RawFD}) at ./process.jl:367
+│  [2] #495 at ./process.jl:509 [inlined]
+│  [3] setup_stdio(::getfield(Base, Symbol("##495#496")){Cmd,Base.Process}, ::Tuple{RawFD,RawFD,RawFD}) at ./process.jl:490
+│  [4] #_spawn#494(::Nothing, ::Function, ::Cmd, ::Tuple{RawFD,RawFD,RawFD}) at ./process.jl:508
+│  [5] _spawn at ./process.jl:504 [inlined]
+│  [6] #run#505(::Bool, ::Function, ::Cmd) at ./process.jl:662
+│  [7] run(::Cmd) at ./process.jl:661
+│  [8] run(::BinDeps.SynchronousStepCollection) at /root/.julia/packages/BinDeps/ZEval/src/BinDeps.jl:521 (repeats 3 times)
+│  [9] satisfy!(::BinDeps.LibraryDependency, ::Array{DataType,1}) at /root/.julia/packages/BinDeps/ZEval/src/dependencies.jl:944
+│  [10] satisfy!(::BinDeps.LibraryDependency) at /root/.julia/packages/BinDeps/ZEval/src/dependencies.jl:922
+│  [11] top-level scope at /root/.julia/packages/BinDeps/ZEval/src/dependencies.jl:977
+│  [12] include at ./boot.jl:317 [inlined]
+│  [13] include_relative(::Module, ::String) at ./loading.jl:1044
+│  [14] include(::Module, ::String) at ./sysimg.jl:29
+│  [15] include(::String) at ./client.jl:392
+│  [16] top-level scope at none:0
+│ in expression starting at /root/.julia/packages/MPI/U5ujD/deps/build.jl:54
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1096
+   Testing JuliaPetra
+ Resolving package versions...
+ Installed TypeStability ─ v1.0.0
+    Status `/tmp/tmpVKW2nC/Manifest.toml`
+  [9e28174c] BinDeps v0.8.10
+  [34da2185] Compat v2.2.0
+  [0a7d185b] JuliaPetra v0.2.0
+  [da04e1cc] MPI v0.7.2
+  [73ec333a] TypeStability v1.0.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib/SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: MPI not properly installed. Please run Pkg.build("MPI")
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] top-level scope at /root/.julia/packages/MPI/U5ujD/src/MPI.jl:15
+ [3] include at ./boot.jl:317 [inlined]
+ [4] include_relative(::Module, ::String) at ./loading.jl:1044
+ [5] include(::Module, ::String) at ./sysimg.jl:29
+ [6] top-level scope at none:2
+ [7] eval at ./boot.jl:319 [inlined]
+ [8] eval(::Expr) at ./client.jl:393
+ [9] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/MPI/U5ujD/src/MPI.jl:13
+ERROR: LoadError: InitError: LoadError: Failed to precompile MPI [da04e1cc-30fd-572f-bb4f-1f8673147195] to /root/.julia/compiled/v1.0/MPI/nO0XF.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1203
+ [3] _require(::Base.PkgId) at ./loading.jl:960
+ [4] require(::Base.PkgId) at ./loading.jl:858
+ [5] require(::Module, ::Symbol) at ./loading.jl:853
+ [6] include at ./boot.jl:317 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1044
+ [8] include at ./sysimg.jl:29 [inlined]
+ [9] include at /root/.julia/packages/JuliaPetra/JBvpV/src/JuliaPetra.jl:3 [inlined]
+ [10] __init__() at /root/.julia/packages/JuliaPetra/JBvpV/src/JuliaPetra.jl:60
+ [11] _include_from_serialized(::String, ::Array{Any,1}) at ./loading.jl:633
+ [12] _require_from_serialized(::String) at ./loading.jl:684
+ [13] _require(::Base.PkgId) at ./loading.jl:967
+ [14] require(::Base.PkgId) at ./loading.jl:858
+ [15] require(::Module, ::Symbol) at ./loading.jl:853
+ [16] include at ./boot.jl:317 [inlined]
+ [17] include_relative(::Module, ::String) at ./loading.jl:1044
+ [18] include(::Module, ::String) at ./sysimg.jl:29
+ [19] include(::String) at ./client.jl:392
+ [20] top-level scope at none:0
+in expression starting at /root/.julia/packages/JuliaPetra/JBvpV/src/MPIUtil.jl:2
+during initialization of module JuliaPetra
+in expression starting at /root/.julia/packages/JuliaPetra/JBvpV/test/runtests.jl:2
+ERROR: Package JuliaPetra errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

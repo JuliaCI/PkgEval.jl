@@ -1,0 +1,122 @@
+ Resolving package versions...
+ Installed IniFile ──────── v0.5.0
+ Installed Parsers ──────── v0.3.10
+ Installed MbedTLS ──────── v0.7.0
+ Installed Coverage ─────── v0.9.3
+ Installed BinaryProvider ─ v0.5.8
+ Installed HTTP ─────────── v0.8.8
+ Installed JSON ─────────── v0.21.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [a2441757] + Coverage v0.9.3
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [a2441757] + Coverage v0.9.3
+  [cd3eb016] + HTTP v0.8.8
+  [83e8ac13] + IniFile v0.5.0
+  [682c06a0] + JSON v0.21.0
+  [739be429] + MbedTLS v0.7.0
+  [69de0a69] + Parsers v0.3.10
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+  Building MbedTLS → `~/.julia/packages/MbedTLS/a1JFn/deps/build.log`
+   Testing Coverage
+ Resolving package versions...
+Status `/tmp/jl_loP56D/Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [a2441757] Coverage v0.9.3
+  [cd3eb016] HTTP v0.8.8
+  [83e8ac13] IniFile v0.5.0
+  [682c06a0] JSON v0.21.0
+  [739be429] MbedTLS v0.7.0
+  [69de0a69] Parsers v0.3.10
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+[ Info: Coverage.process_file: Detecting coverage for test/data/Coverage.jl
+[ Info: Coverage.process_cov: processing test/data/Coverage.jl.cov
+[ Info: Coverage.LCOV.readfolder: Searching test/data for .info files...
+[ Info: Coverage.LCOV.readfolder: Searching test/data/tracefiles for .info files...
+[ Info: Coverage.process_file: Detecting coverage for test/data/testparser.jl
+[ Info: Coverage.process_cov: processing test/data/testparser.jl.145.cov
+[ Info: Coverage.process_folder: Searching test/data for .jl files...
+[ Info: Coverage.process_file: Detecting coverage for test/data/Coverage.jl
+[ Info: Coverage.process_cov: processing test/data/Coverage.jl.cov
+[ Info: Coverage.process_file: Detecting coverage for test/data/testparser.jl
+[ Info: Coverage.process_cov: processing test/data/testparser.jl.145.cov
+[ Info: Coverage.process_folder: Searching test/data/tracefiles for .jl files...
+[ Info: Coverage.process_file: Detecting coverage for test/data/testparser.jl
+[ Info: Coverage.process_cov: processing test/data/testparser.jl.145.cov
+┌ Info: Coverage.process_cov: Coverage file(s) for test/fakefile do not exist.
+└ Assuming file has no coverage.
+[ Info: Removing test/data_temp/Coverage.jl.cov
+[ Info: Removing test/data_temp/testparser.jl.145.cov
+coveralls: Error During Test at /root/.julia/packages/Coverage/hf37Q/test/runtests.jl:556
+  Got exception outside of a @test
+  GitError(Code:ENOTFOUND, Class:Repository, could not find repository from '/root/.julia/packages/Coverage/hf37Q/test')
+  Stacktrace:
+   [1] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LibGit2/src/error.jl:101 [inlined]
+   [2] GitRepoExt(::String, ::UInt32) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LibGit2/src/repository.jl:26
+   [3] GitRepoExt at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LibGit2/src/repository.jl:23 [inlined]
+   [4] query_git_info(::String) at /root/.julia/packages/Coverage/hf37Q/src/coveralls.jl:118 (repeats 2 times)
+   [5] macro expansion at /root/.julia/packages/Coverage/hf37Q/test/runtests.jl:560 [inlined]
+   [6] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [7] (::var"#3#35")() at /root/.julia/packages/Coverage/hf37Q/test/runtests.jl:560
+   [8] withenv(::var"#3#35", ::Pair{String,Nothing}) at ./env.jl:161
+   [9] top-level scope at /root/.julia/packages/Coverage/hf37Q/test/runtests.jl:15
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/Coverage/hf37Q/test/runtests.jl:15
+   [12] include(::String) at ./client.jl:439
+   [13] top-level scope at none:6
+   [14] eval(::Module, ::Any) at ./boot.jl:331
+   [15] exec_options(::Base.JLOptions) at ./client.jl:264
+   [16] _start() at ./client.jl:484
+  
+Test Summary:         | Pass  Error  Total
+Coverage              |  192      1    193
+  iscovfile           |   12            12
+  isfuncexpr          |   10            10
+  Processing coverage |   24            24
+  codecovio.jl        |  146           146
+  coveralls           |           1      1
+ERROR: LoadError: Some tests did not pass: 192 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /root/.julia/packages/Coverage/hf37Q/test/runtests.jl:14
+ERROR: Package Coverage errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

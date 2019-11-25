@@ -1,0 +1,78 @@
+ Resolving package versions...
+ Installed Thrift ───────── v0.6.0
+ Installed BinaryProvider ─ v0.5.8
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [8d9c9c80] + Thrift v0.6.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [8d9c9c80] + Thrift v0.6.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  Building Thrift → `~/.julia/packages/Thrift/hqiAN/deps/build.log`
+   Testing Thrift
+    Status `/tmp/tmp5N0Gu1/Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [8d9c9c80] Thrift v0.6.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+Compiled IDLs...
+Added service implementations...
+Transport: TServerSocket
+Protocol : TBinaryProtocol
+Processor: ProtoTestsProcessor
+Server   : TSimpleServer
+Starting to serve requests...
+Waiting for server to start...
+Transport: TSocket
+Protocol : TBinaryProtocol
+Starting requests...
+
+Calling test_hello...
+Hello Julia
+
+Calling test_exception...
+InvalidOperation("test_exception")
+
+Calling ping...
+server received ping method call
+
+Calling test_oneway...
+server received oneway method call
+
+Calling test_types_default...
+AllTypesDefault(false, 0x02, 11, 21, 31, -10.1, "HELLO WORLD", Dict(2=>40,1=>20), Int16[11, 12, 13], Set(UInt8[0x0e, 0x0d, 0x0f]))
+
+Calling stop_service...
+Server stopped with ArgumentError("server not connected, make sure \"listen\" has been called")
+Stopped serving requests.
+
+Testing memory transport...
+passed.
+
+Testing file transport...
+passed.
+Testing utils functions...
+    enum...
+    iscontainer/isplain...
+passed.
+   Testing Thrift tests passed 

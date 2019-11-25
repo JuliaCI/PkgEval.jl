@@ -1,0 +1,143 @@
+ Resolving package versions...
+ Installed URIParser ────── v0.4.0
+ Installed CxxWrap ──────── v0.8.2
+ Installed Compat ───────── v2.2.0
+ Installed Xtensor ──────── v0.8.2
+ Installed BinDeps ──────── v0.8.10
+ Installed BinaryProvider ─ v0.5.8
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [65419b8a] + Xtensor v0.8.2
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [34da2185] + Compat v2.2.0
+  [1f15a43c] + CxxWrap v0.8.2
+  [30578b45] + URIParser v0.4.0
+  [65419b8a] + Xtensor v0.8.2
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building CxxWrap → `~/.julia/packages/CxxWrap/sarOk/deps/build.log`
+  Building Xtensor → `~/.julia/packages/Xtensor/keFSH/deps/build.log`
+┌ Error: Error building `Xtensor`: 
+│ Cloning into '/root/.julia/packages/Xtensor/keFSH/deps/xtl'...
+│ Note: checking out '0d1f896ba90664248279baaea0059699cff5ab9b'.
+│ 
+│ You are in 'detached HEAD' state. You can look around, make experimental
+│ changes and commit them, and you can discard any commits you make in this
+│ state without impacting any branches by performing another checkout.
+│ 
+│ If you want to create a new branch to retain commits you create, you may
+│ do so (now or later) by using -b with the checkout command again. Example:
+│ 
+│   git checkout -b <new-branch-name>
+│ 
+│ [ Info: Attempting to create directory /root/.julia/packages/Xtensor/keFSH/deps/../builds/xtl
+│ [ Info: Changing directory to /root/.julia/packages/Xtensor/keFSH/deps/../builds/xtl
+│ ERROR: LoadError: IOError: could not spawn `cmake -G 'Unix Makefiles' -DCMAKE_INSTALL_PREFIX=/root/.julia/packages/Xtensor/keFSH/deps/usr -DBUILD_TESTS=OFF -DCMAKE_INSTALL_LIBDIR=lib /root/.julia/packages/Xtensor/keFSH/deps/xtl`: no such file or directory (ENOENT)
+│ Stacktrace:
+│  [1] _spawn_primitive(::String, ::Cmd, ::Array{Any,1}) at ./process.jl:99
+│  [2] #546 at ./process.jl:112 [inlined]
+│  [3] setup_stdios(::Base.var"#546#547"{Cmd}, ::Array{Any,1}) at ./process.jl:196
+│  [4] _spawn at ./process.jl:111 [inlined]
+│  [5] run(::Cmd; wait::Bool) at ./process.jl:439
+│  [6] run(::Cmd) at ./process.jl:438
+│  [7] run(::BinDeps.SynchronousStepCollection) at /root/.julia/packages/BinDeps/ZEval/src/BinDeps.jl:521 (repeats 3 times)
+│  [8] satisfy!(::BinDeps.LibraryDependency, ::Array{DataType,1}) at /root/.julia/packages/BinDeps/ZEval/src/dependencies.jl:944
+│  [9] satisfy!(::BinDeps.LibraryDependency) at /root/.julia/packages/BinDeps/ZEval/src/dependencies.jl:922
+│  [10] top-level scope at /root/.julia/packages/BinDeps/ZEval/src/dependencies.jl:977
+│  [11] include(::String) at ./client.jl:439
+│  [12] top-level scope at none:5
+│ in expression starting at /root/.julia/packages/Xtensor/keFSH/deps/build.jl:112
+│ Building xtl
+│ Building xtensor
+│ Building xtensor-julia
+│ Building xtensor-julia-examples
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:601
+   Testing Xtensor
+ Resolving package versions...
+Status `/tmp/jl_e8tV83/Manifest.toml`
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [34da2185] Compat v2.2.0
+  [1f15a43c] CxxWrap v0.8.2
+  [30578b45] URIParser v0.4.0
+  [65419b8a] Xtensor v0.8.2
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib/SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: /root/.julia/packages/Xtensor/keFSH/deps/deps.jl not found, package xtensor-julia did not build properly
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] top-level scope at /root/.julia/packages/Xtensor/keFSH/src/Xtensor.jl:9
+ [3] include(::Module, ::String) at ./Base.jl:377
+ [4] top-level scope at none:2
+ [5] eval at ./boot.jl:331 [inlined]
+ [6] eval(::Expr) at ./client.jl:449
+ [7] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/Xtensor/keFSH/src/Xtensor.jl:8
+ERROR: LoadError: Failed to precompile Xtensor [65419b8a-9a19-58ae-bde3-3f7e1d1bf8ef] to /root/.julia/compiled/v1.4/Xtensor/p6riU_ENWcT.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1263
+ [3] _require(::Base.PkgId) at ./loading.jl:1022
+ [4] require(::Base.PkgId) at ./loading.jl:920
+ [5] require(::Module, ::Symbol) at ./loading.jl:915
+ [6] include(::String) at ./client.jl:439
+ [7] top-level scope at none:6
+in expression starting at /root/.julia/packages/Xtensor/keFSH/test/runtests.jl:13
+ERROR: Package Xtensor errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

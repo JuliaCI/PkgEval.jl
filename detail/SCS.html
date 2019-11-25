@@ -1,0 +1,2402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="SCS">SCS</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#SCS">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 15 hours ago and took 6 minutes, 54 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/SCS/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed SCS ──────────────── v0.6.2
+ Installed Parsers ──────────── v0.3.10
+ Installed OrderedCollections ─ v1.1.0
+ Installed BenchmarkTools ───── v0.4.3
+ Installed Compat ───────────── v2.2.0
+ Installed BinaryProvider ───── v0.5.8
+ Installed JSON ─────────────── v0.21.0
+ Installed MathOptInterface ─── v0.9.7
+ Installed MathProgBase ─────── v0.7.7
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [c946c3f1] + SCS v0.6.2
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [b99e7846] + BinaryProvider v0.5.8
+  [34da2185] + Compat v2.2.0
+  [682c06a0] + JSON v0.21.0
+  [b8f27783] + MathOptInterface v0.9.7
+  [fdba3010] + MathProgBase v0.7.7
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [c946c3f1] + SCS v0.6.2
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SCS → `~&#x2F;.julia&#x2F;packages&#x2F;SCS&#x2F;Y9wx3&#x2F;deps&#x2F;build.log`
+   Testing SCS
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;tmpNbe2bk&#x2F;Manifest.toml`
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [b99e7846] BinaryProvider v0.5.8
+  [34da2185] Compat v2.2.0
+  [682c06a0] JSON v0.21.0
+  [b8f27783] MathOptInterface v0.9.7
+  [fdba3010] MathProgBase v0.7.7
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [c946c3f1] SCS v0.6.2
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-direct, nnz in A = 1
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 1, constraints m = 1
+Cones:	primal zero &#x2F; dual free vars: 1
+Setup time: 1.36e-04s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 0.00e+00  9.19e+18  1.00e+00  0.00e+00  1.84e+19  1.60e+04  5.34e-05 
+     7| 1.09e-13  4.14e-13  3.49e-13  1.00e+00  1.00e+00  7.27e-17  1.31e-04 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 1.36e-04s
+	Lin-sys: nnz in L factor: 3, avg solve time: 9.91e-07s
+	Cones: avg projection time: 1.68e-07s
+	Acceleration: avg step time: 7.28e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 4.7159e-17, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 1.0000e+00
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 1.0916e-13
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 4.1380e-13
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 3.4861e-13
+----------------------------------------------------------------------------
+c&#39;x = 1.0000, -b&#39;y = 1.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-direct, nnz in A = 1012
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 11, constraints m = 112
+Cones:	linear vars: 100
+	soc vars: 12, soc blks: 1
+Setup time: 2.27e-04s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.03e+20  1.68e+19  9.75e-01 -1.55e+20 -1.94e+18  1.16e+20  6.42e-05 
+   100| 5.39e-07  7.64e-07  1.90e-07 -2.61e+00 -2.61e+00  2.60e-15  1.95e-03 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 1.95e-03s
+	Lin-sys: nnz in L factor: 1225, avg solve time: 7.17e-06s
+	Cones: avg projection time: 2.93e-07s
+	Acceleration: avg step time: 8.85e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 8.7617e-11, dist(y, K*) = 8.7616e-11, s&#39;y&#x2F;|s||y| = -1.2093e-11
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 5.3902e-07
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 7.6363e-07
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 1.9042e-07
+----------------------------------------------------------------------------
+c&#39;x = -2.6123, -b&#39;y = -2.6123
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-direct, nnz in A = 162
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 24, constraints m = 71
+Cones:	primal zero &#x2F; dual free vars: 10
+	linear vars: 10
+	soc vars: 6, soc blks: 5
+	exp vars: 30, dual exp vars: 15
+Setup time: 2.04e-04s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 3.51e+00  3.88e+00  9.95e-01 -1.49e+02  4.02e+01  0.00e+00  3.82e-04 
+    80| 2.57e-08  2.61e-08  5.82e-09  1.49e+01  1.49e+01  8.93e-15  4.69e-02 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 4.69e-02s
+	Lin-sys: nnz in L factor: 415, avg solve time: 3.56e-06s
+	Cones: avg projection time: 1.75e-04s
+	Acceleration: avg step time: 3.95e-04s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 5.3149e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 1.0015e-10
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 2.5657e-08
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 2.6089e-08
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 5.8153e-09
+----------------------------------------------------------------------------
+c&#39;x = 14.9010, -b&#39;y = 14.9010
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-direct, nnz in A = 66
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 15, constraints m = 46
+Cones:	primal zero &#x2F; dual free vars: 3
+	linear vars: 3
+	soc vars: 9, soc blks: 3
+	sd vars: 19, sd blks: 3
+	exp vars: 6, dual exp vars: 6
+Setup time: 2.04e-04s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.07e+00  1.50e+00  8.08e-01 -4.58e+01 -4.41e+00  1.42e-14  3.13e-04 
+    80| 1.06e-07  1.34e-07  7.03e-08 -1.02e+01 -1.02e+01  1.35e-14  6.33e-03 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 6.33e-03s
+	Lin-sys: nnz in L factor: 154, avg solve time: 1.37e-06s
+	Cones: avg projection time: 6.49e-05s
+	Acceleration: avg step time: 9.49e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 2.2892e-09, dist(y, K*) = 2.8110e-09, s&#39;y&#x2F;|s||y| = -3.4793e-11
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 1.0642e-07
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 1.3429e-07
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 7.0277e-08
+----------------------------------------------------------------------------
+c&#39;x = -10.2418, -b&#39;y = -10.2418
+============================================================================
+WARN: A-&gt;p (column pointers) not strictly increasing, column 1 empty
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-direct, nnz in A = 25
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 9, constraints m = 28
+Cones:	primal zero &#x2F; dual free vars: 5
+	linear vars: 5
+	primal + dual power vars: 18
+Setup time: 8.63e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 2.37e+00  2.16e+00  1.14e-01 -2.77e+01 -2.19e+01  1.52e-14  7.81e-05 
+    40| 1.47e-06  2.64e-06  5.38e-07 -3.73e+00 -3.73e+00  1.02e-14  8.14e-04 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 8.17e-04s
+	Lin-sys: nnz in L factor: 71, avg solve time: 6.41e-07s
+	Cones: avg projection time: 1.28e-05s
+	Acceleration: avg step time: 4.60e-06s
+----------------------------------------------------------------------------
+ErrTest Summary: | Pass  Total
+direct.jl     |    8      8
+or metrics:
+dist(s, K) = 5.5183e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 2.0369e-11
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 1.4666e-06
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 2.6450e-06
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 5.3778e-07
+----------------------------------------------------------------------------
+c&#39;x = -3.7278, -b&#39;y = -3.7277
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 1, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 1, constraints m = 1
+Cones:	primal zero &#x2F; dual free vars: 1
+Setup time: 5.95e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 5.00e-01  5.17e+15  1.00e+00  0.00e+00  1.03e+16  1.00e+00  3.53e-05 
+     7| 3.39e-13  6.73e-13  6.74e-13  1.00e+00  1.00e+00  5.48e-17  6.52e-05 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 6.84e-05s
+	Lin-sys: avg # CG iterations: 0.88, avg solve time: 6.95e-07s
+	Cones: avg projection time: 1.59e-07s
+	Acceleration: avg step time: 2.25e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 8.8815e-17, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = -1.0000e+00
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 3.3884e-13
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 6.7271e-13
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 6.7435e-13
+----------------------------------------------------------------------------
+c&#39;x = 1.0000, -b&#39;y = 1.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 1012, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 11, constraints m = 112
+Cones:	linear vars: 100
+	soc vars: 12, soc blks: 1
+Setup time: 7.50e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.03e+20  1.70e+19  9.76e-01 -1.55e+20 -1.91e+18  1.16e+20  8.39e-05 
+   100| 1.14e-06  2.67e-06  5.53e-07 -2.61e+00 -2.61e+00  1.52e-15  2.57e-03 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 2.57e-03s
+	Lin-sys: avg # CG iterations: 2.97, avg solve time: 1.32e-05s
+	Cones: avg projection time: 3.07e-07s
+	Acceleration: avg step time: 9.02e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 1.1912e-11, dist(y, K*) = 1.1912e-11, s&#39;y&#x2F;|s||y| = -1.6439e-12
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 1.1355e-06
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 2.6694e-06
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 5.5331e-07
+----------------------------------------------------------------------------
+c&#39;x = -2.6123, -b&#39;y = -2.6123
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 162, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 24, constraints m = 71
+Cones:	primal zero &#x2F; dual free vars: 10
+	linear vars: 10
+	soc vars: 6, soc blks: 5
+	exp vars: 30, dual exp vars: 15
+Setup time: 8.33e-04s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 3.41e+00  3.82e+00  9.95e-01 -1.44e+02  4.34e+01  0.00e+00  2.36e-04 
+    80| 4.09e-07  6.85e-07  4.05e-07  1.49e+01  1.49e+01  4.98e-16  3.34e-02 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 3.34e-02s
+	Lin-sys: avg # CG iterations: 4.83, avg solve time: 7.67e-06s
+	Cones: avg projection time: 1.45e-04s
+	Acceleration: avg step time: 2.56e-04s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 5.7545e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 7.3535e-11
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 4.0876e-07
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 6.8454e-07
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 4.0540e-07
+----------------------------------------------------------------------------
+c&#39;x = 14.9010, -b&#39;y = 14.9011
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 66, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 15, constraints m = 46
+Cones:	primal zero &#x2F; dual free vars: 3
+	linear vars: 3
+	soc vars: 9, soc blks: 3
+	sd vars: 19, sd blks: 3
+	exp vars: 6, dual exp vars: 6
+Setup time: 7.12e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.04e+00  1.41e+00  7.64e-01 -4.42e+01 -5.49e+00  1.40e-14  1.94e-04 
+    80| 3.60e-07  9.22e-07  6.63e-08 -1.02e+01 -1.02e+01  4.58e-15  6.73e-03 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 6.73e-03s
+	Lin-sys: avg # CG iterations: 4.44, avg solve time: 3.78e-06s
+	Cones: avg projection time: 6.73e-05s
+	Acceleration: avg step time: 9.71e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 2.2892e-09, dist(y, K*) = 2.3995e-09, s&#39;y&#x2F;|s||y| = -9.4000e-11
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 3.5970e-07
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 9.2244e-07
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 6.6308e-08
+----------------------------------------------------------------------------
+c&#39;x = -10.2418, -b&#39;y = -10.2418
+============================================================================
+WARN: A-&gt;p (column pointers) not strictly increasing, column 1 empty
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 25, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 9, constraints m = 28
+Cones:	primal zero &#x2F; dual free vars: 5
+	linear vars: 5
+	primal + dual power vars: 18
+Setup time: 4.20e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kapTest Summary: | Pass  Total
+indirect.jl   |    8      8
+&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 2.39e+00  2.18e+00  1.11e-01 -2.79e+01 -2.22e+01  1.53e-14  8.88e-04 
+    60| 3.13e-08  2.59e-08  2.25e-09 -3.73e+00 -3.73e+00  8.60e-16  1.97e-03 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 1.97e-03s
+	Lin-sys: avg # CG iterations: 2.87, avg solve time: 1.60e-06s
+	Cones: avg projection time: 1.14e-05s
+	Acceleration: avg step time: 4.23e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 4.7807e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 4.7960e-15
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 3.1272e-08
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 2.5896e-08
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 2.2515e-09
+----------------------------------------------------------------------------
+c&#39;x = -3.7278, -b&#39;y = -3.7278
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 12, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 5, constraints m = 8
+Cones:	linear vars: 8
+Setup time: 4.49e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.49e+01  2.21e+00  8.87e-01 -1.19e+03 -7.10e+01  0.00e+00  3.29e-05 
+    40| 1.15e-08  9.36e-09  2.04e-09 -9.90e+01 -9.90e+01  2.54e-15  1.76e-04 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 1.79e-04s
+	Lin-sys: avg # CG iterations: 2.15, avg solve time: 7.51e-07s
+	Cones: avg projection time: 7.80e-08s
+	Acceleration: avg step time: 2.05e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 4.1359e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 2.9657e-16
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 1.1487e-08
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 9.3586e-09
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 2.0368e-09
+----------------------------------------------------------------------------
+c&#39;x = -99.0000, -b&#39;y = -99.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 12, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-12, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 5, constraints m = 8
+Cones:	linear vars: 8
+Setup time: 4.49e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.49e+01  2.21e+00  8.87e-01 -1.19e+03 -7.10e+01  0.00e+00  2.96e-05 
+   100| 4.24e-11  8.08e-11  5.53e-12 -9.90e+01 -9.90e+01  5.63e-16  3.47e-04 
+   154| 9.95e-13  6.62e-13  3.01e-14 -9.90e+01 -9.90e+01  5.12e-15  5.17e-04 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 5.20e-04s
+	Lin-sys: avg # CG iterations: 1.30, avg solve time: 5.56e-07s
+	Cones: avg projection time: 5.54e-08s
+	Acceleration: avg step time: 1.73e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 4.2589e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|sTest Summary: | Pass  Total
+options.jl    |    9      9
+||y| = 4.6310e-17
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 9.9546e-13
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 6.6218e-13
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 3.0136e-14
+----------------------------------------------------------------------------
+c&#39;x = -99.0000, -b&#39;y = -99.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 12, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-12, alpha = 1.50, max_iters = 1, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 5, constraints m = 8
+Cones:	linear vars: 8
+Setup time: 5.41e-05s
+SCS using variable warm-starting
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 8.32e-13  1.35e-12  6.30e-14 -9.90e+01 -9.90e+01  0.00e+00  4.20e-05 
+     1| 8.32e-13  1.35e-12  6.30e-14 -9.90e+01 -9.90e+01  0.00e+00  4.77e-05 
+----------------------------------------------------------------------------
+Status: Solved&#x2F;Inaccurate
+Hit max_iters, solution may be inaccurate
+Timing: Solve time: 5.18e-05s
+	Lin-sys: avg # CG iterations: 0.50, avg solve time: 2.49e-06s
+	Cones: avg projection time: 5.86e-07s
+	Acceleration: avg step time: 0.00e+00s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 0.0000e+00, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 2.1536e-16
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 8.3158e-13
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 1.3459e-12
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 6.2985e-14
+----------------------------------------------------------------------------
+c&#39;x = -99.0000, -b&#39;y = -99.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 12, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 1, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 5, constraints m = 8
+Cones:	linear vars: 8
+Setup time: 3.67e-05s
+SCS using variable warm-starting
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 7.21e-13  1.78e-12  6.24e-14 -9.90e+01 -9.90e+01  5.69e-15  2.92e-05 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 3.20e-05s
+	Lin-sys: avg # CG iterations: 1.00, avg solve time: 3.89e-06s
+	Cones: avg projection time: 1.07e-06s
+	Acceleration: avg step time: 0.00e+00s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 2.1226e-15, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = -1.4812e-16
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 7.2069e-13
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 1.7818e-12
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 6.2414e-14
+----------------------------------------------------------------------------
+c&#39;x = -99.0000, -b&#39;y = -99.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 4, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 2, constraints m = 3
+Cones:	linear vars: 3
+Setup time: 1.60e-04s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 9.73e+18  0.00e+00  1.00e+00 -1.16e+19 -0.00e+00  1.54e+18  4.87e-05 
+    20| 5.24e-09  4.64e-09  4.32e-11 -7.50e-01 -7.50e-01  2.75e-17  1.17e-04 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 1.21e-04s
+	Lin-sys: avg # CG iterations: 1.33, avg solve time: 5.76e-07s
+	Cones: avg projection time: 1.12e-07s
+	Acceleration: avg step time: 1.89e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 3.2543e-18, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 8.8698e-17
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 5.2403e-09
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 4.6421e-09
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 4.3218e-11
+----------------------------------------------------------------------------
+c&#39;x = -0.7500, -b&#39;y = -0.7500
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 4, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 2, constraints m = 3
+Cones:	linear vars: 3
+Setup time: 3.44e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 9.73e+18  0.00e+00  1.00e+00 -1.16e+19 -0.00e+00  1.54e+18  2.77e-05 
+    20| 5.24e-09  4.64e-09  4.32e-11 -7.50e-01 -7.50e-01  2.75e-17  8.59e-05 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 8.92e-05s
+	Lin-sys: avg # CG iterations: 1.33, avg solve time: 5.29e-07s
+	Cones: avg projection time: 1.07e-07s
+	Acceleration: avg step time: 1.51e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 3.2543e-18, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 8.8698e-17
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 5.2403e-09
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 4.6421e-09
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 4.3218e-11
+----------------------------------------------------------------------------
+c&#39;x = -0.7500, -b&#39;y = -0.7500
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 4, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 2, constraints m = 3
+Cones:	linear vars: 3
+Setup time: 3.48e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 8.63e+18  1.17e+19  1.00e+00 -7.70e+18  1.24e+17  1.03e+18  2.66e-05 
+    20| 9.98e+09  1.67e+10  1.00e+00 -3.27e+09  5.80e+18  5.80e+18  8.39e-05 
+----------------------------------------------------------------------------
+Status: Infeasible
+Timing: Solve time: 8.67e-05s
+	Lin-sys: avg # CG iterations: 2.00, avg solve time: 5.┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is unbounded, but unbounded ray is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:97
+Test Summary:                              | Pass  Total
+Test the MathProgBase wrapper with linprog |   14     14
+Test Summary:           | Pass  Total
+MathProgBase SCS.Direct |  212    212
+Test Summary:             | Pass  Total
+MathProgBase SCS.Indirect |  212    212
+Test Summary: | Pass  Total
+SolverName    |    1      1
+Test Summary:          | Pass  Total
+supports_allocate_load |    2      2
+Test Summary: | Pass  Total
+Unit          |  293    293
+Test Summary:                              | Pass  Total
+Continuous linear problems with SCS.Direct |  496    496
+Test Summary:                            | Pass  Total
+ADMMIterations attribute with SCS.Direct |  121    121
+Test Summary:                                 | Pass  Total
+Continuous quadratic problems with SCS.Direct |   95     95
+Test Summary:                             | Pass  Total
+Continuous conic problems with SCS.Direct | 1101   1101
+Test Summary: | Pass  Total
+SolverName    |    1      1
+Test Summary:          | Pass  Total
+supports_allocate_load |    2      2
+Test Summary: | Pass  Total
+Unit          |  293    293
+Test Summary:                                | Pass  Total
+Continuous linear problems with SCS.Indirect |  496    496
+Test Summary:                              | Pass  Total
+ADMMIterations attribute with SCS.Indirect |  121    121
+Test Summary:                                   | Pass  Total
+Continuous quadratic problems with SCS.Indirect |   95     95
+Test Summary:                               | Pass  Total
+Continuous conic problems with SCS.Indirect | 1101   1101
+50e-07s
+	Cones: avg projection time: 5.87e-08s
+	Acceleration: avg step time: 1.43e-06s
+----------------------------------------------------------------------------
+Certificate of primal infeasibility:
+dist(y, K*) = 0.0000e+00
+|A&#39;y|_2 * |b|_2 = 5.7533e-09
+b&#39;y = -1.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 4, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 2, constraints m = 3
+Cones:	linear vars: 3
+Setup time: 5.13e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 7.03e-03  1.31e+00  1.68e-02 -1.71e-02 -0.00e+00  0.00e+00  3.29e-05 
+    12| 3.72e+05  0.00e+00  1.00e+00 -1.81e+16 -0.00e+00  1.81e+16  8.35e-05 
+----------------------------------------------------------------------------
+Status: Unbounded
+Timing: Solve time: 8.64e-05s
+	Lin-sys: avg # CG iterations: 1.46, avg solve time: 7.60e-07s
+	Cones: avg projection time: 1.16e-07s
+	Acceleration: avg step time: 2.37e-06s
+----------------------------------------------------------------------------
+Certificate of dual infeasibility:
+dist(s, K) = 0.0000e+00
+|Ax + s|_2 * |c|_2 = 2.9111e-11
+c&#39;x = -1.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 12, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 5, constraints m = 8
+Cones:	linear vars: 8
+Setup time: 4.37e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.49e+01  2.21e+00  8.87e-01 -1.19e+03 -7.10e+01  0.00e+00  2.84e-05 
+    40| 1.15e-08  9.36e-09  2.04e-09 -9.90e+01 -9.90e+01  2.54e-15  2.03e-04 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 2.06e-04s
+	Lin-sys: avg # CG iterations: 2.15, avg solve time: 8.15e-07s
+	Cones: avg projection time: 7.60e-08s
+	Acceleration: avg step time: 2.08e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 4.1359e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 2.9657e-16
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 1.1487e-08
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 9.3586e-09
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 2.0368e-09
+----------------------------------------------------------------------------
+c&#39;x = -99.0000, -b&#39;y = -99.0000
+============================================================================
+   Testing SCS tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 17 hours ago and took 6 minutes, 20 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/SCS/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Parsers ──────────── v0.3.10
+ Installed SCS ──────────────── v0.6.2
+ Installed Compat ───────────── v2.2.0
+ Installed BenchmarkTools ───── v0.4.3
+ Installed MathProgBase ─────── v0.7.7
+ Installed JSON ─────────────── v0.21.0
+ Installed BinaryProvider ───── v0.5.8
+ Installed MathOptInterface ─── v0.9.7
+ Installed OrderedCollections ─ v1.1.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [c946c3f1] + SCS v0.6.2
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [b99e7846] + BinaryProvider v0.5.8
+  [34da2185] + Compat v2.2.0
+  [682c06a0] + JSON v0.21.0
+  [b8f27783] + MathOptInterface v0.9.7
+  [fdba3010] + MathProgBase v0.7.7
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [c946c3f1] + SCS v0.6.2
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SCS → `~&#x2F;.julia&#x2F;packages&#x2F;SCS&#x2F;Y9wx3&#x2F;deps&#x2F;build.log`
+   Testing SCS
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;jl_SiXYz0&#x2F;Manifest.toml`
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [b99e7846] BinaryProvider v0.5.8
+  [34da2185] Compat v2.2.0
+  [682c06a0] JSON v0.21.0
+  [b8f27783] MathOptInterface v0.9.7
+  [fdba3010] MathProgBase v0.7.7
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [c946c3f1] SCS v0.6.2
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-direct, nnz in A = 1
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 1, constraints m = 1
+Cones:	primal zero &#x2F; dual free vars: 1
+Setup time: 1.58e-04s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 0.00e+00  9.19e+18  1.00e+00  0.00e+00  1.84e+19  1.60e+04  6.25e-05 
+     7| 1.09e-13  4.14e-13  3.49e-13  1.00e+00  1.00e+00  7.27e-17  5.20e-04 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 5.35e-04s
+	Lin-sys: nnz in L factor: 3, avg solve time: 6.12e-07s
+	Cones: avg projection time: 2.26e-07s
+	Acceleration: avg step time: 5.50e-05s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 4.7159e-17, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 1.0000e+00
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 1.0916e-13
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 4.1380e-13
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 3.4861e-13
+----------------------------------------------------------------------------
+c&#39;x = 1.0000, -b&#39;y = 1.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-direct, nnz in A = 1012
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 11, constraints m = 112
+Cones:	linear vars: 100
+	soc vars: 12, soc blks: 1
+Setup time: 2.08e-04s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.03e+20  1.68e+19  9.75e-01 -1.55e+20 -1.94e+18  1.16e+20  7.40e-05 
+   100| 5.39e-07  7.64e-07  1.90e-07 -2.61e+00 -2.61e+00  2.60e-15  1.78e-03 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 1.78e-03s
+	Lin-sys: nnz in L factor: 1225, avg solve time: 5.80e-06s
+	Cones: avg projection time: 2.75e-07s
+	Acceleration: avg step time: 8.63e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 8.7617e-11, dist(y, K*) = 8.7616e-11, s&#39;y&#x2F;|s||y| = -1.2093e-11
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 5.3902e-07
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 7.6363e-07
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 1.9042e-07
+----------------------------------------------------------------------------
+c&#39;x = -2.6123, -b&#39;y = -2.6123
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-direct, nnz in A = 162
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 24, constraints m = 71
+Cones:	primal zero &#x2F; dual free vars: 10
+	linear vars: 10
+	soc vars: 6, soc blks: 5
+	exp vars: 30, dual exp vars: 15
+Setup time: 2.04e-04s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 3.51e+00  3.88e+00  9.95e-01 -1.49e+02  4.02e+01  0.00e+00  3.72e-04 
+    80| 2.57e-08  2.61e-08  5.82e-09  1.49e+01  1.49e+01  8.93e-15  1.44e-02 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 1.44e-02s
+	Lin-sys: nnz in L factor: 415, avg solve time: 2.57e-06s
+	Cones: avg projection time: 1.38e-04s
+	Acceleration: avg step time: 3.37e-05s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 5.3149e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 1.0015e-10
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 2.5657e-08
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 2.6089e-08
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 5.8153e-09
+----------------------------------------------------------------------------
+c&#39;x = 14.9010, -b&#39;y = 14.9010
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-direct, nnz in A = 66
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 15, constraints m = 46
+Cones:	primal zero &#x2F; dual free vars: 3
+	linear vars: 3
+	soc vars: 9, soc blks: 3
+	sd vars: 19, sd blks: 3
+	exp vars: 6, dual exp vars: 6
+Setup time: 1.76e-04s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.07e+00  1.50e+00  8.08e-01 -4.58e+01 -4.41e+00  1.42e-14  2.81e-04 
+    80| 1.06e-07  1.34e-07  7.03e-08 -1.02e+01 -1.02e+01  1.35e-14  6.00e-03 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 6.01e-03s
+	Lin-sys: nnz in L factor: 154, avg solve time: 1.14e-06s
+	Cones: avg projection time: 6.21e-05s
+	Acceleration: avg step time: 8.66e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 2.2892e-09, dist(y, K*) = 2.8110e-09, s&#39;y&#x2F;|s||y| = -3.4793e-11
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 1.0642e-07
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 1.3429e-07
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 7.0277e-08
+----------------------------------------------------------------------------
+c&#39;x = -10.2418, -b&#39;y = -10.2418
+============================================================================
+WARN: A-&gt;p (column pointers) not strictly increasing, column 1 empty
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-direct, nnz in A = 25
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 9, constraints m = 28
+Cones:	primal zero &#x2F; dual free vars: 5
+	linear vars: 5
+	primal + dual power vars: 18
+Setup time: 8.85e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 2.37e+00  2.16e+00  1.14e-01 -2.77e+01 -2.19e+01  1.52e-14  6.59e-05 
+    40| 1.47e-06  2.64e-06  5.38e-07 -3.73e+00 -3.73e+00  1.02e-14  7.88e-04 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 7.91e-04s
+	Lin-sys: nnz in L factor: 71, avg solve time: 5.68e-07s
+	Cones: avg projection time: 1.28e-05s
+	Acceleration: avg step time: 4.11e-06s
+----------------------------------------------------------------------------
+ErrTest Summary: | Pass  Total
+direct.jl     |    8      8
+or metrics:
+dist(s, K) = 5.5183e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 2.0369e-11
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 1.4666e-06
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 2.6450e-06
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 5.3778e-07
+----------------------------------------------------------------------------
+c&#39;x = -3.7278, -b&#39;y = -3.7277
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 1, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 1, constraints m = 1
+Cones:	primal zero &#x2F; dual free vars: 1
+Setup time: 6.28e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 5.00e-01  5.17e+15  1.00e+00  0.00e+00  1.03e+16  1.00e+00  3.91e-05 
+     7| 3.39e-13  6.73e-13  6.74e-13  1.00e+00  1.00e+00  5.48e-17  6.51e-05 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 6.94e-05s
+	Lin-sys: avg # CG iterations: 0.88, avg solve time: 8.77e-07s
+	Cones: avg projection time: 1.18e-07s
+	Acceleration: avg step time: 1.89e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 8.8815e-17, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = -1.0000e+00
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 3.3884e-13
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 6.7271e-13
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 6.7435e-13
+----------------------------------------------------------------------------
+c&#39;x = 1.0000, -b&#39;y = 1.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 1012, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 11, constraints m = 112
+Cones:	linear vars: 100
+	soc vars: 12, soc blks: 1
+Setup time: 7.86e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.03e+20  1.70e+19  9.76e-01 -1.55e+20 -1.91e+18  1.16e+20  7.86e-05 
+   100| 1.14e-06  2.67e-06  5.53e-07 -2.61e+00 -2.61e+00  1.52e-15  2.30e-03 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 2.30e-03s
+	Lin-sys: avg # CG iterations: 2.97, avg solve time: 1.16e-05s
+	Cones: avg projection time: 2.73e-07s
+	Acceleration: avg step time: 8.08e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 1.1912e-11, dist(y, K*) = 1.1912e-11, s&#39;y&#x2F;|s||y| = -1.6439e-12
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 1.1355e-06
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 2.6694e-06
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 5.5331e-07
+----------------------------------------------------------------------------
+c&#39;x = -2.6123, -b&#39;y = -2.6123
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 162, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 24, constraints m = 71
+Cones:	primal zero &#x2F; dual free vars: 10
+	linear vars: 10
+	soc vars: 6, soc blks: 5
+	exp vars: 30, dual exp vars: 15
+Setup time: 9.92e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 3.41e+00  3.82e+00  9.95e-01 -1.44e+02  4.34e+01  0.00e+00  2.27e-04 
+    80| 4.09e-07  6.85e-07  4.05e-07  1.49e+01  1.49e+01  4.98e-16  2.25e-02 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 2.25e-02s
+	Lin-sys: avg # CG iterations: 4.83, avg solve time: 6.32e-06s
+	Cones: avg projection time: 1.37e-04s
+	Acceleration: avg step time: 1.31e-04s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 5.7545e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 7.3535e-11
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 4.0876e-07
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 6.8454e-07
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 4.0540e-07
+----------------------------------------------------------------------------
+c&#39;x = 14.9010, -b&#39;y = 14.9011
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 66, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 15, constraints m = 46
+Cones:	primal zero &#x2F; dual free vars: 3
+	linear vars: 3
+	soc vars: 9, soc blks: 3
+	sd vars: 19, sd blks: 3
+	exp vars: 6, dual exp vars: 6
+Setup time: 5.61e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.04e+00  1.41e+00  7.64e-01 -4.42e+01 -5.49e+00  1.40e-14  1.78e-04 
+    80| 3.60e-07  9.22e-07  6.63e-08 -1.02e+01 -1.02e+01  4.58e-15  6.18e-03 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 6.19e-03s
+	Lin-sys: avg # CG iterations: 4.44, avg solve time: 3.54e-06s
+	Cones: avg projection time: 6.24e-05s
+	Acceleration: avg step time: 8.35e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 2.2892e-09, dist(y, K*) = 2.3995e-09, s&#39;y&#x2F;|s||y| = -9.4000e-11
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 3.5970e-07
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 9.2244e-07
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 6.6308e-08
+----------------------------------------------------------------------------
+c&#39;x = -10.2418, -b&#39;y = -10.2418
+============================================================================
+WARN: A-&gt;p (column pointers) not strictly increasing, column 1 empty
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 25, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 9, constraints m = 28
+Cones:	primal zero &#x2F; dual free vars: 5
+	linear vars: 5
+	primal + dual power vars: 18
+Setup time: 4.07e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kapTest Summary: | Pass  Total
+indirect.jl   |    8      8
+&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 2.39e+00  2.18e+00  1.11e-01 -2.79e+01 -2.22e+01  1.53e-14  7.75e-05 
+    60| 3.13e-08  2.59e-08  2.25e-09 -3.73e+00 -3.73e+00  8.60e-16  1.13e-03 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 1.13e-03s
+	Lin-sys: avg # CG iterations: 2.87, avg solve time: 1.64e-06s
+	Cones: avg projection time: 1.14e-05s
+	Acceleration: avg step time: 3.72e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 4.7807e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 4.7960e-15
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 3.1272e-08
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 2.5896e-08
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 2.2515e-09
+----------------------------------------------------------------------------
+c&#39;x = -3.7278, -b&#39;y = -3.7278
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 12, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 5, constraints m = 8
+Cones:	linear vars: 8
+Setup time: 6.14e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.49e+01  2.21e+00  8.87e-01 -1.19e+03 -7.10e+01  0.00e+00  4.66e-05 
+    40| 1.15e-08  9.36e-09  2.04e-09 -9.90e+01 -9.90e+01  2.54e-15  1.95e-04 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 2.01e-04s
+	Lin-sys: avg # CG iterations: 2.15, avg solve time: 7.99e-07s
+	Cones: avg projection time: 1.06e-07s
+	Acceleration: avg step time: 2.18e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 4.1359e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 2.9657e-16
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 1.1487e-08
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 9.3586e-09
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 2.0368e-09
+----------------------------------------------------------------------------
+c&#39;x = -99.0000, -b&#39;y = -99.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 12, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-12, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 5, constraints m = 8
+Cones:	linear vars: 8
+Setup time: 5.21e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.49e+01  2.21e+00  8.87e-01 -1.19e+03 -7.10e+01  0.00e+00  4.06e-05 
+   100| 4.24e-11  8.08e-11  5.53e-12 -9.90e+01 -9.90e+01  5.63e-16  3.72e-04 
+   154| 9.95e-13  6.62e-13  3.01e-14 -9.90e+01 -9.90e+01  5.12e-15  6.29e-04 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 6.33e-04s
+	Lin-sys: avg # CG iterations: 1.30, avg solve time: 5.56e-07s
+	Cones: avg projection time: 9.77e-08s
+	Acceleration: avg step time: 2.26e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 4.2589e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|sTest Summary: | Pass  Total
+options.jl    |    9      9
+||y| = 4.6310e-17
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 9.9546e-13
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 6.6218e-13
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 3.0136e-14
+----------------------------------------------------------------------------
+c&#39;x = -99.0000, -b&#39;y = -99.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 12, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-12, alpha = 1.50, max_iters = 1, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 5, constraints m = 8
+Cones:	linear vars: 8
+Setup time: 4.52e-05s
+SCS using variable warm-starting
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 8.32e-13  1.35e-12  6.30e-14 -9.90e+01 -9.90e+01  0.00e+00  4.49e-05 
+     1| 8.32e-13  1.35e-12  6.30e-14 -9.90e+01 -9.90e+01  0.00e+00  5.00e-05 
+----------------------------------------------------------------------------
+Status: Solved&#x2F;Inaccurate
+Hit max_iters, solution may be inaccurate
+Timing: Solve time: 5.56e-05s
+	Lin-sys: avg # CG iterations: 0.50, avg solve time: 2.27e-06s
+	Cones: avg projection time: 5.06e-07s
+	Acceleration: avg step time: 0.00e+00s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 0.0000e+00, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 2.1536e-16
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 8.3158e-13
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 1.3459e-12
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 6.2985e-14
+----------------------------------------------------------------------------
+c&#39;x = -99.0000, -b&#39;y = -99.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 12, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 1, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 5, constraints m = 8
+Cones:	linear vars: 8
+Setup time: 3.72e-05s
+SCS using variable warm-starting
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 7.21e-13  1.78e-12  6.24e-14 -9.90e+01 -9.90e+01  5.69e-15  3.25e-05 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 3.58e-05s
+	Lin-sys: avg # CG iterations: 1.00, avg solve time: 3.81e-06s
+	Cones: avg projection time: 1.17e-06s
+	Acceleration: avg step time: 0.00e+00s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 2.1226e-15, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = -1.4812e-16
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 7.2069e-13
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 1.7818e-12
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 6.2414e-14
+----------------------------------------------------------------------------
+c&#39;x = -99.0000, -b&#39;y = -99.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 4, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 2, constraints m = 3
+Cones:	linear vars: 3
+Setup time: 1.59e-04s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 9.73e+18  0.00e+00  1.00e+00 -1.16e+19 -0.00e+00  1.54e+18  3.32e-05 
+    20| 5.24e-09  4.64e-09  4.32e-11 -7.50e-01 -7.50e-01  2.75e-17  8.92e-05 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 9.29e-05s
+	Lin-sys: avg # CG iterations: 1.33, avg solve time: 5.53e-07s
+	Cones: avg projection time: 9.11e-08s
+	Acceleration: avg step time: 1.46e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 3.2543e-18, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 8.8698e-17
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 5.2403e-09
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 4.6421e-09
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 4.3218e-11
+----------------------------------------------------------------------------
+c&#39;x = -0.7500, -b&#39;y = -0.7500
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 4, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 2, constraints m = 3
+Cones:	linear vars: 3
+Setup time: 4.22e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 9.73e+18  0.00e+00  1.00e+00 -1.16e+19 -0.00e+00  1.54e+18  3.26e-05 
+    20| 5.24e-09  4.64e-09  4.32e-11 -7.50e-01 -7.50e-01  2.75e-17  8.83e-05 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 9.18e-05s
+	Lin-sys: avg # CG iterations: 1.33, avg solve time: 5.26e-07s
+	Cones: avg projection time: 1.11e-07s
+	Acceleration: avg step time: 1.42e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 3.2543e-18, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 8.8698e-17
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 5.2403e-09
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 4.6421e-09
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 4.3218e-11
+----------------------------------------------------------------------------
+c&#39;x = -0.7500, -b&#39;y = -0.7500
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 4, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 2, constraints m = 3
+Cones:	linear vars: 3
+Setup time: 4.42e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 8.63e+18  1.17e+19  1.00e+00 -7.70e+18  1.24e+17  1.03e+18  3.14e-05 
+    20| 9.98e+09  1.67e+10  1.00e+00 -3.27e+09  5.80e+18  5.80e+18  8.96e-05 
+----------------------------------------------------------------------------
+Status: Infeasible
+Timing: Solve time: 9.27e-05s
+	Lin-sys: avg # CG iterations: 2.00, avg solve time: 5.┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is unbounded, but unbounded ray is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:97
+Test Summary:                              | Pass  Total
+Test the MathProgBase wrapper with linprog |   14     14
+Test Summary:           | Pass  Total
+MathProgBase SCS.Direct |  212    212
+Test Summary:             | Pass  Total
+MathProgBase SCS.Indirect |  212    212
+Test Summary: | Pass  Total
+SolverName    |    1      1
+Test Summary:          | Pass  Total
+supports_allocate_load |    2      2
+Test Summary: | Pass  Total
+Unit          |  293    293
+Test Summary:                              | Pass  Total
+Continuous linear problems with SCS.Direct |  496    496
+Test Summary:                            | Pass  Total
+ADMMIterations attribute with SCS.Direct |  121    121
+Test Summary:                                 | Pass  Total
+Continuous quadratic problems with SCS.Direct |   95     95
+Test Summary:                             | Pass  Total
+Continuous conic problems with SCS.Direct | 1101   1101
+Test Summary: | Pass  Total
+SolverName    |    1      1
+Test Summary:          | Pass  Total
+supports_allocate_load |    2      2
+Test Summary: | Pass  Total
+Unit          |  293    293
+Test Summary:                                | Pass  Total
+Continuous linear problems with SCS.Indirect |  496    496
+Test Summary:                              | Pass  Total
+ADMMIterations attribute with SCS.Indirect |  121    121
+Test Summary:                                   | Pass  Total
+Continuous quadratic problems with SCS.Indirect |   95     95
+Test Summary:                               | Pass  Total
+Continuous conic problems with SCS.Indirect | 1101   1101
+45e-07s
+	Cones: avg projection time: 6.39e-08s
+	Acceleration: avg step time: 1.38e-06s
+----------------------------------------------------------------------------
+Certificate of primal infeasibility:
+dist(y, K*) = 0.0000e+00
+|A&#39;y|_2 * |b|_2 = 5.7533e-09
+b&#39;y = -1.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 4, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 2, constraints m = 3
+Cones:	linear vars: 3
+Setup time: 5.03e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 7.03e-03  1.31e+00  1.68e-02 -1.71e-02 -0.00e+00  0.00e+00  3.37e-05 
+    12| 3.72e+05  0.00e+00  1.00e+00 -1.81e+16 -0.00e+00  1.81e+16  8.21e-05 
+----------------------------------------------------------------------------
+Status: Unbounded
+Timing: Solve time: 8.64e-05s
+	Lin-sys: avg # CG iterations: 1.46, avg solve time: 7.82e-07s
+	Cones: avg projection time: 1.16e-07s
+	Acceleration: avg step time: 2.01e-06s
+----------------------------------------------------------------------------
+Certificate of dual infeasibility:
+dist(s, K) = 0.0000e+00
+|Ax + s|_2 * |c|_2 = 2.9111e-11
+c&#39;x = -1.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 12, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 5, constraints m = 8
+Cones:	linear vars: 8
+Setup time: 5.15e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.49e+01  2.21e+00  8.87e-01 -1.19e+03 -7.10e+01  0.00e+00  3.51e-05 
+    40| 1.15e-08  9.36e-09  2.04e-09 -9.90e+01 -9.90e+01  2.54e-15  1.79e-04 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 1.83e-04s
+	Lin-sys: avg # CG iterations: 2.15, avg solve time: 7.93e-07s
+	Cones: avg projection time: 8.36e-08s
+	Acceleration: avg step time: 2.01e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 4.1359e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 2.9657e-16
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 1.1487e-08
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 9.3586e-09
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 2.0368e-09
+----------------------------------------------------------------------------
+c&#39;x = -99.0000, -b&#39;y = -99.0000
+============================================================================
+   Testing SCS tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 10 hours ago and took 7 minutes, 6 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/SCS/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Parsers ──────────── v0.3.10
+ Installed SCS ──────────────── v0.6.2
+ Installed Compat ───────────── v2.2.0
+ Installed OrderedCollections ─ v1.1.0
+ Installed BenchmarkTools ───── v0.4.3
+ Installed BinaryProvider ───── v0.5.8
+ Installed MathProgBase ─────── v0.7.7
+ Installed JSON ─────────────── v0.21.0
+ Installed MathOptInterface ─── v0.9.7
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [c946c3f1] + SCS v0.6.2
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [b99e7846] + BinaryProvider v0.5.8
+  [34da2185] + Compat v2.2.0
+  [682c06a0] + JSON v0.21.0
+  [b8f27783] + MathOptInterface v0.9.7
+  [fdba3010] + MathProgBase v0.7.7
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [c946c3f1] + SCS v0.6.2
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SCS → `~&#x2F;.julia&#x2F;packages&#x2F;SCS&#x2F;Y9wx3&#x2F;deps&#x2F;build.log`
+   Testing SCS
+ Resolving package versions...
+Status `&#x2F;tmp&#x2F;jl_sc5kpw&#x2F;Manifest.toml`
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [b99e7846] BinaryProvider v0.5.8
+  [34da2185] Compat v2.2.0
+  [682c06a0] JSON v0.21.0
+  [b8f27783] MathOptInterface v0.9.7
+  [fdba3010] MathProgBase v0.7.7
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [c946c3f1] SCS v0.6.2
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-direct, nnz in A = 1
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 1, constraints m = 1
+Cones:	primal zero &#x2F; dual free vars: 1
+Setup time: 1.02e-04s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 0.00e+00  9.19e+18  1.00e+00  0.00e+00  1.84e+19  1.60e+04  3.28e-05 
+     7| 1.09e-13  4.14e-13  3.49e-13  1.00e+00  1.00e+00  7.27e-17  1.13e-04 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 1.16e-04s
+	Lin-sys: nnz in L factor: 3, avg solve time: 4.26e-07s
+	Cones: avg projection time: 6.15e-08s
+	Acceleration: avg step time: 8.47e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 4.7159e-17, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 1.0000e+00
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 1.0916e-13
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 4.1380e-13
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 3.4861e-13
+----------------------------------------------------------------------------
+c&#39;x = 1.0000, -b&#39;y = 1.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-direct, nnz in A = 1012
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 11, constraints m = 112
+Cones:	linear vars: 100
+	soc vars: 12, soc blks: 1
+Setup time: 2.24e-04s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.03e+20  1.68e+19  9.75e-01 -1.55e+20 -1.94e+18  1.16e+20  7.06e-05 
+   100| 5.39e-07  7.64e-07  1.90e-07 -2.61e+00 -2.61e+00  2.60e-15  1.91e-03 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 1.92e-03s
+	Lin-sys: nnz in L factor: 1225, avg solve time: 6.40e-06s
+	Cones: avg projection time: 3.06e-07s
+	Acceleration: avg step time: 9.15e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 8.7617e-11, dist(y, K*) = 8.7616e-11, s&#39;y&#x2F;|s||y| = -1.2093e-11
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 5.3902e-07
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 7.6363e-07
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 1.9042e-07
+----------------------------------------------------------------------------
+c&#39;x = -2.6123, -b&#39;y = -2.6123
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-direct, nnz in A = 162
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 24, constraints m = 71
+Cones:	primal zero &#x2F; dual free vars: 10
+	linear vars: 10
+	soc vars: 6, soc blks: 5
+	exp vars: 30, dual exp vars: 15
+Setup time: 3.22e-04s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 3.51e+00  3.88e+00  9.95e-01 -1.49e+02  4.02e+01  0.00e+00  8.46e-04 
+    80| 2.57e-08  2.61e-08  5.82e-09  1.49e+01  1.49e+01  8.93e-15  1.36e-01 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 1.36e-01s
+	Lin-sys: nnz in L factor: 415, avg solve time: 7.64e-06s
+	Cones: avg projection time: 1.66e-04s
+	Acceleration: avg step time: 1.50e-03s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 5.3149e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 1.0015e-10
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 2.5657e-08
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 2.6089e-08
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 5.8153e-09
+----------------------------------------------------------------------------
+c&#39;x = 14.9010, -b&#39;y = 14.9010
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-direct, nnz in A = 66
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 15, constraints m = 46
+Cones:	primal zero &#x2F; dual free vars: 3
+	linear vars: 3
+	soc vars: 9, soc blks: 3
+	sd vars: 19, sd blks: 3
+	exp vars: 6, dual exp vars: 6
+Setup time: 2.85e-04s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.07e+00  1.50e+00  8.08e-01 -4.58e+01 -4.41e+00  1.42e-14  3.75e-04 
+    80| 1.06e-07  1.34e-07  7.03e-08 -1.02e+01 -1.02e+01  1.35e-14  6.51e-03 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 6.52e-03s
+	Lin-sys: nnz in L factor: 154, avg solve time: 1.32e-06s
+	Cones: avg projection time: 6.73e-05s
+	Acceleration: avg step time: 9.30e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 2.2892e-09, dist(y, K*) = 2.8110e-09, s&#39;y&#x2F;|s||y| = -3.4793e-11
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 1.0642e-07
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 1.3429e-07
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 7.0277e-08
+----------------------------------------------------------------------------
+c&#39;x = -10.2418, -b&#39;y = -10.2418
+============================================================================
+WARN: A-&gt;p (column pointers) not strictly increasing, column 1 empty
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-direct, nnz in A = 25
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 9, constraints m = 28
+Cones:	primal zero &#x2F; dual free vars: 5
+	linear vars: 5
+	primal + dual power vars: 18
+Setup time: 8.03e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 2.37e+00  2.16e+00  1.14e-01 -2.77e+01 -2.19e+01  1.52e-14  8.72e-05 
+    40| 1.47e-06  2.64e-06  5.38e-07 -3.73e+00 -3.73e+00  1.02e-14  1.02e-03 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 1.02e-03s
+	Lin-sys: nnz in L factor: 71, avg solve time: 6.99e-07s
+	Cones: avg projection time: 1.72e-05s
+	Acceleration: avg step time: 4.98e-06s
+----------------------------------------------------------------------------
+ErrTest Summary: | Pass  Total
+direct.jl     |    8      8
+or metrics:
+dist(s, K) = 5.5183e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 2.0369e-11
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 1.4666e-06
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 2.6450e-06
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 5.3778e-07
+----------------------------------------------------------------------------
+c&#39;x = -3.7278, -b&#39;y = -3.7277
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 1, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 1, constraints m = 1
+Cones:	primal zero &#x2F; dual free vars: 1
+Setup time: 8.76e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 5.00e-01  5.17e+15  1.00e+00  0.00e+00  1.03e+16  1.00e+00  3.77e-05 
+     7| 3.39e-13  6.73e-13  6.74e-13  1.00e+00  1.00e+00  5.48e-17  7.75e-05 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 8.02e-05s
+	Lin-sys: avg # CG iterations: 0.88, avg solve time: 6.57e-07s
+	Cones: avg projection time: 1.01e-07s
+	Acceleration: avg step time: 3.33e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 8.8815e-17, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = -1.0000e+00
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 3.3884e-13
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 6.7271e-13
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 6.7435e-13
+----------------------------------------------------------------------------
+c&#39;x = 1.0000, -b&#39;y = 1.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 1012, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 11, constraints m = 112
+Cones:	linear vars: 100
+	soc vars: 12, soc blks: 1
+Setup time: 8.39e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.03e+20  1.70e+19  9.76e-01 -1.55e+20 -1.91e+18  1.16e+20  8.32e-05 
+   100| 1.14e-06  2.67e-06  5.53e-07 -2.61e+00 -2.61e+00  1.52e-15  2.45e-03 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 2.46e-03s
+	Lin-sys: avg # CG iterations: 2.97, avg solve time: 1.22e-05s
+	Cones: avg projection time: 3.30e-07s
+	Acceleration: avg step time: 8.80e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 1.1912e-11, dist(y, K*) = 1.1912e-11, s&#39;y&#x2F;|s||y| = -1.6439e-12
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 1.1355e-06
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 2.6694e-06
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 5.5331e-07
+----------------------------------------------------------------------------
+c&#39;x = -2.6123, -b&#39;y = -2.6123
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 162, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 24, constraints m = 71
+Cones:	primal zero &#x2F; dual free vars: 10
+	linear vars: 10
+	soc vars: 6, soc blks: 5
+	exp vars: 30, dual exp vars: 15
+Setup time: 1.79e-04s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 3.41e+00  3.82e+00  9.95e-01 -1.44e+02  4.34e+01  0.00e+00  2.61e-04 
+    80| 4.09e-07  6.85e-07  4.05e-07  1.49e+01  1.49e+01  4.98e-16  5.63e-02 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 5.64e-02s
+	Lin-sys: avg # CG iterations: 4.83, avg solve time: 8.95e-06s
+	Cones: avg projection time: 1.52e-04s
+	Acceleration: avg step time: 5.30e-04s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 5.7545e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 7.3535e-11
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 4.0876e-07
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 6.8454e-07
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 4.0540e-07
+----------------------------------------------------------------------------
+c&#39;x = 14.9010, -b&#39;y = 14.9011
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 66, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 15, constraints m = 46
+Cones:	primal zero &#x2F; dual free vars: 3
+	linear vars: 3
+	soc vars: 9, soc blks: 3
+	sd vars: 19, sd blks: 3
+	exp vars: 6, dual exp vars: 6
+Setup time: 6.44e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.04e+00  1.41e+00  7.64e-01 -4.42e+01 -5.49e+00  1.40e-14  2.02e-04 
+    80| 3.60e-07  9.22e-07  6.63e-08 -1.02e+01 -1.02e+01  4.58e-15  6.97e-03 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 6.98e-03s
+	Lin-sys: avg # CG iterations: 4.44, avg solve time: 3.77e-06s
+	Cones: avg projection time: 7.01e-05s
+	Acceleration: avg step time: 9.76e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 2.2892e-09, dist(y, K*) = 2.3995e-09, s&#39;y&#x2F;|s||y| = -9.4000e-11
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 3.5970e-07
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 9.2244e-07
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 6.6308e-08
+----------------------------------------------------------------------------
+c&#39;x = -10.2418, -b&#39;y = -10.2418
+============================================================================
+WARN: A-&gt;p (column pointers) not strictly increasing, column 1 empty
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 25, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 9, constraints m = 28
+Cones:	primal zero &#x2F; dual free vars: 5
+	linear vars: 5
+	primal + dual power vars: 18
+Setup time: 4.10e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kapTest Summary: | Pass  Total
+indirect.jl   |    8      8
+&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 2.39e+00  2.18e+00  1.11e-01 -2.79e+01 -2.22e+01  1.53e-14  1.62e-04 
+    60| 3.13e-08  2.59e-08  2.25e-09 -3.73e+00 -3.73e+00  8.60e-16  1.33e-03 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 1.34e-03s
+	Lin-sys: avg # CG iterations: 2.87, avg solve time: 1.64e-06s
+	Cones: avg projection time: 1.27e-05s
+	Acceleration: avg step time: 4.39e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 4.7807e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 4.7960e-15
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 3.1272e-08
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 2.5896e-08
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 2.2515e-09
+----------------------------------------------------------------------------
+c&#39;x = -3.7278, -b&#39;y = -3.7278
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 12, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 5, constraints m = 8
+Cones:	linear vars: 8
+Setup time: 4.43e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.49e+01  2.21e+00  8.87e-01 -1.19e+03 -7.10e+01  0.00e+00  3.33e-05 
+    40| 1.15e-08  9.36e-09  2.04e-09 -9.90e+01 -9.90e+01  2.54e-15  2.01e-04 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 2.04e-04s
+	Lin-sys: avg # CG iterations: 2.15, avg solve time: 7.65e-07s
+	Cones: avg projection time: 6.60e-08s
+	Acceleration: avg step time: 2.57e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 4.1359e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 2.9657e-16
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 1.1487e-08
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 9.3586e-09
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 2.0368e-09
+----------------------------------------------------------------------------
+c&#39;x = -99.0000, -b&#39;y = -99.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 12, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-12, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 5, constraints m = 8
+Cones:	linear vars: 8
+Setup time: 5.37e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.49e+01  2.21e+00  8.87e-01 -1.19e+03 -7.10e+01  0.00e+00  3.28e-05 
+   100| 4.24e-11  8.08e-11  5.53e-12 -9.90e+01 -9.90e+01  5.63e-16  3.43e-04 
+   154| 9.95e-13  6.62e-13  3.01e-14 -9.90e+01 -9.90e+01  5.12e-15  5.49e-04 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 5.52e-04s
+	Lin-sys: avg # CG iterations: 1.30, avg solve time: 5.54e-07s
+	Cones: avg projection time: 6.00e-08s
+	Acceleration: avg step time: 1.92e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 4.2589e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|sTest Summary: | Pass  Total
+options.jl    |    9      9
+||y| = 4.6310e-17
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 9.9546e-13
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 6.6218e-13
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 3.0136e-14
+----------------------------------------------------------------------------
+c&#39;x = -99.0000, -b&#39;y = -99.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 12, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-12, alpha = 1.50, max_iters = 1, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 5, constraints m = 8
+Cones:	linear vars: 8
+Setup time: 4.32e-05s
+SCS using variable warm-starting
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 8.32e-13  1.35e-12  6.30e-14 -9.90e+01 -9.90e+01  0.00e+00  4.24e-05 
+     1| 8.32e-13  1.35e-12  6.30e-14 -9.90e+01 -9.90e+01  0.00e+00  4.90e-05 
+----------------------------------------------------------------------------
+Status: Solved&#x2F;Inaccurate
+Hit max_iters, solution may be inaccurate
+Timing: Solve time: 5.13e-05s
+	Lin-sys: avg # CG iterations: 0.50, avg solve time: 1.67e-06s
+	Cones: avg projection time: 4.21e-07s
+	Acceleration: avg step time: 0.00e+00s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 0.0000e+00, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 2.1536e-16
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 8.3158e-13
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 1.3459e-12
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 6.2985e-14
+----------------------------------------------------------------------------
+c&#39;x = -99.0000, -b&#39;y = -99.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 12, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 1, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 5, constraints m = 8
+Cones:	linear vars: 8
+Setup time: 4.70e-05s
+SCS using variable warm-starting
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 7.21e-13  1.78e-12  6.24e-14 -9.90e+01 -9.90e+01  5.69e-15  3.08e-05 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 3.34e-05s
+	Lin-sys: avg # CG iterations: 1.00, avg solve time: 4.32e-06s
+	Cones: avg projection time: 6.51e-07s
+	Acceleration: avg step time: 0.00e+00s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 2.1226e-15, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = -1.4812e-16
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 7.2069e-13
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 1.7818e-12
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 6.2414e-14
+----------------------------------------------------------------------------
+c&#39;x = -99.0000, -b&#39;y = -99.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 4, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 2, constraints m = 3
+Cones:	linear vars: 3
+Setup time: 2.27e-04s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 9.73e+18  0.00e+00  1.00e+00 -1.16e+19 -0.00e+00  1.54e+18  3.39e-05 
+    20| 5.24e-09  4.64e-09  4.32e-11 -7.50e-01 -7.50e-01  2.75e-17  1.28e-04 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 1.31e-04s
+	Lin-sys: avg # CG iterations: 1.33, avg solve time: 3.87e-07s
+	Cones: avg projection time: 6.58e-08s
+	Acceleration: avg step time: 3.43e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 3.2543e-18, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 8.8698e-17
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 5.2403e-09
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 4.6421e-09
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 4.3218e-11
+----------------------------------------------------------------------------
+c&#39;x = -0.7500, -b&#39;y = -0.7500
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 4, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 2, constraints m = 3
+Cones:	linear vars: 3
+Setup time: 4.73e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 9.73e+18  0.00e+00  1.00e+00 -1.16e+19 -0.00e+00  1.54e+18  2.80e-05 
+    20| 5.24e-09  4.64e-09  4.32e-11 -7.50e-01 -7.50e-01  2.75e-17  8.94e-05 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 9.20e-05s
+	Lin-sys: avg # CG iterations: 1.33, avg solve time: 4.69e-07s
+	Cones: avg projection time: 5.96e-08s
+	Acceleration: avg step time: 1.72e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 3.2543e-18, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 8.8698e-17
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 5.2403e-09
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 4.6421e-09
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 4.3218e-11
+----------------------------------------------------------------------------
+c&#39;x = -0.7500, -b&#39;y = -0.7500
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 4, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 2, constraints m = 3
+Cones:	linear vars: 3
+Setup time: 4.80e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 8.63e+18  1.17e+19  1.00e+00 -7.70e+18  1.24e+17  1.03e+18  2.97e-05 
+    20| 9.98e+09  1.67e+10  1.00e+00 -3.27e+09  5.80e+18  5.80e+18  8.64e-05 
+----------------------------------------------------------------------------
+Status: Infeasible
+Timing: Solve time: 8.88e-05s
+	Lin-sys: avg # CG iterations: 2.00, avg solve time: 4.┌ Warning: Problem is infeasible, but infeasibility ray (&quot;Farkas proof&quot;) is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:89
+┌ Warning: Problem is unbounded, but unbounded ray is unavailable; check that the proper solver options are set.
+└ @ MathProgBase.HighLevelInterface ~&#x2F;.julia&#x2F;packages&#x2F;MathProgBase&#x2F;rVlFR&#x2F;src&#x2F;HighLevelInterface&#x2F;linprog.jl:97
+Test Summary:                              | Pass  Total
+Test the MathProgBase wrapper with linprog |   14     14
+Test Summary:           | Pass  Total
+MathProgBase SCS.Direct |  212    212
+Test Summary:             | Pass  Total
+MathProgBase SCS.Indirect |  212    212
+Test Summary: | Pass  Total
+SolverName    |    1      1
+Test Summary:          | Pass  Total
+supports_allocate_load |    2      2
+Test Summary: | Pass  Total
+Unit          |  293    293
+Test Summary:                              | Pass  Total
+Continuous linear problems with SCS.Direct |  496    496
+Test Summary:                            | Pass  Total
+ADMMIterations attribute with SCS.Direct |  121    121
+Test Summary:                                 | Pass  Total
+Continuous quadratic problems with SCS.Direct |   95     95
+Test Summary:                             | Pass  Total
+Continuous conic problems with SCS.Direct | 1101   1101
+Test Summary: | Pass  Total
+SolverName    |    1      1
+Test Summary:          | Pass  Total
+supports_allocate_load |    2      2
+Test Summary: | Pass  Total
+Unit          |  293    293
+Test Summary:                                | Pass  Total
+Continuous linear problems with SCS.Indirect |  496    496
+Test Summary:                              | Pass  Total
+ADMMIterations attribute with SCS.Indirect |  121    121
+Test Summary:                                   | Pass  Total
+Continuous quadratic problems with SCS.Indirect |   95     95
+Test Summary:                               | Pass  Total
+Continuous conic problems with SCS.Indirect | 1101   1101
+95e-07s
+	Cones: avg projection time: 6.58e-08s
+	Acceleration: avg step time: 1.53e-06s
+----------------------------------------------------------------------------
+Certificate of primal infeasibility:
+dist(y, K*) = 0.0000e+00
+|A&#39;y|_2 * |b|_2 = 5.7533e-09
+b&#39;y = -1.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 4, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 2, constraints m = 3
+Cones:	linear vars: 3
+Setup time: 3.78e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 7.03e-03  1.31e+00  1.68e-02 -1.71e-02 -0.00e+00  0.00e+00  2.46e-05 
+    12| 3.72e+05  0.00e+00  1.00e+00 -1.81e+16 -0.00e+00  1.81e+16  7.07e-05 
+----------------------------------------------------------------------------
+Status: Unbounded
+Timing: Solve time: 7.26e-05s
+	Lin-sys: avg # CG iterations: 1.46, avg solve time: 6.07e-07s
+	Cones: avg projection time: 8.70e-08s
+	Acceleration: avg step time: 1.97e-06s
+----------------------------------------------------------------------------
+Certificate of dual infeasibility:
+dist(s, K) = 0.0000e+00
+|Ax + s|_2 * |c|_2 = 2.9111e-11
+c&#39;x = -1.0000
+============================================================================
+----------------------------------------------------------------------------
+	SCS v2.0.2 - Splitting Conic Solver
+	(c) Brendan O&#39;Donoghue, Stanford University, 2012-2017
+----------------------------------------------------------------------------
+Lin-sys: sparse-indirect, nnz in A = 12, CG tol ~ 1&#x2F;iter^(2.00)
+eps = 1.00e-05, alpha = 1.50, max_iters = 5000, normalize = 1, scale = 1.00
+acceleration_lookback = 20, rho_x = 1.00e-03
+Variables n = 5, constraints m = 8
+Cones:	linear vars: 8
+Setup time: 4.70e-05s
+----------------------------------------------------------------------------
+ Iter | pri res | dua res | rel gap | pri obj | dua obj | kap&#x2F;tau | time (s)
+----------------------------------------------------------------------------
+     0| 1.49e+01  2.21e+00  8.87e-01 -1.19e+03 -7.10e+01  0.00e+00  3.01e-05 
+    40| 1.15e-08  9.36e-09  2.04e-09 -9.90e+01 -9.90e+01  2.54e-15  1.82e-04 
+----------------------------------------------------------------------------
+Status: Solved
+Timing: Solve time: 1.85e-04s
+	Lin-sys: avg # CG iterations: 2.15, avg solve time: 7.56e-07s
+	Cones: avg projection time: 7.02e-08s
+	Acceleration: avg step time: 2.20e-06s
+----------------------------------------------------------------------------
+Error metrics:
+dist(s, K) = 4.1359e-16, dist(y, K*) = 0.0000e+00, s&#39;y&#x2F;|s||y| = 2.9657e-16
+primal res: |Ax + s - b|_2 &#x2F; (1 + |b|_2) = 1.1487e-08
+dual res:   |A&#39;y + c|_2 &#x2F; (1 + |c|_2) = 9.3586e-09
+rel gap:    |c&#39;x + b&#39;y| &#x2F; (1 + |c&#39;x| + |b&#39;y|) = 2.0368e-09
+----------------------------------------------------------------------------
+c&#39;x = -99.0000, -b&#39;y = -99.0000
+============================================================================
+   Testing SCS tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

@@ -1,0 +1,86 @@
+ Resolving package versions...
+ Installed RecipesBase ──────── v0.7.0
+ Installed ValueHistories ───── v0.5.1
+ Installed OrderedCollections ─ v1.1.0
+ Installed DataStructures ───── v0.17.6
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [98cad3c8] + ValueHistories v0.5.1
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [864edb3b] + DataStructures v0.17.6
+  [bac558e1] + OrderedCollections v1.1.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [98cad3c8] + ValueHistories v0.5.1
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+   Testing ValueHistories
+Status `/tmp/jl_OFraQk/Manifest.toml`
+  [864edb3b] DataStructures v0.17.6
+  [bac558e1] OrderedCollections v1.1.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [98cad3c8] ValueHistories v0.5.1
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+100 elements {Int64,Float64}
+History
+  * types: Int64, Float64
+  * length: 100
+History
+  * types: UInt8, String
+  * length: 100
+100 elements {Int64,Float64}
+QHistory
+    types: Int64, Float64
+    length: 100
+QHistory
+    types: UInt8, String
+    length: 100
+Test Summary:       | Pass  Total
+[->] tst_history.jl | 1033   1033
+MVHistory{History}
+  :myint2 => 5 elements {Int64,Int64}
+  :myf => 56 elements {Int64,Int64}
+  :myint => 5 elements {Int64,Int64}
+MVHistory{History}
+  :myint2 => 5 elements {Int64,Int64}
+  :myf => 56 elements {Int64,Int64}
+  :myint => 5 elements {Int64,Int64}
+Test Summary:         | Pass  Total
+[->] tst_mvhistory.jl |  548    548
+   --> Baseline: 100 loops that accumulates a Float64
+  0.020450 seconds (16.67 k allocations: 904.186 KiB)
+  0.000012 seconds (1 allocation: 16 bytes)
+   --> History: 100 loops tracking accumulator as Float64
+  0.020316 seconds (16.85 k allocations: 917.273 KiB)
+  0.000011 seconds (17 allocations: 4.422 KiB)
+   --> History: Converting result into arrays
+  0.000070 seconds (7 allocations: 256 bytes)
+  0.000007 seconds (7 allocations: 256 bytes)
+   --> QHistory: 100 loops tracking accumulator as Float64
+  0.056462 seconds (16.84 k allocations: 912.898 KiB, 62.10% gc time)
+  0.000005 seconds (5 allocations: 176 bytes)
+   --> QHistory: Converting result into arrays
+  0.000252 seconds (911 allocations: 27.047 KiB)
+  0.000152 seconds (911 allocations: 27.047 KiB)
+   --> MVHistory: 100 loops tracking accumulator as Float64 and String
+  0.460099 seconds (472.60 k allocations: 21.854 MiB)
+  0.000084 seconds (330 allocations: 52.625 KiB)
+   --> MVHistory: Converting result into arrays
+  0.113552 seconds (77.40 k allocations: 3.977 MiB)
+  0.000220 seconds (522 allocations: 18.453 KiB)
+Test Summary:      |
+[->] bm_history.jl | No tests
+   Testing ValueHistories tests passed 

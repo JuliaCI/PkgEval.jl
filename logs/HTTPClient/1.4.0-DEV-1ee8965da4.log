@@ -1,0 +1,103 @@
+ Resolving package versions...
+ Installed HTTPClient ───── v0.2.1
+ Installed Compat ───────── v2.2.0
+ Installed LibCURL ──────── v0.5.2
+ Installed BinaryProvider ─ v0.5.8
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [0862f596] + HTTPClient v0.2.1
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [34da2185] + Compat v2.2.0
+  [0862f596] + HTTPClient v0.2.1
+  [b27032c2] + LibCURL v0.5.2
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building LibCURL → `~/.julia/packages/LibCURL/lWJxD/deps/build.log`
+   Testing HTTPClient
+Status `/tmp/jl_j0CLP1/Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [34da2185] Compat v2.2.0
+  [0862f596] HTTPClient v0.2.1
+  [b27032c2] LibCURL v0.5.2
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib/SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: LoadError: syntax: extra token "RequestOptions" after end of expression
+Stacktrace:
+ [1] top-level scope at /root/.julia/packages/HTTPClient/ZQR55/src/HTTPC.jl:18
+ [2] include(::Module, ::String) at ./Base.jl:377
+ [3] include(::String) at /root/.julia/packages/HTTPClient/ZQR55/src/HTTPClient.jl:1
+ [4] top-level scope at /root/.julia/packages/HTTPClient/ZQR55/src/HTTPClient.jl:3
+ [5] include(::Module, ::String) at ./Base.jl:377
+ [6] top-level scope at none:2
+ [7] eval at ./boot.jl:331 [inlined]
+ [8] eval(::Expr) at ./client.jl:449
+ [9] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/HTTPClient/ZQR55/src/HTTPC.jl:18
+in expression starting at /root/.julia/packages/HTTPClient/ZQR55/src/HTTPClient.jl:3
+ERROR: LoadError: Failed to precompile HTTPClient [0862f596-cf2d-50af-8ef4-f2be67dfa83f] to /root/.julia/compiled/v1.4/HTTPClient/MYzen_A3I9c.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1263
+ [3] _require(::Base.PkgId) at ./loading.jl:1022
+ [4] require(::Base.PkgId) at ./loading.jl:920
+ [5] require(::Module, ::Symbol) at ./loading.jl:915
+ [6] include(::String) at ./client.jl:439
+ [7] top-level scope at none:6
+in expression starting at /root/.julia/packages/HTTPClient/ZQR55/test/runtests.jl:1
+ERROR: Package HTTPClient errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

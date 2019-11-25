@@ -1,0 +1,169 @@
+ Resolving package versions...
+ Installed AbstractTrees ────── v0.2.1
+ Installed Parsers ──────────── v0.3.10
+ Installed OrderedCollections ─ v1.1.0
+ Installed Compat ───────────── v2.2.0
+ Installed BenchmarkTools ───── v0.4.3
+ Installed MathProgBase ─────── v0.7.7
+ Installed JSON ─────────────── v0.21.0
+ Installed Convex ───────────── v0.12.6
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [f65535da] + Convex v0.12.6
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [1520ce14] + AbstractTrees v0.2.1
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [34da2185] + Compat v2.2.0
+  [f65535da] + Convex v0.12.6
+  [682c06a0] + JSON v0.21.0
+  [fdba3010] + MathProgBase v0.7.7
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing Convex
+ Resolving package versions...
+ Installed GLPKMathProgInterface ─ v0.4.4
+ Installed SCS ─────────────────── v0.6.2
+ Installed ECOS ────────────────── v0.10.1
+ Installed BinaryProvider ──────── v0.5.8
+ Installed MathOptInterface ────── v0.9.7
+ Installed GLPK ────────────────── v0.12.0
+  Building ECOS → `~/.julia/packages/ECOS/TOZeI/deps/build.log`
+  Building SCS ─→ `~/.julia/packages/SCS/Y9wx3/deps/build.log`
+  Building GLPK → `~/.julia/packages/GLPK/J1b5G/deps/build.log`
+┌ Error: Error building `GLPK`: 
+│ [ Info: Downloading https://github.com/JuliaMath/GMPBuilder/releases/download/v6.1.2-2/GMP.v6.1.2.x86_64-linux-gnu.tar.gz to /root/.julia/packages/GLPK/J1b5G/deps/usr/downloads/GMP.v6.1.2.x86_64-linux-gnu.tar.gz...
+│ [ Info: Downloading https://github.com/juan-pablo-vielma/GLPKBuilder/releases/download/v4.64-beta/GLPKBuilder.v4.64.0.x86_64-linux-gnu.tar.gz to /root/.julia/packages/GLPK/J1b5G/deps/usr/downloads/GLPKBuilder.v4.64.0.x86_64-linux-gnu.tar.gz...
+│ ERROR: LoadError: Could not download https://github.com/juan-pablo-vielma/GLPKBuilder/releases/download/v4.64-beta/GLPKBuilder.v4.64.0.x86_64-linux-gnu.tar.gz to /root/.julia/packages/GLPK/J1b5G/deps/usr/downloads/GLPKBuilder.v4.64.0.x86_64-linux-gnu.tar.gz:
+│ ErrorException("")
+│ Stacktrace:
+│  [1] error(::String) at ./error.jl:33
+│  [2] #download#89(::Bool, ::Function, ::String, ::String) at /root/.julia/packages/BinaryProvider/kcGxO/src/PlatformEngines.jl:502
+│  [3] #download at ./none:0 [inlined]
+│  [4] #download_verify#90(::Bool, ::Bool, ::Bool, ::Function, ::String, ::String, ::String) at /root/.julia/packages/BinaryProvider/kcGxO/src/PlatformEngines.jl:571
+│  [5] #download_verify at ./none:0 [inlined]
+│  [6] #install#129(::Prefix, ::String, ::Bool, ::Bool, ::Bool, ::Function, ::String, ::String) at /root/.julia/packages/BinaryProvider/kcGxO/src/Prefix.jl:314
+│  [7] (::getfield(BinaryProvider, Symbol("#kw##install")))(::NamedTuple{(:prefix, :force, :verbose),Tuple{Prefix,Bool,Bool}}, ::typeof(install), ::String, ::String) at ./none:0
+│  [8] top-level scope at /root/.julia/packages/GLPK/J1b5G/deps/build.jl:59
+│  [9] include at ./boot.jl:317 [inlined]
+│  [10] include_relative(::Module, ::String) at ./loading.jl:1044
+│  [11] include(::Module, ::String) at ./sysimg.jl:29
+│  [12] include(::String) at ./client.jl:392
+│  [13] top-level scope at none:0
+│ in expression starting at /root/.julia/packages/GLPK/J1b5G/deps/build.jl:42
+│ [21:18:31] #=#=#                                                                         [21:18:31] ##O#- #                                                                       [21:18:32] ##O=#  #                                                                      [21:18:32] #=#=-#  #                                                                     [21:18:32] -#O#- #   #                                                                   [21:18:32] [21:18:32] ##                                                                         3.2%[21:18:32] #######                                                                    9.9%[21:18:32] #####################                                                     30.4%[21:18:32] ##############################################                            64.0%[21:18:32] ######################################################################## 100.0%
+│ [21:18:33] #=#=#                                                                         [21:18:34] ##O#- #                                                                       [21:18:34] ##O=#  #                                                                      [21:18:35] #=#=-#  #                                                                     [21:18:36] -#O#- #   #                                                                   [21:18:37] -=#=#   #   #                                                                 [21:18:38] -=O#- #  #    #                                                               [21:18:39] -=O=#  #   #   #                                                              [21:18:40] -=O=-#  #    #   #                                                            [21:18:41] -=O=- #   #   #     #                                                         [21:18:42] -=O=-   #   #   #     #                                                       [21:18:43] -=O=-    #    #    #    #                                                     [21:18:44] -=O=-      #   #     #    #                                                   [21:18:45] -=O=-        #   #     #     #                                                [21:18:46] -=O=-         #     #    #     #                                              [21:18:47] -=O=-           #     #    #     #                                            [21:18:48] -=O=-              #    #     #     #                                         [21:18:49] -=O=-                #    #     #     #                                       [21:18:50] -=O=-                  #     #     #     #                                    [21:18:51] -=O=-                    #     #     #     #                                  [21:18:52] -=O=-                      #     #     #      #                               [21:18:53] -=O=-                         #     #     #     #                             [21:18:54] -=O=-                           #     #     #     #                           [21:18:55] -=O=-                              #     #     #     #                        [21:18:56] -=O=-                                #     #     #     #                      [21:18:57] -=O=-                                  #      #    #     #                    [21:18:58] -=O=-                                     #     #     #    #                  [21:18:59] -=O=-                                       #     #     #    #                [21:19:00] -=O=-                                          #     #    #    #              [21:19:01] -=O=-                                            #     #    #    #            [21:19:02] -=O=-                                              #     #    #    #          [21:19:03] -=O=-                                                 #    #    #   #         [21:19:04] -=O=-                                                   #    #    #   #       [21:19:05] -=O=-                                                     #    #   #   #      [21:19:06] -=O=-                                                       #    #   #  #     [21:19:07] -=O=-                                                         #    #  #  #    [21:19:08] -=O=-                                                           #   #   # #   [21:19:09] -=O=-                                                             #   #  # #  [21:19:10] -=O=-                                                              #   #  # # [21:19:11] -=O=-                                                                #  #  ## [21:19:12] -=O=-                                                                 #  # # #[21:19:13] -=O=-                                                                   # # ##[21:19:14] -=O=-                                                                    # # #[21:19:15] -=O=-                                                                     # ##[21:19:16] -=O=-                                                                      ###[21:19:17] -=O=-                                                                      ###[21:19:18] -=O=-                                                                       ##[21:19:19] -=O=-                                                                      # #[21:19:20] -=O=-                                                                     # ##[21:19:21] -=O=-                                                                    # # #[21:19:22] -=O=-                                                                   #  ###[21:19:23] -=O=-                                                                  #  # ##[21:19:24] -=O=-                                                                 #  # # #[21:19:25] -=O=-                                                               #   # # # [21:19:26] -=O=-                                                              #  #  # #  [21:19:27] -=O=-                                                            #   #  #  #  [21:19:28] -=O=-                                                          #   #   #  #   [21:19:29] -=O=-                                                        #    #   #  #    [21:19:30] -=O=-                                                      #    #   #   #     [21:19:31] -=O=-                                                    #    #    #  #       [21:19:32] -=O=-                                                  #    #    #   #        [21:19:33] -=O=-                                                #    #    #   #          [21:19:34] -=O=-                                             #     #    #    #           [21:19:35] -=O=-                                           #     #    #    #             [21:19:36] -=O=-                                         #    #     #    #               [21:19:37] -=O=-                                      #     #     #    #                 [21:19:38] -=O=-                                    #     #     #    #                   [21:19:39] -=O=-                                 #     #     #     #                     [21:19:40] -=O=-                               #     #     #     #                       [21:19:41] -=O=-                            #     #      #    #                          [21:19:42] -=O=-                          #     #     #     #                            [21:19:43] -=O=-                        #     #     #     #                              [21:19:44] -=O=-                     #     #     #     #                                 [21:19:45] -=O=-                   #     #     #     #                                   [21:19:46] -=O=-                 #    #     #     #                                      [21:19:47] -=O=-               #    #     #     #                                        [21:19:48] -=O=-            #     #     #     #                                          [21:19:49] -=O=-          #     #    #     #                                             [21:19:50] -=O=-         #    #    #     #                                               [21:19:51] -=O=-       #   #     #    #                                                  [21:19:52] -=O=-     #    #    #    #                                                    [21:19:53] -=O=-   #    #   #     #                                                      [21:19:54] -=O=-  #   #   #     #                                                        [21:19:55] -=O=- #  #    #    #                                                          [21:19:56] -=O=#   #   #   #                                                             [21:19:57] -=O#- #   #    #                                                              [21:19:58] -=#=-#  #    #                                                                [21:19:59] -#O=#  #   #                                                                  [21:20:00] -#O#- #  #                                                                    [21:20:01] #=#=#   #                                                                     [21:20:02] ##O#- #                                                                       [21:20:03] #=#=-#                                                                        [21:20:04] ##O=#                                                                         [21:20:05] ##O#-                                                                         [21:20:06] #=#=-                                                                         [21:20:07] ##O=-                                                                         [21:20:08] ##O=-                                                                         [21:20:09] ##O=-                                                                         [21:20:10] #=#=-                                                                         [21:20:11] ##O#-                                                                         [21:20:12] #=#=#                                                                         [21:20:13] ##O#- #                                                                       [21:20:14] ##O=#  #                                                                      [21:20:15] #=#=-#  #                                                                     [21:20:16] -#O#- #   #                                                                   [21:20:17] -=#=#   #   #                                                                 [21:20:18] -=O#- #  #    #                                                               [21:20:19] -=O=#  #   #   #                                                              [21:20:20] -=O=-#  #    #   #                                                            [21:20:21] -=O=- #   #   #     #                                                         [21:20:22] -=O=-   #   #   #     #                                                       [21:20:23] -=O=-    #    #    #    #                                                     [21:20:24] -=O=-      #   #     #    #                                                   [21:20:25] -=O=-        #   #     #     #                                                [21:20:26] -=O=-         #     #    #     #                                              [21:20:27] -=O=-           #     #    #     #                                            [21:20:28] -=O=-              #    #     #     #                                         [21:20:29] -=O=-                #    #     #     #                                       [21:20:30] -=O=-                  #     #     #     #                                    [21:20:31] -=O=-                    #     #     #     #                                  [21:20:32] -=O=-                      #     #     #      #                               [21:20:33] -=O=-                         #     #     #     #                             [21:20:34] -=O=-                           #     #     #     #                           [21:20:35] -=O=-                              #     #     #     #                        [21:20:36] -=O=-                                #     #     #     #                      [21:20:37] -=O=-                                  #      #    #     #                    [21:20:38] -=O=-                                     #     #     #    #                  [21:20:39] -=O=-                                       #     #     #    #                [21:20:40] -=O=-                                          #     #    #    #              [21:20:41] -=O=-                                            #     #    #    #            [21:20:42] -=O=-                                              #     #    #    #          [21:20:43] -=O=-                                                 #    #    #   #         [21:20:44] -=O=-                                                   #    #    #   #       [21:20:44] 
+│ [21:20:44] curl: (7) Failed to connect to github-production-release-asset-2e65be.s3.amazonaws.com port 443: Connection timed out
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1096
+    Status `/tmp/tmp8MROhF/Manifest.toml`
+  [1520ce14] AbstractTrees v0.2.1
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [b99e7846] BinaryProvider v0.5.8
+  [34da2185] Compat v2.2.0
+  [f65535da] Convex v0.12.6
+  [e2685f51] ECOS v0.10.1
+  [60bf3e95] GLPK v0.12.0
+  [3c7084bd] GLPKMathProgInterface v0.4.4
+  [682c06a0] JSON v0.21.0
+  [b8f27783] MathOptInterface v0.9.7
+  [fdba3010] MathProgBase v0.7.7
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [c946c3f1] SCS v0.6.2
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib/SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: LoadError: InitError: UndefVarError: libglpk not defined
+Stacktrace:
+ [1] version at /root/.julia/packages/GLPK/J1b5G/src/GLPK.jl:224 [inlined]
+ [2] __init__() at /root/.julia/packages/GLPK/J1b5G/src/GLPK.jl:244
+ [3] _include_from_serialized(::String, ::Array{Any,1}) at ./loading.jl:633
+ [4] _require_from_serialized(::String) at ./loading.jl:684
+ [5] _require(::Base.PkgId) at ./loading.jl:967
+ [6] require(::Base.PkgId) at ./loading.jl:858
+ [7] require(::Module, ::Symbol) at ./loading.jl:853
+ [8] include at ./boot.jl:317 [inlined]
+ [9] include_relative(::Module, ::String) at ./loading.jl:1044
+ [10] include at ./sysimg.jl:29 [inlined]
+ [11] include(::String) at /root/.julia/packages/GLPKMathProgInterface/8q6jt/src/GLPKMathProgInterface.jl:2
+ [12] top-level scope at none:0
+ [13] include at ./boot.jl:317 [inlined]
+ [14] include_relative(::Module, ::String) at ./loading.jl:1044
+ [15] include(::Module, ::String) at ./sysimg.jl:29
+ [16] top-level scope at none:2
+ [17] eval at ./boot.jl:319 [inlined]
+ [18] eval(::Expr) at ./client.jl:393
+ [19] top-level scope at ./none:3
+during initialization of module GLPK
+in expression starting at /root/.julia/packages/GLPKMathProgInterface/8q6jt/src/GLPKInterfaceBase.jl:6
+in expression starting at /root/.julia/packages/GLPKMathProgInterface/8q6jt/src/GLPKMathProgInterface.jl:10
+ERROR: LoadError: Failed to precompile GLPKMathProgInterface [3c7084bd-78ad-589a-b5bb-dbd673274bea] to /root/.julia/compiled/v1.0/GLPKMathProgInterface/Y5bTM.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1203
+ [3] _require(::Base.PkgId) at ./loading.jl:960
+ [4] require(::Base.PkgId) at ./loading.jl:858
+ [5] require(::Module, ::Symbol) at ./loading.jl:853
+ [6] include at ./boot.jl:317 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1044
+ [8] include(::Module, ::String) at ./sysimg.jl:29
+ [9] include(::String) at ./client.jl:392
+ [10] top-level scope at none:0
+in expression starting at /root/.julia/packages/Convex/Aro4K/test/runtests.jl:4
+ERROR: Package Convex errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

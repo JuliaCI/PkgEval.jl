@@ -1,0 +1,73 @@
+ Resolving package versions...
+ Installed CUDAapi ─ v0.6.3
+ Installed Batched ─ v0.1.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [1629540a] + Batched v0.1.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [1629540a] + Batched v0.1.0
+  [3895d2a7] + CUDAapi v0.6.3
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  Building Batched → `~/.julia/packages/Batched/yUbIZ/deps/build.log`
+   Testing Batched
+Status `/tmp/jl_RzQbAc/Manifest.toml`
+  [1629540a] Batched v0.1.0
+  [3895d2a7] CUDAapi v0.6.3
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+Testing batched_gemm! with Float32: Error During Test at /root/.julia/packages/Batched/yUbIZ/test/routines/gemm.jl:3
+  Got exception outside of a @test
+  UndefVarError: has_offset_axes not defined
+  Stacktrace:
+   [1] batched_gemm!(::Char, ::Char, ::Float32, ::Array{Float32,3}, ::Array{Float32,3}, ::Float32, ::Array{Float32,3}) at /root/.julia/packages/Batched/yUbIZ/src/routines/blas.jl:88
+   [2] macro expansion at /root/.julia/packages/Batched/yUbIZ/test/routines/gemm.jl:11 [inlined]
+   [3] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1183 [inlined]
+   [4] top-level scope at /root/.julia/packages/Batched/yUbIZ/test/routines/gemm.jl:0
+   [5] include(::String) at ./client.jl:439
+   [6] top-level scope at /root/.julia/packages/Batched/yUbIZ/test/runtests.jl:3
+   [7] include(::String) at ./client.jl:439
+   [8] top-level scope at none:6
+   [9] eval(::Module, ::Any) at ./boot.jl:331
+   [10] exec_options(::Base.JLOptions) at ./client.jl:264
+   [11] _start() at ./client.jl:484
+  
+Test Summary:                      | Error  Total
+Testing batched_gemm! with Float32 |     1      1
+Test Summary:                      | Error  Total
+Testing batched_gemm! with Float32 |     1      1
+ERROR: LoadError: LoadError: Some tests did not pass: 0 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /root/.julia/packages/Batched/yUbIZ/test/routines/gemm.jl:3
+in expression starting at /root/.julia/packages/Batched/yUbIZ/test/runtests.jl:3
+caused by [exception 1]
+Some tests did not pass: 0 passed, 0 failed, 1 errored, 0 broken.
+ERROR: Package Batched errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

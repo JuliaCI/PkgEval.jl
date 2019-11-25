@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="Graph500">Graph500</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#Graph500">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 16 hours ago and took 3 minutes, 28 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Graph500/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Graph500 ─────────── v0.1.0
+ Installed Missings ─────────── v0.4.3
+ Installed DataAPI ──────────── v1.1.0
+ Installed Tokenize ─────────── v0.5.6
+ Installed Inflate ──────────── v0.1.1
+ Installed OrderedCollections ─ v1.1.0
+ Installed StaticArrays ─────── v0.12.1
+ Installed MacroTools ───────── v0.5.1
+ Installed SimpleTraits ─────── v0.9.1
+ Installed SortingAlgorithms ── v0.3.1
+ Installed ArnoldiMethod ────── v0.0.4
+ Installed CSTParser ────────── v1.0.0
+ Installed ProgressMeter ────── v0.9.0
+ Installed StatsBase ────────── v0.32.0
+ Installed LightGraphs ──────── v1.3.0
+ Installed DataStructures ───── v0.17.6
+ Installed Compat ───────────── v3.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [1ba61846] + Graph500 v0.1.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [ec485272] + ArnoldiMethod v0.0.4
+  [00ebfdb7] + CSTParser v1.0.0
+  [34da2185] + Compat v3.0.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [1ba61846] + Graph500 v0.1.0
+  [d25df0c9] + Inflate v0.1.1
+  [093fc24a] + LightGraphs v1.3.0
+  [1914dd2f] + MacroTools v0.5.1
+  [e1d29d7a] + Missings v0.4.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [92933f4c] + ProgressMeter v0.9.0
+  [699a6c99] + SimpleTraits v0.9.1
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [90137ffa] + StaticArrays v0.12.1
+  [2913bbd2] + StatsBase v0.32.0
+  [0796e94c] + Tokenize v0.5.6
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing Graph500
+    Status `&#x2F;tmp&#x2F;tmpdKfnl2&#x2F;Manifest.toml`
+  [ec485272] ArnoldiMethod v0.0.4
+  [00ebfdb7] CSTParser v1.0.0
+  [34da2185] Compat v3.0.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [1ba61846] Graph500 v0.1.0
+  [d25df0c9] Inflate v0.1.1
+  [093fc24a] LightGraphs v1.3.0
+  [1914dd2f] MacroTools v0.5.1
+  [e1d29d7a] Missings v0.4.3
+  [bac558e1] OrderedCollections v1.1.0
+  [92933f4c] ProgressMeter v0.9.0
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [0796e94c] Tokenize v0.5.6
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+WARNING: Compat.Markdown is deprecated, use Markdown instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MacroTools&#x2F;ys44U&#x2F;src&#x2F;MacroTools.jl:4
+WARNING: Compat.Random is deprecated, use Random instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MacroTools&#x2F;ys44U&#x2F;src&#x2F;MacroTools.jl:35
+kernel_1: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Graph500&#x2F;fBDvZ&#x2F;test&#x2F;kernel_1.jl:6
+  Expression: nv(g) == 4
+   Evaluated: 0x02 == 4
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Graph500&#x2F;fBDvZ&#x2F;test&#x2F;kernel_1.jl:6 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Graph500&#x2F;fBDvZ&#x2F;test&#x2F;kernel_1.jl:2
+Generating graph.
+Starting Kernel 1.
+
+[32mBenchmark Info[39m
+Scale : 4
+Number of vertices : 16
+Number of Edges : 22
+Number of Bfs : 14
+
+
+[32mGraph construction time[39m
+Graph Construction Time : 3.8012e-5
+
+
+[32mBFS time statistics[39m
+BFS min time : 1.923e-6
+BFS first quartile time : 2.3015e-6
+BFS median time : 2.7054999999999998e-6
+BFS third quartile time : 3.1335e-6
+BFS max time : 1.4458e-5
+BFS mean time : 4.427714285714286e-6
+BFS standard deviation time : 3.942090297302678e-6
+
+
+[32mEdges traversed per BFS statistics[39m
+BFS min nedge : 38.0
+BFS first quartile nedge : 41.5
+BFS median nedge : 43.25
+BFS third quartile nedge : 44.5
+BFS max nedge : 51.5
+BFS mean nedge : 43.642857142857146
+BFS standard deviation nedge : 3.7129118338191502
+
+
+[32mEdges traversed per second statistics[39m
+BFS min TEPS : 3.52745884631346e6
+BFS first quartile TEPS : 1.2572180885430565e7
+BFS median TEPS : 1.5762877481718961e7
+BFS third quartile TEPS : 1.9929927123583782e7
+BFS max TEPS : 2.1320852834113363e7
+BFS harmonic mean TEPS : 1.0087519509217605e7
+BFS harmonic standard deviation TEPS : 2.292727130633733e6
+
+
+[32mBenchmark Info[39m
+Scale : 4
+Number of vertices : 16
+Number of Edges : 22
+Number of Bfs : 14
+
+
+[32mGraph construction time[39m
+Graph Construction Time : 3.8012e-5
+
+
+[32mBFS time statistics[39m
+BFS min time : 1.923e-6
+BFS first quartile time : 2.3015e-6
+BFS median time : 2.7054999999999998e-6
+BFS third quartile time : 3.1335e-6
+BFS max time : 1.4458e-5
+BFS mean time : 4.427714285714286e-6
+BFS standard deviation time : 3.942090297302678e-6
+
+
+[32mEdges traversed per BFS statistics[39m
+BFS min nedge : 38.0
+BFS first quartile nedge : 41.5
+BFS median nedge : 43.25
+BFS third quartile nedge : 44.5
+BFS max nedge : 51.5
+BFS mean nedge : 43.642857142857146
+BFS standard deviation nedge : 3.7129118338191502
+
+
+[32mEdges traversed per second statistics[39m
+BFS min TEPS : 3.52745884631346e6
+BFS first quartile TEPS : 1.2572180885430565e7
+BFS median TEPS : 1.5762877481718961e7
+BFS third quartile TEPS : 1.9929927123583782e7
+BFS max TEPS : 2.1320852834113363e7
+BFS harmonic mean TEPS : 1.0087519509217605e7
+BFS harmonic standard deviation TEPS : 2.292727130633733e6
+
+Generating graph.
+Starting Kernel 1.
+
+[32mBenchmark Info[39m
+Scale : 4
+Number of vertices : 16
+Number of Edges : 24
+Number of Bfs : 14
+
+
+[32mGraph construction time[39m
+Graph Construction Time : 1.6902e-5
+
+
+[32mBFS time statistics[39m
+BFS min time : 1.613e-6
+BFS first quartile time : 1.78325e-6
+BFS median time : 2.0235e-6
+BFS third quartile time : 2.22225e-6
+BFS max time : 6.743e-6
+BFS mean time : 2.327285714285715e-6
+BFS standard deviation time : 1.2923507757077902e-6
+
+
+[32mEdges traversed per BFS statistics[39m
+BFS min nedge : 43.0
+BFS first quartile nedge : 47.75
+BFS median nedge : 50.75
+BFS third quartile nedge : 55.0
+BFS max nedge : 65.5
+BFS mean nedge : 51.75
+BFS standard deviation nedge : 5.747072833525442
+
+
+[32mEdges traversed per second statistics[39m
+BFS min TEPS : 6.970191309506155e6
+BFS first quartile TEPS : 2.2647813027736753e7
+BFS median TEPS : 2.5081992170276158e7
+BFS third quartile TEPS : 2.9800638592764787e7
+BFS max TEPS : 3.6267823930564165e7
+BFS harmonic mean TEPS : 2.1650504869436193e7
+BFS harmonic standard deviation TEPS : 3.753350040867773e6
+
+Test Summary:         | Pass  Fail  Total
+test set              |   15     1     16
+  kronecker_generator |    4            4
+  kernel_1            |    2     1      3
+  kernel_2            |    3            3
+  validations         |    4            4
+  output              |             No tests
+  driver              |    2            2
+ERROR: LoadError: Some tests did not pass: 15 passed, 1 failed, 0 errored, 0 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Graph500&#x2F;fBDvZ&#x2F;test&#x2F;runtests.jl:4
+ERROR: Package Graph500 errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1357
+ [3] #test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:278
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:263 [inlined]
+ [6] #test#43 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [8] #test#42 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [10] #test#41 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258 [inlined]
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258
+ [12] top-level scope at none:0
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 16 hours ago and took 2 minutes, 28 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Graph500/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Graph500 ─────────── v0.1.0
+ Installed SimpleTraits ─────── v0.9.1
+ Installed Missings ─────────── v0.4.3
+ Installed Inflate ──────────── v0.1.1
+ Installed DataAPI ──────────── v1.1.0
+ Installed CSTParser ────────── v1.0.0
+ Installed DataStructures ───── v0.17.6
+ Installed LightGraphs ──────── v1.3.0
+ Installed Compat ───────────── v3.0.0
+ Installed SortingAlgorithms ── v0.3.1
+ Installed ArnoldiMethod ────── v0.0.4
+ Installed Tokenize ─────────── v0.5.6
+ Installed MacroTools ───────── v0.5.1
+ Installed StaticArrays ─────── v0.12.1
+ Installed StatsBase ────────── v0.32.0
+ Installed OrderedCollections ─ v1.1.0
+ Installed ProgressMeter ────── v0.9.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [1ba61846] + Graph500 v0.1.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [ec485272] + ArnoldiMethod v0.0.4
+  [00ebfdb7] + CSTParser v1.0.0
+  [34da2185] + Compat v3.0.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [1ba61846] + Graph500 v0.1.0
+  [d25df0c9] + Inflate v0.1.1
+  [093fc24a] + LightGraphs v1.3.0
+  [1914dd2f] + MacroTools v0.5.1
+  [e1d29d7a] + Missings v0.4.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [92933f4c] + ProgressMeter v0.9.0
+  [699a6c99] + SimpleTraits v0.9.1
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [90137ffa] + StaticArrays v0.12.1
+  [2913bbd2] + StatsBase v0.32.0
+  [0796e94c] + Tokenize v0.5.6
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing Graph500
+    Status `&#x2F;tmp&#x2F;jl_C0TLwB&#x2F;Manifest.toml`
+  [ec485272] ArnoldiMethod v0.0.4
+  [00ebfdb7] CSTParser v1.0.0
+  [34da2185] Compat v3.0.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [1ba61846] Graph500 v0.1.0
+  [d25df0c9] Inflate v0.1.1
+  [093fc24a] LightGraphs v1.3.0
+  [1914dd2f] MacroTools v0.5.1
+  [e1d29d7a] Missings v0.4.3
+  [bac558e1] OrderedCollections v1.1.0
+  [92933f4c] ProgressMeter v0.9.0
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [0796e94c] Tokenize v0.5.6
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+WARNING: Compat.Markdown is deprecated, use Markdown instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MacroTools&#x2F;ys44U&#x2F;src&#x2F;MacroTools.jl:4
+WARNING: Compat.Random is deprecated, use Random instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MacroTools&#x2F;ys44U&#x2F;src&#x2F;MacroTools.jl:35
+kernel_1: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Graph500&#x2F;fBDvZ&#x2F;test&#x2F;kernel_1.jl:6
+  Expression: nv(g) == 4
+   Evaluated: 0x03 == 4
+Stacktrace:
+ [1] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Graph500&#x2F;fBDvZ&#x2F;test&#x2F;kernel_1.jl:6
+ [2] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Graph500&#x2F;fBDvZ&#x2F;test&#x2F;kernel_1.jl:2
+Generating graph.
+Starting Kernel 1.
+
+[32mBenchmark Info[39m
+Scale : 4
+Number of vertices : 16
+Number of Edges : 20
+Number of Bfs : 13
+
+
+[32mGraph construction time[39m
+Graph Construction Time : 2.4436e-5
+
+
+[32mBFS time statistics[39m
+BFS min time : 1.853e-6
+BFS first quartile time : 2.104e-6
+BFS median time : 2.524e-6
+BFS third quartile time : 2.645e-6
+BFS max time : 0.000122352
+BFS mean time : 1.311169230769231e-5
+BFS standard deviation time : 3.3270652890058665e-5
+
+
+[32mEdges traversed per BFS statistics[39m
+BFS min nedge : 26.5
+BFS first quartile nedge : 28.0
+BFS median nedge : 28.0
+BFS third quartile nedge : 30.0
+BFS max nedge : 33.0
+BFS mean nedge : 29.03846153846154
+BFS standard deviation nedge : 2.0254787341673337
+
+
+[32mEdges traversed per second statistics[39m
+BFS min TEPS : 269713.61318163987
+BFS first quartile TEPS : 1.109350237717908e7
+BFS median TEPS : 1.161790017211704e7
+BFS third quartile TEPS : 1.2839147286821704e7
+BFS max TEPS : 1.5110631408526713e7
+BFS harmonic mean TEPS : 2.3959085163309635e6
+BFS harmonic standard deviation TEPS : 1.6724005897893414e6
+
+
+[32mBenchmark Info[39m
+Scale : 4
+Number of vertices : 16
+Number of Edges : 20
+Number of Bfs : 13
+
+
+[32mGraph construction time[39m
+Graph Construction Time : 2.4436e-5
+
+
+[32mBFS time statistics[39m
+BFS min time : 1.853e-6
+BFS first quartile time : 2.104e-6
+BFS median time : 2.524e-6
+BFS third quartile time : 2.645e-6
+BFS max time : 0.000122352
+BFS mean time : 1.311169230769231e-5
+BFS standard deviation time : 3.3270652890058665e-5
+
+
+[32mEdges traversed per BFS statistics[39m
+BFS min nedge : 26.5
+BFS first quartile nedge : 28.0
+BFS median nedge : 28.0
+BFS third quartile nedge : 30.0
+BFS max nedge : 33.0
+BFS mean nedge : 29.03846153846154
+BFS standard deviation nedge : 2.0254787341673337
+
+
+[32mEdges traversed per second statistics[39m
+BFS min TEPS : 269713.61318163987
+BFS first quartile TEPS : 1.109350237717908e7
+BFS median TEPS : 1.161790017211704e7
+BFS third quartile TEPS : 1.2839147286821704e7
+BFS max TEPS : 1.5110631408526713e7
+BFS harmonic mean TEPS : 2.3959085163309635e6
+BFS harmonic standard deviation TEPS : 1.6724005897893414e6
+
+Generating graph.
+Starting Kernel 1.
+
+[32mBenchmark Info[39m
+Scale : 4
+Number of vertices : 15
+Number of Edges : 15
+Number of Bfs : 11
+
+
+[32mGraph construction time[39m
+Graph Construction Time : 1.7443e-5
+
+
+[32mBFS time statistics[39m
+BFS min time : 1.733e-6
+BFS first quartile time : 1.9239999999999997e-6
+BFS median time : 2.054e-6
+BFS third quartile time : 2.234e-6
+BFS max time : 7.364e-6
+BFS mean time : 2.575e-6
+BFS standard deviation time : 1.6185133301891585e-6
+
+
+[32mEdges traversed per BFS statistics[39m
+BFS min nedge : 20.5
+BFS first quartile nedge : 23.25
+BFS median nedge : 24.0
+BFS third quartile nedge : 25.0
+BFS max nedge : 29.5
+BFS mean nedge : 24.454545454545453
+BFS standard deviation nedge : 2.5539630523418446
+
+
+[32mEdges traversed per second statistics[39m
+BFS min TEPS : 3.055404671374253e6
+BFS first quartile TEPS : 9.949024602728244e6
+BFS median TEPS : 1.1627906976744186e7
+BFS third quartile TEPS : 1.2736984432874812e7
+BFS max TEPS : 1.5575501583949314e7
+BFS harmonic mean TEPS : 9.292954080540828e6
+BFS harmonic standard deviation TEPS : 2.0222864438761238e6
+
+driver: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Graph500&#x2F;fBDvZ&#x2F;test&#x2F;driver.jl:5
+  Expression: nv(g) == 16
+   Evaluated: 0x0f == 16
+Stacktrace:
+ [1] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Graph500&#x2F;fBDvZ&#x2F;test&#x2F;driver.jl:5
+ [2] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Graph500&#x2F;fBDvZ&#x2F;test&#x2F;driver.jl:2
+Test Summary:         | Pass  Fail  Total
+test set              |   14     2     16
+  kronecker_generator |    4            4
+  kernel_1            |    2     1      3
+  kernel_2            |    3            3
+  validations         |    4            4
+  output              |             No tests
+  driver              |    1     1      2
+ERROR: LoadError: Some tests did not pass: 14 passed, 2 failed, 0 errored, 0 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Graph500&#x2F;fBDvZ&#x2F;test&#x2F;runtests.jl:4
+ERROR: Package Graph500 errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1288
+ [3] #test at .&#x2F;none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:245
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:233 [inlined]
+ [6] #test#61 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:230 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:230 [inlined]
+ [8] #test#60 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:229 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:228
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:228
+ [12] top-level scope at none:10
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 15 hours ago and took 4 minutes, 32 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Graph500/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed SimpleTraits ─────── v0.9.1
+ Installed Graph500 ─────────── v0.1.0
+ Installed ProgressMeter ────── v0.9.0
+ Installed SortingAlgorithms ── v0.3.1
+ Installed DataAPI ──────────── v1.1.0
+ Installed StaticArrays ─────── v0.12.1
+ Installed MacroTools ───────── v0.5.1
+ Installed LightGraphs ──────── v1.3.0
+ Installed Inflate ──────────── v0.1.1
+ Installed Compat ───────────── v3.0.0
+ Installed OrderedCollections ─ v1.1.0
+ Installed ArnoldiMethod ────── v0.0.4
+ Installed Tokenize ─────────── v0.5.6
+ Installed StatsBase ────────── v0.32.0
+ Installed CSTParser ────────── v1.0.0
+   Cloning [864edb3b-99cc-5e75-8d2d-829cb0a9cfe8] DataStructures from https:&#x2F;&#x2F;github.com&#x2F;JuliaCollections&#x2F;DataStructures.jl.git
+[?25l    Fetching: [&gt;                                        ]  0.0 %[2K[?25h Installed DataStructures ───── v0.17.6
+   Cloning [e1d29d7a-bbdc-5cf2-9ac0-f12de2c33e28] Missings from https:&#x2F;&#x2F;github.com&#x2F;JuliaData&#x2F;Missings.jl.git
+[?25l    Fetching: [&gt;                                        ]  0.0 %[2K[?25h Installed Missings ─────────── v0.4.3
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [1ba61846] + Graph500 v0.1.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [ec485272] + ArnoldiMethod v0.0.4
+  [00ebfdb7] + CSTParser v1.0.0
+  [34da2185] + Compat v3.0.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [1ba61846] + Graph500 v0.1.0
+  [d25df0c9] + Inflate v0.1.1
+  [093fc24a] + LightGraphs v1.3.0
+  [1914dd2f] + MacroTools v0.5.1
+  [e1d29d7a] + Missings v0.4.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [92933f4c] + ProgressMeter v0.9.0
+  [699a6c99] + SimpleTraits v0.9.1
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [90137ffa] + StaticArrays v0.12.1
+  [2913bbd2] + StatsBase v0.32.0
+  [0796e94c] + Tokenize v0.5.6
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing Graph500
+Status `&#x2F;tmp&#x2F;jl_xnUf1B&#x2F;Manifest.toml`
+  [ec485272] ArnoldiMethod v0.0.4
+  [00ebfdb7] CSTParser v1.0.0
+  [34da2185] Compat v3.0.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [1ba61846] Graph500 v0.1.0
+  [d25df0c9] Inflate v0.1.1
+  [093fc24a] LightGraphs v1.3.0
+  [1914dd2f] MacroTools v0.5.1
+  [e1d29d7a] Missings v0.4.3
+  [bac558e1] OrderedCollections v1.1.0
+  [92933f4c] ProgressMeter v0.9.0
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [0796e94c] Tokenize v0.5.6
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+WARNING: Compat.Markdown is deprecated, use Markdown instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MacroTools&#x2F;ys44U&#x2F;src&#x2F;MacroTools.jl:4
+WARNING: Compat.Random is deprecated, use Random instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MacroTools&#x2F;ys44U&#x2F;src&#x2F;MacroTools.jl:35
+kernel_1: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Graph500&#x2F;fBDvZ&#x2F;test&#x2F;kernel_1.jl:6
+  Expression: nv(g) == 4
+   Evaluated: 0x02 == 4
+Stacktrace:
+ [1] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Graph500&#x2F;fBDvZ&#x2F;test&#x2F;kernel_1.jl:6
+ [2] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Graph500&#x2F;fBDvZ&#x2F;test&#x2F;kernel_1.jl:2
+Generating graph.
+Starting Kernel 1.
+
+[32mBenchmark Info[39m
+Scale : 4
+Number of vertices : 16
+Number of Edges : 23
+Number of Bfs : 14
+
+
+[32mGraph construction time[39m
+Graph Construction Time : 1.58e-5
+
+
+[32mBFS time statistics[39m
+BFS min time : 1.813e-6
+BFS first quartile time : 2.209e-6
+BFS median time : 2.3844999999999998e-6
+BFS third quartile time : 2.77325e-6
+BFS max time : 1.2914e-5
+BFS mean time : 3.825071428571429e-6
+BFS standard deviation time : 3.7353829679943684e-6
+
+
+[32mEdges traversed per BFS statistics[39m
+BFS min nedge : 37.5
+BFS first quartile nedge : 46.5
+BFS median nedge : 49.5
+BFS third quartile nedge : 54.75
+BFS max nedge : 69.0
+BFS mean nedge : 50.214285714285715
+BFS standard deviation nedge : 8.187030751589523
+
+
+[32mEdges traversed per second statistics[39m
+BFS min TEPS : 4.297661452687006e6
+BFS first quartile TEPS : 1.5950552346531566e7
+BFS median TEPS : 2.0036746154178865e7
+BFS third quartile TEPS : 2.3323577273572624e7
+BFS max TEPS : 3.0825496342737727e7
+BFS harmonic mean TEPS : 1.3778850312916713e7
+BFS harmonic standard deviation TEPS : 3.0892653510622825e6
+
+
+[32mBenchmark Info[39m
+Scale : 4
+Number of vertices : 16
+Number of Edges : 23
+Number of Bfs : 14
+
+
+[32mGraph construction time[39m
+Graph Construction Time : 1.58e-5
+
+
+[32mBFS time statistics[39m
+BFS min time : 1.813e-6
+BFS first quartile time : 2.209e-6
+BFS median time : 2.3844999999999998e-6
+BFS third quartile time : 2.77325e-6
+BFS max time : 1.2914e-5
+BFS mean time : 3.825071428571429e-6
+BFS standard deviation time : 3.7353829679943684e-6
+
+
+[32mEdges traversed per BFS statistics[39m
+BFS min nedge : 37.5
+BFS first quartile nedge : 46.5
+BFS median nedge : 49.5
+BFS third quartile nedge : 54.75
+BFS max nedge : 69.0
+BFS mean nedge : 50.214285714285715
+BFS standard deviation nedge : 8.187030751589523
+
+
+[32mEdges traversed per second statistics[39m
+BFS min TEPS : 4.297661452687006e6
+BFS first quartile TEPS : 1.5950552346531566e7
+BFS median TEPS : 2.0036746154178865e7
+BFS third quartile TEPS : 2.3323577273572624e7
+BFS max TEPS : 3.0825496342737727e7
+BFS harmonic mean TEPS : 1.3778850312916713e7
+BFS harmonic standard deviation TEPS : 3.0892653510622825e6
+
+Generating graph.
+Starting Kernel 1.
+
+[32mBenchmark Info[39m
+Scale : 4
+Number of vertices : 16
+Number of Edges : 18
+Number of Bfs : 12
+
+
+[32mGraph construction time[39m
+Graph Construction Time : 2.1661e-5
+
+
+[32mBFS time statistics[39m
+BFS min time : 1.803e-6
+BFS first quartile time : 1.974e-6
+BFS median time : 2.109e-6
+BFS third quartile time : 2.31e-6
+BFS max time : 8.086e-6
+BFS mean time : 2.6200833333333334e-6
+BFS standard deviation time : 1.734382387235155e-6
+
+
+[32mEdges traversed per BFS statistics[39m
+BFS min nedge : 27.0
+BFS first quartile nedge : 28.875
+BFS median nedge : 30.0
+BFS third quartile nedge : 32.625
+BFS max nedge : 39.0
+BFS mean nedge : 30.916666666666668
+BFS standard deviation nedge : 3.3086205126864727
+
+
+[32mEdges traversed per second statistics[39m
+BFS min TEPS : 3.7101162503091763e6
+BFS first quartile TEPS : 1.2756986711033422e7
+BFS median TEPS : 1.3192388683736686e7
+BFS third quartile TEPS : 1.5534109240000488e7
+BFS max TEPS : 2.1630615640599e7
+BFS harmonic mean TEPS : 1.1612277683307683e7
+BFS harmonic standard deviation TEPS : 2.3883351648056926e6
+
+Test Summary:         | Pass  Fail  Total
+test set              |   15     1     16
+  kronecker_generator |    4            4
+  kernel_1            |    2     1      3
+  kernel_2            |    3            3
+  validations         |    4            4
+  output              |             No tests
+  driver              |    2            2
+ERROR: LoadError: Some tests did not pass: 15 passed, 1 failed, 0 errored, 0 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Graph500&#x2F;fBDvZ&#x2F;test&#x2F;runtests.jl:4
+ERROR: Package Graph500 errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:274
+ [5] #test#56 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [6] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [7] #test#55 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [8] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [10] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [11] top-level scope at none:10
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

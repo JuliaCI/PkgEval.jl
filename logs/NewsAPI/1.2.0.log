@@ -1,0 +1,108 @@
+ Resolving package versions...
+ Installed NewsAPI ──────────── v0.1.0
+ Installed IniFile ──────────── v0.5.0
+ Installed Parsers ──────────── v0.3.10
+ Installed OrderedCollections ─ v1.1.0
+ Installed MbedTLS ──────────── v0.7.0
+ Installed Parameters ───────── v0.12.0
+ Installed BinaryProvider ───── v0.5.8
+ Installed HTTP ─────────────── v0.8.8
+ Installed JSON3 ────────────── v0.1.13
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [d145281a] + NewsAPI v0.1.0
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [cd3eb016] + HTTP v0.8.8
+  [83e8ac13] + IniFile v0.5.0
+  [0f8b85d8] + JSON3 v0.1.13
+  [739be429] + MbedTLS v0.7.0
+  [d145281a] + NewsAPI v0.1.0
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [69de0a69] + Parsers v0.3.10
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building MbedTLS → `~/.julia/packages/MbedTLS/a1JFn/deps/build.log`
+   Testing NewsAPI
+ Resolving package versions...
+    Status `/tmp/jl_TVlMja/Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [cd3eb016] HTTP v0.8.8
+  [83e8ac13] IniFile v0.5.0
+  [0f8b85d8] JSON3 v0.1.13
+  [739be429] MbedTLS v0.7.0
+  [d145281a] NewsAPI v0.1.0
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: KeyError: key "NEWS_API_KEY" not found
+Stacktrace:
+ [1] (::getfield(Base, Symbol("##457#458")))(::String) at ./env.jl:79
+ [2] access_env at ./env.jl:43 [inlined]
+ [3] getindex(::Base.EnvDict, ::String) at ./env.jl:79
+ [4] top-level scope at /root/.julia/packages/NewsAPI/QEZwT/src/NewsAPI.jl:15
+ [5] include at ./boot.jl:328 [inlined]
+ [6] include_relative(::Module, ::String) at ./loading.jl:1094
+ [7] include(::Module, ::String) at ./Base.jl:31
+ [8] top-level scope at none:2
+ [9] eval at ./boot.jl:330 [inlined]
+ [10] eval(::Expr) at ./client.jl:432
+ [11] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/NewsAPI/QEZwT/src/NewsAPI.jl:15
+ERROR: LoadError: Failed to precompile NewsAPI [d145281a-7b66-43b1-b4e0-c06cc84e19a4] to /root/.julia/compiled/v1.2/NewsAPI/5TuGr.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1253
+ [3] _require(::Base.PkgId) at ./loading.jl:1013
+ [4] require(::Base.PkgId) at ./loading.jl:911
+ [5] require(::Module, ::Symbol) at ./loading.jl:906
+ [6] include at ./boot.jl:328 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1094
+ [8] include(::Module, ::String) at ./Base.jl:31
+ [9] include(::String) at ./client.jl:431
+ [10] top-level scope at none:5
+in expression starting at /root/.julia/packages/NewsAPI/QEZwT/test/runtests.jl:1
+ERROR: Package NewsAPI errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1288
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

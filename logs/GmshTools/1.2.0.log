@@ -1,0 +1,93 @@
+ Resolving package versions...
+ Installed GmshTools ────── v0.2.2
+ Installed BinaryProvider ─ v0.5.8
+ Installed MLStyle ──────── v0.3.1
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [82e2f556] + GmshTools v0.2.2
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [82e2f556] + GmshTools v0.2.2
+  [d8e11817] + MLStyle v0.3.1
+  [8f399da3] + Libdl 
+  [ea8e919c] + SHA 
+  Building GmshTools → `~/.julia/packages/GmshTools/5zFz0/deps/build.log`
+┌ Error: Error building `GmshTools`: 
+│ ┌ Warning: special characters "#{}()[]<>|&*?~;" should now be quoted in commands
+│ │   caller = #shell_parse#353(::String, ::typeof(Base.shell_parse), ::String, ::Bool) at shell.jl:100
+│ └ @ Base ./shell.jl:100
+│ ┌ Warning: Could not extract the platform key of http://gmsh.info/bin/Linux/gmsh-4.2.2-Linux64-sdk.tgz; continuing...
+│ └ @ BinaryProvider ~/.julia/packages/BinaryProvider/kcGxO/src/Prefix.jl:185
+│ [ Info: Downloading http://gmsh.info/bin/Linux/gmsh-4.2.2-Linux64-sdk.tgz to /root/.julia/packages/GmshTools/5zFz0/deps/usr/downloads/gmsh-4.2.2-Linux64-sdk.tgz...
+│ [ Info: No hash cache found
+│ [ Info: Calculated hash ea6a6d36da41b9e777111e055c416ffe994d57c7e3debf174b98e4c09b3b33d7 for file /root/.julia/packages/GmshTools/5zFz0/deps/usr/downloads/gmsh-4.2.2-Linux64-sdk.tgz
+│ [ Info: Installing /root/.julia/packages/GmshTools/5zFz0/deps/usr/downloads/gmsh-4.2.2-Linux64-sdk.tgz into /root/.julia/packages/GmshTools/5zFz0/deps/usr
+│ ERROR: LoadError: LibraryProduct(nothing, ["libgmsh"], :libgmsh, "Prefix(/root/.julia/packages/GmshTools/5zFz0/deps/usr)") is not satisfied, cannot generate deps.jl!
+│ Stacktrace:
+│  [1] error(::String) at ./error.jl:33
+│  [2] #write_deps_file#152(::Bool, ::typeof(write_deps_file), ::String, ::Array{Product,1}) at /root/.julia/packages/BinaryProvider/kcGxO/src/Products.jl:414
+│  [3] write_deps_file(::String, ::Array{Product,1}) at /root/.julia/packages/BinaryProvider/kcGxO/src/Products.jl:395
+│  [4] top-level scope at /root/.julia/packages/GmshTools/5zFz0/deps/build.jl:59
+│  [5] include at ./boot.jl:328 [inlined]
+│  [6] include_relative(::Module, ::String) at ./loading.jl:1094
+│  [7] include(::Module, ::String) at ./Base.jl:31
+│  [8] include(::String) at ./client.jl:431
+│  [9] top-level scope at none:5
+│ in expression starting at /root/.julia/packages/GmshTools/5zFz0/deps/build.jl:21
+│ [23:38:18] [23:38:18]                                                                            0.8%[23:38:18] ###                                                                        4.4%[23:38:18] #####                                                                      7.7%[23:38:18] ######                                                                     9.4%[23:38:18] #######                                                                   10.8%[23:38:18] ########                                                                  12.3%[23:38:18] ##########                                                                14.4%[23:38:19] ###########                                                               16.2%[23:38:19] #############                                                             18.1%[23:38:19] ##############                                                            20.2%[23:38:19] ###############                                                           21.8%[23:38:19] ################                                                          23.4%[23:38:19] ##################                                                        25.2%[23:38:19] ###################                                                       27.2%[23:38:19] ####################                                                      28.8%[23:38:19] ######################                                                    30.7%[23:38:19] #######################                                                   32.9%[23:38:20] #########################                                                 34.8%[23:38:20] ##########################                                                36.9%[23:38:20] ############################                                              39.2%[23:38:20] ##############################                                            41.7%[23:38:20] ###############################                                           43.8%[23:38:20] ################################                                          45.7%[23:38:20] #################################                                         46.7%[23:38:20] ##################################                                        48.3%[23:38:20] ###################################                                       49.9%[23:38:21] #####################################                                     51.7%[23:38:21] ######################################                                    53.6%[23:38:21] #######################################                                   55.2%[23:38:21] ########################################                                  56.8%[23:38:21] #########################################                                 58.0%[23:38:21] ##########################################                                59.4%[23:38:21] ###########################################                               60.6%[23:38:21] ############################################                              62.0%[23:38:21] #############################################                             63.7%[23:38:21] ###############################################                           65.4%[23:38:22] ################################################                          67.3%[23:38:22] #################################################                         69.2%[23:38:22] ##################################################                        70.3%[23:38:22] ####################################################                      72.5%[23:38:22] #####################################################                     74.2%[23:38:22] ######################################################                    75.9%[23:38:22] #######################################################                   77.8%[23:38:22] #########################################################                 80.1%[23:38:23] ##########################################################                81.6%[23:38:23] ############################################################              83.9%[23:38:23] #############################################################             85.4%[23:38:23] ##############################################################            87.1%[23:38:23] ################################################################          89.0%[23:38:23] #################################################################         91.1%[23:38:23] ##################################################################        92.7%[23:38:23] ####################################################################      94.6%[23:38:23] #####################################################################     96.5%[23:38:24] ######################################################################    98.2%[23:38:27] #######################################################################  100.0%[23:38:30] #######################################################################  100.0%[23:38:56] #######################################################################  100.0%[23:38:56] ######################################################################## 100.0%
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:647
+   Testing GmshTools
+ Resolving package versions...
+    Status `/tmp/jl_znvBvC/Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [82e2f556] GmshTools v0.2.2
+  [d8e11817] MLStyle v0.3.1
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+ERROR: LoadError: libgmsh not installed properly, run Pkg.build("GmshTools"), restart Julia and try again
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] top-level scope at /root/.julia/packages/GmshTools/5zFz0/src/GmshTools.jl:7
+ [3] include at ./boot.jl:328 [inlined]
+ [4] include_relative(::Module, ::String) at ./loading.jl:1094
+ [5] include(::Module, ::String) at ./Base.jl:31
+ [6] top-level scope at none:2
+ [7] eval at ./boot.jl:330 [inlined]
+ [8] eval(::Expr) at ./client.jl:432
+ [9] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/GmshTools/5zFz0/src/GmshTools.jl:6
+ERROR: LoadError: Failed to precompile GmshTools [82e2f556-b1bd-5f1a-9576-f93c0da5f0ee] to /root/.julia/compiled/v1.2/GmshTools/9rYp5.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1253
+ [3] _require(::Base.PkgId) at ./loading.jl:1013
+ [4] require(::Base.PkgId) at ./loading.jl:911
+ [5] require(::Module, ::Symbol) at ./loading.jl:906
+ [6] include at ./boot.jl:328 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1094
+ [8] include(::Module, ::String) at ./Base.jl:31
+ [9] include(::String) at ./client.jl:431
+ [10] top-level scope at none:5
+in expression starting at /root/.julia/packages/GmshTools/5zFz0/test/runtests.jl:1
+ERROR: Package GmshTools errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1288
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

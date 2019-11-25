@@ -1,0 +1,100 @@
+ Resolving package versions...
+ Installed OrderedCollections ─ v1.1.0
+ Installed BinaryProvider ───── v0.5.8
+ Installed XMLDict ──────────── v0.3.0
+ Installed IterTools ────────── v1.3.0
+ Installed EzXML ────────────── v0.9.4
+ Installed DataStructures ───── v0.17.6
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [228000da] + XMLDict v0.3.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [864edb3b] + DataStructures v0.17.6
+  [8f5d6c58] + EzXML v0.9.4
+  [c8e1da08] + IterTools v1.3.0
+  [bac558e1] + OrderedCollections v1.1.0
+  [228000da] + XMLDict v0.3.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+  Building EzXML → `~/.julia/packages/EzXML/G0JeY/deps/build.log`
+   Testing XMLDict
+ Resolving package versions...
+ Installed Parsers ─ v0.3.10
+ Installed JSON ──── v0.21.0
+    Status `/tmp/tmpqpa2L1/Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [864edb3b] DataStructures v0.17.6
+  [8f5d6c58] EzXML v0.9.4
+  [c8e1da08] IterTools v1.3.0
+  [682c06a0] JSON v0.21.0
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [228000da] XMLDict v0.3.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+bash: xmllint: command not found
+bash: xmllint: command not found
+bash: xmllint: command not found
+bash: xmllint: command not found
+bash: xmllint: command not found
+bash: xmllint: command not found
+bash: xmllint: command not found
+bash: xmllint: command not found
+bash: xmllint: command not found
+bash: xmllint: command not found
+ERROR: LoadError: IOError: write: broken pipe (EPIPE)
+Stacktrace:
+ [1] try_yieldto(::typeof(Base.ensure_rescheduled), ::Base.RefValue{Task}) at ./event.jl:196
+ [2] wait() at ./event.jl:255
+ [3] uv_write(::Base.PipeEndpoint, ::Ptr{UInt8}, ::UInt64) at ./stream.jl:782
+ [4] unsafe_write(::Base.PipeEndpoint, ::Ptr{UInt8}, ::UInt64) at ./stream.jl:830
+ [5] unsafe_write(::Pipe, ::Ptr{UInt8}, ::UInt64) at ./io.jl:225 (repeats 2 times)
+ [6] normalise_xml(::String) at ./gcutils.jl:87
+ [7] top-level scope at /root/.julia/packages/XMLDict/wy8cO/test/runtests.jl:453 [inlined]
+ [8] top-level scope at ./none:0
+ [9] include at ./boot.jl:317 [inlined]
+ [10] include_relative(::Module, ::String) at ./loading.jl:1044
+ [11] include(::Module, ::String) at ./sysimg.jl:29
+ [12] include(::String) at ./client.jl:392
+ [13] top-level scope at none:0
+in expression starting at /root/.julia/packages/XMLDict/wy8cO/test/runtests.jl:451
+ERROR: Package XMLDict errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

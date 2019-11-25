@@ -1,0 +1,118 @@
+ Resolving package versions...
+ Installed AWSSQS ───────────── v0.5.0
+ Installed XMLDict ──────────── v0.3.0
+ Installed SymDict ──────────── v0.3.0
+ Installed Mocking ──────────── v0.7.0
+ Installed Parsers ──────────── v0.3.10
+ Installed AWSCore ──────────── v0.6.5
+ Installed IterTools ────────── v1.3.0
+ Installed JSON ─────────────── v0.21.0
+ Installed EzXML ────────────── v0.9.4
+ Installed OrderedCollections ─ v1.1.0
+ Installed Retry ────────────── v0.4.0
+ Installed BinaryProvider ───── v0.5.8
+ Installed DataStructures ───── v0.17.6
+ Installed MbedTLS ──────────── v0.7.0
+ Installed HTTP ─────────────── v0.8.8
+ Installed IniFile ──────────── v0.5.0
+ Installed LazyJSON ─────────── v0.1.1
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [6e80b5ca] + AWSSQS v0.5.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [4f1ea46c] + AWSCore v0.6.5
+  [6e80b5ca] + AWSSQS v0.5.0
+  [b99e7846] + BinaryProvider v0.5.8
+  [864edb3b] + DataStructures v0.17.6
+  [8f5d6c58] + EzXML v0.9.4
+  [cd3eb016] + HTTP v0.8.8
+  [83e8ac13] + IniFile v0.5.0
+  [c8e1da08] + IterTools v1.3.0
+  [682c06a0] + JSON v0.21.0
+  [fc18253b] + LazyJSON v0.1.1
+  [739be429] + MbedTLS v0.7.0
+  [78c3b35d] + Mocking v0.7.0
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [20febd7b] + Retry v0.4.0
+  [2da68c74] + SymDict v0.3.0
+  [228000da] + XMLDict v0.3.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+  Building EzXML ──→ `~/.julia/packages/EzXML/G0JeY/deps/build.log`
+  Building MbedTLS → `~/.julia/packages/MbedTLS/a1JFn/deps/build.log`
+   Testing AWSSQS
+Status `/tmp/jl_FUL8An/Manifest.toml`
+  [4f1ea46c] AWSCore v0.6.5
+  [6e80b5ca] AWSSQS v0.5.0
+  [b99e7846] BinaryProvider v0.5.8
+  [864edb3b] DataStructures v0.17.6
+  [8f5d6c58] EzXML v0.9.4
+  [cd3eb016] HTTP v0.8.8
+  [83e8ac13] IniFile v0.5.0
+  [c8e1da08] IterTools v1.3.0
+  [682c06a0] JSON v0.21.0
+  [fc18253b] LazyJSON v0.1.1
+  [739be429] MbedTLS v0.7.0
+  [78c3b35d] Mocking v0.7.0
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [20febd7b] Retry v0.4.0
+  [2da68c74] SymDict v0.3.0
+  [228000da] XMLDict v0.3.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: IOError(Base.IOError("connect: connection timed out (ETIMEDOUT)", -110) during request(http://169.254.169.254/latest/meta-data/iam/info))
+
+Stacktrace:
+ [1] wait_connected(::Sockets.TCPSocket) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Sockets/src/Sockets.jl:520
+ [2] connect at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Sockets/src/Sockets.jl:555 [inlined]
+ [3] connect at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Sockets/src/Sockets.jl:541 [inlined]
+ [4] getconnection(::Type{Sockets.TCPSocket}, ::SubString{String}, ::SubString{String}; keepalive::Bool, connect_timeout::Int64, kw::Base.Iterators.Pairs{Symbol,Any,Tuple{Symbol,Symbol,Symbol},NamedTuple{(:require_ssl_verification, :iofunction, :verbose),Tuple{Bool,Nothing,Int64}}}) at /root/.julia/packages/HTTP/lZVI1/src/ConnectionPool.jl:568
+ [5] getconnection(::Type{HTTP.ConnectionPool.Transaction{Sockets.TCPSocket}}, ::SubString{String}, ::SubString{String}; connection_limit::Int64, pipeline_limit::Int64, idle_timeout::Int64, reuse_limit::Int64, require_ssl_verification::Bool, kw::Base.Iterators.Pairs{Symbol,Union{Nothing, Int64},Tuple{Symbol,Symbol},NamedTuple{(:iofunction, :verbose),Tuple{Nothing,Int64}}}) at /root/.julia/packages/HTTP/lZVI1/src/ConnectionPool.jl:517
+ [6] request(::Type{HTTP.ConnectionRequest.ConnectionPoolLayer{HTTP.StreamRequest.StreamLayer{Union{}}}}, ::HTTP.URIs.URI, ::HTTP.Messages.Request, ::Array{UInt8,1}; proxy::Nothing, socket_type::Type, reuse_limit::Int64, kw::Base.Iterators.Pairs{Symbol,Any,Tuple{Symbol,Symbol,Symbol},NamedTuple{(:iofunction, :verbose, :require_ssl_verification),Tuple{Nothing,Int64,Bool}}}) at /root/.julia/packages/HTTP/lZVI1/src/ConnectionRequest.jl:41
+ [7] request(::Type{HTTP.ExceptionRequest.ExceptionLayer{HTTP.ConnectionRequest.ConnectionPoolLayer{HTTP.StreamRequest.StreamLayer{Union{}}}}}, ::HTTP.URIs.URI, ::Vararg{Any,N} where N; kw::Base.Iterators.Pairs{Symbol,Any,Tuple{Symbol,Symbol,Symbol},NamedTuple{(:iofunction, :verbose, :require_ssl_verification),Tuple{Nothing,Int64,Bool}}}) at /root/.julia/packages/HTTP/lZVI1/src/ExceptionRequest.jl:19
+ [8] request(::Type{HTTP.MessageRequest.MessageLayer{HTTP.ExceptionRequest.ExceptionLayer{HTTP.ConnectionRequest.ConnectionPoolLayer{HTTP.StreamRequest.StreamLayer{Union{}}}}}}, ::String, ::HTTP.URIs.URI, ::Array{Pair{SubString{String},SubString{String}},1}, ::Array{UInt8,1}; http_version::VersionNumber, target::String, parent::Nothing, iofunction::Nothing, kw::Base.Iterators.Pairs{Symbol,Integer,Tuple{Symbol,Symbol},NamedTuple{(:verbose, :require_ssl_verification),Tuple{Int64,Bool}}}) at /root/.julia/packages/HTTP/lZVI1/src/MessageRequest.jl:51
+ [9] macro expansion at /root/.julia/packages/AWSCore/qRaju/src/http.jl:42 [inlined]
+ [10] macro expansion at /root/.julia/packages/Retry/0jMye/src/repeat_try.jl:192 [inlined]
+ [11] http_request(::Dict{Symbol,Any}) at /root/.julia/packages/AWSCore/qRaju/src/http.jl:20
+ [12] http_get(::String) at /root/.julia/packages/AWSCore/qRaju/src/http.jl:80
+ [13] macro expansion at /root/.julia/packages/Mocking/hFQQ4/src/mock.jl:29 [inlined]
+ [14] _ec2_metadata(::String) at /root/.julia/packages/AWSCore/qRaju/src/AWSCredentials.jl:263
+ [15] ec2_instance_credentials() at /root/.julia/packages/AWSCore/qRaju/src/AWSCredentials.jl:282
+ [16] AWSCredentials(; profile::Nothing) at /root/.julia/packages/AWSCore/qRaju/src/AWSCredentials.jl:146
+ [17] top-level scope at /root/.julia/packages/AWSSQS/NiUWq/test/runtests.jl:20
+ [18] include(::String) at ./client.jl:439
+ [19] top-level scope at none:6
+in expression starting at /root/.julia/packages/AWSSQS/NiUWq/test/runtests.jl:20
+ERROR: Package AWSSQS errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274

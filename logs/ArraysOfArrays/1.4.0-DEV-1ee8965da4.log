@@ -1,0 +1,182 @@
+ Resolving package versions...
+ Installed Requires ─────── v0.5.2
+ Installed UnsafeArrays ─── v1.0.0
+ Installed ArraysOfArrays ─ v0.4.2
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [65a8f2f4] + ArraysOfArrays v0.4.2
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [65a8f2f4] + ArraysOfArrays v0.4.2
+  [ae029012] + Requires v0.5.2
+  [c4a57d5a] + UnsafeArrays v1.0.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+   Testing ArraysOfArrays
+ Resolving package versions...
+ Installed ElasticArrays ────── v1.0.0
+ Installed Missings ─────────── v0.4.3
+ Installed DataAPI ──────────── v1.1.0
+ Installed SortingAlgorithms ── v0.3.1
+ Installed StaticArrays ─────── v0.12.1
+ Installed DataStructures ───── v0.17.6
+ Installed OrderedCollections ─ v1.1.0
+ Installed StatsBase ────────── v0.32.0
+Status `/tmp/jl_MIluof/Manifest.toml`
+  [65a8f2f4] ArraysOfArrays v0.4.2
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [fdbdab4c] ElasticArrays v1.0.0
+  [e1d29d7a] Missings v0.4.3
+  [bac558e1] OrderedCollections v1.1.0
+  [ae029012] Requires v0.5.2
+  [a2af1166] SortingAlgorithms v0.3.1
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [c4a57d5a] UnsafeArrays v1.0.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+deepgetindex: Error During Test at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:37
+  Test threw exception
+  Expression: #= /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:37 =# @inferred(deepgetindex(A, 1, 2)) === A[1, 2]
+  return type Array{Int64,2} does not match inferred return type Array
+  Stacktrace:
+   [1] error(::String) at ./error.jl:33
+   [2] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:37
+   [3] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [4] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:36
+   [5] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [6] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:10
+  
+deepgetindex: Error During Test at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:38
+  Test threw exception
+  Expression: #= /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:38 =# @inferred(deepgetindex(A, 1, 2, 2, 1)) == (A[1, 2])[2, 1]
+  return type Int64 does not match inferred return type Any
+  Stacktrace:
+   [1] error(::String) at ./error.jl:33
+   [2] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:38
+   [3] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [4] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:36
+   [5] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [6] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:10
+  
+deepgetindex: Error During Test at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:39
+  Test threw exception
+  Expression: #= /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:39 =# @inferred(deepgetindex(A, 1, 2, 1:2, 1)) == (A[1, 2])[1:2, 1]
+  return type Array{Int64,1} does not match inferred return type Any
+  Stacktrace:
+   [1] error(::String) at ./error.jl:33
+   [2] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:39
+   [3] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [4] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:36
+   [5] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [6] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:10
+  
+deepgetindex: Error During Test at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:40
+  Test threw exception
+  Expression: #= /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:40 =# @inferred(deepgetindex(A, 1, 1:2, 2, 1)) == [(A[1, 1])[2, 1], (A[1, 2])[2, 1]]
+  return type Array{Int64,1} does not match inferred return type Any
+  Stacktrace:
+   [1] error(::String) at ./error.jl:33
+   [2] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:40
+   [3] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [4] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:36
+   [5] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [6] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:10
+  
+deepgetindex: Error During Test at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:41
+  Test threw exception
+  Expression: #= /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:41 =# @inferred(deepgetindex(A, 1, 1:2, 1:2, 2)) == [(A[1, 1])[1:2, 2], (A[1, 2])[1:2, 2]]
+  return type Array{Array{Int64,1},1} does not match inferred return type Any
+  Stacktrace:
+   [1] error(::String) at ./error.jl:33
+   [2] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:41
+   [3] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [4] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:36
+   [5] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [6] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:10
+  
+deepview: Error During Test at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:72
+  Test threw exception
+  Expression: #= /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:72 =# @inferred(deepview(A, 1, 2, 2, 1)) == view(A[1, 2], 2, 1)
+  return type SubArray{Int64,0,Array{Int64,2},Tuple{Int64,Int64},true} does not match inferred return type Any
+  Stacktrace:
+   [1] error(::String) at ./error.jl:33
+   [2] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:72
+   [3] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [4] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:70
+   [5] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [6] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:10
+  
+deepview: Error During Test at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:73
+  Test threw exception
+  Expression: #= /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:73 =# @inferred(deepview(A, 1, 2, 1:2, 1)) == view(A[1, 2], 1:2, 1)
+  return type SubArray{Int64,1,Array{Int64,2},Tuple{UnitRange{Int64},Int64},true} does not match inferred return type Any
+  Stacktrace:
+   [1] error(::String) at ./error.jl:33
+   [2] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:73
+   [3] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [4] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:70
+   [5] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [6] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:10
+  
+deepview: Error During Test at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:75
+  Test threw exception
+  Expression: #= /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:75 =# @inferred(deepview(A, 1, 1:2, 1:2, 2)) == [(A[1, 1])[1:2, 2], (A[1, 2])[1:2, 2]]
+  return type Array{SubArray{Int64,1,Array{Int64,2},Tuple{UnitRange{Int64},Int64},true},1} does not match inferred return type Any
+  Stacktrace:
+   [1] error(::String) at ./error.jl:33
+   [2] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:75
+   [3] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [4] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:70
+   [5] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [6] top-level scope at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/functions.jl:10
+  
+Test Summary:                 | Pass  Error  Total
+Package ArraysOfArrays        |  258      8    266
+  functions                   |   24      8     32
+    flatview and nestedview   |    2             2
+    innersize                 |    3             3
+    deepgetindex              |    4      5      9
+    deepsetindex!             |    6             6
+    deepview                  |    6      3      9
+    abstract_nestedarray_type |    3             3
+  array_of_similar_arrays     |  160           160
+  vector_of_arrays            |   74            74
+ERROR: LoadError: Some tests did not pass: 258 passed, 0 failed, 8 errored, 0 broken.
+in expression starting at /root/.julia/packages/ArraysOfArrays/ngj7Z/test/runtests.jl:5
+ERROR: Package ArraysOfArrays errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

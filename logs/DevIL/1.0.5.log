@@ -1,0 +1,31 @@
+ Resolving package versions...
+ Installed DevIL ─ v0.5.0
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [01638602] + DevIL v0.5.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [01638602] + DevIL v0.5.0
+  [8f399da3] + Libdl 
+  Building DevIL → `~/.julia/packages/DevIL/J5xvy/deps/build.log`
+┌ Error: Error building `DevIL`: 
+│ ERROR: LoadError: IOError: could not spawn `sudo apt-get install libdevil1c2`: no such file or directory (ENOENT)
+│ Stacktrace:
+│  [1] _jl_spawn(::String, ::Array{String,1}, ::Cmd, ::Tuple{RawFD,RawFD,RawFD}) at ./process.jl:367
+│  [2] #495 at ./process.jl:509 [inlined]
+│  [3] setup_stdio(::getfield(Base, Symbol("##495#496")){Cmd,Base.Process}, ::Tuple{RawFD,RawFD,RawFD}) at ./process.jl:490
+│  [4] #_spawn#494(::Nothing, ::Function, ::Cmd, ::Tuple{RawFD,RawFD,RawFD}) at ./process.jl:508
+│  [5] _spawn at ./process.jl:504 [inlined]
+│  [6] #run#505(::Bool, ::Function, ::Cmd) at ./process.jl:662
+│  [7] run(::Cmd) at ./process.jl:661
+│  [8] top-level scope at /root/.julia/packages/DevIL/J5xvy/deps/build.jl:25
+│  [9] include at ./boot.jl:317 [inlined]
+│  [10] include_relative(::Module, ::String) at ./loading.jl:1044
+│  [11] include(::Module, ::String) at ./sysimg.jl:29
+│  [12] include(::String) at ./client.jl:392
+│  [13] top-level scope at none:0
+│ in expression starting at /root/.julia/packages/DevIL/J5xvy/deps/build.jl:24
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1096
+   Testing DevIL
+    Status `/tmp/tmpNPGfo0/Manifest.toml`
+  [01638602] DevIL v0.5.0
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+   Testing DevIL tests passed 

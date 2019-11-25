@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="TrafficAssignment">TrafficAssignment</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#TrafficAssignment">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 13 hours ago and took 6 minutes, 49 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/TrafficAssignment/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Requires ─────────────── v0.5.2
+ Installed NaNMath ──────────────── v0.3.3
+ Installed TrafficAssignment ────── v0.5.0
+ Installed DiffEqDiffTools ──────── v1.4.0
+ Installed DiffRules ────────────── v0.1.0
+ Installed Inflate ──────────────── v0.1.1
+ Installed CommonSubexpressions ─── v0.2.0
+ Installed BinaryProvider ───────── v0.5.8
+ Installed PositiveFactorizations ─ v0.2.3
+ Installed ArrayInterface ───────── v1.2.1
+ Installed DataAPI ──────────────── v1.1.0
+ Installed BinDeps ──────────────── v0.8.10
+ Installed MacroTools ───────────── v0.5.2
+ Installed DataStructures ───────── v0.17.6
+ Installed SpecialFunctions ─────── v0.8.0
+ Installed StaticArrays ─────────── v0.12.1
+ Installed URIParser ────────────── v0.4.0
+ Installed DiffResults ──────────── v0.0.4
+ Installed ArnoldiMethod ────────── v0.0.4
+ Installed SortingAlgorithms ────── v0.3.1
+ Installed SimpleTraits ─────────── v0.9.1
+ Installed FillArrays ───────────── v0.7.4
+ Installed StatsBase ────────────── v0.32.0
+ Installed LineSearches ─────────── v7.0.1
+ Installed Missings ─────────────── v0.4.3
+ Installed NLSolversBase ────────── v7.5.0
+ Installed OrderedCollections ───── v1.1.0
+ Installed Parameters ───────────── v0.12.0
+ Installed Calculus ─────────────── v0.5.1
+ Installed Optim ────────────────── v0.19.4
+ Installed Compat ───────────────── v2.2.0
+ Installed LightGraphs ──────────── v1.3.0
+ Installed ForwardDiff ──────────── v0.10.6
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [735ffce8] + TrafficAssignment v0.5.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [ec485272] + ArnoldiMethod v0.0.4
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [1a297f60] + FillArrays v0.7.4
+  [f6369f11] + ForwardDiff v0.10.6
+  [d25df0c9] + Inflate v0.1.1
+  [093fc24a] + LightGraphs v1.3.0
+  [d3d80556] + LineSearches v7.0.1
+  [1914dd2f] + MacroTools v0.5.2
+  [e1d29d7a] + Missings v0.4.3
+  [d41bc354] + NLSolversBase v7.5.0
+  [77ba4419] + NaNMath v0.3.3
+  [429524aa] + Optim v0.19.4
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [85a6dd25] + PositiveFactorizations v0.2.3
+  [ae029012] + Requires v0.5.2
+  [699a6c99] + SimpleTraits v0.9.1
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [2913bbd2] + StatsBase v0.32.0
+  [735ffce8] + TrafficAssignment v0.5.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing TrafficAssignment
+    Status `&#x2F;tmp&#x2F;tmpgURLwr&#x2F;Manifest.toml`
+  [ec485272] ArnoldiMethod v0.0.4
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [1a297f60] FillArrays v0.7.4
+  [f6369f11] ForwardDiff v0.10.6
+  [d25df0c9] Inflate v0.1.1
+  [093fc24a] LightGraphs v1.3.0
+  [d3d80556] LineSearches v7.0.1
+  [1914dd2f] MacroTools v0.5.2
+  [e1d29d7a] Missings v0.4.3
+  [d41bc354] NLSolversBase v7.5.0
+  [77ba4419] NaNMath v0.3.3
+  [429524aa] Optim v0.19.4
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [ae029012] Requires v0.5.2
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [735ffce8] TrafficAssignment v0.5.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   170    0   170    0     0    758      0 --:--:-- --:--:-- --:--:--   755
+100  412k    0  412k    0     0   245k      0 --:--:--  0:00:01 --:--:--  245k100 1447k    0 1447k    0     0   712k      0 --:--:--  0:00:02 --:--:-- 2925k100 3990k    0 3990k    0     0  1288k      0 --:--:--  0:00:03 --:--:-- 2519k100 5749k    0 5749k    0     0  1410k      0 --:--:--  0:00:04 --:--:-- 2226k100 7524k    0 7524k    0     0  1489k      0 --:--:--  0:00:05 --:--:-- 2108k100 8579k    0 8579k    0     0  1422k      0 --:--:--  0:00:06 --:--:-- 1877k100 9635k    0 9635k    0     0  1371k      0 --:--:--  0:00:07 --:--:-- 1639k100 10.5M    0 10.5M    0     0  1341k      0 --:--:--  0:00:08 --:--:-- 1375k100 11.7M    0 11.7M    0     0  1326k      0 --:--:--  0:00:09 --:--:-- 1257k100 12.9M    0 12.9M    0     0  1320k      0 --:--:--  0:00:10 --:--:-- 1149k100 14.2M    0 14.2M    0     0  1323k      0 --:--:--  0:00:11 --:--:-- 1203k100 15.7M    0 15.7M    0     0  1338k      0 --:--:--  0:00:12 --:--:-- 1292k100 17.2M    0 17.2M    0     0  1354k      0 --:--:--  0:00:13 --:--:-- 1375k100 19.0M    0 19.0M    0     0  1388k      0 --:--:--  0:00:14 --:--:-- 1500k100 21.3M    0 21.3M    0     0  1453k      0 --:--:--  0:00:15 --:--:-- 1720k100 23.7M    0 23.7M    0     0  1516k      0 --:--:--  0:00:16 --:--:-- 1942k100 26.0M    0 26.0M    0     0  1561k      0 --:--:--  0:00:17 --:--:-- 2096k100 27.3M    0 27.3M    0     0  1555k      0 --:--:--  0:00:18 --:--:-- 2078k100 28.5M    0 28.5M    0     0  1534k      0 --:--:--  0:00:19 --:--:-- 1943k100 29.6M    0 29.6M    0     0  1516k      0 --:--:--  0:00:20 --:--:-- 1704k100 30.5M    0 30.5M    0     0  1489k      0 --:--:--  0:00:21 --:--:-- 1403k100 31.6M    0 31.6M    0     0  1469k      0 --:--:--  0:00:22 --:--:-- 1149k100 32.6M    0 32.6M    0     0  1450k      0 --:--:--  0:00:23 --:--:-- 1075k100 33.7M    0 33.7M    0     0  1439k      0 --:--:--  0:00:24 --:--:-- 1077k100 35.0M    0 35.0M    0     0  1432k      0 --:--:--  0:00:25 --:--:-- 1098k100 36.3M    0 36.3M    0     0  1429k      0 --:--:--  0:00:26 --:--:-- 1177k100 37.4M    0 37.4M    0     0  1419k      0 --:--:--  0:00:27 --:--:-- 1202k100 38.7M    0 38.7M    0     0  1414k      0 --:--:--  0:00:28 --:--:-- 1244k100 39.6M    0 39.6M    0     0  1399k      0 --:--:--  0:00:29 --:--:-- 1206k100 40.7M    0 40.7M    0     0  1389k      0 --:--:--  0:00:30 --:--:-- 1174k100 41.8M    0 41.8M    0     0  1381k      0 --:--:--  0:00:31 --:--:-- 1129k100 43.0M    0 43.0M    0     0  1376k      0 --:--:--  0:00:32 --:--:-- 1140k100 44.3M    0 44.3M    0     0  1373k      0 --:--:--  0:00:33 --:--:-- 1145k100 45.6M    0 45.6M    0     0  1374k      0 --:--:--  0:00:34 --:--:-- 1227k100 47.0M    0 47.0M    0     0  1376k      0 --:--:--  0:00:35 --:--:-- 1293k100 48.6M    0 48.6M    0     0  1383k      0 --:--:--  0:00:36 --:--:-- 1394k100 50.6M    0 50.6M    0     0  1398k      0 --:--:--  0:00:37 --:--:-- 1544k100 52.3M    0 52.3M    0     0  1409k      0 --:--:--  0:00:38 --:--:-- 1649k100 53.9M    0 53.9M    0     0  1416k      0 --:--:--  0:00:39 --:--:-- 1702k100 54.7M    0 54.7M    0     0  1419k      0 --:--:--  0:00:39 --:--:-- 1756k
+Archive:  &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;tntp.zip
+ca933f74c03af688dfffa33f4b00826cba672479
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Anaheim&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Anaheim&#x2F;AnaheimNetwork.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Anaheim&#x2F;Anaheim_flow.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Anaheim&#x2F;Anaheim_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Anaheim&#x2F;Anaheim_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Anaheim&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Austin&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Austin&#x2F;Austin Flow Map 1 12-15-08.jpg  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Austin&#x2F;Austin_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Austin&#x2F;Austin_trips_am.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Austin&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Barcelona&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Barcelona&#x2F;Barcelona_flow.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Barcelona&#x2F;Barcelona_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Barcelona&#x2F;Barcelona_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Barcelona&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Center&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Center&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Center&#x2F;berlin-center_Node-Conversion.txt  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Center&#x2F;berlin-center_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Center&#x2F;berlin-center_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Center&#x2F;berlin-center_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Friedrichshain&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Friedrichshain&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Friedrichshain&#x2F;friedrichshain-center_Node-Conversion.txt  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Friedrichshain&#x2F;friedrichshain-center_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Friedrichshain&#x2F;friedrichshain-center_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Friedrichshain&#x2F;friedrichshain-center_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Center&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Center&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Center&#x2F;berlin-mitte-center_Node-Conversion.txt  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Center&#x2F;berlin-mitte-center_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Center&#x2F;berlin-mitte-center_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Center&#x2F;berlin-mitte-center_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#x2F;berlin-mitte-prenzlauerberg-friedrichshain-center_Node-Conversion.txt  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#x2F;berlin-mitte-prenzlauerberg-friedrichshain-center_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#x2F;berlin-mitte-prenzlauerberg-friedrichshain-center_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#x2F;berlin-mitte-prenzlauerberg-friedrichshain-center_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Prenzlauerberg-Center&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Prenzlauerberg-Center&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Prenzlauerberg-Center&#x2F;berlin-prenzlauerberg-center_Node-Conversion.txt  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Prenzlauerberg-Center&#x2F;berlin-prenzlauerberg-center_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Prenzlauerberg-Center&#x2F;berlin-prenzlauerberg-center_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Prenzlauerberg-Center&#x2F;berlin-prenzlauerberg-center_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Tiergarten&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Tiergarten&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Tiergarten&#x2F;berlin-tiergarten_Node-Conversion.txt  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Tiergarten&#x2F;berlin-tiergarten_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Tiergarten&#x2F;berlin-tiergarten_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Tiergarten&#x2F;berlin-tiergarten_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Birmingham-England&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Birmingham-England&#x2F;Birmingham_Net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Birmingham-England&#x2F;Birmingham_Nodes.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Birmingham-England&#x2F;Birmingham_Trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Birmingham-England&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Braess-Example&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Braess-Example&#x2F;Braess_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Braess-Example&#x2F;Braess_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Braess-Example&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Chicago-Sketch&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Chicago-Sketch&#x2F;ChicagoSketch_flow.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Chicago-Sketch&#x2F;ChicagoSketch_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Chicago-Sketch&#x2F;ChicagoSketch_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Chicago-Sketch&#x2F;ChicagoSketch_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Chicago-Sketch&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;EMA_entire.png  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;EMA_highway.jpg  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;EMA_intro.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;EMA_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;EMA_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;GoldCoast&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;GoldCoast&#x2F;Goldcoast_network_2016_01.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;GoldCoast&#x2F;Goldcoast_nodes_2016_01.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;GoldCoast&#x2F;Goldcoast_trips_2016_01.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;GoldCoast&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Hessen-Asymmetric&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Hessen-Asymmetric&#x2F;AsymmetricCostFunctions_Codina.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Hessen-Asymmetric&#x2F;Hessen-Asym_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Hessen-Asymmetric&#x2F;Hessen-Asym_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Hessen-Asymmetric&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Philadelphia&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Philadelphia&#x2F;Philadelphia_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Philadelphia&#x2F;Philadelphia_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Philadelphia&#x2F;Philadelphia_toll.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Philadelphia&#x2F;Philadelphia_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Philadelphia&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;Sioux-Falls-Network-Flow.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;Sioux-Falls-Network.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;Sioux-Falls-OD Demand.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;SiouxFallsMap_AAA1998.jpg  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;SiouxFalls_flow.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;SiouxFalls_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;SiouxFalls_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;SiouxFalls_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;Sydney_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;Sydney_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;Sydney_trips.tntp.zip  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;ConventionalVehiclesMultiModal.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;ElectricVehiclesMultiModal.csv  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-BranchData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-BusData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-GenCData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-GenSData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-LoadCData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-LoadSData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-StorageCData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-StorageSData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;SymmetricaE.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;TransportationLinksConventional.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;TransportationLinksElectric.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;TransportationStationsConventional.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;TransportationStationsElectric.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;trafficDemandMultiModal.csv  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Terrassa-Asymmetric&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Terrassa-Asymmetric&#x2F;AsymmetricCostFunctions_Codina.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Terrassa-Asymmetric&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Terrassa-Asymmetric&#x2F;Terrassa-Asym_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Terrassa-Asymmetric&#x2F;Terrassa-Asym_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg-Asymmetric&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg-Asymmetric&#x2F;AsymmetricCostFunctions_Codina.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg-Asymmetric&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg-Asymmetric&#x2F;Winnipeg-Asym_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg-Asymmetric&#x2F;Winnipeg-Asym_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg&#x2F;Winnipeg_flow.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg&#x2F;Winnipeg_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg&#x2F;Winnipeg_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;chicago-regional&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;chicago-regional&#x2F;ChicagoRegional_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;chicago-regional&#x2F;ChicagoRegional_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;chicago-regional&#x2F;ChicagoRegional_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;chicago-regional&#x2F;README.md  
+[ Info: Network &#39;Anaheim&#39; is OK.
+[ Info: Network &#39;Austin&#39; is OK.
+[ Info: Network &#39;Barcelona&#39; is OK.
+[ Info: Network &#39;Berlin-Center&#39; is OK.
+[ Info: Network &#39;Berlin-Friedrichshain&#39; is OK.
+[ Info: Network &#39;Berlin-Mitte-Center&#39; is OK.
+[ Info: Network &#39;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#39; is OK.
+[ Info: Network &#39;Berlin-Prenzlauerberg-Center&#39; is OK.
+[ Info: Network &#39;Berlin-Tiergarten&#39; is OK.
+[ Info: Network &#39;Birmingham-England&#39; is OK.
+[ Info: Network &#39;Braess-Example&#39; is OK.
+[ Info: Network &#39;Chicago-Sketch&#39; is OK.
+[ Info: Network &#39;Eastern-Massachusetts&#39; is OK.
+[ Info: Network &#39;GoldCoast&#39; is OK.
+[ Info: Network &#39;Hessen-Asymmetric&#39; is OK.
+[ Info: Network &#39;Philadelphia&#39; is OK.
+[ Info: Network &#39;SiouxFalls&#39; is OK.
+Archive:  &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;Sydney_trips.tntp.zip
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;Sydney_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;__MACOSX&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;__MACOSX&#x2F;._Sydney_trips.tntp  
+[ Info: Network &#39;Sydney&#39; is OK.
+e = AssertionError(&quot;network_data_file != \&quot;\&quot;&quot;)
+┌ Warning: Network &#39;SymmetricaTestCase&#39; is not usable.
+└ @ Main ~&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;test&#x2F;test_functions.jl:14
+[ Info: Network &#39;Terrassa-Asymmetric&#39; is OK.
+[ Info: Network &#39;Winnipeg&#39; is OK.
+[ Info: Network &#39;Winnipeg-Asymmetric&#39; is OK.
+[ Info: Network &#39;chicago-regional&#39; is OK.
+--------------------------------------------------------------------------------
+| Network                                            | Zones | Links  | Nodes  |
+| :---                                               | ---:  | ---:   | ---:   |
+| Anaheim                                            |    38 |    914 |    416 |
+| Austin                                             |  7388 |  18961 |   7388 |
+| Barcelona                                          |   110 |   2522 |   1020 |
+| Berlin-Center                                      |   865 |  28376 |  12981 |
+| Berlin-Friedrichshain                              |    23 |    523 |    224 |
+| Berlin-Mitte-Center                                |    36 |    871 |    398 |
+| Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center  |    98 |   2184 |    975 |
+| Berlin-Prenzlauerberg-Center                       |    38 |    749 |    352 |
+| Berlin-Tiergarten                                  |    26 |    766 |    361 |
+| Birmingham-England                                 |   898 |  33937 |  14639 |
+| Braess-Example                                     |     2 |      5 |      4 |
+| Chicago-Sketch                                     |   387 |   2950 |    933 |
+| Eastern-Massachusetts                              |    74 |    258 |     74 |
+| GoldCoast                                          |  1068 |  11140 |   4807 |
+| Hessen-Asymmetric                                  |   245 |   6674 |   4660 |
+| Philadelphia                                       |  1525 |  40003 |  13389 |
+| SiouxFalls                                         |    24 |     76 |     24 |
+| Sydney                                             |  3264 |  75379 |  33113 |
+| Terrassa-Asymmetric                                |    55 |   3264 |   1609 |
+| Winnipeg                                           |   147 |   2836 |   1052 |
+| Winnipeg-Asymmetric                                |   154 |   2535 |   1057 |
+| chicago-regional                                   |  1790 |  39018 |  12982 |
+--------------------------------------------------------------------------------
+Data Loading Completed, time:0.010569095611572266 seconds
+-------------------------------------
+Network Name: SiouxFalls
+Method: bfw
+Line Search Step: exact
+Maximum Interation Number: 5
+Tolerance for AEC: 0.001
+Number of processors: 1
+Setup time = 0.25463104248046875 seconds
+k=   1, tauk=   0.3190715733, objective=16338391.304593, aec= 172.3073668543
+k=   2, tauk=   0.2428968702, objective= 7135272.817759, aec=  31.3353139806
+k=   3, tauk=   0.1899311040, objective= 5824683.678967, aec=   9.8581593996
+k=   4, tauk=   0.9629582813, objective= 5487338.493783, aec=   5.9740315023
+k=   5, tauk=   0.9999999815, objective= 4887642.790917, aec=   6.1514874020
+Iteration time = 1.5716300010681152 seconds
+-------------------------------------
+Network Name: SiouxFalls
+Method: cfw
+Line Search Step: newton
+Maximum Interation Number: 5
+Tolerance for AEC: 0.001
+Number of processors: 1
+Setup time = 0.001371145248413086 seconds
+k=   1, tauk=   0.2370134693, objective=16338391.304593, aec= 172.3073668543
+k=   2, tauk=   0.2058588197, objective= 7726066.589805, aec=  43.0506182247
+k=   3, tauk=   0.1884540410, objective= 5990713.134590, aec=  14.1062823453
+k=   4, tauk=   0.1997914128, objective= 5484414.406165, aec=   6.7290308604
+k=   5, tauk=   0.5242606134, objective= 5232751.840511, aec=   4.5706982129
+Iteration time = 0.027152061462402344 seconds
+-------------------------------------
+Network Name: SiouxFalls
+Method: fw
+Line Search Step: exact
+Maximum Interation Number: 5
+Tolerance for AEC: 0.001
+Number of processors: 1
+Setup time = 0.0005459785461425781 seconds
+k=   1, tauk=   0.3190715733, objective=16338391.304593, aec= 172.3073668543
+k=   2, tauk=   0.2428968702, objective= 7135272.817759, aec=  31.3353139806
+k=   3, tauk=   0.1899311040, objective= 5824683.678967, aec=   9.8581593996
+k=   4, tauk=   0.3025872463, objective= 5487338.493783, aec=   5.9740315023
+k=   5, tauk=   0.1921632733, objective= 5179901.055385, aec=   5.6899136319
+Iteration time = 0.01217198371887207 seconds
+   Testing TrafficAssignment tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 12 hours ago and took 5 minutes, 15 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/TrafficAssignment/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed TrafficAssignment ────── v0.5.0
+ Installed DataAPI ──────────────── v1.1.0
+ Installed Missings ─────────────── v0.4.3
+ Installed Inflate ──────────────── v0.1.1
+ Installed CommonSubexpressions ─── v0.2.0
+ Installed LineSearches ─────────── v7.0.1
+ Installed BinaryProvider ───────── v0.5.8
+ Installed StatsBase ────────────── v0.32.0
+ Installed URIParser ────────────── v0.4.0
+ Installed NLSolversBase ────────── v7.5.0
+ Installed OrderedCollections ───── v1.1.0
+ Installed Compat ───────────────── v2.2.0
+ Installed Calculus ─────────────── v0.5.1
+ Installed ForwardDiff ──────────── v0.10.6
+ Installed Requires ─────────────── v0.5.2
+ Installed DataStructures ───────── v0.17.6
+ Installed LightGraphs ──────────── v1.3.0
+ Installed ArrayInterface ───────── v1.2.1
+ Installed DiffRules ────────────── v0.1.0
+ Installed FillArrays ───────────── v0.7.4
+ Installed DiffEqDiffTools ──────── v1.4.0
+ Installed NaNMath ──────────────── v0.3.3
+ Installed DiffResults ──────────── v0.0.4
+ Installed StaticArrays ─────────── v0.12.1
+ Installed SortingAlgorithms ────── v0.3.1
+ Installed Parameters ───────────── v0.12.0
+ Installed MacroTools ───────────── v0.5.2
+ Installed PositiveFactorizations ─ v0.2.3
+ Installed SimpleTraits ─────────── v0.9.1
+ Installed SpecialFunctions ─────── v0.8.0
+ Installed ArnoldiMethod ────────── v0.0.4
+ Installed Optim ────────────────── v0.19.4
+ Installed BinDeps ──────────────── v0.8.10
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [735ffce8] + TrafficAssignment v0.5.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [ec485272] + ArnoldiMethod v0.0.4
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [1a297f60] + FillArrays v0.7.4
+  [f6369f11] + ForwardDiff v0.10.6
+  [d25df0c9] + Inflate v0.1.1
+  [093fc24a] + LightGraphs v1.3.0
+  [d3d80556] + LineSearches v7.0.1
+  [1914dd2f] + MacroTools v0.5.2
+  [e1d29d7a] + Missings v0.4.3
+  [d41bc354] + NLSolversBase v7.5.0
+  [77ba4419] + NaNMath v0.3.3
+  [429524aa] + Optim v0.19.4
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [85a6dd25] + PositiveFactorizations v0.2.3
+  [ae029012] + Requires v0.5.2
+  [699a6c99] + SimpleTraits v0.9.1
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [2913bbd2] + StatsBase v0.32.0
+  [735ffce8] + TrafficAssignment v0.5.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing TrafficAssignment
+    Status `&#x2F;tmp&#x2F;jl_fhl1fG&#x2F;Manifest.toml`
+  [ec485272] ArnoldiMethod v0.0.4
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [1a297f60] FillArrays v0.7.4
+  [f6369f11] ForwardDiff v0.10.6
+  [d25df0c9] Inflate v0.1.1
+  [093fc24a] LightGraphs v1.3.0
+  [d3d80556] LineSearches v7.0.1
+  [1914dd2f] MacroTools v0.5.2
+  [e1d29d7a] Missings v0.4.3
+  [d41bc354] NLSolversBase v7.5.0
+  [77ba4419] NaNMath v0.3.3
+  [429524aa] Optim v0.19.4
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [ae029012] Requires v0.5.2
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [735ffce8] TrafficAssignment v0.5.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Archive:  &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;tntp.zip
+ca933f74c03af688dfffa33f4b00826cba672479
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Anaheim&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Anaheim&#x2F;AnaheimNetwork.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Anaheim&#x2F;Anaheim_flow.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Anaheim&#x2F;Anaheim_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Anaheim&#x2F;Anaheim_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Anaheim&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Austin&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Austin&#x2F;Austin Flow Map 1 12-15-08.jpg  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Austin&#x2F;Austin_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Austin&#x2F;Austin_trips_am.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Austin&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Barcelona&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Barcelona&#x2F;Barcelona_flow.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Barcelona&#x2F;Barcelona_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Barcelona&#x2F;Barcelona_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Barcelona&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Center&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Center&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Center&#x2F;berlin-center_Node-Conversion.txt  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Center&#x2F;berlin-center_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Center&#x2F;berlin-center_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Center&#x2F;berlin-center_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Friedrichshain&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Friedrichshain&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Friedrichshain&#x2F;friedrichshain-center_Node-Conversion.txt  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Friedrichshain&#x2F;friedrichshain-center_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Friedrichshain&#x2F;friedrichshain-center_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Friedrichshain&#x2F;friedrichshain-center_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Center&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Center&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Center&#x2F;berlin-mitte-center_Node-Conversion.txt  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Center&#x2F;berlin-mitte-center_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Center&#x2F;berlin-mitte-center_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Center&#x2F;berlin-mitte-center_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#x2F;berlin-mitte-prenzlauerberg-friedrichshain-center_Node-Conversion.txt  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#x2F;berlin-mitte-prenzlauerberg-friedrichshain-center_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#x2F;berlin-mitte-prenzlauerberg-friedrichshain-center_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#x2F;berlin-mitte-prenzlauerberg-friedrichshain-center_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Prenzlauerberg-Center&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Prenzlauerberg-Center&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Prenzlauerberg-Center&#x2F;berlin-prenzlauerberg-center_Node-Conversion.txt  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Prenzlauerberg-Center&#x2F;berlin-prenzlauerberg-center_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Prenzlauerberg-Center&#x2F;berlin-prenzlauerberg-center_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Prenzlauerberg-Center&#x2F;berlin-prenzlauerberg-center_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Tiergarten&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Tiergarten&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Tiergarten&#x2F;berlin-tiergarten_Node-Conversion.txt  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Tiergarten&#x2F;berlin-tiergarten_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Tiergarten&#x2F;berlin-tiergarten_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Tiergarten&#x2F;berlin-tiergarten_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Birmingham-England&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Birmingham-England&#x2F;Birmingham_Net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Birmingham-England&#x2F;Birmingham_Nodes.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Birmingham-England&#x2F;Birmingham_Trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Birmingham-England&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Braess-Example&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Braess-Example&#x2F;Braess_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Braess-Example&#x2F;Braess_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Braess-Example&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Chicago-Sketch&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Chicago-Sketch&#x2F;ChicagoSketch_flow.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Chicago-Sketch&#x2F;ChicagoSketch_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Chicago-Sketch&#x2F;ChicagoSketch_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Chicago-Sketch&#x2F;ChicagoSketch_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Chicago-Sketch&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;EMA_entire.png  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;EMA_highway.jpg  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;EMA_intro.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;EMA_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;EMA_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;GoldCoast&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;GoldCoast&#x2F;Goldcoast_network_2016_01.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;GoldCoast&#x2F;Goldcoast_nodes_2016_01.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;GoldCoast&#x2F;Goldcoast_trips_2016_01.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;GoldCoast&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Hessen-Asymmetric&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Hessen-Asymmetric&#x2F;AsymmetricCostFunctions_Codina.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Hessen-Asymmetric&#x2F;Hessen-Asym_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Hessen-Asymmetric&#x2F;Hessen-Asym_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Hessen-Asymmetric&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Philadelphia&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Philadelphia&#x2F;Philadelphia_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Philadelphia&#x2F;Philadelphia_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Philadelphia&#x2F;Philadelphia_toll.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Philadelphia&#x2F;Philadelphia_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Philadelphia&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;Sioux-Falls-Network-Flow.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;Sioux-Falls-Network.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;Sioux-Falls-OD Demand.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;SiouxFallsMap_AAA1998.jpg  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;SiouxFalls_flow.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;SiouxFalls_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;SiouxFalls_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;SiouxFalls_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;Sydney_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;Sydney_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;Sydney_trips.tntp.zip  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;ConventionalVehiclesMultiModal.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;ElectricVehiclesMultiModal.csv  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-BranchData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-BusData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-GenCData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-GenSData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-LoadCData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-LoadSData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-StorageCData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-StorageSData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;SymmetricaE.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;TransportationLinksConventional.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;TransportationLinksElectric.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;TransportationStationsConventional.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;TransportationStationsElectric.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;trafficDemandMultiModal.csv  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Terrassa-Asymmetric&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Terrassa-Asymmetric&#x2F;AsymmetricCostFunctions_Codina.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Terrassa-Asymmetric&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Terrassa-Asymmetric&#x2F;Terrassa-Asym_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Terrassa-Asymmetric&#x2F;Terrassa-Asym_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg-Asymmetric&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg-Asymmetric&#x2F;AsymmetricCostFunctions_Codina.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg-Asymmetric&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg-Asymmetric&#x2F;Winnipeg-Asym_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg-Asymmetric&#x2F;Winnipeg-Asym_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg&#x2F;Winnipeg_flow.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg&#x2F;Winnipeg_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg&#x2F;Winnipeg_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;chicago-regional&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;chicago-regional&#x2F;ChicagoRegional_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;chicago-regional&#x2F;ChicagoRegional_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;chicago-regional&#x2F;ChicagoRegional_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;chicago-regional&#x2F;README.md  
+[ Info: Network &#39;Anaheim&#39; is OK.
+[ Info: Network &#39;Austin&#39; is OK.
+[ Info: Network &#39;Barcelona&#39; is OK.
+[ Info: Network &#39;Berlin-Center&#39; is OK.
+[ Info: Network &#39;Berlin-Friedrichshain&#39; is OK.
+[ Info: Network &#39;Berlin-Mitte-Center&#39; is OK.
+[ Info: Network &#39;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#39; is OK.
+[ Info: Network &#39;Berlin-Prenzlauerberg-Center&#39; is OK.
+[ Info: Network &#39;Berlin-Tiergarten&#39; is OK.
+[ Info: Network &#39;Birmingham-England&#39; is OK.
+[ Info: Network &#39;Braess-Example&#39; is OK.
+[ Info: Network &#39;Chicago-Sketch&#39; is OK.
+[ Info: Network &#39;Eastern-Massachusetts&#39; is OK.
+[ Info: Network &#39;GoldCoast&#39; is OK.
+[ Info: Network &#39;Hessen-Asymmetric&#39; is OK.
+[ Info: Network &#39;Philadelphia&#39; is OK.
+[ Info: Network &#39;SiouxFalls&#39; is OK.
+Archive:  &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;Sydney_trips.tntp.zip
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;Sydney_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;__MACOSX&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;__MACOSX&#x2F;._Sydney_trips.tntp  
+[ Info: Network &#39;Sydney&#39; is OK.
+e = AssertionError(&quot;network_data_file != \&quot;\&quot;&quot;)
+┌ Warning: Network &#39;SymmetricaTestCase&#39; is not usable.
+└ @ Main ~&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;test&#x2F;test_functions.jl:14
+[ Info: Network &#39;Terrassa-Asymmetric&#39; is OK.
+[ Info: Network &#39;Winnipeg&#39; is OK.
+[ Info: Network &#39;Winnipeg-Asymmetric&#39; is OK.
+[ Info: Network &#39;chicago-regional&#39; is OK.
+--------------------------------------------------------------------------------
+| Network                                            | Zones | Links  | Nodes  |
+| :---                                               | ---:  | ---:   | ---:   |
+| Anaheim                                            |    38 |    914 |    416 |
+| Austin                                             |  7388 |  18961 |   7388 |
+| Barcelona                                          |   110 |   2522 |   1020 |
+| Berlin-Center                                      |   865 |  28376 |  12981 |
+| Berlin-Friedrichshain                              |    23 |    523 |    224 |
+| Berlin-Mitte-Center                                |    36 |    871 |    398 |
+| Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center  |    98 |   2184 |    975 |
+| Berlin-Prenzlauerberg-Center                       |    38 |    749 |    352 |
+| Berlin-Tiergarten                                  |    26 |    766 |    361 |
+| Birmingham-England                                 |   898 |  33937 |  14639 |
+| Braess-Example                                     |     2 |      5 |      4 |
+| Chicago-Sketch                                     |   387 |   2950 |    933 |
+| Eastern-Massachusetts                              |    74 |    258 |     74 |
+| GoldCoast                                          |  1068 |  11140 |   4807 |
+| Hessen-Asymmetric                                  |   245 |   6674 |   4660 |
+| Philadelphia                                       |  1525 |  40003 |  13389 |
+| SiouxFalls                                         |    24 |     76 |     24 |
+| Sydney                                             |  3264 |  75379 |  33113 |
+| Terrassa-Asymmetric                                |    55 |   3264 |   1609 |
+| Winnipeg                                           |   147 |   2836 |   1052 |
+| Winnipeg-Asymmetric                                |   154 |   2535 |   1057 |
+| chicago-regional                                   |  1790 |  39018 |  12982 |
+--------------------------------------------------------------------------------
+Data Loading Completed, time:0.021991968154907227 seconds
+-------------------------------------
+Network Name: SiouxFalls
+Method: bfw
+Line Search Step: exact
+Maximum Interation Number: 5
+Tolerance for AEC: 0.001
+Number of processors: 1
+Setup time = 0.29047298431396484 seconds
+k=   1, tauk=   0.3190715733, objective=16338391.304593, aec= 172.3073668543
+k=   2, tauk=   0.2428968702, objective= 7135272.817759, aec=  31.3353139806
+k=   3, tauk=   0.1899311040, objective= 5824683.678967, aec=   9.8581593996
+k=   4, tauk=   0.9629582813, objective= 5487338.493783, aec=   5.9740315023
+k=   5, tauk=   0.9999999815, objective= 4887642.790917, aec=   6.1514874020
+Iteration time = 1.3161640167236328 seconds
+-------------------------------------
+Network Name: SiouxFalls
+Method: cfw
+Line Search Step: newton
+Maximum Interation Number: 5
+Tolerance for AEC: 0.001
+Number of processors: 1
+Setup time = 0.009145021438598633 seconds
+k=   1, tauk=   0.2370134693, objective=16338391.304593, aec= 172.3073668543
+k=   2, tauk=   0.2058588197, objective= 7726066.589805, aec=  43.0506182247
+k=   3, tauk=   0.1884540410, objective= 5990713.134590, aec=  14.1062823453
+k=   4, tauk=   0.1997914128, objective= 5484414.406165, aec=   6.7290308604
+k=   5, tauk=   0.5242606134, objective= 5232751.840511, aec=   4.5706982129
+Iteration time = 0.03801107406616211 seconds
+-------------------------------------
+Network Name: SiouxFalls
+Method: fw
+Line Search Step: exact
+Maximum Interation Number: 5
+Tolerance for AEC: 0.001
+Number of processors: 1
+Setup time = 0.0014369487762451172 seconds
+k=   1, tauk=   0.3190715733, objective=16338391.304593, aec= 172.3073668543
+k=   2, tauk=   0.2428968702, objective= 7135272.817759, aec=  31.3353139806
+k=   3, tauk=   0.1899311040, objective= 5824683.678967, aec=   9.8581593996
+k=   4, tauk=   0.3025872463, objective= 5487338.493783, aec=   5.9740315023
+k=   5, tauk=   0.1921632733, objective= 5179901.055385, aec=   5.6899136319
+Iteration time = 0.020093917846679688 seconds
+   Testing TrafficAssignment tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 13 hours ago and took 5 minutes, 4 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/TrafficAssignment/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Installed TrafficAssignment ────── v0.5.0
+ Installed Missings ─────────────── v0.4.3
+ Installed DiffEqDiffTools ──────── v1.4.0
+ Installed ArrayInterface ───────── v1.2.1
+ Installed FillArrays ───────────── v0.7.4
+ Installed DiffResults ──────────── v0.0.4
+ Installed BinDeps ──────────────── v0.8.10
+ Installed Optim ────────────────── v0.19.4
+ Installed Inflate ──────────────── v0.1.1
+ Installed DataAPI ──────────────── v1.1.0
+ Installed SortingAlgorithms ────── v0.3.1
+ Installed Calculus ─────────────── v0.5.1
+ Installed NLSolversBase ────────── v7.5.0
+ Installed LineSearches ─────────── v7.0.1
+ Installed Parameters ───────────── v0.12.0
+ Installed ForwardDiff ──────────── v0.10.6
+ Installed DiffRules ────────────── v0.1.0
+ Installed PositiveFactorizations ─ v0.2.3
+ Installed Requires ─────────────── v0.5.2
+ Installed SimpleTraits ─────────── v0.9.1
+ Installed URIParser ────────────── v0.4.0
+ Installed CommonSubexpressions ─── v0.2.0
+ Installed StaticArrays ─────────── v0.12.1
+ Installed DataStructures ───────── v0.17.6
+ Installed NaNMath ──────────────── v0.3.3
+ Installed StatsBase ────────────── v0.32.0
+ Installed ArnoldiMethod ────────── v0.0.4
+ Installed MacroTools ───────────── v0.5.2
+ Installed OrderedCollections ───── v1.1.0
+ Installed LightGraphs ──────────── v1.3.0
+ Installed BinaryProvider ───────── v0.5.8
+ Installed SpecialFunctions ─────── v0.8.0
+ Installed Compat ───────────────── v2.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [735ffce8] + TrafficAssignment v0.5.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [ec485272] + ArnoldiMethod v0.0.4
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [1a297f60] + FillArrays v0.7.4
+  [f6369f11] + ForwardDiff v0.10.6
+  [d25df0c9] + Inflate v0.1.1
+  [093fc24a] + LightGraphs v1.3.0
+  [d3d80556] + LineSearches v7.0.1
+  [1914dd2f] + MacroTools v0.5.2
+  [e1d29d7a] + Missings v0.4.3
+  [d41bc354] + NLSolversBase v7.5.0
+  [77ba4419] + NaNMath v0.3.3
+  [429524aa] + Optim v0.19.4
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [85a6dd25] + PositiveFactorizations v0.2.3
+  [ae029012] + Requires v0.5.2
+  [699a6c99] + SimpleTraits v0.9.1
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [2913bbd2] + StatsBase v0.32.0
+  [735ffce8] + TrafficAssignment v0.5.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing TrafficAssignment
+Status `&#x2F;tmp&#x2F;jl_wGGpmv&#x2F;Manifest.toml`
+  [ec485272] ArnoldiMethod v0.0.4
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [1a297f60] FillArrays v0.7.4
+  [f6369f11] ForwardDiff v0.10.6
+  [d25df0c9] Inflate v0.1.1
+  [093fc24a] LightGraphs v1.3.0
+  [d3d80556] LineSearches v7.0.1
+  [1914dd2f] MacroTools v0.5.2
+  [e1d29d7a] Missings v0.4.3
+  [d41bc354] NLSolversBase v7.5.0
+  [77ba4419] NaNMath v0.3.3
+  [429524aa] Optim v0.19.4
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [ae029012] Requires v0.5.2
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [735ffce8] TrafficAssignment v0.5.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Archive:  &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;tntp.zip
+ca933f74c03af688dfffa33f4b00826cba672479
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Anaheim&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Anaheim&#x2F;AnaheimNetwork.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Anaheim&#x2F;Anaheim_flow.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Anaheim&#x2F;Anaheim_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Anaheim&#x2F;Anaheim_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Anaheim&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Austin&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Austin&#x2F;Austin Flow Map 1 12-15-08.jpg  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Austin&#x2F;Austin_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Austin&#x2F;Austin_trips_am.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Austin&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Barcelona&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Barcelona&#x2F;Barcelona_flow.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Barcelona&#x2F;Barcelona_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Barcelona&#x2F;Barcelona_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Barcelona&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Center&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Center&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Center&#x2F;berlin-center_Node-Conversion.txt  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Center&#x2F;berlin-center_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Center&#x2F;berlin-center_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Center&#x2F;berlin-center_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Friedrichshain&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Friedrichshain&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Friedrichshain&#x2F;friedrichshain-center_Node-Conversion.txt  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Friedrichshain&#x2F;friedrichshain-center_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Friedrichshain&#x2F;friedrichshain-center_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Friedrichshain&#x2F;friedrichshain-center_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Center&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Center&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Center&#x2F;berlin-mitte-center_Node-Conversion.txt  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Center&#x2F;berlin-mitte-center_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Center&#x2F;berlin-mitte-center_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Center&#x2F;berlin-mitte-center_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#x2F;berlin-mitte-prenzlauerberg-friedrichshain-center_Node-Conversion.txt  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#x2F;berlin-mitte-prenzlauerberg-friedrichshain-center_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#x2F;berlin-mitte-prenzlauerberg-friedrichshain-center_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#x2F;berlin-mitte-prenzlauerberg-friedrichshain-center_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Prenzlauerberg-Center&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Prenzlauerberg-Center&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Prenzlauerberg-Center&#x2F;berlin-prenzlauerberg-center_Node-Conversion.txt  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Prenzlauerberg-Center&#x2F;berlin-prenzlauerberg-center_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Prenzlauerberg-Center&#x2F;berlin-prenzlauerberg-center_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Prenzlauerberg-Center&#x2F;berlin-prenzlauerberg-center_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Tiergarten&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Tiergarten&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Tiergarten&#x2F;berlin-tiergarten_Node-Conversion.txt  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Tiergarten&#x2F;berlin-tiergarten_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Tiergarten&#x2F;berlin-tiergarten_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Berlin-Tiergarten&#x2F;berlin-tiergarten_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Birmingham-England&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Birmingham-England&#x2F;Birmingham_Net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Birmingham-England&#x2F;Birmingham_Nodes.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Birmingham-England&#x2F;Birmingham_Trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Birmingham-England&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Braess-Example&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Braess-Example&#x2F;Braess_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Braess-Example&#x2F;Braess_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Braess-Example&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Chicago-Sketch&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Chicago-Sketch&#x2F;ChicagoSketch_flow.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Chicago-Sketch&#x2F;ChicagoSketch_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Chicago-Sketch&#x2F;ChicagoSketch_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Chicago-Sketch&#x2F;ChicagoSketch_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Chicago-Sketch&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;EMA_entire.png  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;EMA_highway.jpg  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;EMA_intro.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;EMA_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;EMA_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Eastern-Massachusetts&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;GoldCoast&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;GoldCoast&#x2F;Goldcoast_network_2016_01.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;GoldCoast&#x2F;Goldcoast_nodes_2016_01.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;GoldCoast&#x2F;Goldcoast_trips_2016_01.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;GoldCoast&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Hessen-Asymmetric&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Hessen-Asymmetric&#x2F;AsymmetricCostFunctions_Codina.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Hessen-Asymmetric&#x2F;Hessen-Asym_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Hessen-Asymmetric&#x2F;Hessen-Asym_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Hessen-Asymmetric&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Philadelphia&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Philadelphia&#x2F;Philadelphia_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Philadelphia&#x2F;Philadelphia_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Philadelphia&#x2F;Philadelphia_toll.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Philadelphia&#x2F;Philadelphia_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Philadelphia&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;README.md  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;Sioux-Falls-Network-Flow.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;Sioux-Falls-Network.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;Sioux-Falls-OD Demand.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;SiouxFallsMap_AAA1998.jpg  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;SiouxFalls_flow.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;SiouxFalls_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;SiouxFalls_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SiouxFalls&#x2F;SiouxFalls_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;Sydney_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;Sydney_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;Sydney_trips.tntp.zip  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;ConventionalVehiclesMultiModal.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;ElectricVehiclesMultiModal.csv  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-BranchData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-BusData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-GenCData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-GenSData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-LoadCData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-LoadSData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-StorageCData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;Powergrid&#x2F;201Bus-StorageSData.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;SymmetricaE.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;TransportationLinksConventional.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;TransportationLinksElectric.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;TransportationStationsConventional.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;TransportationStationsElectric.csv  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;SymmetricaTestCase&#x2F;trafficDemandMultiModal.csv  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Terrassa-Asymmetric&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Terrassa-Asymmetric&#x2F;AsymmetricCostFunctions_Codina.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Terrassa-Asymmetric&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Terrassa-Asymmetric&#x2F;Terrassa-Asym_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Terrassa-Asymmetric&#x2F;Terrassa-Asym_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg-Asymmetric&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg-Asymmetric&#x2F;AsymmetricCostFunctions_Codina.pdf  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg-Asymmetric&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg-Asymmetric&#x2F;Winnipeg-Asym_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg-Asymmetric&#x2F;Winnipeg-Asym_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg&#x2F;README.md  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg&#x2F;Winnipeg_flow.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg&#x2F;Winnipeg_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Winnipeg&#x2F;Winnipeg_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;chicago-regional&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;chicago-regional&#x2F;ChicagoRegional_net.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;chicago-regional&#x2F;ChicagoRegional_node.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;chicago-regional&#x2F;ChicagoRegional_trips.tntp  
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;chicago-regional&#x2F;README.md  
+[ Info: Network &#39;Anaheim&#39; is OK.
+[ Info: Network &#39;Austin&#39; is OK.
+[ Info: Network &#39;Barcelona&#39; is OK.
+[ Info: Network &#39;Berlin-Center&#39; is OK.
+[ Info: Network &#39;Berlin-Friedrichshain&#39; is OK.
+[ Info: Network &#39;Berlin-Mitte-Center&#39; is OK.
+[ Info: Network &#39;Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center&#39; is OK.
+[ Info: Network &#39;Berlin-Prenzlauerberg-Center&#39; is OK.
+[ Info: Network &#39;Berlin-Tiergarten&#39; is OK.
+[ Info: Network &#39;Birmingham-England&#39; is OK.
+[ Info: Network &#39;Braess-Example&#39; is OK.
+[ Info: Network &#39;Chicago-Sketch&#39; is OK.
+[ Info: Network &#39;Eastern-Massachusetts&#39; is OK.
+[ Info: Network &#39;GoldCoast&#39; is OK.
+[ Info: Network &#39;Hessen-Asymmetric&#39; is OK.
+[ Info: Network &#39;Philadelphia&#39; is OK.
+[ Info: Network &#39;SiouxFalls&#39; is OK.
+Archive:  &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;Sydney_trips.tntp.zip
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;Sydney_trips.tntp  
+   creating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;__MACOSX&#x2F;
+  inflating: &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;TransportationNetworks-ca933f74c03af688dfffa33f4b00826cba672479&#x2F;Sydney&#x2F;__MACOSX&#x2F;._Sydney_trips.tntp  
+[ Info: Network &#39;Sydney&#39; is OK.
+e = AssertionError(&quot;network_data_file != \&quot;\&quot;&quot;)
+┌ Warning: Network &#39;SymmetricaTestCase&#39; is not usable.
+└ @ Main ~&#x2F;.julia&#x2F;packages&#x2F;TrafficAssignment&#x2F;XXlIE&#x2F;test&#x2F;test_functions.jl:14
+[ Info: Network &#39;Terrassa-Asymmetric&#39; is OK.
+[ Info: Network &#39;Winnipeg&#39; is OK.
+[ Info: Network &#39;Winnipeg-Asymmetric&#39; is OK.
+[ Info: Network &#39;chicago-regional&#39; is OK.
+--------------------------------------------------------------------------------
+| Network                                            | Zones | Links  | Nodes  |
+| :---                                               | ---:  | ---:   | ---:   |
+| Anaheim                                            |    38 |    914 |    416 |
+| Austin                                             |  7388 |  18961 |   7388 |
+| Barcelona                                          |   110 |   2522 |   1020 |
+| Berlin-Center                                      |   865 |  28376 |  12981 |
+| Berlin-Friedrichshain                              |    23 |    523 |    224 |
+| Berlin-Mitte-Center                                |    36 |    871 |    398 |
+| Berlin-Mitte-Prenzlauerberg-Friedrichshain-Center  |    98 |   2184 |    975 |
+| Berlin-Prenzlauerberg-Center                       |    38 |    749 |    352 |
+| Berlin-Tiergarten                                  |    26 |    766 |    361 |
+| Birmingham-England                                 |   898 |  33937 |  14639 |
+| Braess-Example                                     |     2 |      5 |      4 |
+| Chicago-Sketch                                     |   387 |   2950 |    933 |
+| Eastern-Massachusetts                              |    74 |    258 |     74 |
+| GoldCoast                                          |  1068 |  11140 |   4807 |
+| Hessen-Asymmetric                                  |   245 |   6674 |   4660 |
+| Philadelphia                                       |  1525 |  40003 |  13389 |
+| SiouxFalls                                         |    24 |     76 |     24 |
+| Sydney                                             |  3264 |  75379 |  33113 |
+| Terrassa-Asymmetric                                |    55 |   3264 |   1609 |
+| Winnipeg                                           |   147 |   2836 |   1052 |
+| Winnipeg-Asymmetric                                |   154 |   2535 |   1057 |
+| chicago-regional                                   |  1790 |  39018 |  12982 |
+--------------------------------------------------------------------------------
+Data Loading Completed, time:0.01827383041381836 seconds
+-------------------------------------
+Network Name: SiouxFalls
+Method: bfw
+Line Search Step: exact
+Maximum Interation Number: 5
+Tolerance for AEC: 0.001
+Number of processors: 1
+Setup time = 0.3750951290130615 seconds
+k=   1, tauk=   0.3190715733, objective=16338391.304593, aec= 172.3073668543
+k=   2, tauk=   0.2428968702, objective= 7135272.817759, aec=  31.3353139806
+k=   3, tauk=   0.1899311040, objective= 5824683.678967, aec=   9.8581593996
+k=   4, tauk=   0.9629582813, objective= 5487338.493783, aec=   5.9740315023
+k=   5, tauk=   0.9999999815, objective= 4887642.790917, aec=   6.1514874020
+Iteration time = 1.374758005142212 seconds
+-------------------------------------
+Network Name: SiouxFalls
+Method: cfw
+Line Search Step: newton
+Maximum Interation Number: 5
+Tolerance for AEC: 0.001
+Number of processors: 1
+Setup time = 0.0010349750518798828 seconds
+k=   1, tauk=   0.2370134693, objective=16338391.304593, aec= 172.3073668543
+k=   2, tauk=   0.2058588197, objective= 7726066.589805, aec=  43.0506182247
+k=   3, tauk=   0.1884540410, objective= 5990713.134590, aec=  14.1062823453
+k=   4, tauk=   0.1997914128, objective= 5484414.406165, aec=   6.7290308604
+k=   5, tauk=   0.5242606134, objective= 5232751.840511, aec=   4.5706982129
+Iteration time = 0.024343013763427734 seconds
+-------------------------------------
+Network Name: SiouxFalls
+Method: fw
+Line Search Step: exact
+Maximum Interation Number: 5
+Tolerance for AEC: 0.001
+Number of processors: 1
+Setup time = 0.0008530616760253906 seconds
+k=   1, tauk=   0.3190715733, objective=16338391.304593, aec= 172.3073668543
+k=   2, tauk=   0.2428968702, objective= 7135272.817759, aec=  31.3353139806
+k=   3, tauk=   0.1899311040, objective= 5824683.678967, aec=   9.8581593996
+k=   4, tauk=   0.3025872463, objective= 5487338.493783, aec=   5.9740315023
+k=   5, tauk=   0.1921632733, objective= 5179901.055385, aec=   5.6899136319
+Iteration time = 0.011340856552124023 seconds
+   Testing TrafficAssignment tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

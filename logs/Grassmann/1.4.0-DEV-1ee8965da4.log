@@ -1,0 +1,124 @@
+ Resolving package versions...
+ Installed DirectSum ────────── v0.4.2
+ Installed RecipesBase ──────── v0.7.0
+ Installed Combinatorics ────── v0.7.0
+ Installed Requires ─────────── v0.5.2
+ Installed ForceImport ──────── v0.0.3
+ Installed Polynomials ──────── v0.6.0
+ Installed StaticArrays ─────── v0.12.1
+ Installed Grassmann ────────── v0.3.3
+ Installed AbstractLattices ─── v0.1.2
+ Installed ComputedFieldTypes ─ v0.1.0
+ Installed AbstractTensors ──── v0.3.0
+ Installed SyntaxTree ───────── v1.0.1
+ Installed Leibniz ──────────── v0.0.3
+ Installed Reduce ───────────── v1.2.3
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [4df31cd9] + Grassmann v0.3.3
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [398f06c4] + AbstractLattices v0.1.2
+  [a8e43f4a] + AbstractTensors v0.3.0
+  [861a8166] + Combinatorics v0.7.0
+  [459fdd68] + ComputedFieldTypes v0.1.0
+  [22fd7b30] + DirectSum v0.4.2
+  [9dda63f9] + ForceImport v0.0.3
+  [4df31cd9] + Grassmann v0.3.3
+  [edad4870] + Leibniz v0.0.3
+  [f27b6e38] + Polynomials v0.6.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [93e0c654] + Reduce v1.2.3
+  [ae029012] + Requires v0.5.2
+  [90137ffa] + StaticArrays v0.12.1
+  [a4af3ec5] + SyntaxTree v1.0.1
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  Building Reduce → `~/.julia/packages/Reduce/4dmwd/deps/build.log`
+   Testing Grassmann
+ Resolving package versions...
+Status `/tmp/jl_92p1bb/Manifest.toml`
+  [398f06c4] AbstractLattices v0.1.2
+  [a8e43f4a] AbstractTensors v0.3.0
+  [861a8166] Combinatorics v0.7.0
+  [459fdd68] ComputedFieldTypes v0.1.0
+  [22fd7b30] DirectSum v0.4.2
+  [9dda63f9] ForceImport v0.0.3
+  [4df31cd9] Grassmann v0.3.3
+  [edad4870] Leibniz v0.0.3
+  [f27b6e38] Polynomials v0.6.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [93e0c654] Reduce v1.2.3
+  [ae029012] Requires v0.5.2
+  [90137ffa] StaticArrays v0.12.1
+  [a4af3ec5] SyntaxTree v1.0.1
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+/root/.julia/packages/Reduce/4dmwd/deps/usr/lib/reduce/cslbuild/csl/reduce: error while loading shared libraries: libXft.so.2: cannot open shared object file: No such file or directory
+Error During Test at /root/.julia/packages/Grassmann/WSDOB/test/runtests.jl:14
+  Test threw exception
+  Expression: begin
+    (a, b) = (:a * (Λ(2)).v1 + :b * (Λ(2)).v2, :c * (Λ(2)).v1 + :d * (Λ(2)).v2)
+    Algebra.:+(a ∧ b, a ⋅ b) == a * b
+end
+  IOError: write: broken pipe (EPIPE)
+  Stacktrace:
+   [1] uv_write(::Base.PipeEndpoint, ::Ptr{UInt8}, ::UInt64) at ./stream.jl:953
+   [2] unsafe_write(::Base.PipeEndpoint, ::Ptr{UInt8}, ::UInt64) at ./stream.jl:1007
+   [3] unsafe_write at ./io.jl:310 [inlined]
+   [4] macro expansion at ./gcutils.jl:105 [inlined]
+   [5] write at ./strings/io.jl:186 [inlined]
+   [6] clear(::Reduce.PSL) at /root/.julia/packages/Reduce/4dmwd/src/Reduce.jl:76
+   [7] write(::Reduce.PSL, ::String) at /root/.julia/packages/Reduce/4dmwd/src/Reduce.jl:83
+   [8] rcall(::RExpr; on::Array{Symbol,1}, off::Array{Symbol,1}) at /root/.julia/packages/Reduce/4dmwd/src/rexpr.jl:464
+   [9] rcall(::RExpr) at /root/.julia/packages/Reduce/4dmwd/src/rexpr.jl:430
+   [10] |> at ./operators.jl:823 [inlined]
+   [11] parse_args(::String, ::RExpr; be::Int64) at /root/.julia/packages/Reduce/4dmwd/src/parser.jl:343
+   [12] #+#238 at /root/.julia/packages/Reduce/4dmwd/src/parser.jl:437 [inlined]
+   [13] ∑ at /root/.julia/packages/Reduce/4dmwd/src/parser.jl:437 [inlined]
+   [14] ∑(::Symbol) at /root/.julia/packages/Reduce/4dmwd/src/parser.jl:791
+   [15] +(::Simplex{⟨++⟩,1,v₁,Symbol}, ::Simplex{⟨++⟩,1,v₂,Symbol}) at /root/.julia/packages/Grassmann/WSDOB/src/algebra.jl:1083
+   [16] top-level scope at /root/.julia/packages/Grassmann/WSDOB/test/runtests.jl:14
+   [17] include(::String) at ./client.jl:439
+   [18] top-level scope at none:6
+   [19] eval(::Module, ::Any) at ./boot.jl:331
+   [20] exec_options(::Base.JLOptions) at ./client.jl:264
+   [21] _start() at ./client.jl:484
+  
+ERROR: LoadError: There was an error during testing
+in expression starting at /root/.julia/packages/Grassmann/WSDOB/test/runtests.jl:14
+ERROR: Package Grassmann errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

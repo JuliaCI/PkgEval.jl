@@ -1,0 +1,82 @@
+ Resolving package versions...
+ Installed LowLevelFloatFunctions ─ v0.1.0
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [15a4fa57] + LowLevelFloatFunctions v0.1.0
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [15a4fa57] + LowLevelFloatFunctions v0.1.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+   Testing LowLevelFloatFunctions
+    Status `/tmp/jl_rPS8AW/Manifest.toml`
+  [15a4fa57] LowLevelFloatFunctions v0.1.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+WARNING: Method definition exponent_bias(Type{Float16}) in module Math at math.jl:43 overwritten in module LowLevelFloatFunctions at /root/.julia/packages/LowLevelFloatFunctions/RmGP5/src/LowLevelFloatFunctions.jl:47.
+  ** incremental compilation may be fatally broken for this module **
+
+WARNING: Method definition exponent_bias(Type{Float32}) in module Math at math.jl:43 overwritten in module LowLevelFloatFunctions at /root/.julia/packages/LowLevelFloatFunctions/RmGP5/src/LowLevelFloatFunctions.jl:48.
+  ** incremental compilation may be fatally broken for this module **
+
+WARNING: Method definition exponent_bias(Type{Float64}) in module Math at math.jl:43 overwritten in module LowLevelFloatFunctions at /root/.julia/packages/LowLevelFloatFunctions/RmGP5/src/LowLevelFloatFunctions.jl:49.
+  ** incremental compilation may be fatally broken for this module **
+
+Test Summary: | Pass  Total
+constants     |   24     24
+Test Summary:    | Pass  Total
+value_extraction |    9      9
+Test Summary: | Pass  Total
+field_get     |    9      9
+Test Summary: | Pass  Total
+field_set     |    3      3
+Test Summary:    | Pass  Total
+characterization |    7      7
+utilitiarian: Error During Test at /root/.julia/packages/LowLevelFloatFunctions/RmGP5/test/runtests.jl:89
+  Test threw exception
+  Expression: hexstring(sqrt2₆₄) == "3ff6a09e667f3bcd"
+  UndefVarError: hexstring not defined
+  Stacktrace:
+   [1] top-level scope at /root/.julia/packages/LowLevelFloatFunctions/RmGP5/test/runtests.jl:89
+   [2] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+   [3] top-level scope at /root/.julia/packages/LowLevelFloatFunctions/RmGP5/test/runtests.jl:87
+  
+utilitiarian: Error During Test at /root/.julia/packages/LowLevelFloatFunctions/RmGP5/test/runtests.jl:90
+  Test threw exception
+  Expression: hexstring(sqrt2₃₂) == "3fb504f3"
+  UndefVarError: hexstring not defined
+  Stacktrace:
+   [1] top-level scope at /root/.julia/packages/LowLevelFloatFunctions/RmGP5/test/runtests.jl:90
+   [2] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+   [3] top-level scope at /root/.julia/packages/LowLevelFloatFunctions/RmGP5/test/runtests.jl:87
+  
+Test Summary: | Pass  Error  Total
+utilitiarian  |    2      2      4
+ERROR: LoadError: Some tests did not pass: 2 passed, 0 failed, 2 errored, 0 broken.
+in expression starting at /root/.julia/packages/LowLevelFloatFunctions/RmGP5/test/runtests.jl:86
+ERROR: Package LowLevelFloatFunctions errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1288
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

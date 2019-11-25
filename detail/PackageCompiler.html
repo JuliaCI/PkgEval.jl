@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="PackageCompiler">PackageCompiler</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#PackageCompiler">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 16 hours ago and took 28 minutes, 30 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/PackageCompiler/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed URIParser ─────── v0.4.0
+ Installed HTTPClient ────── v0.2.1
+ Installed WinRPM ────────── v0.4.2
+ Installed BinDeps ───────── v0.8.10
+ Installed LibExpat ──────── v0.5.0
+ Installed BufferedStreams ─ v1.0.0
+ Installed BinaryProvider ── v0.5.8
+ Installed PackageCompiler ─ v0.6.4
+ Installed Libz ──────────── v1.0.0
+ Installed LibCURL ───────── v0.5.2
+ Installed Compat ────────── v2.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [9b87118b] + PackageCompiler v0.6.4
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [e1450e63] + BufferedStreams v1.0.0
+  [34da2185] + Compat v2.2.0
+  [0862f596] + HTTPClient v0.2.1
+  [b27032c2] + LibCURL v0.5.2
+  [522f3ed2] + LibExpat v0.5.0
+  [2ec943e9] + Libz v1.0.0
+  [9b87118b] + PackageCompiler v0.6.4
+  [30578b45] + URIParser v0.4.0
+  [c17dfb99] + WinRPM v0.4.2
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building LibCURL ────────→ `~&#x2F;.julia&#x2F;packages&#x2F;LibCURL&#x2F;lWJxD&#x2F;deps&#x2F;build.log`
+  Building WinRPM ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;WinRPM&#x2F;Y9QdZ&#x2F;deps&#x2F;build.log`
+  Building PackageCompiler → `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;deps&#x2F;build.log`
+   Testing PackageCompiler
+ Resolving package versions...
+ Installed JSON ─────────────── v0.21.0
+ Installed Missings ─────────── v0.4.3
+ Installed OffsetArrays ─────── v0.11.1
+ Installed FixedPointNumbers ── v0.6.1
+ Installed ArgParse ─────────── v0.6.2
+ Installed ColorTypes ───────── v0.8.0
+ Installed DataStructures ───── v0.17.6
+ Installed UnicodePlots ─────── v1.1.0
+ Installed Parsers ──────────── v0.3.10
+ Installed OrderedCollections ─ v1.1.0
+ Installed DataAPI ──────────── v1.1.0
+ Installed SortingAlgorithms ── v0.3.1
+ Installed TextWrap ─────────── v0.3.0
+ Installed StatsBase ────────── v0.32.0
+    Status `&#x2F;tmp&#x2F;tmpoxtuNY&#x2F;Manifest.toml`
+  [c7e460c6] ArgParse v0.6.2
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [e1450e63] BufferedStreams v1.0.0
+  [3da002f7] ColorTypes v0.8.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [53c48c17] FixedPointNumbers v0.6.1
+  [0862f596] HTTPClient v0.2.1
+  [682c06a0] JSON v0.21.0
+  [b27032c2] LibCURL v0.5.2
+  [522f3ed2] LibExpat v0.5.0
+  [2ec943e9] Libz v1.0.0
+  [e1d29d7a] Missings v0.4.3
+  [6fe1bfb0] OffsetArrays v0.11.1
+  [bac558e1] OrderedCollections v1.1.0
+  [9b87118b] PackageCompiler v0.6.4
+  [69de0a69] Parsers v0.3.10
+  [a2af1166] SortingAlgorithms v0.3.1
+  [2913bbd2] StatsBase v0.32.0
+  [b718987f] TextWrap v0.3.0
+  [30578b45] URIParser v0.4.0
+  [b8865327] UnicodePlots v1.1.0
+  [c17dfb99] WinRPM v0.4.2
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+  Updating registry at `~&#x2F;.julia&#x2F;registries&#x2F;General`
+  Updating git-repo `https:&#x2F;&#x2F;github.com&#x2F;JuliaRegistries&#x2F;General.git`
+[?25l[2K[?25h┌ Warning: Some registries failed to update:
+│     — &#x2F;root&#x2F;.julia&#x2F;registries&#x2F;General — failed to fetch from repo
+└ @ Pkg.API &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:162
+ Resolving package versions...
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Project.toml`
+ [no changes]
+ Resolving package versions...
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Project.toml`
+  [9b87118b] + PackageCompiler v0.6.4
+  [44cfe95a] + Pkg 
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [e1450e63] + BufferedStreams v1.0.0
+  [34da2185] + Compat v2.2.0
+  [0862f596] + HTTPClient v0.2.1
+  [b27032c2] + LibCURL v0.5.2
+  [522f3ed2] + LibExpat v0.5.0
+  [2ec943e9] + Libz v1.0.0
+  [9b87118b] + PackageCompiler v0.6.4
+  [30578b45] + URIParser v0.4.0
+  [c17dfb99] + WinRPM v0.4.2
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+[ Info: activating new environment at ~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Project.toml.
+  Updating registry at `~&#x2F;.julia&#x2F;registries&#x2F;General`
+  Updating git-repo `https:&#x2F;&#x2F;github.com&#x2F;JuliaRegistries&#x2F;General.git`
+[?25l[2K[?25h┌ Warning: Some registries failed to update:
+│     — &#x2F;root&#x2F;.julia&#x2F;registries&#x2F;General — failed to fetch from repo
+└ @ Pkg.API &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:162
+Skipping Base.active_repl
+Skipping Base.active_repl_backend
+Test Summary: |     Pass     Total
+normed        | 63739463  63739463
+Test Summary: |   Pass   Total
+fixed         | 425852  425852
+Test Summary: | Pass  Total
+traits        |  251    251
+[ Info: used 1841 out of 1841 precompile statements
+┌ Info: Building `inference.o`:
+└ `&#x2F;opt&#x2F;julia&#x2F;bin&#x2F;julia -C native --output-ji &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;backup&#x2F;native&#x2F;basecompiler.ji --output-o &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;backup&#x2F;native&#x2F;basecompiler.o compiler&#x2F;compiler.jl`
+essentials.jl
+some.jl
+ctypes.jl
+generator.jl
+reflection.jl
+options.jl
+promotion.jl
+tuple.jl
+pair.jl
+traits.jl
+range.jl
+expr.jl
+error.jl
+bool.jl
+number.jl
+int.jl
+operators.jl
+pointer.jl
+refvalue.jl
+indices.jl
+array.jl
+abstractarray.jl
+bitarray.jl
+bitset.jl
+abstractdict.jl
+abstractset.jl
+iterators.jl
+namedtuple.jl
+docs&#x2F;core.jl
+ordering.jl
+sort.jl
+compiler&#x2F;utilities.jl
+compiler&#x2F;validation.jl
+compiler&#x2F;inferenceresult.jl
+compiler&#x2F;params.jl
+compiler&#x2F;inferencestate.jl
+compiler&#x2F;typeutils.jl
+compiler&#x2F;typelimits.jl
+compiler&#x2F;typelattice.jl
+compiler&#x2F;tfuncs.jl
+compiler&#x2F;abstractinterpretation.jl
+compiler&#x2F;typeinfer.jl
+compiler&#x2F;optimize.jl
+compiler&#x2F;ssair&#x2F;driver.jl
+compiler&#x2F;ssair&#x2F;ir.jl
+compiler&#x2F;ssair&#x2F;domtree.jl
+compiler&#x2F;ssair&#x2F;slot2ssa.jl
+compiler&#x2F;ssair&#x2F;queries.jl
+compiler&#x2F;ssair&#x2F;passes.jl
+compiler&#x2F;ssair&#x2F;inlining.jl
+compiler&#x2F;ssair&#x2F;verify.jl
+compiler&#x2F;ssair&#x2F;legacy.jl
+compiler&#x2F;bootstrap.jl
+┌ Info: Building `sys.o`:
+└ `&#x2F;opt&#x2F;julia&#x2F;bin&#x2F;julia -C native --output-ji &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;backup&#x2F;native&#x2F;sys.ji --output-o &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;backup&#x2F;native&#x2F;sys.o -J &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;backup&#x2F;native&#x2F;basecompiler.ji --startup-file=no sysimg.jl`
+coreio.jl
+exports.jl
+essentials.jl
+ctypes.jl
+gcutils.jl
+generator.jl
+reflection.jl
+options.jl
+promotion.jl
+tuple.jl
+pair.jl
+traits.jl
+range.jl
+expr.jl
+error.jl
+bool.jl
+number.jl
+int.jl
+operators.jl
+pointer.jl
+refvalue.jl
+refpointer.jl
+checked.jl
+indices.jl
+array.jl
+abstractarray.jl
+subarray.jl
+views.jl
+abstractdict.jl
+iterators.jl
+namedtuple.jl
+hashing.jl
+rounding.jl
+float.jl
+twiceprecision.jl
+complex.jl
+rational.jl
+multinverses.jl
+abstractarraymath.jl
+arraymath.jl
+simdloop.jl
+reduce.jl
+reshapedarray.jl
+reinterpretarray.jl
+bitarray.jl
+bitset.jl
+some.jl
+dict.jl
+abstractset.jl
+set.jl
+char.jl
+strings&#x2F;basic.jl
+strings&#x2F;string.jl
+strings&#x2F;substring.jl
+build_h.jl
+version_git.jl
+osutils.jl
+c.jl
+io.jl
+iostream.jl
+iobuffer.jl
+intfuncs.jl
+strings&#x2F;strings.jl
+strings&#x2F;search.jl
+strings&#x2F;unicode.jl
+strings&#x2F;util.jl
+strings&#x2F;io.jl
+parse.jl
+shell.jl
+regex.jl
+pcre.jl
+show.jl
+arrayshow.jl
+cartesian.jl
+multidimensional.jl
+permuteddimsarray.jl
+broadcast.jl
+missing.jl
+version.jl
+sysinfo.jl
+libc.jl
+env.jl
+libuv.jl
+uv_constants.jl
+event.jl
+task.jl
+lock.jl
+threads.jl
+weakkeydict.jl
+logging.jl
+stream.jl
+filesystem.jl
+process.jl
+grisu&#x2F;grisu.jl
+methodshow.jl
+secretbuffer.jl
+floatfuncs.jl
+math.jl
+reducedim.jl
+accumulate.jl
+ordering.jl
+sort.jl
+fastmath.jl
+gmp.jl
+mpfr.jl
+combinatorics.jl
+hashing2.jl
+irrationals.jl
+mathconstants.jl
+printf.jl
+meta.jl
+Enums.jl
+channels.jl
+deepcopy.jl
+download.jl
+summarysize.jl
+errorshow.jl
+stacktraces.jl
+initdefs.jl
+threadcall.jl
+uuid.jl
+loading.jl
+util.jl
+asyncmap.jl
+multimedia.jl
+deprecated.jl
+docs&#x2F;basedocs.jl
+client.jl
+docs&#x2F;Docs.jl
+Base  ─────────── 76.428326 seconds
+Base64  ─────────  9.293200 seconds
+CRC32c  ─────────  0.016201 seconds
+SHA  ────────────  0.558143 seconds
+FileWatching  ───  0.355818 seconds
+Unicode  ────────  0.024874 seconds
+Mmap  ───────────  0.221133 seconds
+Serialization  ──  7.621670 seconds
+Libdl  ──────────  0.285530 seconds
+Markdown  ───────  7.724043 seconds
+LibGit2  ────────  9.824103 seconds
+Logging  ────────  0.753425 seconds
+Sockets  ────────  5.648216 seconds
+Printf  ─────────  0.015117 seconds
+Profile  ────────  0.522147 seconds
+Dates  ──────────  6.655996 seconds
+DelimitedFiles  ─  0.384479 seconds
+Random  ─────────  2.138635 seconds
+UUIDs  ──────────  0.015710 seconds
+Future  ─────────  0.013899 seconds
+LinearAlgebra  ── 33.949784 seconds
+SparseArrays  ───  9.923890 seconds
+SuiteSparse  ────  3.059655 seconds
+Distributed  ──── 20.397684 seconds
+SharedArrays  ───  0.541703 seconds
+Pkg  ──────────── 39.076244 seconds
+Test  ───────────  7.711684 seconds
+REPL  ───────────  5.440124 seconds
+Statistics  ─────  0.530857 seconds
+Stdlibs total  ──173.465488 seconds
+Sysimage built. Summary:
+Total ─────── 249.901497 seconds 
+Base: ───────  76.428326 seconds 30.5834%
+Stdlibs: ──── 173.465488 seconds 69.4135%
+Build shared library &quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;backup&#x2F;native&#x2F;sys.so&quot;:
+  `cc -shared &#39;-DJULIAC_PROGRAM_LIBNAME=&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;backup&#x2F;native&#x2F;sys.so&quot;&#39; -o &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;backup&#x2F;native&#x2F;sys.so -Wl,--whole-archive &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;backup&#x2F;native&#x2F;sys.o -Wl,--no-whole-archive -std=gnu99 -I&#x2F;opt&#x2F;julia&#x2F;include&#x2F;julia -DJULIA_ENABLE_THREADING=1 -fPIC -L&#x2F;opt&#x2F;julia&#x2F;lib -Wl,--export-dynamic -Wl,-rpath,&#x2F;opt&#x2F;julia&#x2F;lib -Wl,-rpath,&#x2F;opt&#x2F;julia&#x2F;lib&#x2F;julia -ljulia -m64`
+Julia program file:
+  &quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;precompile.jl&quot;
+Build directory:
+  &quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&quot;
+Build static library &quot;sys.a&quot;:
+  atexit_hook_copy = copy(Base.atexit_hooks) # make backup
+# clean state so that any package we use can carelessly call atexit
+empty!(Base.atexit_hooks)
+Base.__init__()
+Sys.__init__() #fix https:&#x2F;&#x2F;github.com&#x2F;JuliaLang&#x2F;julia&#x2F;issues&#x2F;30479
+using REPL
+Base.REPL_MODULE_REF[] = REPL
+Mod = @eval module $(gensym(&quot;anon_module&quot;)) end
+# Include into anonymous module to not polute namespace
+Mod.include(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;precompile.jl&quot;)
+Base._atexit() # run all exit hooks we registered during precompile
+empty!(Base.atexit_hooks) # don&#39;t serialize the exit hooks we run + added
+# atexit_hook_copy should be empty, but who knows what base will do in the future
+append!(Base.atexit_hooks, atexit_hook_copy)
+
+┌ Info: activating new environment at ~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;Project.toml.
+└ @ Pkg.API &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:605
+  Updating registry at `~&#x2F;.julia&#x2F;registries&#x2F;General`
+  Updating git-repo `https:&#x2F;&#x2F;github.com&#x2F;JuliaRegistries&#x2F;General.git`
+[?25l[2K[?25h┌ Warning: Some registries failed to update:
+│     — &#x2F;root&#x2F;.julia&#x2F;registries&#x2F;General — failed to fetch from repo
+└ @ Pkg.API &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:162
+fatal: error thrown and no exception handler available.
+ErrorException(&quot;Task cannot be serialized&quot;)
+rec_backtrace at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;stackwalk.c:94
+record_backtrace at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;task.c:246
+jl_throw at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;task.c:577
+jl_error at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;rtutils.c:41
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:293
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:285
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;julia.h:894 [inlined]
+jl_serialize_module at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:229 [inlined]
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:290
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:251 [inlined]
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:302
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:251 [inlined]
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:302
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:285
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:251 [inlined]
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:302
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:251 [inlined]
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:302
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:251 [inlined]
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:302
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:251 [inlined]
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:302
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:251 [inlined]
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:302
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:251 [inlined]
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:302
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;julia.h:894 [inlined]
+jl_serialize_module at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:229 [inlined]
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:290
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;julia.h:894 [inlined]
+jl_serialize_module at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:221 [inlined]
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:290
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:336 [inlined]
+jl_save_system_image_to_stream at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:1273
+jl_create_system_image at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:1378
+jl_write_compiler_output at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;precompile.c:68
+jl_atexit_hook at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;init.c:233
+main at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;ui&#x2F;repl.c:234
+__libc_start_main at &#x2F;lib&#x2F;x86_64-linux-gnu&#x2F;libc.so.6 (unknown line)
+_start at &#x2F;opt&#x2F;julia&#x2F;bin&#x2F;julia (unknown line)
+FixedPointNumbers: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:4
+  Got exception outside of a @test
+  failed process: Process(`&#x2F;opt&#x2F;julia&#x2F;bin&#x2F;julia --sysimage=&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;backup&#x2F;native&#x2F;sys.so --output-o=sys.a --track-allocation=none --code-coverage=none --history-file=yes --inline=yes --math-mode=ieee --startup-file=no --compile=yes --track-allocation=none --sysimage-native-code=yes --sysimage=&#x2F;opt&#x2F;julia&#x2F;lib&#x2F;julia&#x2F;sys.so --compiled-modules=yes --optimize=2 &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;run_julia_code.jl`, ProcessExited(1)) [1]
+  Stacktrace:
+   [1] error(::String, ::Base.Process, ::String, ::Int64, ::String) at .&#x2F;error.jl:42
+   [2] pipeline_error at .&#x2F;process.jl:705 [inlined]
+   [3] #run#505(::Bool, ::Function, ::Cmd) at .&#x2F;process.jl:663
+   [4] run at .&#x2F;process.jl:661 [inlined]
+   [5] #run_julia#1 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;compiler_flags.jl:225 [inlined]
+   [6] #run_julia at .&#x2F;none:0 [inlined]
+   [7] (::getfield(PackageCompiler, Symbol(&quot;##13#14&quot;)){Base.Iterators.Pairs{Symbol,Any,NTuple{14,Symbol},NamedTuple{(:sysimage, :startup_file, :handle_signals, :sysimage_native_code, :compiled_modules, :depwarn, :warn_overwrite, :compile, :cpu_target, :optimize, :debug_level, :inline, :check_bounds, :math_mode),Tuple{String,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing}}},String})() at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;static_julia.jl:263
+   [8] cd(::getfield(PackageCompiler, Symbol(&quot;##13#14&quot;)){Base.Iterators.Pairs{Symbol,Any,NTuple{14,Symbol},NamedTuple{(:sysimage, :startup_file, :handle_signals, :sysimage_native_code, :compiled_modules, :depwarn, :warn_overwrite, :compile, :cpu_target, :optimize, :debug_level, :inline, :check_bounds, :math_mode),Tuple{String,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing}}},String}, ::String) at .&#x2F;file.jl:96
+   [9] #build_object#12(::Base.Iterators.Pairs{Symbol,Any,NTuple{14,Symbol},NamedTuple{(:sysimage, :startup_file, :handle_signals, :sysimage_native_code, :compiled_modules, :depwarn, :warn_overwrite, :compile, :cpu_target, :optimize, :debug_level, :inline, :check_bounds, :math_mode),Tuple{String,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing}}}, ::Function, ::String, ::String, ::String, ::Bool) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;static_julia.jl:262
+   [10] build_object(::String, ::String, ::String, ::Bool, ::String, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing) at .&#x2F;none:0
+   [11] #static_julia#5(::Nothing, ::Bool, ::Bool, ::String, ::String, ::Nothing, ::Bool, ::Bool, ::Bool, ::Bool, ::Bool, ::Bool, ::Bool, ::Bool, ::Nothing, ::Bool, ::Bool, ::String, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::typeof(static_julia), ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;static_julia.jl:162
+   [12] #static_julia at .&#x2F;none:0 [inlined]
+   [13] #build_sysimg#29(::Bool, ::Bool, ::Bool, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::typeof(PackageCompiler.build_sysimg), ::String, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;api.jl:25
+   [14] #build_sysimg at .&#x2F;none:0 [inlined]
+   [15] #compile_package#67(::Bool, ::Bool, ::Bool, ::Nothing, ::Bool, ::Function, ::Tuple{String,String}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;PackageCompiler.jl:132
+   [16] #compile_package at .&#x2F;none:0 [inlined]
+   [17] #compile_package#64 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;PackageCompiler.jl:96 [inlined]
+   [18] (::getfield(PackageCompiler, Symbol(&quot;#kw##compile_package&quot;)))(::NamedTuple{(:verbose,),Tuple{Bool}}, ::typeof(compile_package), ::String) at .&#x2F;none:0
+   [19] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:5 [inlined]
+   [20] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [21] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:5 [inlined]
+   [22] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [23] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:4
+   [24] include at .&#x2F;boot.jl:317 [inlined]
+   [25] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [26] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [27] include(::String) at .&#x2F;client.jl:392
+   [28] top-level scope at none:0
+   [29] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [30] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [31] _start() at .&#x2F;client.jl:425
+  Updating registry at `~&#x2F;.julia&#x2F;registries&#x2F;General`
+  Updating git-repo `https:&#x2F;&#x2F;github.com&#x2F;JuliaRegistries&#x2F;General.git`
+[?25l[2K[?25h┌ Warning: Some registries failed to update:
+│     — &#x2F;root&#x2F;.julia&#x2F;registries&#x2F;General — failed to fetch from repo
+└ @ Pkg.API &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:162
+ Resolving package versions...
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Project.toml`
+ [no changes]
+ Resolving package versions...
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Project.toml`
+  [9b87118b] + PackageCompiler v0.6.4
+  [44cfe95a] + Pkg 
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [e1450e63] + BufferedStreams v1.0.0
+  [34da2185] + Compat v2.2.0
+  [0862f596] + HTTPClient v0.2.1
+  [b27032c2] + LibCURL v0.5.2
+  [522f3ed2] + LibExpat v0.5.0
+  [2ec943e9] + Libz v1.0.0
+  [9b87118b] + PackageCompiler v0.6.4
+  [30578b45] + URIParser v0.4.0
+  [c17dfb99] + WinRPM v0.4.2
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+[ Info: activating new environment at ~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Project.toml.
+  Updating registry at `~&#x2F;.julia&#x2F;registries&#x2F;General`
+  Updating git-repo `https:&#x2F;&#x2F;github.com&#x2F;JuliaRegistries&#x2F;General.git`
+[?25l[2K[?25h┌ Warning: Some registries failed to update:
+│     — &#x2F;root&#x2F;.julia&#x2F;registries&#x2F;General — failed to fetch from repo
+└ @ Pkg.API &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:162
+Skipping Base.active_repl
+Skipping Base.active_repl_backend
+Test Summary: |     Pass     Total
+normed        | 63739463  63739463
+Test Summary: |   Pass   Total
+fixed         | 425852  425852
+Test Summary: | Pass  Total
+traits        |  251    251
+[ Info: used 1841 out of 1841 precompile statements
+  Updating registry at `~&#x2F;.julia&#x2F;registries&#x2F;General`
+  Updating git-repo `https:&#x2F;&#x2F;github.com&#x2F;JuliaRegistries&#x2F;General.git`
+[?25l[2K[?25h┌ Warning: Some registries failed to update:
+│     — &#x2F;root&#x2F;.julia&#x2F;registries&#x2F;General — failed to fetch from repo
+└ @ Pkg.API &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:162
+ Resolving package versions...
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;ColorTypes&#x2F;Project.toml`
+  [53c48c17] + FixedPointNumbers v0.6.1
+  [9a3f8284] + Random 
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;ColorTypes&#x2F;Manifest.toml`
+  [53c48c17] + FixedPointNumbers v0.6.1
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+ Resolving package versions...
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;ColorTypes&#x2F;Project.toml`
+  [9b87118b] + PackageCompiler v0.6.4
+  [44cfe95a] + Pkg 
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;ColorTypes&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [e1450e63] + BufferedStreams v1.0.0
+  [34da2185] + Compat v2.2.0
+  [0862f596] + HTTPClient v0.2.1
+  [b27032c2] + LibCURL v0.5.2
+  [522f3ed2] + LibExpat v0.5.0
+  [2ec943e9] + Libz v1.0.0
+  [9b87118b] + PackageCompiler v0.6.4
+  [30578b45] + URIParser v0.4.0
+  [c17dfb99] + WinRPM v0.4.2
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [ea8e919c] + SHA 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+[ Info: activating new environment at ~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;ColorTypes&#x2F;Project.toml.
+  Updating registry at `~&#x2F;.julia&#x2F;registries&#x2F;General`
+  Updating git-repo `https:&#x2F;&#x2F;github.com&#x2F;JuliaRegistries&#x2F;General.git`
+[?25l[2K[?25h┌ Warning: Some registries failed to update:
+│     — &#x2F;root&#x2F;.julia&#x2F;registries&#x2F;General — failed to fetch from repo
+└ @ Pkg.API &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:162
+Skipping Base.active_repl
+Skipping Base.active_repl_backend
+Test Summary: | Pass  Total
+ColorTypes    | 4188   4188
+[ Info: used 4646 out of 4646 precompile statements
+Julia program file:
+  &quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;precompile.jl&quot;
+Build directory:
+  &quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&quot;
+Build static library &quot;sys.a&quot;:
+  atexit_hook_copy = copy(Base.atexit_hooks) # make backup
+# clean state so that any package we use can carelessly call atexit
+empty!(Base.atexit_hooks)
+Base.__init__()
+Sys.__init__() #fix https:&#x2F;&#x2F;github.com&#x2F;JuliaLang&#x2F;julia&#x2F;issues&#x2F;30479
+using REPL
+Base.REPL_MODULE_REF[] = REPL
+Mod = @eval module $(gensym(&quot;anon_module&quot;)) end
+# Include into anonymous module to not polute namespace
+Mod.include(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;precompile.jl&quot;)
+Base._atexit() # run all exit hooks we registered during precompile
+empty!(Base.atexit_hooks) # don&#39;t serialize the exit hooks we run + added
+# atexit_hook_copy should be empty, but who knows what base will do in the future
+append!(Base.atexit_hooks, atexit_hook_copy)
+
+┌ Info: activating new environment at ~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;Project.toml.
+└ @ Pkg.API &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:605
+  Updating registry at `~&#x2F;.julia&#x2F;registries&#x2F;General`
+  Updating git-repo `https:&#x2F;&#x2F;github.com&#x2F;JuliaRegistries&#x2F;General.git`
+[?25l[2K[?25h┌ Warning: Some registries failed to update:
+│     — &#x2F;root&#x2F;.julia&#x2F;registries&#x2F;General — failed to fetch from repo
+└ @ Pkg.API &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:162
+fatal: error thrown and no exception handler available.
+ErrorException(&quot;Task cannot be serialized&quot;)
+rec_backtrace at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;stackwalk.c:94
+record_backtrace at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;task.c:246
+jl_throw at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;task.c:577
+jl_error at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;rtutils.c:41
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:293
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:285
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;julia.h:894 [inlined]
+jl_serialize_module at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:229 [inlined]
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:290
+jl_serialize_module at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;julia.h:894 [inlined]
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:290
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;julia.h:894 [inlined]
+jl_serialize_module at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:229 [inlined]
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:290
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;julia.h:894 [inlined]
+jl_serialize_module at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:221 [inlined]
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:290
+jl_serialize_value_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:336 [inlined]
+jl_save_system_image_to_stream at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:1273
+jl_create_system_image at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;staticdata.c:1378
+jl_write_compiler_output at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;precompile.c:68
+jl_atexit_hook at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;init.c:233
+main at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;ui&#x2F;repl.c:234
+__libc_start_main at &#x2F;lib&#x2F;x86_64-linux-gnu&#x2F;libc.so.6 (unknown line)
+_start at &#x2F;opt&#x2F;julia&#x2F;bin&#x2F;julia (unknown line)
+FixedPointNumbers ColorTypes: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:12
+  Got exception outside of a @test
+  failed process: Process(`&#x2F;opt&#x2F;julia&#x2F;bin&#x2F;julia --sysimage=&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;backup&#x2F;native&#x2F;sys.so --output-o=sys.a --track-allocation=none --code-coverage=none --history-file=yes --inline=yes --math-mode=ieee --startup-file=no --compile=yes --track-allocation=none --sysimage-native-code=yes --sysimage=&#x2F;opt&#x2F;julia&#x2F;lib&#x2F;julia&#x2F;sys.so --compiled-modules=yes --optimize=2 &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;run_julia_code.jl`, ProcessExited(1)) [1]
+  Stacktrace:
+   [1] error(::String, ::Base.Process, ::String, ::Int64, ::String) at .&#x2F;error.jl:42
+   [2] pipeline_error at .&#x2F;process.jl:705 [inlined]
+   [3] #run#505(::Bool, ::Function, ::Cmd) at .&#x2F;process.jl:663
+   [4] run at .&#x2F;process.jl:661 [inlined]
+   [5] #run_julia#1 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;compiler_flags.jl:225 [inlined]
+   [6] #run_julia at .&#x2F;none:0 [inlined]
+   [7] (::getfield(PackageCompiler, Symbol(&quot;##13#14&quot;)){Base.Iterators.Pairs{Symbol,Any,NTuple{14,Symbol},NamedTuple{(:sysimage, :startup_file, :handle_signals, :sysimage_native_code, :compiled_modules, :depwarn, :warn_overwrite, :compile, :cpu_target, :optimize, :debug_level, :inline, :check_bounds, :math_mode),Tuple{String,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing}}},String})() at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;static_julia.jl:263
+   [8] cd(::getfield(PackageCompiler, Symbol(&quot;##13#14&quot;)){Base.Iterators.Pairs{Symbol,Any,NTuple{14,Symbol},NamedTuple{(:sysimage, :startup_file, :handle_signals, :sysimage_native_code, :compiled_modules, :depwarn, :warn_overwrite, :compile, :cpu_target, :optimize, :debug_level, :inline, :check_bounds, :math_mode),Tuple{String,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing}}},String}, ::String) at .&#x2F;file.jl:96
+   [9] #build_object#12(::Base.Iterators.Pairs{Symbol,Any,NTuple{14,Symbol},NamedTuple{(:sysimage, :startup_file, :handle_signals, :sysimage_native_code, :compiled_modules, :depwarn, :warn_overwrite, :compile, :cpu_target, :optimize, :debug_level, :inline, :check_bounds, :math_mode),Tuple{String,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing}}}, ::Function, ::String, ::String, ::String, ::Bool) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;static_julia.jl:262
+   [10] build_object(::String, ::String, ::String, ::Bool, ::String, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing) at .&#x2F;none:0
+   [11] #static_julia#5(::Nothing, ::Bool, ::Bool, ::String, ::String, ::Nothing, ::Bool, ::Bool, ::Bool, ::Bool, ::Bool, ::Bool, ::Bool, ::Bool, ::Nothing, ::Bool, ::Bool, ::String, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::typeof(static_julia), ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;static_julia.jl:162
+   [12] #static_julia at .&#x2F;none:0 [inlined]
+   [13] #build_sysimg#29(::Bool, ::Bool, ::Bool, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::Nothing, ::typeof(PackageCompiler.build_sysimg), ::String, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;api.jl:25
+   [14] #build_sysimg at .&#x2F;none:0 [inlined]
+   [15] #compile_package#67(::Bool, ::Bool, ::Bool, ::Nothing, ::Bool, ::Function, ::Tuple{String,String}, ::Vararg{Tuple{String,String},N} where N) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;PackageCompiler.jl:132
+   [16] (::getfield(PackageCompiler, Symbol(&quot;#kw##compile_package&quot;)))(::NamedTuple{(:verbose,),Tuple{Bool}}, ::typeof(compile_package), ::Tuple{String,String}, ::Vararg{Tuple{String,String},N} where N) at .&#x2F;none:0
+   [17] #compile_package#64(::Base.Iterators.Pairs{Symbol,Bool,Tuple{Symbol},NamedTuple{(:verbose,),Tuple{Bool}}}, ::Function, ::String, ::Vararg{String,N} where N) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;PackageCompiler.jl:96
+   [18] (::getfield(PackageCompiler, Symbol(&quot;#kw##compile_package&quot;)))(::NamedTuple{(:verbose,),Tuple{Bool}}, ::typeof(compile_package), ::String, ::Vararg{String,N} where N) at .&#x2F;none:0
+   [19] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:13 [inlined]
+   [20] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [21] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:13 [inlined]
+   [22] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [23] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:4
+   [24] include at .&#x2F;boot.jl:317 [inlined]
+   [25] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [26] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [27] include(::String) at .&#x2F;client.jl:392
+   [28] top-level scope at none:0
+   [29] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [30] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [31] _start() at .&#x2F;client.jl:425
+Test Summary:                  | Error  Total
+compilage_package              |     2      2
+  FixedPointNumbers            |     1      1
+  FixedPointNumbers ColorTypes |     1      1
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 2 errored, 0 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:3
+ERROR: Package PackageCompiler errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1357
+ [3] #test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:278
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:263 [inlined]
+ [6] #test#43 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [8] #test#42 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [10] #test#41 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258 [inlined]
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258
+ [12] top-level scope at none:0
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 12 hours ago and took 1 minute, 52 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/PackageCompiler/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed HTTPClient ────── v0.2.1
+ Installed WinRPM ────────── v0.4.2
+ Installed Libz ──────────── v1.0.0
+ Installed Compat ────────── v2.2.0
+ Installed LibCURL ───────── v0.5.2
+ Installed BufferedStreams ─ v1.0.0
+ Installed BinaryProvider ── v0.5.8
+ Installed PackageCompiler ─ v0.6.4
+ Installed URIParser ─────── v0.4.0
+ Installed BinDeps ───────── v0.8.10
+ Installed LibExpat ──────── v0.5.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [9b87118b] + PackageCompiler v0.6.4
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [e1450e63] + BufferedStreams v1.0.0
+  [34da2185] + Compat v2.2.0
+  [0862f596] + HTTPClient v0.2.1
+  [b27032c2] + LibCURL v0.5.2
+  [522f3ed2] + LibExpat v0.5.0
+  [2ec943e9] + Libz v1.0.0
+  [9b87118b] + PackageCompiler v0.6.4
+  [30578b45] + URIParser v0.4.0
+  [c17dfb99] + WinRPM v0.4.2
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building LibCURL ────────→ `~&#x2F;.julia&#x2F;packages&#x2F;LibCURL&#x2F;lWJxD&#x2F;deps&#x2F;build.log`
+  Building WinRPM ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;WinRPM&#x2F;Y9QdZ&#x2F;deps&#x2F;build.log`
+  Building PackageCompiler → `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;deps&#x2F;build.log`
+   Testing PackageCompiler
+ Resolving package versions...
+ Installed TextWrap ─────────── v0.3.0
+ Installed JSON ─────────────── v0.21.0
+ Installed ColorTypes ───────── v0.8.0
+ Installed FixedPointNumbers ── v0.6.1
+ Installed ArgParse ─────────── v0.6.2
+ Installed DataStructures ───── v0.17.6
+ Installed UnicodePlots ─────── v1.1.0
+ Installed OffsetArrays ─────── v0.11.1
+ Installed Missings ─────────── v0.4.3
+ Installed DataAPI ──────────── v1.1.0
+ Installed Parsers ──────────── v0.3.10
+ Installed SortingAlgorithms ── v0.3.1
+ Installed OrderedCollections ─ v1.1.0
+ Installed StatsBase ────────── v0.32.0
+    Status `&#x2F;tmp&#x2F;jl_Bs0AiX&#x2F;Manifest.toml`
+  [c7e460c6] ArgParse v0.6.2
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [e1450e63] BufferedStreams v1.0.0
+  [3da002f7] ColorTypes v0.8.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [53c48c17] FixedPointNumbers v0.6.1
+  [0862f596] HTTPClient v0.2.1
+  [682c06a0] JSON v0.21.0
+  [b27032c2] LibCURL v0.5.2
+  [522f3ed2] LibExpat v0.5.0
+  [2ec943e9] Libz v1.0.0
+  [e1d29d7a] Missings v0.4.3
+  [6fe1bfb0] OffsetArrays v0.11.1
+  [bac558e1] OrderedCollections v1.1.0
+  [9b87118b] PackageCompiler v0.6.4
+  [69de0a69] Parsers v0.3.10
+  [a2af1166] SortingAlgorithms v0.3.1
+  [2913bbd2] StatsBase v0.32.0
+  [b718987f] TextWrap v0.3.0
+  [30578b45] URIParser v0.4.0
+  [b8865327] UnicodePlots v1.1.0
+  [c17dfb99] WinRPM v0.4.2
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+  Updating registry at `~&#x2F;.julia&#x2F;registries&#x2F;General`
+  Updating git-repo `https:&#x2F;&#x2F;github.com&#x2F;JuliaRegistries&#x2F;General.git`
+[?25l[2K[?25h┌ Warning: Some registries failed to update:
+│     — &#x2F;root&#x2F;.julia&#x2F;registries&#x2F;General — failed to fetch from repo
+└ @ Pkg.Types &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Types.jl:1171
+ Resolving package versions...
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Project.toml`
+ [no changes]
+ Resolving package versions...
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Project.toml`
+  [9b87118b] + PackageCompiler v0.6.4
+  [44cfe95a] + Pkg 
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [e1450e63] + BufferedStreams v1.0.0
+  [34da2185] + Compat v2.2.0
+  [0862f596] + HTTPClient v0.2.1
+  [b27032c2] + LibCURL v0.5.2
+  [522f3ed2] + LibExpat v0.5.0
+  [2ec943e9] + Libz v1.0.0
+  [9b87118b] + PackageCompiler v0.6.4
+  [30578b45] + URIParser v0.4.0
+  [c17dfb99] + WinRPM v0.4.2
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+Activating environment at `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Project.toml`
+ERROR: LoadError: `FixedPointNumbers` is a direct dependency, but does not appear in the manifest. If you intend `FixedPointNumbers` to be a direct dependency, run `Pkg.resolve()` to populate the manifest. Otherwise, remove `FixedPointNumbers` with `Pkg.rm(&quot;FixedPointNumbers&quot;)`. Finally, run `Pkg.instantiate()` again.
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Types.jl:112
+ [2] #instantiate#81(::Nothing, ::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.instantiate), ::Pkg.Types.Context) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:472
+ [3] instantiate at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:461 [inlined]
+ [4] #instantiate#80 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:458 [inlined]
+ [5] instantiate() at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:458
+ [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;run_julia_code.jl:6
+ [7] include at .&#x2F;boot.jl:328 [inlined]
+ [8] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+ [9] include(::Module, ::String) at .&#x2F;Base.jl:31
+ [10] exec_options(::Base.JLOptions) at .&#x2F;client.jl:295
+ [11] _start() at .&#x2F;client.jl:464
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;run_julia_code.jl:6
+FixedPointNumbers: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:4
+  Got exception outside of a @test
+  failed process: Process(`&#x2F;opt&#x2F;julia&#x2F;bin&#x2F;julia --compile=all --optimize=0 -g1 --trace-compile=&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;precompile_tmp.jl --history-file=yes --code-coverage=none --inline=yes --math-mode=ieee --handle-signals=yes --startup-file=no --warn-overwrite=no --compile=yes --depwarn=yes --cpu-target=native --track-allocation=none --check-bounds=yes --sysimage-native-code=yes --sysimage=&#x2F;opt&#x2F;julia&#x2F;lib&#x2F;julia&#x2F;sys.so -g1 --compiled-modules=yes --optimize=2 &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;run_julia_code.jl`, ProcessExited(1)) [1]
+  
+  Stacktrace:
+   [1] pipeline_error at .&#x2F;process.jl:813 [inlined]
+   [2] #run#536(::Bool, ::typeof(run), ::Cmd) at .&#x2F;process.jl:728
+   [3] run at .&#x2F;process.jl:726 [inlined]
+   [4] #run_julia#1 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;compiler_flags.jl:225 [inlined]
+   [5] #run_julia at .&#x2F;none:0 [inlined]
+   [6] snoop(::Symbol, ::String, ::String, ::String, ::Bool, ::Array{Any,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;snooping.jl:33
+   [7] (::getfield(PackageCompiler, Symbol(&quot;##35#37&quot;)){Array{Any,1},Tuple{Symbol},Dict{Any,Any},String,Dict{String,Array{Dict{String,Any},1}}})(::IOStream) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;snooping.jl:123
+   [8] #open#312(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(open), ::getfield(PackageCompiler, Symbol(&quot;##35#37&quot;)){Array{Any,1},Tuple{Symbol},Dict{Any,Any},String,Dict{String,Array{Dict{String,Any},1}}}, ::String, ::Vararg{String,N} where N) at .&#x2F;iostream.jl:375
+   [9] open at .&#x2F;iostream.jl:373 [inlined]
+   [10] #snoop_packages#34 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;snooping.jl:109 [inlined]
+   [11] #snoop_packages at .&#x2F;none:0 [inlined]
+   [12] #compile_package#67(::Bool, ::Bool, ::Bool, ::Nothing, ::Bool, ::typeof(compile_package), ::Tuple{String,String}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;PackageCompiler.jl:124
+   [13] #compile_package at .&#x2F;none:0 [inlined]
+   [14] #compile_package#64 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;PackageCompiler.jl:96 [inlined]
+   [15] (::getfield(PackageCompiler, Symbol(&quot;#kw##compile_package&quot;)))(::NamedTuple{(:verbose,),Tuple{Bool}}, ::typeof(compile_package), ::String) at .&#x2F;none:0
+   [16] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:5
+   [17] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [18] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:5
+   [19] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [20] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:4
+   [21] include at .&#x2F;boot.jl:328 [inlined]
+   [22] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [23] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [24] include(::String) at .&#x2F;client.jl:431
+   [25] top-level scope at none:5
+   [26] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [27] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [28] _start() at .&#x2F;client.jl:464
+  
+  Updating registry at `~&#x2F;.julia&#x2F;registries&#x2F;General`
+  Updating git-repo `https:&#x2F;&#x2F;github.com&#x2F;JuliaRegistries&#x2F;General.git`
+[?25l[2K[?25h┌ Warning: Some registries failed to update:
+│     — &#x2F;root&#x2F;.julia&#x2F;registries&#x2F;General — failed to fetch from repo
+└ @ Pkg.Types &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Types.jl:1171
+ Resolving package versions...
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Project.toml`
+ [no changes]
+ Resolving package versions...
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Project.toml`
+  [9b87118b] + PackageCompiler v0.6.4
+  [44cfe95a] + Pkg 
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [e1450e63] + BufferedStreams v1.0.0
+  [34da2185] + Compat v2.2.0
+  [0862f596] + HTTPClient v0.2.1
+  [b27032c2] + LibCURL v0.5.2
+  [522f3ed2] + LibExpat v0.5.0
+  [2ec943e9] + Libz v1.0.0
+  [9b87118b] + PackageCompiler v0.6.4
+  [30578b45] + URIParser v0.4.0
+  [c17dfb99] + WinRPM v0.4.2
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+Activating environment at `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Project.toml`
+ERROR: LoadError: `FixedPointNumbers` is a direct dependency, but does not appear in the manifest. If you intend `FixedPointNumbers` to be a direct dependency, run `Pkg.resolve()` to populate the manifest. Otherwise, remove `FixedPointNumbers` with `Pkg.rm(&quot;FixedPointNumbers&quot;)`. Finally, run `Pkg.instantiate()` again.
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Types.jl:112
+ [2] #instantiate#81(::Nothing, ::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.instantiate), ::Pkg.Types.Context) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:472
+ [3] instantiate at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:461 [inlined]
+ [4] #instantiate#80 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:458 [inlined]
+ [5] instantiate() at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:458
+ [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;run_julia_code.jl:6
+ [7] include at .&#x2F;boot.jl:328 [inlined]
+ [8] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+ [9] include(::Module, ::String) at .&#x2F;Base.jl:31
+ [10] exec_options(::Base.JLOptions) at .&#x2F;client.jl:295
+ [11] _start() at .&#x2F;client.jl:464
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;run_julia_code.jl:6
+FixedPointNumbers ColorTypes: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:12
+  Got exception outside of a @test
+  failed process: Process(`&#x2F;opt&#x2F;julia&#x2F;bin&#x2F;julia --compile=all --optimize=0 -g1 --trace-compile=&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;precompile_tmp.jl --history-file=yes --code-coverage=none --inline=yes --math-mode=ieee --handle-signals=yes --startup-file=no --warn-overwrite=no --compile=yes --depwarn=yes --cpu-target=native --track-allocation=none --check-bounds=yes --sysimage-native-code=yes --sysimage=&#x2F;opt&#x2F;julia&#x2F;lib&#x2F;julia&#x2F;sys.so -g1 --compiled-modules=yes --optimize=2 &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;run_julia_code.jl`, ProcessExited(1)) [1]
+  
+  Stacktrace:
+   [1] pipeline_error at .&#x2F;process.jl:813 [inlined]
+   [2] #run#536(::Bool, ::typeof(run), ::Cmd) at .&#x2F;process.jl:728
+   [3] run at .&#x2F;process.jl:726 [inlined]
+   [4] #run_julia#1 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;compiler_flags.jl:225 [inlined]
+   [5] #run_julia at .&#x2F;none:0 [inlined]
+   [6] snoop(::Symbol, ::String, ::String, ::String, ::Bool, ::Array{Any,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;snooping.jl:33
+   [7] (::getfield(PackageCompiler, Symbol(&quot;##35#37&quot;)){Array{Any,1},Tuple{Symbol,Symbol},Dict{Any,Any},String,Dict{String,Array{Dict{String,Any},1}}})(::IOStream) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;snooping.jl:123
+   [8] #open#312(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(open), ::getfield(PackageCompiler, Symbol(&quot;##35#37&quot;)){Array{Any,1},Tuple{Symbol,Symbol},Dict{Any,Any},String,Dict{String,Array{Dict{String,Any},1}}}, ::String, ::Vararg{String,N} where N) at .&#x2F;iostream.jl:375
+   [9] open(::Function, ::String, ::String) at .&#x2F;iostream.jl:373
+   [10] #snoop_packages#34(::Array{Any,1}, ::String, ::typeof(PackageCompiler.snoop_packages), ::Symbol, ::Vararg{Symbol,N} where N) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;snooping.jl:109
+   [11] (::getfield(PackageCompiler, Symbol(&quot;#kw##snoop_packages&quot;)))(::NamedTuple{(:file,),Tuple{String}}, ::typeof(PackageCompiler.snoop_packages), ::Symbol, ::Vararg{Symbol,N} where N) at .&#x2F;none:0
+   [12] #compile_package#67(::Bool, ::Bool, ::Bool, ::Nothing, ::Bool, ::typeof(compile_package), ::Tuple{String,String}, ::Vararg{Tuple{String,String},N} where N) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;PackageCompiler.jl:124
+   [13] (::getfield(PackageCompiler, Symbol(&quot;#kw##compile_package&quot;)))(::NamedTuple{(:verbose,),Tuple{Bool}}, ::typeof(compile_package), ::Tuple{String,String}, ::Vararg{Tuple{String,String},N} where N) at .&#x2F;none:0
+   [14] #compile_package#64(::Base.Iterators.Pairs{Symbol,Bool,Tuple{Symbol},NamedTuple{(:verbose,),Tuple{Bool}}}, ::typeof(compile_package), ::String, ::Vararg{String,N} where N) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;PackageCompiler.jl:96
+   [15] (::getfield(PackageCompiler, Symbol(&quot;#kw##compile_package&quot;)))(::NamedTuple{(:verbose,),Tuple{Bool}}, ::typeof(compile_package), ::String, ::Vararg{String,N} where N) at .&#x2F;none:0
+   [16] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:13
+   [17] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [18] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:13
+   [19] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [20] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:4
+   [21] include at .&#x2F;boot.jl:328 [inlined]
+   [22] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [23] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [24] include(::String) at .&#x2F;client.jl:431
+   [25] top-level scope at none:5
+   [26] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [27] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [28] _start() at .&#x2F;client.jl:464
+  
+Test Summary:                  | Error  Total
+compilage_package              |     2      2
+  FixedPointNumbers            |     1      1
+  FixedPointNumbers ColorTypes |     1      1
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 2 errored, 0 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:3
+ERROR: Package PackageCompiler errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1288
+ [3] #test at .&#x2F;none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:245
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:233 [inlined]
+ [6] #test#61 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:230 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:230 [inlined]
+ [8] #test#60 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:229 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:228
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:228
+ [12] top-level scope at none:10
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 14 hours ago and took 3 minutes, 52 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/PackageCompiler/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Expat_jll ─────── v2.2.7+0
+ Installed HTTPClient ────── v0.2.1
+ Installed URIParser ─────── v0.4.0
+ Installed LibExpat ──────── v0.6.0
+ Installed LibCURL ───────── v0.5.2
+ Installed BinDeps ───────── v0.8.10
+ Installed BufferedStreams ─ v1.0.0
+ Installed PackageCompiler ─ v0.6.4
+ Installed WinRPM ────────── v0.4.2
+ Installed Libz ──────────── v1.0.0
+ Installed Compat ────────── v2.2.0
+ Installed BinaryProvider ── v0.5.8
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [9b87118b] + PackageCompiler v0.6.4
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [e1450e63] + BufferedStreams v1.0.0
+  [34da2185] + Compat v2.2.0
+  [2e619515] + Expat_jll v2.2.7+0
+  [0862f596] + HTTPClient v0.2.1
+  [b27032c2] + LibCURL v0.5.2
+  [522f3ed2] + LibExpat v0.6.0
+  [2ec943e9] + Libz v1.0.0
+  [9b87118b] + PackageCompiler v0.6.4
+  [30578b45] + URIParser v0.4.0
+  [c17dfb99] + WinRPM v0.4.2
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building LibCURL ────────→ `~&#x2F;.julia&#x2F;packages&#x2F;LibCURL&#x2F;lWJxD&#x2F;deps&#x2F;build.log`
+  Building WinRPM ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;WinRPM&#x2F;Y9QdZ&#x2F;deps&#x2F;build.log`
+  Building PackageCompiler → `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;deps&#x2F;build.log`
+   Testing PackageCompiler
+ Resolving package versions...
+ Installed OffsetArrays ─────── v0.11.1
+ Installed Parsers ──────────── v0.3.10
+ Installed FixedPointNumbers ── v0.6.1
+ Installed ColorTypes ───────── v0.8.0
+ Installed DataStructures ───── v0.17.6
+ Installed ArgParse ─────────── v0.6.2
+ Installed SortingAlgorithms ── v0.3.1
+ Installed DataAPI ──────────── v1.1.0
+ Installed UnicodePlots ─────── v1.1.0
+ Installed OrderedCollections ─ v1.1.0
+ Installed TextWrap ─────────── v0.3.0
+ Installed Missings ─────────── v0.4.3
+ Installed StatsBase ────────── v0.32.0
+   Cloning [682c06a0-de6a-54ab-a142-c8b1cf79cde6] JSON from https:&#x2F;&#x2F;github.com&#x2F;JuliaIO&#x2F;JSON.jl.git
+[?25l    Fetching: [&gt;                                        ]  0.0 %[2K[?25h Installed JSON ─────────────── v0.21.0
+Status `&#x2F;tmp&#x2F;jl_UdkNv7&#x2F;Manifest.toml`
+  [c7e460c6] ArgParse v0.6.2
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [e1450e63] BufferedStreams v1.0.0
+  [3da002f7] ColorTypes v0.8.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [2e619515] Expat_jll v2.2.7+0
+  [53c48c17] FixedPointNumbers v0.6.1
+  [0862f596] HTTPClient v0.2.1
+  [682c06a0] JSON v0.21.0
+  [b27032c2] LibCURL v0.5.2
+  [522f3ed2] LibExpat v0.6.0
+  [2ec943e9] Libz v1.0.0
+  [e1d29d7a] Missings v0.4.3
+  [6fe1bfb0] OffsetArrays v0.11.1
+  [bac558e1] OrderedCollections v1.1.0
+  [9b87118b] PackageCompiler v0.6.4
+  [69de0a69] Parsers v0.3.10
+  [a2af1166] SortingAlgorithms v0.3.1
+  [2913bbd2] StatsBase v0.32.0
+  [b718987f] TextWrap v0.3.0
+  [30578b45] URIParser v0.4.0
+  [b8865327] UnicodePlots v1.1.0
+  [c17dfb99] WinRPM v0.4.2
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+  Updating registry at `~&#x2F;.julia&#x2F;registries&#x2F;General`
+  Updating git-repo `https:&#x2F;&#x2F;github.com&#x2F;JuliaRegistries&#x2F;General.git`
+[?25l[2K[?25h┌ Warning: Some registries failed to update:
+│     — &#x2F;root&#x2F;.julia&#x2F;registries&#x2F;General — failed to fetch from repo
+└ @ Pkg.Types &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:1081
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Project.toml`
+ [no changes]
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Manifest.toml`
+ [no changes]
+ Resolving package versions...
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Project.toml`
+  [9b87118b] + PackageCompiler v0.6.4
+  [44cfe95a] + Pkg 
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [e1450e63] + BufferedStreams v1.0.0
+  [34da2185] + Compat v2.2.0
+  [2e619515] + Expat_jll v2.2.7+0
+  [0862f596] + HTTPClient v0.2.1
+  [b27032c2] + LibCURL v0.5.2
+  [522f3ed2] + LibExpat v0.6.0
+  [2ec943e9] + Libz v1.0.0
+  [9b87118b] + PackageCompiler v0.6.4
+  [30578b45] + URIParser v0.4.0
+  [c17dfb99] + WinRPM v0.4.2
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+ERROR: LoadError: project appears to be a package but has no uuid
+Stacktrace:
+ [1] pkgerror(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:53
+ [2] Pkg.Types.EnvCache(::Nothing) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:286
+ [3] EnvCache at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:278 [inlined]
+ [4] Pkg.Types.Context() at .&#x2F;util.jl:723
+ [5] activate(::String; shared::Bool) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:878
+ [6] activate(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:844
+ [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;run_julia_code.jl:5
+ [8] include(::Module, ::String) at .&#x2F;Base.jl:377
+ [9] exec_options(::Base.JLOptions) at .&#x2F;client.jl:288
+ [10] _start() at .&#x2F;client.jl:484
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;run_julia_code.jl:5
+FixedPointNumbers: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:4
+  Got exception outside of a @test
+  failed process: Process(`&#x2F;opt&#x2F;julia&#x2F;bin&#x2F;julia --compile=all --optimize=0 -g1 --trace-compile=&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;precompile_tmp.jl --history-file=yes --code-coverage=none --inline=yes --math-mode=ieee --handle-signals=yes --startup-file=no --warn-overwrite=no --compile=yes --depwarn=yes --cpu-target=native --track-allocation=none --check-bounds=yes --sysimage-native-code=yes --sysimage=&#x2F;opt&#x2F;julia&#x2F;lib&#x2F;julia&#x2F;sys.so -g1 --compiled-modules=yes --optimize=2 &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;run_julia_code.jl`, ProcessExited(1)) [1]
+  
+  Stacktrace:
+   [1] pipeline_error at .&#x2F;process.jl:525 [inlined]
+   [2] run(::Cmd; wait::Bool) at .&#x2F;process.jl:440
+   [3] run at .&#x2F;process.jl:438 [inlined]
+   [4] #run_julia#1 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;compiler_flags.jl:225 [inlined]
+   [5] snoop(::Symbol, ::String, ::String, ::String, ::Bool, ::Array{Any,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;snooping.jl:33
+   [6] (::PackageCompiler.var&quot;#35#37&quot;{Array{Any,1},Tuple{Symbol},Dict{Any,Any},String,Dict{String,Array{Dict{String,Any},1}}})(::IOStream) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;snooping.jl:123
+   [7] open(::PackageCompiler.var&quot;#35#37&quot;{Array{Any,1},Tuple{Symbol},Dict{Any,Any},String,Dict{String,Array{Dict{String,Any},1}}}, ::String, ::Vararg{String,N} where N; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at .&#x2F;io.jl:298
+   [8] open at .&#x2F;io.jl:296 [inlined]
+   [9] #snoop_packages#34 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;snooping.jl:109 [inlined]
+   [10] compile_package(::Tuple{String,String}; force::Bool, reuse::Bool, debug::Bool, cpu_target::Nothing, verbose::Bool) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;PackageCompiler.jl:124
+   [11] #compile_package#64 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;PackageCompiler.jl:96 [inlined]
+   [12] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:5 [inlined]
+   [13] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [14] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:5 [inlined]
+   [15] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [16] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:4
+   [17] include(::String) at .&#x2F;client.jl:439
+   [18] top-level scope at none:6
+   [19] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [20] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [21] _start() at .&#x2F;client.jl:484
+  
+  Updating registry at `~&#x2F;.julia&#x2F;registries&#x2F;General`
+  Updating git-repo `https:&#x2F;&#x2F;github.com&#x2F;JuliaRegistries&#x2F;General.git`
+[?25l[2K[?25h┌ Warning: Some registries failed to update:
+│     — &#x2F;root&#x2F;.julia&#x2F;registries&#x2F;General — failed to fetch from repo
+└ @ Pkg.Types &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:1081
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Project.toml`
+ [no changes]
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Manifest.toml`
+ [no changes]
+ Resolving package versions...
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Project.toml`
+  [9b87118b] + PackageCompiler v0.6.4
+  [44cfe95a] + Pkg 
+  Updating `~&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;FixedPointNumbers&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [e1450e63] + BufferedStreams v1.0.0
+  [34da2185] + Compat v2.2.0
+  [2e619515] + Expat_jll v2.2.7+0
+  [0862f596] + HTTPClient v0.2.1
+  [b27032c2] + LibCURL v0.5.2
+  [522f3ed2] + LibExpat v0.6.0
+  [2ec943e9] + Libz v1.0.0
+  [9b87118b] + PackageCompiler v0.6.4
+  [30578b45] + URIParser v0.4.0
+  [c17dfb99] + WinRPM v0.4.2
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+ERROR: LoadError: project appears to be a package but has no uuid
+Stacktrace:
+ [1] pkgerror(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:53
+ [2] Pkg.Types.EnvCache(::Nothing) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:286
+ [3] EnvCache at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:278 [inlined]
+ [4] Pkg.Types.Context() at .&#x2F;util.jl:723
+ [5] activate(::String; shared::Bool) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:878
+ [6] activate(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:844
+ [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;run_julia_code.jl:5
+ [8] include(::Module, ::String) at .&#x2F;Base.jl:377
+ [9] exec_options(::Base.JLOptions) at .&#x2F;client.jl:288
+ [10] _start() at .&#x2F;client.jl:484
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;run_julia_code.jl:5
+FixedPointNumbers ColorTypes: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:12
+  Got exception outside of a @test
+  failed process: Process(`&#x2F;opt&#x2F;julia&#x2F;bin&#x2F;julia --compile=all --optimize=0 -g1 --trace-compile=&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;packages&#x2F;precompile_tmp.jl --history-file=yes --code-coverage=none --inline=yes --math-mode=ieee --handle-signals=yes --startup-file=no --warn-overwrite=no --compile=yes --depwarn=yes --cpu-target=native --track-allocation=none --check-bounds=yes --sysimage-native-code=yes --sysimage=&#x2F;opt&#x2F;julia&#x2F;lib&#x2F;julia&#x2F;sys.so -g1 --compiled-modules=yes --optimize=2 &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;sysimg&#x2F;run_julia_code.jl`, ProcessExited(1)) [1]
+  
+  Stacktrace:
+   [1] pipeline_error at .&#x2F;process.jl:525 [inlined]
+   [2] run(::Cmd; wait::Bool) at .&#x2F;process.jl:440
+   [3] run at .&#x2F;process.jl:438 [inlined]
+   [4] #run_julia#1 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;compiler_flags.jl:225 [inlined]
+   [5] snoop(::Symbol, ::String, ::String, ::String, ::Bool, ::Array{Any,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;snooping.jl:33
+   [6] (::PackageCompiler.var&quot;#35#37&quot;{Array{Any,1},Tuple{Symbol,Symbol},Dict{Any,Any},String,Dict{String,Array{Dict{String,Any},1}}})(::IOStream) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;snooping.jl:123
+   [7] open(::PackageCompiler.var&quot;#35#37&quot;{Array{Any,1},Tuple{Symbol,Symbol},Dict{Any,Any},String,Dict{String,Array{Dict{String,Any},1}}}, ::String, ::Vararg{String,N} where N; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at .&#x2F;io.jl:298
+   [8] open(::Function, ::String, ::String) at .&#x2F;io.jl:296
+   [9] snoop_packages(::Symbol, ::Vararg{Symbol,N} where N; blacklist::Array{Any,1}, file::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;snooping.jl:109
+   [10] compile_package(::Tuple{String,String}, ::Vararg{Tuple{String,String},N} where N; force::Bool, reuse::Bool, debug::Bool, cpu_target::Nothing, verbose::Bool) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;PackageCompiler.jl:124
+   [11] #compile_package#64 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;src&#x2F;PackageCompiler.jl:96 [inlined]
+   [12] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:13 [inlined]
+   [13] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [14] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:13 [inlined]
+   [15] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [16] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:4
+   [17] include(::String) at .&#x2F;client.jl:439
+   [18] top-level scope at none:6
+   [19] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [20] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [21] _start() at .&#x2F;client.jl:484
+  
+Test Summary:                  | Error  Total
+compilage_package              |     2      2
+  FixedPointNumbers            |     1      1
+  FixedPointNumbers ColorTypes |     1      1
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 2 errored, 0 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;PackageCompiler&#x2F;CJQcs&#x2F;test&#x2F;runtests.jl:3
+ERROR: Package PackageCompiler errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:274
+ [5] #test#56 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [6] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [7] #test#55 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [8] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [10] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [11] top-level scope at none:10
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

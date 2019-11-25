@@ -1,0 +1,96 @@
+ Resolving package versions...
+ Installed DataAPI ──────────── v1.1.0
+ Installed SortingAlgorithms ── v0.3.1
+ Installed Parsers ──────────── v0.3.10
+ Installed OrderedCollections ─ v1.1.0
+ Installed Setfield ─────────── v0.5.2
+ Installed JSON ─────────────── v0.21.0
+ Installed MacroTools ───────── v0.5.1
+ Installed Requires ─────────── v0.5.2
+ Installed ArgCheck ─────────── v1.0.1
+ Installed Missings ─────────── v0.4.3
+ Installed Compat ───────────── v3.0.0
+ Installed DataStructures ───── v0.17.6
+ Installed StatsBase ────────── v0.32.0
+ Installed Tokenize ─────────── v0.5.6
+ Installed ConstructionBase ─── v1.0.0
+ Installed CSTParser ────────── v1.0.0
+ Installed PhaseSpaceIO ─────── v0.2.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [de004529] + PhaseSpaceIO v0.2.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [dce04be8] + ArgCheck v1.0.1
+  [00ebfdb7] + CSTParser v1.0.0
+  [34da2185] + Compat v3.0.0
+  [187b0558] + ConstructionBase v1.0.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [682c06a0] + JSON v0.21.0
+  [1914dd2f] + MacroTools v0.5.1
+  [e1d29d7a] + Missings v0.4.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [de004529] + PhaseSpaceIO v0.2.0
+  [ae029012] + Requires v0.5.2
+  [efcf1570] + Setfield v0.5.2
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [2913bbd2] + StatsBase v0.32.0
+  [0796e94c] + Tokenize v0.5.6
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing PhaseSpaceIO
+ Resolving package versions...
+ERROR: Unsatisfiable requirements detected for package CoordinateTransformations [150eb455]:
+ CoordinateTransformations [150eb455] log:
+ ├─possible versions are: 0.5.0 or uninstalled
+ ├─restricted to versions * by an explicit requirement, leaving only versions 0.5.0
+ └─restricted by compatibility requirements with Compat [34da2185] to versions: uninstalled — no versions left
+   └─Compat [34da2185] log:
+     ├─possible versions are: [1.0.0-1.0.1, 1.1.0, 1.2.0, 1.3.0, 1.4.0, 1.5.0-1.5.1, 2.0.0, 2.1.0, 2.2.0, 3.0.0] or uninstalled
+     └─restricted to versions 3.0.0 by an explicit requirement, leaving only versions 3.0.0
+Stacktrace:
+ [1] propagate_constraints!(::Pkg.Resolve.Graph, ::Set{Int64}; log_events::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Resolve/graphtype.jl:1010
+ [2] propagate_constraints! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Resolve/graphtype.jl:951 [inlined] (repeats 2 times)
+ [3] simplify_graph!(::Pkg.Resolve.Graph, ::Set{Int64}; clean_graph::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Resolve/graphtype.jl:1465
+ [4] simplify_graph! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Resolve/graphtype.jl:1465 [inlined] (repeats 2 times)
+ [5] _resolve_versions!(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}, ::Nothing) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:121
+ [6] _resolve_versions! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:69 [inlined]
+ [7] _add_or_develop(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; new_git::Array{Base.UUID,1}, mode::Symbol) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:313
+ [8] _add_or_develop at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:298 [inlined]
+ [9] (::Pkg.Operations.var"#32#38"{Bool,Pkg.Operations.var"#44#46"{Pkg.Types.Context,Pkg.Types.PackageSpec,Pkg.Operations.var"#43#45"{Pkg.Types.Context,Pkg.Types.PackageSpec,Array{String,1},Cmd}},Pkg.Types.Context,Pkg.Types.PackageSpec,Pkg.Types.Context,Set{Base.UUID},Set{Base.UUID},Array{Pkg.Types.PackageSpec,1}})(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:492
+ [10] mktempdir(::Pkg.Operations.var"#32#38"{Bool,Pkg.Operations.var"#44#46"{Pkg.Types.Context,Pkg.Types.PackageSpec,Pkg.Operations.var"#43#45"{Pkg.Types.Context,Pkg.Types.PackageSpec,Array{String,1},Cmd}},Pkg.Types.Context,Pkg.Types.PackageSpec,Pkg.Types.Context,Set{Base.UUID},Set{Base.UUID},Array{Pkg.Types.PackageSpec,1}}, ::String; prefix::String) at ./file.jl:669
+ [11] mktempdir at ./file.jl:667 [inlined] (repeats 2 times)
+ [12] with_dependencies_loadable_at_toplevel(::Pkg.Operations.var"#44#46"{Pkg.Types.Context,Pkg.Types.PackageSpec,Pkg.Operations.var"#43#45"{Pkg.Types.Context,Pkg.Types.PackageSpec,Array{String,1},Cmd}}, ::Pkg.Types.Context, ::Pkg.Types.PackageSpec; might_need_to_resolve::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:471
+ [13] backwards_compatibility_for_test(::Pkg.Types.Context, ::Pkg.Types.PackageSpec, ::String, ::Array{String,1}, ::Bool; julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:559
+ [14] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1357
+ [15] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [16] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [17] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [18] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [19] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [20] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [21] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [22] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [23] top-level scope at none:10

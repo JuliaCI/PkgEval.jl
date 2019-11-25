@@ -1,0 +1,132 @@
+ Resolving package versions...
+ Installed SortingAlgorithms ── v0.3.1
+ Installed DataAPI ──────────── v1.1.0
+ Installed Parsers ──────────── v0.3.10
+ Installed TextSearch ───────── v0.3.1
+ Installed OrderedCollections ─ v1.1.0
+ Installed DataStructures ───── v0.17.6
+ Installed JSON ─────────────── v0.21.0
+ Installed SimilaritySearch ─── v0.3.16
+ Installed Missings ─────────── v0.4.3
+ Installed GZip ─────────────── v0.5.0
+ Installed StatsBase ────────── v0.32.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [7f6f6c8a] + TextSearch v0.3.1
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [92fee26a] + GZip v0.5.0
+  [682c06a0] + JSON v0.21.0
+  [e1d29d7a] + Missings v0.4.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [053f045d] + SimilaritySearch v0.3.16
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [2913bbd2] + StatsBase v0.32.0
+  [7f6f6c8a] + TextSearch v0.3.1
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+   Testing TextSearch
+Status `/tmp/jl_cXZKAb/Manifest.toml`
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [92fee26a] GZip v0.5.0
+  [682c06a0] JSON v0.21.0
+  [e1d29d7a] Missings v0.4.3
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [053f045d] SimilaritySearch v0.3.16
+  [a2af1166] SortingAlgorithms v0.3.1
+  [2913bbd2] StatsBase v0.32.0
+  [7f6f6c8a] TextSearch v0.3.1
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Test Summary:     | Pass  Total
+Character q-grams |    1      1
+Test Summary: | Pass  Total
+Word n-grams  |    1      1
+Test Summary: | Pass  Total
+Skip-grams    |    1      1
+Test Summary:                  | Pass  Total
+Tokenizer, DVEC, and vectorize |    3      3
+sentiment_text = "lol, esto me encanta"
+dmodel = DistModel(TextConfig(true, false, false, true, true, false, false, true, Int64[], [1], Tuple{Int64,Int64}[], identity), Dict(:encanta => [3.3333333333333335, 0.0],:odio => [0.0, 5.0],:lo => [0.0, 2.5],:me => [5.0, 0.0],:lol => [1.6666666666666667, 0.0],:esto => [1.6666666666666667, 2.5],:! => [1.6666666666666667, 0.0],:gusta => [1.6666666666666667, 0.0]), [3, 2], [0.0, 0.0], 8, 5)
+Test Summary:   |
+DistModel tests | No tests
+Test Summary:  | Pass  Total
+EntModel tests |    1      1
+Test Summary: | Pass  Total
+distances     |    3      3
+Test Summary: | Pass  Total
+operations    |    7      7
+Test Summary: |
+io            | No tests
+[ Info: Dict{String,Any}("key2c" => "value2a","key1" => "value1a")
+[ Info: Dict{String,Any}("key2c" => "value2b","key1" => "value1b")
+[ Info: Dict{String,Any}("key2b" => "value2c","key1" => "value1c")
+[ Info: Dict{String,Any}("key2a" => "value2d","key1" => "value1d")
+Test Summary: |
+transpose bow | No tests
+shortindex = InvIndex(Dict{Int64,TextSearch.PostingListType{Float64,Int64}}(7 =>   [7]  =  0.861374,4 =>   [5]  =  0.646289,9 =>   [5]  =  0.467466
+  [6]  =  0.522371,10 =>   [4]  =  0.672311
+  [6]  =  0.522371,2 =>   [2]  =  0.588644
+  [7]  =  0.419039
+  [6]  =  0.351332,3 =>   [3]  =  0.831505,8 =>   [1]  =  0.588021
+  [2]  =  0.700584
+  [3]  =  0.481432,5 =>   [5]  =  0.467466
+  [6]  =  0.522371,6 =>   [1]  =  0.734592
+  [4]  =  0.672311,1 =>   [2]  =  0.403338
+  [1]  =  0.338534
+  [4]  =  0.309831), 7)
+Test Summary: | Pass  Total
+invindex      |    2      2
+Test Summary:      | Pass  Total
+centroid computing |    1      1
+[0.5909888080347585, 0.0]
+[0.8010517396984997, 0.0]
+[0.020026044561749314, 0.8227054023802047]
+[0.1004537572513743, 0.822705402380205]
+[0.7641517597273414, 0.15788009968225603]
+Test Summary: | Pass  Total
+rocchio       |    1      1
+===>[1.0, 0.0]
+===>[1.0, 0.0]
+===>[0.03549362493155919, 0.9993699027833578]
+===>[0.12816776078944067, 0.9917525019349437]
+===>[0.9882119707278358, 0.1530918054965934]
+Test Summary:   | Pass  Total
+rocchio bagging |    1      1
+corpus[1:10] = ["bd da ba dc da db ba ", "cb dc ba bd db bb dd ", "bb aa dc db ba dd bd ", "ac cb cd cc bb bd bc ", "da aa ad aa ab ad bb ", "cb ad dc bd bc dc da ", "cb bb bc dc cc cb cd ", "ab cb aa cd dd ba dd ", "bd ac ba cd db bd bb ", "ad dd ca bd dd bd db "]
+Test Summary: | Pass  Total
+neardup       |    1      1
+   Testing TextSearch tests passed 

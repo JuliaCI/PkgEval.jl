@@ -1,0 +1,243 @@
+ Resolving package versions...
+ Installed PriorityChannels ─── v0.1.0
+ Installed OrderedCollections ─ v1.1.0
+ Installed DataStructures ───── v0.17.6
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [a2669504] + PriorityChannels v0.1.0
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [864edb3b] + DataStructures v0.17.6
+  [bac558e1] + OrderedCollections v1.1.0
+  [a2669504] + PriorityChannels v0.1.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+   Testing PriorityChannels
+    Status `/tmp/jl_oJu5Nc/Manifest.toml`
+  [864edb3b] DataStructures v0.17.6
+  [bac558e1] OrderedCollections v1.1.0
+  [a2669504] PriorityChannels v0.1.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Test Summary:        | Pass  Total
+various constructors |   13     13
+Test Summary: | Pass  Total
+priorities    |    1      1
+Test Summary:                                                   | Pass  Total
+multiple concurrent put!/take! on a channel for different sizes |    3      3
+Test Summary:           | Pass  Total
+type conversion in put! |    2      2
+Test Summary:                                  | Pass  Total
+multiple for loops waiting on the same channel |    1      1
+fatal: error thrown and no exception handler available.
+MethodError(f=typeof(Base.close_chnl_on_taskdone)(), args=(Task(next=nothing, queue=nothing, storage=Base.IdDict{Any, Any}(ht=Array{Any, (32,)}[
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  :TASKDONE_HOOKS,
+  Array{Any, (1,)}[getfield(PriorityChannels, Symbol("##6#7")){WeakRef}(ref=WeakRef(value=PriorityChannels.PriorityChannel{Any, Int64}(cond_take=Base.GenericCondition{Base.AlwaysLockedST}(waitq=Base.InvasiveLinkedList{Task}(head=Task(next=nothing, queue=<circular reference @-2>, storage=Base.IdDict{Any, Any}(ht=Array{Any, (32,)}[
+  :SOURCE_PATH,
+  "/root/.julia/packages/PriorityChannels/5SBT7/test/runtests.jl",
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  :__BASETESTNEXT__,
+  Array{Test.AbstractTestSet, (1,)}[Test.DefaultTestSet(description="channels bound to tasks", results=Array{Any, (0,)}[], n_passed=0, anynonpass=false)],
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>], count=2, ndel=0), state=:runnable, donenotify=nothing, result=nothing, exception=nothing, backtrace=nothing, logstate=nothing, code=#<null>, sticky=true), tail=Task(next=nothing, queue=<circular reference @-2>, storage=Base.IdDict{Any, Any}(ht=Array{Any, (32,)}[
+  :SOURCE_PATH,
+  "/root/.julia/packages/PriorityChannels/5SBT7/test/runtests.jl",
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  :__BASETESTNEXT__,
+  Array{Test.AbstractTestSet, (1,)}[Test.DefaultTestSet(description="channels bound to tasks", results=Array{Any, (0,)}[], n_passed=0, anynonpass=false)],
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>], count=2, ndel=0), state=:runnable, donenotify=nothing, result=nothing, exception=nothing, backtrace=nothing, logstate=nothing, code=#<null>, sticky=true)), lock=Base.AlwaysLockedST(ownertid=1)), cond_put=Base.GenericCondition{Base.AlwaysLockedST}(waitq=Base.InvasiveLinkedList{Task}(head=nothing, tail=nothing), lock=Base.AlwaysLockedST(ownertid=1)), state=:open, excp=nothing, data=Array{Tuple{Any, Int64}, (0,)}[], sz_max=10, waiters=0, takers=#<null>, putters=#<null>)))],
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>], count=1, ndel=0), state=:done, donenotify=Base.GenericCondition{Base.Threads.SpinLock}(waitq=Base.InvasiveLinkedList{Task}(head=nothing, tail=nothing), lock=Base.Threads.SpinLock(handle=Base.Threads.Atomic{Int64}(value=0))), result=nothing, exception=nothing, backtrace=nothing, logstate=nothing, code=getfield(Main, Symbol("##18#31"))(), sticky=true), WeakRef(value=PriorityChannels.PriorityChannel{Any, Int64}(cond_take=Base.GenericCondition{Base.AlwaysLockedST}(waitq=Base.InvasiveLinkedList{Task}(head=Task(next=nothing, queue=<circular reference @-2>, storage=Base.IdDict{Any, Any}(ht=Array{Any, (32,)}[
+  :SOURCE_PATH,
+  "/root/.julia/packages/PriorityChannels/5SBT7/test/runtests.jl",
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  :__BASETESTNEXT__,
+  Array{Test.AbstractTestSet, (1,)}[Test.DefaultTestSet(description="channels bound to tasks", results=Array{Any, (0,)}[], n_passed=0, anynonpass=false)],
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>], count=2, ndel=0), state=:runnable, donenotify=nothing, result=nothing, exception=nothing, backtrace=nothing, logstate=nothing, code=#<null>, sticky=true), tail=Task(next=nothing, queue=<circular reference @-2>, storage=Base.IdDict{Any, Any}(ht=Array{Any, (32,)}[
+  :SOURCE_PATH,
+  "/root/.julia/packages/PriorityChannels/5SBT7/test/runtests.jl",
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  :__BASETESTNEXT__,
+  Array{Test.AbstractTestSet, (1,)}[Test.DefaultTestSet(description="channels bound to tasks", results=Array{Any, (0,)}[], n_passed=0, anynonpass=false)],
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>,
+  #<null>], count=2, ndel=0), state=:runnable, donenotify=nothing, result=nothing, exception=nothing, backtrace=nothing, logstate=nothing, code=#<null>, sticky=true)), lock=Base.AlwaysLockedST(ownertid=1)), cond_put=Base.GenericCondition{Base.AlwaysLockedST}(waitq=Base.InvasiveLinkedList{Task}(head=nothing, tail=nothing), lock=Base.AlwaysLockedST(ownertid=1)), state=:open, excp=nothing, data=Array{Tuple{Any, Int64}, (0,)}[], sz_max=10, waiters=0, takers=#<null>, putters=#<null>))), world=0x00000000000065d1)
+rec_backtrace at /buildworker/worker/package_linux64/build/src/stackwalk.c:94
+record_backtrace at /buildworker/worker/package_linux64/build/src/task.c:219 [inlined]
+jl_throw at /buildworker/worker/package_linux64/build/src/task.c:429
+jl_method_error_bare at /buildworker/worker/package_linux64/build/src/gf.c:1606
+jl_method_error at /buildworker/worker/package_linux64/build/src/gf.c:1624
+jl_lookup_generic_ at /buildworker/worker/package_linux64/build/src/gf.c:2161 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2182
+#6 at /root/.julia/packages/PriorityChannels/5SBT7/src/PriorityChannels.jl:138
+#464 at ./task.jl:312
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2197
+foreach at ./abstractarray.jl:1920
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2197
+task_done_hook at ./task.jl:312
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2191
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1614 [inlined]
+jl_finish_task at /buildworker/worker/package_linux64/build/src/task.c:176
+start_task at /buildworker/worker/package_linux64/build/src/task.c:606
+unknown function (ip: 0xffffffffffffffff)
+ERROR: Package PriorityChannels errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1288
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

@@ -1,0 +1,126 @@
+ Resolving package versions...
+ Installed URIParser ────── v0.4.0
+ Installed DocumentFormat ─ v1.0.1
+ Installed StaticLint ───── v1.0.2
+ Installed Parsers ──────── v0.3.10
+ Installed Tokenize ─────── v0.5.6
+ Installed SymbolServer ─── v1.0.1
+ Installed LanguageServer ─ v1.0.0
+ Installed JSON ─────────── v0.21.0
+ Installed CSTParser ────── v1.0.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [2b0e0bc5] + LanguageServer v1.0.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [00ebfdb7] + CSTParser v1.0.0
+  [ffa9a821] + DocumentFormat v1.0.1
+  [682c06a0] + JSON v0.21.0
+  [2b0e0bc5] + LanguageServer v1.0.0
+  [69de0a69] + Parsers v0.3.10
+  [b3cc710f] + StaticLint v1.0.2
+  [cf896787] + SymbolServer v1.0.1
+  [0796e94c] + Tokenize v0.5.6
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing LanguageServer
+ Resolving package versions...
+Status `/tmp/jl_tjq4mW/Manifest.toml`
+  [00ebfdb7] CSTParser v1.0.0
+  [ffa9a821] DocumentFormat v1.0.1
+  [682c06a0] JSON v0.21.0
+  [2b0e0bc5] LanguageServer v1.0.0
+  [69de0a69] Parsers v0.3.10
+  [b3cc710f] StaticLint v1.0.2
+  [cf896787] SymbolServer v1.0.1
+  [0796e94c] Tokenize v0.5.6
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: MethodError: no method matching kwarg_decl(::Method, ::Type{Core.var"#Type##kw"})
+Closest candidates are:
+  kwarg_decl(::Method) at methodshow.jl:77
+Stacktrace:
+ [1] (::SymbolServer.var"#3#4"{Base.MethodList})(::Method) at /root/.julia/packages/SymbolServer/KebKX/src/symbols.jl:96
+ [2] iterate at ./generator.jl:47 [inlined]
+ [3] collect(::Base.Generator{Base.MethodList,SymbolServer.var"#3#4"{Base.MethodList}}) at ./array.jl:636
+ [4] map at ./abstractarray.jl:2099 [inlined]
+ [5] read_methods(::Type) at /root/.julia/packages/SymbolServer/KebKX/src/symbols.jl:89
+ [6] get_module(::Pkg.Types.Context, ::Module) at /root/.julia/packages/SymbolServer/KebKX/src/symbols.jl:164
+ [7] load_core() at /root/.julia/packages/SymbolServer/KebKX/src/symbols.jl:124
+ [8] top-level scope at /root/.julia/packages/SymbolServer/KebKX/src/SymbolServer.jl:267
+ [9] include(::Module, ::String) at ./Base.jl:377
+ [10] top-level scope at none:2
+ [11] eval at ./boot.jl:331 [inlined]
+ [12] eval(::Expr) at ./client.jl:449
+ [13] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/SymbolServer/KebKX/src/SymbolServer.jl:267
+ERROR: LoadError: Failed to precompile SymbolServer [cf896787-08d5-524d-9de7-132aaa0cb996] to /root/.julia/compiled/v1.4/SymbolServer/355ac_GyXb5.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1263
+ [3] _require(::Base.PkgId) at ./loading.jl:1022
+ [4] require(::Base.PkgId) at ./loading.jl:920
+ [5] require(::Module, ::Symbol) at ./loading.jl:915
+ [6] include(::Module, ::String) at ./Base.jl:377
+ [7] top-level scope at none:2
+ [8] eval at ./boot.jl:331 [inlined]
+ [9] eval(::Expr) at ./client.jl:449
+ [10] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/LanguageServer/XXTJb/src/LanguageServer.jl:7
+ERROR: LoadError: Failed to precompile LanguageServer [2b0e0bc5-e4fd-59b4-8912-456d1b03d8d7] to /root/.julia/compiled/v1.4/LanguageServer/ite7n_GyXb5.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1263
+ [3] _require(::Base.PkgId) at ./loading.jl:1022
+ [4] require(::Base.PkgId) at ./loading.jl:920
+ [5] require(::Module, ::Symbol) at ./loading.jl:915
+ [6] include(::String) at ./client.jl:439
+ [7] top-level scope at none:6
+in expression starting at /root/.julia/packages/LanguageServer/XXTJb/test/runtests.jl:1
+ERROR: Package LanguageServer errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

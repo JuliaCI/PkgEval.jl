@@ -1,0 +1,99 @@
+ Resolving package versions...
+ Installed Hive ─────────── v0.3.0
+ Installed Thrift ───────── v0.6.0
+ Installed BinaryProvider ─ v0.5.8
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [6735fb99] + Hive v0.3.0
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [6735fb99] + Hive v0.3.0
+  [8d9c9c80] + Thrift v0.6.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+  Building Thrift → `~/.julia/packages/Thrift/hqiAN/deps/build.log`
+   Testing Hive
+    Status `/tmp/jl_Ic5WaO/Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [6735fb99] Hive v0.3.0
+  [8d9c9c80] Thrift v0.6.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: LoadError: IOError: connect: connection refused (ECONNREFUSED)
+Stacktrace:
+ [1] try_yieldto(::typeof(Base.ensure_rescheduled), ::Base.RefValue{Task}) at ./task.jl:517
+ [2] wait() at ./task.jl:592
+ [3] wait(::Base.GenericCondition{Base.Threads.SpinLock}) at ./condition.jl:104
+ [4] stream_wait(::Sockets.TCPSocket, ::Base.GenericCondition{Base.Threads.SpinLock}) at ./stream.jl:47
+ [5] wait_connected(::Sockets.TCPSocket) at ./stream.jl:332
+ [6] connect at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Sockets/src/Sockets.jl:470 [inlined]
+ [7] connect(::String, ::Int64) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Sockets/src/Sockets.jl:453
+ [8] open(::Thrift.TSocket) at /root/.julia/packages/Thrift/hqiAN/src/transports.jl:148
+ [9] open(::Thrift.TFramedTransport) at /root/.julia/packages/Thrift/hqiAN/src/transports.jl:64
+ [10] open(::Thrift.TSASLClientTransport) at /root/.julia/packages/Thrift/hqiAN/src/transports.jl:51
+ [11] (::getfield(Hive, Symbol("#connect#5")))(::Thrift.TSASLClientTransport, ::Hive.HS2.TCLIServiceClient) at /root/.julia/packages/Hive/V5G3q/src/sess.jl:58
+ [12] (::getfield(Hive, Symbol("##HiveConn#3#4")))(::Symbol, ::Type{Hive.HiveConn}, ::String, ::Int64, ::HiveAuth) at /root/.julia/packages/Hive/V5G3q/src/sess.jl:54
+ [13] Type at ./none:0 [inlined]
+ [14] #HiveSession#6 at /root/.julia/packages/Hive/V5G3q/src/sess.jl:84 [inlined]
+ [15] Type at /root/.julia/packages/Hive/V5G3q/src/sess.jl:84 [inlined] (repeats 4 times)
+ [16] open_database(::getfield(Main, Symbol("##49#50"))) at /root/.julia/packages/Hive/V5G3q/test/hive_test.jl:9
+ [17] top-level scope at /root/.julia/packages/Hive/V5G3q/test/hive_test.jl:221
+ [18] include at ./boot.jl:328 [inlined]
+ [19] include_relative(::Module, ::String) at ./loading.jl:1094
+ [20] include(::Module, ::String) at ./Base.jl:31
+ [21] include(::String) at ./client.jl:431
+ [22] top-level scope at /root/.julia/packages/Hive/V5G3q/test/runtests.jl:2
+ [23] include at ./boot.jl:328 [inlined]
+ [24] include_relative(::Module, ::String) at ./loading.jl:1094
+ [25] include(::Module, ::String) at ./Base.jl:31
+ [26] include(::String) at ./client.jl:431
+ [27] top-level scope at none:5
+in expression starting at /root/.julia/packages/Hive/V5G3q/test/hive_test.jl:221
+in expression starting at /root/.julia/packages/Hive/V5G3q/test/runtests.jl:2
+ERROR: Package Hive errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1288
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

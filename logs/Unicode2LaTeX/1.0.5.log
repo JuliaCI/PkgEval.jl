@@ -1,0 +1,84 @@
+ Resolving package versions...
+   Cloning [a6a4b4a1-58ae-5f2f-bbf9-c7004aa6538b] Unicode2LaTeX from https://gitlab.com/ninjin/unicode2latex.jl.git
+[?25l    Fetching: [>                                        ]  0.0 %[2K[?25h[ Info: Installed Unicode2LaTeX ─ v1.2.0
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [a6a4b4a1] + Unicode2LaTeX v1.2.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [a6a4b4a1] + Unicode2LaTeX v1.2.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+   Testing Unicode2LaTeX
+ Resolving package versions...
+    Status `/tmp/tmpTJXRiw/Manifest.toml`
+  [a6a4b4a1] Unicode2LaTeX v1.2.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+LaTeX: Error During Test at /root/.julia/packages/Unicode2LaTeX/7OVMG/test/runtests.jl:22
+  Got exception outside of a @test
+  IOError: could not spawn `latex`: no such file or directory (ENOENT)
+  Stacktrace:
+   [1] _jl_spawn(::String, ::Array{String,1}, ::Cmd, ::Tuple{Base.PipeEndpoint,Base.DevNull,Base.PipeEndpoint}) at ./process.jl:367
+   [2] (::getfield(Base, Symbol("##495#496")){Cmd,Base.Process})(::Tuple{Base.PipeEndpoint,Base.DevNull,Base.PipeEndpoint}) at ./process.jl:509
+   [3] setup_stdio(::getfield(Base, Symbol("##495#496")){Cmd,Base.Process}, ::Tuple{Pipe,Base.DevNull,Base.PipeEndpoint}) at ./process.jl:490
+   [4] #_spawn#494(::Nothing, ::Function, ::Cmd, ::Tuple{Pipe,Base.DevNull,Base.PipeEndpoint}) at ./process.jl:508
+   [5] _spawn(::Cmd, ::Tuple{Pipe,Base.DevNull,Base.PipeEndpoint}) at ./process.jl:504
+   [6] #open#504(::Bool, ::Bool, ::Function, ::Cmd, ::Base.DevNull) at ./process.jl:599
+   [7] #open at ./none:0 [inlined]
+   [8] open(::Cmd, ::String, ::Base.DevNull) at ./process.jl:567
+   [9] (::getfield(Main, Symbol("##4#6")))() at /root/.julia/packages/Unicode2LaTeX/7OVMG/test/runtests.jl:30
+   [10] cd(::getfield(Main, Symbol("##4#6")), ::String) at ./file.jl:96
+   [11] #3 at /root/.julia/packages/Unicode2LaTeX/7OVMG/test/runtests.jl:25 [inlined]
+   [12] mktempdir(::getfield(Main, Symbol("##3#5")), ::String) at ./file.jl:581
+   [13] mktempdir(::Function) at ./file.jl:579
+   [14] macro expansion at /root/.julia/packages/Unicode2LaTeX/7OVMG/test/runtests.jl:24 [inlined]
+   [15] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [16] macro expansion at /root/.julia/packages/Unicode2LaTeX/7OVMG/test/runtests.jl:24 [inlined]
+   [17] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [18] top-level scope at /root/.julia/packages/Unicode2LaTeX/7OVMG/test/runtests.jl:7
+   [19] include at ./boot.jl:317 [inlined]
+   [20] include_relative(::Module, ::String) at ./loading.jl:1044
+   [21] include(::Module, ::String) at ./sysimg.jl:29
+   [22] include(::String) at ./client.jl:392
+   [23] top-level scope at none:0
+   [24] eval(::Module, ::Any) at ./boot.jl:319
+   [25] exec_options(::Base.JLOptions) at ./client.jl:243
+   [26] _start() at ./client.jl:425
+Test Summary: | Pass  Error  Total
+Unicode2LaTeX |    5      1      6
+  Conversion  |    4             4
+  Generation  |    1             1
+  LaTeX       |           1      1
+ERROR: LoadError: Some tests did not pass: 5 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /root/.julia/packages/Unicode2LaTeX/7OVMG/test/runtests.jl:5
+ERROR: Package Unicode2LaTeX errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

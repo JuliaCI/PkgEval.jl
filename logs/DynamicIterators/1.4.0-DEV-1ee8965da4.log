@@ -1,0 +1,87 @@
+ Resolving package versions...
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed Tables ────────────────────── v0.2.11
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed Trajectories ──────────────── v0.1.0
+ Installed DynamicIterators ──────────── v0.3.0
+ Installed TableTraits ───────────────── v1.0.0
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [6c76993d] + DynamicIterators v0.3.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [9a962f9c] + DataAPI v1.1.0
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [6c76993d] + DynamicIterators v0.3.0
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [2c80a279] + Trajectories v0.1.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+   Testing DynamicIterators
+Status `/tmp/jl_GAAgJ7/Manifest.toml`
+  [9a962f9c] DataAPI v1.1.0
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [6c76993d] DynamicIterators v0.3.0
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [2c80a279] Trajectories v0.1.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+Examples: Error During Test at /root/.julia/packages/DynamicIterators/875BR/test/runtests.jl:8
+  Got exception outside of a @test
+  LoadError: ArgumentError: Package Distributions not found in current path:
+  - Run `import Pkg; Pkg.add("Distributions")` to install the Distributions package.
+  
+  Stacktrace:
+   [1] require(::Module, ::Symbol) at ./loading.jl:885
+   [2] include(::String) at ./client.jl:439
+   [3] macro expansion at /root/.julia/packages/DynamicIterators/875BR/test/runtests.jl:9 [inlined]
+   [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [5] top-level scope at /root/.julia/packages/DynamicIterators/875BR/test/runtests.jl:9
+   [6] include(::String) at ./client.jl:439
+   [7] top-level scope at none:6
+   [8] eval(::Module, ::Any) at ./boot.jl:331
+   [9] exec_options(::Base.JLOptions) at ./client.jl:264
+   [10] _start() at ./client.jl:484
+  in expression starting at /root/.julia/packages/DynamicIterators/875BR/example/metropolishastings.jl:2
+  
+Test Summary: | Error  Total
+Examples      |     1      1
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /root/.julia/packages/DynamicIterators/875BR/test/runtests.jl:8
+ERROR: Package DynamicIterators errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

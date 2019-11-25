@@ -1,0 +1,1932 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="Mongoc">Mongoc</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#Mongoc">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 16 hours ago and took 1 minute, 50 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Mongoc/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Mongoc ───────── v0.4.0
+ Installed BinaryProvider ─ v0.5.8
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [4fe8b98c] + Mongoc v0.4.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [4fe8b98c] + Mongoc v0.4.0
+  [ade2ca70] + Dates 
+  [8f399da3] + Libdl 
+  [de0858da] + Printf 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [4ec0a83e] + Unicode 
+  Building Mongoc → `~&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;deps&#x2F;build.log`
+   Testing Mongoc
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;tmpIy6TDi&#x2F;Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [4fe8b98c] Mongoc v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Test Summary: |  Pass  Total
+BSON          | 10103  10103
+ping: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] command_simple(::Mongoc.Database, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;database.jl:33
+   [2] ping(::Mongoc.Client{Nothing}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;client.jl:70
+   [3] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:64 [inlined]
+   [4] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [5] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:64 [inlined]
+   [6] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [7] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63 [inlined]
+   [8] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [10] include at .&#x2F;boot.jl:317 [inlined]
+   [11] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [12] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [13] include(::String) at .&#x2F;client.jl:392
+   [14] top-level scope at none:0
+   [15] include at .&#x2F;boot.jl:317 [inlined]
+   [16] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [17] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [18] include(::String) at .&#x2F;client.jl:392
+   [19] top-level scope at none:0
+   [20] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [21] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [22] _start() at .&#x2F;client.jl:425
+Server Status: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:69
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] command_simple(::Mongoc.Database, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;database.jl:33
+   [2] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:70 [inlined]
+   [3] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [4] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:70 [inlined]
+   [5] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [6] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63 [inlined]
+   [7] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [9] include at .&#x2F;boot.jl:317 [inlined]
+   [10] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [11] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [12] include(::String) at .&#x2F;client.jl:392
+   [13] top-level scope at none:0
+   [14] include at .&#x2F;boot.jl:317 [inlined]
+   [15] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [16] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [17] include(::String) at .&#x2F;client.jl:392
+   [18] top-level scope at none:0
+   [19] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [20] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [21] _start() at .&#x2F;client.jl:425
+Insert One with generated OID: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:89
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] #insert_one#46(::Nothing, ::Function, ::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:59
+   [2] #insert_one at .&#x2F;none:0 [inlined]
+   [3] #push!#58 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508 [inlined]
+   [4] push!(::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508
+   [5] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:91 [inlined]
+   [6] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [7] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:90 [inlined]
+   [8] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [9] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:87 [inlined]
+   [10] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [11] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63 [inlined]
+   [12] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [14] include at .&#x2F;boot.jl:317 [inlined]
+   [15] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [16] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [17] include(::String) at .&#x2F;client.jl:392
+   [18] top-level scope at none:0
+   [19] include at .&#x2F;boot.jl:317 [inlined]
+   [20] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [21] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [22] include(::String) at .&#x2F;client.jl:392
+   [23] top-level scope at none:0
+   [24] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [25] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [26] _start() at .&#x2F;client.jl:425
+Insert One with custom OID: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:104
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] #insert_one#46(::Nothing, ::Function, ::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:59
+   [2] #insert_one at .&#x2F;none:0 [inlined]
+   [3] #push!#58 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508 [inlined]
+   [4] push!(::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508
+   [5] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:107 [inlined]
+   [6] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [7] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:105 [inlined]
+   [8] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [9] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:87 [inlined]
+   [10] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [11] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63 [inlined]
+   [12] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [14] include at .&#x2F;boot.jl:317 [inlined]
+   [15] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [16] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [17] include(::String) at .&#x2F;client.jl:392
+   [18] top-level scope at none:0
+   [19] include at .&#x2F;boot.jl:317 [inlined]
+   [20] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [21] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [22] include(::String) at .&#x2F;client.jl:392
+   [23] top-level scope at none:0
+   [24] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [25] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [26] _start() at .&#x2F;client.jl:425
+new_collection: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:86
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] #insert_one#46(::Nothing, ::Function, ::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:59
+   [2] #insert_one at .&#x2F;none:0 [inlined]
+   [3] #push!#58 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508 [inlined]
+   [4] push!(::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508
+   [5] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:119 [inlined]
+   [6] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [7] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:87 [inlined]
+   [8] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [9] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63 [inlined]
+   [10] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [12] include at .&#x2F;boot.jl:317 [inlined]
+   [13] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [14] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [15] include(::String) at .&#x2F;client.jl:392
+   [16] top-level scope at none:0
+   [17] include at .&#x2F;boot.jl:317 [inlined]
+   [18] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [19] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [20] include(::String) at .&#x2F;client.jl:392
+   [21] top-level scope at none:0
+   [22] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [23] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [24] _start() at .&#x2F;client.jl:425
+find_databases: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:144
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] _iterate(::Mongoc.Cursor{Mongoc.Client{Nothing}}, ::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:482
+   [2] iterate at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:489 [inlined] (repeats 2 times)
+   [3] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:146 [inlined]
+   [4] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [5] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:145 [inlined]
+   [6] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [7] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63 [inlined]
+   [8] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [10] include at .&#x2F;boot.jl:317 [inlined]
+   [11] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [12] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [13] include(::String) at .&#x2F;client.jl:392
+   [14] top-level scope at none:0
+   [15] include at .&#x2F;boot.jl:317 [inlined]
+   [16] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [17] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [18] include(::String) at .&#x2F;client.jl:392
+   [19] top-level scope at none:0
+   [20] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [21] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [22] _start() at .&#x2F;client.jl:425
+Binary data: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:164
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] #insert_one#46(::Nothing, ::Function, ::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:59
+   [2] #insert_one at .&#x2F;none:0 [inlined]
+   [3] #push!#58 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508 [inlined]
+   [4] push!(::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508
+   [5] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:170 [inlined]
+   [6] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [7] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:165 [inlined]
+   [8] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [9] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63 [inlined]
+   [10] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [12] include at .&#x2F;boot.jl:317 [inlined]
+   [13] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [14] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [15] include(::String) at .&#x2F;client.jl:392
+   [16] top-level scope at none:0
+   [17] include at .&#x2F;boot.jl:317 [inlined]
+   [18] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [19] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [20] include(::String) at .&#x2F;client.jl:392
+   [21] top-level scope at none:0
+   [22] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [23] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [24] _start() at .&#x2F;client.jl:425
+find_collections: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:181
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] _iterate(::Mongoc.Cursor{Mongoc.Database}, ::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:482
+   [2] iterate at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:489 [inlined] (repeats 2 times)
+   [3] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:182 [inlined]
+   [4] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [5] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:182 [inlined]
+   [6] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [7] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63 [inlined]
+   [8] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [10] include at .&#x2F;boot.jl:317 [inlined]
+   [11] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [12] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [13] include(::String) at .&#x2F;client.jl:392
+   [14] top-level scope at none:0
+   [15] include at .&#x2F;boot.jl:317 [inlined]
+   [16] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [17] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [18] include(::String) at .&#x2F;client.jl:392
+   [19] top-level scope at none:0
+   [20] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [21] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [22] _start() at .&#x2F;client.jl:425
+Cleanup: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:196
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] drop(::Mongoc.Collection) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:347
+   [2] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:198 [inlined]
+   [3] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [4] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:197 [inlined]
+   [5] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [6] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63 [inlined]
+   [7] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [9] include at .&#x2F;boot.jl:317 [inlined]
+   [10] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [11] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [12] include(::String) at .&#x2F;client.jl:392
+   [13] top-level scope at none:0
+   [14] include at .&#x2F;boot.jl:317 [inlined]
+   [15] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [16] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [17] include(::String) at .&#x2F;client.jl:392
+   [18] top-level scope at none:0
+   [19] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [20] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [21] _start() at .&#x2F;client.jl:425
+insert_many: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:201
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] execute!(::Mongoc.BulkOperation) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:135
+   [2] #insert_many#52(::Nothing, ::Nothing, ::Function, ::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:168
+   [3] #insert_many at .&#x2F;none:0 [inlined]
+   [4] #append!#59 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514 [inlined]
+   [5] append!(::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514
+   [6] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:208 [inlined]
+   [7] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [8] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:202 [inlined]
+   [9] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [10] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63 [inlined]
+   [11] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [13] include at .&#x2F;boot.jl:317 [inlined]
+   [14] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [15] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [16] include(::String) at .&#x2F;client.jl:392
+   [17] top-level scope at none:0
+   [18] include at .&#x2F;boot.jl:317 [inlined]
+   [19] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [20] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [21] include(::String) at .&#x2F;client.jl:392
+   [22] top-level scope at none:0
+   [23] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [24] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [25] _start() at .&#x2F;client.jl:425
+delete_one: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:222
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] #insert_one#46(::Nothing, ::Function, ::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:59
+   [2] #insert_one at .&#x2F;none:0 [inlined]
+   [3] #push!#58 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508 [inlined]
+   [4] push!(::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508
+   [5] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:226 [inlined]
+   [6] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [7] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:223 [inlined]
+   [8] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [9] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63 [inlined]
+   [10] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [12] include at .&#x2F;boot.jl:317 [inlined]
+   [13] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [14] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [15] include(::String) at .&#x2F;client.jl:392
+   [16] top-level scope at none:0
+   [17] include at .&#x2F;boot.jl:317 [inlined]
+   [18] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [19] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [20] include(::String) at .&#x2F;client.jl:392
+   [21] top-level scope at none:0
+   [22] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [23] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [24] _start() at .&#x2F;client.jl:425
+delete_many: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:240
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] execute!(::Mongoc.BulkOperation) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:135
+   [2] #insert_many#52(::Nothing, ::Nothing, ::Function, ::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:168
+   [3] #insert_many at .&#x2F;none:0 [inlined]
+   [4] #append!#59 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514 [inlined]
+   [5] append!(::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514
+   [6] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:242 [inlined]
+   [7] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [8] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:241 [inlined]
+   [9] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [10] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63 [inlined]
+   [11] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [13] include at .&#x2F;boot.jl:317 [inlined]
+   [14] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [15] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [16] include(::String) at .&#x2F;client.jl:392
+   [17] top-level scope at none:0
+   [18] include at .&#x2F;boot.jl:317 [inlined]
+   [19] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [20] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [21] include(::String) at .&#x2F;client.jl:392
+   [22] top-level scope at none:0
+   [23] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [24] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [25] _start() at .&#x2F;client.jl:425
+update_one, update_many: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:253
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] execute!(::Mongoc.BulkOperation) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:135
+   [2] #insert_many#52(::Nothing, ::Nothing, ::Function, ::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:168
+   [3] #insert_many at .&#x2F;none:0 [inlined]
+   [4] #append!#59 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514 [inlined]
+   [5] append!(::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514
+   [6] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:255 [inlined]
+   [7] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [8] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:254 [inlined]
+   [9] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [10] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63 [inlined]
+   [11] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [13] include at .&#x2F;boot.jl:317 [inlined]
+   [14] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [15] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [16] include(::String) at .&#x2F;client.jl:392
+   [17] top-level scope at none:0
+   [18] include at .&#x2F;boot.jl:317 [inlined]
+   [19] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [20] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [21] include(::String) at .&#x2F;client.jl:392
+   [22] top-level scope at none:0
+   [23] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [24] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [25] _start() at .&#x2F;client.jl:425
+aggregation, map_reduce: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:287
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] execute!(::Mongoc.BulkOperation) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:135
+   [2] #insert_many#52(::Nothing, ::Nothing, ::Function, ::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:168
+   [3] #insert_many at .&#x2F;none:0 [inlined]
+   [4] #append!#59 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514 [inlined]
+   [5] append!(::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514
+   [6] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:305 [inlined]
+   [7] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [8] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:289 [inlined]
+   [9] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [10] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63 [inlined]
+   [11] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [13] include at .&#x2F;boot.jl:317 [inlined]
+   [14] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [15] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [16] include(::String) at .&#x2F;client.jl:392
+   [17] top-level scope at none:0
+   [18] include at .&#x2F;boot.jl:317 [inlined]
+   [19] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [20] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [21] include(::String) at .&#x2F;client.jl:392
+   [22] top-level scope at none:0
+   [23] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [24] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [25] _start() at .&#x2F;client.jl:425
+main function: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:384
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] execute!(::Mongoc.BulkOperation) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:135
+   [2] #insert_many#52(::Nothing, ::Nothing, ::Function, ::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:168
+   [3] #insert_many at .&#x2F;none:0 [inlined]
+   [4] #append!#59 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514 [inlined]
+   [5] append!(::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514
+   [6] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:394 [inlined]
+   [7] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [8] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:385 [inlined]
+   [9] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [10] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:371 [inlined]
+   [11] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [13] include at .&#x2F;boot.jl:317 [inlined]
+   [14] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [15] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [16] include(::String) at .&#x2F;client.jl:392
+   [17] top-level scope at none:0
+   [18] include at .&#x2F;boot.jl:317 [inlined]
+   [19] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [20] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [21] include(::String) at .&#x2F;client.jl:392
+   [22] top-level scope at none:0
+   [23] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [24] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [25] _start() at .&#x2F;client.jl:425
+command: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:461
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] execute!(::Mongoc.BulkOperation) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:135
+   [2] #insert_many#52(::Nothing, ::Nothing, ::Function, ::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:168
+   [3] #insert_many at .&#x2F;none:0 [inlined]
+   [4] #append!#59 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514 [inlined]
+   [5] append!(::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514
+   [6] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:473 [inlined]
+   [7] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [8] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:462 [inlined]
+   [9] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [10] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [11] include at .&#x2F;boot.jl:317 [inlined]
+   [12] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [13] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [14] include(::String) at .&#x2F;client.jl:392
+   [15] top-level scope at none:0
+   [16] include at .&#x2F;boot.jl:317 [inlined]
+   [17] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [18] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [19] include(::String) at .&#x2F;client.jl:392
+   [20] top-level scope at none:0
+   [21] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [22] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [23] _start() at .&#x2F;client.jl:425
+Users: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:496
+  Test threw exception
+  Expression: Mongoc.has_database(client, DB_NAME)
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] _iterate(::Mongoc.Cursor{Mongoc.Client{Nothing}}, ::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:482
+   [2] iterate at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:489 [inlined] (repeats 2 times)
+   [3] #has_database#38(::Nothing, ::Function, ::Mongoc.Client{Nothing}, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;client.jl:122
+   [4] has_database(::Mongoc.Client{Nothing}, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;client.jl:122
+   [5] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:496 [inlined]
+   [6] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [7] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:496 [inlined]
+   [8] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+Users: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:494
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] command_simple(::Mongoc.Database, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;database.jl:33
+   [2] has_user(::Mongoc.Database, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;database.jl:124
+   [3] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:503 [inlined]
+   [4] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [5] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:496 [inlined]
+   [6] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [8] include at .&#x2F;boot.jl:317 [inlined]
+   [9] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [10] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [11] include(::String) at .&#x2F;client.jl:392
+   [12] top-level scope at none:0
+   [13] include at .&#x2F;boot.jl:317 [inlined]
+   [14] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [15] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [16] include(::String) at .&#x2F;client.jl:392
+   [17] top-level scope at none:0
+   [18] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [19] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [20] _start() at .&#x2F;client.jl:425
+MongoDB: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:21
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] command_simple(::Mongoc.Database, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;database.jl:33
+   [2] get_server_mongodb_version(::Mongoc.Client{Nothing}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;client.jl:79
+   [3] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:519 [inlined]
+   [4] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [6] include at .&#x2F;boot.jl:317 [inlined]
+   [7] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [8] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [9] include(::String) at .&#x2F;client.jl:392
+   [10] top-level scope at none:0
+   [11] include at .&#x2F;boot.jl:317 [inlined]
+   [12] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [13] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [14] include(::String) at .&#x2F;client.jl:392
+   [15] top-level scope at none:0
+   [16] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [17] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [18] _start() at .&#x2F;client.jl:425
+Test Summary:                       | Pass  Error  Total
+MongoDB                             |    9     19     28
+  Destroy                           |              No tests
+  Types                             |    3             3
+  Connection                        |    4     14     18
+    ping                            |           1      1
+    Server Status                   |           1      1
+    error print                     |    1             1
+    new_collection                  |           3      3
+      Insert One with generated OID |           1      1
+      Insert One with custom OID    |           1      1
+    find_databases                  |           1      1
+    catch cursor error              |    1             1
+    Binary data                     |           1      1
+    find_collections                |           1      1
+    BulkOperation                   |              No tests
+    Cleanup                         |           1      1
+    insert_many                     |           1      1
+    delete_one                      |           1      1
+    delete_many                     |           1      1
+    update_one, update_many         |           1      1
+    aggregation, map_reduce         |    2      1      3
+      QueryFlags                    |    2             2
+  find and modify                   |           1      1
+    create&#x2F;destroy opts             |              No tests
+    set opts                        |              No tests
+    main function                   |           1      1
+  command                           |           1      1
+  Users                             |           2      2
+  Session Options                   |    2             2
+ERROR: LoadError: LoadError: Some tests did not pass: 9 passed, 0 failed, 19 errored, 0 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:21
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+ERROR: Package Mongoc errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1357
+ [3] #test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:278
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:263 [inlined]
+ [6] #test#43 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [8] #test#42 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [10] #test#41 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258 [inlined]
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258
+ [12] top-level scope at none:0
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 13 hours ago and took 1 minute, 20 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Mongoc/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Mongoc ───────── v0.4.0
+ Installed BinaryProvider ─ v0.5.8
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [4fe8b98c] + Mongoc v0.4.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [4fe8b98c] + Mongoc v0.4.0
+  [ade2ca70] + Dates 
+  [8f399da3] + Libdl 
+  [de0858da] + Printf 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [4ec0a83e] + Unicode 
+  Building Mongoc → `~&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;deps&#x2F;build.log`
+   Testing Mongoc
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;jl_vPaInQ&#x2F;Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [4fe8b98c] Mongoc v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Test Summary: |  Pass  Total
+BSON          | 10103  10103
+ping: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] command_simple(::Mongoc.Database, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;database.jl:33
+   [2] ping(::Mongoc.Client{Nothing}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;client.jl:70
+   [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:64
+   [4] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:64
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [10] include at .&#x2F;boot.jl:328 [inlined]
+   [11] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [12] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [13] include(::String) at .&#x2F;client.jl:431
+   [14] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [15] include at .&#x2F;boot.jl:328 [inlined]
+   [16] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [17] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [18] include(::String) at .&#x2F;client.jl:431
+   [19] top-level scope at none:5
+   [20] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [21] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [22] _start() at .&#x2F;client.jl:464
+  
+Server Status: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:69
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] command_simple(::Mongoc.Database, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;database.jl:33
+   [2] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:70
+   [3] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [4] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:70
+   [5] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [7] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [9] include at .&#x2F;boot.jl:328 [inlined]
+   [10] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [11] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [12] include(::String) at .&#x2F;client.jl:431
+   [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [14] include at .&#x2F;boot.jl:328 [inlined]
+   [15] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [16] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [17] include(::String) at .&#x2F;client.jl:431
+   [18] top-level scope at none:5
+   [19] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [20] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [21] _start() at .&#x2F;client.jl:464
+  
+Insert One with generated OID: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:89
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] #insert_one#46(::Nothing, ::typeof(Mongoc.insert_one), ::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:59
+   [2] #insert_one at .&#x2F;none:0 [inlined]
+   [3] #push!#58 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508 [inlined]
+   [4] push!(::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:91
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:90
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:87
+   [10] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [12] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [14] include at .&#x2F;boot.jl:328 [inlined]
+   [15] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [16] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [17] include(::String) at .&#x2F;client.jl:431
+   [18] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [19] include at .&#x2F;boot.jl:328 [inlined]
+   [20] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [21] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [22] include(::String) at .&#x2F;client.jl:431
+   [23] top-level scope at none:5
+   [24] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [25] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [26] _start() at .&#x2F;client.jl:464
+  
+Insert One with custom OID: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:104
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] #insert_one#46(::Nothing, ::typeof(Mongoc.insert_one), ::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:59
+   [2] #insert_one at .&#x2F;none:0 [inlined]
+   [3] #push!#58 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508 [inlined]
+   [4] push!(::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:107
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:105
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:87
+   [10] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [12] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [14] include at .&#x2F;boot.jl:328 [inlined]
+   [15] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [16] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [17] include(::String) at .&#x2F;client.jl:431
+   [18] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [19] include at .&#x2F;boot.jl:328 [inlined]
+   [20] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [21] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [22] include(::String) at .&#x2F;client.jl:431
+   [23] top-level scope at none:5
+   [24] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [25] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [26] _start() at .&#x2F;client.jl:464
+  
+new_collection: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:86
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] #insert_one#46(::Nothing, ::typeof(Mongoc.insert_one), ::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:59
+   [2] #insert_one at .&#x2F;none:0 [inlined]
+   [3] #push!#58 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508 [inlined]
+   [4] push!(::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:119
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:87
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [10] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [12] include at .&#x2F;boot.jl:328 [inlined]
+   [13] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [14] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [15] include(::String) at .&#x2F;client.jl:431
+   [16] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [17] include at .&#x2F;boot.jl:328 [inlined]
+   [18] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [19] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [20] include(::String) at .&#x2F;client.jl:431
+   [21] top-level scope at none:5
+   [22] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [23] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [24] _start() at .&#x2F;client.jl:464
+  
+find_databases: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:144
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] _iterate(::Mongoc.Cursor{Mongoc.Client{Nothing}}, ::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:482
+   [2] iterate at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:489 [inlined] (repeats 2 times)
+   [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:146
+   [4] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:145
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [10] include at .&#x2F;boot.jl:328 [inlined]
+   [11] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [12] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [13] include(::String) at .&#x2F;client.jl:431
+   [14] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [15] include at .&#x2F;boot.jl:328 [inlined]
+   [16] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [17] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [18] include(::String) at .&#x2F;client.jl:431
+   [19] top-level scope at none:5
+   [20] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [21] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [22] _start() at .&#x2F;client.jl:464
+  
+Binary data: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:164
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] #insert_one#46(::Nothing, ::typeof(Mongoc.insert_one), ::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:59
+   [2] #insert_one at .&#x2F;none:0 [inlined]
+   [3] #push!#58 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508 [inlined]
+   [4] push!(::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:170
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:165
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [10] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [12] include at .&#x2F;boot.jl:328 [inlined]
+   [13] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [14] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [15] include(::String) at .&#x2F;client.jl:431
+   [16] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [17] include at .&#x2F;boot.jl:328 [inlined]
+   [18] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [19] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [20] include(::String) at .&#x2F;client.jl:431
+   [21] top-level scope at none:5
+   [22] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [23] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [24] _start() at .&#x2F;client.jl:464
+  
+find_collections: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:181
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] _iterate(::Mongoc.Cursor{Mongoc.Database}, ::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:482
+   [2] iterate at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:489 [inlined] (repeats 2 times)
+   [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:182
+   [4] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:182
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [10] include at .&#x2F;boot.jl:328 [inlined]
+   [11] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [12] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [13] include(::String) at .&#x2F;client.jl:431
+   [14] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [15] include at .&#x2F;boot.jl:328 [inlined]
+   [16] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [17] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [18] include(::String) at .&#x2F;client.jl:431
+   [19] top-level scope at none:5
+   [20] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [21] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [22] _start() at .&#x2F;client.jl:464
+  
+Cleanup: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:196
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] drop(::Mongoc.Collection) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:347
+   [2] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:198
+   [3] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [4] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:197
+   [5] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [7] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [9] include at .&#x2F;boot.jl:328 [inlined]
+   [10] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [11] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [12] include(::String) at .&#x2F;client.jl:431
+   [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [14] include at .&#x2F;boot.jl:328 [inlined]
+   [15] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [16] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [17] include(::String) at .&#x2F;client.jl:431
+   [18] top-level scope at none:5
+   [19] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [20] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [21] _start() at .&#x2F;client.jl:464
+  
+insert_many: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:201
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] execute!(::Mongoc.BulkOperation) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:135
+   [2] #insert_many#52(::Nothing, ::Nothing, ::typeof(Mongoc.insert_many), ::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:168
+   [3] #insert_many at .&#x2F;none:0 [inlined]
+   [4] #append!#59 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514 [inlined]
+   [5] append!(::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514
+   [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:208
+   [7] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:202
+   [9] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [10] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [11] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [13] include at .&#x2F;boot.jl:328 [inlined]
+   [14] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [15] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [16] include(::String) at .&#x2F;client.jl:431
+   [17] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [18] include at .&#x2F;boot.jl:328 [inlined]
+   [19] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [20] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [21] include(::String) at .&#x2F;client.jl:431
+   [22] top-level scope at none:5
+   [23] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [24] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [25] _start() at .&#x2F;client.jl:464
+  
+delete_one: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:222
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] #insert_one#46(::Nothing, ::typeof(Mongoc.insert_one), ::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:59
+   [2] #insert_one at .&#x2F;none:0 [inlined]
+   [3] #push!#58 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508 [inlined]
+   [4] push!(::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:226
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:223
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [10] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [12] include at .&#x2F;boot.jl:328 [inlined]
+   [13] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [14] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [15] include(::String) at .&#x2F;client.jl:431
+   [16] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [17] include at .&#x2F;boot.jl:328 [inlined]
+   [18] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [19] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [20] include(::String) at .&#x2F;client.jl:431
+   [21] top-level scope at none:5
+   [22] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [23] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [24] _start() at .&#x2F;client.jl:464
+  
+delete_many: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:240
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] execute!(::Mongoc.BulkOperation) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:135
+   [2] #insert_many#52(::Nothing, ::Nothing, ::typeof(Mongoc.insert_many), ::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:168
+   [3] #insert_many at .&#x2F;none:0 [inlined]
+   [4] #append!#59 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514 [inlined]
+   [5] append!(::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514
+   [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:242
+   [7] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:241
+   [9] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [10] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [11] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [13] include at .&#x2F;boot.jl:328 [inlined]
+   [14] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [15] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [16] include(::String) at .&#x2F;client.jl:431
+   [17] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [18] include at .&#x2F;boot.jl:328 [inlined]
+   [19] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [20] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [21] include(::String) at .&#x2F;client.jl:431
+   [22] top-level scope at none:5
+   [23] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [24] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [25] _start() at .&#x2F;client.jl:464
+  
+update_one, update_many: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:253
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] execute!(::Mongoc.BulkOperation) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:135
+   [2] #insert_many#52(::Nothing, ::Nothing, ::typeof(Mongoc.insert_many), ::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:168
+   [3] #insert_many at .&#x2F;none:0 [inlined]
+   [4] #append!#59 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514 [inlined]
+   [5] append!(::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514
+   [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:255
+   [7] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:254
+   [9] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [10] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [11] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [13] include at .&#x2F;boot.jl:328 [inlined]
+   [14] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [15] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [16] include(::String) at .&#x2F;client.jl:431
+   [17] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [18] include at .&#x2F;boot.jl:328 [inlined]
+   [19] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [20] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [21] include(::String) at .&#x2F;client.jl:431
+   [22] top-level scope at none:5
+   [23] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [24] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [25] _start() at .&#x2F;client.jl:464
+  
+aggregation, map_reduce: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:287
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] execute!(::Mongoc.BulkOperation) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:135
+   [2] #insert_many#52(::Nothing, ::Nothing, ::typeof(Mongoc.insert_many), ::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:168
+   [3] #insert_many at .&#x2F;none:0 [inlined]
+   [4] #append!#59 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514 [inlined]
+   [5] append!(::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514
+   [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:305
+   [7] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:289
+   [9] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [10] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [11] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [13] include at .&#x2F;boot.jl:328 [inlined]
+   [14] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [15] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [16] include(::String) at .&#x2F;client.jl:431
+   [17] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [18] include at .&#x2F;boot.jl:328 [inlined]
+   [19] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [20] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [21] include(::String) at .&#x2F;client.jl:431
+   [22] top-level scope at none:5
+   [23] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [24] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [25] _start() at .&#x2F;client.jl:464
+  
+main function: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:384
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] execute!(::Mongoc.BulkOperation) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:135
+   [2] #insert_many#52(::Nothing, ::Nothing, ::typeof(Mongoc.insert_many), ::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:168
+   [3] #insert_many at .&#x2F;none:0 [inlined]
+   [4] #append!#59 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514 [inlined]
+   [5] append!(::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514
+   [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:394
+   [7] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:385
+   [9] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [10] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:371
+   [11] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [13] include at .&#x2F;boot.jl:328 [inlined]
+   [14] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [15] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [16] include(::String) at .&#x2F;client.jl:431
+   [17] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [18] include at .&#x2F;boot.jl:328 [inlined]
+   [19] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [20] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [21] include(::String) at .&#x2F;client.jl:431
+   [22] top-level scope at none:5
+   [23] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [24] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [25] _start() at .&#x2F;client.jl:464
+  
+command: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:461
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] execute!(::Mongoc.BulkOperation) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:135
+   [2] #insert_many#52(::Nothing, ::Nothing, ::typeof(Mongoc.insert_many), ::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:168
+   [3] #insert_many at .&#x2F;none:0 [inlined]
+   [4] #append!#59 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514 [inlined]
+   [5] append!(::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514
+   [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:473
+   [7] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:462
+   [9] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [10] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [11] include at .&#x2F;boot.jl:328 [inlined]
+   [12] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [13] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [14] include(::String) at .&#x2F;client.jl:431
+   [15] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [16] include at .&#x2F;boot.jl:328 [inlined]
+   [17] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [18] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [19] include(::String) at .&#x2F;client.jl:431
+   [20] top-level scope at none:5
+   [21] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [22] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [23] _start() at .&#x2F;client.jl:464
+  
+Users: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:496
+  Test threw exception
+  Expression: Mongoc.has_database(client, DB_NAME)
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] _iterate(::Mongoc.Cursor{Mongoc.Client{Nothing}}, ::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:482
+   [2] iterate at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:489 [inlined] (repeats 2 times)
+   [3] #has_database#38(::Nothing, ::typeof(Mongoc.has_database), ::Mongoc.Client{Nothing}, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;client.jl:122
+   [4] has_database(::Mongoc.Client{Nothing}, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;client.jl:122
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:496
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:496
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+  
+Users: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:494
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] command_simple(::Mongoc.Database, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;database.jl:33
+   [2] has_user(::Mongoc.Database, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;database.jl:124
+   [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:503
+   [4] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:496
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [8] include at .&#x2F;boot.jl:328 [inlined]
+   [9] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [10] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [11] include(::String) at .&#x2F;client.jl:431
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [13] include at .&#x2F;boot.jl:328 [inlined]
+   [14] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [15] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [16] include(::String) at .&#x2F;client.jl:431
+   [17] top-level scope at none:5
+   [18] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [19] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [20] _start() at .&#x2F;client.jl:464
+  
+MongoDB: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:21
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] command_simple(::Mongoc.Database, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;database.jl:33
+   [2] get_server_mongodb_version(::Mongoc.Client{Nothing}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;client.jl:79
+   [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:519
+   [4] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [6] include at .&#x2F;boot.jl:328 [inlined]
+   [7] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [8] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [9] include(::String) at .&#x2F;client.jl:431
+   [10] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [11] include at .&#x2F;boot.jl:328 [inlined]
+   [12] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [13] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [14] include(::String) at .&#x2F;client.jl:431
+   [15] top-level scope at none:5
+   [16] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [17] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [18] _start() at .&#x2F;client.jl:464
+  
+Test Summary:                       | Pass  Error  Total
+MongoDB                             |    9     19     28
+  Destroy                           |              No tests
+  Types                             |    3             3
+  Connection                        |    4     14     18
+    ping                            |           1      1
+    Server Status                   |           1      1
+    error print                     |    1             1
+    new_collection                  |           3      3
+      Insert One with generated OID |           1      1
+      Insert One with custom OID    |           1      1
+    find_databases                  |           1      1
+    catch cursor error              |    1             1
+    Binary data                     |           1      1
+    find_collections                |           1      1
+    BulkOperation                   |              No tests
+    Cleanup                         |           1      1
+    insert_many                     |           1      1
+    delete_one                      |           1      1
+    delete_many                     |           1      1
+    update_one, update_many         |           1      1
+    aggregation, map_reduce         |    2      1      3
+      QueryFlags                    |    2             2
+  find and modify                   |           1      1
+    create&#x2F;destroy opts             |              No tests
+    set opts                        |              No tests
+    main function                   |           1      1
+  command                           |           1      1
+  Users                             |           2      2
+  Session Options                   |    2             2
+ERROR: LoadError: LoadError: Some tests did not pass: 9 passed, 0 failed, 19 errored, 0 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:21
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+ERROR: Package Mongoc errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1288
+ [3] #test at .&#x2F;none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:245
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:233 [inlined]
+ [6] #test#61 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:230 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:230 [inlined]
+ [8] #test#60 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:229 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:228
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:228
+ [12] top-level scope at none:10
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 17 hours ago and took 1 minute, 18 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Mongoc/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Mongoc ───────── v0.4.0
+ Installed BinaryProvider ─ v0.5.8
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [4fe8b98c] + Mongoc v0.4.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [4fe8b98c] + Mongoc v0.4.0
+  [ade2ca70] + Dates 
+  [8f399da3] + Libdl 
+  [de0858da] + Printf 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [4ec0a83e] + Unicode 
+  Building Mongoc → `~&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;deps&#x2F;build.log`
+   Testing Mongoc
+ Resolving package versions...
+Status `&#x2F;tmp&#x2F;jl_TYw8bx&#x2F;Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [4fe8b98c] Mongoc v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Test Summary: |  Pass  Total
+BSON          | 10103  10103
+ping: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] command_simple(::Mongoc.Database, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;database.jl:33
+   [2] ping(::Mongoc.Client{Nothing}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;client.jl:70
+   [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:64
+   [4] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:64
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [10] include(::String) at .&#x2F;client.jl:439
+   [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [12] include(::String) at .&#x2F;client.jl:439
+   [13] top-level scope at none:6
+   [14] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [15] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [16] _start() at .&#x2F;client.jl:484
+  
+Server Status: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:69
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] command_simple(::Mongoc.Database, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;database.jl:33
+   [2] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:70
+   [3] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [4] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:70
+   [5] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [7] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [9] include(::String) at .&#x2F;client.jl:439
+   [10] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [11] include(::String) at .&#x2F;client.jl:439
+   [12] top-level scope at none:6
+   [13] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [14] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [15] _start() at .&#x2F;client.jl:484
+  
+Insert One with generated OID: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:89
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] insert_one(::Mongoc.Collection, ::Mongoc.BSON; options::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:59
+   [2] #push!#58 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508 [inlined]
+   [3] push!(::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508
+   [4] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:91
+   [5] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:90
+   [7] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:87
+   [9] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [10] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [11] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [13] include(::String) at .&#x2F;client.jl:439
+   [14] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [15] include(::String) at .&#x2F;client.jl:439
+   [16] top-level scope at none:6
+   [17] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [18] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [19] _start() at .&#x2F;client.jl:484
+  
+Insert One with custom OID: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:104
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] insert_one(::Mongoc.Collection, ::Mongoc.BSON; options::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:59
+   [2] #push!#58 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508 [inlined]
+   [3] push!(::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508
+   [4] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:107
+   [5] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:105
+   [7] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:87
+   [9] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [10] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [11] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [13] include(::String) at .&#x2F;client.jl:439
+   [14] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [15] include(::String) at .&#x2F;client.jl:439
+   [16] top-level scope at none:6
+   [17] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [18] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [19] _start() at .&#x2F;client.jl:484
+  
+new_collection: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:86
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] insert_one(::Mongoc.Collection, ::Mongoc.BSON; options::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:59
+   [2] #push!#58 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508 [inlined]
+   [3] push!(::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508
+   [4] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:119
+   [5] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:87
+   [7] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [9] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [10] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [11] include(::String) at .&#x2F;client.jl:439
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [13] include(::String) at .&#x2F;client.jl:439
+   [14] top-level scope at none:6
+   [15] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [16] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [17] _start() at .&#x2F;client.jl:484
+  
+find_databases: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:144
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] _iterate(::Mongoc.Cursor{Mongoc.Client{Nothing}}, ::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:482
+   [2] iterate at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:489 [inlined] (repeats 2 times)
+   [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:146
+   [4] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:145
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [10] include(::String) at .&#x2F;client.jl:439
+   [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [12] include(::String) at .&#x2F;client.jl:439
+   [13] top-level scope at none:6
+   [14] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [15] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [16] _start() at .&#x2F;client.jl:484
+  
+Binary data: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:164
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] insert_one(::Mongoc.Collection, ::Mongoc.BSON; options::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:59
+   [2] #push!#58 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508 [inlined]
+   [3] push!(::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508
+   [4] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:170
+   [5] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:165
+   [7] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [9] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [10] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [11] include(::String) at .&#x2F;client.jl:439
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [13] include(::String) at .&#x2F;client.jl:439
+   [14] top-level scope at none:6
+   [15] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [16] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [17] _start() at .&#x2F;client.jl:484
+  
+find_collections: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:181
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] _iterate(::Mongoc.Cursor{Mongoc.Database}, ::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:482
+   [2] iterate at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:489 [inlined] (repeats 2 times)
+   [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:182
+   [4] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:182
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [10] include(::String) at .&#x2F;client.jl:439
+   [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [12] include(::String) at .&#x2F;client.jl:439
+   [13] top-level scope at none:6
+   [14] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [15] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [16] _start() at .&#x2F;client.jl:484
+  
+Cleanup: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:196
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] drop at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:347 [inlined]
+   [2] drop(::Mongoc.Collection) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:342
+   [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:198
+   [4] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:197
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [10] include(::String) at .&#x2F;client.jl:439
+   [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [12] include(::String) at .&#x2F;client.jl:439
+   [13] top-level scope at none:6
+   [14] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [15] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [16] _start() at .&#x2F;client.jl:484
+  
+insert_many: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:201
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] execute!(::Mongoc.BulkOperation) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:135
+   [2] insert_many(::Mongoc.Collection, ::Array{Mongoc.BSON,1}; bulk_options::Nothing, insert_options::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:168
+   [3] #append!#59 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514 [inlined]
+   [4] append!(::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:208
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:202
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [10] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [12] include(::String) at .&#x2F;client.jl:439
+   [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [14] include(::String) at .&#x2F;client.jl:439
+   [15] top-level scope at none:6
+   [16] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [17] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [18] _start() at .&#x2F;client.jl:484
+  
+delete_one: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:222
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] insert_one(::Mongoc.Collection, ::Mongoc.BSON; options::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:59
+   [2] #push!#58 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508 [inlined]
+   [3] push!(::Mongoc.Collection, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:508
+   [4] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:226
+   [5] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:223
+   [7] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [9] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [10] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [11] include(::String) at .&#x2F;client.jl:439
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [13] include(::String) at .&#x2F;client.jl:439
+   [14] top-level scope at none:6
+   [15] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [16] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [17] _start() at .&#x2F;client.jl:484
+  
+delete_many: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:240
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] execute!(::Mongoc.BulkOperation) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:135
+   [2] insert_many(::Mongoc.Collection, ::Array{Mongoc.BSON,1}; bulk_options::Nothing, insert_options::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:168
+   [3] #append!#59 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514 [inlined]
+   [4] append!(::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:242
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:241
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [10] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [12] include(::String) at .&#x2F;client.jl:439
+   [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [14] include(::String) at .&#x2F;client.jl:439
+   [15] top-level scope at none:6
+   [16] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [17] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [18] _start() at .&#x2F;client.jl:484
+  
+update_one, update_many: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:253
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] execute!(::Mongoc.BulkOperation) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:135
+   [2] insert_many(::Mongoc.Collection, ::Array{Mongoc.BSON,1}; bulk_options::Nothing, insert_options::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:168
+   [3] #append!#59 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514 [inlined]
+   [4] append!(::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:255
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:254
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [10] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [12] include(::String) at .&#x2F;client.jl:439
+   [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [14] include(::String) at .&#x2F;client.jl:439
+   [15] top-level scope at none:6
+   [16] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [17] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [18] _start() at .&#x2F;client.jl:484
+  
+aggregation, map_reduce: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:287
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] execute!(::Mongoc.BulkOperation) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:135
+   [2] insert_many(::Mongoc.Collection, ::Array{Mongoc.BSON,1}; bulk_options::Nothing, insert_options::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:168
+   [3] #append!#59 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514 [inlined]
+   [4] append!(::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:305
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:289
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:63
+   [10] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [12] include(::String) at .&#x2F;client.jl:439
+   [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [14] include(::String) at .&#x2F;client.jl:439
+   [15] top-level scope at none:6
+   [16] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [17] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [18] _start() at .&#x2F;client.jl:484
+  
+main function: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:384
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] execute!(::Mongoc.BulkOperation) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:135
+   [2] insert_many(::Mongoc.Collection, ::Array{Mongoc.BSON,1}; bulk_options::Nothing, insert_options::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:168
+   [3] #append!#59 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514 [inlined]
+   [4] append!(::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:394
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:385
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:371
+   [10] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [12] include(::String) at .&#x2F;client.jl:439
+   [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [14] include(::String) at .&#x2F;client.jl:439
+   [15] top-level scope at none:6
+   [16] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [17] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [18] _start() at .&#x2F;client.jl:484
+  
+command: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:461
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] execute!(::Mongoc.BulkOperation) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:135
+   [2] insert_many(::Mongoc.Collection, ::Array{Mongoc.BSON,1}; bulk_options::Nothing, insert_options::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:168
+   [3] #append!#59 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514 [inlined]
+   [4] append!(::Mongoc.Collection, ::Array{Mongoc.BSON,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:514
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:473
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:462
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [10] include(::String) at .&#x2F;client.jl:439
+   [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [12] include(::String) at .&#x2F;client.jl:439
+   [13] top-level scope at none:6
+   [14] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [15] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [16] _start() at .&#x2F;client.jl:484
+  
+Users: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:496
+  Test threw exception
+  Expression: Mongoc.has_database(client, DB_NAME)
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] _iterate(::Mongoc.Cursor{Mongoc.Client{Nothing}}, ::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:482
+   [2] iterate at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;collection.jl:489 [inlined] (repeats 2 times)
+   [3] has_database(::Mongoc.Client{Nothing}, ::String; options::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;client.jl:122
+   [4] has_database(::Mongoc.Client{Nothing}, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;client.jl:122
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:496
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:496
+   [8] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+  
+Users: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:494
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No suitable servers found (`serverSelectionTryOnce` set): [connection refused calling ismaster on &#39;localhost:27017&#39;]
+  Stacktrace:
+   [1] command_simple(::Mongoc.Database, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;database.jl:33
+   [2] has_user(::Mongoc.Database, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;database.jl:124
+   [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:503
+   [4] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:496
+   [6] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [8] include(::String) at .&#x2F;client.jl:439
+   [9] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [10] include(::String) at .&#x2F;client.jl:439
+   [11] top-level scope at none:6
+   [12] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [13] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [14] _start() at .&#x2F;client.jl:484
+  
+MongoDB: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:21
+  Got exception outside of a @test
+  BSONError: domain=15, code=13053, message=No servers yet eligible for rescan
+  Stacktrace:
+   [1] command_simple(::Mongoc.Database, ::Mongoc.BSON) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;database.jl:33
+   [2] get_server_mongodb_version(::Mongoc.Client{Nothing}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;src&#x2F;client.jl:79
+   [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:519
+   [4] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:23
+   [6] include(::String) at .&#x2F;client.jl:439
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+   [8] include(::String) at .&#x2F;client.jl:439
+   [9] top-level scope at none:6
+   [10] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [11] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [12] _start() at .&#x2F;client.jl:484
+  
+Test Summary:                       | Pass  Error  Total
+MongoDB                             |    9     19     28
+  Destroy                           |              No tests
+  Types                             |    3             3
+  Connection                        |    4     14     18
+    ping                            |           1      1
+    Server Status                   |           1      1
+    error print                     |    1             1
+    new_collection                  |           3      3
+      Insert One with generated OID |           1      1
+      Insert One with custom OID    |           1      1
+    find_databases                  |           1      1
+    catch cursor error              |    1             1
+    Binary data                     |           1      1
+    find_collections                |           1      1
+    BulkOperation                   |              No tests
+    Cleanup                         |           1      1
+    insert_many                     |           1      1
+    delete_one                      |           1      1
+    delete_many                     |           1      1
+    update_one, update_many         |           1      1
+    aggregation, map_reduce         |    2      1      3
+      QueryFlags                    |    2             2
+  find and modify                   |           1      1
+    create&#x2F;destroy opts             |              No tests
+    set opts                        |              No tests
+    main function                   |           1      1
+  command                           |           1      1
+  Users                             |           2      2
+  Session Options                   |    2             2
+ERROR: LoadError: LoadError: Some tests did not pass: 9 passed, 0 failed, 19 errored, 0 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;mongodb_tests.jl:21
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Mongoc&#x2F;DdY9i&#x2F;test&#x2F;runtests.jl:3
+ERROR: Package Mongoc errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:274
+ [5] #test#56 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [6] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [7] #test#55 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [8] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [10] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [11] top-level scope at none:10
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

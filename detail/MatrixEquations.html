@@ -1,0 +1,2376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="MatrixEquations">MatrixEquations</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#MatrixEquations">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>skipped</strong>: package is not supported by this Julia version.
+      Last evaluation was 1 day, 11 hours ago and took empty period.
+    </p>
+
+    <p>
+      
+      No log was generated.
+    </p>
+
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 14 hours ago and took 6 minutes, 54 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/MatrixEquations/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed FastClosures ──── v0.3.2
+ Installed MatrixEquations ─ v1.0.0
+ Installed LinearOperators ─ v0.6.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [99c1a7ee] + MatrixEquations v1.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [9aa1b823] + FastClosures v0.3.2
+  [5c8ed15e] + LinearOperators v0.6.0
+  [99c1a7ee] + MatrixEquations v1.0.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+   Testing MatrixEquations
+    Status `&#x2F;tmp&#x2F;jl_DwACb0&#x2F;Manifest.toml`
+  [9aa1b823] FastClosures v0.3.2
+  [5c8ed15e] LinearOperators v0.6.0
+  [99c1a7ee] MatrixEquations v1.0.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+  0.017169 seconds (16.39 k allocations: 931.911 KiB)
+  0.029685 seconds (45.33 k allocations: 2.382 MiB)
+  1.399638 seconds (1.06 M allocations: 54.351 MiB, 2.55% gc time)
+  0.300676 seconds (436.32 k allocations: 21.977 MiB, 3.27% gc time)
+  0.326771 seconds (440.77 k allocations: 21.941 MiB, 3.33% gc time)
+  0.215474 seconds (15.63 k allocations: 2.228 MiB, 3.39% gc time)
+  6.826715 seconds (7.10 M allocations: 344.816 MiB, 4.99% gc time)
+  0.118393 seconds (61.50 k allocations: 6.733 MiB)
+  0.667936 seconds (72.21 k allocations: 5.298 MiB)
+  0.455787 seconds (16.82 k allocations: 2.430 MiB)
+  0.434524 seconds (17.71 k allocations: 2.485 MiB)
+  0.817785 seconds (17.88 k allocations: 2.488 MiB)
+  1.626305 seconds (877.03 k allocations: 44.371 MiB, 1.65% gc time)
+  0.268245 seconds (420.17 k allocations: 20.656 MiB, 3.41% gc time)
+  0.301298 seconds (421.18 k allocations: 20.631 MiB, 3.98% gc time)
+  0.311080 seconds (15.61 k allocations: 1.502 MiB)
+  7.064237 seconds (7.06 M allocations: 341.964 MiB, 6.70% gc time)
+  0.233775 seconds (63.17 k allocations: 5.292 MiB)
+  0.404364 seconds (50.75 k allocations: 3.367 MiB)
+  0.404267 seconds (16.83 k allocations: 1.630 MiB, 20.85% gc time)
+  0.321106 seconds (15.98 k allocations: 1.584 MiB)
+  0.608070 seconds (17.88 k allocations: 1.686 MiB)
+  0.027814 seconds (25.95 k allocations: 1.310 MiB)
+  0.022246 seconds (14.45 k allocations: 730.407 KiB)
+  1.275323 seconds (717.95 k allocations: 38.740 MiB, 3.33% gc time)
+  0.279180 seconds (235.93 k allocations: 13.351 MiB, 10.41% gc time)
+  0.301734 seconds (1.82 k allocations: 1.699 MiB)
+  0.515520 seconds (3.56 k allocations: 1.795 MiB)
+  0.086759 seconds (9.07 k allocations: 748.566 KiB)
+  0.784177 seconds (536.15 k allocations: 28.776 MiB, 8.84% gc time)
+  0.269941 seconds (4.70 k allocations: 1.858 MiB)
+  0.242088 seconds (2.99 k allocations: 1.759 MiB)
+  0.506730 seconds (25.15 k allocations: 3.470 MiB)
+  0.413217 seconds (27.55 k allocations: 3.732 MiB)
+  2.559993 seconds (2.09 M allocations: 110.057 MiB, 5.59% gc time)
+  0.447229 seconds (27.16 k allocations: 3.719 MiB)
+  0.766777 seconds (555.01 k allocations: 40.232 MiB, 16.58% gc time)
+  0.528203 seconds (135.41 k allocations: 19.653 MiB, 1.97% gc time)
+  0.303585 seconds (137.83 k allocations: 19.862 MiB)
+  0.583787 seconds (25.63 k allocations: 3.500 MiB)
+  0.426324 seconds (31.19 k allocations: 3.926 MiB)
+  0.369207 seconds (26.36 k allocations: 3.665 MiB)
+  0.449356 seconds (28.78 k allocations: 3.937 MiB)
+  0.271128 seconds (49 allocations: 2.359 MiB)
+  0.632968 seconds (34.14 k allocations: 4.140 MiB, 8.78% gc time)
+  0.513086 seconds (27.58 k allocations: 3.796 MiB)
+  0.372850 seconds (29.94 k allocations: 3.989 MiB)
+  1.057596 seconds (651.14 k allocations: 33.227 MiB, 1.61% gc time)
+  0.348400 seconds (231.90 k allocations: 12.311 MiB)
+  0.354641 seconds (1.81 k allocations: 917.876 KiB)
+  0.324759 seconds (3.56 k allocations: 1016.599 KiB)
+  0.025941 seconds (9.06 k allocations: 592.160 KiB)
+  1.158222 seconds (526.13 k allocations: 27.083 MiB, 2.43% gc time)
+  0.774597 seconds (4.69 k allocations: 1.055 MiB)
+  0.500698 seconds (2.98 k allocations: 979.980 KiB)
+  0.504679 seconds (25.14 k allocations: 2.368 MiB, 2.09% gc time)
+  0.871607 seconds (27.55 k allocations: 2.554 MiB)
+  2.323585 seconds (1.95 M allocations: 97.709 MiB, 3.27% gc time)
+  0.531739 seconds (27.16 k allocations: 2.541 MiB)
+  0.607993 seconds (558.38 k allocations: 34.795 MiB, 11.21% gc time)
+  0.357602 seconds (131.71 k allocations: 13.620 MiB, 2.67% gc time)
+  0.463440 seconds (134.12 k allocations: 13.780 MiB)
+  0.323721 seconds (25.63 k allocations: 2.398 MiB)
+  0.511656 seconds (31.19 k allocations: 2.748 MiB)
+  0.172526 seconds (26.36 k allocations: 2.487 MiB)
+  0.098380 seconds (28.78 k allocations: 2.682 MiB)
+  0.092158 seconds (49 allocations: 1.181 MiB)
+  0.120905 seconds (34.12 k allocations: 2.923 MiB)
+  0.271320 seconds (27.58 k allocations: 2.580 MiB)
+  0.273874 seconds (29.94 k allocations: 2.735 MiB)
+  0.007190 seconds (45 allocations: 4.484 KiB)
+  0.083522 seconds (12.20 k allocations: 640.632 KiB, 27.17% gc time)
+  0.018628 seconds (146 allocations: 10.719 KiB)
+  0.023753 seconds (99.52 k allocations: 16.319 MiB)
+  5.417699 seconds (4.89 M allocations: 246.124 MiB, 7.68% gc time)
+  0.098975 seconds (55.94 k allocations: 5.903 MiB)
+  0.055378 seconds (45.21 k allocations: 5.349 MiB)
+  0.115750 seconds (66.14 k allocations: 7.498 MiB, 14.82% gc time)
+  0.018564 seconds (92.16 k allocations: 16.152 MiB)
+  0.022633 seconds (605 allocations: 37.862 KiB)
+  0.037520 seconds (86 allocations: 5.094 KiB)
+  0.018048 seconds (44.62 k allocations: 5.313 MiB)
+  0.013286 seconds (47.71 k allocations: 5.360 MiB)
+  0.008541 seconds (44 allocations: 4.438 KiB)
+  0.104754 seconds (12.20 k allocations: 640.476 KiB)
+  0.023477 seconds (91 allocations: 7.063 KiB)
+  0.111813 seconds (103.11 k allocations: 11.509 MiB, 51.04% gc time)
+  5.160166 seconds (4.91 M allocations: 239.431 MiB, 5.63% gc time)
+  0.071152 seconds (57.53 k allocations: 4.811 MiB)
+  0.036892 seconds (46.79 k allocations: 4.256 MiB)
+  0.075633 seconds (67.83 k allocations: 5.806 MiB)
+  0.191473 seconds (95.52 k allocations: 11.382 MiB, 90.25% gc time)
+  0.014074 seconds (604 allocations: 37.800 KiB)
+  0.017052 seconds (86 allocations: 5.094 KiB)
+  0.033026 seconds (46.21 k allocations: 4.220 MiB)
+  0.007036 seconds (49.41 k allocations: 4.269 MiB)
+  0.019401 seconds (15.08 k allocations: 767.983 KiB)
+  0.017900 seconds (17.55 k allocations: 916.208 KiB)
+  0.721309 seconds (194.14 k allocations: 11.218 MiB)
+  0.197754 seconds (244.00 k allocations: 12.162 MiB)
+  0.210666 seconds (252.67 k allocations: 12.889 MiB, 6.94% gc time)
+  0.099208 seconds (15.61 k allocations: 2.228 MiB)
+  1.035855 seconds (705.30 k allocations: 38.289 MiB, 2.41% gc time)
+  0.135410 seconds (69.10 k allocations: 10.112 MiB, 17.13% gc time)
+  0.497364 seconds (15.88 k allocations: 2.381 MiB)
+  0.334850 seconds (16.82 k allocations: 2.430 MiB, 6.21% gc time)
+  0.171855 seconds (15.97 k allocations: 2.386 MiB)
+  0.300133 seconds (17.88 k allocations: 2.488 MiB)
+  0.738135 seconds (198.65 k allocations: 10.667 MiB)
+  0.189978 seconds (248.19 k allocations: 12.128 MiB)
+  0.420775 seconds (265.82 k allocations: 13.447 MiB)
+  0.187791 seconds (15.61 k allocations: 1.502 MiB)
+  1.237987 seconds (710.38 k allocations: 35.575 MiB, 1.11% gc time)
+  0.173779 seconds (71.05 k allocations: 7.292 MiB)
+  0.247457 seconds (15.88 k allocations: 1.579 MiB)
+  0.184866 seconds (16.83 k allocations: 1.632 MiB)
+  0.214501 seconds (15.97 k allocations: 1.583 MiB)
+  0.267675 seconds (17.88 k allocations: 1.686 MiB)
+  0.677358 seconds (221.82 k allocations: 12.826 MiB, 1.79% gc time)
+  0.435051 seconds (9.33 k allocations: 2.245 MiB)
+  0.431359 seconds (3.27 k allocations: 1.912 MiB)
+  0.419915 seconds (9.48 k allocations: 2.209 MiB)
+  0.439274 seconds (3.81 k allocations: 1.936 MiB)
+  0.020610 seconds (13.95 k allocations: 847.506 KiB)
+  0.015833 seconds (12.63 k allocations: 753.401 KiB)
+  0.485390 seconds (33.90 k allocations: 3.931 MiB)
+  0.331166 seconds (6.85 k allocations: 2.074 MiB)
+  0.302536 seconds (7.54 k allocations: 2.105 MiB)
+  0.493894 seconds (25.37 k allocations: 3.480 MiB)
+  0.377616 seconds (27.78 k allocations: 3.742 MiB)
+  1.223246 seconds (859.71 k allocations: 49.898 MiB, 2.50% gc time)
+  0.233904 seconds (127.87 k allocations: 18.845 MiB, 3.36% gc time)
+  0.111228 seconds (133.93 k allocations: 19.493 MiB, 10.20% gc time)
+  0.164774 seconds (136.34 k allocations: 19.702 MiB, 9.80% gc time)
+  0.288334 seconds (25.11 k allocations: 3.465 MiB)
+  0.550057 seconds (31.42 k allocations: 3.937 MiB)
+  0.722736 seconds (26.59 k allocations: 3.674 MiB)
+  0.471500 seconds (29.00 k allocations: 3.945 MiB, 5.64% gc time)
+  0.309476 seconds (26.59 k allocations: 3.682 MiB)
+  0.387427 seconds (34.36 k allocations: 4.150 MiB)
+  0.372097 seconds (27.80 k allocations: 3.805 MiB)
+  0.313820 seconds (30.17 k allocations: 4.001 MiB)
+  0.618978 seconds (250.92 k allocations: 12.997 MiB)
+  0.089023 seconds (6.99 k allocations: 1.240 MiB)
+  0.100177 seconds (3.27 k allocations: 1.033 MiB)
+  0.171857 seconds (6.59 k allocations: 1.175 MiB)
+  0.142890 seconds (3.81 k allocations: 1.058 MiB)
+  0.203352 seconds (7.45 k allocations: 417.309 KiB, 91.51% gc time)
+  0.015554 seconds (10.32 k allocations: 554.104 KiB)
+  0.379170 seconds (33.90 k allocations: 2.830 MiB)
+  0.276129 seconds (6.85 k allocations: 1.196 MiB)
+  0.088647 seconds (7.53 k allocations: 1.226 MiB)
+  0.095809 seconds (25.37 k allocations: 2.378 MiB)
+  0.254544 seconds (27.78 k allocations: 2.564 MiB)
+  1.183966 seconds (863.74 k allocations: 44.606 MiB, 3.46% gc time)
+  0.251772 seconds (131.29 k allocations: 13.534 MiB, 4.18% gc time)
+  0.086842 seconds (130.28 k allocations: 13.479 MiB)
+  0.180741 seconds (132.69 k allocations: 13.639 MiB, 10.70% gc time)
+  0.220405 seconds (25.11 k allocations: 2.364 MiB)
+  0.160380 seconds (31.42 k allocations: 2.759 MiB)
+  0.116542 seconds (26.59 k allocations: 2.496 MiB)
+  0.132831 seconds (29.00 k allocations: 2.691 MiB)
+  0.123595 seconds (26.59 k allocations: 2.504 MiB)
+  0.137131 seconds (34.35 k allocations: 2.934 MiB)
+  0.106802 seconds (27.80 k allocations: 2.589 MiB)
+  0.321715 seconds (30.17 k allocations: 2.746 MiB)
+  0.042534 seconds (59.15 k allocations: 8.873 MiB, 48.67% gc time)
+  0.738595 seconds (708.36 k allocations: 40.269 MiB, 2.96% gc time)
+  0.012210 seconds (55.60 k allocations: 8.763 MiB)
+  0.044390 seconds (75.80 k allocations: 12.406 MiB, 15.71% gc time)
+  0.008332 seconds (44 allocations: 4.438 KiB)
+  0.036140 seconds (12.20 k allocations: 640.116 KiB)
+  0.011679 seconds (91 allocations: 7.063 KiB)
+  0.036521 seconds (97.98 k allocations: 16.163 MiB, 24.32% gc time)
+  0.020869 seconds (95.13 k allocations: 16.063 MiB)
+  1.046145 seconds (924.99 k allocations: 56.970 MiB, 3.49% gc time)
+  0.136313 seconds (118.47 k allocations: 22.251 MiB, 8.82% gc time)
+  0.019137 seconds (61.23 k allocations: 6.378 MiB)
+  0.710211 seconds (711.30 k allocations: 36.414 MiB, 5.03% gc time)
+  0.011410 seconds (57.57 k allocations: 6.288 MiB)
+  0.056300 seconds (78.19 k allocations: 8.555 MiB, 23.30% gc time)
+  0.011445 seconds (44 allocations: 4.438 KiB)
+  0.028836 seconds (12.20 k allocations: 641.288 KiB)
+  0.011189 seconds (91 allocations: 7.063 KiB)
+  0.017884 seconds (101.51 k allocations: 11.363 MiB)
+  0.024960 seconds (98.55 k allocations: 11.304 MiB, 35.22% gc time)
+  1.086795 seconds (929.41 k allocations: 49.581 MiB, 2.01% gc time)
+  0.100181 seconds (122.42 k allocations: 14.897 MiB, 18.15% gc time)
+  0.148975 seconds (51.55 k allocations: 6.370 MiB)
+  0.072893 seconds (9 allocations: 3.815 MiB)
+  0.077657 seconds (17 allocations: 5.731 MiB)
+  0.168743 seconds (9 allocations: 3.815 MiB, 62.73% gc time)
+  0.063744 seconds (18 allocations: 7.638 MiB)
+  0.106658 seconds (9 allocations: 3.815 MiB)
+  0.229596 seconds (51.61 k allocations: 12.134 MiB)
+  0.059780 seconds (9 allocations: 3.815 MiB)
+  0.342334 seconds (134.63 k allocations: 9.930 MiB)
+  0.003375 seconds (20 allocations: 2.864 MiB)
+  0.001968 seconds (20 allocations: 2.864 MiB)
+  0.003223 seconds (20 allocations: 2.864 MiB)
+  1.885096 seconds (1.79 M allocations: 90.549 MiB, 4.10% gc time)
+  0.060433 seconds (1.76 k allocations: 307.612 KiB)
+  0.273653 seconds (39.53 k allocations: 2.342 MiB)
+  0.098097 seconds (16.97 k allocations: 1.153 MiB)
+  0.077410 seconds (16.97 k allocations: 1.153 MiB)
+  0.949752 seconds (1.02 M allocations: 51.544 MiB, 8.55% gc time)
+  4.271252 seconds (3.64 M allocations: 175.484 MiB, 3.77% gc time)
+  1.008175 seconds (383.40 k allocations: 19.536 MiB)
+  0.228050 seconds (104.71 k allocations: 5.558 MiB)
+  0.307787 seconds (105.93 k allocations: 5.624 MiB)
+  3.534410 seconds (3.46 M allocations: 172.956 MiB, 7.94% gc time)
+  0.009451 seconds (1.88 k allocations: 349.573 KiB)
+  0.085981 seconds (14.09 k allocations: 1.029 MiB)
+  2.393122 seconds (2.08 M allocations: 101.635 MiB, 5.59% gc time)
+  0.051474 seconds (189 allocations: 584.516 KiB)
+  0.590160 seconds (268.00 k allocations: 13.764 MiB)
+  1.539640 seconds (1.44 M allocations: 72.114 MiB, 5.00% gc time)
+  0.133362 seconds (13.72 k allocations: 1.371 MiB)
+  1.758504 seconds (1.32 M allocations: 66.448 MiB, 2.68% gc time)
+  0.727974 seconds (275.23 k allocations: 14.027 MiB)
+  3.051603 seconds (3.17 M allocations: 172.161 MiB, 4.85% gc time)
+  0.258028 seconds (30.93 k allocations: 8.698 MiB, 9.76% gc time)
+  0.222313 seconds (15.00 k allocations: 7.821 MiB)
+  2.717323 seconds (2.07 M allocations: 119.149 MiB, 3.99% gc time)
+  0.373175 seconds (15.01 k allocations: 14.334 MiB)
+  0.705334 seconds (463.89 k allocations: 28.882 MiB, 6.89% gc time)
+  0.160969 seconds (28.42 k allocations: 8.587 MiB)
+  0.859625 seconds (464.12 k allocations: 35.416 MiB, 3.13% gc time)
+  1.207728 seconds (333.89 k allocations: 29.058 MiB, 4.37% gc time)
+  1.345065 seconds (1.39 M allocations: 68.790 MiB, 3.79% gc time)
+  0.008858 seconds (1.75 k allocations: 123.800 KiB)
+  0.110251 seconds (38.71 k allocations: 2.110 MiB)
+  0.041298 seconds (16.97 k allocations: 998.125 KiB)
+  0.104670 seconds (16.96 k allocations: 997.063 KiB)
+  0.493022 seconds (384.63 k allocations: 19.217 MiB, 3.54% gc time)
+  3.292465 seconds (3.64 M allocations: 175.354 MiB, 4.90% gc time)
+  0.448637 seconds (383.40 k allocations: 19.196 MiB, 3.84% gc time)
+  0.153064 seconds (104.70 k allocations: 5.206 MiB)
+  0.120589 seconds (105.92 k allocations: 5.259 MiB, 12.00% gc time)
+  3.555720 seconds (3.52 M allocations: 173.095 MiB, 7.96% gc time)
+  0.047480 seconds (1.98 k allocations: 155.058 KiB)
+  0.042676 seconds (14.19 k allocations: 851.831 KiB)
+  1.986884 seconds (2.10 M allocations: 102.027 MiB, 3.43% gc time)
+  0.030309 seconds (182 allocations: 81.703 KiB)
+  1.448740 seconds (1.18 M allocations: 59.193 MiB, 5.15% gc time)
+  0.445504 seconds (572.69 k allocations: 27.747 MiB, 3.92% gc time)
+  0.029277 seconds (13.70 k allocations: 829.991 KiB)
+  0.595419 seconds (572.66 k allocations: 27.786 MiB, 6.87% gc time)
+  0.390517 seconds (275.38 k allocations: 12.922 MiB, 5.50% gc time)
+  1.795893 seconds (2.18 M allocations: 111.087 MiB, 6.10% gc time)
+  0.020245 seconds (18.09 k allocations: 1.236 MiB)
+  0.006679 seconds (2.16 k allocations: 376.609 KiB)
+  1.658496 seconds (1.97 M allocations: 100.678 MiB, 5.81% gc time)
+  0.055669 seconds (2.17 k allocations: 552.594 KiB)
+  0.453360 seconds (451.04 k allocations: 21.415 MiB, 3.59% gc time)
+  0.051165 seconds (15.57 k allocations: 1.117 MiB)
+  0.510722 seconds (451.01 k allocations: 21.585 MiB, 3.64% gc time)
+  0.552250 seconds (320.79 k allocations: 15.207 MiB, 6.16% gc time)
+  0.013058 seconds (6.30 k allocations: 323.559 KiB)
+  0.416120 seconds (311.78 k allocations: 15.348 MiB, 7.87% gc time)
+  0.139590 seconds (23.16 k allocations: 1.202 MiB)
+  0.058291 seconds (8.31 k allocations: 459.249 KiB)
+  0.041682 seconds (15.37 k allocations: 879.027 KiB)
+  0.021332 seconds (3.05 k allocations: 175.751 KiB)
+  0.180401 seconds (192.03 k allocations: 10.250 MiB, 11.87% gc time)
+  0.046685 seconds (21.89 k allocations: 1.207 MiB)
+  0.875494 seconds (15.91 k allocations: 11.809 MiB, 1.39% gc time)
+  0.168757 seconds (138.51 k allocations: 7.434 MiB)
+  0.064955 seconds (20.14 k allocations: 1.249 MiB)
+  1.423695 seconds (571.15 k allocations: 50.985 MiB, 2.46% gc time)
+  0.094616 seconds (55.88 k allocations: 3.230 MiB)
+  0.080206 seconds (60.46 k allocations: 3.238 MiB)
+  0.087700 seconds (59.00 k allocations: 3.157 MiB)
+  0.077266 seconds (57.91 k allocations: 3.332 MiB)
+  0.074694 seconds (58.41 k allocations: 3.363 MiB)
+  0.124730 seconds (91.22 k allocations: 4.937 MiB, 12.26% gc time)
+  0.288370 seconds (309.53 k allocations: 15.218 MiB)
+  0.517825 seconds (485.90 k allocations: 23.852 MiB, 2.22% gc time)
+  0.025031 seconds (8.32 k allocations: 459.671 KiB)
+  0.079025 seconds (13.85 k allocations: 794.691 KiB)
+  0.009608 seconds (3.05 k allocations: 173.220 KiB)
+  0.194432 seconds (141.21 k allocations: 7.262 MiB, 14.88% gc time)
+  0.038659 seconds (21.89 k allocations: 1.152 MiB)
+  0.580441 seconds (15.90 k allocations: 6.305 MiB)
+  0.146470 seconds (138.28 k allocations: 7.229 MiB)
+  0.035124 seconds (19.93 k allocations: 1.124 MiB)
+  1.731336 seconds (580.74 k allocations: 40.495 MiB, 2.45% gc time)
+  0.094847 seconds (55.67 k allocations: 3.014 MiB)
+  0.096942 seconds (60.45 k allocations: 3.142 MiB)
+  0.096650 seconds (59.00 k allocations: 3.061 MiB)
+  0.079634 seconds (57.72 k allocations: 3.128 MiB)
+  0.086636 seconds (58.20 k allocations: 3.154 MiB)
+  0.203329 seconds (89.25 k allocations: 4.640 MiB, 7.58% gc time)
+  0.005945 seconds (636 allocations: 39.726 KiB)
+  0.020544 seconds (7.96 k allocations: 459.638 KiB)
+  0.019651 seconds (7.96 k allocations: 459.638 KiB)
+  0.008521 seconds (71 allocations: 4.453 KiB)
+  0.284757 seconds (254.07 k allocations: 12.648 MiB)
+  0.010060 seconds (4.68 k allocations: 288.280 KiB)
+  0.008888 seconds (4.67 k allocations: 288.030 KiB)
+  0.009614 seconds (5.31 k allocations: 327.289 KiB)
+  0.003957 seconds (647 allocations: 40.462 KiB)
+  0.009658 seconds (4.63 k allocations: 257.062 KiB)
+  0.029178 seconds (4.63 k allocations: 256.858 KiB)
+  0.006458 seconds (96 allocations: 5.703 KiB)
+  0.005746 seconds (635 allocations: 39.726 KiB)
+  0.008090 seconds (4.62 k allocations: 256.200 KiB)
+  0.007660 seconds (4.62 k allocations: 256.200 KiB)
+  0.000152 seconds (14 allocations: 656 bytes)
+  0.251651 seconds (245.74 k allocations: 12.155 MiB, 10.12% gc time)
+  0.009353 seconds (4.67 k allocations: 274.202 KiB)
+  0.010098 seconds (4.68 k allocations: 274.405 KiB)
+  0.009946 seconds (5.30 k allocations: 313.055 KiB)
+  0.003985 seconds (647 allocations: 40.509 KiB)
+  0.008868 seconds (4.63 k allocations: 256.890 KiB)
+  0.008992 seconds (4.63 k allocations: 256.858 KiB)
+  0.007034 seconds (96 allocations: 5.703 KiB)
+  0.021393 seconds (28.45 k allocations: 1.519 MiB)
+  0.021367 seconds (26.17 k allocations: 1.410 MiB)
+  0.048775 seconds (3.31 k allocations: 215.772 KiB)
+  0.052891 seconds (4.83 k allocations: 267.236 KiB)
+  0.027346 seconds (3.13 k allocations: 168.538 KiB)
+  0.015997 seconds (13.12 k allocations: 752.112 KiB)
+  0.008090 seconds (4.07 k allocations: 231.366 KiB)
+  1.134004 seconds (792.56 k allocations: 35.855 MiB, 3.36% gc time)
+  0.046072 seconds (37.22 k allocations: 2.412 MiB)
+  0.063979 seconds (36.75 k allocations: 2.396 MiB)
+  0.062754 seconds (58.69 k allocations: 3.524 MiB)
+  0.809332 seconds (646.28 k allocations: 31.745 MiB, 4.93% gc time)
+  0.077036 seconds (58.04 k allocations: 4.049 MiB)
+  0.048327 seconds (34.00 k allocations: 3.085 MiB)
+  0.059038 seconds (55.68 k allocations: 4.204 MiB)
+  0.330856 seconds (23.25 k allocations: 17.631 MiB, 9.55% gc time)
+  0.000016 seconds (6 allocations: 224 bytes)
+  0.000018 seconds (6 allocations: 192 bytes)
+  0.068149 seconds (3.31 k allocations: 203.632 KiB)
+  0.358093 seconds (222.93 k allocations: 11.067 MiB, 7.65% gc time)
+  0.019871 seconds (3.14 k allocations: 168.960 KiB)
+  0.023958 seconds (10.87 k allocations: 627.850 KiB)
+  0.012131 seconds (4.07 k allocations: 228.835 KiB)
+  1.268416 seconds (779.95 k allocations: 34.958 MiB, 1.97% gc time)
+  0.058057 seconds (36.64 k allocations: 2.162 MiB)
+  0.053072 seconds (36.20 k allocations: 2.152 MiB)
+  0.085227 seconds (58.12 k allocations: 3.281 MiB, 27.09% gc time)
+  0.909570 seconds (627.49 k allocations: 30.124 MiB, 2.03% gc time)
+  0.081772 seconds (57.84 k allocations: 3.574 MiB)
+  0.043974 seconds (33.78 k allocations: 2.484 MiB)
+  0.076388 seconds (55.47 k allocations: 3.604 MiB)
+  0.998563 seconds (23.24 k allocations: 9.382 MiB, 2.64% gc time)
+  0.007036 seconds (8.00 k allocations: 867.413 KiB)
+  0.010842 seconds (12.22 k allocations: 1.066 MiB)
+  0.009784 seconds (11.75 k allocations: 1.051 MiB)
+  0.001548 seconds (7.38 k allocations: 828.406 KiB)
+  1.158230 seconds (750.04 k allocations: 33.612 MiB, 1.30% gc time)
+  0.031194 seconds (14.91 k allocations: 1.346 MiB, 55.62% gc time)
+  0.012726 seconds (16.77 k allocations: 1.428 MiB)
+  0.013226 seconds (15.74 k allocations: 1.378 MiB)
+  0.006249 seconds (5.81 k allocations: 1.187 MiB)
+  0.010281 seconds (9.79 k allocations: 1.661 MiB)
+  0.010802 seconds (9.79 k allocations: 1.398 MiB)
+  0.008792 seconds (5.25 k allocations: 1.415 MiB)
+  0.006238 seconds (7.43 k allocations: 666.554 KiB)
+  0.008556 seconds (11.63 k allocations: 889.935 KiB)
+  0.009423 seconds (11.20 k allocations: 880.169 KiB)
+  0.001215 seconds (6.81 k allocations: 631.453 KiB)
+  1.103818 seconds (749.52 k allocations: 33.310 MiB, 3.28% gc time)
+  0.017038 seconds (14.19 k allocations: 1.047 MiB)
+  0.013392 seconds (15.77 k allocations: 1.127 MiB)
+  0.013299 seconds (15.01 k allocations: 1.089 MiB)
+  0.006683 seconds (5.81 k allocations: 849.399 KiB)
+  0.012155 seconds (9.79 k allocations: 1.179 MiB)
+  0.014775 seconds (9.79 k allocations: 1.041 MiB)
+  0.012619 seconds (5.25 k allocations: 955.906 KiB)
+  0.115274 seconds (2.64 k allocations: 149.530 KiB)
+  0.182412 seconds (209.11 k allocations: 10.352 MiB)
+  0.019066 seconds (1.58 k allocations: 99.438 KiB)
+  0.016428 seconds (2.71 k allocations: 145.407 KiB)
+  0.287335 seconds (304.54 k allocations: 15.289 MiB, 10.22% gc time)
+  1.620943 seconds (1.07 M allocations: 47.035 MiB, 2.37% gc time)
+  0.252237 seconds (155.94 k allocations: 8.849 MiB, 13.68% gc time)
+  1.117366 seconds (696.83 k allocations: 33.398 MiB, 1.87% gc time)
+  0.064306 seconds (48.13 k allocations: 4.495 MiB)
+  0.107234 seconds (91.58 k allocations: 6.740 MiB, 14.40% gc time)
+  0.098228 seconds (91.61 k allocations: 6.734 MiB)
+  0.004909 seconds (14.13 k allocations: 1.576 MiB)
+  0.055139 seconds (46.04 k allocations: 4.300 MiB)
+  0.089532 seconds (96.61 k allocations: 5.852 MiB)
+  0.092085 seconds (90.71 k allocations: 5.549 MiB)
+  0.124824 seconds (96.36 k allocations: 5.835 MiB, 20.09% gc time)
+  0.005069 seconds (13.65 k allocations: 1.570 MiB)
+  0.004603 seconds (14.13 k allocations: 1.597 MiB)
+  0.004541 seconds (14.60 k allocations: 1.603 MiB)
+  0.110899 seconds (96.56 k allocations: 6.938 MiB)
+  0.889606 seconds (13.17 k allocations: 11.645 MiB, 1.47% gc time)
+  1.049951 seconds (13.17 k allocations: 22.639 MiB, 1.24% gc time)
+  0.290731 seconds (14.43 k allocations: 11.727 MiB)
+  1.644881 seconds (128.66 k allocations: 28.517 MiB, 14.65% gc time)
+  0.284951 seconds (2.64 k allocations: 138.343 KiB)
+  0.445342 seconds (209.11 k allocations: 10.343 MiB)
+  0.053481 seconds (1.58 k allocations: 91.313 KiB)
+  0.108183 seconds (2.71 k allocations: 137.126 KiB)
+  0.256826 seconds (241.44 k allocations: 12.062 MiB, 11.18% gc time)
+  1.698814 seconds (1.02 M allocations: 43.852 MiB, 1.53% gc time)
+  0.160688 seconds (132.90 k allocations: 7.394 MiB)
+  1.243548 seconds (655.67 k allocations: 30.280 MiB, 1.94% gc time)
+  0.035364 seconds (32.44 k allocations: 2.896 MiB)
+  0.094810 seconds (91.38 k allocations: 5.895 MiB, 14.65% gc time)
+  0.081049 seconds (91.40 k allocations: 5.888 MiB)
+  0.017604 seconds (12.36 k allocations: 1.132 MiB, 81.20% gc time)
+  0.047708 seconds (45.84 k allocations: 3.479 MiB)
+  0.072290 seconds (94.79 k allocations: 5.374 MiB)
+  0.072145 seconds (88.99 k allocations: 5.100 MiB)
+  0.077660 seconds (94.59 k allocations: 5.355 MiB)
+  0.003278 seconds (11.95 k allocations: 1.122 MiB)
+  0.014457 seconds (12.37 k allocations: 1.114 MiB, 78.88% gc time)
+  0.003646 seconds (12.78 k allocations: 1.124 MiB)
+  0.097994 seconds (96.36 k allocations: 6.101 MiB)
+  0.482050 seconds (13.17 k allocations: 6.146 MiB)
+  0.630842 seconds (13.17 k allocations: 11.645 MiB, 1.08% gc time)
+  0.257384 seconds (14.43 k allocations: 6.226 MiB)
+  0.923938 seconds (128.66 k allocations: 17.537 MiB, 0.86% gc time)
+  0.023818 seconds (14.79 k allocations: 1.521 MiB)
+  0.018564 seconds (24.34 k allocations: 2.060 MiB)
+  0.058864 seconds (23.40 k allocations: 2.028 MiB)
+  0.030540 seconds (14.15 k allocations: 1.502 MiB)
+  1.426886 seconds (1.02 M allocations: 44.598 MiB, 2.62% gc time)
+  0.032263 seconds (24.68 k allocations: 2.303 MiB)
+  0.027774 seconds (28.57 k allocations: 2.481 MiB)
+  0.026189 seconds (25.74 k allocations: 2.352 MiB)
+  0.008420 seconds (11.05 k allocations: 2.339 MiB)
+  0.027675 seconds (16.79 k allocations: 2.653 MiB, 57.97% gc time)
+  0.016468 seconds (16.78 k allocations: 3.176 MiB)
+  0.020610 seconds (10.42 k allocations: 2.824 MiB)
+  0.009545 seconds (13.03 k allocations: 1.123 MiB)
+  0.010576 seconds (19.18 k allocations: 1.429 MiB)
+  0.013767 seconds (18.36 k allocations: 1.428 MiB)
+  0.002004 seconds (12.33 k allocations: 1.063 MiB)
+  1.909034 seconds (1.02 M allocations: 44.015 MiB, 1.46% gc time)
+  0.021535 seconds (22.52 k allocations: 1.688 MiB)
+  0.013752 seconds (25.44 k allocations: 1.868 MiB)
+  0.012673 seconds (23.52 k allocations: 1.726 MiB)
+  0.005877 seconds (11.05 k allocations: 1.625 MiB)
+  0.024208 seconds (16.79 k allocations: 1.938 MiB, 55.36% gc time)
+  0.011792 seconds (16.78 k allocations: 2.214 MiB)
+  0.009620 seconds (10.42 k allocations: 1.862 MiB)
+  0.185676 seconds (203.34 k allocations: 10.416 MiB)
+  0.002133 seconds (65 allocations: 128.031 KiB)
+  0.196659 seconds (175.58 k allocations: 9.155 MiB, 4.91% gc time)
+  0.005009 seconds (63 allocations: 245.609 KiB)
+  0.095749 seconds (56.01 k allocations: 3.096 MiB)
+  0.128807 seconds (60.74 k allocations: 3.341 MiB)
+  0.102769 seconds (78.00 k allocations: 4.038 MiB)
+  1.614826 seconds (77.50 k allocations: 36.843 MiB, 1.16% gc time)
+  1.143550 seconds (48 allocations: 33.034 MiB, 7.56% gc time)
+  1.531954 seconds (100.69 k allocations: 71.050 MiB, 3.92% gc time)
+  0.859500 seconds (50 allocations: 66.055 MiB, 26.44% gc time)
+  0.313652 seconds (171.86 k allocations: 8.779 MiB)
+  0.001780 seconds (65 allocations: 68.031 KiB)
+  0.211952 seconds (175.16 k allocations: 9.010 MiB)
+  0.003806 seconds (63 allocations: 125.922 KiB)
+  0.090817 seconds (55.61 k allocations: 2.952 MiB)
+  0.128349 seconds (60.33 k allocations: 3.176 MiB, 16.33% gc time)
+  0.089923 seconds (78.00 k allocations: 3.977 MiB)
+  2.191240 seconds (100.69 k allocations: 21.528 MiB, 0.85% gc time)
+  1.148153 seconds (48 allocations: 16.523 MiB, 2.47% gc time)
+  0.611577 seconds (100.70 k allocations: 38.035 MiB, 2.21% gc time)
+  0.265801 seconds (48 allocations: 33.034 MiB, 4.79% gc time)
+  0.140852 seconds (59.68 k allocations: 3.138 MiB)
+  0.076870 seconds (54.97 k allocations: 2.938 MiB)
+  0.002161 seconds (75 allocations: 136.969 KiB)
+  0.087178 seconds (57.45 k allocations: 3.048 MiB)
+  0.100321 seconds (60.24 k allocations: 3.303 MiB)
+  0.109703 seconds (102.44 k allocations: 5.504 MiB)
+  0.010319 seconds (102 allocations: 265.188 KiB)
+  0.102831 seconds (58.25 k allocations: 3.225 MiB, 11.13% gc time)
+  0.133735 seconds (111.10 k allocations: 6.116 MiB)
+  0.444892 seconds (119.75 k allocations: 38.975 MiB, 4.14% gc time)
+  0.154732 seconds (59.68 k allocations: 3.072 MiB)
+  0.103273 seconds (54.97 k allocations: 2.880 MiB)
+  0.001928 seconds (75 allocations: 72.641 KiB)
+  0.079483 seconds (57.45 k allocations: 2.980 MiB)
+  0.075898 seconds (59.84 k allocations: 3.139 MiB)
+  0.102942 seconds (102.04 k allocations: 5.360 MiB)
+  0.012296 seconds (102 allocations: 136.938 KiB)
+  0.093687 seconds (57.84 k allocations: 3.060 MiB)
+  0.159515 seconds (104.24 k allocations: 5.552 MiB, 16.12% gc time)
+  0.455069 seconds (119.75 k allocations: 22.466 MiB, 2.03% gc time)
+  0.021842 seconds (1.01 k allocations: 61.080 KiB)
+  0.000581 seconds (21 allocations: 1.594 KiB)
+  0.021309 seconds (1.01 k allocations: 60.955 KiB)
+  0.000720 seconds (21 allocations: 1.594 KiB)
+  0.000553 seconds (18 allocations: 1.375 KiB)
+  0.000499 seconds (18 allocations: 1.375 KiB)
+  0.000671 seconds (18 allocations: 1.375 KiB)
+  0.000642 seconds (18 allocations: 1.375 KiB)
+  0.022081 seconds (13.80 k allocations: 712.477 KiB)
+  0.089653 seconds (64.90 k allocations: 3.157 MiB)
+  0.077327 seconds (60.58 k allocations: 2.936 MiB)
+  0.048107 seconds (26.65 k allocations: 1.345 MiB)
+  0.024681 seconds (12.79 k allocations: 648.307 KiB)
+  0.027779 seconds (15.74 k allocations: 800.135 KiB)
+  0.017171 seconds (1.01 k allocations: 61.096 KiB)
+  0.000466 seconds (21 allocations: 1.594 KiB)
+  0.019056 seconds (1.01 k allocations: 60.955 KiB)
+  0.000626 seconds (21 allocations: 1.594 KiB)
+  0.000442 seconds (18 allocations: 1.375 KiB)
+  0.000398 seconds (18 allocations: 1.375 KiB)
+  0.000654 seconds (18 allocations: 1.375 KiB)
+  0.000614 seconds (18 allocations: 1.375 KiB)
+  0.019884 seconds (13.80 k allocations: 711.930 KiB)
+  0.086302 seconds (63.47 k allocations: 3.042 MiB)
+  0.081123 seconds (60.58 k allocations: 2.927 MiB)
+  0.045953 seconds (26.65 k allocations: 1.304 MiB)
+  0.021231 seconds (12.79 k allocations: 647.713 KiB)
+  0.036888 seconds (15.74 k allocations: 785.604 KiB)
+  0.032745 seconds (29 allocations: 157.609 KiB)
+  0.135827 seconds (28 allocations: 312.969 KiB)
+  0.069079 seconds (12.74 k allocations: 754.228 KiB)
+  0.027929 seconds (20 allocations: 233.531 KiB)
+  0.036979 seconds (15.92 k allocations: 1.108 MiB)
+  0.245926 seconds (70.88 k allocations: 4.267 MiB)
+  0.057070 seconds (12.77 k allocations: 876.667 KiB)
+  0.228385 seconds (12.75 k allocations: 1.086 MiB)
+  0.039173 seconds (28 allocations: 156.281 KiB)
+  0.197424 seconds (27 allocations: 310.359 KiB)
+  0.035293 seconds (31 allocations: 157.203 KiB)
+  0.123326 seconds (34 allocations: 312.266 KiB)
+  0.072825 seconds (31 allocations: 317.109 KiB)
+  0.244287 seconds (39.34 k allocations: 2.613 MiB)
+  0.022075 seconds (35 allocations: 318.078 KiB)
+  0.098391 seconds (38 allocations: 634.188 KiB)
+  0.099409 seconds (41 allocations: 469.750 KiB)
+  0.057405 seconds (48 allocations: 470.859 KiB)
+  0.485903 seconds (40 allocations: 935.953 KiB)
+  0.115969 seconds (48 allocations: 937.891 KiB)
+  0.022509 seconds (52 allocations: 471.516 KiB)
+  0.055380 seconds (28.36 k allocations: 1.479 MiB, 52.47% gc time)
+  0.013098 seconds (17.55 k allocations: 1008.945 KiB)
+  2.347560 seconds (2.32 M allocations: 110.936 MiB, 3.65% gc time)
+  0.000810 seconds (580 allocations: 158.141 KiB)
+  0.021759 seconds (8.77 k allocations: 651.506 KiB)
+  0.275001 seconds (214.92 k allocations: 11.026 MiB, 7.89% gc time)
+  0.001042 seconds (628 allocations: 165.234 KiB)
+  2.003473 seconds (1.76 M allocations: 84.759 MiB, 3.47% gc time)
+  0.007478 seconds (933 allocations: 281.844 KiB)
+  0.412165 seconds (219.03 k allocations: 11.328 MiB, 9.22% gc time)
+  0.040375 seconds (1.23 k allocations: 309.875 KiB)
+  0.113018 seconds (11.32 k allocations: 919.105 KiB)
+  0.385583 seconds (109.93 k allocations: 5.534 MiB)
+  0.335651 seconds (116.83 k allocations: 5.893 MiB)
+  0.260751 seconds (109.96 k allocations: 5.546 MiB)
+  0.264568 seconds (116.84 k allocations: 5.906 MiB, 8.40% gc time)
+ 13.145395 seconds (3.79 M allocations: 168.949 MiB, 1.79% gc time)
+  0.015675 seconds (1.23 k allocations: 107.578 KiB)
+  0.107873 seconds (9.44 k allocations: 602.553 KiB)
+  0.362006 seconds (227.92 k allocations: 11.521 MiB, 9.78% gc time)
+  0.004091 seconds (1.44 k allocations: 114.266 KiB)
+  2.193221 seconds (1.90 M allocations: 91.642 MiB, 3.98% gc time)
+  0.002610 seconds (874 allocations: 165.516 KiB)
+  0.287261 seconds (218.91 k allocations: 11.193 MiB)
+  0.001120 seconds (1.17 k allocations: 183.484 KiB)
+  0.013994 seconds (11.26 k allocations: 793.574 KiB)
+  0.162138 seconds (109.81 k allocations: 5.414 MiB)
+  0.228068 seconds (116.72 k allocations: 5.768 MiB)
+  0.180624 seconds (109.84 k allocations: 5.421 MiB)
+  0.208134 seconds (116.71 k allocations: 5.772 MiB, 11.08% gc time)
+  0.016175 seconds (7.50 k allocations: 366.449 KiB)
+  0.015421 seconds (18.47 k allocations: 1.032 MiB)
+  3.482999 seconds (2.20 M allocations: 103.924 MiB, 3.44% gc time)
+  0.007795 seconds (8.44 k allocations: 1.002 MiB)
+  0.485013 seconds (133.67 k allocations: 7.131 MiB, 61.62% gc time)
+  0.005047 seconds (9.25 k allocations: 1.027 MiB)
+  1.092957 seconds (663.20 k allocations: 32.065 MiB, 2.47% gc time)
+  0.004981 seconds (4.06 k allocations: 1.232 MiB)
+  0.276349 seconds (133.59 k allocations: 7.589 MiB, 6.12% gc time)
+  0.010665 seconds (4.53 k allocations: 1.286 MiB)
+  0.215193 seconds (127.80 k allocations: 7.278 MiB)
+  0.355968 seconds (137.92 k allocations: 7.829 MiB, 4.13% gc time)
+  0.267266 seconds (126.26 k allocations: 7.197 MiB)
+  0.229355 seconds (135.91 k allocations: 7.723 MiB)
+  0.395872 seconds (206.57 k allocations: 10.374 MiB, 4.54% gc time)
+  0.002688 seconds (7.93 k allocations: 983.672 KiB)
+  0.375941 seconds (208.28 k allocations: 10.509 MiB)
+  0.004566 seconds (8.65 k allocations: 1022.047 KiB)
+  0.447465 seconds (234.88 k allocations: 12.209 MiB, 3.34% gc time)
+  0.040840 seconds (4.06 k allocations: 1.248 MiB)
+  0.494466 seconds (212.44 k allocations: 11.185 MiB)
+  0.017260 seconds (4.53 k allocations: 1.301 MiB)
+  0.446561 seconds (214.60 k allocations: 11.258 MiB, 4.87% gc time)
+  0.630059 seconds (218.66 k allocations: 11.485 MiB)
+  0.660001 seconds (239.36 k allocations: 12.473 MiB, 2.39% gc time)
+  0.545712 seconds (212.43 k allocations: 11.182 MiB)
+  4.886538 seconds (3.79 M allocations: 170.338 MiB, 3.98% gc time)
+  0.000412 seconds (564 allocations: 91.484 KiB)
+  0.093718 seconds (16.65 k allocations: 1001.041 KiB)
+  0.196080 seconds (91.61 k allocations: 4.616 MiB)
+  0.000577 seconds (610 allocations: 91.875 KiB)
+  1.046392 seconds (726.12 k allocations: 34.602 MiB, 5.65% gc time)
+  0.181163 seconds (96.94 k allocations: 4.892 MiB)
+  0.082746 seconds (20.19 k allocations: 1.218 MiB)
+  0.018622 seconds (675 allocations: 73.875 KiB)
+  0.092283 seconds (15.93 k allocations: 878.657 KiB)
+  0.000396 seconds (564 allocations: 69.328 KiB)
+  0.032927 seconds (1.28 k allocations: 127.453 KiB)
+  0.000964 seconds (918 allocations: 108.281 KiB)
+  1.471692 seconds (1.07 M allocations: 50.190 MiB, 4.68% gc time)
+  0.001581 seconds (8.41 k allocations: 954.172 KiB)
+  0.226434 seconds (110.53 k allocations: 6.003 MiB)
+  0.001780 seconds (9.22 k allocations: 973.453 KiB)
+  1.324798 seconds (948.31 k allocations: 45.085 MiB, 3.97% gc time)
+  0.234745 seconds (110.55 k allocations: 6.396 MiB)
+  0.022144 seconds (9.29 k allocations: 949.156 KiB)
+  0.001586 seconds (8.41 k allocations: 932.016 KiB)
+  0.030679 seconds (4.12 k allocations: 1.060 MiB)
+  0.002170 seconds (4.50 k allocations: 1.082 MiB)
+  3.966168 seconds (3.77 M allocations: 169.528 MiB, 5.98% gc time)
+  0.000430 seconds (1.19 k allocations: 73.953 KiB)
+  0.022142 seconds (17.28 k allocations: 983.166 KiB)
+  0.188991 seconds (92.37 k allocations: 4.602 MiB)
+  0.000588 seconds (1.38 k allocations: 76.703 KiB)
+  1.026689 seconds (726.15 k allocations: 34.476 MiB, 18.81% gc time)
+  0.145696 seconds (96.88 k allocations: 4.838 MiB)
+  0.074819 seconds (20.14 k allocations: 1.164 MiB)
+  0.019782 seconds (1.43 k allocations: 69.391 KiB)
+  0.021252 seconds (16.69 k allocations: 873.970 KiB)
+  0.000381 seconds (1.19 k allocations: 62.609 KiB)
+  0.012000 seconds (1.22 k allocations: 93.578 KiB)
+  0.000476 seconds (860 allocations: 77.859 KiB)
+  2.275648 seconds (1.49 M allocations: 67.489 MiB, 4.25% gc time)
+  0.002097 seconds (12.67 k allocations: 861.875 KiB)
+  0.211296 seconds (114.93 k allocations: 5.925 MiB)
+  0.002099 seconds (13.57 k allocations: 889.828 KiB)
+  1.905009 seconds (1.45 M allocations: 66.416 MiB, 3.43% gc time)
+  0.154389 seconds (110.46 k allocations: 5.983 MiB)
+  0.009518 seconds (13.64 k allocations: 879.906 KiB)
+  0.002261 seconds (12.67 k allocations: 850.594 KiB)
+  0.007605 seconds (4.03 k allocations: 697.516 KiB)
+  0.001017 seconds (4.41 k allocations: 713.156 KiB)
+  0.046899 seconds (24.43 k allocations: 1.303 MiB, 53.82% gc time)
+  0.022110 seconds (22.74 k allocations: 1.235 MiB)
+  0.301869 seconds (160.22 k allocations: 8.670 MiB, 8.18% gc time)
+  0.010512 seconds (4.03 k allocations: 576.828 KiB)
+  0.019382 seconds (12.45 k allocations: 1.049 MiB)
+  0.186967 seconds (114.83 k allocations: 5.926 MiB)
+  0.007319 seconds (4.43 k allocations: 586.219 KiB)
+  0.225916 seconds (110.74 k allocations: 5.914 MiB)
+  0.007838 seconds (2.50 k allocations: 702.859 KiB)
+  0.249091 seconds (116.71 k allocations: 6.227 MiB, 7.99% gc time)
+  0.003667 seconds (2.85 k allocations: 740.594 KiB)
+  0.263797 seconds (119.05 k allocations: 6.343 MiB)
+  0.189385 seconds (112.11 k allocations: 5.985 MiB)
+  0.215438 seconds (119.07 k allocations: 6.355 MiB)
+  0.218991 seconds (110.31 k allocations: 5.528 MiB)
+  0.009864 seconds (4.78 k allocations: 446.047 KiB)
+  0.020857 seconds (13.20 k allocations: 943.053 KiB)
+  0.212218 seconds (115.75 k allocations: 5.800 MiB, 15.48% gc time)
+  0.002143 seconds (5.33 k allocations: 456.250 KiB)
+  0.215265 seconds (110.63 k allocations: 5.650 MiB)
+  0.008870 seconds (2.44 k allocations: 439.844 KiB)
+  0.214247 seconds (116.58 k allocations: 5.952 MiB)
+  0.002505 seconds (2.79 k allocations: 464.063 KiB)
+  0.232480 seconds (118.92 k allocations: 6.068 MiB)
+  0.250432 seconds (112.00 k allocations: 5.716 MiB, 9.55% gc time)
+  0.199684 seconds (118.95 k allocations: 6.077 MiB)
+  0.081847 seconds (15.81 k allocations: 696.228 KiB)
+  0.013391 seconds (5.32 k allocations: 259.992 KiB)
+  0.418795 seconds (346.53 k allocations: 17.669 MiB, 5.71% gc time)
+  0.010675 seconds (9.43 k allocations: 1.017 MiB)
+  0.293524 seconds (125.29 k allocations: 6.677 MiB)
+  0.015951 seconds (8.69 k allocations: 1020.266 KiB)
+  0.583398 seconds (325.20 k allocations: 16.823 MiB, 3.43% gc time)
+  0.046187 seconds (4.35 k allocations: 1.128 MiB)
+  0.361514 seconds (134.10 k allocations: 7.489 MiB)
+  0.015635 seconds (4.76 k allocations: 1.179 MiB)
+  0.274945 seconds (128.38 k allocations: 7.181 MiB, 8.64% gc time)
+  0.253589 seconds (138.44 k allocations: 7.729 MiB)
+  0.483543 seconds (208.09 k allocations: 10.763 MiB, 5.77% gc time)
+  0.251351 seconds (136.43 k allocations: 7.623 MiB)
+  0.402261 seconds (372.39 k allocations: 18.428 MiB, 5.99% gc time)
+  0.004276 seconds (14.31 k allocations: 866.984 KiB)
+  0.487383 seconds (130.25 k allocations: 6.508 MiB)
+  0.007370 seconds (13.65 k allocations: 846.609 KiB)
+  0.466797 seconds (354.54 k allocations: 17.799 MiB, 5.28% gc time)
+  0.010740 seconds (4.26 k allocations: 737.609 KiB)
+  0.284398 seconds (133.96 k allocations: 7.060 MiB)
+  0.002867 seconds (4.67 k allocations: 769.938 KiB)
+  0.246392 seconds (128.23 k allocations: 6.758 MiB, 7.68% gc time)
+  0.259287 seconds (138.28 k allocations: 7.289 MiB)
+  0.472257 seconds (207.88 k allocations: 10.345 MiB, 8.20% gc time)
+  0.244538 seconds (136.27 k allocations: 7.193 MiB)
+  0.029146 seconds (11.04 k allocations: 915.060 KiB)
+  0.001014 seconds (4.02 k allocations: 510.359 KiB)
+  0.011019 seconds (8.10 k allocations: 714.419 KiB)
+  0.000913 seconds (4.41 k allocations: 513.047 KiB)
+  0.017271 seconds (6.17 k allocations: 774.356 KiB)
+  0.013226 seconds (6.52 k allocations: 798.778 KiB)
+  0.007972 seconds (4.08 k allocations: 492.172 KiB)
+  0.001066 seconds (4.40 k allocations: 490.641 KiB)
+  0.007106 seconds (2.56 k allocations: 533.750 KiB)
+  0.000809 seconds (2.83 k allocations: 553.656 KiB)
+  0.010748 seconds (12.41 k allocations: 1.127 MiB)
+  0.001461 seconds (8.67 k allocations: 949.484 KiB)
+  0.009991 seconds (13.14 k allocations: 1.141 MiB)
+  0.001503 seconds (9.40 k allocations: 964.047 KiB)
+  0.025130 seconds (8.06 k allocations: 1.193 MiB, 60.88% gc time)
+  0.019302 seconds (8.47 k allocations: 1.232 MiB)
+  0.011180 seconds (8.74 k allocations: 932.234 KiB)
+  0.001511 seconds (9.39 k allocations: 934.438 KiB)
+  0.009264 seconds (4.41 k allocations: 979.516 KiB)
+  0.001242 seconds (4.73 k allocations: 999.375 KiB)
+  0.009797 seconds (8.15 k allocations: 586.591 KiB)
+  0.000859 seconds (4.47 k allocations: 385.063 KiB)
+  0.012181 seconds (8.66 k allocations: 592.513 KiB)
+  0.001152 seconds (4.97 k allocations: 391.359 KiB)
+  0.008173 seconds (6.12 k allocations: 575.935 KiB)
+  0.007982 seconds (6.46 k allocations: 593.138 KiB)
+  0.006512 seconds (4.53 k allocations: 377.672 KiB)
+  0.001043 seconds (4.97 k allocations: 379.813 KiB)
+  0.006650 seconds (2.50 k allocations: 356.641 KiB)
+  0.000890 seconds (2.77 k allocations: 369.641 KiB)
+  0.011007 seconds (17.37 k allocations: 1016.532 KiB)
+  0.002398 seconds (13.63 k allocations: 812.484 KiB)
+  0.013017 seconds (18.04 k allocations: 1.005 MiB)
+  0.003264 seconds (14.29 k allocations: 823.203 KiB)
+  0.012739 seconds (7.97 k allocations: 872.470 KiB)
+  0.011530 seconds (8.38 k allocations: 897.782 KiB)
+  0.010540 seconds (13.71 k allocations: 806.109 KiB)
+  0.002734 seconds (14.28 k allocations: 807.969 KiB)
+  0.009842 seconds (4.32 k allocations: 651.281 KiB)
+  0.001278 seconds (4.64 k allocations: 664.234 KiB)
+  0.008312 seconds (163 allocations: 33.406 KiB)
+  0.090808 seconds (54.06 k allocations: 2.804 MiB)
+  0.022596 seconds (5.68 k allocations: 351.524 KiB)
+  0.044580 seconds (16.34 k allocations: 895.731 KiB)
+  0.208679 seconds (87.30 k allocations: 4.304 MiB)
+  0.043373 seconds (12.48 k allocations: 687.550 KiB)
+  0.001525 seconds (682 allocations: 68.078 KiB)
+  0.042461 seconds (120 allocations: 10.313 KiB)
+  0.022121 seconds (6.47 k allocations: 388.474 KiB)
+  0.342210 seconds (418.42 k allocations: 21.171 MiB, 6.30% gc time)
+  0.016893 seconds (4.87 k allocations: 296.650 KiB)
+  0.103759 seconds (41.13 k allocations: 1.980 MiB)
+  0.000163 seconds (612 allocations: 54.938 KiB)
+  0.220827 seconds (117.93 k allocations: 6.144 MiB, 12.14% gc time)
+  0.000203 seconds (656 allocations: 55.578 KiB)
+  0.065299 seconds (18.35 k allocations: 1.010 MiB)
+  0.029269 seconds (138 allocations: 35.219 KiB)
+  0.139703 seconds (53.55 k allocations: 2.634 MiB)
+  0.010017 seconds (96 allocations: 32.141 KiB)
+  0.048238 seconds (6.45 k allocations: 381.427 KiB)
+  0.034949 seconds (115 allocations: 11.266 KiB, 74.70% gc time)
+  0.000312 seconds (58 allocations: 27.078 KiB)
+  0.000038 seconds (16 allocations: 4.031 KiB)
+  0.012693 seconds (2.80 k allocations: 259.734 KiB)
+  0.121322 seconds (61.52 k allocations: 3.305 MiB)
+  0.000828 seconds (1.73 k allocations: 151.453 KiB)
+  0.000443 seconds (42 allocations: 40.172 KiB)
+  0.056223 seconds (20.76 k allocations: 1.176 MiB)
+  0.245908 seconds (97.17 k allocations: 4.947 MiB, 11.93% gc time)
+  0.043893 seconds (15.70 k allocations: 989.425 KiB)
+  0.000537 seconds (1.65 k allocations: 152.172 KiB)
+  0.000318 seconds (46 allocations: 41.094 KiB)
+  0.008283 seconds (2.76 k allocations: 238.031 KiB)
+  0.022890 seconds (17.67 k allocations: 1.079 MiB)
+  0.019085 seconds (7.70 k allocations: 529.104 KiB)
+  0.000234 seconds (1.70 k allocations: 134.875 KiB)
+  0.000393 seconds (2.40 k allocations: 182.875 KiB)
+  0.000265 seconds (1.61 k allocations: 134.688 KiB)
+  0.005591 seconds (1.70 k allocations: 139.422 KiB)
+  0.047844 seconds (21.05 k allocations: 1.278 MiB)
+  0.009913 seconds (146 allocations: 43.469 KiB)
+  0.183311 seconds (56.73 k allocations: 2.948 MiB)
+  0.000958 seconds (106 allocations: 42.172 KiB)
+  0.000370 seconds (1.64 k allocations: 228.453 KiB)
+  0.000027 seconds (11 allocations: 5.203 KiB)
+  0.000932 seconds (2.95 k allocations: 260.922 KiB)
+  0.000306 seconds (2.85 k allocations: 236.344 KiB)
+  0.000408 seconds (1.08 k allocations: 119.484 KiB)
+  0.047612 seconds (31.23 k allocations: 1.652 MiB)
+  0.014173 seconds (819 allocations: 78.297 KiB)
+  0.000399 seconds (1.15 k allocations: 120.797 KiB)
+  0.005098 seconds (793 allocations: 77.750 KiB)
+  0.000420 seconds (35 allocations: 30.188 KiB)
+  0.000206 seconds (1.05 k allocations: 105.125 KiB)
+  0.000236 seconds (1.12 k allocations: 106.438 KiB)
+  0.000180 seconds (793 allocations: 65.797 KiB)
+  0.000406 seconds (1.13 k allocations: 91.953 KiB)
+  0.007216 seconds (793 allocations: 77.750 KiB)
+  0.000181 seconds (767 allocations: 65.250 KiB)
+  0.000539 seconds (851 allocations: 144.844 KiB)
+  0.009228 seconds (33 allocations: 28.922 KiB)
+  0.000629 seconds (852 allocations: 157.516 KiB)
+  0.032222 seconds (35 allocations: 28.953 KiB)
+  0.000244 seconds (827 allocations: 118.875 KiB)
+  0.004865 seconds (610 allocations: 42.628 KiB)
+  0.000417 seconds (1.15 k allocations: 120.797 KiB)
+  0.000195 seconds (1.12 k allocations: 106.438 KiB)
+  0.000620 seconds (2.70 k allocations: 255.281 KiB)
+  0.086315 seconds (1.70 k allocations: 148.781 KiB)
+  0.000863 seconds (2.90 k allocations: 259.891 KiB)
+  0.005437 seconds (1.68 k allocations: 150.141 KiB)
+  0.000466 seconds (2.66 k allocations: 232.703 KiB)
+  0.010200 seconds (4.11 k allocations: 322.688 KiB)
+  0.000540 seconds (2.85 k allocations: 237.313 KiB)
+  0.005443 seconds (1.70 k allocations: 148.781 KiB)
+  0.002182 seconds (42 allocations: 40.172 KiB)
+  0.004819 seconds (1.68 k allocations: 150.141 KiB)
+  0.003745 seconds (1.68 k allocations: 150.141 KiB)
+  0.002371 seconds (46 allocations: 41.094 KiB)
+  0.000957 seconds (1.68 k allocations: 272.344 KiB)
+  0.004289 seconds (41 allocations: 37.172 KiB)
+  0.000918 seconds (1.68 k allocations: 297.672 KiB)
+  0.004181 seconds (45 allocations: 38.984 KiB)
+  0.000406 seconds (1.64 k allocations: 230.313 KiB)
+  0.000068 seconds (11 allocations: 5.203 KiB)
+  0.000764 seconds (2.90 k allocations: 259.891 KiB)
+  0.000442 seconds (2.85 k allocations: 237.313 KiB)
+  0.009546 seconds (161 allocations: 25.750 KiB)
+  0.008757 seconds (119 allocations: 8.266 KiB)
+  0.000195 seconds (21 allocations: 2.266 KiB)
+  0.011863 seconds (6.47 k allocations: 380.708 KiB)
+  0.137990 seconds (40.96 k allocations: 2.190 MiB)
+  0.128220 seconds (40.12 k allocations: 2.141 MiB)
+  0.133839 seconds (40.11 k allocations: 2.141 MiB)
+  0.019969 seconds (4.87 k allocations: 295.150 KiB)
+  0.117129 seconds (41.14 k allocations: 1.973 MiB)
+  0.000150 seconds (23 allocations: 2.297 KiB)
+  0.000146 seconds (23 allocations: 2.297 KiB)
+  0.000129 seconds (24 allocations: 2.313 KiB)
+  0.006421 seconds (105 allocations: 7.016 KiB)
+  0.000121 seconds (23 allocations: 2.297 KiB)
+  0.000152 seconds (23 allocations: 2.297 KiB)
+  0.000173 seconds (24 allocations: 2.313 KiB)
+  0.036633 seconds (12.97 k allocations: 739.554 KiB)
+  0.000067 seconds (14 allocations: 3.141 KiB)
+  0.046435 seconds (11.43 k allocations: 633.801 KiB)
+  0.160226 seconds (48.61 k allocations: 2.369 MiB)
+  0.000205 seconds (725 allocations: 72.063 KiB)
+  0.000106 seconds (701 allocations: 62.484 KiB)
+  0.000196 seconds (714 allocations: 63.000 KiB)
+  0.000499 seconds (1.10 k allocations: 88.734 KiB)
+  0.009301 seconds (4.37 k allocations: 263.435 KiB)
+  0.009352 seconds (4.41 k allocations: 264.185 KiB)
+  0.009509 seconds (4.39 k allocations: 263.731 KiB)
+  0.000455 seconds (715 allocations: 62.828 KiB)
+  0.000282 seconds (740 allocations: 63.313 KiB)
+  0.000298 seconds (692 allocations: 62.563 KiB)
+  0.000213 seconds (717 allocations: 63.047 KiB)
+  0.000191 seconds (715 allocations: 62.828 KiB)
+  0.000182 seconds (740 allocations: 63.313 KiB)
+  0.000191 seconds (692 allocations: 62.563 KiB)
+  0.000204 seconds (717 allocations: 63.047 KiB)
+  0.000432 seconds (407 allocations: 67.719 KiB)
+  0.000119 seconds (388 allocations: 51.531 KiB)
+  0.007036 seconds (473 allocations: 62.391 KiB)
+  0.000617 seconds (728 allocations: 71.922 KiB)
+  0.000155 seconds (702 allocations: 62.313 KiB)
+  0.000161 seconds (702 allocations: 62.313 KiB)
+  0.000417 seconds (410 allocations: 73.391 KiB)
+  0.000140 seconds (389 allocations: 57.172 KiB)
+  0.013322 seconds (2.06 k allocations: 172.688 KiB)
+  0.011647 seconds (2.02 k allocations: 157.547 KiB)
+  0.000288 seconds (1.92 k allocations: 151.250 KiB)
+  0.000531 seconds (1.93 k allocations: 151.844 KiB)
+  0.249417 seconds (79.43 k allocations: 4.465 MiB)
+  0.258671 seconds (79.29 k allocations: 4.462 MiB, 7.07% gc time)
+  0.208586 seconds (79.36 k allocations: 4.464 MiB)
+  0.024224 seconds (16.96 k allocations: 1023.822 KiB)
+  0.001277 seconds (2.37 k allocations: 178.344 KiB)
+  0.001279 seconds (2.81 k allocations: 202.688 KiB)
+  0.001025 seconds (2.42 k allocations: 179.094 KiB)
+  0.016284 seconds (6.78 k allocations: 445.041 KiB)
+  0.000344 seconds (1.93 k allocations: 152.422 KiB)
+  0.000336 seconds (1.86 k allocations: 150.797 KiB)
+  0.000390 seconds (2.00 k allocations: 153.547 KiB)
+  0.000464 seconds (1.94 k allocations: 151.922 KiB)
+  0.004962 seconds (2.02 k allocations: 157.156 KiB)
+  0.000345 seconds (1.86 k allocations: 150.797 KiB)
+  0.000346 seconds (2.00 k allocations: 153.547 KiB)
+  0.000354 seconds (1.94 k allocations: 151.922 KiB)
+  0.111813 seconds (43.51 k allocations: 2.142 MiB)
+  0.000584 seconds (2.81 k allocations: 202.703 KiB)
+  0.000519 seconds (2.37 k allocations: 178.359 KiB)
+  0.000636 seconds (2.77 k allocations: 202.016 KiB)
+  0.027344 seconds (11.91 k allocations: 748.600 KiB)
+  0.000183 seconds (765 allocations: 100.156 KiB)
+  0.005872 seconds (850 allocations: 116.641 KiB)
+  0.031688 seconds (11.56 k allocations: 696.063 KiB)
+  0.000271 seconds (1.92 k allocations: 151.828 KiB)
+  0.000232 seconds (1.92 k allocations: 151.828 KiB)
+  0.000209 seconds (1.92 k allocations: 151.828 KiB)
+  0.133370 seconds (47.59 k allocations: 2.388 MiB)
+  0.120989 seconds (41.86 k allocations: 2.076 MiB)
+  0.008221 seconds (180 allocations: 30.094 KiB)
+  0.187650 seconds (128.98 k allocations: 6.554 MiB, 9.32% gc time)
+  0.086382 seconds (67.78 k allocations: 3.420 MiB)
+  0.265753 seconds (170.07 k allocations: 8.424 MiB)
+  0.062962 seconds (69.46 k allocations: 3.532 MiB)
+  0.168465 seconds (104.97 k allocations: 5.176 MiB)
+  0.008202 seconds (131 allocations: 12.078 KiB)
+  0.009962 seconds (6.50 k allocations: 392.771 KiB)
+  0.000113 seconds (28 allocations: 9.313 KiB)
+  0.015330 seconds (4.88 k allocations: 299.963 KiB)
+  0.115629 seconds (41.17 k allocations: 1.986 MiB, 12.64% gc time)
+  0.000113 seconds (28 allocations: 9.313 KiB)
+  0.005375 seconds (118 allocations: 16.781 KiB)
+Test Summary:           | Pass  Total
+Test MatrixEquations.jl |  980    980
+   Testing MatrixEquations tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 14 hours ago and took 7 minutes, 48 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/MatrixEquations/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed FastClosures ──── v0.3.2
+ Installed MatrixEquations ─ v1.0.0
+ Installed LinearOperators ─ v0.6.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [99c1a7ee] + MatrixEquations v1.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [9aa1b823] + FastClosures v0.3.2
+  [5c8ed15e] + LinearOperators v0.6.0
+  [99c1a7ee] + MatrixEquations v1.0.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+   Testing MatrixEquations
+Status `&#x2F;tmp&#x2F;jl_JngbaS&#x2F;Manifest.toml`
+  [9aa1b823] FastClosures v0.3.2
+  [5c8ed15e] LinearOperators v0.6.0
+  [99c1a7ee] MatrixEquations v1.0.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+  0.000000 seconds
+  0.000000 seconds
+  1.225507 seconds (12.41 k allocations: 2.133 MiB)
+  0.134891 seconds (2.51 k allocations: 440.609 KiB)
+  0.152872 seconds (2.81 k allocations: 383.375 KiB)
+  0.125435 seconds (296 allocations: 1.469 MiB, 25.46% gc time)
+  3.615077 seconds (150.20 k allocations: 11.077 MiB)
+  0.069310 seconds (35.56 k allocations: 5.649 MiB)
+  0.165010 seconds (788 allocations: 1.649 MiB)
+  0.147647 seconds (332 allocations: 1.624 MiB)
+  0.097034 seconds (310 allocations: 1.623 MiB)
+  0.108308 seconds (335 allocations: 1.624 MiB)
+  1.541078 seconds (809.05 k allocations: 41.485 MiB, 2.17% gc time)
+  0.303869 seconds (446.78 k allocations: 21.641 MiB)
+  0.299527 seconds (435.33 k allocations: 21.145 MiB)
+  0.091198 seconds (15.63 k allocations: 1.503 MiB)
+  7.096422 seconds (8.69 M allocations: 406.139 MiB, 4.68% gc time)
+  0.048205 seconds (48.29 k allocations: 4.619 MiB)
+  0.112682 seconds (38.28 k allocations: 2.721 MiB)
+  0.057203 seconds (16.88 k allocations: 1.632 MiB)
+  0.064083 seconds (16.04 k allocations: 1.588 MiB)
+  0.107693 seconds (17.90 k allocations: 1.688 MiB)
+  0.000000 seconds
+  0.000000 seconds
+  1.090475 seconds (10.43 k allocations: 2.552 MiB)
+  0.268715 seconds (1.39 k allocations: 1.671 MiB)
+  0.218140 seconds (76 allocations: 1.608 MiB, 19.31% gc time)
+  0.070947 seconds (83 allocations: 1.609 MiB)
+  0.013248 seconds (257 allocations: 328.391 KiB)
+  0.324660 seconds (3.86 k allocations: 2.420 MiB)
+  0.231586 seconds (98 allocations: 1.610 MiB)
+  0.283933 seconds (98 allocations: 1.610 MiB)
+  0.198063 seconds (509 allocations: 2.235 MiB)
+  0.221853 seconds (533 allocations: 2.389 MiB)
+  1.789797 seconds (129.45 k allocations: 19.227 MiB)
+  0.366787 seconds (465 allocations: 2.386 MiB)
+  0.366677 seconds (73.77 k allocations: 17.346 MiB, 8.84% gc time)
+  0.101949 seconds (69.01 k allocations: 16.439 MiB)
+  0.196043 seconds (69.04 k allocations: 16.502 MiB, 10.70% gc time)
+  0.245481 seconds (429 allocations: 2.231 MiB)
+  0.198796 seconds (536 allocations: 2.389 MiB)
+  0.234591 seconds (548 allocations: 2.389 MiB)
+  0.113015 seconds (570 allocations: 2.543 MiB)
+  0.082882 seconds (45 allocations: 2.359 MiB)
+  0.118396 seconds (580 allocations: 2.468 MiB)
+  0.215461 seconds (581 allocations: 2.468 MiB)
+  0.207923 seconds (602 allocations: 2.545 MiB)
+  1.477348 seconds (590.94 k allocations: 29.986 MiB, 1.31% gc time)
+  0.549711 seconds (241.70 k allocations: 12.607 MiB)
+  0.343303 seconds (1.90 k allocations: 923.197 KiB)
+  0.111156 seconds (3.56 k allocations: 1017.323 KiB)
+  0.037275 seconds (8.31 k allocations: 547.981 KiB)
+  0.768442 seconds (538.52 k allocations: 27.451 MiB)
+  0.158029 seconds (4.81 k allocations: 1.062 MiB)
+  0.335380 seconds (3.03 k allocations: 982.722 KiB)
+  0.168538 seconds (25.12 k allocations: 2.369 MiB)
+  0.139544 seconds (27.57 k allocations: 2.558 MiB)
+  2.087004 seconds (1.69 M allocations: 85.396 MiB, 3.18% gc time)
+  0.122009 seconds (27.18 k allocations: 2.544 MiB)
+  0.420518 seconds (539.11 k allocations: 33.870 MiB)
+  0.120709 seconds (95.71 k allocations: 12.240 MiB, 33.47% gc time)
+  0.072179 seconds (98.17 k allocations: 12.397 MiB)
+  0.100505 seconds (25.62 k allocations: 2.399 MiB)
+  0.095199 seconds (31.26 k allocations: 2.754 MiB)
+  0.113252 seconds (26.38 k allocations: 2.489 MiB)
+  0.185052 seconds (28.84 k allocations: 2.688 MiB)
+  0.055388 seconds (45 allocations: 1.181 MiB)
+  0.131259 seconds (34.21 k allocations: 2.930 MiB)
+  0.106163 seconds (27.63 k allocations: 2.584 MiB)
+  0.161617 seconds (30.03 k allocations: 2.743 MiB)
+  0.008534 seconds (40 allocations: 4.281 KiB)
+  0.026541 seconds (363 allocations: 18.469 KiB)
+  0.011706 seconds (84 allocations: 6.734 KiB)
+  0.023418 seconds (73.08 k allocations: 16.078 MiB)
+  3.939675 seconds (275.68 k allocations: 33.509 MiB, 1.11% gc time)
+  0.039194 seconds (36.12 k allocations: 5.189 MiB)
+  0.015834 seconds (35.71 k allocations: 5.171 MiB)
+  0.028251 seconds (51.54 k allocations: 8.679 MiB)
+  0.054182 seconds (70.05 k allocations: 16.032 MiB, 42.59% gc time)
+  0.017759 seconds (35 allocations: 2.312 KiB)
+  0.016231 seconds (79 allocations: 4.766 KiB)
+  0.008470 seconds (35.68 k allocations: 5.170 MiB)
+  0.007953 seconds (39.11 k allocations: 5.222 MiB)
+  0.008839 seconds (40 allocations: 4.281 KiB)
+  0.039633 seconds (12.26 k allocations: 645.975 KiB)
+  0.013993 seconds (84 allocations: 6.734 KiB)
+  0.034339 seconds (68.60 k allocations: 10.310 MiB)
+  6.529187 seconds (6.55 M allocations: 308.875 MiB, 8.47% gc time)
+  0.038948 seconds (44.73 k allocations: 4.325 MiB)
+  0.016059 seconds (33.93 k allocations: 3.766 MiB)
+  0.086250 seconds (49.16 k allocations: 5.769 MiB, 61.08% gc time)
+  0.017737 seconds (65.58 k allocations: 10.158 MiB)
+  0.007541 seconds (603 allocations: 37.737 KiB)
+  0.013470 seconds (79 allocations: 4.766 KiB)
+  0.006739 seconds (33.34 k allocations: 3.730 MiB)
+  0.006619 seconds (36.53 k allocations: 3.777 MiB)
+  0.000000 seconds
+  0.000000 seconds
+  0.425557 seconds (4.08 k allocations: 1.642 MiB)
+  0.089428 seconds (1.59 k allocations: 234.656 KiB)
+  0.093423 seconds (1.45 k allocations: 231.969 KiB)
+  0.128544 seconds (296 allocations: 1.469 MiB)
+  0.610271 seconds (67.73 k allocations: 9.885 MiB)
+  0.208065 seconds (39.79 k allocations: 8.971 MiB)
+  0.070837 seconds (311 allocations: 1.623 MiB)
+  0.178669 seconds (332 allocations: 1.624 MiB)
+  0.340362 seconds (310 allocations: 1.623 MiB)
+  0.228512 seconds (335 allocations: 1.624 MiB)
+  0.402096 seconds (178.18 k allocations: 9.456 MiB)
+  0.163736 seconds (247.24 k allocations: 11.780 MiB)
+  0.181601 seconds (259.46 k allocations: 12.781 MiB)
+  0.194713 seconds (15.61 k allocations: 1.503 MiB)
+  0.937672 seconds (458.32 k allocations: 23.993 MiB)
+  0.238339 seconds (52.38 k allocations: 6.383 MiB, 13.35% gc time)
+  0.380096 seconds (15.95 k allocations: 1.582 MiB)
+  0.186490 seconds (16.87 k allocations: 1.632 MiB)
+  0.276297 seconds (16.04 k allocations: 1.587 MiB)
+  0.458928 seconds (17.90 k allocations: 1.687 MiB)
+  0.990585 seconds (6.28 k allocations: 2.332 MiB)
+  0.096398 seconds (114 allocations: 1.763 MiB)
+  0.059313 seconds (131 allocations: 1.764 MiB)
+  0.228873 seconds (233 allocations: 1.770 MiB)
+  0.228663 seconds (138 allocations: 1.765 MiB)
+  0.012770 seconds (252 allocations: 171.781 KiB)
+  0.011584 seconds (348 allocations: 177.938 KiB)
+  0.184372 seconds (499 allocations: 2.235 MiB)
+  0.213586 seconds (234 allocations: 1.770 MiB)
+  0.155114 seconds (248 allocations: 1.771 MiB)
+  0.315388 seconds (510 allocations: 2.235 MiB)
+  0.180734 seconds (534 allocations: 2.389 MiB)
+  0.951527 seconds (112.92 k allocations: 18.318 MiB)
+  0.378062 seconds (73.73 k allocations: 17.069 MiB, 9.01% gc time)
+  0.318088 seconds (67.42 k allocations: 16.278 MiB)
+  0.121520 seconds (67.44 k allocations: 16.342 MiB, 8.74% gc time)
+  0.152513 seconds (430 allocations: 2.231 MiB)
+  0.173827 seconds (536 allocations: 2.389 MiB)
+  0.210019 seconds (549 allocations: 2.390 MiB)
+  0.138619 seconds (571 allocations: 2.543 MiB)
+  0.117694 seconds (466 allocations: 2.386 MiB)
+  0.124756 seconds (580 allocations: 2.468 MiB)
+  0.144404 seconds (582 allocations: 2.468 MiB)
+  0.142678 seconds (603 allocations: 2.545 MiB)
+  0.854237 seconds (242.06 k allocations: 12.410 MiB)
+  0.186455 seconds (6.41 k allocations: 1.206 MiB)
+  0.279700 seconds (3.02 k allocations: 1.022 MiB)
+  0.092018 seconds (6.62 k allocations: 1.176 MiB)
+  0.117192 seconds (3.56 k allocations: 1.046 MiB)
+  0.017763 seconds (7.53 k allocations: 421.900 KiB)
+  0.017246 seconds (10.20 k allocations: 548.202 KiB)
+  0.181706 seconds (33.96 k allocations: 2.834 MiB)
+  0.142795 seconds (6.85 k allocations: 1.196 MiB)
+  0.184140 seconds (7.54 k allocations: 1.227 MiB)
+  0.257280 seconds (25.35 k allocations: 2.379 MiB)
+  0.145066 seconds (27.80 k allocations: 2.568 MiB)
+  1.130691 seconds (579.27 k allocations: 32.169 MiB, 2.91% gc time)
+  0.268904 seconds (101.43 k allocations: 12.315 MiB)
+  0.307407 seconds (94.28 k allocations: 12.098 MiB)
+  0.123190 seconds (96.74 k allocations: 12.255 MiB, 21.20% gc time)
+  0.104393 seconds (25.10 k allocations: 2.365 MiB)
+  0.109250 seconds (31.48 k allocations: 2.765 MiB)
+  0.118241 seconds (26.61 k allocations: 2.499 MiB)
+  0.112989 seconds (29.06 k allocations: 2.697 MiB)
+  0.107164 seconds (26.61 k allocations: 2.507 MiB)
+  0.106466 seconds (34.44 k allocations: 2.940 MiB)
+  0.148383 seconds (27.85 k allocations: 2.594 MiB)
+  0.115191 seconds (30.26 k allocations: 2.754 MiB)
+  0.026044 seconds (43.51 k allocations: 8.708 MiB)
+  0.475317 seconds (93.07 k allocations: 15.229 MiB, 9.68% gc time)
+  0.028569 seconds (43.55 k allocations: 8.705 MiB)
+  0.452020 seconds (270.63 k allocations: 20.361 MiB)
+  0.012357 seconds (40 allocations: 4.281 KiB)
+  0.027537 seconds (363 allocations: 18.469 KiB)
+  0.010629 seconds (84 allocations: 6.734 KiB)
+  0.027844 seconds (71.37 k allocations: 15.908 MiB)
+  0.029919 seconds (73.20 k allocations: 15.932 MiB)
+  0.670941 seconds (143.42 k allocations: 27.565 MiB, 12.79% gc time)
+  0.043853 seconds (92.60 k allocations: 22.194 MiB)
+  0.019985 seconds (41.41 k allocations: 5.735 MiB)
+  0.571448 seconds (407.74 k allocations: 23.615 MiB)
+  0.019640 seconds (40.83 k allocations: 5.645 MiB)
+  0.159284 seconds (60.50 k allocations: 7.878 MiB, 76.95% gc time)
+  0.008751 seconds (40 allocations: 4.281 KiB)
+  0.035222 seconds (12.26 k allocations: 646.787 KiB)
+  0.011556 seconds (84 allocations: 6.734 KiB)
+  0.026625 seconds (67.00 k allocations: 10.164 MiB)
+  0.019760 seconds (68.62 k allocations: 10.081 MiB)
+  0.776657 seconds (585.14 k allocations: 36.198 MiB)
+  0.089778 seconds (90.59 k allocations: 13.604 MiB)
+  0.032077 seconds (9 allocations: 3.823 MiB)
+  0.027072 seconds (5 allocations: 3.815 MiB)
+  0.023463 seconds (13 allocations: 5.730 MiB)
+  0.019847 seconds (5 allocations: 3.815 MiB)
+  0.017291 seconds (13 allocations: 7.638 MiB)
+  0.022340 seconds (5 allocations: 3.815 MiB)
+  0.164224 seconds (49.54 k allocations: 11.977 MiB, 11.62% gc time)
+  0.021611 seconds (5 allocations: 3.815 MiB)
+  0.142831 seconds (74.00 k allocations: 6.661 MiB)
+  0.003961 seconds (6 allocations: 2.863 MiB)
+  0.002138 seconds (6 allocations: 2.863 MiB)
+  0.003057 seconds (6 allocations: 2.863 MiB)
+  1.481891 seconds (701.65 k allocations: 33.734 MiB, 10.89% gc time)
+  0.097157 seconds (105 allocations: 218.141 KiB)
+  0.110845 seconds (447 allocations: 246.359 KiB)
+  0.041797 seconds (162 allocations: 221.859 KiB)
+  0.022365 seconds (164 allocations: 221.953 KiB)
+Continuous Riccati equation (Float64): Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:39
+  Got exception outside of a @test
+  MethodError: hvcat(::Tuple{Int64,Int64}, ::LinearAlgebra.Adjoint{Float64,Array{Float64,2}}, ::Array{Float64,2}, ::Array{Float64,2}, ::Array{Float64,2}) is ambiguous. Candidates:
+    hvcat(rows::Tuple{Vararg{Int64,N} where N}, xs::Union{AbstractArray{T,1}, AbstractArray{T,2}}...) where T in Base at abstractarray.jl:1634
+    hvcat(rows::Tuple{Vararg{Int64,N} where N}, ops::Union{AbstractArray{T,2} where T, LinearOperators.AbstractLinearOperator}...) in LinearOperators at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LinearOperators&#x2F;La2Ey&#x2F;src&#x2F;LinearOperators.jl:639
+    hvcat(rows::Tuple{Vararg{Int64,N} where N}, xs::Union{AbstractArray{T,1}, AbstractArray{T,2}} where T...) in Base at abstractarray.jl:1633
+  To resolve the ambiguity, try making one of the methods more specific, or adding a new method more specific than any of the existing applicable methods.
+  Stacktrace:
+   [1] arec(::LinearAlgebra.Adjoint{Float64,Array{Float64,2}}, ::Array{Float64,2}, ::Array{Float64,2}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;src&#x2F;riccati.jl:81
+   [2] macro expansion at .&#x2F;util.jl:162 [inlined]
+   [3] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:65 [inlined]
+   [4] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [5] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:40 [inlined]
+   [6] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:10
+   [8] include(::Module, ::String) at .&#x2F;Base.jl:377
+   [9] include at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:1 [inlined]
+   [10] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:9 [inlined]
+   [11] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:6
+   [13] include(::String) at .&#x2F;client.jl:439
+   [14] top-level scope at none:6
+   [15] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [16] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [17] _start() at .&#x2F;client.jl:484
+  
+  1.649178 seconds (30.95 k allocations: 1.920 MiB)
+  0.032006 seconds (155 allocations: 255.609 KiB)
+  0.023475 seconds (200 allocations: 265.609 KiB)
+  3.250939 seconds (140.69 k allocations: 7.665 MiB)
+  0.186019 seconds (146 allocations: 578.812 KiB)
+  0.220776 seconds (5.42 k allocations: 821.359 KiB)
+Generalized continuous control Riccati equation (Float64): Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:126
+  Got exception outside of a @test
+  MethodError: hvcat(::Tuple{Int64,Int64}, ::Array{Float64,2}, ::Array{Float64,2}, ::Array{Float64,2}, ::Array{Float64,2}, ::LinearAlgebra.Adjoint{Float64,Array{Float64,2}}, ::Array{Float64,2}) is ambiguous. Candidates:
+    hvcat(rows::Tuple{Vararg{Int64,N} where N}, xs::Union{AbstractArray{T,1}, AbstractArray{T,2}}...) where T in Base at abstractarray.jl:1634
+    hvcat(rows::Tuple{Vararg{Int64,N} where N}, ops::Union{AbstractArray{T,2} where T, LinearOperators.AbstractLinearOperator}...) in LinearOperators at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LinearOperators&#x2F;La2Ey&#x2F;src&#x2F;LinearOperators.jl:639
+    hvcat(rows::Tuple{Vararg{Int64,N} where N}, xs::Union{AbstractArray{T,1}, AbstractArray{T,2}} where T...) in Base at abstractarray.jl:1633
+  To resolve the ambiguity, try making one of the methods more specific, or adding a new method more specific than any of the existing applicable methods.
+  Stacktrace:
+   [1] garec(::Array{Float64,2}, ::Array{Float64,2}, ::Array{Float64,2}, ::Array{Float64,2}, ::Array{Float64,2}, ::Array{Float64,2}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;src&#x2F;riccati.jl:400
+   [2] macro expansion at .&#x2F;util.jl:162 [inlined]
+   [3] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:128 [inlined]
+   [4] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [5] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:128 [inlined]
+   [6] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:10
+   [8] include(::Module, ::String) at .&#x2F;Base.jl:377
+   [9] include at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:1 [inlined]
+   [10] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:9 [inlined]
+   [11] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:6
+   [13] include(::String) at .&#x2F;client.jl:439
+   [14] top-level scope at none:6
+   [15] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [16] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [17] _start() at .&#x2F;client.jl:484
+  
+Discrete control Riccati equation (Float64): Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:151
+  Got exception outside of a @test
+  MethodError: vcat(::LinearAlgebra.Adjoint{Float64,Array{Float64,2}}, ::LinearAlgebra.Adjoint{Float64,Array{Float64,2}}) is ambiguous. Candidates:
+    vcat(A::Union{AbstractArray{T,1}, AbstractArray{T,2}}...) where T in Base at abstractarray.jl:1351
+    vcat(ops::Union{AbstractArray{T,2} where T, LinearOperators.AbstractLinearOperator}...) in LinearOperators at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LinearOperators&#x2F;La2Ey&#x2F;src&#x2F;LinearOperators.jl:630
+    vcat(A::Union{AbstractArray{T,1}, AbstractArray{T,2}} where T...) in Base at abstractarray.jl:1350
+  To resolve the ambiguity, try making one of the methods more specific, or adding a new method more specific than any of the existing applicable methods.
+  Stacktrace:
+   [1] gared(::Array{Float64,2}, ::LinearAlgebra.UniformScaling{Bool}, ::Array{Float64,2}, ::Array{Float64,2}, ::Array{Float64,2}, ::Array{Float64,2}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;src&#x2F;riccati.jl:567
+   [2] ared(::Array{Float64,2}, ::Array{Float64,2}, ::Array{Float64,2}, ::Array{Float64,2}, ::Array{Float64,2}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;src&#x2F;riccati.jl:675 (repeats 2 times)
+   [3] macro expansion at .&#x2F;util.jl:162 [inlined]
+   [4] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:152 [inlined]
+   [5] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [6] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:152 [inlined]
+   [7] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:10
+   [9] include(::Module, ::String) at .&#x2F;Base.jl:377
+   [10] include at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:1 [inlined]
+   [11] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:9 [inlined]
+   [12] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:6
+   [14] include(::String) at .&#x2F;client.jl:439
+   [15] top-level scope at none:6
+   [16] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [17] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [18] _start() at .&#x2F;client.jl:484
+  
+Generalized discrete control Riccati equation (Float64): Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:179
+  Got exception outside of a @test
+  MethodError: vcat(::LinearAlgebra.Adjoint{Float64,Array{Float64,2}}, ::LinearAlgebra.Adjoint{Float64,Array{Float64,2}}) is ambiguous. Candidates:
+    vcat(A::Union{AbstractArray{T,1}, AbstractArray{T,2}}...) where T in Base at abstractarray.jl:1351
+    vcat(ops::Union{AbstractArray{T,2} where T, LinearOperators.AbstractLinearOperator}...) in LinearOperators at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LinearOperators&#x2F;La2Ey&#x2F;src&#x2F;LinearOperators.jl:630
+    vcat(A::Union{AbstractArray{T,1}, AbstractArray{T,2}} where T...) in Base at abstractarray.jl:1350
+  To resolve the ambiguity, try making one of the methods more specific, or adding a new method more specific than any of the existing applicable methods.
+  Stacktrace:
+   [1] gared(::Array{Float64,2}, ::Array{Float64,2}, ::Array{Float64,2}, ::Array{Float64,2}, ::Array{Float64,2}, ::Array{Float64,2}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;src&#x2F;riccati.jl:567
+   [2] macro expansion at .&#x2F;util.jl:162 [inlined]
+   [3] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:180 [inlined]
+   [4] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [5] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:180 [inlined]
+   [6] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:10
+   [8] include(::Module, ::String) at .&#x2F;Base.jl:377
+   [9] include at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:1 [inlined]
+   [10] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:9 [inlined]
+   [11] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:6
+   [13] include(::String) at .&#x2F;client.jl:439
+   [14] top-level scope at none:6
+   [15] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [16] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [17] _start() at .&#x2F;client.jl:484
+  
+  1.481206 seconds (1.29 M allocations: 62.169 MiB, 1.68% gc time)
+  0.007443 seconds (1.72 k allocations: 118.989 KiB)
+  0.052465 seconds (26.28 k allocations: 1.402 MiB)
+  0.018953 seconds (6.49 k allocations: 385.125 KiB)
+  0.051204 seconds (6.49 k allocations: 385.125 KiB)
+Continuous Riccati equation (Float32): Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:39
+  Got exception outside of a @test
+  MethodError: hvcat(::Tuple{Int64,Int64}, ::LinearAlgebra.Adjoint{Float32,Array{Float32,2}}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}) is ambiguous. Candidates:
+    hvcat(rows::Tuple{Vararg{Int64,N} where N}, xs::Union{AbstractArray{T,1}, AbstractArray{T,2}}...) where T in Base at abstractarray.jl:1634
+    hvcat(rows::Tuple{Vararg{Int64,N} where N}, ops::Union{AbstractArray{T,2} where T, LinearOperators.AbstractLinearOperator}...) in LinearOperators at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LinearOperators&#x2F;La2Ey&#x2F;src&#x2F;LinearOperators.jl:639
+    hvcat(rows::Tuple{Vararg{Int64,N} where N}, xs::Union{AbstractArray{T,1}, AbstractArray{T,2}} where T...) in Base at abstractarray.jl:1633
+  To resolve the ambiguity, try making one of the methods more specific, or adding a new method more specific than any of the existing applicable methods.
+  Stacktrace:
+   [1] arec(::LinearAlgebra.Adjoint{Float32,Array{Float32,2}}, ::Array{Float32,2}, ::Array{Float32,2}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;src&#x2F;riccati.jl:81
+   [2] macro expansion at .&#x2F;util.jl:162 [inlined]
+   [3] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:65 [inlined]
+   [4] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [5] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:40 [inlined]
+   [6] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:10
+   [8] include(::Module, ::String) at .&#x2F;Base.jl:377
+   [9] include at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:1 [inlined]
+   [10] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:9 [inlined]
+   [11] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:6
+   [13] include(::String) at .&#x2F;client.jl:439
+   [14] top-level scope at none:6
+   [15] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [16] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [17] _start() at .&#x2F;client.jl:484
+  
+Continuous control Riccati equation (Float32): Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:91
+  Got exception outside of a @test
+  MethodError: hvcat(::Tuple{Int64,Int64}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}, ::LinearAlgebra.Adjoint{Float32,Array{Float32,2}}, ::Array{Float32,2}) is ambiguous. Candidates:
+    hvcat(rows::Tuple{Vararg{Int64,N} where N}, xs::Union{AbstractArray{T,1}, AbstractArray{T,2}}...) where T in Base at abstractarray.jl:1634
+    hvcat(rows::Tuple{Vararg{Int64,N} where N}, ops::Union{AbstractArray{T,2} where T, LinearOperators.AbstractLinearOperator}...) in LinearOperators at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LinearOperators&#x2F;La2Ey&#x2F;src&#x2F;LinearOperators.jl:639
+    hvcat(rows::Tuple{Vararg{Int64,N} where N}, xs::Union{AbstractArray{T,1}, AbstractArray{T,2}} where T...) in Base at abstractarray.jl:1633
+  To resolve the ambiguity, try making one of the methods more specific, or adding a new method more specific than any of the existing applicable methods.
+  Stacktrace:
+   [1] garec(::Array{Float32,2}, ::LinearAlgebra.UniformScaling{Bool}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;src&#x2F;riccati.jl:400
+   [2] arec(::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;src&#x2F;riccati.jl:239
+   [3] macro expansion at .&#x2F;util.jl:162 [inlined]
+   [4] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:94 [inlined]
+   [5] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [6] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:94 [inlined]
+   [7] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:10
+   [9] include(::Module, ::String) at .&#x2F;Base.jl:377
+   [10] include at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:1 [inlined]
+   [11] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:9 [inlined]
+   [12] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:6
+   [14] include(::String) at .&#x2F;client.jl:439
+   [15] top-level scope at none:6
+   [16] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [17] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [18] _start() at .&#x2F;client.jl:484
+  
+Generalized continuous control Riccati equation (Float32): Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:126
+  Got exception outside of a @test
+  MethodError: hvcat(::Tuple{Int64,Int64}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}, ::LinearAlgebra.Adjoint{Float32,Array{Float32,2}}, ::Array{Float32,2}) is ambiguous. Candidates:
+    hvcat(rows::Tuple{Vararg{Int64,N} where N}, xs::Union{AbstractArray{T,1}, AbstractArray{T,2}}...) where T in Base at abstractarray.jl:1634
+    hvcat(rows::Tuple{Vararg{Int64,N} where N}, ops::Union{AbstractArray{T,2} where T, LinearOperators.AbstractLinearOperator}...) in LinearOperators at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LinearOperators&#x2F;La2Ey&#x2F;src&#x2F;LinearOperators.jl:639
+    hvcat(rows::Tuple{Vararg{Int64,N} where N}, xs::Union{AbstractArray{T,1}, AbstractArray{T,2}} where T...) in Base at abstractarray.jl:1633
+  To resolve the ambiguity, try making one of the methods more specific, or adding a new method more specific than any of the existing applicable methods.
+  Stacktrace:
+   [1] garec(::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;src&#x2F;riccati.jl:400
+   [2] macro expansion at .&#x2F;util.jl:162 [inlined]
+   [3] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:128 [inlined]
+   [4] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [5] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:128 [inlined]
+   [6] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:10
+   [8] include(::Module, ::String) at .&#x2F;Base.jl:377
+   [9] include at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:1 [inlined]
+   [10] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:9 [inlined]
+   [11] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:6
+   [13] include(::String) at .&#x2F;client.jl:439
+   [14] top-level scope at none:6
+   [15] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [16] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [17] _start() at .&#x2F;client.jl:484
+  
+Discrete control Riccati equation (Float32): Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:151
+  Got exception outside of a @test
+  MethodError: vcat(::LinearAlgebra.Adjoint{Float32,Array{Float32,2}}, ::LinearAlgebra.Adjoint{Float32,Array{Float32,2}}) is ambiguous. Candidates:
+    vcat(A::Union{AbstractArray{T,1}, AbstractArray{T,2}}...) where T in Base at abstractarray.jl:1351
+    vcat(ops::Union{AbstractArray{T,2} where T, LinearOperators.AbstractLinearOperator}...) in LinearOperators at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LinearOperators&#x2F;La2Ey&#x2F;src&#x2F;LinearOperators.jl:630
+    vcat(A::Union{AbstractArray{T,1}, AbstractArray{T,2}} where T...) in Base at abstractarray.jl:1350
+  To resolve the ambiguity, try making one of the methods more specific, or adding a new method more specific than any of the existing applicable methods.
+  Stacktrace:
+   [1] gared(::Array{Float32,2}, ::LinearAlgebra.UniformScaling{Bool}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;src&#x2F;riccati.jl:567
+   [2] ared(::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;src&#x2F;riccati.jl:675 (repeats 2 times)
+   [3] macro expansion at .&#x2F;util.jl:162 [inlined]
+   [4] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:152 [inlined]
+   [5] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [6] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:152 [inlined]
+   [7] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:10
+   [9] include(::Module, ::String) at .&#x2F;Base.jl:377
+   [10] include at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:1 [inlined]
+   [11] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:9 [inlined]
+   [12] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:6
+   [14] include(::String) at .&#x2F;client.jl:439
+   [15] top-level scope at none:6
+   [16] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [17] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [18] _start() at .&#x2F;client.jl:484
+  
+Generalized discrete control Riccati equation (Float32): Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:179
+  Got exception outside of a @test
+  MethodError: vcat(::LinearAlgebra.Adjoint{Float32,Array{Float32,2}}, ::LinearAlgebra.Adjoint{Float32,Array{Float32,2}}) is ambiguous. Candidates:
+    vcat(A::Union{AbstractArray{T,1}, AbstractArray{T,2}}...) where T in Base at abstractarray.jl:1351
+    vcat(ops::Union{AbstractArray{T,2} where T, LinearOperators.AbstractLinearOperator}...) in LinearOperators at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LinearOperators&#x2F;La2Ey&#x2F;src&#x2F;LinearOperators.jl:630
+    vcat(A::Union{AbstractArray{T,1}, AbstractArray{T,2}} where T...) in Base at abstractarray.jl:1350
+  To resolve the ambiguity, try making one of the methods more specific, or adding a new method more specific than any of the existing applicable methods.
+  Stacktrace:
+   [1] gared(::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}, ::Array{Float32,2}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;src&#x2F;riccati.jl:567
+   [2] macro expansion at .&#x2F;util.jl:162 [inlined]
+   [3] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:180 [inlined]
+   [4] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [5] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:180 [inlined]
+   [6] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_riccati.jl:10
+   [8] include(::Module, ::String) at .&#x2F;Base.jl:377
+   [9] include at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:1 [inlined]
+   [10] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:9 [inlined]
+   [11] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:6
+   [13] include(::String) at .&#x2F;client.jl:439
+   [14] top-level scope at none:6
+   [15] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [16] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [17] _start() at .&#x2F;client.jl:484
+  
+  0.000000 seconds
+  0.187092 seconds (2.85 k allocations: 180.531 KiB)
+  0.090027 seconds (382 allocations: 38.719 KiB)
+  0.019937 seconds (187 allocations: 26.766 KiB)
+  0.011854 seconds (84 allocations: 9.672 KiB)
+  0.009466 seconds (38 allocations: 7.484 KiB)
+  0.098758 seconds (1.88 k allocations: 309.656 KiB)
+  0.029107 seconds (534 allocations: 146.156 KiB)
+  0.085870 seconds (307 allocations: 11.029 MiB)
+  0.088580 seconds (1.67 k allocations: 489.469 KiB)
+  0.034116 seconds (474 allocations: 252.328 KiB)
+  0.533645 seconds (5.40 k allocations: 22.322 MiB)
+  0.095269 seconds (1.06 k allocations: 478.625 KiB)
+  0.071561 seconds (1.16 k allocations: 270.516 KiB)
+  0.085859 seconds (1.20 k allocations: 275.891 KiB)
+  0.070911 seconds (1.07 k allocations: 456.031 KiB)
+  0.079149 seconds (1.06 k allocations: 461.828 KiB)
+  0.110193 seconds (1.77 k allocations: 502.062 KiB)
+  0.275670 seconds (276.99 k allocations: 13.457 MiB)
+  0.648134 seconds (451.03 k allocations: 21.943 MiB, 11.50% gc time)
+  0.018552 seconds (3.47 k allocations: 179.581 KiB)
+  0.026290 seconds (5.63 k allocations: 299.968 KiB)
+  0.017189 seconds (2.46 k allocations: 137.315 KiB)
+  0.211689 seconds (118.19 k allocations: 6.203 MiB)
+  0.057220 seconds (22.07 k allocations: 1.158 MiB)
+  0.264595 seconds (15.09 k allocations: 6.273 MiB)
+  0.250198 seconds (120.92 k allocations: 6.739 MiB)
+  0.063316 seconds (20.25 k allocations: 1.138 MiB)
+  3.722436 seconds (2.82 M allocations: 146.915 MiB, 4.05% gc time)
+  0.080556 seconds (50.56 k allocations: 2.679 MiB)
+  0.108891 seconds (53.75 k allocations: 2.725 MiB)
+  0.116191 seconds (53.77 k allocations: 2.728 MiB)
+  0.079055 seconds (51.15 k allocations: 2.719 MiB)
+  0.113426 seconds (50.63 k allocations: 2.703 MiB)
+  0.152777 seconds (78.08 k allocations: 3.986 MiB)
+  0.006663 seconds (30 allocations: 2.078 KiB)
+  0.006901 seconds (78 allocations: 4.812 KiB)
+  0.007754 seconds (78 allocations: 4.812 KiB)
+  0.000126 seconds (5 allocations: 272 bytes)
+  0.208619 seconds (2.31 k allocations: 154.062 KiB)
+  0.014053 seconds (96 allocations: 34.312 KiB)
+  0.011541 seconds (96 allocations: 34.312 KiB)
+  0.009213 seconds (99 allocations: 34.469 KiB)
+  0.005749 seconds (41 allocations: 2.672 KiB)
+  0.008843 seconds (86 allocations: 5.203 KiB)
+  0.007360 seconds (86 allocations: 5.203 KiB)
+  0.007728 seconds (89 allocations: 5.359 KiB)
+  0.006858 seconds (634 allocations: 39.663 KiB)
+  0.009367 seconds (4.64 k allocations: 257.344 KiB)
+  0.007207 seconds (4.64 k allocations: 257.344 KiB)
+  0.000114 seconds (5 allocations: 272 bytes)
+  0.294993 seconds (253.16 k allocations: 12.362 MiB)
+  0.018708 seconds (4.68 k allocations: 274.861 KiB)
+  0.012304 seconds (4.68 k allocations: 274.861 KiB)
+  0.016172 seconds (5.32 k allocations: 314.261 KiB)
+  0.005206 seconds (646 allocations: 40.446 KiB)
+  0.013998 seconds (4.65 k allocations: 258.455 KiB)
+  0.019290 seconds (4.65 k allocations: 258.424 KiB)
+  0.017185 seconds (89 allocations: 5.359 KiB)
+  0.000000 seconds
+  0.000000 seconds
+  0.026518 seconds (38 allocations: 29.062 KiB)
+  0.023306 seconds (179 allocations: 29.406 KiB)
+  0.024956 seconds (174 allocations: 29.156 KiB)
+  0.014852 seconds (84 allocations: 9.672 KiB)
+  0.010775 seconds (44 allocations: 7.922 KiB)
+  1.026529 seconds (45.22 k allocations: 2.176 MiB)
+  0.036999 seconds (6.10 k allocations: 871.359 KiB)
+  0.032981 seconds (5.68 k allocations: 859.984 KiB)
+  0.054775 seconds (6.18 k allocations: 882.281 KiB)
+  0.601247 seconds (26.24 k allocations: 2.149 MiB)
+  0.062980 seconds (6.14 k allocations: 1.415 MiB)
+  0.029541 seconds (5.73 k allocations: 1.652 MiB)
+  0.047434 seconds (6.02 k allocations: 1.669 MiB)
+  0.322958 seconds (499 allocations: 16.532 MiB, 12.83% gc time)
+  0.000000 seconds
+  0.000001 seconds
+  0.129637 seconds (3.49 k allocations: 214.550 KiB)
+  0.231097 seconds (232.11 k allocations: 11.341 MiB)
+  0.025951 seconds (3.11 k allocations: 168.391 KiB)
+  0.015567 seconds (2.76 k allocations: 138.698 KiB)
+  0.012485 seconds (3.02 k allocations: 164.821 KiB)
+  1.029862 seconds (572.33 k allocations: 25.341 MiB)
+  0.057135 seconds (34.73 k allocations: 2.094 MiB)
+  0.050025 seconds (34.30 k allocations: 2.085 MiB)
+  0.082111 seconds (50.08 k allocations: 2.860 MiB)
+  0.999856 seconds (608.50 k allocations: 29.200 MiB, 5.57% gc time)
+  0.114415 seconds (52.77 k allocations: 3.249 MiB)
+  0.060640 seconds (33.39 k allocations: 2.472 MiB)
+  0.098483 seconds (54.07 k allocations: 3.508 MiB)
+  0.165670 seconds (22.41 k allocations: 9.350 MiB)
+  0.016347 seconds (5.32 k allocations: 722.688 KiB)
+  0.009791 seconds (5.58 k allocations: 730.047 KiB)
+  0.010116 seconds (5.15 k allocations: 718.578 KiB)
+  0.001699 seconds (5.29 k allocations: 718.656 KiB)
+  0.843639 seconds (45.88 k allocations: 2.420 MiB)
+  0.013572 seconds (8.06 k allocations: 1005.547 KiB)
+  0.012210 seconds (8.44 k allocations: 1.167 MiB)
+  0.011984 seconds (8.25 k allocations: 1001.203 KiB)
+  0.007284 seconds (5.20 k allocations: 1.150 MiB)
+  0.011564 seconds (5.25 k allocations: 1.414 MiB)
+  0.012141 seconds (5.25 k allocations: 1.152 MiB)
+  0.012097 seconds (5.25 k allocations: 1.414 MiB)
+  0.007800 seconds (6.04 k allocations: 618.054 KiB)
+  0.010877 seconds (10.26 k allocations: 840.125 KiB)
+  0.010564 seconds (9.84 k allocations: 831.344 KiB)
+  0.001501 seconds (5.42 k allocations: 578.656 KiB)
+  1.507738 seconds (704.10 k allocations: 29.730 MiB, 3.33% gc time)
+  0.016751 seconds (12.82 k allocations: 1023.221 KiB)
+  0.017178 seconds (13.22 k allocations: 1.114 MiB)
+  0.024846 seconds (13.65 k allocations: 1.038 MiB)
+  0.008480 seconds (5.80 k allocations: 849.337 KiB)
+  0.019048 seconds (9.81 k allocations: 1.180 MiB)
+  0.017568 seconds (9.80 k allocations: 1.042 MiB)
+  0.009146 seconds (5.25 k allocations: 955.562 KiB)
+  0.032286 seconds (175 allocations: 34.859 KiB)
+  0.104778 seconds (1.47 k allocations: 90.938 KiB)
+  0.015169 seconds (49 allocations: 20.188 KiB)
+  0.014532 seconds (170 allocations: 27.219 KiB)
+  0.078196 seconds (1.30 k allocations: 74.391 KiB)
+  1.397809 seconds (90.82 k allocations: 4.300 MiB)
+  0.174455 seconds (22.53 k allocations: 2.038 MiB)
+  1.030146 seconds (65.23 k allocations: 4.717 MiB)
+  0.032193 seconds (10.71 k allocations: 2.572 MiB)
+  0.059970 seconds (11.32 k allocations: 2.602 MiB)
+  0.057251 seconds (11.32 k allocations: 2.595 MiB)
+  0.004427 seconds (8.89 k allocations: 1.330 MiB)
+  0.041974 seconds (11.02 k allocations: 2.522 MiB)
+  0.067344 seconds (21.73 k allocations: 1.939 MiB)
+  0.061537 seconds (20.88 k allocations: 1.948 MiB)
+  0.069489 seconds (30.22 k allocations: 2.391 MiB)
+  0.004102 seconds (8.46 k allocations: 1.331 MiB)
+  0.004257 seconds (8.90 k allocations: 1.323 MiB)
+  0.004005 seconds (9.33 k allocations: 1.322 MiB)
+  0.081006 seconds (23.02 k allocations: 3.147 MiB)
+  0.321507 seconds (298 allocations: 11.018 MiB)
+  0.297349 seconds (298 allocations: 22.013 MiB, 14.41% gc time)
+  0.042634 seconds (299 allocations: 11.025 MiB)
+  0.185963 seconds (1.80 k allocations: 22.117 MiB)
+  0.013248 seconds (2.62 k allocations: 137.134 KiB)
+  0.145560 seconds (217.64 k allocations: 10.583 MiB)
+  0.022256 seconds (1.57 k allocations: 90.836 KiB)
+  0.025079 seconds (2.55 k allocations: 129.462 KiB)
+  0.203059 seconds (250.50 k allocations: 12.382 MiB)
+  1.604689 seconds (823.10 k allocations: 35.404 MiB, 1.34% gc time)
+  0.156438 seconds (105.84 k allocations: 5.837 MiB)
+  1.156143 seconds (609.15 k allocations: 27.823 MiB)
+  0.030599 seconds (21.55 k allocations: 2.273 MiB)
+  0.080336 seconds (77.29 k allocations: 5.056 MiB)
+  0.125448 seconds (77.31 k allocations: 5.050 MiB, 43.15% gc time)
+  0.003614 seconds (8.90 k allocations: 1.007 MiB)
+  0.056650 seconds (46.87 k allocations: 3.556 MiB)
+  0.084173 seconds (75.13 k allocations: 4.294 MiB)
+  0.084431 seconds (74.28 k allocations: 4.282 MiB)
+  0.089296 seconds (84.53 k allocations: 4.830 MiB)
+  0.002843 seconds (8.49 k allocations: 1023.422 KiB)
+  0.002763 seconds (8.93 k allocations: 1.005 MiB)
+  0.002860 seconds (9.33 k allocations: 1.012 MiB)
+  0.101580 seconds (80.30 k allocations: 5.141 MiB)
+  0.106650 seconds (12.34 k allocations: 6.115 MiB)
+  0.311050 seconds (12.34 k allocations: 11.613 MiB)
+  0.053639 seconds (13.56 k allocations: 6.192 MiB)
+  0.236158 seconds (129.88 k allocations: 17.459 MiB, 11.70% gc time)
+  0.006190 seconds (8.88 k allocations: 1.234 MiB)
+  0.008328 seconds (9.37 k allocations: 1.229 MiB)
+  0.008023 seconds (8.51 k allocations: 1.237 MiB)
+  0.001948 seconds (8.86 k allocations: 1.225 MiB)
+  0.962066 seconds (76.12 k allocations: 4.103 MiB)
+  0.016752 seconds (12.62 k allocations: 1.635 MiB)
+  0.012680 seconds (13.38 k allocations: 2.071 MiB)
+  0.017798 seconds (13.00 k allocations: 1.658 MiB)
+  0.008835 seconds (10.37 k allocations: 2.297 MiB)
+  0.012787 seconds (10.41 k allocations: 2.300 MiB)
+  0.013565 seconds (10.41 k allocations: 2.824 MiB)
+  0.013338 seconds (10.42 k allocations: 2.824 MiB)
+  0.008449 seconds (9.57 k allocations: 1022.188 KiB)
+  0.011058 seconds (15.74 k allocations: 1.318 MiB)
+  0.011401 seconds (14.91 k allocations: 1.306 MiB)
+  0.002110 seconds (8.88 k allocations: 975.828 KiB)
+  1.498353 seconds (745.84 k allocations: 31.984 MiB, 2.21% gc time)
+  0.017919 seconds (19.01 k allocations: 1.580 MiB)
+  0.017396 seconds (19.79 k allocations: 1.810 MiB)
+  0.017458 seconds (20.04 k allocations: 1.623 MiB)
+  0.013301 seconds (11.05 k allocations: 1.624 MiB)
+  0.016047 seconds (16.79 k allocations: 1.939 MiB)
+  0.014645 seconds (16.78 k allocations: 2.215 MiB)
+  0.012750 seconds (10.42 k allocations: 1.862 MiB)
+  0.147710 seconds (2.61 k allocations: 267.625 KiB)
+  0.002062 seconds (55 allocations: 127.688 KiB)
+  0.144014 seconds (2.60 k allocations: 379.500 KiB)
+  0.005573 seconds (53 allocations: 245.266 KiB)
+  0.078168 seconds (1.33 k allocations: 313.922 KiB)
+  0.084538 seconds (1.55 k allocations: 364.031 KiB)
+  0.072604 seconds (1.71 k allocations: 215.062 KiB)
+  0.233609 seconds (1.35 k allocations: 33.099 MiB)
+  0.109003 seconds (38 allocations: 33.033 MiB, 22.30% gc time)
+  0.435792 seconds (1.72 k allocations: 66.136 MiB, 1.26% gc time)
+  0.173909 seconds (40 allocations: 66.055 MiB)
+  0.264437 seconds (166.88 k allocations: 8.510 MiB, 11.46% gc time)
+  0.001863 seconds (55 allocations: 67.688 KiB)
+  0.242579 seconds (170.45 k allocations: 8.759 MiB)
+  0.003952 seconds (53 allocations: 125.578 KiB)
+  0.104668 seconds (55.66 k allocations: 2.961 MiB)
+  0.120305 seconds (60.54 k allocations: 3.194 MiB)
+  0.109451 seconds (75.03 k allocations: 3.781 MiB)
+  0.198703 seconds (65.16 k allocations: 19.661 MiB)
+  0.053644 seconds (38 allocations: 16.523 MiB)
+  0.473711 seconds (186.15 k allocations: 42.430 MiB, 8.52% gc time)
+  0.323252 seconds (38 allocations: 33.033 MiB)
+  0.077866 seconds (2.15 k allocations: 243.125 KiB)
+  0.074161 seconds (1.41 k allocations: 198.234 KiB)
+  0.002005 seconds (62 allocations: 136.531 KiB)
+  0.076447 seconds (1.81 k allocations: 232.234 KiB)
+  0.086110 seconds (2.13 k allocations: 379.453 KiB)
+  0.103831 seconds (22.05 k allocations: 1.336 MiB)
+  0.008813 seconds (88 allocations: 264.688 KiB)
+  0.074322 seconds (1.79 k allocations: 368.688 KiB)
+  0.117597 seconds (13.84 k allocations: 999.751 KiB)
+  0.350312 seconds (1.97 k allocations: 33.136 MiB, 6.70% gc time)
+  0.085763 seconds (59.37 k allocations: 3.063 MiB)
+  0.068468 seconds (54.55 k allocations: 2.866 MiB)
+  0.001309 seconds (62 allocations: 72.203 KiB)
+  0.064930 seconds (57.09 k allocations: 2.970 MiB)
+  0.082838 seconds (59.79 k allocations: 3.148 MiB)
+  0.095189 seconds (95.79 k allocations: 4.971 MiB)
+  0.010242 seconds (3.33 k allocations: 329.215 KiB)
+  0.070777 seconds (58.92 k allocations: 3.135 MiB)
+  0.091671 seconds (88.32 k allocations: 4.613 MiB)
+  0.198165 seconds (90.42 k allocations: 20.925 MiB)
+  0.017961 seconds (82 allocations: 6.531 KiB)
+  0.000489 seconds (17 allocations: 1.438 KiB)
+  0.017623 seconds (82 allocations: 6.531 KiB)
+  0.000566 seconds (17 allocations: 1.438 KiB)
+  0.000410 seconds (14 allocations: 1.219 KiB)
+  0.000359 seconds (14 allocations: 1.219 KiB)
+  0.000508 seconds (14 allocations: 1.219 KiB)
+  0.000795 seconds (14 allocations: 1.219 KiB)
+  0.029921 seconds (380 allocations: 21.438 KiB)
+  0.100298 seconds (1.54 k allocations: 163.391 KiB)
+  0.111299 seconds (1.22 k allocations: 82.109 KiB)
+  0.052990 seconds (930 allocations: 139.031 KiB)
+  0.034485 seconds (351 allocations: 21.438 KiB)
+  0.038922 seconds (578 allocations: 61.703 KiB)
+  0.023839 seconds (1.01 k allocations: 61.033 KiB)
+  0.000648 seconds (17 allocations: 1.438 KiB)
+  0.024756 seconds (1.01 k allocations: 60.893 KiB)
+  0.000663 seconds (17 allocations: 1.438 KiB)
+  0.000551 seconds (14 allocations: 1.219 KiB)
+  0.000502 seconds (14 allocations: 1.219 KiB)
+  0.000622 seconds (14 allocations: 1.219 KiB)
+  0.000569 seconds (14 allocations: 1.219 KiB)
+  0.026858 seconds (13.82 k allocations: 712.957 KiB)
+  0.103465 seconds (62.36 k allocations: 2.985 MiB)
+  0.076085 seconds (60.45 k allocations: 2.920 MiB)
+  0.048335 seconds (25.29 k allocations: 1.234 MiB)
+  0.023136 seconds (12.81 k allocations: 648.330 KiB)
+  0.029850 seconds (15.62 k allocations: 779.692 KiB)
+  0.122708 seconds (20 allocations: 157.250 KiB)
+  0.564551 seconds (20 allocations: 312.656 KiB)
+  0.002209 seconds (16 allocations: 117.500 KiB)
+  0.005863 seconds (16 allocations: 233.375 KiB)
+  0.010067 seconds (21 allocations: 318.422 KiB)
+  0.006978 seconds (22 allocations: 635.391 KiB)
+  0.002149 seconds (17 allocations: 238.469 KiB)
+  0.005513 seconds (18 allocations: 475.531 KiB)
+  0.001128 seconds (19 allocations: 155.922 KiB)
+  0.003508 seconds (19 allocations: 310.047 KiB)
+  0.000970 seconds (20 allocations: 156.797 KiB)
+  0.003727 seconds (23 allocations: 311.859 KiB)
+  0.001859 seconds (20 allocations: 316.703 KiB)
+  0.005964 seconds (22 allocations: 631.906 KiB)
+  0.002100 seconds (21 allocations: 317.578 KiB)
+  0.013871 seconds (23 allocations: 633.672 KiB)
+  0.005762 seconds (34 allocations: 469.484 KiB)
+  0.007707 seconds (36 allocations: 470.453 KiB)
+  0.175401 seconds (34 allocations: 935.734 KiB)
+  0.199713 seconds (36 allocations: 937.484 KiB)
+  0.029295 seconds (38 allocations: 471.047 KiB)
+  0.000004 seconds
+  0.000000 seconds
+  1.992591 seconds (45.77 k allocations: 2.046 MiB)
+  0.130634 seconds (371 allocations: 150.031 KiB, 92.66% gc time)
+  0.043095 seconds (507 allocations: 157.578 KiB)
+  0.318194 seconds (4.51 k allocations: 350.125 KiB)
+  0.002072 seconds (400 allocations: 157.266 KiB)
+  3.375551 seconds (42.10 k allocations: 2.049 MiB)
+  0.002754 seconds (462 allocations: 264.375 KiB)
+  0.265991 seconds (4.92 k allocations: 488.938 KiB)
+  0.002874 seconds (581 allocations: 288.328 KiB)
+  0.026789 seconds (733 allocations: 296.359 KiB)
+  0.249903 seconds (4.85 k allocations: 459.469 KiB)
+  0.246971 seconds (4.55 k allocations: 467.953 KiB)
+  0.310387 seconds (4.85 k allocations: 471.156 KiB)
+  0.229141 seconds (4.55 k allocations: 480.531 KiB)
+  2.848266 seconds (1.87 M allocations: 88.308 MiB, 4.65% gc time)
+  0.000998 seconds (1.02 k allocations: 99.250 KiB)
+  0.019736 seconds (9.22 k allocations: 593.132 KiB)
+  0.262608 seconds (206.01 k allocations: 10.358 MiB)
+  0.000832 seconds (1.20 k allocations: 105.453 KiB)
+  2.578302 seconds (2.18 M allocations: 103.585 MiB, 1.28% gc time)
+  0.001910 seconds (461 allocations: 149.859 KiB)
+  0.287716 seconds (199.13 k allocations: 10.174 MiB)
+  0.001727 seconds (581 allocations: 163.750 KiB)
+  0.016192 seconds (10.69 k allocations: 774.628 KiB)
+  0.155756 seconds (110.41 k allocations: 5.349 MiB)
+  0.187085 seconds (103.03 k allocations: 5.040 MiB)
+  0.174304 seconds (110.44 k allocations: 5.356 MiB)
+  0.220961 seconds (103.03 k allocations: 5.046 MiB)
+  0.000001 seconds
+  0.000001 seconds
+  1.068277 seconds (197.59 k allocations: 9.841 MiB)
+  0.002900 seconds (6.17 k allocations: 923.703 KiB)
+  0.153823 seconds (10.96 k allocations: 1.110 MiB)
+  0.004209 seconds (6.88 k allocations: 952.234 KiB)
+  0.841471 seconds (165.46 k allocations: 8.765 MiB)
+  0.015352 seconds (3.23 k allocations: 1.202 MiB)
+  0.155310 seconds (7.79 k allocations: 1.439 MiB)
+  0.004413 seconds (3.41 k allocations: 1.249 MiB)
+  0.182186 seconds (8.10 k allocations: 1.437 MiB)
+  0.169365 seconds (7.93 k allocations: 1.465 MiB)
+  0.235052 seconds (8.05 k allocations: 1.410 MiB)
+  0.218545 seconds (7.87 k allocations: 1.444 MiB)
+  0.408793 seconds (210.10 k allocations: 10.475 MiB)
+  0.016795 seconds (6.18 k allocations: 940.797 KiB)
+  0.409692 seconds (197.47 k allocations: 9.908 MiB, 6.04% gc time)
+  0.018928 seconds (6.88 k allocations: 957.547 KiB)
+  0.501671 seconds (215.24 k allocations: 11.136 MiB)
+  0.004387 seconds (3.23 k allocations: 1.218 MiB)
+  0.392792 seconds (202.40 k allocations: 10.605 MiB)
+  0.014651 seconds (3.41 k allocations: 1.264 MiB)
+  0.463156 seconds (219.18 k allocations: 11.336 MiB, 11.91% gc time)
+  0.498117 seconds (208.68 k allocations: 10.913 MiB)
+  0.456138 seconds (240.70 k allocations: 12.375 MiB)
+  0.495522 seconds (202.38 k allocations: 10.603 MiB)
+  1.135569 seconds (37.92 k allocations: 1.518 MiB)
+  0.000538 seconds (355 allocations: 83.375 KiB)
+  0.016575 seconds (634 allocations: 93.906 KiB)
+  0.117793 seconds (2.62 k allocations: 195.438 KiB)
+  0.000359 seconds (382 allocations: 83.906 KiB)
+  0.799407 seconds (25.46 k allocations: 1.055 MiB)
+  0.137689 seconds (3.09 k allocations: 268.047 KiB)
+  0.038747 seconds (860 allocations: 156.609 KiB)
+  0.009921 seconds (443 allocations: 65.688 KiB)
+  0.018817 seconds (877 allocations: 80.891 KiB)
+  0.000312 seconds (350 allocations: 61.016 KiB)
+  0.010264 seconds (633 allocations: 105.734 KiB)
+  0.000674 seconds (442 allocations: 90.609 KiB)
+  1.098710 seconds (46.51 k allocations: 2.260 MiB)
+  0.001749 seconds (6.14 k allocations: 852.172 KiB)
+  0.183559 seconds (9.34 k allocations: 996.281 KiB)
+  0.002066 seconds (6.85 k allocations: 874.000 KiB)
+  0.882698 seconds (36.91 k allocations: 2.275 MiB)
+  0.186235 seconds (6.15 k allocations: 1.232 MiB)
+  0.027049 seconds (6.92 k allocations: 849.531 KiB)
+  0.003131 seconds (6.14 k allocations: 829.812 KiB)
+  0.012475 seconds (3.29 k allocations: 1.030 MiB)
+  0.001768 seconds (3.38 k allocations: 1.045 MiB)
+  2.253064 seconds (3.30 M allocations: 146.816 MiB, 7.84% gc time)
+  0.000356 seconds (946 allocations: 65.188 KiB)
+  0.037457 seconds (17.20 k allocations: 982.592 KiB)
+  0.167438 seconds (77.57 k allocations: 3.814 MiB)
+  0.000370 seconds (1.14 k allocations: 68.281 KiB)
+  0.934301 seconds (625.45 k allocations: 29.829 MiB, 4.87% gc time)
+  0.192082 seconds (81.73 k allocations: 4.043 MiB)
+  0.022578 seconds (19.72 k allocations: 1.154 MiB)
+  0.009763 seconds (1.19 k allocations: 60.734 KiB)
+  0.029788 seconds (16.61 k allocations: 874.561 KiB)
+  0.002433 seconds (963 allocations: 54.047 KiB)
+  0.009114 seconds (633 allocations: 73.672 KiB)
+  0.000630 seconds (442 allocations: 62.000 KiB)
+  2.029725 seconds (1.31 M allocations: 58.949 MiB, 2.86% gc time)
+  0.002146 seconds (10.06 k allocations: 769.719 KiB)
+  0.129663 seconds (97.69 k allocations: 5.032 MiB)
+  0.002059 seconds (10.84 k allocations: 770.594 KiB)
+  1.981658 seconds (1.40 M allocations: 63.700 MiB, 2.28% gc time)
+  0.177670 seconds (94.91 k allocations: 5.174 MiB)
+  0.076501 seconds (10.91 k allocations: 760.500 KiB, 82.46% gc time)
+  0.002829 seconds (10.05 k allocations: 758.234 KiB)
+  0.009100 seconds (3.29 k allocations: 669.703 KiB)
+  0.001262 seconds (3.38 k allocations: 677.609 KiB)
+  0.000006 seconds
+  0.000008 seconds
+Positive discrete Lyapunov equations: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_dplyap.jl:15
+  Got exception outside of a @test
+  MethodError: vcat(::LinearAlgebra.Adjoint{Float64,Array{Float64,2}}, ::LinearAlgebra.Adjoint{Float64,Array{Float64,2}}) is ambiguous. Candidates:
+    vcat(A::Union{AbstractArray{T,1}, AbstractArray{T,2}}...) where T in Base at abstractarray.jl:1351
+    vcat(ops::Union{AbstractArray{T,2} where T, LinearOperators.AbstractLinearOperator}...) in LinearOperators at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LinearOperators&#x2F;La2Ey&#x2F;src&#x2F;LinearOperators.jl:630
+    vcat(A::Union{AbstractArray{T,1}, AbstractArray{T,2}} where T...) in Base at abstractarray.jl:1350
+  To resolve the ambiguity, try making one of the methods more specific, or adding a new method more specific than any of the existing applicable methods.
+  Stacktrace:
+   [1] plyapds!(::Array{Float64,2}, ::LinearAlgebra.UpperTriangular{Float64,Array{Float64,2}}; adj::Bool) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;src&#x2F;plyapunov.jl:1921
+   [2] plyapd(::Array{Float64,2}, ::Array{Float64,2}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;src&#x2F;plyapunov.jl:513
+   [3] macro expansion at .&#x2F;util.jl:162 [inlined]
+   [4] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_dplyap.jl:42 [inlined]
+   [5] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [6] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_dplyap.jl:17 [inlined]
+   [7] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_dplyap.jl:9
+   [9] include(::Module, ::String) at .&#x2F;Base.jl:377
+   [10] include at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:1 [inlined]
+   [11] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:13 [inlined]
+   [12] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:6
+   [14] include(::String) at .&#x2F;client.jl:439
+   [15] top-level scope at none:6
+   [16] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [17] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [18] _start() at .&#x2F;client.jl:484
+  
+  0.000002 seconds
+  0.000001 seconds
+Positive discrete generalized Lyapunov equations: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_dplyap.jl:81
+  Got exception outside of a @test
+  MethodError: hcat(::LinearAlgebra.Adjoint{Float64,Array{Float64,2}}, ::Array{Float64,2}) is ambiguous. Candidates:
+    hcat(A::Union{AbstractArray{T,1}, AbstractArray{T,2}}...) where T in Base at abstractarray.jl:1314
+    hcat(ops::Union{AbstractArray{T,2} where T, LinearOperators.AbstractLinearOperator}...) in LinearOperators at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LinearOperators&#x2F;La2Ey&#x2F;src&#x2F;LinearOperators.jl:601
+    hcat(A::Union{AbstractArray{T,1}, AbstractArray{T,2}} where T...) in Base at abstractarray.jl:1313
+  To resolve the ambiguity, try making one of the methods more specific, or adding a new method more specific than any of the existing applicable methods.
+  Stacktrace:
+   [1] plyapds!(::Array{Float64,2}, ::Array{Float64,2}, ::LinearAlgebra.UpperTriangular{Float64,Array{Float64,2}}; adj::Bool) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;src&#x2F;plyapunov.jl:2172
+   [2] plyapd(::LinearAlgebra.Adjoint{Float64,Array{Float64,2}}, ::LinearAlgebra.Adjoint{Float64,Array{Float64,2}}, ::LinearAlgebra.Adjoint{Float64,Array{Float64,2}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;src&#x2F;plyapunov.jl:716
+   [3] macro expansion at .&#x2F;util.jl:162 [inlined]
+   [4] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_dplyap.jl:112 [inlined]
+   [5] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [6] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_dplyap.jl:83 [inlined]
+   [7] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_dplyap.jl:9
+   [9] include(::Module, ::String) at .&#x2F;Base.jl:377
+   [10] include at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:1 [inlined]
+   [11] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:13 [inlined]
+   [12] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:6
+   [14] include(::String) at .&#x2F;client.jl:439
+   [15] top-level scope at none:6
+   [16] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [17] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [18] _start() at .&#x2F;client.jl:484
+  
+Positive discrete Lyapunov equations - Schur form: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_dplyap.jl:206
+  Got exception outside of a @test
+  MethodError: vcat(::LinearAlgebra.Adjoint{Float64,Array{Float64,2}}, ::LinearAlgebra.Adjoint{Float64,Array{Float64,2}}) is ambiguous. Candidates:
+    vcat(A::Union{AbstractArray{T,1}, AbstractArray{T,2}}...) where T in Base at abstractarray.jl:1351
+    vcat(ops::Union{AbstractArray{T,2} where T, LinearOperators.AbstractLinearOperator}...) in LinearOperators at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;LinearOperators&#x2F;La2Ey&#x2F;src&#x2F;LinearOperators.jl:630
+    vcat(A::Union{AbstractArray{T,1}, AbstractArray{T,2}} where T...) in Base at abstractarray.jl:1350
+  To resolve the ambiguity, try making one of the methods more specific, or adding a new method more specific than any of the existing applicable methods.
+  Stacktrace:
+   [1] plyapds!(::Array{Float64,2}, ::LinearAlgebra.UpperTriangular{Float64,Array{Float64,2}}; adj::Bool) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;src&#x2F;plyapunov.jl:1921
+   [2] plyaps(::Array{Float64,2}, ::Array{Float64,2}; disc::Bool) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;src&#x2F;plyapunov.jl:897
+   [3] macro expansion at .&#x2F;util.jl:162 [inlined]
+   [4] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_dplyap.jl:224 [inlined]
+   [5] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [6] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_dplyap.jl:209 [inlined]
+   [7] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;test_dplyap.jl:9
+   [9] include(::Module, ::String) at .&#x2F;Base.jl:377
+   [10] include at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:1 [inlined]
+   [11] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:13 [inlined]
+   [12] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+   [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:6
+   [14] include(::String) at .&#x2F;client.jl:439
+   [15] top-level scope at none:6
+   [16] eval(::Module, ::Any) at .&#x2F;boot.jl:331
+   [17] exec_options(::Base.JLOptions) at .&#x2F;client.jl:264
+   [18] _start() at .&#x2F;client.jl:484
+  
+  0.000376 seconds (53 allocations: 26.906 KiB)
+  0.055534 seconds (33.59 k allocations: 1.716 MiB)
+  0.033836 seconds (5.01 k allocations: 313.010 KiB)
+  0.056331 seconds (12.88 k allocations: 687.073 KiB)
+  0.078592 seconds (46.21 k allocations: 2.349 MiB)
+  0.033272 seconds (12.70 k allocations: 699.524 KiB)
+  0.010384 seconds (501 allocations: 61.047 KiB)
+  0.025940 seconds (139 allocations: 11.422 KiB)
+  0.039952 seconds (6.45 k allocations: 386.494 KiB)
+  0.324534 seconds (393.76 k allocations: 19.493 MiB)
+  0.019340 seconds (4.90 k allocations: 299.673 KiB)
+  0.120520 seconds (41.71 k allocations: 2.001 MiB)
+  0.000136 seconds (434 allocations: 48.094 KiB)
+  0.142116 seconds (62.04 k allocations: 3.167 MiB)
+  0.000149 seconds (478 allocations: 48.641 KiB)
+  0.000649 seconds (59 allocations: 49.172 KiB)
+  0.015516 seconds (26 allocations: 28.672 KiB)
+  0.041127 seconds (12.69 k allocations: 695.993 KiB)
+  0.056951 seconds (28 allocations: 28.703 KiB)
+  0.050989 seconds (6.44 k allocations: 380.963 KiB)
+  0.012513 seconds (134 allocations: 12.375 KiB)
+  0.000378 seconds (54 allocations: 26.922 KiB)
+  0.000056 seconds (12 allocations: 3.875 KiB)
+  0.001026 seconds (2.38 k allocations: 269.891 KiB)
+  0.063164 seconds (41.85 k allocations: 2.284 MiB)
+  0.012882 seconds (1.45 k allocations: 155.469 KiB)
+  0.002628 seconds (35 allocations: 39.922 KiB)
+  0.124453 seconds (17.07 k allocations: 1015.288 KiB)
+  0.126742 seconds (56.09 k allocations: 2.993 MiB)
+  0.038700 seconds (15.91 k allocations: 1001.677 KiB)
+  0.073078 seconds (1.44 k allocations: 157.578 KiB)
+  0.004657 seconds (39 allocations: 40.844 KiB)
+  0.022348 seconds (2.47 k allocations: 256.344 KiB)
+  0.071308 seconds (17.09 k allocations: 1.103 MiB)
+  0.018662 seconds (7.49 k allocations: 547.095 KiB)
+  0.000256 seconds (1.42 k allocations: 138.984 KiB)
+  0.000422 seconds (1.90 k allocations: 183.328 KiB)
+  0.000328 seconds (1.41 k allocations: 140.188 KiB)
+  0.006268 seconds (1.53 k allocations: 147.656 KiB)
+  0.001033 seconds (1.67 k allocations: 268.469 KiB)
+  0.073589 seconds (34 allocations: 36.922 KiB)
+  0.083252 seconds (15.91 k allocations: 1020.005 KiB)
+  0.084345 seconds (38 allocations: 38.734 KiB)
+  0.000490 seconds (1.63 k allocations: 228.297 KiB)
+  0.000038 seconds (7 allocations: 5.047 KiB)
+  0.000930 seconds (2.65 k allocations: 274.906 KiB)
+  0.000567 seconds (2.61 k allocations: 253.672 KiB)
+  0.000277 seconds (849 allocations: 110.469 KiB)
+  0.084809 seconds (30.94 k allocations: 1.650 MiB)
+  0.111836 seconds (553 allocations: 69.234 KiB)
+  0.000411 seconds (915 allocations: 110.797 KiB)
+  0.031846 seconds (557 allocations: 68.812 KiB)
+  0.006290 seconds (28 allocations: 29.938 KiB)
+  0.000269 seconds (823 allocations: 96.203 KiB)
+  0.000395 seconds (889 allocations: 96.531 KiB)
+  0.000207 seconds (530 allocations: 56.828 KiB)
+  0.000671 seconds (787 allocations: 83.297 KiB)
+  0.001963 seconds (557 allocations: 68.812 KiB)
+  0.000172 seconds (534 allocations: 56.406 KiB)
+  0.000520 seconds (841 allocations: 144.500 KiB)
+  0.001332 seconds (26 allocations: 28.672 KiB)
+  0.000559 seconds (842 allocations: 157.172 KiB)
+  0.004729 seconds (28 allocations: 28.703 KiB)
+  0.000187 seconds (820 allocations: 118.625 KiB)
+  0.004839 seconds (611 allocations: 42.659 KiB)
+  0.000365 seconds (915 allocations: 110.797 KiB)
+  0.000223 seconds (889 allocations: 96.531 KiB)
+  0.000771 seconds (2.38 k allocations: 271.078 KiB)
+  0.024320 seconds (1.41 k allocations: 152.078 KiB)
+  0.000855 seconds (2.65 k allocations: 277.031 KiB)
+  0.005825 seconds (1.47 k allocations: 154.531 KiB)
+  0.000504 seconds (2.34 k allocations: 248.594 KiB)
+  0.012757 seconds (3.50 k allocations: 346.047 KiB)
+  0.000506 seconds (2.61 k allocations: 254.547 KiB)
+  0.005830 seconds (1.41 k allocations: 152.078 KiB)
+  0.004082 seconds (35 allocations: 39.922 KiB)
+  0.006033 seconds (1.47 k allocations: 154.531 KiB)
+  0.005868 seconds (1.47 k allocations: 154.531 KiB)
+  0.003812 seconds (39 allocations: 40.844 KiB)
+  0.001011 seconds (1.67 k allocations: 272.000 KiB)
+  0.005612 seconds (34 allocations: 36.922 KiB)
+  0.001125 seconds (1.67 k allocations: 297.328 KiB)
+  0.004503 seconds (38 allocations: 38.734 KiB)
+  0.000422 seconds (1.63 k allocations: 230.062 KiB)
+  0.000038 seconds (7 allocations: 5.047 KiB)
+  0.000869 seconds (2.65 k allocations: 277.031 KiB)
+  0.000519 seconds (2.61 k allocations: 254.547 KiB)
+  0.000264 seconds (52 allocations: 19.297 KiB)
+  0.007932 seconds (138 allocations: 9.375 KiB)
+  0.000119 seconds (17 allocations: 2.109 KiB)
+  0.010094 seconds (6.45 k allocations: 379.791 KiB)
+  0.027646 seconds (104 allocations: 8.312 KiB)
+  0.000111 seconds (18 allocations: 2.125 KiB)
+  0.000109 seconds (19 allocations: 2.141 KiB)
+  0.018126 seconds (4.90 k allocations: 295.407 KiB)
+  0.120817 seconds (41.72 k allocations: 1.990 MiB)
+  0.000103 seconds (19 allocations: 2.141 KiB)
+  0.000113 seconds (19 allocations: 2.141 KiB)
+  0.000095 seconds (20 allocations: 2.156 KiB)
+  0.006023 seconds (125 allocations: 8.391 KiB)
+  0.000065 seconds (19 allocations: 2.141 KiB)
+  0.000078 seconds (19 allocations: 2.141 KiB)
+  0.000129 seconds (20 allocations: 2.156 KiB)
+  0.000398 seconds (43 allocations: 32.531 KiB)
+  0.000052 seconds (10 allocations: 2.984 KiB)
+  0.028683 seconds (7.87 k allocations: 419.680 KiB)
+  0.023622 seconds (7.68 k allocations: 420.303 KiB)
+  0.000201 seconds (578 allocations: 66.078 KiB)
+  0.000123 seconds (554 allocations: 56.500 KiB)
+  0.000134 seconds (561 allocations: 56.797 KiB)
+  0.000364 seconds (834 allocations: 82.844 KiB)
+  0.000150 seconds (534 allocations: 56.469 KiB)
+  0.000140 seconds (585 allocations: 56.797 KiB)
+  0.000114 seconds (558 allocations: 56.469 KiB)
+  0.000206 seconds (557 allocations: 56.453 KiB)
+  0.000150 seconds (586 allocations: 56.812 KiB)
+  0.000140 seconds (535 allocations: 56.484 KiB)
+  0.000140 seconds (564 allocations: 56.844 KiB)
+  0.000134 seconds (557 allocations: 56.453 KiB)
+  0.000119 seconds (586 allocations: 56.812 KiB)
+  0.000125 seconds (535 allocations: 56.484 KiB)
+  0.000125 seconds (564 allocations: 56.844 KiB)
+  0.000325 seconds (403 allocations: 67.562 KiB)
+  0.000100 seconds (384 allocations: 51.375 KiB)
+  0.006083 seconds (492 allocations: 63.500 KiB)
+  0.000281 seconds (576 allocations: 65.766 KiB)
+  0.000105 seconds (550 allocations: 56.156 KiB)
+  0.000098 seconds (550 allocations: 56.156 KiB)
+  0.000315 seconds (406 allocations: 73.234 KiB)
+  0.000107 seconds (385 allocations: 57.016 KiB)
+  0.000661 seconds (1.23 k allocations: 132.953 KiB)
+  0.009853 seconds (1.32 k allocations: 125.375 KiB)
+  0.000407 seconds (1.19 k allocations: 117.812 KiB)
+  0.000592 seconds (1.20 k allocations: 118.422 KiB)
+  0.000466 seconds (1.27 k allocations: 119.672 KiB)
+  0.000696 seconds (1.15 k allocations: 117.484 KiB)
+  0.000490 seconds (1.21 k allocations: 118.516 KiB)
+  0.028607 seconds (15.86 k allocations: 984.830 KiB)
+  0.004491 seconds (1.61 k allocations: 143.906 KiB)
+  0.005689 seconds (1.70 k allocations: 162.250 KiB)
+  0.003377 seconds (1.66 k allocations: 144.438 KiB)
+  0.033042 seconds (6.09 k allocations: 417.907 KiB)
+  0.000403 seconds (1.21 k allocations: 118.250 KiB)
+  0.000340 seconds (1.15 k allocations: 117.281 KiB)
+  0.000458 seconds (1.27 k allocations: 119.469 KiB)
+  0.000548 seconds (1.21 k allocations: 118.500 KiB)
+  0.005987 seconds (1.31 k allocations: 124.250 KiB)
+  0.000320 seconds (1.15 k allocations: 117.281 KiB)
+  0.000573 seconds (1.27 k allocations: 119.469 KiB)
+  0.000481 seconds (1.21 k allocations: 118.500 KiB)
+  0.142714 seconds (43.35 k allocations: 2.125 MiB)
+  0.009103 seconds (1.70 k allocations: 162.266 KiB)
+  0.009003 seconds (1.61 k allocations: 143.922 KiB)
+  0.000582 seconds (1.65 k allocations: 161.797 KiB)
+  0.000545 seconds (794 allocations: 126.734 KiB)
+  0.000171 seconds (761 allocations: 100.000 KiB)
+  0.007392 seconds (870 allocations: 119.812 KiB)
+  0.042499 seconds (7.29 k allocations: 448.036 KiB)
+  0.000283 seconds (1.19 k allocations: 117.641 KiB)
+  0.000209 seconds (1.19 k allocations: 117.641 KiB)
+  0.000217 seconds (1.19 k allocations: 117.641 KiB)
+  0.026227 seconds (6.67 k allocations: 441.722 KiB)
+  0.155224 seconds (42.45 k allocations: 2.093 MiB)
+  0.000357 seconds (63 allocations: 23.188 KiB)
+  0.134073 seconds (59.74 k allocations: 3.073 MiB)
+  0.060862 seconds (30.59 k allocations: 1.481 MiB)
+  0.176205 seconds (95.62 k allocations: 4.754 MiB)
+  0.000504 seconds (61 allocations: 40.984 KiB)
+  0.068712 seconds (30.41 k allocations: 1.486 MiB)
+  0.011957 seconds (150 allocations: 13.188 KiB)
+  0.020165 seconds (6.47 k allocations: 391.400 KiB)
+  0.000135 seconds (24 allocations: 9.156 KiB)
+  0.020458 seconds (4.91 k allocations: 300.376 KiB)
+  0.145370 seconds (41.73 k allocations: 2.002 MiB)
+  0.000140 seconds (24 allocations: 9.156 KiB)
+  0.008191 seconds (134 allocations: 17.797 KiB)
+Test Summary:                                                      | Pass  Error  Total
+Test MatrixEquations.jl                                            |  850     12    862
+  Testing continuous Lyapunov equation solvers                     |   97            97
+  Testing discrete Lyapunov equation solvers                       |  100           100
+  Matrix Equations Utilities                                       |   17            17
+  Testing algebraic Riccati equation solvers                       |   16      9     25
+    Continuous Riccati equation (Float64)                          |    5      1      6
+    Continuous control Riccati equation (Float64)                  |    6             6
+    Generalized continuous control Riccati equation (Float64)      |           1      1
+    Discrete control Riccati equation (Float64)                    |           1      1
+    Generalized discrete control Riccati equation (Float64)        |           1      1
+    Continuous Riccati equation (Float32)                          |    5      1      6
+    Continuous control Riccati equation (Float32)                  |           1      1
+    Generalized continuous control Riccati equation (Float32)      |           1      1
+    Discrete control Riccati equation (Float32)                    |           1      1
+    Generalized discrete control Riccati equation (Float32)        |           1      1
+  Testing Sylvester equation solvers                               |  257           257
+  Testing Sylvester equation solvers based on Kronecker expansions |   21            21
+  Testing positive continuous Lyapunov equation solvers            |  110           110
+  Testing positive discrete Lyapunov equation solvers              |   12      3     15
+    Positive discrete Lyapunov equations                           |    2      1      3
+    Positive discrete generalized Lyapunov equations               |    2      1      3
+    Positive discrete 2x2 Lyapunov equations                       |    8             8
+    Positive discrete Lyapunov equations - Schur form              |           1      1
+  Testing Lyapunov and Sylvester operators                         |  220           220
+ERROR: LoadError: Some tests did not pass: 850 passed, 0 failed, 12 errored, 0 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;MatrixEquations&#x2F;MBfWx&#x2F;test&#x2F;runtests.jl:5
+ERROR: Package MatrixEquations errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:274
+ [5] #test#56 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [6] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [7] #test#55 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [8] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [10] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [11] top-level scope at none:10
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

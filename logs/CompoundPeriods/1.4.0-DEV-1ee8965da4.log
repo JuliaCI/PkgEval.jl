@@ -1,0 +1,56 @@
+ Resolving package versions...
+ Installed CompoundPeriods ─ v0.4.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [a216cea6] + CompoundPeriods v0.4.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [a216cea6] + CompoundPeriods v0.4.0
+  [ade2ca70] + Dates 
+  [de0858da] + Printf 
+  [4ec0a83e] + Unicode 
+   Testing CompoundPeriods
+ Resolving package versions...
+Status `/tmp/jl_qYlfEL/Manifest.toml`
+  [a216cea6] CompoundPeriods v0.4.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Error During Test at /root/.julia/packages/CompoundPeriods/iKuQU/test/runtests.jl:7
+  Test threw exception
+  Expression: rperiod.cperiod == cperiod
+  StackOverflowError:
+  Stacktrace:
+   [1] canonicalize(::CompoundPeriod) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Dates/src/periods.jl:290
+   [2] canonical(::CompoundPeriod) at /root/.julia/packages/CompoundPeriods/iKuQU/src/canonical.jl:16
+   [3] ==(::CompoundPeriod, ::CompoundPeriod) at /root/.julia/packages/CompoundPeriods/iKuQU/src/compare.jl:2 (repeats 23776 times)
+   [4] eval_test(::Expr, ::Expr, ::LineNumberNode, ::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:246
+   [5] top-level scope at /root/.julia/packages/CompoundPeriods/iKuQU/test/runtests.jl:7
+   [6] include(::String) at ./client.jl:439
+   [7] top-level scope at none:6
+   [8] eval(::Module, ::Any) at ./boot.jl:331
+   [9] exec_options(::Base.JLOptions) at ./client.jl:264
+   [10] _start() at ./client.jl:484
+  
+ERROR: LoadError: There was an error during testing
+in expression starting at /root/.julia/packages/CompoundPeriods/iKuQU/test/runtests.jl:7
+ERROR: Package CompoundPeriods errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

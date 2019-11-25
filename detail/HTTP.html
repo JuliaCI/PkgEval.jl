@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="HTTP">HTTP</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#HTTP">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 11 hours ago and took 7 minutes, 44 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/HTTP/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed IniFile ──────── v0.5.0
+ Installed MbedTLS ──────── v0.6.8
+ Installed HTTP ─────────── v0.8.8
+ Installed BinaryProvider ─ v0.5.8
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [cd3eb016] + HTTP v0.8.8
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [cd3eb016] + HTTP v0.8.8
+  [83e8ac13] + IniFile v0.5.0
+  [739be429] + MbedTLS v0.6.8
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+  Building MbedTLS → `~&#x2F;.julia&#x2F;packages&#x2F;MbedTLS&#x2F;X4xar&#x2F;deps&#x2F;build.log`
+   Testing HTTP
+ Resolving package versions...
+ Installed JSON ──────────── v0.21.0
+ Installed Parsers ───────── v0.3.10
+ Installed BufferedStreams ─ v1.0.0
+ Installed Unitful ───────── v0.17.0
+ Installed Compat ────────── v2.2.0
+    Status `&#x2F;tmp&#x2F;tmpBbMBcZ&#x2F;Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [e1450e63] BufferedStreams v1.0.0
+  [34da2185] Compat v2.2.0
+  [cd3eb016] HTTP v0.8.8
+  [83e8ac13] IniFile v0.5.0
+  [682c06a0] JSON v0.21.0
+  [739be429] MbedTLS v0.6.8
+  [69de0a69] Parsers v0.3.10
+  [1986cc42] Unitful v0.17.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Running ascii.jl tests...
+Running chunking.jl tests...
+Running utils.jl tests...
+Running client.jl tests...
+client transfer-encoding chunked
+client transfer-encoding chunked
+Running multipart.jl tests...
+Running sniff.jl tests...
+Running uri.jl tests...
+Running url.jl tests...
+Running cookies.jl tests...
+Running parser.jl tests...
+WARNING: using Messages.status in module Main conflicts with an existing identifier.
+Running loopback.jl tests...
+📡  GET &#x2F;echo HTTP&#x2F;1.1
+📡  GET &#x2F;echo HTTP&#x2F;1.1
+📡  GET &#x2F;echo HTTP&#x2F;1.1
+📡  GET &#x2F;echo HTTP&#x2F;1.1
+📡  GET &#x2F;delay10 HTTP&#x2F;1.1
+📡  PUT &#x2F;delay10 HTTP&#x2F;1.1
+📡  PUT &#x2F;abort HTTP&#x2F;1.1
+📡  GET &#x2F;echo HTTP&#x2F;1.1
+📡  GET &#x2F;abort HTTP&#x2F;1.1
+📡  GET &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  GET &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+t = 3.2429890632629395
+📡  GET &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  GET &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+📡  GET &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  GET &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+📡  GET &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  GET &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+t = 0.6585631370544434
+📡  GET &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  GET &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+t = 0.7914450168609619
+📡  POST &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  GET &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+📡  GET &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  POST &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+Running websockets.jl tests...
+Running messages.jl tests...
+GET &#x2F;ip HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (GET &#x2F;ip HTTP&#x2F;1.1)
+HEAD &#x2F;ip HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (HEAD &#x2F;ip HTTP&#x2F;1.1)
+OPTIONS &#x2F;ip HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (OPTIONS &#x2F;ip HTTP&#x2F;1.1)
+GET &#x2F;ip HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (GET &#x2F;ip HTTP&#x2F;1.1)
+HEAD &#x2F;ip HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (HEAD &#x2F;ip HTTP&#x2F;1.1)
+OPTIONS &#x2F;ip HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (OPTIONS &#x2F;ip HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+PUT &#x2F;put HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PUT &#x2F;put HTTP&#x2F;1.1)
+PUT &#x2F;put HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PUT &#x2F;put HTTP&#x2F;1.1)
+DELETE &#x2F;delete HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (DELETE &#x2F;delete HTTP&#x2F;1.1)
+DELETE &#x2F;delete HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (DELETE &#x2F;delete HTTP&#x2F;1.1)
+PATCH &#x2F;patch HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PATCH &#x2F;patch HTTP&#x2F;1.1)
+PATCH &#x2F;patch HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PATCH &#x2F;patch HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+PUT &#x2F;put HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PUT &#x2F;put HTTP&#x2F;1.1)
+PUT &#x2F;put HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PUT &#x2F;put HTTP&#x2F;1.1)
+DELETE &#x2F;delete HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (DELETE &#x2F;delete HTTP&#x2F;1.1)
+DELETE &#x2F;delete HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (DELETE &#x2F;delete HTTP&#x2F;1.1)
+PATCH &#x2F;patch HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PATCH &#x2F;patch HTTP&#x2F;1.1)
+PATCH &#x2F;patch HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PATCH &#x2F;patch HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+PUT &#x2F;put HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PUT &#x2F;put HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+DELETE &#x2F;delete HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (DELETE &#x2F;delete HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+PATCH &#x2F;patch HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PATCH &#x2F;patch HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+PUT &#x2F;put HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PUT &#x2F;put HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+DELETE &#x2F;delete HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (DELETE &#x2F;delete HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+PATCH &#x2F;patch HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PATCH &#x2F;patch HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+GET &#x2F;stream&#x2F;50 HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (GET &#x2F;stream&#x2F;50 HTTP&#x2F;1.1)
+Running handlers.jl tests...
+Running server.jl tests...
+length(x) = 100018
+client:
+HTTP&#x2F;1.1 200 OK
+Transfer-Encoding: chunked
+
+f
+Body of Request
+0
+
+
+client = &quot;HTTP&#x2F;1.1 200 OK\r\n\r\nHello&quot;
+Testing server port reuse
+Starting second server listening on same port
+Starting server on same port without port reuse (throws error)
+Running async.jl tests...
+ConnectionPool[
+   ⏸   16↑    15↓    0s httpbin.org:443:36570 ≣16 447 bytes waiting
+   ⏸   15↑    15↓    0s httpbin.org:443:45548 ≣16
+   ⏸   14↑    14↓    0s httpbin.org:443:36622 ≣16
+   ⏸   13↑    13↓    0s httpbin.org:443:45596 ≣16
+   ⏸   12↑    12↓    0s httpbin.org:443:36654 ≣16
+   ⏸   11↑    11↓    0s httpbin.org:443:45604 ≣16
+   ⏸   10↑    10↓    0s httpbin.org:443:36666 ≣16
+   ⏸    9↑     9↓    0s httpbin.org:443:36668 ≣16
+]
+
+ConnectionPool[
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:44336 ≣16
+   🔁    2↑🔒    2↓    0s httpbin.org:80:44338 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:80:44340 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:44342 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:53670 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:44350 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:44354 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:80:53682 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:45654 ≣16
+   ⏸    6↑🔒    6↓    0s httpbin.org:443:45660 ≣16
+   🔁    6↑     5↓🔒   0s httpbin.org:443:45664 ≣16
+   🔁    5↑     4↓🔒   0s httpbin.org:443:45668 ≣16
+   🔁    4↑     3↓🔒   0s httpbin.org:443:36726 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:443:36746 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:443:36766 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:443:36776 ≣16
+]
+
+ConnectionPool[
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:53790 ≣16
+   🔁    2↑🔒    2↓    0s httpbin.org:80:44470 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:80:53802 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:44482 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:44492 ≣16
+   🔁    2↑     0↓🔒   0s httpbin.org:80:44498 ≣16
+   🔁    2↑     0↓🔒   0s httpbin.org:80:44514 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:80:44520 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:45846 ≣16
+   ⏸    6↑🔒    6↓    0s httpbin.org:443:36916 ≣16
+   🔁    6↑     5↓🔒   0s httpbin.org:443:45894 ≣16
+   🔁    5↑     4↓🔒   0s httpbin.org:443:36966 ≣16
+   🔁    4↑     3↓🔒   0s httpbin.org:443:45934 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:443:45954 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:443:37026 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:443:45998 ≣16
+]
+
+ConnectionPool[
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:54064 ≣16
+   🔁    2↑🔒    2↓    0s httpbin.org:80:54068 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:80:44752 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:54088 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:44768 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:54104 ≣16
+   🔁    2↑     0↓🔒   0s httpbin.org:80:44784 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:80:44790 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:37148 ≣16
+   ⏸    6↑🔒    6↓    0s httpbin.org:443:46102 ≣16
+   🔁    6↑     5↓🔒   0s httpbin.org:443:37160 ≣16
+   🔁    5↑     4↓🔒   0s httpbin.org:443:46110 ≣16
+   🔁    4↑     3↓🔒   0s httpbin.org:443:37164 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:443:37170 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:443:37172 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:443:37178 ≣16
+]
+
+ConnectionPool[
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:54160 ≣16
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:44838 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:80:44840 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:54166 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:44844 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:54170 ≣16
+   🔁    2↑     0↓🔒   0s httpbin.org:80:54172 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:80:54174 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:46178 ≣16
+   ⏸    6↑🔒    6↓    0s httpbin.org:443:37236 ≣16
+   🔁    6↑     5↓🔒   0s httpbin.org:443:37264 ≣16
+   🔁    5↑     4↓🔒   0s httpbin.org:443:37276 ≣16
+   🔁    4↑     3↓🔒   0s httpbin.org:443:37310 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:443:46280 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:443:37352 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:443:37378 ≣16
+]
+
+ConnectionPool[
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:45082 ≣16
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:45088 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:80:45096 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:45100 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:45106 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:45110 ≣16
+   🔁    2↑     0↓🔒   0s httpbin.org:80:45116 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:80:45124 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:46450 ≣16
+   ⏸    6↑🔒    6↓    0s httpbin.org:443:46462 ≣16
+   🔁    6↑     5↓🔒   0s httpbin.org:443:46478 ≣16
+   🔁    5↑     4↓🔒   0s httpbin.org:443:46500 ≣16
+   🔁    4↑     3↓🔒   0s httpbin.org:443:46520 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:443:46526 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:443:46528 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:443:37588 ≣16
+]
+
+ConnectionPool[
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:80:45332 ≣16
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:80:45334 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:45336 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:45338 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:45342 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:54668 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:80:54672 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:80:54674 ≣16
+]
+
+ConnectionPool[
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:80:45332 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:80:45334 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:80:45336 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:80:45338 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:80:45342 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:80:54668 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:80:54672 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:80:54674 ≣16
+]
+
+ConnectionPool[
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:80:45332 ≣16
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:80:45334 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:80:45336 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:80:45338 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:80:45342 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:80:54668 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:80:54672 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:80:54674 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:46674 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:443:37728 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:443:46690 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:443:46698 ≣16
+   🔁    3↑🔒    3↓🔒   0s httpbin.org:443:46734 ≣16
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:443:46742 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:443:37816 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:443:46804 ≣16
+]
+
+ConnectionPool[
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:443:46674 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:443:37728 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:443:46690 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:443:46698 ≣16
+   🔁    7↑🔒    7↓🔒   0s httpbin.org:443:46734 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:443:46742 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:443:37816 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:443:46804 ≣16
+]
+
+ConnectionPool[
+   🔁   15↑🔒   15↓🔒   0s httpbin.org:443:46674 ≣16
+   🔁   14↑🔒   14↓🔒   0s httpbin.org:443:37728 ≣16
+   🔁   13↑🔒   13↓🔒   0s httpbin.org:443:46690 ≣16
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:443:46698 ≣16
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:443:46734 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:443:46742 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:443:37816 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:443:46804 ≣16
+]
+
+ConnectionPool[
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:80:45638 ≣16
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:80:54964 ≣16
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:80:45642 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:45644 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:54970 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:45648 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:80:45652 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:80:54978 ≣16
+]
+
+ConnectionPool[
+   🔁    7↑🔒    7↓🔒   0s httpbin.org:80:45638 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:80:54964 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:80:45642 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:80:45644 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:80:54970 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:80:45648 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:80:45652 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:80:54978 ≣16
+]
+
+ConnectionPool[
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:80:45638 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:80:54964 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:80:45642 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:80:45644 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:80:54970 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:80:45648 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:80:45652 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:80:54978 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:38026 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:443:38030 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:443:38040 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:443:38046 ≣16
+   🔁    3↑🔒    3↓🔒   0s httpbin.org:443:38068 ≣16
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:443:47034 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:443:38096 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:443:38100 ≣16
+]
+
+ConnectionPool[
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:443:38026 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:443:38030 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:443:38040 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:443:38046 ≣16
+   🔁    7↑🔒    7↓🔒   0s httpbin.org:443:38068 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:443:47034 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:443:38096 ≣16
+   🔁    3↑🔒    3↓🔒   0s httpbin.org:443:38100 ≣16
+]
+
+ConnectionPool[
+   🔁   14↑🔒   14↓🔒   0s httpbin.org:443:38026 ≣16 2-byte excess
+   🔁   14↑🔒   14↓🔒   0s httpbin.org:443:38030 ≣16
+   🔁   13↑🔒   13↓🔒   0s httpbin.org:443:38040 ≣16
+   🔁   12↑🔒   12↓🔒   0s httpbin.org:443:38046 ≣16
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:443:38068 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:443:47034 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:443:38096 ≣16
+   🔁    7↑🔒    7↓🔒   0s httpbin.org:443:38100 ≣16
+]
+
+ConnectionPool[
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:80:45784 ≣16
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:80:45786 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:55112 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:55118 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:55120 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:80:55122 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:80:55126 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:80:55128 ≣16
+]
+
+ConnectionPool[
+   🔁    7↑🔒    7↓🔒   0s httpbin.org:80:45784 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:80:45786 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:80:55112 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:80:55118 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:80:55120 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:80:55122 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:80:55126 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:80:55128 ≣16
+]
+
+ConnectionPool[
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:80:45784 ≣16
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:80:45786 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:80:55112 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:80:55118 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:80:55120 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:80:55122 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:80:55126 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:80:55128 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:47146 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:443:47152 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:443:47190 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:443:38244 ≣16
+   🔁    3↑🔒    3↓🔒   0s httpbin.org:443:47198 ≣16
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:443:47204 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:443:38284 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:443:38316 ≣16
+]
+
+ConnectionPool[
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:443:47146 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:443:47152 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:443:47190 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:443:38244 ≣16
+   🔁    7↑🔒    7↓🔒   0s httpbin.org:443:47198 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:443:47204 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:443:38284 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:443:38316 ≣16
+]
+
+ConnectionPool[
+   🔁   14↑🔒   14↓🔒   0s httpbin.org:443:47146 ≣16
+   🔁   14↑🔒   14↓🔒   0s httpbin.org:443:47152 ≣16
+   🔁   13↑🔒   13↓🔒   0s httpbin.org:443:47190 ≣16
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:443:38244 ≣16
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:443:47198 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:443:47204 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:443:38284 ≣16
+   🔁    7↑🔒    7↓🔒   0s httpbin.org:443:38316 ≣16 2-byte excess
+]
+
+ConnectionPool[
+   🔁    3↑🔒    3↓    0s httpbin.org:80:55410 ≣16
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:46088 ≣16
+   🔁    4↑     2↓🔒   0s httpbin.org:80:46092 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:55420 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:55422 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:46102 ≣16
+   🔁    2↑     0↓🔒   0s httpbin.org:80:46104 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:80:46108 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:38456 ≣16
+   ⏸    6↑🔒    6↓    0s httpbin.org:443:47412 ≣16
+   🔁    6↑     5↓🔒   0s httpbin.org:443:38470 ≣16
+   🔁    5↑     4↓🔒   0s httpbin.org:443:38476 ≣16
+   🔁    4↑     3↓🔒   0s httpbin.org:443:47430 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:443:47446 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:443:38504 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:443:38514 ≣16
+]
+
+ConnectionPool[
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:55540 ≣16
+   🔁    2↑🔒    2↓    0s httpbin.org:80:55542 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:46220 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:46222 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:55548 ≣16
+   🔁    2↑     0↓🔒   0s httpbin.org:80:46226 ≣16
+   🔁    2↑     0↓🔒   0s httpbin.org:80:46228 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:80:55556 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:38584 ≣16
+   ⏸    6↑🔒    6↓    0s httpbin.org:443:47536 ≣16
+   🔁    6↑     5↓🔒   0s httpbin.org:443:38594 ≣16
+   🔁    5↑     4↓🔒   0s httpbin.org:443:38598 ≣16
+   🔁    4↑     3↓🔒   0s httpbin.org:443:47552 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:443:38614 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:443:38628 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:443:47580 ≣16
+]
+
+ConnectionPool[
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:46300 ≣16
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:55626 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:46304 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:46306 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:46310 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:55636 ≣16
+   🔁    2↑     0↓🔒   0s httpbin.org:80:55638 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:80:46318 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:38666 ≣16
+   ⏸    6↑🔒    6↓    0s httpbin.org:443:38674 ≣16
+   🔁    6↑     5↓🔒   0s httpbin.org:443:38692 ≣16
+   🔁    5↑     4↓🔒   0s httpbin.org:443:38718 ≣16
+   🔁    4↑     3↓🔒   0s httpbin.org:443:47672 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:443:47710 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:443:38788 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:443:38804 ≣16
+]
+
+Running aws4.jl tests...
+Running insert_layers.jl tests...
+WARNING: replacing module TestRequest.
+WARNING: using TestRequest.TestLayer in module Main conflicts with an existing identifier.
+Running mwe.jl tests...
+Test Summary: | Pass  Broken  Total
+HTTP          | 4753     107   4860
+   Testing HTTP tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>interrupted</strong>: test duration exceeded the time limit.
+      Last evaluation was 1 day, 14 hours ago and took 45 minutes, 8 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/HTTP/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed BinaryProvider ─ v0.5.8
+ Installed MbedTLS ──────── v0.7.0
+   Cloning [83e8ac13-25f8-5344-8a64-a9f2b223428f] IniFile from https:&#x2F;&#x2F;github.com&#x2F;JuliaIO&#x2F;IniFile.jl.git
+[?25l    Fetching: [&gt;                                        ]  0.0 %[2K[?25h Installed IniFile ──────── v0.5.0
+   Cloning [cd3eb016-35fb-5094-929b-558a96fad6f3] HTTP from https:&#x2F;&#x2F;github.com&#x2F;JuliaWeb&#x2F;HTTP.jl.git
+[?25l    Fetching: [&gt;                                        ]  0.0 %[2K[?25h Installed HTTP ─────────── v0.8.8
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [cd3eb016] + HTTP v0.8.8
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [cd3eb016] + HTTP v0.8.8
+  [83e8ac13] + IniFile v0.5.0
+  [739be429] + MbedTLS v0.7.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+  Building MbedTLS → `~&#x2F;.julia&#x2F;packages&#x2F;MbedTLS&#x2F;a1JFn&#x2F;deps&#x2F;build.log`
+   Testing HTTP
+ Resolving package versions...
+ Installed JSON ──────────── v0.21.0
+ Installed Parsers ───────── v0.3.10
+ Installed Compat ────────── v2.2.0
+ Installed Unitful ───────── v0.17.0
+ Installed BufferedStreams ─ v1.0.0
+    Status `&#x2F;tmp&#x2F;jl_0JInvN&#x2F;Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [e1450e63] BufferedStreams v1.0.0
+  [34da2185] Compat v2.2.0
+  [cd3eb016] HTTP v0.8.8
+  [83e8ac13] IniFile v0.5.0
+  [682c06a0] JSON v0.21.0
+  [739be429] MbedTLS v0.7.0
+  [69de0a69] Parsers v0.3.10
+  [1986cc42] Unitful v0.17.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Running ascii.jl tests...
+Running chunking.jl tests...
+Running utils.jl tests...
+Running client.jl tests...
+client transfer-encoding chunked
+client transfer-encoding chunked
+Running multipart.jl tests...
+Running sniff.jl tests...
+Running uri.jl tests...
+Running url.jl tests...
+Running cookies.jl tests...
+Running parser.jl tests...
+WARNING: using Messages.status in module Main conflicts with an existing identifier.
+Running loopback.jl tests...
+📡  GET &#x2F;echo HTTP&#x2F;1.1
+📡  GET &#x2F;echo HTTP&#x2F;1.1
+📡  GET &#x2F;echo HTTP&#x2F;1.1
+📡  GET &#x2F;echo HTTP&#x2F;1.1
+📡  GET &#x2F;delay10 HTTP&#x2F;1.1
+📡  PUT &#x2F;delay10 HTTP&#x2F;1.1
+📡  PUT &#x2F;abort HTTP&#x2F;1.1
+📡  GET &#x2F;echo HTTP&#x2F;1.1
+📡  GET &#x2F;abort HTTP&#x2F;1.1
+📡  GET &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  GET &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+t = 3.2389230728149414
+📡  GET &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  GET &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+📡  GET &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  GET &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+📡  GET &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  GET &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+t = 0.6551880836486816
+📡  GET &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  GET &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+t = 0.7416720390319824
+📡  POST &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  GET &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+📡  GET &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  POST &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+Running websockets.jl tests...
+Running messages.jl tests...
+GET &#x2F;ip HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (GET &#x2F;ip HTTP&#x2F;1.1)
+HEAD &#x2F;ip HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (HEAD &#x2F;ip HTTP&#x2F;1.1)
+OPTIONS &#x2F;ip HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (OPTIONS &#x2F;ip HTTP&#x2F;1.1)
+GET &#x2F;ip HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (GET &#x2F;ip HTTP&#x2F;1.1)
+HEAD &#x2F;ip HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (HEAD &#x2F;ip HTTP&#x2F;1.1)
+OPTIONS &#x2F;ip HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (OPTIONS &#x2F;ip HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+PUT &#x2F;put HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PUT &#x2F;put HTTP&#x2F;1.1)
+PUT &#x2F;put HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PUT &#x2F;put HTTP&#x2F;1.1)
+DELETE &#x2F;delete HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (DELETE &#x2F;delete HTTP&#x2F;1.1)
+DELETE &#x2F;delete HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (DELETE &#x2F;delete HTTP&#x2F;1.1)
+PATCH &#x2F;patch HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PATCH &#x2F;patch HTTP&#x2F;1.1)
+PATCH &#x2F;patch HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PATCH &#x2F;patch HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+PUT &#x2F;put HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PUT &#x2F;put HTTP&#x2F;1.1)
+PUT &#x2F;put HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PUT &#x2F;put HTTP&#x2F;1.1)
+DELETE &#x2F;delete HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (DELETE &#x2F;delete HTTP&#x2F;1.1)
+DELETE &#x2F;delete HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (DELETE &#x2F;delete HTTP&#x2F;1.1)
+PATCH &#x2F;patch HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PATCH &#x2F;patch HTTP&#x2F;1.1)
+PATCH &#x2F;patch HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PATCH &#x2F;patch HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+PUT &#x2F;put HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PUT &#x2F;put HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+DELETE &#x2F;delete HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (DELETE &#x2F;delete HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+PATCH &#x2F;patch HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PATCH &#x2F;patch HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+PUT &#x2F;put HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PUT &#x2F;put HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+DELETE &#x2F;delete HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (DELETE &#x2F;delete HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+PATCH &#x2F;patch HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PATCH &#x2F;patch HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+GET &#x2F;stream&#x2F;50 HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (GET &#x2F;stream&#x2F;50 HTTP&#x2F;1.1)
+Running handlers.jl tests...
+Running server.jl tests...
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 12 hours ago and took 6 minutes, 51 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/HTTP/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed IniFile ──────── v0.5.0
+ Installed MbedTLS ──────── v0.7.0
+ Installed BinaryProvider ─ v0.5.8
+ Installed HTTP ─────────── v0.8.8
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [cd3eb016] + HTTP v0.8.8
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [cd3eb016] + HTTP v0.8.8
+  [83e8ac13] + IniFile v0.5.0
+  [739be429] + MbedTLS v0.7.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+  Building MbedTLS → `~&#x2F;.julia&#x2F;packages&#x2F;MbedTLS&#x2F;a1JFn&#x2F;deps&#x2F;build.log`
+   Testing HTTP
+ Resolving package versions...
+ Installed Parsers ───────── v0.3.10
+ Installed Unitful ───────── v0.17.0
+ Installed BufferedStreams ─ v1.0.0
+ Installed Compat ────────── v2.2.0
+ Installed JSON ──────────── v0.21.0
+Status `&#x2F;tmp&#x2F;jl_bg8gGw&#x2F;Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [e1450e63] BufferedStreams v1.0.0
+  [34da2185] Compat v2.2.0
+  [cd3eb016] HTTP v0.8.8
+  [83e8ac13] IniFile v0.5.0
+  [682c06a0] JSON v0.21.0
+  [739be429] MbedTLS v0.7.0
+  [69de0a69] Parsers v0.3.10
+  [1986cc42] Unitful v0.17.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Running ascii.jl tests...
+Running chunking.jl tests...
+Running utils.jl tests...
+Running client.jl tests...
+client transfer-encoding chunked
+client transfer-encoding chunked
+Running multipart.jl tests...
+Running sniff.jl tests...
+Running uri.jl tests...
+Running url.jl tests...
+Running cookies.jl tests...
+Running parser.jl tests...
+WARNING: using Messages.status in module Main conflicts with an existing identifier.
+Running loopback.jl tests...
+📡  GET &#x2F;echo HTTP&#x2F;1.1
+📡  GET &#x2F;echo HTTP&#x2F;1.1
+📡  GET &#x2F;echo HTTP&#x2F;1.1
+📡  GET &#x2F;echo HTTP&#x2F;1.1
+📡  GET &#x2F;delay10 HTTP&#x2F;1.1
+📡  PUT &#x2F;delay10 HTTP&#x2F;1.1
+📡  PUT &#x2F;abort HTTP&#x2F;1.1
+📡  GET &#x2F;echo HTTP&#x2F;1.1
+📡  GET &#x2F;abort HTTP&#x2F;1.1
+📡  GET &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  GET &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+t = 3.2349278926849365
+📡  GET &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  GET &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+📡  GET &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  GET &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+📡  GET &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  GET &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+t = 0.6622560024261475
+📡  GET &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  GET &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+t = 0.7649550437927246
+📡  POST &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  GET &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+📡  GET &#x2F;delay1 HTTP&#x2F;1.1
+📡  GET &#x2F;delay2 HTTP&#x2F;1.1
+📡  POST &#x2F;delay3 HTTP&#x2F;1.1
+📡  GET &#x2F;delay4 HTTP&#x2F;1.1
+📡  GET &#x2F;delay5 HTTP&#x2F;1.1
+Running websockets.jl tests...
+Running messages.jl tests...
+GET &#x2F;ip HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (GET &#x2F;ip HTTP&#x2F;1.1)
+HEAD &#x2F;ip HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (HEAD &#x2F;ip HTTP&#x2F;1.1)
+OPTIONS &#x2F;ip HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (OPTIONS &#x2F;ip HTTP&#x2F;1.1)
+GET &#x2F;ip HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (GET &#x2F;ip HTTP&#x2F;1.1)
+HEAD &#x2F;ip HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (HEAD &#x2F;ip HTTP&#x2F;1.1)
+OPTIONS &#x2F;ip HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (OPTIONS &#x2F;ip HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+PUT &#x2F;put HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PUT &#x2F;put HTTP&#x2F;1.1)
+PUT &#x2F;put HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PUT &#x2F;put HTTP&#x2F;1.1)
+DELETE &#x2F;delete HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (DELETE &#x2F;delete HTTP&#x2F;1.1)
+DELETE &#x2F;delete HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (DELETE &#x2F;delete HTTP&#x2F;1.1)
+PATCH &#x2F;patch HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PATCH &#x2F;patch HTTP&#x2F;1.1)
+PATCH &#x2F;patch HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PATCH &#x2F;patch HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+PUT &#x2F;put HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PUT &#x2F;put HTTP&#x2F;1.1)
+PUT &#x2F;put HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PUT &#x2F;put HTTP&#x2F;1.1)
+DELETE &#x2F;delete HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (DELETE &#x2F;delete HTTP&#x2F;1.1)
+DELETE &#x2F;delete HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (DELETE &#x2F;delete HTTP&#x2F;1.1)
+PATCH &#x2F;patch HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PATCH &#x2F;patch HTTP&#x2F;1.1)
+PATCH &#x2F;patch HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PATCH &#x2F;patch HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+PUT &#x2F;put HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PUT &#x2F;put HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+DELETE &#x2F;delete HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (DELETE &#x2F;delete HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+PATCH &#x2F;patch HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PATCH &#x2F;patch HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+PUT &#x2F;put HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PUT &#x2F;put HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+DELETE &#x2F;delete HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (DELETE &#x2F;delete HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+PATCH &#x2F;patch HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (PATCH &#x2F;patch HTTP&#x2F;1.1)
+POST &#x2F;post HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (POST &#x2F;post HTTP&#x2F;1.1)
+GET &#x2F;stream&#x2F;50 HTTP&#x2F;1.1
+HTTP&#x2F;1.1 200 OK &lt;= (GET &#x2F;stream&#x2F;50 HTTP&#x2F;1.1)
+Running handlers.jl tests...
+Running server.jl tests...
+length(x) = 100018
+client:
+HTTP&#x2F;1.1 200 OK
+Transfer-Encoding: chunked
+
+f
+Body of Request
+0
+
+
+client = &quot;HTTP&#x2F;1.1 200 OK\r\n\r\nHello&quot;
+Testing server port reuse
+Starting second server listening on same port
+Starting server on same port without port reuse (throws error)
+Running async.jl tests...
+ConnectionPool[
+   🔁   16↑     7↓🔒   0s httpbin.org:443:57394 ≣16
+   ⏸   15↑     7↓    0s httpbin.org:443:50020 ≣16 836-byte excess 1759 bytes waiting
+   🔁   14↑    12↓🔒   0s httpbin.org:443:50022 ≣16
+   🔁   13↑    11↓🔒   0s httpbin.org:443:50024 ≣16
+   🔁   12↑    10↓🔒   0s httpbin.org:443:50026 ≣16
+   🔁   11↑     9↓🔒   0s httpbin.org:443:57404 ≣16
+   🔁   10↑     8↓🔒   0s httpbin.org:443:50032 ≣16
+   🔁    9↑     7↓🔒   0s httpbin.org:443:50036 ≣16
+]
+
+ConnectionPool[
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:43430 ≣16
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:43630 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:80:43434 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:43436 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:43636 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:43440 ≣16
+   🔁    2↑     0↓🔒   0s httpbin.org:80:43640 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:80:43642 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:50096 ≣16
+   ⏸    6↑🔒    6↓    0s httpbin.org:443:57504 ≣16
+   🔁    6↑     5↓🔒   0s httpbin.org:443:57518 ≣16
+   🔁    5↑     4↓🔒   0s httpbin.org:443:50180 ≣16
+   🔁    4↑     3↓🔒   0s httpbin.org:443:57576 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:443:57586 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:443:50216 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:443:57594 ≣16
+]
+
+ConnectionPool[
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:43838 ≣16
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:43642 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:80:43848 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:43854 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:43858 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:43670 ≣16
+   🔁    2↑     0↓🔒   0s httpbin.org:80:43874 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:80:43882 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:50336 ≣16
+   ⏸    6↑🔒    6↓    0s httpbin.org:443:50358 ≣16
+   🔁    6↑     5↓🔒   0s httpbin.org:443:50390 ≣16
+   🔁    5↑     4↓🔒   0s httpbin.org:443:50424 ≣16
+   🔁    4↑     3↓🔒   0s httpbin.org:443:50452 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:443:50466 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:443:50486 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:443:50504 ≣16
+]
+
+ConnectionPool[
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:44082 ≣16
+   🔁    2↑🔒    2↓    0s httpbin.org:80:43892 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:80:43894 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:43906 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:44106 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:44118 ≣16
+   🔁    2↑     0↓🔒   0s httpbin.org:80:44120 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:80:44124 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:57968 ≣16
+   ⏸    6↑🔒    6↓    0s httpbin.org:443:50612 ≣16
+   🔁    6↑     5↓🔒   0s httpbin.org:443:58006 ≣16
+   🔁    5↑     4↓🔒   0s httpbin.org:443:58020 ≣16
+   🔁    4↑     3↓🔒   0s httpbin.org:443:58036 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:443:58050 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:443:50694 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:443:50706 ≣16
+]
+
+ConnectionPool[
+   🔁    3↑🔒    3↓    1s httpbin.org:80:44274 ≣16
+   🔁    3↑🔒    3↓    1s httpbin.org:80:44078 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:80:44278 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:80:44082 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:80:44084 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:44284 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:44088 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:80:44090 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:58116 ≣16
+   ⏸    6↑🔒    6↓    0s httpbin.org:443:58120 ≣16
+   🔁    6↑     5↓🔒   0s httpbin.org:443:58126 ≣16
+   🔁    5↑     4↓🔒   0s httpbin.org:443:58128 ≣16
+   🔁    4↑     3↓🔒   0s httpbin.org:443:58130 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:443:58132 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:443:50758 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:443:50760 ≣16
+]
+
+ConnectionPool[
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:44146 ≣16
+   🔁    2↑🔒    2↓    0s httpbin.org:80:44150 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:80:44152 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:44154 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:44354 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:44356 ≣16
+   🔁    2↑     0↓🔒   0s httpbin.org:80:44162 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:80:44164 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:58208 ≣16
+   ⏸    6↑🔒    6↓    0s httpbin.org:443:58224 ≣16
+   🔁    6↑     5↓🔒   0s httpbin.org:443:58230 ≣16
+   🔁    5↑     4↓🔒   0s httpbin.org:443:50856 ≣16
+   🔁    4↑     3↓🔒   0s httpbin.org:443:58246 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:443:58248 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:443:58250 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:443:50876 ≣16
+]
+
+ConnectionPool[
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:80:44460 ≣16
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:80:44462 ≣16
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:80:44464 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:44268 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:44468 ≣16
+   🔁    1↑     1↓    0s httpbin.org:80:44470 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:80:44472 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:80:44276 ≣16
+]
+
+ConnectionPool[
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:80:44460 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:80:44462 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:80:44464 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:80:44268 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:80:44468 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:80:44470 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:80:44472 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:80:44276 ≣16
+]
+
+ConnectionPool[
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:80:44460 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:80:44462 ≣16 2896 bytes waiting
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:80:44464 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:80:44268 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:80:44468 ≣16 2-byte excess
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:80:44470 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:80:44472 ≣16 4592 bytes waiting
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:80:44276 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:51058 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:443:58460 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:443:51108 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:443:58508 ≣16
+   🔁    3↑🔒    3↓🔒   0s httpbin.org:443:58530 ≣16
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:443:58550 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:443:58570 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:443:58580 ≣16
+]
+
+ConnectionPool[
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:443:51058 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:443:58460 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:443:51108 ≣16
+   🔁    7↑🔒    7↓🔒   0s httpbin.org:443:58508 ≣16
+   🔁    5↑🔒    5↓🔒   1s httpbin.org:443:58530 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:443:58550 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:443:58570 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:443:58580 ≣16
+]
+
+ConnectionPool[
+   🔁   15↑🔒   15↓🔒   0s httpbin.org:443:51058 ≣16
+   🔁   14↑🔒   14↓🔒   0s httpbin.org:443:58460 ≣16
+   🔁   12↑🔒   12↓🔒   0s httpbin.org:443:51108 ≣16
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:443:58508 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:443:58530 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:443:58550 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:443:58570 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:443:58580 ≣16
+]
+
+ConnectionPool[
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:80:44562 ≣16
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:80:44762 ≣16
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:80:44568 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:44570 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:44772 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:44576 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:80:44776 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:80:44778 ≣16
+]
+
+ConnectionPool[
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:80:44562 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:80:44762 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:80:44568 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:80:44570 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:80:44772 ≣16 1448 bytes waiting
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:80:44576 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:80:44776 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:80:44778 ≣16
+]
+
+ConnectionPool[
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:80:44562 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:80:44762 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:80:44568 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:80:44570 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:80:44772 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:80:44576 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:80:44776 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:80:44778 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:51292 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:443:58688 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:443:51334 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:443:51356 ≣16
+   🔁    3↑🔒    3↓🔒   0s httpbin.org:443:58754 ≣16
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:443:51394 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:443:58792 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:443:51440 ≣16
+]
+
+ConnectionPool[
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:443:51292 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:443:58688 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:443:51334 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:443:51356 ≣16
+   🔁    7↑🔒    7↓🔒   0s httpbin.org:443:58754 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:443:51394 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:443:58792 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:443:51440 ≣16
+]
+
+ConnectionPool[
+   🔁   14↑🔒   14↓🔒   0s httpbin.org:443:51292 ≣16 1481 bytes waiting
+   🔁   13↑🔒   13↓🔒   0s httpbin.org:443:58688 ≣16
+   🔁   13↑🔒   13↓🔒   0s httpbin.org:443:51334 ≣16
+   🔁   12↑🔒   12↓🔒   0s httpbin.org:443:51356 ≣16
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:443:58754 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:443:51394 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:443:58792 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:443:51440 ≣16
+]
+
+ConnectionPool[
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:80:44816 ≣16
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:80:45016 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:45018 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:44822 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:44824 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:80:44826 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:80:44828 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:80:44830 ≣16
+]
+
+ConnectionPool[
+   🔁    7↑     7↓    0s httpbin.org:80:44816 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:80:45016 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:80:45018 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:80:44822 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:80:44824 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:80:44826 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:80:44828 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:80:44830 ≣16
+]
+
+ConnectionPool[
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:80:44816 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:80:45016 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:80:45018 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:80:44822 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:80:44824 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:80:44826 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:80:44828 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:80:44830 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:51520 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:443:51538 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:443:58966 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:443:58996 ≣16
+   🔁    3↑🔒    3↓🔒   0s httpbin.org:443:59012 ≣16
+   🔁    2↑🔒    2↓🔒   0s httpbin.org:443:51644 ≣16
+   🔁    1↑🔒    1↓🔒   0s httpbin.org:443:59026 ≣16
+   🔁    0↑🔒    0↓🔒   0s httpbin.org:443:59038 ≣16
+]
+
+ConnectionPool[
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:443:51520 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:443:51538 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:443:58966 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:443:58996 ≣16
+   🔁    7↑🔒    7↓🔒   0s httpbin.org:443:59012 ≣16
+   🔁    6↑🔒    6↓🔒   0s httpbin.org:443:51644 ≣16
+   🔁    5↑🔒    5↓🔒   0s httpbin.org:443:59026 ≣16
+   🔁    4↑🔒    4↓🔒   0s httpbin.org:443:59038 ≣16
+]
+
+ConnectionPool[
+   🔁   14↑🔒   14↓🔒   0s httpbin.org:443:51520 ≣16
+   🔁   13↑🔒   13↓🔒   0s httpbin.org:443:51538 ≣16
+   🔁   13↑🔒   13↓🔒   0s httpbin.org:443:58966 ≣16
+   🔁   12↑🔒   12↓🔒   0s httpbin.org:443:58996 ≣16
+   🔁   11↑🔒   11↓🔒   0s httpbin.org:443:59012 ≣16
+   🔁   10↑🔒   10↓🔒   0s httpbin.org:443:51644 ≣16
+   🔁    9↑🔒    9↓🔒   0s httpbin.org:443:59026 ≣16
+   🔁    8↑🔒    8↓🔒   0s httpbin.org:443:59038 ≣16
+]
+
+ConnectionPool[
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:45218 ≣16
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:45024 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:80:45026 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:45228 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:45232 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:45036 ≣16
+   🔁    2↑     0↓🔒   0s httpbin.org:80:45236 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:80:45238 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:51690 ≣16
+   ⏸    6↑🔒    6↓    0s httpbin.org:443:59072 ≣16
+   🔁    6↑     5↓🔒   0s httpbin.org:443:59078 ≣16
+   🔁    5↑     4↓🔒   0s httpbin.org:443:59082 ≣16
+   🔁    4↑     3↓🔒   0s httpbin.org:443:59084 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:443:51710 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:443:59088 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:443:51716 ≣16
+]
+
+ConnectionPool[
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:45076 ≣16
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:45078 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:80:45286 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:45288 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:45296 ≣16
+   🔁    2↑     0↓🔒   0s httpbin.org:80:45298 ≣16
+   🔁    2↑     0↓🔒   0s httpbin.org:80:45300 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:80:45304 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:51760 ≣16
+   ⏸    6↑🔒    6↓    0s httpbin.org:443:51762 ≣16
+   🔁    6↑     5↓🔒   0s httpbin.org:443:59140 ≣16
+   🔁    5↑     4↓🔒   0s httpbin.org:443:59142 ≣16
+   🔁    4↑     3↓🔒   0s httpbin.org:443:59146 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:443:51774 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:443:51776 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:443:51778 ≣16
+]
+
+ConnectionPool[
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:45330 ≣16
+   🔁    3↑🔒    2↓🔒   0s httpbin.org:80:45332 ≣16
+   🔁    3↑     1↓🔒   0s httpbin.org:80:45334 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:45138 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:45338 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:80:45340 ≣16
+   🔁    2↑     0↓🔒   0s httpbin.org:80:45342 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:80:45148 ≣16
+]
+
+ConnectionPool[
+   ⏸    7↑🔒    7↓    0s httpbin.org:443:51800 ≣16
+   ⏸    6↑🔒    6↓    0s httpbin.org:443:59178 ≣16
+   🔁    6↑     5↓🔒   0s httpbin.org:443:51804 ≣16
+   🔁    5↑     4↓🔒   0s httpbin.org:443:51808 ≣16
+   🔁    4↑     3↓🔒   0s httpbin.org:443:51812 ≣16
+   🔁    3↑     2↓🔒   0s httpbin.org:443:51814 ≣16
+   🔁    2↑     1↓🔒   0s httpbin.org:443:59192 ≣16
+   🔁    1↑     0↓🔒   0s httpbin.org:443:51818 ≣16
+]
+
+Running aws4.jl tests...
+Running insert_layers.jl tests...
+WARNING: replacing module TestRequest.
+WARNING: using TestRequest.TestLayer in module Main conflicts with an existing identifier.
+Running mwe.jl tests...
+Test Summary: | Pass  Broken  Total
+HTTP          | 4753     107   4860
+   Testing HTTP tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

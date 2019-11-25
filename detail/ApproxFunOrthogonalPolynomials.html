@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="ApproxFunOrthogonalPolynomials">ApproxFunOrthogonalPolynomials</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#ApproxFunOrthogonalPolynomials">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 9 hours ago and took 24 minutes, 7 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/ApproxFunOrthogonalPolynomials/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed NaNMath ──────────────────────── v0.3.3
+ Installed VersionParsing ───────────────── v1.1.3
+ Installed FastGaussQuadrature ──────────── v0.4.0
+ Installed Parsers ──────────────────────── v0.3.10
+ Installed FFTW ─────────────────────────── v0.3.0
+ Installed BinaryProvider ───────────────── v0.5.8
+ Installed BandedMatrices ───────────────── v0.12.4
+ Installed ApproxFunOrthogonalPolynomials ─ v0.2.4
+ Installed Reexport ─────────────────────── v0.2.0
+ Installed Conda ────────────────────────── v1.3.0
+ Installed BinDeps ──────────────────────── v0.8.10
+ Installed MacroTools ───────────────────── v0.5.2
+ Installed BlockBandedMatrices ──────────── v0.5.2
+ Installed DataStructures ───────────────── v0.17.6
+ Installed Polynomials ──────────────────── v0.6.0
+ Installed RecipesBase ──────────────────── v0.7.0
+ Installed DataAPI ──────────────────────── v1.1.0
+ Installed SpecialFunctions ─────────────── v0.8.0
+ Installed JSON ─────────────────────────── v0.21.0
+ Installed AbstractFFTs ─────────────────── v0.4.1
+ Installed FastTransforms ───────────────── v0.6.0
+ Installed ProgressMeter ────────────────── v1.2.0
+ Installed URIParser ────────────────────── v0.4.0
+ Installed IntervalSets ─────────────────── v0.3.2
+ Installed LazyArrays ───────────────────── v0.12.3
+ Installed DSP ──────────────────────────── v0.6.0
+ Installed ToeplitzMatrices ─────────────── v0.6.0
+ Installed MatrixFactorizations ─────────── v0.2.0
+ Installed StaticArrays ─────────────────── v0.11.1
+ Installed SortingAlgorithms ────────────── v0.3.1
+ Installed FillArrays ───────────────────── v0.7.4
+ Installed InfiniteArrays ───────────────── v0.3.1
+ Installed Missings ─────────────────────── v0.4.3
+ Installed StatsBase ────────────────────── v0.32.0
+ Installed Nullables ────────────────────── v0.0.8
+ Installed BlockArrays ──────────────────── v0.10.2
+ Installed OrderedCollections ───────────── v1.1.0
+ Installed HierarchicalMatrices ─────────── v0.2.0
+ Installed ApproxFunBase ────────────────── v0.2.1
+ Installed DualNumbers ──────────────────── v0.6.2
+ Installed DomainSets ───────────────────── v0.1.0
+ Installed Calculus ─────────────────────── v0.5.1
+ Installed Compat ───────────────────────── v2.2.0
+ Installed LowRankApprox ────────────────── v0.2.3
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [b70543e2] + ApproxFunOrthogonalPolynomials v0.2.4
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [621f4979] + AbstractFFTs v0.4.1
+  [fbd15aa5] + ApproxFunBase v0.2.1
+  [b70543e2] + ApproxFunOrthogonalPolynomials v0.2.4
+  [aae01518] + BandedMatrices v0.12.4
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [8e7c35d0] + BlockArrays v0.10.2
+  [ffab5731] + BlockBandedMatrices v0.5.2
+  [49dc2e85] + Calculus v0.5.1
+  [34da2185] + Compat v2.2.0
+  [8f4d0f93] + Conda v1.3.0
+  [717857b8] + DSP v0.6.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [5b8099bc] + DomainSets v0.1.0
+  [fa6b7ba4] + DualNumbers v0.6.2
+  [7a1cc6ca] + FFTW v0.3.0
+  [442a2c76] + FastGaussQuadrature v0.4.0
+  [057dd010] + FastTransforms v0.6.0
+  [1a297f60] + FillArrays v0.7.4
+  [7c893195] + HierarchicalMatrices v0.2.0
+  [4858937d] + InfiniteArrays v0.3.1
+  [8197267c] + IntervalSets v0.3.2
+  [682c06a0] + JSON v0.21.0
+  [5078a376] + LazyArrays v0.12.3
+  [898213cb] + LowRankApprox v0.2.3
+  [1914dd2f] + MacroTools v0.5.2
+  [a3b82374] + MatrixFactorizations v0.2.0
+  [e1d29d7a] + Missings v0.4.3
+  [77ba4419] + NaNMath v0.3.3
+  [4d1e1d77] + Nullables v0.0.8
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [f27b6e38] + Polynomials v0.6.0
+  [92933f4c] + ProgressMeter v1.2.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [189a3867] + Reexport v0.2.0
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.11.1
+  [2913bbd2] + StatsBase v0.32.0
+  [c751599d] + ToeplitzMatrices v0.6.0
+  [30578b45] + URIParser v0.4.0
+  [81def892] + VersionParsing v1.1.3
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [9abbd945] + Profile 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Conda ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building FFTW ────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFTW&#x2F;2okGQ&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing ApproxFunOrthogonalPolynomials
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;tmpHG7CVo&#x2F;Manifest.toml`
+  [621f4979] AbstractFFTs v0.4.1
+  [fbd15aa5] ApproxFunBase v0.2.1
+  [b70543e2] ApproxFunOrthogonalPolynomials v0.2.4
+  [aae01518] BandedMatrices v0.12.4
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [8e7c35d0] BlockArrays v0.10.2
+  [ffab5731] BlockBandedMatrices v0.5.2
+  [49dc2e85] Calculus v0.5.1
+  [34da2185] Compat v2.2.0
+  [8f4d0f93] Conda v1.3.0
+  [717857b8] DSP v0.6.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [5b8099bc] DomainSets v0.1.0
+  [fa6b7ba4] DualNumbers v0.6.2
+  [7a1cc6ca] FFTW v0.3.0
+  [442a2c76] FastGaussQuadrature v0.4.0
+  [057dd010] FastTransforms v0.6.0
+  [1a297f60] FillArrays v0.7.4
+  [7c893195] HierarchicalMatrices v0.2.0
+  [4858937d] InfiniteArrays v0.3.1
+  [8197267c] IntervalSets v0.3.2
+  [682c06a0] JSON v0.21.0
+  [5078a376] LazyArrays v0.12.3
+  [898213cb] LowRankApprox v0.2.3
+  [1914dd2f] MacroTools v0.5.2
+  [a3b82374] MatrixFactorizations v0.2.0
+  [e1d29d7a] Missings v0.4.3
+  [77ba4419] NaNMath v0.3.3
+  [4d1e1d77] Nullables v0.0.8
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [f27b6e38] Polynomials v0.6.0
+  [92933f4c] ProgressMeter v1.2.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [189a3867] Reexport v0.2.0
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.11.1
+  [2913bbd2] StatsBase v0.32.0
+  [c751599d] ToeplitzMatrices v0.6.0
+  [30578b45] URIParser v0.4.0
+  [81def892] VersionParsing v1.1.3
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [9abbd945] Profile  [`@stdlib&#x2F;Profile`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+WARNING: local variable T conflicts with a static parameter in mul! at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ToeplitzMatrices&#x2F;DgyQ3&#x2F;src&#x2F;ToeplitzMatrices.jl:94.
+WARNING: local variable T conflicts with a static parameter in mul! at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ToeplitzMatrices&#x2F;DgyQ3&#x2F;src&#x2F;ToeplitzMatrices.jl:110.
+Test Summary: | Pass  Total
+Domain        |    1      1
+Test Summary: | Pass  Total
+Clenshaw      |    1      1
+  7.381170 seconds (8.57 M allocations: 460.870 MiB, 4.47% gc time)
+Test Summary: | Pass  Total
+Chebyshev     |  488    488
+104.407122 seconds (110.81 M allocations: 5.411 GiB, 5.14% gc time)
+Test Summary: | Pass  Total
+Complex       |   13     13
+  4.295613 seconds (3.47 M allocations: 177.398 MiB, 2.95% gc time)
+Test Summary: | Pass  Total
+broadcast     |   18     18
+ 26.386090 seconds (28.05 M allocations: 1.375 GiB, 4.22% gc time)
+  3.614978 seconds (4.74 M allocations: 220.001 MiB, 6.77% gc time)
+  4.111824 seconds (4.95 M allocations: 258.141 MiB, 6.58% gc time)
+  4.499459 seconds (6.02 M allocations: 278.887 MiB, 6.67% gc time)
+  0.061573 seconds (50.12 k allocations: 2.816 MiB)
+  0.610460 seconds (789.41 k allocations: 36.835 MiB, 6.82% gc time)
+ 16.506624 seconds (23.77 M allocations: 1.181 GiB, 8.56% gc time)
+Test Summary: |  Pass  Total
+Operator      | 12366  12366
+227.351859 seconds (283.22 M allocations: 13.371 GiB, 7.17% gc time)
+  0.459255 seconds (560.95 k allocations: 29.217 MiB, 13.52% gc time)
+  1.354749 seconds (1.77 M allocations: 91.878 MiB, 6.24% gc time)
+  1.866385 seconds (2.41 M allocations: 124.014 MiB, 7.84% gc time)
+  1.637617 seconds (4.16 M allocations: 149.713 MiB, 8.18% gc time)
+  1.861372 seconds (3.24 M allocations: 164.175 MiB, 8.77% gc time)
+  3.042832 seconds (6.82 M allocations: 355.698 MiB, 12.33% gc time)
+  3.756408 seconds (5.42 M allocations: 267.006 MiB, 9.08% gc time)
+  2.278900 seconds (3.32 M allocations: 171.522 MiB, 9.77% gc time)
+Test Summary: | Pass  Total
+ODE           | 2729   2729
+116.316191 seconds (190.29 M allocations: 9.373 GiB, 8.57% gc time)
+Test Summary:       | Pass  Total
+Eigenvalue problems |    7      7
+ 66.663962 seconds (120.73 M allocations: 6.158 GiB, 8.56% gc time)
+  1.277950 seconds (1.74 M allocations: 89.095 MiB, 7.30% gc time)
+  0.025913 seconds (43.68 k allocations: 1.953 MiB)
+  3.598577 seconds (5.79 M allocations: 299.372 MiB, 8.32% gc time)
+  0.267469 seconds (540.91 k allocations: 25.930 MiB, 8.25% gc time)
+Test Summary: | Pass  Broken  Total
+Vector        |  446       1    447
+ 39.278483 seconds (62.11 M allocations: 3.112 GiB, 8.14% gc time)
+  0.000316 seconds (303 allocations: 24.859 KiB)
+  2.800585 seconds (5.19 M allocations: 238.194 MiB, 9.55% gc time)
+  0.063200 seconds (192 allocations: 1.822 MiB)
+  4.599704 seconds (10.56 M allocations: 758.921 MiB, 13.86% gc time)
+  5.544193 seconds (9.57 M allocations: 493.975 MiB, 13.44% gc time)
+  4.657630 seconds (8.28 M allocations: 402.394 MiB, 9.20% gc time)
+  1.583387 seconds (2.29 M allocations: 112.867 MiB, 8.26% gc time)
+  3.865520 seconds (6.54 M allocations: 316.067 MiB, 9.10% gc time)
+  2.268102 seconds (3.79 M allocations: 186.020 MiB, 9.08% gc time)
+  8.364671 seconds (13.07 M allocations: 660.087 MiB, 7.75% gc time)
+  3.869599 seconds (6.35 M allocations: 311.175 MiB, 14.22% gc time)
+Test Summary: | Pass  Total
+Jacobi        | 4811   4811
+106.041937 seconds (162.03 M allocations: 8.398 GiB, 9.42% gc time)
+Test Summary:                 | Pass  Total
+Laguerre and WeightedLagueree |   15     15
+ 40.372118 seconds (71.29 M allocations: 3.156 GiB, 10.76% gc time)
+Test Summary:           | Pass  Total
+Hermite and GaussWeight |  415    415
+ 24.016407 seconds (45.11 M allocations: 2.151 GiB, 11.54% gc time)
+  0.075419 seconds (125.13 k allocations: 6.864 MiB)
+  1.156040 seconds (3.94 M allocations: 201.307 MiB, 16.30% gc time)
+ContinuousSpace: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+  Test threw exception
+  Expression: (A[1:10, 1:10])[5:10, 5:10] ≈ A[5:10, 5:10]
+  DimensionMismatch(&quot;array could not be broadcast to match destination&quot;)
+  Stacktrace:
+   [1] _banded_broadcast!(::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::typeof(-), ::Tuple{BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}},BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}}, ::BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}, ::Tuple{BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor},BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}}) at .&#x2F;broadcast.jl:460
+   [2] copy(::Base.Broadcast.Broadcasted{BandedMatrices.BandedStyle,Tuple{Base.OneTo{Int64},Base.OneTo{Int64}},typeof(-),Tuple{BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}},BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:669
+   [3] #isapprox#21(::Int64, ::Float64, ::Bool, ::typeof(norm), ::Function, ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}) at .&#x2F;broadcast.jl:756
+   [4] isapprox(::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1339
+   [5] eval_test(::Expr, ::Expr, ::LineNumberNode) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:229
+   [6] backend_testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+   [7] testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:161
+   [8] testraggedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:184
+   [9] testbandedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:190
+   [10] testalmostbandedoperator at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:199 [inlined]
+   [11] testbandedoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:205
+   [12] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:101 [inlined]
+   [13] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [14] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:96 [inlined]
+   [15] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [16] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:9
+ContinuousSpace: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+  Test threw exception
+  Expression: (A[1:10, 1:10])[5:10, 5:10] ≈ A[5:10, 5:10]
+  DimensionMismatch(&quot;array could not be broadcast to match destination&quot;)
+  Stacktrace:
+   [1] _banded_broadcast!(::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::typeof(-), ::Tuple{BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}},BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}}, ::BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}, ::Tuple{BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor},BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}}) at .&#x2F;broadcast.jl:460
+   [2] copy(::Base.Broadcast.Broadcasted{BandedMatrices.BandedStyle,Tuple{Base.OneTo{Int64},Base.OneTo{Int64}},typeof(-),Tuple{BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}},BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:669
+   [3] #isapprox#21(::Int64, ::Float64, ::Bool, ::typeof(norm), ::Function, ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}) at .&#x2F;broadcast.jl:756
+   [4] isapprox(::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1339
+   [5] eval_test(::Expr, ::Expr, ::LineNumberNode) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:229
+   [6] backend_testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+   [7] testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:162
+   [8] testraggedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:184
+   [9] testbandedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:190
+   [10] testalmostbandedoperator at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:199 [inlined]
+   [11] testbandedoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:205
+   [12] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:101 [inlined]
+   [13] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [14] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:96 [inlined]
+   [15] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [16] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:9
+ContinuousSpace: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+  Test threw exception
+  Expression: (A[1:10, 1:10])[5:10, 5:10] ≈ A[5:10, 5:10]
+  DimensionMismatch(&quot;array could not be broadcast to match destination&quot;)
+  Stacktrace:
+   [1] _banded_broadcast!(::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}, ::typeof(-), ::Tuple{BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}},BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}}, ::BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}, ::Tuple{BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor},BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}}) at .&#x2F;broadcast.jl:460
+   [2] copy(::Base.Broadcast.Broadcasted{BandedMatrices.BandedStyle,Tuple{Base.OneTo{Int64},Base.OneTo{Int64}},typeof(-),Tuple{BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}},BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:669
+   [3] #isapprox#21(::Int64, ::Float32, ::Bool, ::typeof(norm), ::Function, ::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}, ::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}) at .&#x2F;broadcast.jl:756
+   [4] isapprox(::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}, ::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1339
+   [5] eval_test(::Expr, ::Expr, ::LineNumberNode) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:229
+   [6] backend_testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float32,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float32}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+   [7] testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:163
+   [8] testraggedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:184
+   [9] testbandedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:190
+   [10] testalmostbandedoperator at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:199 [inlined]
+   [11] testbandedoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:205
+   [12] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:101 [inlined]
+   [13] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [14] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:96 [inlined]
+   [15] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [16] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:9
+ContinuousSpace: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+  Test threw exception
+  Expression: (A[1:10, 1:10])[5:10, 5:10] ≈ A[5:10, 5:10]
+  DimensionMismatch(&quot;array could not be broadcast to match destination&quot;)
+  Stacktrace:
+   [1] _banded_broadcast!(::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}, ::typeof(-), ::Tuple{BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}},BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}}, ::BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}, ::Tuple{BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor},BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}}) at .&#x2F;broadcast.jl:460
+   [2] copy(::Base.Broadcast.Broadcasted{BandedMatrices.BandedStyle,Tuple{Base.OneTo{Int64},Base.OneTo{Int64}},typeof(-),Tuple{BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}},BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:669
+   [3] #isapprox#21(::Int64, ::Float64, ::Bool, ::typeof(norm), ::Function, ::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}, ::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}) at .&#x2F;broadcast.jl:756
+   [4] isapprox(::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}, ::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1339
+   [5] eval_test(::Expr, ::Expr, ::LineNumberNode) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:229
+   [6] backend_testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Complex{Float64},Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Complex{Float64}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+   [7] testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:164
+   [8] testraggedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:184
+   [9] testbandedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:190
+   [10] testalmostbandedoperator at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:199 [inlined]
+   [11] testbandedoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:205
+   [12] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:101 [inlined]
+   [13] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [14] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:96 [inlined]
+   [15] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [16] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:9
+  1.137533 seconds (1.99 M allocations: 107.799 MiB, 10.11% gc time)
+  0.000507 seconds (4.37 k allocations: 266.031 KiB)
+  0.695296 seconds (1.24 M allocations: 65.337 MiB, 14.72% gc time)
+Test Summary:                       | Pass  Error  Broken  Total
+Spaces                              | 1741      4       1   1746
+  evaluate                          |    1                     1
+  ChebyshevDirichlet                |   17                    17
+  PiecewiseSpace                    |  403                   403
+  max&#x2F;min creates breakpoints       |    3                     3
+  Complex piecewise                 |    7                     7
+  Equivalent spaces                 |    1                     1
+  ContinuousSpace                   |  765      4            769
+  Jacobi recurrence bug             |    1                     1
+  Jacobi evaluation bug             |   97                    97
+  Hermite                           |  395                   395
+  Arc exp                           |    1                     1
+  Line                              |    1                     1
+  Exp Curve                         |    1                     1
+  ChebyshevDirichlet multiplication |    3                     3
+  QuotientSpace                     |    4                     4
+  Fast Ultraspherical*Chebyshev     |    4                     4
+  PointSpace                        |   17                    17
+  Jump Locations                    |    3                     3
+  SumSpace Conversion               |    6                     6
+  real line integral                |                   1      1
+  Piecewise Legendre                |    4                     4
+  Ambiguous evaluate                |    1                     1
+  x + abs(x) (#637)                 |    3                     3
+  remove point                      |    3                     3
+ERROR: LoadError: LoadError: Some tests did not pass: 1741 passed, 0 failed, 4 errored, 1 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:8
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;runtests.jl:18
+ERROR: Package ApproxFunOrthogonalPolynomials errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1357
+ [3] #test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:278
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:263 [inlined]
+ [6] #test#43 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [8] #test#42 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [10] #test#41 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258 [inlined]
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258
+ [12] top-level scope at none:0
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>interrupted</strong>: test duration exceeded the time limit.
+      Last evaluation was 1 day, 9 hours ago and took 45 minutes, 9 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/ApproxFunOrthogonalPolynomials/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed DataAPI ──────────────────────── v1.1.0
+ Installed Missings ─────────────────────── v0.4.3
+ Installed LowRankApprox ────────────────── v0.2.3
+ Installed AbstractFFTs ─────────────────── v0.4.1
+ Installed BlockBandedMatrices ──────────── v0.5.2
+ Installed DomainSets ───────────────────── v0.1.0
+ Installed BinaryProvider ───────────────── v0.5.8
+ Installed ApproxFunOrthogonalPolynomials ─ v0.2.4
+ Installed URIParser ────────────────────── v0.4.0
+ Installed Reexport ─────────────────────── v0.2.0
+ Installed Conda ────────────────────────── v1.3.0
+ Installed HierarchicalMatrices ─────────── v0.2.0
+ Installed BlockArrays ──────────────────── v0.10.2
+ Installed StatsBase ────────────────────── v0.32.0
+ Installed Compat ───────────────────────── v2.2.0
+ Installed Polynomials ──────────────────── v0.6.0
+ Installed RecipesBase ──────────────────── v0.7.0
+ Installed OrderedCollections ───────────── v1.1.0
+ Installed Calculus ─────────────────────── v0.5.1
+ Installed DualNumbers ──────────────────── v0.6.2
+ Installed Parsers ──────────────────────── v0.3.10
+ Installed DataStructures ───────────────── v0.17.6
+ Installed FillArrays ───────────────────── v0.7.4
+ Installed BandedMatrices ───────────────── v0.12.4
+ Installed JSON ─────────────────────────── v0.21.0
+ Installed ToeplitzMatrices ─────────────── v0.6.0
+ Installed NaNMath ──────────────────────── v0.3.3
+ Installed FastGaussQuadrature ──────────── v0.4.0
+ Installed FFTW ─────────────────────────── v0.3.0
+ Installed IntervalSets ─────────────────── v0.3.2
+ Installed StaticArrays ─────────────────── v0.11.1
+ Installed DSP ──────────────────────────── v0.6.0
+ Installed SortingAlgorithms ────────────── v0.3.1
+ Installed VersionParsing ───────────────── v1.1.3
+ Installed LazyArrays ───────────────────── v0.12.3
+ Installed MacroTools ───────────────────── v0.5.2
+ Installed ApproxFunBase ────────────────── v0.2.1
+ Installed MatrixFactorizations ─────────── v0.2.0
+ Installed SpecialFunctions ─────────────── v0.8.0
+ Installed FastTransforms ───────────────── v0.6.0
+ Installed Nullables ────────────────────── v0.0.8
+ Installed InfiniteArrays ───────────────── v0.3.1
+ Installed BinDeps ──────────────────────── v0.8.10
+ Installed ProgressMeter ────────────────── v1.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [b70543e2] + ApproxFunOrthogonalPolynomials v0.2.4
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [621f4979] + AbstractFFTs v0.4.1
+  [fbd15aa5] + ApproxFunBase v0.2.1
+  [b70543e2] + ApproxFunOrthogonalPolynomials v0.2.4
+  [aae01518] + BandedMatrices v0.12.4
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [8e7c35d0] + BlockArrays v0.10.2
+  [ffab5731] + BlockBandedMatrices v0.5.2
+  [49dc2e85] + Calculus v0.5.1
+  [34da2185] + Compat v2.2.0
+  [8f4d0f93] + Conda v1.3.0
+  [717857b8] + DSP v0.6.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [5b8099bc] + DomainSets v0.1.0
+  [fa6b7ba4] + DualNumbers v0.6.2
+  [7a1cc6ca] + FFTW v0.3.0
+  [442a2c76] + FastGaussQuadrature v0.4.0
+  [057dd010] + FastTransforms v0.6.0
+  [1a297f60] + FillArrays v0.7.4
+  [7c893195] + HierarchicalMatrices v0.2.0
+  [4858937d] + InfiniteArrays v0.3.1
+  [8197267c] + IntervalSets v0.3.2
+  [682c06a0] + JSON v0.21.0
+  [5078a376] + LazyArrays v0.12.3
+  [898213cb] + LowRankApprox v0.2.3
+  [1914dd2f] + MacroTools v0.5.2
+  [a3b82374] + MatrixFactorizations v0.2.0
+  [e1d29d7a] + Missings v0.4.3
+  [77ba4419] + NaNMath v0.3.3
+  [4d1e1d77] + Nullables v0.0.8
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [f27b6e38] + Polynomials v0.6.0
+  [92933f4c] + ProgressMeter v1.2.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [189a3867] + Reexport v0.2.0
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.11.1
+  [2913bbd2] + StatsBase v0.32.0
+  [c751599d] + ToeplitzMatrices v0.6.0
+  [30578b45] + URIParser v0.4.0
+  [81def892] + VersionParsing v1.1.3
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [9abbd945] + Profile 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Conda ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building FFTW ────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFTW&#x2F;2okGQ&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing ApproxFunOrthogonalPolynomials
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;jl_xX4Bpj&#x2F;Manifest.toml`
+  [621f4979] AbstractFFTs v0.4.1
+  [fbd15aa5] ApproxFunBase v0.2.1
+  [b70543e2] ApproxFunOrthogonalPolynomials v0.2.4
+  [aae01518] BandedMatrices v0.12.4
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [8e7c35d0] BlockArrays v0.10.2
+  [ffab5731] BlockBandedMatrices v0.5.2
+  [49dc2e85] Calculus v0.5.1
+  [34da2185] Compat v2.2.0
+  [8f4d0f93] Conda v1.3.0
+  [717857b8] DSP v0.6.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [5b8099bc] DomainSets v0.1.0
+  [fa6b7ba4] DualNumbers v0.6.2
+  [7a1cc6ca] FFTW v0.3.0
+  [442a2c76] FastGaussQuadrature v0.4.0
+  [057dd010] FastTransforms v0.6.0
+  [1a297f60] FillArrays v0.7.4
+  [7c893195] HierarchicalMatrices v0.2.0
+  [4858937d] InfiniteArrays v0.3.1
+  [8197267c] IntervalSets v0.3.2
+  [682c06a0] JSON v0.21.0
+  [5078a376] LazyArrays v0.12.3
+  [898213cb] LowRankApprox v0.2.3
+  [1914dd2f] MacroTools v0.5.2
+  [a3b82374] MatrixFactorizations v0.2.0
+  [e1d29d7a] Missings v0.4.3
+  [77ba4419] NaNMath v0.3.3
+  [4d1e1d77] Nullables v0.0.8
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [f27b6e38] Polynomials v0.6.0
+  [92933f4c] ProgressMeter v1.2.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [189a3867] Reexport v0.2.0
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.11.1
+  [2913bbd2] StatsBase v0.32.0
+  [c751599d] ToeplitzMatrices v0.6.0
+  [30578b45] URIParser v0.4.0
+  [81def892] VersionParsing v1.1.3
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [9abbd945] Profile  [`@stdlib&#x2F;Profile`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Test Summary: | Pass  Total
+Domain        |    1      1
+Test Summary: | Pass  Total
+Clenshaw      |    1      1
+  5.684233 seconds (6.83 M allocations: 339.019 MiB, 7.74% gc time)
+Test Summary: | Pass  Total
+Chebyshev     |  488    488
+111.842355 seconds (111.35 M allocations: 5.438 GiB, 5.68% gc time)
+Test Summary: | Pass  Total
+Complex       |   13     13
+  5.213158 seconds (3.40 M allocations: 174.779 MiB, 4.47% gc time)
+Test Summary: | Pass  Total
+broadcast     |   18     18
+ 35.629616 seconds (33.01 M allocations: 1.579 GiB, 6.95% gc time)
+ 10.000594 seconds (7.20 M allocations: 344.749 MiB, 6.68% gc time)
+ 13.653285 seconds (10.31 M allocations: 555.187 MiB, 10.06% gc time)
+ 10.224616 seconds (7.84 M allocations: 373.775 MiB, 6.97% gc time)
+  0.124357 seconds (39.05 k allocations: 2.275 MiB, 24.53% gc time)
+  1.278289 seconds (1.73 M allocations: 78.871 MiB, 6.68% gc time)
+ 37.277328 seconds (26.74 M allocations: 1.336 GiB, 6.93% gc time)
+Test Summary: |  Pass  Total
+Operator      | 12366  12366
+459.528841 seconds (371.79 M allocations: 17.503 GiB, 7.79% gc time)
+  0.958815 seconds (656.61 k allocations: 34.704 MiB, 4.96% gc time)
+  2.887695 seconds (1.74 M allocations: 91.322 MiB, 7.08% gc time)
+  4.287447 seconds (2.82 M allocations: 147.406 MiB, 8.53% gc time)
+  3.866428 seconds (4.21 M allocations: 152.316 MiB, 7.63% gc time)
+  4.624258 seconds (3.48 M allocations: 175.899 MiB, 8.10% gc time)
+  8.008535 seconds (8.49 M allocations: 451.964 MiB, 9.04% gc time)
+  9.160852 seconds (6.60 M allocations: 325.202 MiB, 11.02% gc time)
+  5.573282 seconds (3.88 M allocations: 204.100 MiB, 7.60% gc time)
+Test Summary: | Pass  Total
+ODE           | 2729   2729
+371.150583 seconds (238.54 M allocations: 12.474 GiB, 6.76% gc time)
+Test Summary:       | Pass  Total
+Eigenvalue problems |    7      7
+234.309291 seconds (143.55 M allocations: 7.692 GiB, 6.81% gc time)
+  2.860735 seconds (1.79 M allocations: 93.300 MiB, 6.87% gc time)
+  0.098050 seconds (28.50 k allocations: 1.302 MiB)
+  6.826792 seconds (5.21 M allocations: 269.236 MiB, 8.99% gc time)
+  0.776399 seconds (704.08 k allocations: 36.822 MiB, 9.20% gc time)
+Test Summary: | Pass  Broken  Total
+Vector        |  446       1    447
+ 80.426097 seconds (61.64 M allocations: 3.092 GiB, 9.09% gc time)
+  0.000605 seconds (304 allocations: 23.797 KiB)
+ 12.651291 seconds (9.60 M allocations: 460.894 MiB, 15.97% gc time)
+  0.116490 seconds (193 allocations: 1.822 MiB)
+ 13.982283 seconds (13.55 M allocations: 905.474 MiB, 12.46% gc time)
+ 12.864955 seconds (9.82 M allocations: 507.908 MiB, 13.06% gc time)
+ 11.020947 seconds (10.15 M allocations: 478.147 MiB, 8.84% gc time)
+  3.998716 seconds (2.52 M allocations: 129.073 MiB, 8.21% gc time)
+  9.433014 seconds (8.35 M allocations: 393.338 MiB, 14.30% gc time)
+  5.775896 seconds (4.02 M allocations: 198.530 MiB, 7.99% gc time)
+ 20.173637 seconds (15.04 M allocations: 749.173 MiB, 8.73% gc time)
+  9.046775 seconds (8.10 M allocations: 383.298 MiB, 9.71% gc time)
+Test Summary: | Pass  Total
+Jacobi        | 4811   4811
+230.855655 seconds (168.62 M allocations: 8.524 GiB, 10.36% gc time)
+Test Summary:                 | Pass  Total
+Laguerre and WeightedLagueree |   15     15
+104.404206 seconds (85.77 M allocations: 3.573 GiB, 12.44% gc time)
+Test Summary:           | Pass  Total
+Hermite and GaussWeight |  415    415
+ 65.206381 seconds (55.71 M allocations: 2.566 GiB, 16.33% gc time)
+  0.091092 seconds (52.69 k allocations: 2.851 MiB)
+  4.098117 seconds (4.48 M allocations: 240.246 MiB, 12.37% gc time)
+ContinuousSpace: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+  Test threw exception
+  Expression: (A[1:10, 1:10])[5:10, 5:10] ≈ A[5:10, 5:10]
+  DimensionMismatch(&quot;array could not be broadcast to match destination&quot;)
+  Stacktrace:
+   [1] _banded_broadcast!(::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::typeof(-), ::Tuple{BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}},BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}}, ::BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}, ::Tuple{BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor},BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}}) at .&#x2F;broadcast.jl:503
+   [2] copyto! at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:669 [inlined]
+   [3] copy at .&#x2F;broadcast.jl:818 [inlined]
+   [4] _default_banded_broadcast at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:673 [inlined]
+   [5] _banded_broadcast at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:675 [inlined]
+   [6] copy at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:710 [inlined]
+   [7] materialize at .&#x2F;broadcast.jl:798 [inlined]
+   [8] broadcast at .&#x2F;broadcast.jl:752 [inlined]
+   [9] -(::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}) at .&#x2F;arraymath.jl:39
+   [10] #isapprox#22(::Int64, ::Float64, ::Bool, ::typeof(norm), ::typeof(isapprox), ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1442
+   [11] isapprox(::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1442
+   [12] eval_test(::Expr, ::Expr, ::LineNumberNode, ::Bool) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:244
+   [13] backend_testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+   [14] testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:161
+   [15] testraggedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:184
+   [16] testbandedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:190
+   [17] testalmostbandedoperator at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:199 [inlined]
+   [18] testbandedoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:205
+   [19] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:101
+   [20] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [21] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:96
+   [22] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [23] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:9
+  
+ContinuousSpace: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+  Test threw exception
+  Expression: (A[1:10, 1:10])[5:10, 5:10] ≈ A[5:10, 5:10]
+  DimensionMismatch(&quot;array could not be broadcast to match destination&quot;)
+  Stacktrace:
+   [1] _banded_broadcast!(::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::typeof(-), ::Tuple{BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}},BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}}, ::BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}, ::Tuple{BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor},BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}}) at .&#x2F;broadcast.jl:503
+   [2] copyto! at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:669 [inlined]
+   [3] copy at .&#x2F;broadcast.jl:818 [inlined]
+   [4] _default_banded_broadcast at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:673 [inlined]
+   [5] _banded_broadcast at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:675 [inlined]
+   [6] copy at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:710 [inlined]
+   [7] materialize at .&#x2F;broadcast.jl:798 [inlined]
+   [8] broadcast at .&#x2F;broadcast.jl:752 [inlined]
+   [9] -(::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}) at .&#x2F;arraymath.jl:39
+   [10] #isapprox#22(::Int64, ::Float64, ::Bool, ::typeof(norm), ::typeof(isapprox), ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1442
+   [11] isapprox(::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1442
+   [12] eval_test(::Expr, ::Expr, ::LineNumberNode, ::Bool) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:244
+   [13] backend_testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+   [14] testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:162
+   [15] testraggedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:184
+   [16] testbandedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:190
+   [17] testalmostbandedoperator at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:199 [inlined]
+   [18] testbandedoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:205
+   [19] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:101
+   [20] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [21] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:96
+   [22] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [23] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:9
+  
+ContinuousSpace: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+  Test threw exception
+  Expression: (A[1:10, 1:10])[5:10, 5:10] ≈ A[5:10, 5:10]
+  DimensionMismatch(&quot;array could not be broadcast to match destination&quot;)
+  Stacktrace:
+   [1] _banded_broadcast!(::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}, ::typeof(-), ::Tuple{BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}},BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}}, ::BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}, ::Tuple{BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor},BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}}) at .&#x2F;broadcast.jl:503
+   [2] copyto! at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:669 [inlined]
+   [3] copy at .&#x2F;broadcast.jl:818 [inlined]
+   [4] _default_banded_broadcast at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:673 [inlined]
+   [5] _banded_broadcast at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:675 [inlined]
+   [6] copy at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:710 [inlined]
+   [7] materialize at .&#x2F;broadcast.jl:798 [inlined]
+   [8] broadcast at .&#x2F;broadcast.jl:752 [inlined]
+   [9] -(::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}, ::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}) at .&#x2F;arraymath.jl:39
+   [10] #isapprox#22(::Int64, ::Float32, ::Bool, ::typeof(norm), ::typeof(isapprox), ::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}, ::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1442
+   [11] isapprox(::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}, ::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1442
+   [12] eval_test(::Expr, ::Expr, ::LineNumberNode, ::Bool) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:244
+   [13] backend_testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float32,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float32}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+   [14] testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:163
+   [15] testraggedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:184
+   [16] testbandedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:190
+   [17] testalmostbandedoperator at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:199 [inlined]
+   [18] testbandedoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:205
+   [19] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:101
+   [20] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [21] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:96
+   [22] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [23] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:9
+  
+ContinuousSpace: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+  Test threw exception
+  Expression: (A[1:10, 1:10])[5:10, 5:10] ≈ A[5:10, 5:10]
+  DimensionMismatch(&quot;array could not be broadcast to match destination&quot;)
+  Stacktrace:
+   [1] _banded_broadcast!(::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}, ::typeof(-), ::Tuple{BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}},BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}}, ::BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}, ::Tuple{BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor},BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}}) at .&#x2F;broadcast.jl:503
+   [2] copyto! at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:669 [inlined]
+   [3] copy at .&#x2F;broadcast.jl:818 [inlined]
+   [4] _default_banded_broadcast at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:673 [inlined]
+   [5] _banded_broadcast at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:675 [inlined]
+   [6] copy at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:710 [inlined]
+   [7] materialize at .&#x2F;broadcast.jl:798 [inlined]
+   [8] broadcast at .&#x2F;broadcast.jl:752 [inlined]
+   [9] -(::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}, ::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}) at .&#x2F;arraymath.jl:39
+   [10] #isapprox#22(::Int64, ::Float64, ::Bool, ::typeof(norm), ::typeof(isapprox), ::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}, ::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1442
+   [11] isapprox(::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}, ::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1442
+   [12] eval_test(::Expr, ::Expr, ::LineNumberNode, ::Bool) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:244
+   [13] backend_testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Complex{Float64},Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Complex{Float64}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+   [14] testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:164
+   [15] testraggedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:184
+   [16] testbandedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:190
+   [17] testalmostbandedoperator at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:199 [inlined]
+   [18] testbandedoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:205
+   [19] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:101
+   [20] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [21] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:96
+   [22] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [23] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:9
+  
+  5.479346 seconds (2.93 M allocations: 164.822 MiB, 9.39% gc time)
+  0.001423 seconds (3.79 k allocations: 248.859 KiB)
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 14 hours ago and took 40 minutes, 7 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/ApproxFunOrthogonalPolynomials/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed RecipesBase ──────────────────── v0.7.0
+ Installed VersionParsing ───────────────── v1.1.3
+ Installed FillArrays ───────────────────── v0.7.4
+ Installed AbstractFFTs ─────────────────── v0.4.1
+ Installed BinDeps ──────────────────────── v0.8.10
+ Installed DSP ──────────────────────────── v0.6.0
+ Installed ApproxFunOrthogonalPolynomials ─ v0.2.4
+ Installed FastTransforms ───────────────── v0.6.0
+ Installed Reexport ─────────────────────── v0.2.0
+ Installed SortingAlgorithms ────────────── v0.3.1
+ Installed DataAPI ──────────────────────── v1.1.0
+ Installed Missings ─────────────────────── v0.4.3
+ Installed Calculus ─────────────────────── v0.5.1
+ Installed JSON ─────────────────────────── v0.21.0
+ Installed LowRankApprox ────────────────── v0.2.3
+ Installed HierarchicalMatrices ─────────── v0.2.0
+ Installed ToeplitzMatrices ─────────────── v0.6.0
+ Installed Parsers ──────────────────────── v0.3.10
+ Installed LazyArrays ───────────────────── v0.12.3
+ Installed ProgressMeter ────────────────── v1.2.0
+ Installed DataStructures ───────────────── v0.17.6
+ Installed Polynomials ──────────────────── v0.6.0
+ Installed StaticArrays ─────────────────── v0.11.1
+ Installed BlockArrays ──────────────────── v0.10.2
+ Installed URIParser ────────────────────── v0.4.0
+ Installed FastGaussQuadrature ──────────── v0.4.0
+ Installed MatrixFactorizations ─────────── v0.2.0
+ Installed Nullables ────────────────────── v0.0.8
+ Installed InfiniteArrays ───────────────── v0.3.1
+ Installed StatsBase ────────────────────── v0.32.0
+ Installed DomainSets ───────────────────── v0.1.0
+ Installed NaNMath ──────────────────────── v0.3.3
+ Installed BlockBandedMatrices ──────────── v0.5.2
+ Installed IntervalSets ─────────────────── v0.3.2
+ Installed MacroTools ───────────────────── v0.5.2
+ Installed Conda ────────────────────────── v1.3.0
+ Installed BandedMatrices ───────────────── v0.12.4
+ Installed OrderedCollections ───────────── v1.1.0
+ Installed FFTW ─────────────────────────── v0.3.0
+ Installed DualNumbers ──────────────────── v0.6.2
+ Installed ApproxFunBase ────────────────── v0.2.1
+ Installed BinaryProvider ───────────────── v0.5.8
+ Installed Compat ───────────────────────── v2.2.0
+ Installed SpecialFunctions ─────────────── v0.8.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [b70543e2] + ApproxFunOrthogonalPolynomials v0.2.4
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [621f4979] + AbstractFFTs v0.4.1
+  [fbd15aa5] + ApproxFunBase v0.2.1
+  [b70543e2] + ApproxFunOrthogonalPolynomials v0.2.4
+  [aae01518] + BandedMatrices v0.12.4
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [8e7c35d0] + BlockArrays v0.10.2
+  [ffab5731] + BlockBandedMatrices v0.5.2
+  [49dc2e85] + Calculus v0.5.1
+  [34da2185] + Compat v2.2.0
+  [8f4d0f93] + Conda v1.3.0
+  [717857b8] + DSP v0.6.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [5b8099bc] + DomainSets v0.1.0
+  [fa6b7ba4] + DualNumbers v0.6.2
+  [7a1cc6ca] + FFTW v0.3.0
+  [442a2c76] + FastGaussQuadrature v0.4.0
+  [057dd010] + FastTransforms v0.6.0
+  [1a297f60] + FillArrays v0.7.4
+  [7c893195] + HierarchicalMatrices v0.2.0
+  [4858937d] + InfiniteArrays v0.3.1
+  [8197267c] + IntervalSets v0.3.2
+  [682c06a0] + JSON v0.21.0
+  [5078a376] + LazyArrays v0.12.3
+  [898213cb] + LowRankApprox v0.2.3
+  [1914dd2f] + MacroTools v0.5.2
+  [a3b82374] + MatrixFactorizations v0.2.0
+  [e1d29d7a] + Missings v0.4.3
+  [77ba4419] + NaNMath v0.3.3
+  [4d1e1d77] + Nullables v0.0.8
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [f27b6e38] + Polynomials v0.6.0
+  [92933f4c] + ProgressMeter v1.2.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [189a3867] + Reexport v0.2.0
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.11.1
+  [2913bbd2] + StatsBase v0.32.0
+  [c751599d] + ToeplitzMatrices v0.6.0
+  [30578b45] + URIParser v0.4.0
+  [81def892] + VersionParsing v1.1.3
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [9abbd945] + Profile 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Conda ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building FFTW ────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFTW&#x2F;2okGQ&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing ApproxFunOrthogonalPolynomials
+ Resolving package versions...
+Status `&#x2F;tmp&#x2F;jl_WuZRcE&#x2F;Manifest.toml`
+  [621f4979] AbstractFFTs v0.4.1
+  [fbd15aa5] ApproxFunBase v0.2.1
+  [b70543e2] ApproxFunOrthogonalPolynomials v0.2.4
+  [aae01518] BandedMatrices v0.12.4
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [8e7c35d0] BlockArrays v0.10.2
+  [ffab5731] BlockBandedMatrices v0.5.2
+  [49dc2e85] Calculus v0.5.1
+  [34da2185] Compat v2.2.0
+  [8f4d0f93] Conda v1.3.0
+  [717857b8] DSP v0.6.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [5b8099bc] DomainSets v0.1.0
+  [fa6b7ba4] DualNumbers v0.6.2
+  [7a1cc6ca] FFTW v0.3.0
+  [442a2c76] FastGaussQuadrature v0.4.0
+  [057dd010] FastTransforms v0.6.0
+  [1a297f60] FillArrays v0.7.4
+  [7c893195] HierarchicalMatrices v0.2.0
+  [4858937d] InfiniteArrays v0.3.1
+  [8197267c] IntervalSets v0.3.2
+  [682c06a0] JSON v0.21.0
+  [5078a376] LazyArrays v0.12.3
+  [898213cb] LowRankApprox v0.2.3
+  [1914dd2f] MacroTools v0.5.2
+  [a3b82374] MatrixFactorizations v0.2.0
+  [e1d29d7a] Missings v0.4.3
+  [77ba4419] NaNMath v0.3.3
+  [4d1e1d77] Nullables v0.0.8
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [f27b6e38] Polynomials v0.6.0
+  [92933f4c] ProgressMeter v1.2.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [189a3867] Reexport v0.2.0
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.11.1
+  [2913bbd2] StatsBase v0.32.0
+  [c751599d] ToeplitzMatrices v0.6.0
+  [30578b45] URIParser v0.4.0
+  [81def892] VersionParsing v1.1.3
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [9abbd945] Profile  [`@stdlib&#x2F;Profile`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Test Summary: | Pass  Total
+Domain        |    1      1
+Test Summary: | Pass  Total
+Clenshaw      |    1      1
+  6.488337 seconds (6.37 M allocations: 315.536 MiB, 3.55% gc time)
+Test Summary: | Pass  Total
+Chebyshev     |  488    488
+143.934222 seconds (124.17 M allocations: 6.067 GiB, 4.41% gc time)
+Test Summary: | Pass  Total
+Complex       |   13     13
+  5.870331 seconds (3.19 M allocations: 162.125 MiB, 1.76% gc time)
+Test Summary: | Pass  Total
+broadcast     |   18     18
+ 39.628215 seconds (31.04 M allocations: 1.504 GiB, 2.88% gc time)
+  6.054212 seconds (5.12 M allocations: 242.022 MiB, 2.26% gc time)
+ 11.634990 seconds (9.21 M allocations: 498.367 MiB, 6.27% gc time)
+  8.021647 seconds (6.01 M allocations: 282.024 MiB, 3.44% gc time)
+  0.099323 seconds (35.50 k allocations: 2.079 MiB)
+  1.267266 seconds (1.57 M allocations: 72.075 MiB)
+ 36.817730 seconds (24.87 M allocations: 1.244 GiB, 2.81% gc time)
+Test Summary: |  Pass  Total
+Operator      | 12366  12366
+415.660316 seconds (331.92 M allocations: 15.594 GiB, 3.76% gc time)
+  0.761315 seconds (569.60 k allocations: 29.658 MiB)
+  2.308681 seconds (1.60 M allocations: 82.837 MiB)
+  3.779649 seconds (2.37 M allocations: 122.345 MiB, 2.04% gc time)
+  3.538219 seconds (3.78 M allocations: 138.588 MiB, 3.43% gc time)
+  3.911594 seconds (3.40 M allocations: 168.808 MiB, 1.49% gc time)
+  7.182732 seconds (7.15 M allocations: 367.195 MiB, 3.51% gc time)
+  8.247697 seconds (5.72 M allocations: 279.728 MiB, 2.86% gc time)
+  4.875818 seconds (2.78 M allocations: 141.357 MiB, 3.53% gc time)
+Test Summary: | Pass  Total
+ODE           | 2729   2729
+212.341697 seconds (165.55 M allocations: 7.966 GiB, 3.60% gc time)
+Test Summary:       | Pass  Total
+Eigenvalue problems |    7      7
+133.976314 seconds (108.71 M allocations: 5.401 GiB, 3.42% gc time)
+  2.561459 seconds (1.64 M allocations: 83.396 MiB)
+  0.079551 seconds (27.75 k allocations: 1.300 MiB)
+  7.805438 seconds (5.44 M allocations: 279.994 MiB, 2.89% gc time)
+  0.797872 seconds (769.93 k allocations: 38.562 MiB)
+Test Summary: | Pass  Broken  Total
+Vector        |  446       1    447
+102.306651 seconds (75.37 M allocations: 3.764 GiB, 3.50% gc time)
+  0.000511 seconds (274 allocations: 22.172 KiB)
+ 10.470521 seconds (7.63 M allocations: 363.173 MiB, 4.51% gc time)
+  0.128858 seconds (173 allocations: 1.821 MiB)
+ 13.696105 seconds (11.81 M allocations: 819.985 MiB, 7.42% gc time)
+ 36.519241 seconds (11.42 M allocations: 618.813 MiB, 1.58% gc time)
+ 12.991468 seconds (9.55 M allocations: 451.315 MiB, 4.21% gc time)
+  4.655381 seconds (2.55 M allocations: 131.088 MiB, 4.17% gc time)
+  9.305802 seconds (7.61 M allocations: 359.258 MiB, 4.06% gc time)
+  5.963700 seconds (4.05 M allocations: 201.295 MiB, 3.88% gc time)
+ 20.820995 seconds (13.85 M allocations: 689.204 MiB, 4.26% gc time)
+  9.728907 seconds (7.63 M allocations: 360.768 MiB, 1.48% gc time)
+Test Summary: | Pass  Total
+Jacobi        | 4811   4811
+401.814602 seconds (180.16 M allocations: 9.253 GiB, 3.13% gc time)
+Test Summary:                 | Pass  Total
+Laguerre and WeightedLagueree |   15     15
+110.465217 seconds (83.77 M allocations: 3.576 GiB, 4.57% gc time)
+Test Summary:           | Pass  Total
+Hermite and GaussWeight |  415    415
+ 55.850179 seconds (51.22 M allocations: 2.360 GiB, 6.14% gc time)
+  0.084750 seconds (46.64 k allocations: 2.430 MiB)
+  2.460012 seconds (3.77 M allocations: 193.723 MiB, 3.93% gc time)
+ContinuousSpace: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+  Test threw exception
+  Expression: (A[1:10, 1:10])[5:10, 5:10] ≈ A[5:10, 5:10]
+  DimensionMismatch(&quot;array could not be broadcast to match destination&quot;)
+  Stacktrace:
+   [1] check_broadcast_shape at .&#x2F;broadcast.jl:508 [inlined]
+   [2] check_broadcast_axes at .&#x2F;broadcast.jl:511 [inlined]
+   [3] check_broadcast_axes at .&#x2F;broadcast.jl:514 [inlined]
+   [4] instantiate at .&#x2F;broadcast.jl:259 [inlined]
+   [5] materialize! at .&#x2F;broadcast.jl:822 [inlined]
+   [6] _banded_broadcast!(::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::typeof(-), ::Tuple{BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}},BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}}, ::BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}, ::Tuple{BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor},BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:641
+   [7] copyto! at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:669 [inlined]
+   [8] copy at .&#x2F;broadcast.jl:839 [inlined]
+   [9] _default_banded_broadcast at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:673 [inlined]
+   [10] _banded_broadcast at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:675 [inlined]
+   [11] copy at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:710 [inlined]
+   [12] materialize at .&#x2F;broadcast.jl:819 [inlined]
+   [13] broadcast_preserving_zero_d at .&#x2F;broadcast.jl:808 [inlined]
+   [14] -(::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}) at .&#x2F;arraymath.jl:39
+   [15] isapprox(::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}; atol::Int64, rtol::Float64, nans::Bool, norm::typeof(norm)) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1570
+   [16] isapprox(::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1570
+   [17] eval_test(::Expr, ::Expr, ::LineNumberNode, ::Bool) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:246
+   [18] backend_testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+   [19] testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:161
+   [20] testraggedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:184
+   [21] testbandedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:190
+   [22] testalmostbandedoperator at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:199 [inlined]
+   [23] testbandedoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:205
+   [24] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:101
+   [25] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [26] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:96
+   [27] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [28] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:9
+  
+ContinuousSpace: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+  Test threw exception
+  Expression: (A[1:10, 1:10])[5:10, 5:10] ≈ A[5:10, 5:10]
+  DimensionMismatch(&quot;array could not be broadcast to match destination&quot;)
+  Stacktrace:
+   [1] check_broadcast_shape at .&#x2F;broadcast.jl:508 [inlined]
+   [2] check_broadcast_axes at .&#x2F;broadcast.jl:511 [inlined]
+   [3] check_broadcast_axes at .&#x2F;broadcast.jl:514 [inlined]
+   [4] instantiate at .&#x2F;broadcast.jl:259 [inlined]
+   [5] materialize! at .&#x2F;broadcast.jl:822 [inlined]
+   [6] _banded_broadcast!(::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::typeof(-), ::Tuple{BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}},BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}}, ::BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}, ::Tuple{BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor},BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:641
+   [7] copyto! at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:669 [inlined]
+   [8] copy at .&#x2F;broadcast.jl:839 [inlined]
+   [9] _default_banded_broadcast at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:673 [inlined]
+   [10] _banded_broadcast at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:675 [inlined]
+   [11] copy at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:710 [inlined]
+   [12] materialize at .&#x2F;broadcast.jl:819 [inlined]
+   [13] broadcast_preserving_zero_d at .&#x2F;broadcast.jl:808 [inlined]
+   [14] -(::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}) at .&#x2F;arraymath.jl:39
+   [15] isapprox(::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}; atol::Int64, rtol::Float64, nans::Bool, norm::typeof(norm)) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1570
+   [16] isapprox(::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}, ::BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1570
+   [17] eval_test(::Expr, ::Expr, ::LineNumberNode, ::Bool) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:246
+   [18] backend_testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+   [19] testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:162
+   [20] testraggedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:184
+   [21] testbandedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:190
+   [22] testalmostbandedoperator at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:199 [inlined]
+   [23] testbandedoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:205
+   [24] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:101
+   [25] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [26] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:96
+   [27] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [28] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:9
+  
+ContinuousSpace: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+  Test threw exception
+  Expression: (A[1:10, 1:10])[5:10, 5:10] ≈ A[5:10, 5:10]
+  DimensionMismatch(&quot;array could not be broadcast to match destination&quot;)
+  Stacktrace:
+   [1] check_broadcast_shape at .&#x2F;broadcast.jl:508 [inlined]
+   [2] check_broadcast_axes at .&#x2F;broadcast.jl:511 [inlined]
+   [3] check_broadcast_axes at .&#x2F;broadcast.jl:514 [inlined]
+   [4] instantiate at .&#x2F;broadcast.jl:259 [inlined]
+   [5] materialize! at .&#x2F;broadcast.jl:822 [inlined]
+   [6] _banded_broadcast!(::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}, ::typeof(-), ::Tuple{BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}},BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}}, ::BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}, ::Tuple{BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor},BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:641
+   [7] copyto! at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:669 [inlined]
+   [8] copy at .&#x2F;broadcast.jl:839 [inlined]
+   [9] _default_banded_broadcast at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:673 [inlined]
+   [10] _banded_broadcast at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:675 [inlined]
+   [11] copy at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:710 [inlined]
+   [12] materialize at .&#x2F;broadcast.jl:819 [inlined]
+   [13] broadcast_preserving_zero_d at .&#x2F;broadcast.jl:808 [inlined]
+   [14] -(::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}, ::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}) at .&#x2F;arraymath.jl:39
+   [15] isapprox(::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}, ::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}; atol::Int64, rtol::Float32, nans::Bool, norm::typeof(norm)) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1570
+   [16] isapprox(::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}, ::BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1570
+   [17] eval_test(::Expr, ::Expr, ::LineNumberNode, ::Bool) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:246
+   [18] backend_testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float32,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float32}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+   [19] testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:163
+   [20] testraggedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:184
+   [21] testbandedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:190
+   [22] testalmostbandedoperator at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:199 [inlined]
+   [23] testbandedoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:205
+   [24] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:101
+   [25] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [26] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:96
+   [27] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [28] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:9
+  
+ContinuousSpace: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+  Test threw exception
+  Expression: (A[1:10, 1:10])[5:10, 5:10] ≈ A[5:10, 5:10]
+  DimensionMismatch(&quot;array could not be broadcast to match destination&quot;)
+  Stacktrace:
+   [1] check_broadcast_shape at .&#x2F;broadcast.jl:508 [inlined]
+   [2] check_broadcast_axes at .&#x2F;broadcast.jl:511 [inlined]
+   [3] check_broadcast_axes at .&#x2F;broadcast.jl:514 [inlined]
+   [4] instantiate at .&#x2F;broadcast.jl:259 [inlined]
+   [5] materialize! at .&#x2F;broadcast.jl:822 [inlined]
+   [6] _banded_broadcast!(::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}, ::typeof(-), ::Tuple{BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}},BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}}, ::BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}, ::Tuple{BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor},BandedMatrices.BandedColumns{LazyArrays.DenseColumnMajor}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:641
+   [7] copyto! at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:669 [inlined]
+   [8] copy at .&#x2F;broadcast.jl:839 [inlined]
+   [9] _default_banded_broadcast at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:673 [inlined]
+   [10] _banded_broadcast at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:675 [inlined]
+   [11] copy at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BandedMatrices&#x2F;g9MP2&#x2F;src&#x2F;generic&#x2F;broadcast.jl:710 [inlined]
+   [12] materialize at .&#x2F;broadcast.jl:819 [inlined]
+   [13] broadcast_preserving_zero_d at .&#x2F;broadcast.jl:808 [inlined]
+   [14] -(::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}, ::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}) at .&#x2F;arraymath.jl:39
+   [15] isapprox(::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}, ::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}; atol::Int64, rtol::Float64, nans::Bool, norm::typeof(norm)) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1570
+   [16] isapprox(::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}, ::BandedMatrix{Complex{Float64},Array{Complex{Float64},2},Base.OneTo{Int64}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;LinearAlgebra&#x2F;src&#x2F;generic.jl:1570
+   [17] eval_test(::Expr, ::Expr, ::LineNumberNode, ::Bool) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:246
+   [18] backend_testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Complex{Float64},Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Complex{Float64}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:136
+   [19] testinfoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:164
+   [20] testraggedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:184
+   [21] testbandedbelowoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:190
+   [22] testalmostbandedoperator at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:199 [inlined]
+   [23] testbandedoperator(::ApproxFunBase.DerivativeWrapper{TimesOperator{Float64,Tuple{Int64,Int64}},ContinuousSpace{Float64,Float64},Int64,Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunBase&#x2F;A1HpV&#x2F;src&#x2F;testing.jl:205
+   [24] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:101
+   [25] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [26] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:96
+   [27] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110
+   [28] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:9
+  
+  5.034677 seconds (2.22 M allocations: 116.107 MiB, 3.11% gc time)
+  0.001886 seconds (3.70 k allocations: 244.234 KiB)
+  1.719540 seconds (1.38 M allocations: 72.883 MiB)
+Test Summary:                       | Pass  Error  Broken  Total
+Spaces                              | 1741      4       1   1746
+  evaluate                          |    1                     1
+  ChebyshevDirichlet                |   17                    17
+  PiecewiseSpace                    |  403                   403
+  max&#x2F;min creates breakpoints       |    3                     3
+  Complex piecewise                 |    7                     7
+  Equivalent spaces                 |    1                     1
+  ContinuousSpace                   |  765      4            769
+  Jacobi recurrence bug             |    1                     1
+  Jacobi evaluation bug             |   97                    97
+  Hermite                           |  395                   395
+  Arc exp                           |    1                     1
+  Line                              |    1                     1
+  Exp Curve                         |    1                     1
+  ChebyshevDirichlet multiplication |    3                     3
+  QuotientSpace                     |    4                     4
+  Fast Ultraspherical*Chebyshev     |    4                     4
+  PointSpace                        |   17                    17
+  Jump Locations                    |    3                     3
+  SumSpace Conversion               |    6                     6
+  real line integral                |                   1      1
+  Piecewise Legendre                |    4                     4
+  Ambiguous evaluate                |    1                     1
+  x + abs(x) (#637)                 |    3                     3
+  remove point                      |    3                     3
+ERROR: LoadError: LoadError: Some tests did not pass: 1741 passed, 0 failed, 4 errored, 1 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;SpacesTest.jl:8
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ApproxFunOrthogonalPolynomials&#x2F;y1QDS&#x2F;test&#x2F;runtests.jl:18
+ERROR: Package ApproxFunOrthogonalPolynomials errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:274
+ [5] #test#56 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [6] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [7] #test#55 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [8] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [10] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [11] top-level scope at none:10
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

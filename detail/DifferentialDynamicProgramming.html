@@ -1,0 +1,2274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="DifferentialDynamicProgramming">DifferentialDynamicProgramming</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#DifferentialDynamicProgramming">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 16 hours ago and took 2 minutes, 46 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/DifferentialDynamicProgramming/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed LinearTimeVaryingModelsBase ──── v0.2.1
+ Installed Requires ─────────────────────── v0.5.2
+ Installed OrderedCollections ───────────── v1.1.0
+ Installed RecipesBase ──────────────────── v0.7.0
+ Installed DifferentialDynamicProgramming ─ v0.3.1
+ Installed ValueHistories ───────────────── v0.5.1
+ Installed Parameters ───────────────────── v0.12.0
+ Installed DataStructures ───────────────── v0.17.6
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [9cd584b6] + DifferentialDynamicProgramming v0.3.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [864edb3b] + DataStructures v0.17.6
+  [9cd584b6] + DifferentialDynamicProgramming v0.3.1
+  [5e7a79f3] + LinearTimeVaryingModelsBase v0.2.1
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [ae029012] + Requires v0.5.2
+  [98cad3c8] + ValueHistories v0.5.1
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+   Testing DifferentialDynamicProgramming
+    Status `&#x2F;tmp&#x2F;tmp9M6tuI&#x2F;Manifest.toml`
+  [864edb3b] DataStructures v0.17.6
+  [9cd584b6] DifferentialDynamicProgramming v0.3.1
+  [5e7a79f3] LinearTimeVaryingModelsBase v0.2.1
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [ae029012] Requires v0.5.2
+  [98cad3c8] ValueHistories v0.5.1
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+[ Info: Compile time is high for this package, this is expected and is not an error.
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           51.8304     27          27          0.115       0.0         
+2           24.8454     11.2        11.2        0.086       -0.2        
+3           13.6472     5.5         5.5         0.0868      -0.6        
+4           8.14858     3.17        3.17        0.114       -1.2        
+5           4.97735     1.7         1.7         0.174       -2.0        
+6           3.28155     0.391       0.391       0.185       -3.1        
+7           2.89103     0.0195      0.0195      0.059       -4.3        
+8           2.87149     2.18e-05    2.18e-05    0.00221     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   2.871468    
+
+        final grad:   3.627383e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  319   ms
+
+        total time:   2.87  seconds, of which
+
+        derivs:     0.0 %
+
+        back pass:  45.2%
+
+        fwd pass:   4.1 %
+
+        other:      50.6% (graphics etc.)
+ =========== end iLQG ===========
+ 16.550222 seconds (14.21 M allocations: 892.234 MiB, 6.23% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           51.8234     23.1        23.1        0.104       0.0         
+2           28.6972     10.8        10.8        0.0863      -0.2        
+3           17.9029     6.07        6.07        0.0962      -0.6        
+4           11.8307     3.6         3.6         0.124       -1.2        
+5           8.23398     2.32        2.32        0.211       -2.0        
+6           5.91381     0.662       0.662       0.237       -3.1        
+7           5.252       0.0315      0.0315      0.0637      -4.3        
+8           5.22045     3.22e-05    3.22e-05    0.00224     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   5.220419    
+
+        final grad:   3.484265e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  77    ms
+
+        total time:   0.69  seconds, of which
+
+        derivs:     0.2 %
+
+        back pass:  80.9%
+
+        fwd pass:   14.1%
+
+        other:      4.8 % (graphics etc.)
+ =========== end iLQG ===========
+  0.710700 seconds (1.62 M allocations: 275.519 MiB, 13.99% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           48.279      19.6        19.6        0.099       0.0         
+2           28.6996     9.07        9.07        0.0781      -0.2        
+3           19.6254     5.84        5.84        0.092       -0.6        
+4           13.7894     4.34        4.34        0.148       -1.2        
+5           9.45164     2.88        2.88        0.221       -2.0        
+6           6.57143     0.824       0.824       0.252       -3.1        
+7           5.74724     0.0311      0.0311      0.0663      -4.3        
+8           5.71613     2.67e-05    2.67e-05    0.00253     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   5.7161      
+
+        final grad:   3.877497e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  95    ms
+
+        total time:   0.85  seconds, of which
+
+        derivs:     1.3 %
+
+        back pass:  83.1%
+
+        fwd pass:   13.0%
+
+        other:      2.6 % (graphics etc.)
+ =========== end iLQG ===========
+  0.869536 seconds (1.62 M allocations: 275.519 MiB, 21.05% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           50.2725     20.8        20.8        0.103       0.0         
+2           29.4525     12.1        12.1        0.0938      -0.2        
+3           17.395      6.93        6.93        0.103       -0.6        
+4           10.4694     3.61        3.61        0.122       -1.2        
+5           6.8637      2.04        2.04        0.191       -2.0        
+6           4.8188      0.669       0.669       0.235       -3.1        
+7           4.14966     0.0445      0.0445      0.0662      -4.3        
+8           4.10515     5.37e-05    5.37e-05    0.00247     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   4.105098    
+
+        final grad:   3.954171e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  55    ms
+
+        total time:   0.49  seconds, of which
+
+        derivs:     0.2 %
+
+        back pass:  77.2%
+
+        fwd pass:   15.2%
+
+        other:      7.4 % (graphics etc.)
+ =========== end iLQG ===========
+  0.499675 seconds (1.62 M allocations: 275.519 MiB, 6.50% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           51.5372     22.3        22.3        0.107       0.0         
+2           29.2126     9.92        9.92        0.0862      -0.2        
+3           19.2974     5.68        5.68        0.0961      -0.6        
+4           13.6126     3.39        3.39        0.135       -1.2        
+5           10.2231     1.84        1.84        0.213       -2.0        
+6           8.38656     0.581       0.581       0.222       -3.1        
+7           7.80547     0.0406      0.0406      0.0667      -4.3        
+8           7.76483     5.08e-05    5.08e-05    0.0025      -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   7.764776    
+
+        final grad:   4.026044e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  62    ms
+
+        total time:   0.56  seconds, of which
+
+        derivs:     0.2 %
+
+        back pass:  78.8%
+
+        fwd pass:   14.8%
+
+        other:      6.2 % (graphics etc.)
+ =========== end iLQG ===========
+  0.573312 seconds (1.62 M allocations: 275.519 MiB, 7.52% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           49.8188     24.2        24.2        0.109       0.0         
+2           25.5821     11.2        11.2        0.087       -0.2        
+3           14.3603     5.34        5.34        0.0827      -0.6        
+4           9.01864     2.7         2.7         0.106       -1.2        
+5           6.31564     1.41        1.41        0.17        -2.0        
+6           4.90882     0.393       0.393       0.218       -3.1        
+7           4.51559     0.0172      0.0172      0.0678      -4.3        
+8           4.49839     1.56e-05    1.56e-05    0.00249     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   4.498377    
+
+        final grad:   3.985239e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  66    ms
+
+        total time:   0.59  seconds, of which
+
+        derivs:     0.2 %
+
+        back pass:  78.6%
+
+        fwd pass:   12.6%
+
+        other:      8.6 % (graphics etc.)
+ =========== end iLQG ===========
+  0.618139 seconds (1.62 M allocations: 275.519 MiB, 5.03% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           51.3674     24.8        24.8        0.105       0.0         
+2           26.5797     11.6        11.6        0.0841      -0.2        
+3           14.9783     5.75        5.75        0.0827      -0.6        
+4           9.22885     3.19        3.19        0.104       -1.2        
+5           6.04324     1.46        1.46        0.155       -2.0        
+6           4.58231     0.362       0.362       0.176       -3.1        
+7           4.22065     0.0237      0.0237      0.0565      -4.3        
+8           4.19694     2.95e-05    2.95e-05    0.00217     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   4.196907    
+
+        final grad:   3.676145e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  66    ms
+
+        total time:   0.59  seconds, of which
+
+        derivs:     0.1 %
+
+        back pass:  69.7%
+
+        fwd pass:   28.7%
+
+        other:      1.4 % (graphics etc.)
+ =========== end iLQG ===========
+  0.600455 seconds (1.62 M allocations: 275.518 MiB, 27.45% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           49.7303     11.3        11.3        0.0753      0.0         
+2           38.4681     7.4         7.4         0.0747      -0.2        
+3           31.0676     7.78        7.78        0.112       -0.6        
+4           23.2854     9.43        9.43        0.23        -1.2        
+5           13.8563     5.75        5.75        0.374       -2.0        
+6           8.10541     1.18        1.18        0.305       -3.1        
+7           6.92912     0.037       0.037       0.0867      -4.3        
+8           6.89209     2.03e-05    2.03e-05    0.00259     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   6.89207     
+
+        final grad:   3.291394e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  85    ms
+
+        total time:   0.77  seconds, of which
+
+        derivs:     0.1 %
+
+        back pass:  80.3%
+
+        fwd pass:   12.9%
+
+        other:      6.7 % (graphics etc.)
+ =========== end iLQG ===========
+  0.799201 seconds (1.62 M allocations: 275.519 MiB, 6.64% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           50.4038     23.5        23.5        0.111       0.0         
+2           26.9087     10.6        10.6        0.0879      -0.2        
+3           16.2824     5.99        5.99        0.0974      -0.6        
+4           10.2967     2.96        2.96        0.126       -1.2        
+5           7.33974     0.971       0.971       0.148       -2.0        
+6           6.36841     0.131       0.131       0.151       -3.1        
+7           6.23783     0.00342     0.00342     0.0432      -4.3        
+8           6.2344      4.17e-06    4.17e-06    0.00171     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   6.234399    
+
+        final grad:   2.925943e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  56    ms
+
+        total time:   0.50  seconds, of which
+
+        derivs:     2.4 %
+
+        back pass:  77.1%
+
+        fwd pass:   16.6%
+
+        other:      3.9 % (graphics etc.)
+ =========== end iLQG ===========
+  0.522155 seconds (1.62 M allocations: 275.518 MiB, 7.09% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           49.4232     25.1        25.1        0.114       0.0         
+2           24.3051     10.6        10.6        0.086       -0.2        
+3           13.7336     5.31        5.31        0.0857      -0.6        
+4           8.41979     3.2         3.2         0.116       -1.2        
+5           5.22421     1.44        1.44        0.165       -2.0        
+6           3.78292     0.242       0.242       0.166       -3.1        
+7           3.54094     0.0108      0.0108      0.0529      -4.3        
+8           3.53014     1.37e-05    1.37e-05    0.00204     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   3.530125    
+
+        final grad:   3.424452e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  69    ms
+
+        total time:   0.62  seconds, of which
+
+        derivs:     0.2 %
+
+        back pass:  65.7%
+
+        fwd pass:   26.4%
+
+        other:      7.8 % (graphics etc.)
+ =========== end iLQG ===========
+  0.628568 seconds (1.62 M allocations: 275.518 MiB, 24.94% gc time)
+Running linear demo function for DifferentialDynamicProgramming.jl
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           50.0853     22.3        22.3        0.102       0.0         
+2           27.8184     10.8        10.8        0.0829      -0.2        
+3           17.0068     6.27        6.27        0.0933      -0.6        
+4           10.738      2.74        2.74        0.115       -1.2        
+5           7.99616     0.722       0.722       0.131       -2.0        
+6           7.27413     0.11        0.11        0.131       -3.1        
+7           7.16388     0.00484     0.00484     0.0442      -4.3        
+8           7.15904     5.8e-06    5.8e-06    0.00176     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   7.159038    
+
+        final grad:   3.00787e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  167   ms
+
+        total time:   1.51  seconds, of which
+
+        derivs:     0.2 %
+
+        back pass:  85.2%
+
+        fwd pass:   12.9%
+
+        other:      1.8 % (graphics etc.)
+ =========== end iLQG ===========
+  5.862347 seconds (2.76 M allocations: 334.901 MiB, 6.81% gc time)
+Install package Plots.jl (and call using Plots) to plot results in the end of demo_linear
+Entering iLQG function
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           33409.7     2.21e+03    3.57e+03    2.35        0.0         
+2           31195       705         1.57e+03    0.7         -0.2        
+3           30489.9     537         1.82e+03    0.719       -0.6        
+4           29952.6     13.9        479         0.406       -1.2        
+5           29938.7     224         896         0.427       -2.0        
+6           29714.5     257         260         0.254       -3.1        
+7           29457.7     10.2        86.3        0.159       -4.3        
+8           29447.5     79.8        90.3        0.16        -5.7        
+9           29367.7     18.1        20.4        0.0844      -7.3        
+10          29349.5     4.78        5.23        0.0469      -9.2        
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+11          29344.8     0.633       1.81        0.027       -11.2       
+12          29344.1     1.25        1.62        0.0218      -13.5       
+13          29342.9     1.38        2.12        0.0204      -15.9       
+14          29341.5     0.221       0.471       0.0109      -18.6       
+15          29341.3     0.0322      0.111       0.00601     -21.4       
+16          29341.2     0.0121      0.0284      0.00338     -24.5       
+17          29341.2     0.0289      0.00881     0.00194     -27.8       
+18          29341.2     0.146       0.00967     0.00162     -31.2       
+19          NO STEP     -8.15e-05   4.49e-05    0.00151     -6.0        
+20          NO STEP     -8.15e-05   4.49e-05    0.00151     -5.8        
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+21          NO STEP     -8.15e-05   4.49e-05    0.00151     -5.4        
+22          NO STEP     -8.15e-05   4.49e-05    0.00151     -4.8        
+23          NO STEP     -8.15e-05   4.49e-05    0.00151     -4.0        
+24          NO STEP     -8.15e-05   4.49e-05    0.00151     -2.9        
+25          NO STEP     -8.15e-05   4.49e-05    0.00151     -1.7        
+26          NO STEP     -8.15e-05   4.49e-05    0.00151     -0.3        
+27          NO STEP     -8.1e-05   4.49e-05    0.00151     1.3         
+28          NO STEP     -6.37e-05   4.28e-05    0.00142     3.2         
+29          29341       0.0181      0.00494     0.000294    3.2         
+30          29341       0.0108      0.00163     0.000587    3.0         
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+31          29341       0.0124      0.00142     0.000705    2.6         
+32          NO STEP     -1.52e-05   4.11e-06    0.000713    1.3         
+33          NO STEP     -3.25e-05   8.4e-06    0.00108     1.6         
+34          NO STEP     -2.93e-05   7.42e-06    0.000994    2.0         
+35          NO STEP     -1.52e-05   4.11e-06    0.000713    2.6         
+36          29341       0.000673    0.00041     0.000329    2.6         
+37          NO STEP     -4.48e-06   1.01e-06    0.000377    2.2         
+38          NO STEP     -1.02e-05   1.94e-06    0.000507    2.4         
+39          NO STEP     -4.48e-06   1.01e-06    0.000377    2.8         
+40          NO STEP     -6.87e-07   2.39e-07    0.000187    3.4         
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+41          NO STEP     -7.03e-08   2.96e-08    5.16e-05    4.2         
+42          NO STEP     -1.2e-09   2.86e-09    8.09e-06    5.2         
+43          29341       5.78e-07    3.77e-07    7.76e-07    5.2         
+44          29341       5.64e-07    6e-07    1.24e-06    5.0         
+45          NO STEP     -1.89e-10   1.02e-09    3.16e-06    4.2         
+46          NO STEP     -2.87e-09   2.84e-09    8.08e-06    4.4         
+47          NO STEP     -9.42e-10   1.69e-09    5.06e-06    4.8         
+48          29341       1.43e-07    9.56e-07    1.98e-06    4.8         
+49          NO STEP     -7.64e-10   1.01e-09    3.16e-06    4.4         
+50          NO STEP     -1.79e-09   1.68e-09    5.05e-06    4.6         
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+51          NO STEP     -7.64e-10   1.01e-09    3.16e-06    5.0         
+52          NO STEP     -1.2e-10   3.82e-10    1.23e-06    5.6         
+53          29341       3.27e-11    3.99e-10    3.01e-07    5.6         
+
+SUCCESS: cost change &lt; tol_fun
+
+ iterations:   53 
+
+        final cost:   29341       
+
+        final grad:   3.014034e-07
+
+        final λ: 2.6959947e+05
+
+        time &#x2F; iter:  548   ms
+
+        total time:   29.06 seconds, of which
+
+        derivs:     48.3%
+
+        back pass:  37.2%
+
+        fwd pass:   12.2%
+
+        other:      2.3 % (graphics etc.)
+ =========== end iLQG ===========
+Install package Plots.jl (and call using Plots) to plot results in the end of demo_pendcart
+Done
+==========
+Starting box-QP, dimension 500, initial value: 69018.136   
+RESULT: Gradient norm smaller than tolerance.
+iterations 16  gradient 2.26806e-12  final value -29.1329      factorizations 15
+  1.508950 seconds (2.21 k allocations: 83.039 MiB, 1.02% gc time)
+   Testing DifferentialDynamicProgramming tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 14 hours ago and took 2 minutes, 43 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/DifferentialDynamicProgramming/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Requires ─────────────────────── v0.5.2
+ Installed RecipesBase ──────────────────── v0.7.0
+ Installed LinearTimeVaryingModelsBase ──── v0.2.1
+ Installed DifferentialDynamicProgramming ─ v0.4.0
+ Installed ValueHistories ───────────────── v0.5.1
+ Installed Parameters ───────────────────── v0.12.0
+ Installed OrderedCollections ───────────── v1.1.0
+ Installed DataStructures ───────────────── v0.17.6
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [9cd584b6] + DifferentialDynamicProgramming v0.4.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [864edb3b] + DataStructures v0.17.6
+  [9cd584b6] + DifferentialDynamicProgramming v0.4.0
+  [5e7a79f3] + LinearTimeVaryingModelsBase v0.2.1
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [ae029012] + Requires v0.5.2
+  [98cad3c8] + ValueHistories v0.5.1
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+   Testing DifferentialDynamicProgramming
+    Status `&#x2F;tmp&#x2F;jl_I94jH8&#x2F;Manifest.toml`
+  [864edb3b] DataStructures v0.17.6
+  [9cd584b6] DifferentialDynamicProgramming v0.4.0
+  [5e7a79f3] LinearTimeVaryingModelsBase v0.2.1
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [ae029012] Requires v0.5.2
+  [98cad3c8] ValueHistories v0.5.1
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+[ Info: Compile time is high for this package, this is expected and is not an error.
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           50.1247     17.6        17.6        0.0911      0.0         
+2           32.5587     12          12          0.0906      -0.2        
+3           20.5755     8.6         8.6         0.113       -0.6        
+4           11.9772     4.61        4.61        0.144       -1.2        
+5           7.36242     1.78        1.78        0.168       -2.0        
+6           5.58242     0.428       0.428       0.219       -3.1        
+7           5.15461     0.0223      0.0223      0.0703      -4.3        
+8           5.13227     2.27e-05    2.27e-05    0.00245     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   5.132252    
+
+        final grad:   3.874959e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  332   ms
+
+        total time:   2.99  seconds, of which
+
+        derivs:     0.0 %
+
+        back pass:  42.1%
+
+        fwd pass:   9.1 %
+
+        other:      48.8% (graphics etc.)
+ =========== end iLQG ===========
+ 15.618582 seconds (15.73 M allocations: 960.859 MiB, 6.48% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           50.0885     20.8        20.8        0.107       0.0         
+2           29.2398     9.11        9.11        0.0838      -0.2        
+3           20.1308     4.63        4.63        0.082       -0.6        
+4           15.5039     3.22        3.22        0.118       -1.2        
+5           12.2853     1.77        1.77        0.214       -2.0        
+6           10.5119     0.363       0.363       0.211       -3.1        
+7           10.1489     0.0144      0.0144      0.0593      -4.3        
+8           10.1345     1.31e-05    1.31e-05    0.00201     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   10.13451    
+
+        final grad:   3.248093e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  68    ms
+
+        total time:   0.61  seconds, of which
+
+        derivs:     0.2 %
+
+        back pass:  69.6%
+
+        fwd pass:   28.2%
+
+        other:      1.9 % (graphics etc.)
+ =========== end iLQG ===========
+  0.676765 seconds (1.40 M allocations: 268.639 MiB, 7.63% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           51.0601     21.5        21.5        0.109       0.0         
+2           29.5361     10.6        10.6        0.0916      -0.2        
+3           18.8912     6.07        6.07        0.0966      -0.6        
+4           12.8247     4.26        4.26        0.134       -1.2        
+5           8.56329     2.68        2.68        0.251       -2.0        
+6           5.87883     0.587       0.587       0.254       -3.1        
+7           5.29149     0.0186      0.0186      0.0679      -4.3        
+8           5.27286     1.28e-05    1.28e-05    0.00229     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   5.272849    
+
+        final grad:   3.49079e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  65    ms
+
+        total time:   0.58  seconds, of which
+
+        derivs:     0.2 %
+
+        back pass:  74.9%
+
+        fwd pass:   22.5%
+
+        other:      2.5 % (graphics etc.)
+ =========== end iLQG ===========
+  0.604187 seconds (1.40 M allocations: 268.639 MiB, 5.52% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           50.2998     20.4        20.4        0.101       0.0         
+2           29.8672     10.5        10.5        0.0849      -0.2        
+3           19.4016     7.13        7.13        0.102       -0.6        
+4           12.2673     4.63        4.63        0.136       -1.2        
+5           7.64203     2.03        2.03        0.183       -2.0        
+6           5.61641     0.353       0.353       0.182       -3.1        
+7           5.26311     0.0122      0.0122      0.0591      -4.3        
+8           5.25088     9.73e-06    9.73e-06    0.00208     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   5.250866    
+
+        final grad:   3.203902e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  93    ms
+
+        total time:   0.83  seconds, of which
+
+        derivs:     0.1 %
+
+        back pass:  65.2%
+
+        fwd pass:   32.0%
+
+        other:      2.7 % (graphics etc.)
+ =========== end iLQG ===========
+  0.901824 seconds (1.40 M allocations: 268.639 MiB, 24.40% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           49.7243     26.2        26.2        0.113       0.0         
+2           23.4751     8.95        8.95        0.0763      -0.2        
+3           14.5222     3.04        3.04        0.0648      -0.6        
+4           11.4817     1.14        1.14        0.0717      -1.2        
+5           10.3406     0.748       0.748       0.13        -2.0        
+6           9.59252     0.308       0.308       0.184       -3.1        
+7           9.28464     0.018       0.018       0.055       -4.3        
+8           9.26669     1.85e-05    1.85e-05    0.00208     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   9.266675    
+
+        final grad:   3.309447e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  59    ms
+
+        total time:   0.54  seconds, of which
+
+        derivs:     0.2 %
+
+        back pass:  66.2%
+
+        fwd pass:   29.3%
+
+        other:      4.3 % (graphics etc.)
+ =========== end iLQG ===========
+  0.606695 seconds (1.40 M allocations: 268.639 MiB, 4.58% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           50.6086     26.8        26.8        0.116       0.0         
+2           23.799      11.6        11.6        0.0886      -0.2        
+3           12.1548     4.97        4.97        0.0778      -0.6        
+4           7.18008     2.4         2.4         0.0833      -1.2        
+5           4.77537     1.18        1.18        0.135       -2.0        
+6           3.59532     0.237       0.237       0.167       -3.1        
+7           3.35866     0.0103      0.0103      0.0556      -4.3        
+8           3.34832     1.16e-05    1.16e-05    0.00203     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   3.348307    
+
+        final grad:   3.361818e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  57    ms
+
+        total time:   0.51  seconds, of which
+
+        derivs:     0.2 %
+
+        back pass:  68.8%
+
+        fwd pass:   26.8%
+
+        other:      4.1 % (graphics etc.)
+ =========== end iLQG ===========
+  0.533800 seconds (1.40 M allocations: 268.639 MiB, 6.68% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           48.8912     22          22          0.103       0.0         
+2           26.9357     11.1        11.1        0.0851      -0.2        
+3           15.8772     6.43        6.43        0.0924      -0.6        
+4           9.45055     3.98        3.98        0.119       -1.2        
+5           5.46989     2.52        2.52        0.172       -2.0        
+6           2.95429     0.949       0.949       0.205       -3.1        
+7           2.0054      0.0605      0.0605      0.0776      -4.3        
+8           1.94491     6.9e-05    6.9e-05    0.00298     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   1.944839    
+
+        final grad:   4.641227e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  63    ms
+
+        total time:   0.57  seconds, of which
+
+        derivs:     0.2 %
+
+        back pass:  64.5%
+
+        fwd pass:   29.4%
+
+        other:      5.9 % (graphics etc.)
+ =========== end iLQG ===========
+  0.579871 seconds (1.40 M allocations: 268.639 MiB, 6.15% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           51.6099     26.7        26.7        0.106       0.0         
+2           24.8642     11.5        11.5        0.0823      -0.2        
+3           13.3665     4.88        4.88        0.076       -0.6        
+4           8.48701     2.25        2.25        0.0841      -1.2        
+5           6.23922     0.851       0.851       0.143       -2.0        
+6           5.38792     0.111       0.111       0.132       -3.1        
+7           5.27669     0.00519     0.00519     0.0456      -4.3        
+8           5.27149     6.93e-06    6.93e-06    0.00189     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   5.271487    
+
+        final grad:   3.213114e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  79    ms
+
+        total time:   0.72  seconds, of which
+
+        derivs:     0.1 %
+
+        back pass:  56.7%
+
+        fwd pass:   39.3%
+
+        other:      3.9 % (graphics etc.)
+ =========== end iLQG ===========
+  0.792322 seconds (1.40 M allocations: 268.639 MiB, 23.60% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           51.0102     26.2        26.2        0.115       0.0         
+2           24.8497     10.8        10.8        0.085       -0.2        
+3           14.0186     5.39        5.39        0.0863      -0.6        
+4           8.62521     3.01        3.01        0.107       -1.2        
+5           5.61383     1.65        1.65        0.169       -2.0        
+6           3.96697     0.404       0.404       0.187       -3.1        
+7           3.56312     0.018       0.018       0.0558      -4.3        
+8           3.54514     1.79e-05    1.79e-05    0.00216     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   3.545121    
+
+        final grad:   3.581447e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  53    ms
+
+        total time:   0.48  seconds, of which
+
+        derivs:     0.2 %
+
+        back pass:  66.7%
+
+        fwd pass:   28.4%
+
+        other:      4.7 % (graphics etc.)
+ =========== end iLQG ===========
+  0.498315 seconds (1.40 M allocations: 268.639 MiB, 5.23% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           50.642      15.2        15.2        0.0855      0.0         
+2           35.3962     9.74        9.74        0.0823      -0.2        
+3           25.6515     7.09        7.09        0.105       -0.6        
+4           18.5648     4.8         4.8         0.16        -1.2        
+5           13.7694     2.4         2.4         0.227       -2.0        
+6           11.372      0.627       0.627       0.233       -3.1        
+7           10.745      0.0337      0.0337      0.0694      -4.3        
+8           10.7113     4.03e-05    4.03e-05    0.00245     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   10.71122    
+
+        final grad:   3.964869e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  68    ms
+
+        total time:   0.61  seconds, of which
+
+        derivs:     0.2 %
+
+        back pass:  68.0%
+
+        fwd pass:   30.0%
+
+        other:      1.8 % (graphics etc.)
+ =========== end iLQG ===========
+  0.675364 seconds (1.40 M allocations: 268.640 MiB, 5.75% gc time)
+Running linear demo function for DifferentialDynamicProgramming.jl
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           49.3316     13.8        13.8        0.0813      0.0         
+2           35.5392     8.61        8.61        0.0773      -0.2        
+3           26.9284     6.45        6.45        0.099       -0.6        
+4           20.4758     4.1         4.1         0.149       -1.2        
+5           16.3735     1.5         1.5         0.196       -2.0        
+6           14.8783     0.223       0.223       0.163       -3.1        
+7           14.6555     0.0077      0.0077      0.0513      -4.3        
+8           14.6478     7.76e-06    7.76e-06    0.00194     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   14.64778    
+
+        final grad:   3.237175e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  82    ms
+
+        total time:   0.74  seconds, of which
+
+        derivs:     0.1 %
+
+        back pass:  76.5%
+
+        fwd pass:   19.7%
+
+        other:      3.6 % (graphics etc.)
+ =========== end iLQG ===========
+  4.851242 seconds (3.29 M allocations: 361.836 MiB, 6.46% gc time)
+Install package Plots.jl (and call using Plots) to plot results in the end of demo_linear
+Running linear demo function with KL-divergence constraint for DifferentialDynamicProgramming.jl
+
+---------- begin iLQG ----------
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+1             22.3322       26            17.3          0.123       -1.00       0.0095        1.83        
+2             1.27255e+10   -1.27e+10     5.39e+18      1.41e+07    -0.15       1.27e+10      -1.42       
+3             4.42347e+07   -4.42e+07     2.1e+15      5.75e+05    -0.07       4.39e+07      0.248       
+4             225219        -2.25e+05     9.57e+11      1.95e+04    -0.04       2.17e+05      1.07        
+5             1184.11       -1.14e+03     1.26e+09      945         -0.02       975           1.47        
+6             10.5919       37.7          7.69e+06      78.6        -0.03       1.46          1.67        
+7             123.307       -75           1.29e+08      312         -0.03       80.1          1.57        
+8             417.204       -369          4.22e+08      557         -0.03       317           1.52        
+9             232.39        -184          2.36e+08      420         -0.03       166           1.55        
+10            170.332       -122          1.75e+08      363         -0.03       116           1.56        
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+11            145.148       -96.8         1.5e+08      337         -0.03       96.9          1.57        
+
+SUCCESS: abs(KL-divergence) &lt; kl_step
+
+ iterations:   11 
+
+        final cost:   145.1481    
+
+        final grad:   336.8931    
+
+        final λ: 9.3750325e-01
+
+        time &#x2F; iter:  240   ms
+
+        total time:   2.64  seconds, of which
+
+        derivs:     0.0 %
+
+        back pass:  74.2%
+
+        fwd pass:   15.1%
+
+        other:      10.7% (graphics etc.)
+ =========== end iLQG ===========
+Outer loop: Cost = 145.1481073707536
+
+---------- begin iLQG ----------
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+1             145.037       0.111         0.0553        0.000151    -1.00       5.58e-05      1.57        
+2             1.05723e+56   -1.06e+56     4.03e+60      1.03e+26    -0.15       1.06e+56      -1.16       
+3             1.15119e+52   -1.15e+52     1.9e+56      2.01e+24    -0.07       1.17e+52      0.501       
+4             3.37113e+43   -3.37e+43     2.88e+47      2.66e+20    -0.04       4.69e+43      1.28        
+5             4.71286e+11   -4.71e+11     4.77e+15      2.03e+05    -0.02       4.61e+12      1.55        
+6             145.033       0.115         0.095         0.00299     -0.03       9.61e-05      1.57        
+7             145.657       -0.509        584           0.574       -0.03       0.564         1.56        
+8             12564.7       -1.24e+04     1.85e+08      115         -0.03       1.82e+05      1.56        
+9             138.563       6.59          1.43e+05      6.26        -0.03       142           1.56        
+10            145.127       0.0214        6.43e+03      1.76        -0.03       6.33          1.56        
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+11            143.3         1.85          2.83e+04      3.27        -0.03       28            1.56        
+
+EXIT: η &gt; ηmax
+
+ iterations:   11 
+
+        final cost:   143.2996    
+
+        final grad:   3.267209    
+
+        final λ: 9.3442150e-01
+
+        time &#x2F; iter:  118   ms
+
+        total time:   1.30  seconds, of which
+
+        derivs:     0.0 %
+
+        back pass:  49.0%
+
+        fwd pass:   47.1%
+
+        other:      3.9 % (graphics etc.)
+ =========== end iLQG ===========
+Outer loop: Cost = 143.29963789437997
+
+---------- begin iLQG ----------
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+1             143.191       0.108         0.0541        0.000122    -1.00       5.46e-05      1.56        
+2             1.27202e+55   -1.27e+55     4.01e+59      9.37e+25    -0.15       1.28e+55      -1.15       
+3             1.68874e+52   -1.69e+52     2.71e+56      2.71e+24    -0.07       1.72e+52      0.505       
+4             3.1857e+43   -3.19e+43     2.94e+47      2.96e+20    -0.04       4.49e+43      1.28        
+5             1.39165e+11   -1.39e+11     9.75e+14      8.81e+04    -0.02       9.38e+11      1.55        
+6             143.187       0.113         0.0787        0.00117     -0.03       7.96e-05      1.56        
+7             143.893       -0.593        27.3          0.12        -0.03       0.0269        1.56        
+8             1666.27       -1.52e+03     2.06e+07      39.2        -0.03       2.03e+04      1.55        
+9             143.946       -0.647        8e+03      1.58        -0.03       7.93          1.56        
+10            145.28        -1.98         3.64e+05      7.52        -0.03       359           1.56        
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+11            142.342       0.958         5.21e+04      3.4         -0.03       51.6          1.56        
+
+EXIT: η &gt; ηmax
+
+ iterations:   11 
+
+        final cost:   142.3417    
+
+        final grad:   3.39533     
+
+        final λ: 9.3196340e-01
+
+        time &#x2F; iter:  92    ms
+
+        total time:   1.02  seconds, of which
+
+        derivs:     0.0 %
+
+        back pass:  54.8%
+
+        fwd pass:   40.0%
+
+        other:      5.2 % (graphics etc.)
+ =========== end iLQG ===========
+Outer loop: Cost = 142.34169562519492
+
+---------- begin iLQG ----------
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+1             142.237       0.104         0.0522        0.000152    -1.00       5.26e-05      1.56        
+2             3.87879e+54   -3.88e+54     1.11e+59      2.58e+25    -0.15       3.91e+54      -1.15       
+3             2.2938e+52   -2.29e+52     3.65e+56      4.75e+24    -0.07       2.33e+52      0.507       
+4             2.92665e+43   -2.93e+43     2.9e+47      3.69e+20    -0.04       4.18e+43      1.28        
+5             4.61146e+10   -4.61e+10     2.91e+14      4.56e+04    -0.02       2.79e+11      1.55        
+6             142.23        0.112         0.0977        0.0015      -0.03       9.85e-05      1.56        
+7             142.844       -0.502        13.9          0.0458      -0.03       0.0138        1.55        
+8             467.82        -325          3.21e+06      15.5        -0.03       3.18e+03      1.55        
+9             144.594       -2.25         813           0.521       -0.03       0.807         1.55        
+10            150.678       -8.34         4.06e+04      2.68        -0.03       40.2          1.55        
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+11            179.865       -37.5         3.5e+05      6.39        -0.03       347           1.55        
+
+EXIT: η &gt; ηmax
+
+ iterations:   11 
+
+        final cost:   179.865     
+
+        final grad:   6.38689     
+
+        final λ: 9.3073677e-01
+
+        time &#x2F; iter:  114   ms
+
+        total time:   1.26  seconds, of which
+
+        derivs:     0.0 %
+
+        back pass:  52.4%
+
+        fwd pass:   43.1%
+
+        other:      4.5 % (graphics etc.)
+ =========== end iLQG ===========
+Outer loop: Cost = 179.86497402276473
+
+---------- begin iLQG ----------
+┌ Warning: KL divergence too high for some time steps when done
+└ @ DifferentialDynamicProgramming ~&#x2F;.julia&#x2F;packages&#x2F;DifferentialDynamicProgramming&#x2F;DG1NV&#x2F;src&#x2F;iLQGkl.jl:248
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+1             179.749       0.116         0.0578        0.000165    -1.00       5.82e-05      1.55        
+2             4.44829e+55   -4.45e+55     1.12e+60      1.3e+26    -0.15       4.49e+55      -1.15       
+3             3.10739e+52   -3.11e+52     4.99e+56      4.39e+24    -0.07       3.17e+52      0.509       
+4             2.60718e+43   -2.61e+43     2.8e+47      3.42e+20    -0.04       3.77e+43      1.29        
+5             1.48368e+10   -1.48e+10     9.3e+13      2.28e+04    -0.02       8.9e+10      1.54        
+6             179.709       0.156         0.33          0.00264     -0.03       0.00033       1.55        
+7             179.366       0.499         55.2          0.0431      -0.03       0.0549        1.55        
+8             363.425       -184          7.17e+05      5.69        -0.03       708           1.55        
+9             180.244       -0.379        530           0.222       -0.03       0.526         1.55        
+10            190.819       -11           8.04e+03      0.95        -0.03       7.96          1.55        
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+11            220.85        -41           7.1e+04      2.28        -0.03       70.2          1.55        
+
+EXIT: η &gt; ηmax
+
+ iterations:   11 
+
+        final cost:   220.8503    
+
+        final grad:   2.281649    
+
+        final λ: 9.2951176e-01
+
+        time &#x2F; iter:  100   ms
+
+        total time:   1.09  seconds, of which
+
+        derivs:     0.0 %
+
+        back pass:  55.0%
+
+        fwd pass:   41.9%
+
+        other:      3.2 % (graphics etc.)
+ =========== end iLQG ===========
+Outer loop: Cost = 220.850320897078
+ 17.002706 seconds (25.12 M allocations: 3.645 GiB, 7.94% gc time)
+Install package Plots.jl (and call using Plots) to plot results in the end of demo_linear
+Entering iLQG function
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           33409.7     2.21e+03    3.57e+03    2.35        0.0         
+2           31195       705         1.57e+03    0.7         -0.2        
+3           30489.9     537         1.82e+03    0.719       -0.6        
+4           29952.6     13.9        479         0.406       -1.2        
+5           29938.7     224         896         0.427       -2.0        
+6           29714.5     257         260         0.254       -3.1        
+7           29457.7     10.2        86.3        0.159       -4.3        
+8           29447.5     79.8        90.3        0.16        -5.7        
+9           29367.7     18.1        20.4        0.0844      -7.3        
+10          29349.5     4.78        5.23        0.0469      -9.2        
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+11          29344.8     0.633       1.81        0.027       -11.2       
+12          29344.1     1.25        1.62        0.0218      -13.5       
+13          29342.9     1.38        2.12        0.0204      -15.9       
+14          29341.5     0.221       0.471       0.0109      -18.6       
+15          29341.3     0.0322      0.111       0.00601     -21.4       
+16          29341.2     0.0121      0.0284      0.00338     -24.5       
+17          29341.2     0.0289      0.00881     0.00194     -27.8       
+18          29341.2     0.146       0.00967     0.00162     -31.2       
+19          NO STEP     -8.15e-05   4.49e-05    0.00151     -6.0        
+20          NO STEP     -8.15e-05   4.49e-05    0.00151     -5.8        
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+21          NO STEP     -8.15e-05   4.49e-05    0.00151     -5.4        
+22          NO STEP     -8.15e-05   4.49e-05    0.00151     -4.8        
+23          NO STEP     -8.15e-05   4.49e-05    0.00151     -4.0        
+24          NO STEP     -8.15e-05   4.49e-05    0.00151     -2.9        
+25          NO STEP     -8.15e-05   4.49e-05    0.00151     -1.7        
+26          NO STEP     -8.15e-05   4.49e-05    0.00151     -0.3        
+27          NO STEP     -8.1e-05   4.49e-05    0.00151     1.3         
+28          NO STEP     -6.37e-05   4.28e-05    0.00142     3.2         
+29          29341       0.0181      0.00494     0.000294    3.2         
+30          29341       0.0108      0.00163     0.000587    3.0         
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+31          29341       0.0124      0.00142     0.000705    2.6         
+32          NO STEP     -1.52e-05   4.11e-06    0.000713    1.3         
+33          NO STEP     -3.25e-05   8.4e-06    0.00108     1.6         
+34          NO STEP     -2.93e-05   7.42e-06    0.000994    2.0         
+35          NO STEP     -1.52e-05   4.11e-06    0.000713    2.6         
+36          29341       0.000673    0.00041     0.000329    2.6         
+37          NO STEP     -4.48e-06   1.01e-06    0.000377    2.2         
+38          NO STEP     -1.02e-05   1.94e-06    0.000507    2.4         
+39          NO STEP     -4.48e-06   1.01e-06    0.000377    2.8         
+40          NO STEP     -6.87e-07   2.39e-07    0.000187    3.4         
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+41          NO STEP     -7.03e-08   2.96e-08    5.16e-05    4.2         
+42          NO STEP     -1.2e-09   2.86e-09    8.09e-06    5.2         
+43          29341       5.78e-07    3.77e-07    7.76e-07    5.2         
+44          29341       5.64e-07    6e-07    1.24e-06    5.0         
+45          NO STEP     -1.89e-10   1.02e-09    3.16e-06    4.2         
+46          NO STEP     -2.87e-09   2.84e-09    8.08e-06    4.4         
+47          NO STEP     -9.42e-10   1.69e-09    5.06e-06    4.8         
+48          29341       1.43e-07    9.56e-07    1.98e-06    4.8         
+49          NO STEP     -7.64e-10   1.01e-09    3.16e-06    4.4         
+50          NO STEP     -1.79e-09   1.68e-09    5.05e-06    4.6         
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+51          NO STEP     -7.64e-10   1.01e-09    3.16e-06    5.0         
+52          NO STEP     -1.2e-10   3.82e-10    1.23e-06    5.6         
+53          29341       3.27e-11    3.99e-10    3.01e-07    5.6         
+
+SUCCESS: cost change &lt; tol_fun
+
+ iterations:   53 
+
+        final cost:   29341       
+
+        final grad:   3.014034e-07
+
+        final λ: 2.6959947e+05
+
+        time &#x2F; iter:  332   ms
+
+        total time:   17.61 seconds, of which
+
+        derivs:     21.8%
+
+        back pass:  54.6%
+
+        fwd pass:   22.9%
+
+        other:      0.6 % (graphics etc.)
+ =========== end iLQG ===========
+Install package Plots.jl (and call using Plots) to plot results in the end of demo_pendcart
+Done
+==========
+Starting box-QP, dimension 500, initial value: 66427.406   
+RESULT: Gradient norm smaller than tolerance.
+iterations 15  gradient 2.50289e-12  final value -31.2095      factorizations 14
+  0.893330 seconds (1.95 k allocations: 78.105 MiB, 8.51% gc time)
+   Testing DifferentialDynamicProgramming tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 13 hours ago and took 2 minutes, 28 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/DifferentialDynamicProgramming/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Requires ─────────────────────── v0.5.2
+ Installed RecipesBase ──────────────────── v0.7.0
+ Installed LinearTimeVaryingModelsBase ──── v0.2.1
+ Installed DifferentialDynamicProgramming ─ v0.4.0
+ Installed ValueHistories ───────────────── v0.5.1
+ Installed OrderedCollections ───────────── v1.1.0
+ Installed Parameters ───────────────────── v0.12.0
+ Installed DataStructures ───────────────── v0.17.6
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [9cd584b6] + DifferentialDynamicProgramming v0.4.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [864edb3b] + DataStructures v0.17.6
+  [9cd584b6] + DifferentialDynamicProgramming v0.4.0
+  [5e7a79f3] + LinearTimeVaryingModelsBase v0.2.1
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [ae029012] + Requires v0.5.2
+  [98cad3c8] + ValueHistories v0.5.1
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+   Testing DifferentialDynamicProgramming
+Status `&#x2F;tmp&#x2F;jl_tLddjR&#x2F;Manifest.toml`
+  [864edb3b] DataStructures v0.17.6
+  [9cd584b6] DifferentialDynamicProgramming v0.4.0
+  [5e7a79f3] LinearTimeVaryingModelsBase v0.2.1
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [ae029012] Requires v0.5.2
+  [98cad3c8] ValueHistories v0.5.1
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+[ Info: Compile time is high for this package, this is expected and is not an error.
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           50.1247     17.6        17.6        0.0911      0.0         
+2           32.5587     12          12          0.0906      -0.2        
+3           20.5755     8.6         8.6         0.113       -0.6        
+4           11.9772     4.61        4.61        0.144       -1.2        
+5           7.36242     1.78        1.78        0.168       -2.0        
+6           5.58242     0.428       0.428       0.219       -3.1        
+7           5.15461     0.0223      0.0223      0.0703      -4.3        
+8           5.13227     2.27e-05    2.27e-05    0.00245     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   5.132252    
+
+        final grad:   3.874959e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  278   ms
+
+        total time:   2.50  seconds, of which
+
+        derivs:     0.0 %
+
+        back pass:  31.8%
+
+        fwd pass:   1.9 %
+
+        other:      66.3% (graphics etc.)
+ =========== end iLQG ===========
+ 18.943724 seconds (17.51 M allocations: 991.676 MiB, 4.67% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           50.0885     20.8        20.8        0.107       0.0         
+2           29.2398     9.11        9.11        0.0838      -0.2        
+3           20.1308     4.63        4.63        0.082       -0.6        
+4           15.5039     3.22        3.22        0.118       -1.2        
+5           12.2853     1.77        1.77        0.214       -2.0        
+6           10.5119     0.363       0.363       0.211       -3.1        
+7           10.1489     0.0144      0.0144      0.0593      -4.3        
+8           10.1345     1.31e-05    1.31e-05    0.00201     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   10.13451    
+
+        final grad:   3.248093e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  52    ms
+
+        total time:   0.46  seconds, of which
+
+        derivs:     0.3 %
+
+        back pass:  82.3%
+
+        fwd pass:   8.0 %
+
+        other:      9.4 % (graphics etc.)
+ =========== end iLQG ===========
+  0.467709 seconds (897.34 k allocations: 213.838 MiB, 11.34% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           51.0601     21.5        21.5        0.109       0.0         
+2           29.5361     10.6        10.6        0.0916      -0.2        
+3           18.8912     6.07        6.07        0.0966      -0.6        
+4           12.8247     4.26        4.26        0.134       -1.2        
+5           8.56329     2.68        2.68        0.251       -2.0        
+6           5.87883     0.587       0.587       0.254       -3.1        
+7           5.29149     0.0186      0.0186      0.0679      -4.3        
+8           5.27286     1.28e-05    1.28e-05    0.00229     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   5.272849    
+
+        final grad:   3.49079e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  45    ms
+
+        total time:   0.41  seconds, of which
+
+        derivs:     0.3 %
+
+        back pass:  82.5%
+
+        fwd pass:   8.1 %
+
+        other:      9.1 % (graphics etc.)
+ =========== end iLQG ===========
+  0.409587 seconds (897.34 k allocations: 213.838 MiB, 6.73% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           50.2998     20.4        20.4        0.101       0.0         
+2           29.8672     10.5        10.5        0.0849      -0.2        
+3           19.4016     7.13        7.13        0.102       -0.6        
+4           12.2673     4.63        4.63        0.136       -1.2        
+5           7.64203     2.03        2.03        0.183       -2.0        
+6           5.61641     0.353       0.353       0.182       -3.1        
+7           5.26311     0.0122      0.0122      0.0591      -4.3        
+8           5.25088     9.73e-06    9.73e-06    0.00208     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   5.250866    
+
+        final grad:   3.203902e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  53    ms
+
+        total time:   0.48  seconds, of which
+
+        derivs:     0.3 %
+
+        back pass:  85.0%
+
+        fwd pass:   7.2 %
+
+        other:      7.6 % (graphics etc.)
+ =========== end iLQG ===========
+  0.497316 seconds (897.34 k allocations: 213.838 MiB, 4.77% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           49.7243     26.2        26.2        0.113       0.0         
+2           23.4751     8.95        8.95        0.0763      -0.2        
+3           14.5222     3.04        3.04        0.0648      -0.6        
+4           11.4817     1.14        1.14        0.0717      -1.2        
+5           10.3406     0.748       0.748       0.13        -2.0        
+6           9.59252     0.308       0.308       0.184       -3.1        
+7           9.28464     0.018       0.018       0.055       -4.3        
+8           9.26669     1.85e-05    1.85e-05    0.00208     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   9.266675    
+
+        final grad:   3.309447e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  34    ms
+
+        total time:   0.30  seconds, of which
+
+        derivs:     0.4 %
+
+        back pass:  88.8%
+
+        fwd pass:   7.7 %
+
+        other:      3.1 % (graphics etc.)
+ =========== end iLQG ===========
+  0.306851 seconds (897.35 k allocations: 213.838 MiB, 9.06% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           50.6086     26.8        26.8        0.116       0.0         
+2           23.799      11.6        11.6        0.0886      -0.2        
+3           12.1548     4.97        4.97        0.0778      -0.6        
+4           7.18008     2.4         2.4         0.0833      -1.2        
+5           4.77537     1.18        1.18        0.135       -2.0        
+6           3.59532     0.237       0.237       0.167       -3.1        
+7           3.35866     0.0103      0.0103      0.0556      -4.3        
+8           3.34832     1.16e-05    1.16e-05    0.00203     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   3.348307    
+
+        final grad:   3.361818e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  44    ms
+
+        total time:   0.40  seconds, of which
+
+        derivs:     0.3 %
+
+        back pass:  88.8%
+
+        fwd pass:   7.9 %
+
+        other:      3.0 % (graphics etc.)
+ =========== end iLQG ===========
+  0.398771 seconds (897.35 k allocations: 213.838 MiB, 10.60% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           48.8912     22          22          0.103       0.0         
+2           26.9357     11.1        11.1        0.0851      -0.2        
+3           15.8772     6.43        6.43        0.0924      -0.6        
+4           9.45055     3.98        3.98        0.119       -1.2        
+5           5.46989     2.52        2.52        0.172       -2.0        
+6           2.95429     0.949       0.949       0.205       -3.1        
+7           2.0054      0.0605      0.0605      0.0776      -4.3        
+8           1.94491     6.9e-05    6.9e-05    0.00298     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   1.944839    
+
+        final grad:   4.641227e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  43    ms
+
+        total time:   0.38  seconds, of which
+
+        derivs:     0.3 %
+
+        back pass:  83.0%
+
+        fwd pass:   8.2 %
+
+        other:      8.5 % (graphics etc.)
+ =========== end iLQG ===========
+  0.385347 seconds (897.35 k allocations: 213.838 MiB, 8.16% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           51.6099     26.7        26.7        0.106       0.0         
+2           24.8642     11.5        11.5        0.0823      -0.2        
+3           13.3665     4.88        4.88        0.076       -0.6        
+4           8.48701     2.25        2.25        0.0841      -1.2        
+5           6.23922     0.851       0.851       0.143       -2.0        
+6           5.38792     0.111       0.111       0.132       -3.1        
+7           5.27669     0.00519     0.00519     0.0456      -4.3        
+8           5.27149     6.93e-06    6.93e-06    0.00189     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   5.271487    
+
+        final grad:   3.213114e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  39    ms
+
+        total time:   0.35  seconds, of which
+
+        derivs:     0.3 %
+
+        back pass:  83.8%
+
+        fwd pass:   8.5 %
+
+        other:      7.3 % (graphics etc.)
+ =========== end iLQG ===========
+  0.358109 seconds (897.34 k allocations: 213.838 MiB, 7.79% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           51.0102     26.2        26.2        0.115       0.0         
+2           24.8497     10.8        10.8        0.085       -0.2        
+3           14.0186     5.39        5.39        0.0863      -0.6        
+4           8.62521     3.01        3.01        0.107       -1.2        
+5           5.61383     1.65        1.65        0.169       -2.0        
+6           3.96697     0.404       0.404       0.187       -3.1        
+7           3.56312     0.018       0.018       0.0558      -4.3        
+8           3.54514     1.79e-05    1.79e-05    0.00216     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   3.545121    
+
+        final grad:   3.581447e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  44    ms
+
+        total time:   0.39  seconds, of which
+
+        derivs:     0.3 %
+
+        back pass:  83.5%
+
+        fwd pass:   6.0 %
+
+        other:      10.2% (graphics etc.)
+ =========== end iLQG ===========
+  0.396736 seconds (897.35 k allocations: 213.838 MiB, 7.11% gc time)
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           50.642      15.2        15.2        0.0855      0.0         
+2           35.3962     9.74        9.74        0.0823      -0.2        
+3           25.6515     7.09        7.09        0.105       -0.6        
+4           18.5648     4.8         4.8         0.16        -1.2        
+5           13.7694     2.4         2.4         0.227       -2.0        
+6           11.372      0.627       0.627       0.233       -3.1        
+7           10.745      0.0337      0.0337      0.0694      -4.3        
+8           10.7113     4.03e-05    4.03e-05    0.00245     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   10.71122    
+
+        final grad:   3.964869e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  54    ms
+
+        total time:   0.49  seconds, of which
+
+        derivs:     0.3 %
+
+        back pass:  88.5%
+
+        fwd pass:   5.2 %
+
+        other:      6.1 % (graphics etc.)
+ =========== end iLQG ===========
+  0.493715 seconds (897.36 k allocations: 213.838 MiB, 5.59% gc time)
+Running linear demo function for DifferentialDynamicProgramming.jl
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           49.3316     13.8        13.8        0.0813      0.0         
+2           35.5392     8.61        8.61        0.0773      -0.2        
+3           26.9284     6.45        6.45        0.099       -0.6        
+4           20.4758     4.1         4.1         0.149       -1.2        
+5           16.3735     1.5         1.5         0.196       -2.0        
+6           14.8783     0.223       0.223       0.163       -3.1        
+7           14.6555     0.0077      0.0077      0.0513      -4.3        
+8           14.6478     7.76e-06    7.76e-06    0.00194     -5.7        
+
+SUCCESS: gradient norm &lt; tol_grad
+
+ iterations:   9  
+
+        final cost:   14.64778    
+
+        final grad:   3.237175e-06
+
+        final λ: 4.4841551e-08
+
+        time &#x2F; iter:  40    ms
+
+        total time:   0.36  seconds, of which
+
+        derivs:     0.3 %
+
+        back pass:  88.5%
+
+        fwd pass:   8.6 %
+
+        other:      2.6 % (graphics etc.)
+ =========== end iLQG ===========
+  5.921509 seconds (3.17 M allocations: 319.187 MiB, 2.13% gc time)
+Install package Plots.jl (and call using Plots) to plot results in the end of demo_linear
+Running linear demo function with KL-divergence constraint for DifferentialDynamicProgramming.jl
+
+---------- begin iLQG ----------
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+1             22.3322       26            17.3          0.123       -1.00       0.0095        1.83        
+2             1.27255e+10   -1.27e+10     5.39e+18      1.41e+07    -0.15       1.27e+10      -1.42       
+3             4.42347e+07   -4.42e+07     2.1e+15      5.75e+05    -0.07       4.39e+07      0.248       
+4             225219        -2.25e+05     9.57e+11      1.95e+04    -0.04       2.17e+05      1.07        
+5             1184.11       -1.14e+03     1.26e+09      945         -0.02       975           1.47        
+6             10.5919       37.7          7.69e+06      78.6        -0.03       1.46          1.67        
+7             123.307       -75           1.29e+08      312         -0.03       80.1          1.57        
+8             417.204       -369          4.22e+08      557         -0.03       317           1.52        
+9             232.39        -184          2.36e+08      420         -0.03       166           1.55        
+10            170.332       -122          1.75e+08      363         -0.03       116           1.56        
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+11            145.148       -96.8         1.5e+08      337         -0.03       96.9          1.57        
+
+SUCCESS: abs(KL-divergence) &lt; kl_step
+
+ iterations:   11 
+
+        final cost:   145.1481    
+
+        final grad:   336.8931    
+
+        final λ: 9.3750325e-01
+
+        time &#x2F; iter:  260   ms
+
+        total time:   2.86  seconds, of which
+
+        derivs:     0.0 %
+
+        back pass:  75.0%
+
+        fwd pass:   12.4%
+
+        other:      12.6% (graphics etc.)
+ =========== end iLQG ===========
+Outer loop: Cost = 145.1481073707536
+
+---------- begin iLQG ----------
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+1             145.037       0.111         0.0553        0.000151    -1.00       5.58e-05      1.57        
+2             1.05723e+56   -1.06e+56     4.03e+60      1.03e+26    -0.15       1.06e+56      -1.16       
+3             1.15119e+52   -1.15e+52     1.9e+56      2.01e+24    -0.07       1.17e+52      0.501       
+4             3.37113e+43   -3.37e+43     2.88e+47      2.66e+20    -0.04       4.69e+43      1.28        
+5             4.71286e+11   -4.71e+11     4.77e+15      2.03e+05    -0.02       4.61e+12      1.55        
+6             145.033       0.115         0.095         0.00299     -0.03       9.61e-05      1.57        
+7             145.657       -0.509        584           0.574       -0.03       0.564         1.56        
+8             12564.7       -1.24e+04     1.85e+08      115         -0.03       1.82e+05      1.56        
+9             138.563       6.59          1.43e+05      6.26        -0.03       142           1.56        
+10            145.127       0.0214        6.43e+03      1.76        -0.03       6.33          1.56        
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+11            143.3         1.85          2.83e+04      3.27        -0.03       28            1.56        
+
+EXIT: η &gt; ηmax
+
+ iterations:   11 
+
+        final cost:   143.2996    
+
+        final grad:   3.267209    
+
+        final λ: 9.3442150e-01
+
+        time &#x2F; iter:  73    ms
+
+        total time:   0.80  seconds, of which
+
+        derivs:     0.0 %
+
+        back pass:  59.8%
+
+        fwd pass:   33.3%
+
+        other:      6.9 % (graphics etc.)
+ =========== end iLQG ===========
+Outer loop: Cost = 143.29963789437997
+
+---------- begin iLQG ----------
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+1             143.191       0.108         0.0541        0.000122    -1.00       5.46e-05      1.56        
+2             1.27202e+55   -1.27e+55     4.01e+59      9.37e+25    -0.15       1.28e+55      -1.15       
+3             1.68874e+52   -1.69e+52     2.71e+56      2.71e+24    -0.07       1.72e+52      0.505       
+4             3.1857e+43   -3.19e+43     2.94e+47      2.96e+20    -0.04       4.49e+43      1.28        
+5             1.39165e+11   -1.39e+11     9.75e+14      8.81e+04    -0.02       9.38e+11      1.55        
+6             143.187       0.113         0.0787        0.00117     -0.03       7.96e-05      1.56        
+7             143.893       -0.593        27.3          0.12        -0.03       0.0269        1.56        
+8             1666.27       -1.52e+03     2.06e+07      39.2        -0.03       2.03e+04      1.55        
+9             143.946       -0.647        8e+03      1.58        -0.03       7.93          1.56        
+10            145.28        -1.98         3.64e+05      7.52        -0.03       359           1.56        
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+11            142.342       0.958         5.21e+04      3.4         -0.03       51.6          1.56        
+
+EXIT: η &gt; ηmax
+
+ iterations:   11 
+
+        final cost:   142.3417    
+
+        final grad:   3.39533     
+
+        final λ: 9.3196340e-01
+
+        time &#x2F; iter:  63    ms
+
+        total time:   0.69  seconds, of which
+
+        derivs:     0.0 %
+
+        back pass:  61.5%
+
+        fwd pass:   32.7%
+
+        other:      5.8 % (graphics etc.)
+ =========== end iLQG ===========
+Outer loop: Cost = 142.34169562519492
+
+---------- begin iLQG ----------
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+1             142.237       0.104         0.0522        0.000152    -1.00       5.26e-05      1.56        
+2             3.87879e+54   -3.88e+54     1.11e+59      2.58e+25    -0.15       3.91e+54      -1.15       
+3             2.2938e+52   -2.29e+52     3.65e+56      4.75e+24    -0.07       2.33e+52      0.507       
+4             2.92665e+43   -2.93e+43     2.9e+47      3.69e+20    -0.04       4.18e+43      1.28        
+5             4.61146e+10   -4.61e+10     2.91e+14      4.56e+04    -0.02       2.79e+11      1.55        
+6             142.23        0.112         0.0977        0.0015      -0.03       9.85e-05      1.56        
+7             142.844       -0.502        13.9          0.0458      -0.03       0.0138        1.55        
+8             467.82        -325          3.21e+06      15.5        -0.03       3.18e+03      1.55        
+9             144.594       -2.25         813           0.521       -0.03       0.807         1.55        
+10            150.678       -8.34         4.06e+04      2.68        -0.03       40.2          1.55        
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+11            179.865       -37.5         3.5e+05      6.39        -0.03       347           1.55        
+
+EXIT: η &gt; ηmax
+┌ Warning: KL divergence too high for some time steps when done
+└ @ DifferentialDynamicProgramming ~&#x2F;.julia&#x2F;packages&#x2F;DifferentialDynamicProgramming&#x2F;DG1NV&#x2F;src&#x2F;iLQGkl.jl:248
+
+ iterations:   11 
+
+        final cost:   179.865     
+
+        final grad:   6.38689     
+
+        final λ: 9.3073677e-01
+
+        time &#x2F; iter:  61    ms
+
+        total time:   0.67  seconds, of which
+
+        derivs:     0.0 %
+
+        back pass:  59.0%
+
+        fwd pass:   31.8%
+
+        other:      9.2 % (graphics etc.)
+ =========== end iLQG ===========
+Outer loop: Cost = 179.86497402276473
+
+---------- begin iLQG ----------
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+1             179.749       0.116         0.0578        0.000165    -1.00       5.82e-05      1.55        
+2             4.44829e+55   -4.45e+55     1.12e+60      1.3e+26    -0.15       4.49e+55      -1.15       
+3             3.10739e+52   -3.11e+52     4.99e+56      4.39e+24    -0.07       3.17e+52      0.509       
+4             2.60718e+43   -2.61e+43     2.8e+47      3.42e+20    -0.04       3.77e+43      1.29        
+5             1.48368e+10   -1.48e+10     9.3e+13      2.28e+04    -0.02       8.9e+10      1.54        
+6             179.709       0.156         0.33          0.00264     -0.03       0.00033       1.55        
+7             179.366       0.499         55.2          0.0431      -0.03       0.0549        1.55        
+8             363.425       -184          7.17e+05      5.69        -0.03       708           1.55        
+9             180.244       -0.379        530           0.222       -0.03       0.526         1.55        
+10            190.819       -11           8.04e+03      0.95        -0.03       7.96          1.55        
+iteration     est. cost    reduction     expected    gradient    log10(η)    divergence      entropy
+11            220.85        -41           7.1e+04      2.28        -0.03       70.2          1.55        
+
+EXIT: η &gt; ηmax
+
+ iterations:   11 
+
+        final cost:   220.8503    
+
+        final grad:   2.281649    
+
+        final λ: 9.2951176e-01
+
+        time &#x2F; iter:  65    ms
+
+        total time:   0.72  seconds, of which
+
+        derivs:     0.0 %
+
+        back pass:  60.8%
+
+        fwd pass:   31.7%
+
+        other:      7.4 % (graphics etc.)
+ =========== end iLQG ===========
+Outer loop: Cost = 220.850320897078
+ 16.055804 seconds (19.39 M allocations: 3.194 GiB, 5.02% gc time)
+Install package Plots.jl (and call using Plots) to plot results in the end of demo_linear
+Entering iLQG function
+
+---------- begin iLQG ----------
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+1           33409.7     2.21e+03    3.57e+03    2.35        0.0         
+2           31195       705         1.57e+03    0.7         -0.2        
+3           30489.9     537         1.82e+03    0.719       -0.6        
+4           29952.6     13.9        479         0.406       -1.2        
+5           29938.7     224         896         0.427       -2.0        
+6           29714.5     257         260         0.254       -3.1        
+7           29457.7     10.2        86.3        0.159       -4.3        
+8           29447.5     79.8        90.3        0.16        -5.7        
+9           29367.7     18.1        20.4        0.0844      -7.3        
+10          29349.5     4.78        5.23        0.0469      -9.2        
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+11          29344.8     0.633       1.81        0.027       -11.2       
+12          29344.1     1.25        1.62        0.0218      -13.5       
+13          29342.9     1.38        2.12        0.0204      -15.9       
+14          29341.5     0.221       0.471       0.0109      -18.6       
+15          29341.3     0.0322      0.111       0.00601     -21.4       
+16          29341.2     0.0121      0.0284      0.00338     -24.5       
+17          29341.2     0.0289      0.00881     0.00194     -27.8       
+18          29341.2     0.146       0.00967     0.00162     -31.2       
+19          NO STEP     -8.15e-05   4.49e-05    0.00151     -6.0        
+20          NO STEP     -8.15e-05   4.49e-05    0.00151     -5.8        
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+21          NO STEP     -8.15e-05   4.49e-05    0.00151     -5.4        
+22          NO STEP     -8.15e-05   4.49e-05    0.00151     -4.8        
+23          NO STEP     -8.15e-05   4.49e-05    0.00151     -4.0        
+24          NO STEP     -8.15e-05   4.49e-05    0.00151     -2.9        
+25          NO STEP     -8.15e-05   4.49e-05    0.00151     -1.7        
+26          NO STEP     -8.15e-05   4.49e-05    0.00151     -0.3        
+27          NO STEP     -8.1e-05   4.49e-05    0.00151     1.3         
+28          NO STEP     -6.37e-05   4.28e-05    0.00142     3.2         
+29          29341       0.0181      0.00494     0.000294    3.2         
+30          29341       0.0108      0.00163     0.000587    3.0         
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+31          29341       0.0124      0.00142     0.000705    2.6         
+32          NO STEP     -1.52e-05   4.11e-06    0.000713    1.3         
+33          NO STEP     -3.25e-05   8.4e-06    0.00108     1.6         
+34          NO STEP     -2.93e-05   7.42e-06    0.000994    2.0         
+35          NO STEP     -1.52e-05   4.11e-06    0.000713    2.6         
+36          29341       0.000673    0.00041     0.000329    2.6         
+37          NO STEP     -4.48e-06   1.01e-06    0.000377    2.2         
+38          NO STEP     -1.02e-05   1.94e-06    0.000507    2.4         
+39          NO STEP     -4.48e-06   1.01e-06    0.000377    2.8         
+40          NO STEP     -6.87e-07   2.39e-07    0.000187    3.4         
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+41          NO STEP     -7.03e-08   2.96e-08    5.16e-05    4.2         
+42          NO STEP     -1.2e-09   2.86e-09    8.09e-06    5.2         
+43          29341       5.78e-07    3.77e-07    7.76e-07    5.2         
+44          29341       5.64e-07    6e-07    1.24e-06    5.0         
+45          NO STEP     -1.89e-10   1.02e-09    3.16e-06    4.2         
+46          NO STEP     -2.87e-09   2.84e-09    8.08e-06    4.4         
+47          NO STEP     -9.42e-10   1.69e-09    5.06e-06    4.8         
+48          29341       1.43e-07    9.56e-07    1.98e-06    4.8         
+49          NO STEP     -7.64e-10   1.01e-09    3.16e-06    4.4         
+50          NO STEP     -1.79e-09   1.68e-09    5.05e-06    4.6         
+iteration     cost    reduction     expected    gradient    log10(λ)    η    divergence
+51          NO STEP     -7.64e-10   1.01e-09    3.16e-06    5.0         
+52          NO STEP     -1.2e-10   3.82e-10    1.23e-06    5.6         
+53          29341       3.27e-11    3.99e-10    3.01e-07    5.6         
+
+SUCCESS: cost change &lt; tol_fun
+
+ iterations:   53 
+
+        final cost:   29341       
+
+        final grad:   3.014034e-07
+
+        final λ: 2.6959947e+05
+
+        time &#x2F; iter:  268   ms
+
+        total time:   14.21 seconds, of which
+
+        derivs:     20.5%
+
+        back pass:  66.4%
+
+        fwd pass:   12.4%
+
+        other:      0.8 % (graphics etc.)
+ =========== end iLQG ===========
+Install package Plots.jl (and call using Plots) to plot results in the end of demo_pendcart
+Done
+==========
+Starting box-QP, dimension 500, initial value: 66427.406   
+RESULT: Gradient norm smaller than tolerance.
+iterations 15  gradient 2.50289e-12  final value -31.2095      factorizations 14
+  0.369437 seconds (1.03 k allocations: 78.074 MiB, 10.10% gc time)
+   Testing DifferentialDynamicProgramming tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="ObjectFile">ObjectFile</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#ObjectFile">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 15 hours ago and took 56 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/ObjectFile/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Reexport ─── v0.2.0
+ Installed StructIO ─── v0.3.0
+ Installed ObjectFile ─ v0.3.3
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [d8793406] + ObjectFile v0.3.3
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [d8793406] + ObjectFile v0.3.3
+  [189a3867] + Reexport v0.2.0
+  [53d494c1] + StructIO v0.3.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing ObjectFile
+    Status `&#x2F;tmp&#x2F;tmpt5JO6o&#x2F;Manifest.toml`
+  [d8793406] ObjectFile v0.3.3
+  [189a3867] Reexport v0.2.0
+  [53d494c1] StructIO v0.3.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+INFO: Showing ELFHandle
+ELF Handle (32-bit)
+INFO: Showing ELFHeader32
+ELF Header
+  Type DYN
+  Machine 386
+  Entrypoint 0x330
+  PH Offset 0x34
+  SH Offset 0x1850
+  Header Size 0x34
+  PH Entry Size 0x20
+  PH Entry Count 6
+  SH Entry Size 0x28
+  SH Entry Count 30
+  Strtab Index 29
+
+INFO: Showing ELFSections
+ELF Sections
+  [1] ELF Section &quot;&quot;
+  [2] ELF Section &quot;.interp&quot;
+  [3] ELF Section &quot;.note.ABI-tag&quot;
+  [4] ELF Section &quot;.hash&quot;
+  [5] ELF Section &quot;.dynsym&quot;
+  [6] ELF Section &quot;.dynstr&quot;
+  [7] ELF Section &quot;.gnu.version&quot;
+  [8] ELF Section &quot;.gnu.version_r&quot;
+  [9] ELF Section &quot;.rel.dyn&quot;
+  [10] ELF Section &quot;.rel.plt&quot;
+   …
+  [24] ELF Section &quot;.data&quot;
+  [25] ELF Section &quot;.bss&quot;
+  [26] ELF Section &quot;.comment&quot;
+  [27] ELF Section &quot;.debug_aranges&quot;
+  [28] ELF Section &quot;.debug_info&quot;
+  [29] ELF Section &quot;.debug_abbrev&quot;
+  [30] ELF Section &quot;.debug_line&quot;
+  [31] ELF Section &quot;.debug_str&quot;
+  [32] ELF Section &quot;.symtab&quot;
+  [33] ELF Section &quot;.strtab&quot;
+  [34] ELF Section &quot;.shstrtab&quot;
+INFO: Showing ELFSectionRef
+ELF Section
+       Name: 
+       Size: 0x0
+     Offset: 0x0
+    Address: 0x0
+INFO: Showing ELFSegments
+ELF Segments
+  [1] ELFSegment LOAD
+  [2] ELFSegment LOAD
+  [3] ELFSegment DYNAMIC
+  [4] ELFSegment GNU_EH_FRAME
+  [5] ELFSegment GNU_STACK
+  [6] ELFSegment GNU_RELRO
+INFO: Showing ELFSegmentRef
+ELFSegment
+       Type: LOAD
+       Size: (File: 0x598,   Mem: 0x598)
+     Offset: 0x0
+    Address:  (Phy: 0x0 Virt: 0x0)
+INFO: Showing ELFSymbols
+ELF Symbols
+  [1] ELF Symbol &quot;&quot;
+  [2] ELF Symbol &quot;&quot;
+  [3] ELF Symbol &quot;&quot;
+  [4] ELF Symbol &quot;&quot;
+  [5] ELF Symbol &quot;&quot;
+  [6] ELF Symbol &quot;&quot;
+  [7] ELF Symbol &quot;&quot;
+  [8] ELF Symbol &quot;&quot;
+  [9] ELF Symbol &quot;&quot;
+  [10] ELF Symbol &quot;&quot;
+   …
+  [72] ELF Symbol &quot;foo&quot;
+  [73] ELF Symbol &quot;_end&quot;
+  [74] ELF Symbol &quot;_start&quot;
+  [75] ELF Symbol &quot;_fp_hw&quot;
+  [76] ELF Symbol &quot;__bss_start&quot;
+  [77] ELF Symbol &quot;main&quot;
+  [78] ELF Symbol &quot;__TMC_END__&quot;
+  [79] ELF Symbol &quot;atof@@GLIBC_2.0&quot;
+  [80] ELF Symbol &quot;_ITM_registerTMCloneTable&quot;
+  [81] ELF Symbol &quot;__x86.get_pc_thunk.di&quot;
+  [82] ELF Symbol &quot;_init&quot;
+INFO: Showing ELFSymbolRef
+ELF Symbol
+       Name: 
+      Value: 0
+    Defined: No
+     Strong: Yes
+   Locality: Local
+INFO: Showing ELFRPath
+ELF RPath
+  [1] &quot;\$ORIGIN&#x2F;..&#x2F;lib&quot;
+  [2] &quot;\$ORIGIN&quot;
+INFO: Showing ELFDynamicLinks
+ELF DynamicLinks
+  [1] ELF DynamicLink &quot;libfoo.so&quot;
+  [2] ELF DynamicLink &quot;libc.so.6&quot;
+INFO: Showing ELFDynamicLink
+ELF DynamicLink &quot;libfoo.so&quot;
+Test Summary: | Pass  Total
+linux32       |   30     30
+INFO: Showing ELFHandle
+ELF Handle (64-bit)
+INFO: Showing ELFHeader64
+ELF Header
+  Type DYN
+  Machine X86_64
+  Entrypoint 0x490
+  PH Offset 0x40
+  SH Offset 0x1978
+  Header Size 0x40
+  PH Entry Size 0x38
+  PH Entry Count 6
+  SH Entry Size 0x40
+  SH Entry Count 30
+  Strtab Index 29
+
+INFO: Showing ELFSections
+ELF Sections
+  [1] ELF Section &quot;&quot;
+  [2] ELF Section &quot;.interp&quot;
+  [3] ELF Section &quot;.note.ABI-tag&quot;
+  [4] ELF Section &quot;.hash&quot;
+  [5] ELF Section &quot;.dynsym&quot;
+  [6] ELF Section &quot;.dynstr&quot;
+  [7] ELF Section &quot;.gnu.version&quot;
+  [8] ELF Section &quot;.gnu.version_r&quot;
+  [9] ELF Section &quot;.rela.dyn&quot;
+  [10] ELF Section &quot;.rela.plt&quot;
+   …
+  [24] ELF Section &quot;.data&quot;
+  [25] ELF Section &quot;.bss&quot;
+  [26] ELF Section &quot;.comment&quot;
+  [27] ELF Section &quot;.debug_aranges&quot;
+  [28] ELF Section &quot;.debug_info&quot;
+  [29] ELF Section &quot;.debug_abbrev&quot;
+  [30] ELF Section &quot;.debug_line&quot;
+  [31] ELF Section &quot;.debug_str&quot;
+  [32] ELF Section &quot;.symtab&quot;
+  [33] ELF Section &quot;.strtab&quot;
+  [34] ELF Section &quot;.shstrtab&quot;
+INFO: Showing ELFSectionRef
+ELF Section
+       Name: 
+       Size: 0x0
+     Offset: 0x0
+    Address: 0x0
+INFO: Showing ELFSegments
+ELF Segments
+  [1] ELFSegment LOAD
+  [2] ELFSegment LOAD
+  [3] ELFSegment DYNAMIC
+  [4] ELFSegment GNU_EH_FRAME
+  [5] ELFSegment GNU_STACK
+  [6] ELFSegment GNU_RELRO
+INFO: Showing ELFSegmentRef
+ELFSegment
+       Type: LOAD
+       Size: (File: 0x63c,   Mem: 0x63c)
+     Offset: 0x0
+    Address:  (Phy: 0x0 Virt: 0x0)
+INFO: Showing ELFSymbols
+ELF Symbols
+  [1] ELF Symbol &quot;&quot;
+  [2] ELF Symbol &quot;&quot;
+  [3] ELF Symbol &quot;&quot;
+  [4] ELF Symbol &quot;&quot;
+  [5] ELF Symbol &quot;&quot;
+  [6] ELF Symbol &quot;&quot;
+  [7] ELF Symbol &quot;&quot;
+  [8] ELF Symbol &quot;&quot;
+  [9] ELF Symbol &quot;&quot;
+  [10] ELF Symbol &quot;&quot;
+   …
+  [60] ELF Symbol &quot;__dso_handle&quot;
+  [61] ELF Symbol &quot;_IO_stdin_used&quot;
+  [62] ELF Symbol &quot;__libc_csu_init&quot;
+  [63] ELF Symbol &quot;foo&quot;
+  [64] ELF Symbol &quot;_end&quot;
+  [65] ELF Symbol &quot;_start&quot;
+  [66] ELF Symbol &quot;__bss_start&quot;
+  [67] ELF Symbol &quot;main&quot;
+  [68] ELF Symbol &quot;__TMC_END__&quot;
+  [69] ELF Symbol &quot;_ITM_registerTMCloneTable&quot;
+  [70] ELF Symbol &quot;_init&quot;
+INFO: Showing ELFSymbolRef
+ELF Symbol
+       Name: 
+      Value: 0
+    Defined: No
+     Strong: Yes
+   Locality: Local
+INFO: Showing ELFRPath
+ELF RPath
+  [1] &quot;\$ORIGIN&#x2F;..&#x2F;lib&quot;
+  [2] &quot;\$ORIGIN&quot;
+INFO: Showing ELFDynamicLinks
+ELF DynamicLinks
+  [1] ELF DynamicLink &quot;libfoo.so&quot;
+  [2] ELF DynamicLink &quot;libc.so.6&quot;
+INFO: Showing ELFDynamicLink
+ELF DynamicLink &quot;libfoo.so&quot;
+Test Summary: | Pass  Total
+linux64       |   30     30
+INFO: Showing MachOHandle
+MachO Handle (64-bit)
+INFO: Showing MachOHeader64
+MachO Header
+  CPU Type 16777223
+  CPU Subtype 3
+  File Type 6
+  Number of load commands 13
+  Flags 1048709
+
+INFO: Showing MachOSections
+MachO Sections
+  [1] MachO Section &quot;__TEXT,__text&quot;
+  [2] MachO Section &quot;__TEXT,__stubs&quot;
+  [3] MachO Section &quot;__TEXT,__stub_helper&quot;
+  [4] MachO Section &quot;__TEXT,__cstring&quot;
+  [5] MachO Section &quot;__TEXT,__unwind_info&quot;
+  [6] MachO Section &quot;__DATA,__nl_symbol_ptr&quot;
+  [7] MachO Section &quot;__DATA,__la_symbol_ptr&quot;
+INFO: Showing MachOSection64
+MachO Section
+       Name: __TEXT,__text
+       Size: 0xb3
+     Offset: 0xe90
+    Address: 0x100000e90
+INFO: Showing MachOSegments
+MachO Segments
+  [1] MachO Segment __TEXT
+  [2] MachO Segment __LINKEDIT
+INFO: Showing MachOSegmentRef
+MachO Segment
+       Name: __TEXT
+       Size: (File: 0x1000,   Mem: 0x1000)
+     Offset: 0x0
+   Sections: 2
+INFO: Showing MachOSymbols
+MachO Symbols
+  [1] MachO Symbol &quot;&#x2F;Users&#x2F;sabae&#x2F;.julia&#x2F;v0.6&#x2F;BinDeps2&#x2F;test&#x2F;build_tests&#x2F;libfoo&#x2F;&quot;
+  [2] MachO Symbol &quot;fooifier.c&quot;
+  [3] MachO Symbol &quot;&#x2F;var&#x2F;folders&#x2F;c9&#x2F;ryfwjx1d4vv_81mpc4qbjgx00000gn&#x2F;T&#x2F;fooifier-4104d1.o&quot;
+  [4] MachO Symbol &quot;&quot;
+  [5] MachO Symbol &quot;_main&quot;
+  [6] MachO Symbol &quot;&quot;
+  [7] MachO Symbol &quot;&quot;
+  [8] MachO Symbol &quot;&quot;
+  [9] MachO Symbol &quot;__mh_execute_header&quot;
+  [10] MachO Symbol &quot;_main&quot;
+  [11] MachO Symbol &quot;_atof&quot;
+  [12] MachO Symbol &quot;_foo&quot;
+  [13] MachO Symbol &quot;_printf&quot;
+  [14] MachO Symbol &quot;dyld_stub_binder&quot;
+INFO: Showing MachOSymbolRef
+MachO Symbol
+       Name: &#x2F;Users&#x2F;sabae&#x2F;.julia&#x2F;v0.6&#x2F;BinDeps2&#x2F;test&#x2F;build_tests&#x2F;libfoo&#x2F;
+      Value: 0
+    Defined: Yes
+     Strong: Yes
+   Locality: Local
+INFO: Showing MachORPath
+MachO RPath
+  [1] &quot;@executable_path&#x2F;..&#x2F;lib&quot;
+  [2] &quot;@executable_path&quot;
+INFO: Showing MachODynamicLinks
+MachO DynamicLinks
+  [1] MachO DynamicLink &quot;@rpath&#x2F;libfoo.dylib&quot;
+  [2] MachO DynamicLink &quot;&#x2F;usr&#x2F;lib&#x2F;libSystem.B.dylib&quot;
+INFO: Showing MachODynamicLink
+MachO DynamicLink &quot;@rpath&#x2F;libfoo.dylib&quot;
+Test Summary: | Pass  Total
+mac64         |   27     27
+Test Summary: | Pass  Total
+macfat        |    2      2
+INFO: Showing COFFHandle
+COFF Handle (32-bit)
+INFO: Showing COFFHeader
+COFF Header
+  Machine 332
+  Number of Sections 17
+  Time Date Stamp 1505627831
+  Number of Symbols 978
+
+INFO: Showing COFFSections
+COFF Sections
+  [1] COFF Section &quot;.text&quot;
+  [2] COFF Section &quot;.data&quot;
+  [3] COFF Section &quot;.rdata&quot;
+  [4] COFF Section &quot;.bss&quot;
+  [5] COFF Section &quot;.idata&quot;
+  [6] COFF Section &quot;.CRT&quot;
+  [7] COFF Section &quot;.tls&quot;
+  [8] COFF Section &quot;.debug_aranges&quot;
+  [9] COFF Section &quot;.debug_info&quot;
+  [10] COFF Section &quot;.debug_abbrev&quot;
+  [11] COFF Section &quot;.debug_line&quot;
+  [12] COFF Section &quot;.debug_frame&quot;
+  [13] COFF Section &quot;.debug_str&quot;
+  [14] COFF Section &quot;.debug_loc&quot;
+  [15] COFF Section &quot;.debug_ranges&quot;
+INFO: Showing COFFSectionRef
+COFF Section
+       Name: .text
+       Size: 0x1a00
+     Offset: 0x400
+    Address: 0x1000
+INFO: Showing COFFSymbols
+COFF Symbols
+  [1] COFF Symbol &quot;.file&quot;
+  [2] COFF Symbol &quot;crtexe.c&quot;
+  [3] COFF Symbol &quot;___mingw_invalidParameterHandler&quot;
+  [4] COFF Symbol &quot;&quot;
+  [5] COFF Symbol &quot;_pre_c_init&quot;
+  [6] COFF Symbol &quot;_managedapp&quot;
+  [7] COFF Symbol &quot;_pre_cpp_init&quot;
+  [8] COFF Symbol &quot;_startinfo&quot;
+  [9] COFF Symbol &quot;_envp&quot;
+  [10] COFF Symbol &quot;_argv&quot;
+   …
+  [1313] COFF Symbol &quot;_printf&quot;
+  [1314] COFF Symbol &quot;__RUNTIME_PSEUDO_RELOC_LIST_END__&quot;
+  [1315] COFF Symbol &quot;___dyn_tls_init_callback&quot;
+  [1316] COFF Symbol &quot;_Sleep@4&quot;
+  [1317] COFF Symbol &quot;_mingw_initcharmax&quot;
+  [1318] COFF Symbol &quot;__imp____setusermatherr&quot;
+  [1319] COFF Symbol &quot;__tls_used&quot;
+  [1320] COFF Symbol &quot;___crt_xt_end__&quot;
+  [1321] COFF Symbol &quot;_vfprintf&quot;
+  [1322] COFF Symbol &quot;__imp__EnterCriticalSection@4&quot;
+  [1323] COFF Symbol &quot;__imp__fwrite&quot;
+INFO: Showing COFFSymbolRef
+COFF Symbol
+       Name: .file
+      Value: 44
+    Defined: Yes
+     Strong: Yes
+   Locality: Local
+INFO: Showing COFFRPath
+COFF RPath
+INFO: Showing COFFDynamicLinks
+COFF DynamicLinks
+  [1] COFF DynamicLink &quot;KERNEL32.dll&quot;
+  [2] COFF DynamicLink &quot;msvcrt.dll&quot;
+  [3] COFF DynamicLink &quot;libfoo.dll&quot;
+INFO: Showing COFFDynamicLink
+COFF DynamicLink &quot;KERNEL32.dll&quot;
+Test Summary: | Pass  Total
+win32         |   27     27
+INFO: Showing COFFHandle
+COFF Handle (64-bit)
+INFO: Showing COFFHeader
+COFF Header
+  Machine 34404
+  Number of Sections 19
+  Time Date Stamp 1505627802
+  Number of Symbols 1174
+
+INFO: Showing COFFSections
+COFF Sections
+  [1] COFF Section &quot;.text&quot;
+  [2] COFF Section &quot;.data&quot;
+  [3] COFF Section &quot;.rdata&quot;
+  [4] COFF Section &quot;.pdata&quot;
+  [5] COFF Section &quot;.xdata&quot;
+  [6] COFF Section &quot;.bss&quot;
+  [7] COFF Section &quot;.idata&quot;
+  [8] COFF Section &quot;.CRT&quot;
+  [9] COFF Section &quot;.tls&quot;
+  [10] COFF Section &quot;.debug_aranges&quot;
+  [11] COFF Section &quot;.debug_info&quot;
+  [12] COFF Section &quot;.debug_abbrev&quot;
+  [13] COFF Section &quot;.debug_line&quot;
+  [14] COFF Section &quot;.debug_frame&quot;
+  [15] COFF Section &quot;.debug_str&quot;
+  [16] COFF Section &quot;.debug_loc&quot;
+  [17] COFF Section &quot;.debug_ranges&quot;
+INFO: Showing COFFSectionRef
+COFF Section
+       Name: .text
+       Size: 0x2000
+     Offset: 0x600
+    Address: 0x1000
+INFO: Showing COFFSymbols
+COFF Symbols
+  [1] COFF Symbol &quot;.file&quot;
+  [2] COFF Symbol &quot;crtexe.c&quot;
+  [3] COFF Symbol &quot;__mingw_invalidParameterHandler&quot;
+  [4] COFF Symbol &quot;&quot;
+  [5] COFF Symbol &quot;pre_c_init&quot;
+  [6] COFF Symbol &quot;.rdata$.refptr.mingw_initltsdrot_force&quot;
+  [7] COFF Symbol &quot;&quot;
+  [8] COFF Symbol &quot;.rdata$.refptr.mingw_initltsdyn_force&quot;
+  [9] COFF Symbol &quot;&quot;
+  [10] COFF Symbol &quot;.rdata$.refptr.mingw_initltssuo_force&quot;
+   …
+  [1531] COFF Symbol &quot;__imp_RtlCaptureContext&quot;
+  [1532] COFF Symbol &quot;__RUNTIME_PSEUDO_RELOC_LIST_END__&quot;
+  [1533] COFF Symbol &quot;__dllonexit&quot;
+  [1534] COFF Symbol &quot;_unlock&quot;
+  [1535] COFF Symbol &quot;__imp_GetCurrentProcess&quot;
+  [1536] COFF Symbol &quot;.refptr.__xc_z&quot;
+  [1537] COFF Symbol &quot;___crt_xt_end__&quot;
+  [1538] COFF Symbol &quot;__lib64_libmsvcrt_a_iname&quot;
+  [1539] COFF Symbol &quot;vfprintf&quot;
+  [1540] COFF Symbol &quot;free&quot;
+  [1541] COFF Symbol &quot;__security_cookie&quot;
+INFO: Showing COFFSymbolRef
+COFF Symbol
+       Name: .file
+      Value: 102
+    Defined: Yes
+     Strong: Yes
+   Locality: Local
+INFO: Showing COFFRPath
+COFF RPath
+INFO: Showing COFFDynamicLinks
+COFF DynamicLinks
+  [1] COFF DynamicLink &quot;KERNEL32.dll&quot;
+  [2] COFF DynamicLink &quot;msvcrt.dll&quot;
+  [3] COFF DynamicLink &quot;libfoo.dll&quot;
+INFO: Showing COFFDynamicLink
+COFF DynamicLink &quot;KERNEL32.dll&quot;
+Test Summary: | Pass  Total
+win64         |   27     27
+Test Summary:            | Pass  Total
+ELF Version Info Parsing |    1      1
+Test Summary:      | Pass  Total
+git win32 problems |    7      7
+   Testing ObjectFile tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 16 hours ago and took 1 minute, 8 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/ObjectFile/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed StructIO ─── v0.3.0
+ Installed Reexport ─── v0.2.0
+ Installed ObjectFile ─ v0.3.3
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [d8793406] + ObjectFile v0.3.3
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [d8793406] + ObjectFile v0.3.3
+  [189a3867] + Reexport v0.2.0
+  [53d494c1] + StructIO v0.3.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing ObjectFile
+    Status `&#x2F;tmp&#x2F;jl_2RzVgr&#x2F;Manifest.toml`
+  [d8793406] ObjectFile v0.3.3
+  [189a3867] Reexport v0.2.0
+  [53d494c1] StructIO v0.3.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+INFO: Showing ELFHandle
+ELF Handle (32-bit)
+INFO: Showing ELFHeader32
+ELF Header
+  Type DYN
+  Machine 386
+  Entrypoint 0x330
+  PH Offset 0x34
+  SH Offset 0x1850
+  Header Size 0x34
+  PH Entry Size 0x20
+  PH Entry Count 6
+  SH Entry Size 0x28
+  SH Entry Count 30
+  Strtab Index 29
+
+INFO: Showing ELFSections
+ELF Sections
+  [1] ELF Section &quot;&quot;
+  [2] ELF Section &quot;.interp&quot;
+  [3] ELF Section &quot;.note.ABI-tag&quot;
+  [4] ELF Section &quot;.hash&quot;
+  [5] ELF Section &quot;.dynsym&quot;
+  [6] ELF Section &quot;.dynstr&quot;
+  [7] ELF Section &quot;.gnu.version&quot;
+  [8] ELF Section &quot;.gnu.version_r&quot;
+  [9] ELF Section &quot;.rel.dyn&quot;
+  [10] ELF Section &quot;.rel.plt&quot;
+   …
+  [24] ELF Section &quot;.data&quot;
+  [25] ELF Section &quot;.bss&quot;
+  [26] ELF Section &quot;.comment&quot;
+  [27] ELF Section &quot;.debug_aranges&quot;
+  [28] ELF Section &quot;.debug_info&quot;
+  [29] ELF Section &quot;.debug_abbrev&quot;
+  [30] ELF Section &quot;.debug_line&quot;
+  [31] ELF Section &quot;.debug_str&quot;
+  [32] ELF Section &quot;.symtab&quot;
+  [33] ELF Section &quot;.strtab&quot;
+  [34] ELF Section &quot;.shstrtab&quot;
+INFO: Showing ELFSectionRef
+ELF Section
+       Name: 
+       Size: 0x0
+     Offset: 0x0
+    Address: 0x0
+INFO: Showing ELFSegments
+ELF Segments
+  [1] ELFSegment LOAD
+  [2] ELFSegment LOAD
+  [3] ELFSegment DYNAMIC
+  [4] ELFSegment GNU_EH_FRAME
+  [5] ELFSegment GNU_STACK
+  [6] ELFSegment GNU_RELRO
+INFO: Showing ELFSegmentRef
+ELFSegment
+       Type: LOAD
+       Size: (File: 0x598,   Mem: 0x598)
+     Offset: 0x0
+    Address:  (Phy: 0x0 Virt: 0x0)
+INFO: Showing ELFSymbols
+ELF Symbols
+  [1] ELF Symbol &quot;&quot;
+  [2] ELF Symbol &quot;&quot;
+  [3] ELF Symbol &quot;&quot;
+  [4] ELF Symbol &quot;&quot;
+  [5] ELF Symbol &quot;&quot;
+  [6] ELF Symbol &quot;&quot;
+  [7] ELF Symbol &quot;&quot;
+  [8] ELF Symbol &quot;&quot;
+  [9] ELF Symbol &quot;&quot;
+  [10] ELF Symbol &quot;&quot;
+   …
+  [72] ELF Symbol &quot;foo&quot;
+  [73] ELF Symbol &quot;_end&quot;
+  [74] ELF Symbol &quot;_start&quot;
+  [75] ELF Symbol &quot;_fp_hw&quot;
+  [76] ELF Symbol &quot;__bss_start&quot;
+  [77] ELF Symbol &quot;main&quot;
+  [78] ELF Symbol &quot;__TMC_END__&quot;
+  [79] ELF Symbol &quot;atof@@GLIBC_2.0&quot;
+  [80] ELF Symbol &quot;_ITM_registerTMCloneTable&quot;
+  [81] ELF Symbol &quot;__x86.get_pc_thunk.di&quot;
+  [82] ELF Symbol &quot;_init&quot;
+INFO: Showing ELFSymbolRef
+ELF Symbol
+       Name: 
+      Value: 0
+    Defined: No
+     Strong: Yes
+   Locality: Local
+INFO: Showing ELFRPath
+ELF RPath
+  [1] &quot;\$ORIGIN&#x2F;..&#x2F;lib&quot;
+  [2] &quot;\$ORIGIN&quot;
+INFO: Showing ELFDynamicLinks
+ELF DynamicLinks
+  [1] ELF DynamicLink &quot;libfoo.so&quot;
+  [2] ELF DynamicLink &quot;libc.so.6&quot;
+INFO: Showing ELFDynamicLink
+ELF DynamicLink &quot;libfoo.so&quot;
+Test Summary: | Pass  Total
+linux32       |   30     30
+INFO: Showing ELFHandle
+ELF Handle (64-bit)
+INFO: Showing ELFHeader64
+ELF Header
+  Type DYN
+  Machine X86_64
+  Entrypoint 0x490
+  PH Offset 0x40
+  SH Offset 0x1978
+  Header Size 0x40
+  PH Entry Size 0x38
+  PH Entry Count 6
+  SH Entry Size 0x40
+  SH Entry Count 30
+  Strtab Index 29
+
+INFO: Showing ELFSections
+ELF Sections
+  [1] ELF Section &quot;&quot;
+  [2] ELF Section &quot;.interp&quot;
+  [3] ELF Section &quot;.note.ABI-tag&quot;
+  [4] ELF Section &quot;.hash&quot;
+  [5] ELF Section &quot;.dynsym&quot;
+  [6] ELF Section &quot;.dynstr&quot;
+  [7] ELF Section &quot;.gnu.version&quot;
+  [8] ELF Section &quot;.gnu.version_r&quot;
+  [9] ELF Section &quot;.rela.dyn&quot;
+  [10] ELF Section &quot;.rela.plt&quot;
+   …
+  [24] ELF Section &quot;.data&quot;
+  [25] ELF Section &quot;.bss&quot;
+  [26] ELF Section &quot;.comment&quot;
+  [27] ELF Section &quot;.debug_aranges&quot;
+  [28] ELF Section &quot;.debug_info&quot;
+  [29] ELF Section &quot;.debug_abbrev&quot;
+  [30] ELF Section &quot;.debug_line&quot;
+  [31] ELF Section &quot;.debug_str&quot;
+  [32] ELF Section &quot;.symtab&quot;
+  [33] ELF Section &quot;.strtab&quot;
+  [34] ELF Section &quot;.shstrtab&quot;
+INFO: Showing ELFSectionRef
+ELF Section
+       Name: 
+       Size: 0x0
+     Offset: 0x0
+    Address: 0x0
+INFO: Showing ELFSegments
+ELF Segments
+  [1] ELFSegment LOAD
+  [2] ELFSegment LOAD
+  [3] ELFSegment DYNAMIC
+  [4] ELFSegment GNU_EH_FRAME
+  [5] ELFSegment GNU_STACK
+  [6] ELFSegment GNU_RELRO
+INFO: Showing ELFSegmentRef
+ELFSegment
+       Type: LOAD
+       Size: (File: 0x63c,   Mem: 0x63c)
+     Offset: 0x0
+    Address:  (Phy: 0x0 Virt: 0x0)
+INFO: Showing ELFSymbols
+ELF Symbols
+  [1] ELF Symbol &quot;&quot;
+  [2] ELF Symbol &quot;&quot;
+  [3] ELF Symbol &quot;&quot;
+  [4] ELF Symbol &quot;&quot;
+  [5] ELF Symbol &quot;&quot;
+  [6] ELF Symbol &quot;&quot;
+  [7] ELF Symbol &quot;&quot;
+  [8] ELF Symbol &quot;&quot;
+  [9] ELF Symbol &quot;&quot;
+  [10] ELF Symbol &quot;&quot;
+   …
+  [60] ELF Symbol &quot;__dso_handle&quot;
+  [61] ELF Symbol &quot;_IO_stdin_used&quot;
+  [62] ELF Symbol &quot;__libc_csu_init&quot;
+  [63] ELF Symbol &quot;foo&quot;
+  [64] ELF Symbol &quot;_end&quot;
+  [65] ELF Symbol &quot;_start&quot;
+  [66] ELF Symbol &quot;__bss_start&quot;
+  [67] ELF Symbol &quot;main&quot;
+  [68] ELF Symbol &quot;__TMC_END__&quot;
+  [69] ELF Symbol &quot;_ITM_registerTMCloneTable&quot;
+  [70] ELF Symbol &quot;_init&quot;
+INFO: Showing ELFSymbolRef
+ELF Symbol
+       Name: 
+      Value: 0
+    Defined: No
+     Strong: Yes
+   Locality: Local
+INFO: Showing ELFRPath
+ELF RPath
+  [1] &quot;\$ORIGIN&#x2F;..&#x2F;lib&quot;
+  [2] &quot;\$ORIGIN&quot;
+INFO: Showing ELFDynamicLinks
+ELF DynamicLinks
+  [1] ELF DynamicLink &quot;libfoo.so&quot;
+  [2] ELF DynamicLink &quot;libc.so.6&quot;
+INFO: Showing ELFDynamicLink
+ELF DynamicLink &quot;libfoo.so&quot;
+Test Summary: | Pass  Total
+linux64       |   30     30
+INFO: Showing MachOHandle
+MachO Handle (64-bit)
+INFO: Showing MachOHeader64
+MachO Header
+  CPU Type 16777223
+  CPU Subtype 3
+  File Type 6
+  Number of load commands 13
+  Flags 1048709
+
+INFO: Showing MachOSections
+MachO Sections
+  [1] MachO Section &quot;__TEXT,__text&quot;
+  [2] MachO Section &quot;__TEXT,__stubs&quot;
+  [3] MachO Section &quot;__TEXT,__stub_helper&quot;
+  [4] MachO Section &quot;__TEXT,__cstring&quot;
+  [5] MachO Section &quot;__TEXT,__unwind_info&quot;
+  [6] MachO Section &quot;__DATA,__nl_symbol_ptr&quot;
+  [7] MachO Section &quot;__DATA,__la_symbol_ptr&quot;
+INFO: Showing MachOSection64
+MachO Section
+       Name: __TEXT,__text
+       Size: 0xb3
+     Offset: 0xe90
+    Address: 0x100000e90
+INFO: Showing MachOSegments
+MachO Segments
+  [1] MachO Segment __TEXT
+  [2] MachO Segment __LINKEDIT
+INFO: Showing MachOSegmentRef
+MachO Segment
+       Name: __TEXT
+       Size: (File: 0x1000,   Mem: 0x1000)
+     Offset: 0x0
+   Sections: 2
+INFO: Showing MachOSymbols
+MachO Symbols
+  [1] MachO Symbol &quot;&#x2F;Users&#x2F;sabae&#x2F;.julia&#x2F;v0.6&#x2F;BinDeps2&#x2F;test&#x2F;build_tests&#x2F;libfoo&#x2F;&quot;
+  [2] MachO Symbol &quot;fooifier.c&quot;
+  [3] MachO Symbol &quot;&#x2F;var&#x2F;folders&#x2F;c9&#x2F;ryfwjx1d4vv_81mpc4qbjgx00000gn&#x2F;T&#x2F;fooifier-4104d1.o&quot;
+  [4] MachO Symbol &quot;&quot;
+  [5] MachO Symbol &quot;_main&quot;
+  [6] MachO Symbol &quot;&quot;
+  [7] MachO Symbol &quot;&quot;
+  [8] MachO Symbol &quot;&quot;
+  [9] MachO Symbol &quot;__mh_execute_header&quot;
+  [10] MachO Symbol &quot;_main&quot;
+  [11] MachO Symbol &quot;_atof&quot;
+  [12] MachO Symbol &quot;_foo&quot;
+  [13] MachO Symbol &quot;_printf&quot;
+  [14] MachO Symbol &quot;dyld_stub_binder&quot;
+INFO: Showing MachOSymbolRef
+MachO Symbol
+       Name: &#x2F;Users&#x2F;sabae&#x2F;.julia&#x2F;v0.6&#x2F;BinDeps2&#x2F;test&#x2F;build_tests&#x2F;libfoo&#x2F;
+      Value: 0
+    Defined: Yes
+     Strong: Yes
+   Locality: Local
+INFO: Showing MachORPath
+MachO RPath
+  [1] &quot;@executable_path&#x2F;..&#x2F;lib&quot;
+  [2] &quot;@executable_path&quot;
+INFO: Showing MachODynamicLinks
+MachO DynamicLinks
+  [1] MachO DynamicLink &quot;@rpath&#x2F;libfoo.dylib&quot;
+  [2] MachO DynamicLink &quot;&#x2F;usr&#x2F;lib&#x2F;libSystem.B.dylib&quot;
+INFO: Showing MachODynamicLink
+MachO DynamicLink &quot;@rpath&#x2F;libfoo.dylib&quot;
+Test Summary: | Pass  Total
+mac64         |   27     27
+Test Summary: | Pass  Total
+macfat        |    2      2
+INFO: Showing COFFHandle
+COFF Handle (32-bit)
+INFO: Showing COFFHeader
+COFF Header
+  Machine 332
+  Number of Sections 17
+  Time Date Stamp 1505627831
+  Number of Symbols 978
+
+INFO: Showing COFFSections
+COFF Sections
+  [1] COFF Section &quot;.text&quot;
+  [2] COFF Section &quot;.data&quot;
+  [3] COFF Section &quot;.rdata&quot;
+  [4] COFF Section &quot;.bss&quot;
+  [5] COFF Section &quot;.idata&quot;
+  [6] COFF Section &quot;.CRT&quot;
+  [7] COFF Section &quot;.tls&quot;
+  [8] COFF Section &quot;.debug_aranges&quot;
+  [9] COFF Section &quot;.debug_info&quot;
+  [10] COFF Section &quot;.debug_abbrev&quot;
+  [11] COFF Section &quot;.debug_line&quot;
+  [12] COFF Section &quot;.debug_frame&quot;
+  [13] COFF Section &quot;.debug_str&quot;
+  [14] COFF Section &quot;.debug_loc&quot;
+  [15] COFF Section &quot;.debug_ranges&quot;
+INFO: Showing COFFSectionRef
+COFF Section
+       Name: .text
+       Size: 0x1a00
+     Offset: 0x400
+    Address: 0x1000
+INFO: Showing COFFSymbols
+COFF Symbols
+  [1] COFF Symbol &quot;.file&quot;
+  [2] COFF Symbol &quot;crtexe.c&quot;
+  [3] COFF Symbol &quot;___mingw_invalidParameterHandler&quot;
+  [4] COFF Symbol &quot;&quot;
+  [5] COFF Symbol &quot;_pre_c_init&quot;
+  [6] COFF Symbol &quot;_managedapp&quot;
+  [7] COFF Symbol &quot;_pre_cpp_init&quot;
+  [8] COFF Symbol &quot;_startinfo&quot;
+  [9] COFF Symbol &quot;_envp&quot;
+  [10] COFF Symbol &quot;_argv&quot;
+   …
+  [1313] COFF Symbol &quot;_printf&quot;
+  [1314] COFF Symbol &quot;__RUNTIME_PSEUDO_RELOC_LIST_END__&quot;
+  [1315] COFF Symbol &quot;___dyn_tls_init_callback&quot;
+  [1316] COFF Symbol &quot;_Sleep@4&quot;
+  [1317] COFF Symbol &quot;_mingw_initcharmax&quot;
+  [1318] COFF Symbol &quot;__imp____setusermatherr&quot;
+  [1319] COFF Symbol &quot;__tls_used&quot;
+  [1320] COFF Symbol &quot;___crt_xt_end__&quot;
+  [1321] COFF Symbol &quot;_vfprintf&quot;
+  [1322] COFF Symbol &quot;__imp__EnterCriticalSection@4&quot;
+  [1323] COFF Symbol &quot;__imp__fwrite&quot;
+INFO: Showing COFFSymbolRef
+COFF Symbol
+       Name: .file
+      Value: 44
+    Defined: Yes
+     Strong: Yes
+   Locality: Local
+INFO: Showing COFFRPath
+COFF RPath
+INFO: Showing COFFDynamicLinks
+COFF DynamicLinks
+  [1] COFF DynamicLink &quot;KERNEL32.dll&quot;
+  [2] COFF DynamicLink &quot;msvcrt.dll&quot;
+  [3] COFF DynamicLink &quot;libfoo.dll&quot;
+INFO: Showing COFFDynamicLink
+COFF DynamicLink &quot;KERNEL32.dll&quot;
+Test Summary: | Pass  Total
+win32         |   27     27
+INFO: Showing COFFHandle
+COFF Handle (64-bit)
+INFO: Showing COFFHeader
+COFF Header
+  Machine 34404
+  Number of Sections 19
+  Time Date Stamp 1505627802
+  Number of Symbols 1174
+
+INFO: Showing COFFSections
+COFF Sections
+  [1] COFF Section &quot;.text&quot;
+  [2] COFF Section &quot;.data&quot;
+  [3] COFF Section &quot;.rdata&quot;
+  [4] COFF Section &quot;.pdata&quot;
+  [5] COFF Section &quot;.xdata&quot;
+  [6] COFF Section &quot;.bss&quot;
+  [7] COFF Section &quot;.idata&quot;
+  [8] COFF Section &quot;.CRT&quot;
+  [9] COFF Section &quot;.tls&quot;
+  [10] COFF Section &quot;.debug_aranges&quot;
+  [11] COFF Section &quot;.debug_info&quot;
+  [12] COFF Section &quot;.debug_abbrev&quot;
+  [13] COFF Section &quot;.debug_line&quot;
+  [14] COFF Section &quot;.debug_frame&quot;
+  [15] COFF Section &quot;.debug_str&quot;
+  [16] COFF Section &quot;.debug_loc&quot;
+  [17] COFF Section &quot;.debug_ranges&quot;
+INFO: Showing COFFSectionRef
+COFF Section
+       Name: .text
+       Size: 0x2000
+     Offset: 0x600
+    Address: 0x1000
+INFO: Showing COFFSymbols
+COFF Symbols
+  [1] COFF Symbol &quot;.file&quot;
+  [2] COFF Symbol &quot;crtexe.c&quot;
+  [3] COFF Symbol &quot;__mingw_invalidParameterHandler&quot;
+  [4] COFF Symbol &quot;&quot;
+  [5] COFF Symbol &quot;pre_c_init&quot;
+  [6] COFF Symbol &quot;.rdata$.refptr.mingw_initltsdrot_force&quot;
+  [7] COFF Symbol &quot;&quot;
+  [8] COFF Symbol &quot;.rdata$.refptr.mingw_initltsdyn_force&quot;
+  [9] COFF Symbol &quot;&quot;
+  [10] COFF Symbol &quot;.rdata$.refptr.mingw_initltssuo_force&quot;
+   …
+  [1531] COFF Symbol &quot;__imp_RtlCaptureContext&quot;
+  [1532] COFF Symbol &quot;__RUNTIME_PSEUDO_RELOC_LIST_END__&quot;
+  [1533] COFF Symbol &quot;__dllonexit&quot;
+  [1534] COFF Symbol &quot;_unlock&quot;
+  [1535] COFF Symbol &quot;__imp_GetCurrentProcess&quot;
+  [1536] COFF Symbol &quot;.refptr.__xc_z&quot;
+  [1537] COFF Symbol &quot;___crt_xt_end__&quot;
+  [1538] COFF Symbol &quot;__lib64_libmsvcrt_a_iname&quot;
+  [1539] COFF Symbol &quot;vfprintf&quot;
+  [1540] COFF Symbol &quot;free&quot;
+  [1541] COFF Symbol &quot;__security_cookie&quot;
+INFO: Showing COFFSymbolRef
+COFF Symbol
+       Name: .file
+      Value: 102
+    Defined: Yes
+     Strong: Yes
+   Locality: Local
+INFO: Showing COFFRPath
+COFF RPath
+INFO: Showing COFFDynamicLinks
+COFF DynamicLinks
+  [1] COFF DynamicLink &quot;KERNEL32.dll&quot;
+  [2] COFF DynamicLink &quot;msvcrt.dll&quot;
+  [3] COFF DynamicLink &quot;libfoo.dll&quot;
+INFO: Showing COFFDynamicLink
+COFF DynamicLink &quot;KERNEL32.dll&quot;
+Test Summary: | Pass  Total
+win64         |   27     27
+Test Summary:            | Pass  Total
+ELF Version Info Parsing |    1      1
+Test Summary:      | Pass  Total
+git win32 problems |    7      7
+   Testing ObjectFile tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 17 hours ago and took 52 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/ObjectFile/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Reexport ─── v0.2.0
+ Installed StructIO ─── v0.3.0
+ Installed ObjectFile ─ v0.3.3
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [d8793406] + ObjectFile v0.3.3
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [d8793406] + ObjectFile v0.3.3
+  [189a3867] + Reexport v0.2.0
+  [53d494c1] + StructIO v0.3.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing ObjectFile
+Status `&#x2F;tmp&#x2F;jl_JVcwUH&#x2F;Manifest.toml`
+  [d8793406] ObjectFile v0.3.3
+  [189a3867] Reexport v0.2.0
+  [53d494c1] StructIO v0.3.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+INFO: Showing ELFHandle
+ELF Handle (32-bit)
+INFO: Showing ELFHeader32
+ELF Header
+  Type DYN
+  Machine 386
+  Entrypoint 0x330
+  PH Offset 0x34
+  SH Offset 0x1850
+  Header Size 0x34
+  PH Entry Size 0x20
+  PH Entry Count 6
+  SH Entry Size 0x28
+  SH Entry Count 30
+  Strtab Index 29
+
+INFO: Showing ELFSections
+ELF Sections
+  [1] ELF Section &quot;&quot;
+  [2] ELF Section &quot;.interp&quot;
+  [3] ELF Section &quot;.note.ABI-tag&quot;
+  [4] ELF Section &quot;.hash&quot;
+  [5] ELF Section &quot;.dynsym&quot;
+  [6] ELF Section &quot;.dynstr&quot;
+  [7] ELF Section &quot;.gnu.version&quot;
+  [8] ELF Section &quot;.gnu.version_r&quot;
+  [9] ELF Section &quot;.rel.dyn&quot;
+  [10] ELF Section &quot;.rel.plt&quot;
+   …
+  [24] ELF Section &quot;.data&quot;
+  [25] ELF Section &quot;.bss&quot;
+  [26] ELF Section &quot;.comment&quot;
+  [27] ELF Section &quot;.debug_aranges&quot;
+  [28] ELF Section &quot;.debug_info&quot;
+  [29] ELF Section &quot;.debug_abbrev&quot;
+  [30] ELF Section &quot;.debug_line&quot;
+  [31] ELF Section &quot;.debug_str&quot;
+  [32] ELF Section &quot;.symtab&quot;
+  [33] ELF Section &quot;.strtab&quot;
+  [34] ELF Section &quot;.shstrtab&quot;
+INFO: Showing ELFSectionRef
+ELF Section
+       Name: 
+       Size: 0x0
+     Offset: 0x0
+    Address: 0x0
+INFO: Showing ELFSegments
+ELF Segments
+  [1] ELFSegment LOAD
+  [2] ELFSegment LOAD
+  [3] ELFSegment DYNAMIC
+  [4] ELFSegment GNU_EH_FRAME
+  [5] ELFSegment GNU_STACK
+  [6] ELFSegment GNU_RELRO
+INFO: Showing ELFSegmentRef
+ELFSegment
+       Type: LOAD
+       Size: (File: 0x598,   Mem: 0x598)
+     Offset: 0x0
+    Address:  (Phy: 0x0 Virt: 0x0)
+INFO: Showing ELFSymbols
+ELF Symbols
+  [1] ELF Symbol &quot;&quot;
+  [2] ELF Symbol &quot;&quot;
+  [3] ELF Symbol &quot;&quot;
+  [4] ELF Symbol &quot;&quot;
+  [5] ELF Symbol &quot;&quot;
+  [6] ELF Symbol &quot;&quot;
+  [7] ELF Symbol &quot;&quot;
+  [8] ELF Symbol &quot;&quot;
+  [9] ELF Symbol &quot;&quot;
+  [10] ELF Symbol &quot;&quot;
+   …
+  [72] ELF Symbol &quot;foo&quot;
+  [73] ELF Symbol &quot;_end&quot;
+  [74] ELF Symbol &quot;_start&quot;
+  [75] ELF Symbol &quot;_fp_hw&quot;
+  [76] ELF Symbol &quot;__bss_start&quot;
+  [77] ELF Symbol &quot;main&quot;
+  [78] ELF Symbol &quot;__TMC_END__&quot;
+  [79] ELF Symbol &quot;atof@@GLIBC_2.0&quot;
+  [80] ELF Symbol &quot;_ITM_registerTMCloneTable&quot;
+  [81] ELF Symbol &quot;__x86.get_pc_thunk.di&quot;
+  [82] ELF Symbol &quot;_init&quot;
+INFO: Showing ELFSymbolRef
+ELF Symbol
+       Name: 
+      Value: 0
+    Defined: No
+     Strong: Yes
+   Locality: Local
+INFO: Showing ELFRPath
+ELF RPath
+  [1] &quot;\$ORIGIN&#x2F;..&#x2F;lib&quot;
+  [2] &quot;\$ORIGIN&quot;
+INFO: Showing ELFDynamicLinks
+ELF DynamicLinks
+  [1] ELF DynamicLink &quot;libfoo.so&quot;
+  [2] ELF DynamicLink &quot;libc.so.6&quot;
+INFO: Showing ELFDynamicLink
+ELF DynamicLink &quot;libfoo.so&quot;
+Test Summary: | Pass  Total
+linux32       |   30     30
+INFO: Showing ELFHandle
+ELF Handle (64-bit)
+INFO: Showing ELFHeader64
+ELF Header
+  Type DYN
+  Machine X86_64
+  Entrypoint 0x490
+  PH Offset 0x40
+  SH Offset 0x1978
+  Header Size 0x40
+  PH Entry Size 0x38
+  PH Entry Count 6
+  SH Entry Size 0x40
+  SH Entry Count 30
+  Strtab Index 29
+
+INFO: Showing ELFSections
+ELF Sections
+  [1] ELF Section &quot;&quot;
+  [2] ELF Section &quot;.interp&quot;
+  [3] ELF Section &quot;.note.ABI-tag&quot;
+  [4] ELF Section &quot;.hash&quot;
+  [5] ELF Section &quot;.dynsym&quot;
+  [6] ELF Section &quot;.dynstr&quot;
+  [7] ELF Section &quot;.gnu.version&quot;
+  [8] ELF Section &quot;.gnu.version_r&quot;
+  [9] ELF Section &quot;.rela.dyn&quot;
+  [10] ELF Section &quot;.rela.plt&quot;
+   …
+  [24] ELF Section &quot;.data&quot;
+  [25] ELF Section &quot;.bss&quot;
+  [26] ELF Section &quot;.comment&quot;
+  [27] ELF Section &quot;.debug_aranges&quot;
+  [28] ELF Section &quot;.debug_info&quot;
+  [29] ELF Section &quot;.debug_abbrev&quot;
+  [30] ELF Section &quot;.debug_line&quot;
+  [31] ELF Section &quot;.debug_str&quot;
+  [32] ELF Section &quot;.symtab&quot;
+  [33] ELF Section &quot;.strtab&quot;
+  [34] ELF Section &quot;.shstrtab&quot;
+INFO: Showing ELFSectionRef
+ELF Section
+       Name: 
+       Size: 0x0
+     Offset: 0x0
+    Address: 0x0
+INFO: Showing ELFSegments
+ELF Segments
+  [1] ELFSegment LOAD
+  [2] ELFSegment LOAD
+  [3] ELFSegment DYNAMIC
+  [4] ELFSegment GNU_EH_FRAME
+  [5] ELFSegment GNU_STACK
+  [6] ELFSegment GNU_RELRO
+INFO: Showing ELFSegmentRef
+ELFSegment
+       Type: LOAD
+       Size: (File: 0x63c,   Mem: 0x63c)
+     Offset: 0x0
+    Address:  (Phy: 0x0 Virt: 0x0)
+INFO: Showing ELFSymbols
+ELF Symbols
+  [1] ELF Symbol &quot;&quot;
+  [2] ELF Symbol &quot;&quot;
+  [3] ELF Symbol &quot;&quot;
+  [4] ELF Symbol &quot;&quot;
+  [5] ELF Symbol &quot;&quot;
+  [6] ELF Symbol &quot;&quot;
+  [7] ELF Symbol &quot;&quot;
+  [8] ELF Symbol &quot;&quot;
+  [9] ELF Symbol &quot;&quot;
+  [10] ELF Symbol &quot;&quot;
+   …
+  [60] ELF Symbol &quot;__dso_handle&quot;
+  [61] ELF Symbol &quot;_IO_stdin_used&quot;
+  [62] ELF Symbol &quot;__libc_csu_init&quot;
+  [63] ELF Symbol &quot;foo&quot;
+  [64] ELF Symbol &quot;_end&quot;
+  [65] ELF Symbol &quot;_start&quot;
+  [66] ELF Symbol &quot;__bss_start&quot;
+  [67] ELF Symbol &quot;main&quot;
+  [68] ELF Symbol &quot;__TMC_END__&quot;
+  [69] ELF Symbol &quot;_ITM_registerTMCloneTable&quot;
+  [70] ELF Symbol &quot;_init&quot;
+INFO: Showing ELFSymbolRef
+ELF Symbol
+       Name: 
+      Value: 0
+    Defined: No
+     Strong: Yes
+   Locality: Local
+INFO: Showing ELFRPath
+ELF RPath
+  [1] &quot;\$ORIGIN&#x2F;..&#x2F;lib&quot;
+  [2] &quot;\$ORIGIN&quot;
+INFO: Showing ELFDynamicLinks
+ELF DynamicLinks
+  [1] ELF DynamicLink &quot;libfoo.so&quot;
+  [2] ELF DynamicLink &quot;libc.so.6&quot;
+INFO: Showing ELFDynamicLink
+ELF DynamicLink &quot;libfoo.so&quot;
+Test Summary: | Pass  Total
+linux64       |   30     30
+INFO: Showing MachOHandle
+MachO Handle (64-bit)
+INFO: Showing MachOHeader64
+MachO Header
+  CPU Type 16777223
+  CPU Subtype 3
+  File Type 6
+  Number of load commands 13
+  Flags 1048709
+
+INFO: Showing MachOSections
+MachO Sections
+  [1] MachO Section &quot;__TEXT,__text&quot;
+  [2] MachO Section &quot;__TEXT,__stubs&quot;
+  [3] MachO Section &quot;__TEXT,__stub_helper&quot;
+  [4] MachO Section &quot;__TEXT,__cstring&quot;
+  [5] MachO Section &quot;__TEXT,__unwind_info&quot;
+  [6] MachO Section &quot;__DATA,__nl_symbol_ptr&quot;
+  [7] MachO Section &quot;__DATA,__la_symbol_ptr&quot;
+INFO: Showing MachOSection64
+MachO Section
+       Name: __TEXT,__text
+       Size: 0xb3
+     Offset: 0xe90
+    Address: 0x100000e90
+INFO: Showing MachOSegments
+MachO Segments
+  [1] MachO Segment __TEXT
+  [2] MachO Segment __LINKEDIT
+INFO: Showing MachOSegmentRef
+MachO Segment
+       Name: __TEXT
+       Size: (File: 0x1000,   Mem: 0x1000)
+     Offset: 0x0
+   Sections: 2
+INFO: Showing MachOSymbols
+MachO Symbols
+  [1] MachO Symbol &quot;&#x2F;Users&#x2F;sabae&#x2F;.julia&#x2F;v0.6&#x2F;BinDeps2&#x2F;test&#x2F;build_tests&#x2F;libfoo&#x2F;&quot;
+  [2] MachO Symbol &quot;fooifier.c&quot;
+  [3] MachO Symbol &quot;&#x2F;var&#x2F;folders&#x2F;c9&#x2F;ryfwjx1d4vv_81mpc4qbjgx00000gn&#x2F;T&#x2F;fooifier-4104d1.o&quot;
+  [4] MachO Symbol &quot;&quot;
+  [5] MachO Symbol &quot;_main&quot;
+  [6] MachO Symbol &quot;&quot;
+  [7] MachO Symbol &quot;&quot;
+  [8] MachO Symbol &quot;&quot;
+  [9] MachO Symbol &quot;__mh_execute_header&quot;
+  [10] MachO Symbol &quot;_main&quot;
+  [11] MachO Symbol &quot;_atof&quot;
+  [12] MachO Symbol &quot;_foo&quot;
+  [13] MachO Symbol &quot;_printf&quot;
+  [14] MachO Symbol &quot;dyld_stub_binder&quot;
+INFO: Showing MachOSymbolRef
+MachO Symbol
+       Name: &#x2F;Users&#x2F;sabae&#x2F;.julia&#x2F;v0.6&#x2F;BinDeps2&#x2F;test&#x2F;build_tests&#x2F;libfoo&#x2F;
+      Value: 0
+    Defined: Yes
+     Strong: Yes
+   Locality: Local
+INFO: Showing MachORPath
+MachO RPath
+  [1] &quot;@executable_path&#x2F;..&#x2F;lib&quot;
+  [2] &quot;@executable_path&quot;
+INFO: Showing MachODynamicLinks
+MachO DynamicLinks
+  [1] MachO DynamicLink &quot;@rpath&#x2F;libfoo.dylib&quot;
+  [2] MachO DynamicLink &quot;&#x2F;usr&#x2F;lib&#x2F;libSystem.B.dylib&quot;
+INFO: Showing MachODynamicLink
+MachO DynamicLink &quot;@rpath&#x2F;libfoo.dylib&quot;
+Test Summary: | Pass  Total
+mac64         |   27     27
+Test Summary: | Pass  Total
+macfat        |    2      2
+INFO: Showing COFFHandle
+COFF Handle (32-bit)
+INFO: Showing COFFHeader
+COFF Header
+  Machine 332
+  Number of Sections 17
+  Time Date Stamp 1505627831
+  Number of Symbols 978
+
+INFO: Showing COFFSections
+COFF Sections
+  [1] COFF Section &quot;.text&quot;
+  [2] COFF Section &quot;.data&quot;
+  [3] COFF Section &quot;.rdata&quot;
+  [4] COFF Section &quot;.bss&quot;
+  [5] COFF Section &quot;.idata&quot;
+  [6] COFF Section &quot;.CRT&quot;
+  [7] COFF Section &quot;.tls&quot;
+  [8] COFF Section &quot;.debug_aranges&quot;
+  [9] COFF Section &quot;.debug_info&quot;
+  [10] COFF Section &quot;.debug_abbrev&quot;
+  [11] COFF Section &quot;.debug_line&quot;
+  [12] COFF Section &quot;.debug_frame&quot;
+  [13] COFF Section &quot;.debug_str&quot;
+  [14] COFF Section &quot;.debug_loc&quot;
+  [15] COFF Section &quot;.debug_ranges&quot;
+INFO: Showing COFFSectionRef
+COFF Section
+       Name: .text
+       Size: 0x1a00
+     Offset: 0x400
+    Address: 0x1000
+INFO: Showing COFFSymbols
+COFF Symbols
+  [1] COFF Symbol &quot;.file&quot;
+  [2] COFF Symbol &quot;crtexe.c&quot;
+  [3] COFF Symbol &quot;___mingw_invalidParameterHandler&quot;
+  [4] COFF Symbol &quot;&quot;
+  [5] COFF Symbol &quot;_pre_c_init&quot;
+  [6] COFF Symbol &quot;_managedapp&quot;
+  [7] COFF Symbol &quot;_pre_cpp_init&quot;
+  [8] COFF Symbol &quot;_startinfo&quot;
+  [9] COFF Symbol &quot;_envp&quot;
+  [10] COFF Symbol &quot;_argv&quot;
+   …
+  [1313] COFF Symbol &quot;_printf&quot;
+  [1314] COFF Symbol &quot;__RUNTIME_PSEUDO_RELOC_LIST_END__&quot;
+  [1315] COFF Symbol &quot;___dyn_tls_init_callback&quot;
+  [1316] COFF Symbol &quot;_Sleep@4&quot;
+  [1317] COFF Symbol &quot;_mingw_initcharmax&quot;
+  [1318] COFF Symbol &quot;__imp____setusermatherr&quot;
+  [1319] COFF Symbol &quot;__tls_used&quot;
+  [1320] COFF Symbol &quot;___crt_xt_end__&quot;
+  [1321] COFF Symbol &quot;_vfprintf&quot;
+  [1322] COFF Symbol &quot;__imp__EnterCriticalSection@4&quot;
+  [1323] COFF Symbol &quot;__imp__fwrite&quot;
+INFO: Showing COFFSymbolRef
+COFF Symbol
+       Name: .file
+      Value: 44
+    Defined: Yes
+     Strong: Yes
+   Locality: Local
+INFO: Showing COFFRPath
+COFF RPath
+INFO: Showing COFFDynamicLinks
+COFF DynamicLinks
+  [1] COFF DynamicLink &quot;KERNEL32.dll&quot;
+  [2] COFF DynamicLink &quot;msvcrt.dll&quot;
+  [3] COFF DynamicLink &quot;libfoo.dll&quot;
+INFO: Showing COFFDynamicLink
+COFF DynamicLink &quot;KERNEL32.dll&quot;
+Test Summary: | Pass  Total
+win32         |   27     27
+INFO: Showing COFFHandle
+COFF Handle (64-bit)
+INFO: Showing COFFHeader
+COFF Header
+  Machine 34404
+  Number of Sections 19
+  Time Date Stamp 1505627802
+  Number of Symbols 1174
+
+INFO: Showing COFFSections
+COFF Sections
+  [1] COFF Section &quot;.text&quot;
+  [2] COFF Section &quot;.data&quot;
+  [3] COFF Section &quot;.rdata&quot;
+  [4] COFF Section &quot;.pdata&quot;
+  [5] COFF Section &quot;.xdata&quot;
+  [6] COFF Section &quot;.bss&quot;
+  [7] COFF Section &quot;.idata&quot;
+  [8] COFF Section &quot;.CRT&quot;
+  [9] COFF Section &quot;.tls&quot;
+  [10] COFF Section &quot;.debug_aranges&quot;
+  [11] COFF Section &quot;.debug_info&quot;
+  [12] COFF Section &quot;.debug_abbrev&quot;
+  [13] COFF Section &quot;.debug_line&quot;
+  [14] COFF Section &quot;.debug_frame&quot;
+  [15] COFF Section &quot;.debug_str&quot;
+  [16] COFF Section &quot;.debug_loc&quot;
+  [17] COFF Section &quot;.debug_ranges&quot;
+INFO: Showing COFFSectionRef
+COFF Section
+       Name: .text
+       Size: 0x2000
+     Offset: 0x600
+    Address: 0x1000
+INFO: Showing COFFSymbols
+COFF Symbols
+  [1] COFF Symbol &quot;.file&quot;
+  [2] COFF Symbol &quot;crtexe.c&quot;
+  [3] COFF Symbol &quot;__mingw_invalidParameterHandler&quot;
+  [4] COFF Symbol &quot;&quot;
+  [5] COFF Symbol &quot;pre_c_init&quot;
+  [6] COFF Symbol &quot;.rdata$.refptr.mingw_initltsdrot_force&quot;
+  [7] COFF Symbol &quot;&quot;
+  [8] COFF Symbol &quot;.rdata$.refptr.mingw_initltsdyn_force&quot;
+  [9] COFF Symbol &quot;&quot;
+  [10] COFF Symbol &quot;.rdata$.refptr.mingw_initltssuo_force&quot;
+   …
+  [1531] COFF Symbol &quot;__imp_RtlCaptureContext&quot;
+  [1532] COFF Symbol &quot;__RUNTIME_PSEUDO_RELOC_LIST_END__&quot;
+  [1533] COFF Symbol &quot;__dllonexit&quot;
+  [1534] COFF Symbol &quot;_unlock&quot;
+  [1535] COFF Symbol &quot;__imp_GetCurrentProcess&quot;
+  [1536] COFF Symbol &quot;.refptr.__xc_z&quot;
+  [1537] COFF Symbol &quot;___crt_xt_end__&quot;
+  [1538] COFF Symbol &quot;__lib64_libmsvcrt_a_iname&quot;
+  [1539] COFF Symbol &quot;vfprintf&quot;
+  [1540] COFF Symbol &quot;free&quot;
+  [1541] COFF Symbol &quot;__security_cookie&quot;
+INFO: Showing COFFSymbolRef
+COFF Symbol
+       Name: .file
+      Value: 102
+    Defined: Yes
+     Strong: Yes
+   Locality: Local
+INFO: Showing COFFRPath
+COFF RPath
+INFO: Showing COFFDynamicLinks
+COFF DynamicLinks
+  [1] COFF DynamicLink &quot;KERNEL32.dll&quot;
+  [2] COFF DynamicLink &quot;msvcrt.dll&quot;
+  [3] COFF DynamicLink &quot;libfoo.dll&quot;
+INFO: Showing COFFDynamicLink
+COFF DynamicLink &quot;KERNEL32.dll&quot;
+Test Summary: | Pass  Total
+win64         |   27     27
+Test Summary:            | Pass  Total
+ELF Version Info Parsing |    1      1
+Test Summary:      | Pass  Total
+git win32 problems |    7      7
+   Testing ObjectFile tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

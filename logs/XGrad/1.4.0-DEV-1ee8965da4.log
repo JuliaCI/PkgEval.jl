@@ -1,0 +1,106 @@
+ Resolving package versions...
+ Installed XGrad ──── v0.2.0
+ Installed Espresso ─ v0.6.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [c48004fe] + XGrad v0.2.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [6912e4f1] + Espresso v0.6.0
+  [c48004fe] + XGrad v0.2.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+   Testing XGrad
+Status `/tmp/jl_eax7Wm/Manifest.toml`
+  [6912e4f1] Espresso v0.6.0
+  [c48004fe] XGrad v0.2.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+Test Summary: | Pass  Total
+tricky        |    1      1
+[ Info: Failed to evaluate node (in module Main): ExNode{=}(z = SSAValue_1 | nothing)
+aggregation: Error During Test at /root/.julia/packages/XGrad/BiVLZ/test/aggr.jl:2
+  Got exception outside of a @test
+  KeyError: key :SSAValue_1 not found
+  Stacktrace:
+   [1] evaluate!(::Espresso.ExGraph; force::Bool) at /root/.julia/packages/Espresso/Lewh0/src/evaluate.jl:148
+   [2] evaluate! at /root/.julia/packages/Espresso/Lewh0/src/evaluate.jl:142 [inlined]
+   [3] forward_pass!(::Espresso.ExGraph) at /root/.julia/packages/XGrad/BiVLZ/src/xdiff.jl:41
+   [4] _xdiff(::Espresso.ExGraph) at /root/.julia/packages/XGrad/BiVLZ/src/xdiff.jl:226
+   [5] xdiff(::Expr; ctx::Dict{Any,Any}, inputs::Base.Iterators.Pairs{Symbol,Array{Float64,1},Tuple{Symbol},NamedTuple{(:x,),Tuple{Array{Float64,1}}}}) at /root/.julia/packages/XGrad/BiVLZ/src/xdiff.jl:254
+   [6] xdiff_parse(::Function; ctx::Dict{Any,Any}, inputs::Base.Iterators.Pairs{Symbol,Array{Float64,1},Tuple{Symbol},NamedTuple{(:x,),Tuple{Array{Float64,1}}}}) at /root/.julia/packages/XGrad/BiVLZ/src/xdiff.jl:292
+   [7] xdiff(::Function; ctx::Dict{Any,Any}, inputs::Base.Iterators.Pairs{Symbol,Array{Float64,1},Tuple{Symbol},NamedTuple{(:x,),Tuple{Array{Float64,1}}}}) at /root/.julia/packages/XGrad/BiVLZ/src/xdiff.jl:314
+   [8] test_compare(::Function; inputs::Base.Iterators.Pairs{Symbol,Array{Float64,1},Tuple{Symbol},NamedTuple{(:x,),Tuple{Array{Float64,1}}}}) at /root/.julia/packages/XGrad/BiVLZ/test/runtests.jl:8
+   [9] top-level scope at /root/.julia/packages/XGrad/BiVLZ/test/aggr.jl:12
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/XGrad/BiVLZ/test/aggr.jl:4
+   [12] include(::String) at ./client.jl:439
+   [13] top-level scope at /root/.julia/packages/XGrad/BiVLZ/test/runtests.jl:30
+   [14] include(::String) at ./client.jl:439
+   [15] top-level scope at none:6
+   [16] eval(::Module, ::Any) at ./boot.jl:331
+   [17] exec_options(::Base.JLOptions) at ./client.jl:264
+   [18] _start() at ./client.jl:484
+  caused by [exception 1]
+  KeyError: key :SSAValue_1 not found
+  Stacktrace:
+   [1] getindex at ./dict.jl:477 [inlined]
+   [2] getindex at /root/.julia/packages/Espresso/Lewh0/src/exgraph.jl:68 [inlined]
+   [3] evaluate!(::Espresso.ExGraph, ::Espresso.ExNode{:(=)}; force::Bool) at /root/.julia/packages/Espresso/Lewh0/src/evaluate.jl:101
+   [4] evaluate!(::Espresso.ExGraph; force::Bool) at /root/.julia/packages/Espresso/Lewh0/src/evaluate.jl:144
+   [5] evaluate! at /root/.julia/packages/Espresso/Lewh0/src/evaluate.jl:142 [inlined]
+   [6] forward_pass!(::Espresso.ExGraph) at /root/.julia/packages/XGrad/BiVLZ/src/xdiff.jl:41
+   [7] _xdiff(::Espresso.ExGraph) at /root/.julia/packages/XGrad/BiVLZ/src/xdiff.jl:226
+   [8] xdiff(::Expr; ctx::Dict{Any,Any}, inputs::Base.Iterators.Pairs{Symbol,Array{Float64,1},Tuple{Symbol},NamedTuple{(:x,),Tuple{Array{Float64,1}}}}) at /root/.julia/packages/XGrad/BiVLZ/src/xdiff.jl:254
+   [9] xdiff_parse(::Function; ctx::Dict{Any,Any}, inputs::Base.Iterators.Pairs{Symbol,Array{Float64,1},Tuple{Symbol},NamedTuple{(:x,),Tuple{Array{Float64,1}}}}) at /root/.julia/packages/XGrad/BiVLZ/src/xdiff.jl:292
+   [10] xdiff(::Function; ctx::Dict{Any,Any}, inputs::Base.Iterators.Pairs{Symbol,Array{Float64,1},Tuple{Symbol},NamedTuple{(:x,),Tuple{Array{Float64,1}}}}) at /root/.julia/packages/XGrad/BiVLZ/src/xdiff.jl:314
+   [11] test_compare(::Function; inputs::Base.Iterators.Pairs{Symbol,Array{Float64,1},Tuple{Symbol},NamedTuple{(:x,),Tuple{Array{Float64,1}}}}) at /root/.julia/packages/XGrad/BiVLZ/test/runtests.jl:8
+   [12] top-level scope at /root/.julia/packages/XGrad/BiVLZ/test/aggr.jl:12
+   [13] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [14] top-level scope at /root/.julia/packages/XGrad/BiVLZ/test/aggr.jl:4
+   [15] include(::String) at ./client.jl:439
+   [16] top-level scope at /root/.julia/packages/XGrad/BiVLZ/test/runtests.jl:30
+   [17] include(::String) at ./client.jl:439
+   [18] top-level scope at none:6
+   [19] eval(::Module, ::Any) at ./boot.jl:331
+   [20] exec_options(::Base.JLOptions) at ./client.jl:264
+   [21] _start() at ./client.jl:484
+  
+Test Summary: | Error  Total
+aggregation   |     1      1
+ERROR: LoadError: LoadError: Some tests did not pass: 0 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /root/.julia/packages/XGrad/BiVLZ/test/aggr.jl:2
+in expression starting at /root/.julia/packages/XGrad/BiVLZ/test/runtests.jl:30
+ERROR: Package XGrad errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

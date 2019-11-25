@@ -1,0 +1,248 @@
+ Resolving package versions...
+ Installed Primes ──────────── v0.4.0
+ Installed DistributedArrays ─ v0.6.4
+ Installed Elemental ───────── v0.5.0
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [902c3f28] + Elemental v0.5.0
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [aaf54ef3] + DistributedArrays v0.6.4
+  [902c3f28] + Elemental v0.5.0
+  [27ebfcd6] + Primes v0.4.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  Building Elemental → `~/.julia/packages/Elemental/ovOAZ/deps/build.log`
+┌ Error: Error building `Elemental`: 
+│ ERROR: LoadError: IOError: could not spawn `cmake -D CMAKE_INSTALL_PREFIX=/root/.julia/packages/Elemental/ovOAZ/deps/usr -D INSTALL_PYTHON_PACKAGE=OFF -D PYTHON_EXECUTABLE= -D PYTHON_SITE_PACKAGES= -D EL_USE_64BIT_INTS=ON -D EL_USE_64BIT_BLAS_INTS=ON -D MATH_LIBS=/opt/julia/bin/../lib/julia/libopenblas64_.so -D EL_BLAS_SUFFIX=_64_ -D EL_LAPACK_SUFFIX=_64_ -D CMAKE_INSTALL_LIBDIR=/root/.julia/packages/Elemental/ovOAZ/deps/usr/lib -D CMAKE_INSTALL_RPATH=/root/.julia/packages/Elemental/ovOAZ/deps/usr/lib /root/.julia/packages/Elemental/ovOAZ/deps/src/Elemental`: no such file or directory (ENOENT)
+│ Stacktrace:
+│  [1] _spawn_primitive(::String, ::Cmd, ::Array{Any,1}) at ./process.jl:401
+│  [2] setup_stdios(::getfield(Base, Symbol("##526#527")){Cmd}, ::Array{Any,1}) at ./process.jl:414
+│  [3] _spawn at ./process.jl:413 [inlined]
+│  [4] #run#536(::Bool, ::typeof(run), ::Cmd) at ./process.jl:727
+│  [5] run at ./process.jl:726 [inlined]
+│  [6] (::getfield(Main, Symbol("##5#6")))() at /root/.julia/packages/Elemental/ovOAZ/deps/build.jl:43
+│  [7] cd(::getfield(Main, Symbol("##5#6")), ::String) at ./file.jl:96
+│  [8] top-level scope at /root/.julia/packages/Elemental/ovOAZ/deps/build.jl:42
+│  [9] include at ./boot.jl:328 [inlined]
+│  [10] include_relative(::Module, ::String) at ./loading.jl:1094
+│  [11] include(::Module, ::String) at ./Base.jl:31
+│  [12] include(::String) at ./client.jl:431
+│  [13] top-level scope at none:5
+│ in expression starting at /root/.julia/packages/Elemental/ovOAZ/deps/build.jl:42
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:647
+   Testing Elemental
+ Resolving package versions...
+ Installed Requires ─ v0.5.2
+ Installed MPI ────── v0.10.1
+  Building MPI → `~/.julia/packages/MPI/9zBr2/deps/build.log`
+┌ Error: Error building `MPI`: 
+│ [ Info: Using MPI library 
+│ ERROR: LoadError: ccall: could not find function MPI_Get_version in library 
+│ Stacktrace:
+│  [1] Get_version() at /root/.julia/packages/MPI/9zBr2/deps/build.jl:65
+│  [2] top-level scope at /root/.julia/packages/MPI/9zBr2/deps/build.jl:71
+│  [3] include at ./boot.jl:328 [inlined]
+│  [4] include_relative(::Module, ::String) at ./loading.jl:1094
+│  [5] include(::Module, ::String) at ./Base.jl:31
+│  [6] include(::String) at ./client.jl:431
+│  [7] top-level scope at none:5
+│ in expression starting at /root/.julia/packages/MPI/9zBr2/deps/build.jl:71
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:647
+    Status `/tmp/jl_VxrYxD/Manifest.toml`
+  [aaf54ef3] DistributedArrays v0.6.4
+  [902c3f28] Elemental v0.5.0
+  [da04e1cc] MPI v0.10.1
+  [27ebfcd6] Primes v0.4.0
+  [ae029012] Requires v0.5.2
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+[ Info: Running Elemental.jl tests
+	Error: lav.jl
+IOError: could not spawn `mpirun -np 4 /opt/julia/bin/julia -Cnative -J/opt/julia/lib/julia/sys.so --check-bounds=yes -g1 /root/.julia/packages/Elemental/ovOAZ/test/lav.jl`: no such file or directory (ENOENT)
+Stacktrace:
+ [1] (::getfield(Main, Symbol("##4#6")){String,Base.IOError})(::IOContext{Base.GenericIOBuffer{Array{UInt8,1}}}) at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:18
+ [2] #with_output_color#674(::Bool, ::typeof(Base.with_output_color), ::Function, ::Symbol, ::Base.PipeEndpoint) at ./util.jl:366
+ [3] with_output_color(::Function, ::Symbol, ::Base.PipeEndpoint) at ./util.jl:364
+ [4] runtests_mpirun() at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:16
+ [5] runtests() at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:54
+ [6] top-level scope at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:57
+ [7] include at ./boot.jl:328 [inlined]
+ [8] include_relative(::Module, ::String) at ./loading.jl:1094
+ [9] include(::Module, ::String) at ./Base.jl:31
+ [10] include(::String) at ./client.jl:431
+ [11] top-level scope at none:5
+ [12] eval(::Module, ::Any) at ./boot.jl:330
+ [13] exec_options(::Base.JLOptions) at ./client.jl:271
+ [14] _start() at ./client.jl:464	Error: lavdense.jl
+IOError: could not spawn `mpirun -np 4 /opt/julia/bin/julia -Cnative -J/opt/julia/lib/julia/sys.so --check-bounds=yes -g1 /root/.julia/packages/Elemental/ovOAZ/test/lavdense.jl`: no such file or directory (ENOENT)
+Stacktrace:
+ [1] (::getfield(Main, Symbol("##4#6")){String,Base.IOError})(::IOContext{Base.GenericIOBuffer{Array{UInt8,1}}}) at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:18
+ [2] #with_output_color#674(::Bool, ::typeof(Base.with_output_color), ::Function, ::Symbol, ::Base.PipeEndpoint) at ./util.jl:366
+ [3] with_output_color(::Function, ::Symbol, ::Base.PipeEndpoint) at ./util.jl:364
+ [4] runtests_mpirun() at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:16
+ [5] runtests() at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:54
+ [6] top-level scope at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:57
+ [7] include at ./boot.jl:328 [inlined]
+ [8] include_relative(::Module, ::String) at ./loading.jl:1094
+ [9] include(::Module, ::String) at ./Base.jl:31
+ [10] include(::String) at ./client.jl:431
+ [11] top-level scope at none:5
+ [12] eval(::Module, ::Any) at ./boot.jl:330
+ [13] exec_options(::Base.JLOptions) at ./client.jl:271
+ [14] _start() at ./client.jl:464	Error: matrix.jl
+IOError: could not spawn `mpirun -np 4 /opt/julia/bin/julia -Cnative -J/opt/julia/lib/julia/sys.so --check-bounds=yes -g1 /root/.julia/packages/Elemental/ovOAZ/test/matrix.jl`: no such file or directory (ENOENT)
+Stacktrace:
+ [1] (::getfield(Main, Symbol("##4#6")){String,Base.IOError})(::IOContext{Base.GenericIOBuffer{Array{UInt8,1}}}) at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:18
+ [2] #with_output_color#674(::Bool, ::typeof(Base.with_output_color), ::Function, ::Symbol, ::Base.PipeEndpoint) at ./util.jl:366
+ [3] with_output_color(::Function, ::Symbol, ::Base.PipeEndpoint) at ./util.jl:364
+ [4] runtests_mpirun() at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:16
+ [5] runtests() at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:54
+ [6] top-level scope at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:57
+ [7] include at ./boot.jl:328 [inlined]
+ [8] include_relative(::Module, ::String) at ./loading.jl:1094
+ [9] include(::Module, ::String) at ./Base.jl:31
+ [10] include(::String) at ./client.jl:431
+ [11] top-level scope at none:5
+ [12] eval(::Module, ::Any) at ./boot.jl:330
+ [13] exec_options(::Base.JLOptions) at ./client.jl:271
+ [14] _start() at ./client.jl:464	Error: distmatrix.jl
+IOError: could not spawn `mpirun -np 4 /opt/julia/bin/julia -Cnative -J/opt/julia/lib/julia/sys.so --check-bounds=yes -g1 /root/.julia/packages/Elemental/ovOAZ/test/distmatrix.jl`: no such file or directory (ENOENT)
+Stacktrace:
+ [1] (::getfield(Main, Symbol("##4#6")){String,Base.IOError})(::IOContext{Base.GenericIOBuffer{Array{UInt8,1}}}) at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:18
+ [2] #with_output_color#674(::Bool, ::typeof(Base.with_output_color), ::Function, ::Symbol, ::Base.PipeEndpoint) at ./util.jl:366
+ [3] with_output_color(::Function, ::Symbol, ::Base.PipeEndpoint) at ./util.jl:364
+ [4] runtests_mpirun() at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:16
+ [5] runtests() at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:54
+ [6] top-level scope at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:57
+ [7] include at ./boot.jl:328 [inlined]
+ [8] include_relative(::Module, ::String) at ./loading.jl:1094
+ [9] include(::Module, ::String) at ./Base.jl:31
+ [10] include(::String) at ./client.jl:431
+ [11] top-level scope at none:5
+ [12] eval(::Module, ::Any) at ./boot.jl:330
+ [13] exec_options(::Base.JLOptions) at ./client.jl:271
+ [14] _start() at ./client.jl:464	Error: props.jl
+IOError: could not spawn `mpirun -np 4 /opt/julia/bin/julia -Cnative -J/opt/julia/lib/julia/sys.so --check-bounds=yes -g1 /root/.julia/packages/Elemental/ovOAZ/test/props.jl`: no such file or directory (ENOENT)
+Stacktrace:
+ [1] (::getfield(Main, Symbol("##4#6")){String,Base.IOError})(::IOContext{Base.GenericIOBuffer{Array{UInt8,1}}}) at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:18
+ [2] #with_output_color#674(::Bool, ::typeof(Base.with_output_color), ::Function, ::Symbol, ::Base.PipeEndpoint) at ./util.jl:366
+ [3] with_output_color(::Function, ::Symbol, ::Base.PipeEndpoint) at ./util.jl:364
+ [4] runtests_mpirun() at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:16
+ [5] runtests() at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:54
+ [6] top-level scope at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:57
+ [7] include at ./boot.jl:328 [inlined]
+ [8] include_relative(::Module, ::String) at ./loading.jl:1094
+ [9] include(::Module, ::String) at ./Base.jl:31
+ [10] include(::String) at ./client.jl:431
+ [11] top-level scope at none:5
+ [12] eval(::Module, ::Any) at ./boot.jl:330
+ [13] exec_options(::Base.JLOptions) at ./client.jl:271
+ [14] _start() at ./client.jl:464	Error: generic.jl
+IOError: could not spawn `mpirun -np 4 /opt/julia/bin/julia -Cnative -J/opt/julia/lib/julia/sys.so --check-bounds=yes -g1 /root/.julia/packages/Elemental/ovOAZ/test/generic.jl`: no such file or directory (ENOENT)
+Stacktrace:
+ [1] (::getfield(Main, Symbol("##4#6")){String,Base.IOError})(::IOContext{Base.GenericIOBuffer{Array{UInt8,1}}}) at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:18
+ [2] #with_output_color#674(::Bool, ::typeof(Base.with_output_color), ::Function, ::Symbol, ::Base.PipeEndpoint) at ./util.jl:366
+ [3] with_output_color(::Function, ::Symbol, ::Base.PipeEndpoint) at ./util.jl:364
+ [4] runtests_mpirun() at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:16
+ [5] runtests() at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:54
+ [6] top-level scope at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:57
+ [7] include at ./boot.jl:328 [inlined]
+ [8] include_relative(::Module, ::String) at ./loading.jl:1094
+ [9] include(::Module, ::String) at ./Base.jl:31
+ [10] include(::String) at ./client.jl:431
+ [11] top-level scope at none:5
+ [12] eval(::Module, ::Any) at ./boot.jl:330
+ [13] exec_options(::Base.JLOptions) at ./client.jl:271
+ [14] _start() at ./client.jl:464	Error: spectral.jl
+IOError: could not spawn `mpirun -np 4 /opt/julia/bin/julia -Cnative -J/opt/julia/lib/julia/sys.so --check-bounds=yes -g1 /root/.julia/packages/Elemental/ovOAZ/test/spectral.jl`: no such file or directory (ENOENT)
+Stacktrace:
+ [1] (::getfield(Main, Symbol("##4#6")){String,Base.IOError})(::IOContext{Base.GenericIOBuffer{Array{UInt8,1}}}) at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:18
+ [2] #with_output_color#674(::Bool, ::typeof(Base.with_output_color), ::Function, ::Symbol, ::Base.PipeEndpoint) at ./util.jl:366
+ [3] with_output_color(::Function, ::Symbol, ::Base.PipeEndpoint) at ./util.jl:364
+ [4] runtests_mpirun() at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:16
+ [5] runtests() at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:54
+ [6] top-level scope at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:57
+ [7] include at ./boot.jl:328 [inlined]
+ [8] include_relative(::Module, ::String) at ./loading.jl:1094
+ [9] include(::Module, ::String) at ./Base.jl:31
+ [10] include(::String) at ./client.jl:431
+ [11] top-level scope at none:5
+ [12] eval(::Module, ::Any) at ./boot.jl:330
+ [13] exec_options(::Base.JLOptions) at ./client.jl:271
+ [14] _start() at ./client.jl:464[ Info: Running Elemental.jl tests
+ERROR: LoadError: could not open file /root/.julia/packages/MPI/9zBr2/deps/deps.jl
+Stacktrace:
+ [1] include at ./boot.jl:328 [inlined]
+ [2] include_relative(::Module, ::String) at ./loading.jl:1094
+ [3] include at ./Base.jl:31 [inlined]
+ [4] include(::String) at /root/.julia/packages/MPI/9zBr2/src/MPI.jl:1
+ [5] top-level scope at /root/.julia/packages/MPI/9zBr2/src/MPI.jl:40
+ [6] include at ./boot.jl:328 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1094
+ [8] include(::Module, ::String) at ./Base.jl:31
+ [9] top-level scope at none:2
+ [10] eval at ./boot.jl:330 [inlined]
+ [11] eval(::Expr) at ./client.jl:432
+ [12] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/MPI/9zBr2/src/MPI.jl:40
+ERROR: Failed to precompile MPI [da04e1cc-30fd-572f-bb4f-1f8673147195] to /root/.julia/compiled/v1.2/MPI/nO0XF.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1253
+ [3] _require(::Base.PkgId) at ./loading.jl:1013
+ [4] require(::Base.PkgId) at ./loading.jl:911
+ [5] require(::Module, ::Symbol) at ./loading.jl:906
+	Error: darray.jl
+failed process: Process(`/opt/julia/bin/julia -e 'using Distributed, MPI; man = MPIManager(np = 4); addprocs(man); include("/root/.julia/packages/Elemental/ovOAZ/test/darray.jl"); asyncmap(p -> remotecall_fetch(() -> Elemental.Finalize(), p), workers())'`, ProcessExited(1)) [1]
+
+Stacktrace:
+ [1] (::getfield(Main, Symbol("##8#10")){String,ProcessFailedException})(::IOContext{Base.GenericIOBuffer{Array{UInt8,1}}}) at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:45
+ [2] #with_output_color#674(::Bool, ::typeof(Base.with_output_color), ::Function, ::Symbol, ::Base.PipeEndpoint) at ./util.jl:366
+ [3] with_output_color(::Function, ::Symbol, ::Base.PipeEndpoint) at ./util.jl:364
+ [4] runtests_repl() at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:43
+ [5] runtests() at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:54
+ [6] top-level scope at /root/.julia/packages/Elemental/ovOAZ/test/runtests.jl:57
+ [7] include at ./boot.jl:328 [inlined]
+ [8] include_relative(::Module, ::String) at ./loading.jl:1094
+ [9] include(::Module, ::String) at ./Base.jl:31
+ [10] include(::String) at ./client.jl:431
+ [11] top-level scope at none:5
+ [12] eval(::Module, ::Any) at ./boot.jl:330
+ [13] exec_options(::Base.JLOptions) at ./client.jl:271
+ [14] _start() at ./client.jl:464ERROR: Package Elemental errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1288
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

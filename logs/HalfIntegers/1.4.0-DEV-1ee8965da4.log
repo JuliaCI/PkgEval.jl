@@ -1,0 +1,2797 @@
+ Resolving package versions...
+ Installed HalfIntegers ─ v0.1.3
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [f0d1745a] + HalfIntegers v0.1.3
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [f0d1745a] + HalfIntegers v0.1.3
+   Testing HalfIntegers
+ Resolving package versions...
+ Installed Tokenize ─────────── v0.5.6
+ Installed Compat ───────────── v3.0.0
+ Installed OrderedCollections ─ v1.1.0
+ Installed CSTParser ────────── v1.0.0
+ Installed SaferIntegers ────── v2.5.0
+ Installed MacroTools ───────── v0.5.1
+ Installed DataStructures ───── v0.17.6
+No changes
+Status `/tmp/jl_2bDaHr/Manifest.toml`
+  [00ebfdb7] CSTParser v1.0.0
+  [34da2185] Compat v3.0.0
+  [864edb3b] DataStructures v0.17.6
+  [f0d1745a] HalfIntegers v0.1.3
+  [1914dd2f] MacroTools v0.5.1
+  [bac558e1] OrderedCollections v1.1.0
+  [88634af6] SaferIntegers v2.5.0
+  [0796e94c] Tokenize v0.5.6
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib/SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Test Summary: | Pass  Total
+Constructors  |  382    382
+Test Summary: | Pass  Total
+Conversion    |  945    945
+Test Summary: | Pass  Total
+half          |  584    584
+Test Summary: | Pass  Total
+twice         |  808    808
+Test Summary: | Pass  Total
+onehalf       |   44     44
+Test Summary: | Pass  Total
+Properties    |  316    316
+Test Summary: | Pass  Total
+Comparison    | 3057   3057
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+  Test threw exception
+  Expression: fld(HalfInt(9 / 2), 3) == 1
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int64}, ::Int64) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+  Test threw exception
+  Expression: cld(HalfInt(9 / 2), 3) == 2
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int64}, ::Int64) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+  Test threw exception
+  Expression: fld(HalfInt(7 / 2), big(-2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int64}, ::BigInt) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+  Test threw exception
+  Expression: cld(HalfInt(7 / 2), big(-2)) == -1
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int64}, ::BigInt) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+  Test threw exception
+  Expression: fld(4, HalfInt(3 / 2)) == 2
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Int64, ::Half{Int64}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+  Test threw exception
+  Expression: cld(4, HalfInt(3 / 2)) == 3
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Int64, ::Half{Int64}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+  Test threw exception
+  Expression: fld(big(-7), HalfInt(5 / 2)) == -3
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::BigInt, ::Half{Int64}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+  Test threw exception
+  Expression: cld(big(-7), HalfInt(5 / 2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::BigInt, ::Half{Int64}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+  Test threw exception
+  Expression: fld(HalfInt8(9 / 2), 3) == 1
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int8}, ::Int64) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+  Test threw exception
+  Expression: cld(HalfInt8(9 / 2), 3) == 2
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int8}, ::Int64) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+  Test threw exception
+  Expression: fld(HalfInt8(7 / 2), big(-2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int8}, ::BigInt) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+  Test threw exception
+  Expression: cld(HalfInt8(7 / 2), big(-2)) == -1
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int8}, ::BigInt) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+  Test threw exception
+  Expression: fld(4, HalfInt8(3 / 2)) == 2
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Int64, ::Half{Int8}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+  Test threw exception
+  Expression: cld(4, HalfInt8(3 / 2)) == 3
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Int64, ::Half{Int8}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+  Test threw exception
+  Expression: fld(big(-7), HalfInt8(5 / 2)) == -3
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::BigInt, ::Half{Int8}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+  Test threw exception
+  Expression: cld(big(-7), HalfInt8(5 / 2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::BigInt, ::Half{Int8}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+  Test threw exception
+  Expression: fld(HalfInt16(9 / 2), 3) == 1
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int16}, ::Int64) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+  Test threw exception
+  Expression: cld(HalfInt16(9 / 2), 3) == 2
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int16}, ::Int64) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+  Test threw exception
+  Expression: fld(HalfInt16(7 / 2), big(-2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int16}, ::BigInt) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+  Test threw exception
+  Expression: cld(HalfInt16(7 / 2), big(-2)) == -1
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int16}, ::BigInt) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+  Test threw exception
+  Expression: fld(4, HalfInt16(3 / 2)) == 2
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Int64, ::Half{Int16}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+  Test threw exception
+  Expression: cld(4, HalfInt16(3 / 2)) == 3
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Int64, ::Half{Int16}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+  Test threw exception
+  Expression: fld(big(-7), HalfInt16(5 / 2)) == -3
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::BigInt, ::Half{Int16}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+  Test threw exception
+  Expression: cld(big(-7), HalfInt16(5 / 2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::BigInt, ::Half{Int16}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+  Test threw exception
+  Expression: fld(HalfInt32(9 / 2), 3) == 1
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int32}, ::Int64) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+  Test threw exception
+  Expression: cld(HalfInt32(9 / 2), 3) == 2
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int32}, ::Int64) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+  Test threw exception
+  Expression: fld(HalfInt32(7 / 2), big(-2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int32}, ::BigInt) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+  Test threw exception
+  Expression: cld(HalfInt32(7 / 2), big(-2)) == -1
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int32}, ::BigInt) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+  Test threw exception
+  Expression: fld(4, HalfInt32(3 / 2)) == 2
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Int64, ::Half{Int32}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+  Test threw exception
+  Expression: cld(4, HalfInt32(3 / 2)) == 3
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Int64, ::Half{Int32}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+  Test threw exception
+  Expression: fld(big(-7), HalfInt32(5 / 2)) == -3
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::BigInt, ::Half{Int32}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+  Test threw exception
+  Expression: cld(big(-7), HalfInt32(5 / 2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::BigInt, ::Half{Int32}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+  Test threw exception
+  Expression: fld(HalfInt64(9 / 2), 3) == 1
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int64}, ::Int64) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+  Test threw exception
+  Expression: cld(HalfInt64(9 / 2), 3) == 2
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int64}, ::Int64) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+  Test threw exception
+  Expression: fld(HalfInt64(7 / 2), big(-2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int64}, ::BigInt) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+  Test threw exception
+  Expression: cld(HalfInt64(7 / 2), big(-2)) == -1
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int64}, ::BigInt) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+  Test threw exception
+  Expression: fld(4, HalfInt64(3 / 2)) == 2
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Int64, ::Half{Int64}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+  Test threw exception
+  Expression: cld(4, HalfInt64(3 / 2)) == 3
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Int64, ::Half{Int64}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+  Test threw exception
+  Expression: fld(big(-7), HalfInt64(5 / 2)) == -3
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::BigInt, ::Half{Int64}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+  Test threw exception
+  Expression: cld(big(-7), HalfInt64(5 / 2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::BigInt, ::Half{Int64}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+  Test threw exception
+  Expression: fld(HalfInt128(9 / 2), 3) == 1
+  MethodError: no method matching div(::Half{Int128}, ::Half{Int128}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int128}, ::Half{Int128}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int128}, ::Int64) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+  Test threw exception
+  Expression: cld(HalfInt128(9 / 2), 3) == 2
+  MethodError: no method matching div(::Half{Int128}, ::Half{Int128}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int128}, ::Half{Int128}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int128}, ::Int64) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+  Test threw exception
+  Expression: fld(HalfInt128(7 / 2), big(-2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int128}, ::BigInt) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+  Test threw exception
+  Expression: cld(HalfInt128(7 / 2), big(-2)) == -1
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int128}, ::BigInt) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+  Test threw exception
+  Expression: fld(4, HalfInt128(3 / 2)) == 2
+  MethodError: no method matching div(::Half{Int128}, ::Half{Int128}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int128}, ::Half{Int128}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Int64, ::Half{Int128}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+  Test threw exception
+  Expression: cld(4, HalfInt128(3 / 2)) == 3
+  MethodError: no method matching div(::Half{Int128}, ::Half{Int128}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int128}, ::Half{Int128}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Int64, ::Half{Int128}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+  Test threw exception
+  Expression: fld(big(-7), HalfInt128(5 / 2)) == -3
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::BigInt, ::Half{Int128}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+  Test threw exception
+  Expression: cld(big(-7), HalfInt128(5 / 2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::BigInt, ::Half{Int128}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+  Test threw exception
+  Expression: fld(HalfUInt(9 / 2), 3) == 1
+  MethodError: no method matching div(::Half{UInt64}, ::Half{UInt64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{UInt64}, ::Half{UInt64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{UInt64}, ::Int64) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+  Test threw exception
+  Expression: cld(HalfUInt(9 / 2), 3) == 2
+  MethodError: no method matching div(::Half{UInt64}, ::Half{UInt64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{UInt64}, ::Half{UInt64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{UInt64}, ::Int64) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+  Test threw exception
+  Expression: fld(HalfUInt(7 / 2), big(-2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{UInt64}, ::BigInt) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+  Test threw exception
+  Expression: cld(HalfUInt(7 / 2), big(-2)) == -1
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{UInt64}, ::BigInt) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+  Test threw exception
+  Expression: fld(4, HalfUInt(3 / 2)) == 2
+  MethodError: no method matching div(::Half{UInt64}, ::Half{UInt64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{UInt64}, ::Half{UInt64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Int64, ::Half{UInt64}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+  Test threw exception
+  Expression: cld(4, HalfUInt(3 / 2)) == 3
+  MethodError: no method matching div(::Half{UInt64}, ::Half{UInt64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{UInt64}, ::Half{UInt64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Int64, ::Half{UInt64}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+  Test threw exception
+  Expression: fld(big(-7), HalfUInt(5 / 2)) == -3
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::BigInt, ::Half{UInt64}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+  Test threw exception
+  Expression: cld(big(-7), HalfUInt(5 / 2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::BigInt, ::Half{UInt64}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+  Test threw exception
+  Expression: fld(HalfUInt8(9 / 2), 3) == 1
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{UInt8}, ::Int64) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+  Test threw exception
+  Expression: cld(HalfUInt8(9 / 2), 3) == 2
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{UInt8}, ::Int64) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+  Test threw exception
+  Expression: fld(HalfUInt8(7 / 2), big(-2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{UInt8}, ::BigInt) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+  Test threw exception
+  Expression: cld(HalfUInt8(7 / 2), big(-2)) == -1
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{UInt8}, ::BigInt) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+  Test threw exception
+  Expression: fld(4, HalfUInt8(3 / 2)) == 2
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Int64, ::Half{UInt8}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+  Test threw exception
+  Expression: cld(4, HalfUInt8(3 / 2)) == 3
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Int64, ::Half{UInt8}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+  Test threw exception
+  Expression: fld(big(-7), HalfUInt8(5 / 2)) == -3
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::BigInt, ::Half{UInt8}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+  Test threw exception
+  Expression: cld(big(-7), HalfUInt8(5 / 2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::BigInt, ::Half{UInt8}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+  Test threw exception
+  Expression: fld(HalfUInt16(9 / 2), 3) == 1
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{UInt16}, ::Int64) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+  Test threw exception
+  Expression: cld(HalfUInt16(9 / 2), 3) == 2
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{UInt16}, ::Int64) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+  Test threw exception
+  Expression: fld(HalfUInt16(7 / 2), big(-2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{UInt16}, ::BigInt) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+  Test threw exception
+  Expression: cld(HalfUInt16(7 / 2), big(-2)) == -1
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{UInt16}, ::BigInt) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+  Test threw exception
+  Expression: fld(4, HalfUInt16(3 / 2)) == 2
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Int64, ::Half{UInt16}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+  Test threw exception
+  Expression: cld(4, HalfUInt16(3 / 2)) == 3
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Int64, ::Half{UInt16}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+  Test threw exception
+  Expression: fld(big(-7), HalfUInt16(5 / 2)) == -3
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::BigInt, ::Half{UInt16}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+  Test threw exception
+  Expression: cld(big(-7), HalfUInt16(5 / 2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::BigInt, ::Half{UInt16}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+  Test threw exception
+  Expression: fld(HalfUInt32(9 / 2), 3) == 1
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{UInt32}, ::Int64) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+  Test threw exception
+  Expression: cld(HalfUInt32(9 / 2), 3) == 2
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{UInt32}, ::Int64) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+  Test threw exception
+  Expression: fld(HalfUInt32(7 / 2), big(-2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{UInt32}, ::BigInt) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+  Test threw exception
+  Expression: cld(HalfUInt32(7 / 2), big(-2)) == -1
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{UInt32}, ::BigInt) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+  Test threw exception
+  Expression: fld(4, HalfUInt32(3 / 2)) == 2
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Int64, ::Half{UInt32}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+  Test threw exception
+  Expression: cld(4, HalfUInt32(3 / 2)) == 3
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Int64, ::Half{UInt32}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+  Test threw exception
+  Expression: fld(big(-7), HalfUInt32(5 / 2)) == -3
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::BigInt, ::Half{UInt32}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+  Test threw exception
+  Expression: cld(big(-7), HalfUInt32(5 / 2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::BigInt, ::Half{UInt32}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+  Test threw exception
+  Expression: fld(HalfUInt64(9 / 2), 3) == 1
+  MethodError: no method matching div(::Half{UInt64}, ::Half{UInt64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{UInt64}, ::Half{UInt64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{UInt64}, ::Int64) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+  Test threw exception
+  Expression: cld(HalfUInt64(9 / 2), 3) == 2
+  MethodError: no method matching div(::Half{UInt64}, ::Half{UInt64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{UInt64}, ::Half{UInt64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{UInt64}, ::Int64) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+  Test threw exception
+  Expression: fld(HalfUInt64(7 / 2), big(-2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{UInt64}, ::BigInt) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+  Test threw exception
+  Expression: cld(HalfUInt64(7 / 2), big(-2)) == -1
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{UInt64}, ::BigInt) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+  Test threw exception
+  Expression: fld(4, HalfUInt64(3 / 2)) == 2
+  MethodError: no method matching div(::Half{UInt64}, ::Half{UInt64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{UInt64}, ::Half{UInt64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Int64, ::Half{UInt64}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+  Test threw exception
+  Expression: cld(4, HalfUInt64(3 / 2)) == 3
+  MethodError: no method matching div(::Half{UInt64}, ::Half{UInt64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{UInt64}, ::Half{UInt64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Int64, ::Half{UInt64}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+  Test threw exception
+  Expression: fld(big(-7), HalfUInt64(5 / 2)) == -3
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::BigInt, ::Half{UInt64}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+  Test threw exception
+  Expression: cld(big(-7), HalfUInt64(5 / 2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::BigInt, ::Half{UInt64}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+  Test threw exception
+  Expression: fld(HalfUInt128(9 / 2), 3) == 1
+  MethodError: no method matching div(::Half{UInt128}, ::Half{UInt128}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{UInt128}, ::Half{UInt128}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{UInt128}, ::Int64) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1058
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+  Test threw exception
+  Expression: cld(HalfUInt128(9 / 2), 3) == 2
+  MethodError: no method matching div(::Half{UInt128}, ::Half{UInt128}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{UInt128}, ::Half{UInt128}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{UInt128}, ::Int64) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1059
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+  Test threw exception
+  Expression: fld(HalfUInt128(7 / 2), big(-2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{UInt128}, ::BigInt) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1066
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+  Test threw exception
+  Expression: cld(HalfUInt128(7 / 2), big(-2)) == -1
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{UInt128}, ::BigInt) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1067
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+  Test threw exception
+  Expression: fld(4, HalfUInt128(3 / 2)) == 2
+  MethodError: no method matching div(::Half{UInt128}, ::Half{UInt128}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{UInt128}, ::Half{UInt128}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Int64, ::Half{UInt128}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1074
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+  Test threw exception
+  Expression: cld(4, HalfUInt128(3 / 2)) == 3
+  MethodError: no method matching div(::Half{UInt128}, ::Half{UInt128}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{UInt128}, ::Half{UInt128}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Int64, ::Half{UInt128}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1075
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+  Test threw exception
+  Expression: fld(big(-7), HalfUInt128(5 / 2)) == -3
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::BigInt, ::Half{UInt128}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1082
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+  Test threw exception
+  Expression: cld(big(-7), HalfUInt128(5 / 2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::BigInt, ::Half{UInt128}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+   [4] eval(::Module, ::Any) at ./boot.jl:331
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1083
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1091
+  Test threw exception
+  Expression: fld(HalfInt32(7 / 2), HalfInt128(3 / 2)) == 2
+  MethodError: no method matching div(::Half{Int128}, ::Half{Int128}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int128}, ::Half{Int128}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int32}, ::Half{Int128}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1091
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1092
+  Test threw exception
+  Expression: cld(HalfInt32(7 / 2), HalfInt128(3 / 2)) == 3
+  MethodError: no method matching div(::Half{Int128}, ::Half{Int128}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int128}, ::Half{Int128}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int32}, ::Half{Int128}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1092
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1099
+  Test threw exception
+  Expression: fld(HalfInt8(7 / 2), HalfInt64(1 / 2)) == 7
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int8}, ::Half{Int64}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1099
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1100
+  Test threw exception
+  Expression: cld(HalfInt8(7 / 2), HalfInt64(1 / 2)) == 7
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int8}, ::Half{Int64}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1100
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1107
+  Test threw exception
+  Expression: fld(HalfInt16(9 / 2), HalfInt32(3)) == 1
+  MethodError: no method matching div(::Half{Int32}, ::Half{Int32}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int32}, ::Half{Int32}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int16}, ::Half{Int32}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1107
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1108
+  Test threw exception
+  Expression: cld(HalfInt16(9 / 2), HalfInt32(3)) == 2
+  MethodError: no method matching div(::Half{Int32}, ::Half{Int32}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int32}, ::Half{Int32}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int16}, ::Half{Int32}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1108
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1115
+  Test threw exception
+  Expression: fld(HalfInt64(7 / 2), HalfInt128(-2)) == -2
+  MethodError: no method matching div(::Half{Int128}, ::Half{Int128}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int128}, ::Half{Int128}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int64}, ::Half{Int128}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1115
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1116
+  Test threw exception
+  Expression: cld(HalfInt64(7 / 2), HalfInt128(-2)) == -1
+  MethodError: no method matching div(::Half{Int128}, ::Half{Int128}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int128}, ::Half{Int128}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int64}, ::Half{Int128}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1116
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1123
+  Test threw exception
+  Expression: fld(HalfInt16(4), HalfInt8(3 / 2)) == 2
+  MethodError: no method matching div(::Half{Int16}, ::Half{Int16}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int16}, ::Half{Int16}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int16}, ::Half{Int8}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1123
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1124
+  Test threw exception
+  Expression: cld(HalfInt16(4), HalfInt8(3 / 2)) == 3
+  MethodError: no method matching div(::Half{Int16}, ::Half{Int16}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int16}, ::Half{Int16}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int16}, ::Half{Int8}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1124
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1131
+  Test threw exception
+  Expression: fld(HalfInt64(-7), HalfInt32(5 / 2)) == -3
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int64}, ::Half{Int32}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1131
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1132
+  Test threw exception
+  Expression: cld(HalfInt64(-7), HalfInt32(5 / 2)) == -2
+  MethodError: no method matching div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{Int64}, ::Half{Int64}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int64}, ::Half{Int32}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1132
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1146
+  Test threw exception
+  Expression: #= /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1146 =# @inferred(fld(BigHalfInt(9 / 2), 3)) isa BigInt
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{BigInt}, ::Int64) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1146
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1147
+  Test threw exception
+  Expression: #= /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1147 =# @inferred(cld(BigHalfInt(9 / 2), 3)) isa BigInt
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{BigInt}, ::Int64) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1147
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1153
+  Test threw exception
+  Expression: #= /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1153 =# @inferred(fld(BigHalfInt(9 / 2), big(3))) isa BigInt
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{BigInt}, ::BigInt) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1153
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1154
+  Test threw exception
+  Expression: #= /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1154 =# @inferred(cld(BigHalfInt(9 / 2), big(3))) isa BigInt
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{BigInt}, ::BigInt) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1154
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1160
+  Test threw exception
+  Expression: #= /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1160 =# @inferred(fld(HalfInt(9 / 2), big(3))) isa BigInt
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{Int64}, ::BigInt) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1160
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1161
+  Test threw exception
+  Expression: #= /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1161 =# @inferred(cld(HalfInt(9 / 2), big(3))) isa BigInt
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{Int64}, ::BigInt) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1161
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1167
+  Test threw exception
+  Expression: #= /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1167 =# @inferred(fld(big(4), BigHalfInt(3 / 2))) isa BigInt
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::BigInt, ::Half{BigInt}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1167
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1168
+  Test threw exception
+  Expression: #= /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1168 =# @inferred(cld(big(4), BigHalfInt(3 / 2))) isa BigInt
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::BigInt, ::Half{BigInt}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1168
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1174
+  Test threw exception
+  Expression: #= /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1174 =# @inferred(fld(big(4), HalfInt(3 / 2))) isa BigInt
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::BigInt, ::Half{Int64}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1174
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1175
+  Test threw exception
+  Expression: #= /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1175 =# @inferred(cld(big(4), HalfInt(3 / 2))) isa BigInt
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::BigInt, ::Half{Int64}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1175
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1198
+  Test threw exception
+  Expression: fld(BigHalfInt(9 / 2), 3) == 1
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{BigInt}, ::Int64) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1198
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1199
+  Test threw exception
+  Expression: cld(BigHalfInt(9 / 2), 3) == 2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{BigInt}, ::Int64) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1199
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1206
+  Test threw exception
+  Expression: fld(BigHalfInt(7 / 2), big(-2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Half{BigInt}, ::BigInt) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1206
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1207
+  Test threw exception
+  Expression: cld(BigHalfInt(7 / 2), big(-2)) == -1
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Half{BigInt}, ::BigInt) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1207
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1214
+  Test threw exception
+  Expression: fld(4, BigHalfInt(3 / 2)) == 2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::Int64, ::Half{BigInt}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1214
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1215
+  Test threw exception
+  Expression: cld(4, BigHalfInt(3 / 2)) == 3
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::Int64, ::Half{BigInt}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1215
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1222
+  Test threw exception
+  Expression: fld(big(-7), BigHalfInt(5 / 2)) == -3
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] fld(::BigInt, ::Half{BigInt}) at ./div.jl:224
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1222
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+div/fld/fld1/cld/rem/mod: Error During Test at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1223
+  Test threw exception
+  Expression: cld(big(-7), BigHalfInt(5 / 2)) == -2
+  MethodError: no method matching div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:HalfInteger at /root/.julia/packages/HalfIntegers/6fwrV/src/HalfIntegers.jl:77
+    ...
+  Stacktrace:
+   [1] div(::Half{BigInt}, ::Half{BigInt}, ::RoundingMode{:Up}) at ./div.jl:235
+   [2] cld(::BigInt, ::Half{BigInt}) at ./div.jl:225
+   [3] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1223
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:1039
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:890
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:781
+  
+Test Summary:                | Pass  Error  Total
+Arithmetic                   | 2525    126   2651
+  Addition/subtraction       |  110           110
+  Multiplication             |  369           369
+  Division                   | 1253    126   1379
+    /                        |  283           283
+    \                        |  283           283
+    //                       |  183           183
+    div/fld/fld1/cld/rem/mod |  504    126    630
+  Exponentiation             |  422           422
+  abs                        |   54            54
+  abs2                       |   54            54
+  sign                       |   53            53
+  signbit                    |   53            53
+  flipsign                   |  105           105
+  Complex                    |   52            52
+ERROR: LoadError: Some tests did not pass: 2525 passed, 0 failed, 126 errored, 0 broken.
+in expression starting at /root/.julia/packages/HalfIntegers/6fwrV/test/runtests.jl:780
+ERROR: Package HalfIntegers errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379

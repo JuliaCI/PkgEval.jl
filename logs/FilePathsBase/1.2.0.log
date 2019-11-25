@@ -1,0 +1,111 @@
+ Resolving package versions...
+ Installed FilePathsBase ─ v0.7.0
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [48062228] + FilePathsBase v0.7.0
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [48062228] + FilePathsBase v0.7.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing FilePathsBase
+ Resolving package versions...
+ Installed Parsers ──────────── v0.3.10
+ Installed JSON ─────────────── v0.21.0
+ Installed Memento ──────────── v0.12.1
+ Installed BinaryProvider ───── v0.5.8
+ Installed TimeZones ────────── v0.10.3
+ Installed TranscodingStreams ─ v0.9.5
+ Installed JLSO ─────────────── v1.3.0
+ Installed CodecZlib ────────── v0.6.0
+ Installed Syslogs ──────────── v0.3.0
+ Installed Mocking ──────────── v0.7.0
+ Installed EzXML ────────────── v0.9.4
+ Installed BSON ─────────────── v0.2.4
+  Building EzXML ────→ `~/.julia/packages/EzXML/G0JeY/deps/build.log`
+  Building TimeZones → `~/.julia/packages/TimeZones/pjvlM/deps/build.log`
+┌ Error: Error building `TimeZones`: 
+│ [ Info: Downloading 2019c tzdata
+│ ┌ Error: Download failed: curl: (7) Failed to connect to data.iana.org port 443: Connection timed out
+│ └ @ Base download.jl:43
+│ ERROR: LoadError: failed process: Process(`curl -s -S -g -L -f -o /root/.julia/packages/TimeZones/pjvlM/deps/tzarchive/tzdata2019c.tar.gz https://data.iana.org/time-zones/releases/tzdata2019c.tar.gz`, ProcessExited(7)) [7]
+│ 
+│ Stacktrace:
+│  [1] pipeline_error at ./process.jl:813 [inlined]
+│  [2] download_curl(::String, ::String, ::String) at ./download.jl:44
+│  [3] download(::String, ::String) at ./download.jl:52
+│  [4] tzdata_download(::String, ::String) at /root/.julia/packages/TimeZones/pjvlM/src/tzdata/download.jl:89
+│  [5] #build#32(::Bool, ::typeof(TimeZones.TZData.build), ::String, ::Array{String,1}, ::String, ::String, ::String) at /root/.julia/packages/TimeZones/pjvlM/src/tzdata/build.jl:46
+│  [6] #build at ./none:0 [inlined]
+│  [7] build(::String) at /root/.julia/packages/TimeZones/pjvlM/src/tzdata/build.jl:82
+│  [8] #build#13(::Bool, ::typeof(build), ::String) at /root/.julia/packages/TimeZones/pjvlM/src/build.jl:11
+│  [9] build at /root/.julia/packages/TimeZones/pjvlM/src/build.jl:11 [inlined] (repeats 2 times)
+│  [10] top-level scope at /root/.julia/packages/TimeZones/pjvlM/deps/build.jl:3
+│  [11] include at ./boot.jl:328 [inlined]
+│  [12] include_relative(::Module, ::String) at ./loading.jl:1094
+│  [13] include(::Module, ::String) at ./Base.jl:31
+│  [14] include(::String) at ./client.jl:431
+│  [15] top-level scope at none:5
+│ in expression starting at /root/.julia/packages/TimeZones/pjvlM/deps/build.jl:3
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:647
+  Building CodecZlib → `~/.julia/packages/CodecZlib/5t9zO/deps/build.log`
+    Status `/tmp/jl_iUWeyG/Manifest.toml`
+  [fbb218c0] BSON v0.2.4
+  [b99e7846] BinaryProvider v0.5.8
+  [944b1d66] CodecZlib v0.6.0
+  [8f5d6c58] EzXML v0.9.4
+  [48062228] FilePathsBase v0.7.0
+  [9da8a3cd] JLSO v1.3.0
+  [682c06a0] JSON v0.21.0
+  [f28f55f0] Memento v0.12.1
+  [78c3b35d] Mocking v0.7.0
+  [69de0a69] Parsers v0.3.10
+  [cea106d9] Syslogs v0.3.0
+  [f269a46b] TimeZones v0.10.3
+  [3bb67fe8] TranscodingStreams v0.9.5
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+┌ Warning: `JLSOFile(data::Dict{String, <:Any}; kwargs...)` is deprecated, use `JLSOFile(Dict((Symbol(k) => v for (k, v) = data)); kwargs...)` instead.
+│   caller = #JLSOFile#3 at JLSOFile.jl:87 [inlined]
+└ @ Core ~/.julia/packages/JLSO/MIDXJ/src/JLSOFile.jl:87
+┌ Warning: `getindex(jlso::JLSOFile, name::String)` is deprecated, use `getindex(jlso, Symbol(name))` instead.
+│   caller = (::getfield(Main, Symbol("##6#12")){JLSOFile})() at buffer.jl:58
+└ @ Main ~/.julia/packages/FilePathsBase/Oyg1p/test/buffer.jl:58
+┌ Warning: `getindex(jlso::JLSOFile, name::String)` is deprecated, use `getindex(jlso, Symbol(name))` instead.
+│   caller = (::getfield(Main, Symbol("##8#14")))(::IOStream) at buffer.jl:79
+└ @ Main ~/.julia/packages/FilePathsBase/Oyg1p/test/buffer.jl:79
+[ Info: Initializing PathSet{PosixPath}
+[ Info: Initializing PathSet{Main.TestPkg.TestPath}
+Test Summary: | Pass  Broken  Total
+FilePathsBase |  313       2    315
+   Testing FilePathsBase tests passed 

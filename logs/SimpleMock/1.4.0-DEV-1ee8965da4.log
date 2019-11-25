@@ -1,0 +1,183 @@
+ Resolving package versions...
+ Installed SimpleMock ─ v1.0.1
+ Installed Cassette ─── v0.2.6
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [a896ed2c] + SimpleMock v1.0.1
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [7057c7e9] + Cassette v0.2.6
+  [a896ed2c] + SimpleMock v1.0.1
+   Testing SimpleMock
+ Resolving package versions...
+ Installed Suppressor ─ v0.1.1
+ Installed Compat ───── v2.2.0
+No changes
+Status `/tmp/jl_ZOnthy/Manifest.toml`
+  [7057c7e9] Cassette v0.2.6
+  [34da2185] Compat v2.2.0
+  [a896ed2c] SimpleMock v1.0.1
+  [fd094767] Suppressor v0.1.1
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib/SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Keyword arguments are discarded when recursing: Log Test Failed at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:169
+  Expression: baz(; foo=:baz)
+  Log Pattern: (:warn, "Discarding keyword arguments")
+  Captured Logs: 
+
+Stacktrace:
+ [1] record at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/logging.jl:89 [inlined]
+ [2] overdub(::Cassette.Context{nametype(##556),SimpleMock.Metadata{true},Nothing,Cassette.var"##PassType#433",Nothing,Nothing}, ::typeof(Test.record), ::Test.DefaultTestSet, ::Test.LogTestFailure) at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:0
+ [3] #55 at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:169 [inlined]
+ [4] overdub(::Cassette.Context{nametype(##556),SimpleMock.Metadata{true},Nothing,Cassette.var"##PassType#433",Nothing,Nothing}, ::var"#55#77", ::Mock{SimpleMock.var"#15#17"{SimpleMock.var"#15#16#18"}}) at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:0
+ [5] invokelatest(::Any, ::Any, ::Keyword arguments are discarded when recursing: Error During Test at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:165
+  Got exception outside of a @test
+  type DataType has no field var
+  Stacktrace:
+   [1] getproperty at ./Base.jl:28 [inlined]
+   [2] call at /root/.julia/packages/Cassette/YCOeN/src/context.jl:447 [inlined]
+   [3] fallback at /root/.julia/packages/Cassette/YCOeN/src/context.jl:445 [inlined]
+   [4] overdub at /root/.julia/packages/Cassette/YCOeN/src/context.jl:271 [inlined]
+   [5] show at ./show.jl:498 [inlined]
+   [6] overdub(::Cassette.Context{nametype(##556),SimpleMock.Metadata{true},Nothing,Cassette.var"##PassType#433",Nothing,Nothing}, ::typeof(show), ::IOContext{Base.PipeEndpoint}, ::Type{Vararg{Any,N} where N}) at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:0
+   [7] show at ./show.jl:511 [inlined]
+   [8] overdub(::Cassette.Context{nametype(##556),SimpleMock.Metadata{true},Nothing,Cassette.var"##PassType#433",Nothing,Nothing}, ::typeof(show), ::IOContext{Base.PipeEndpoint}, ::Type{Vararg{Any,N} where N}) at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:0
+   [9] print at ./strings/io.jl:35 [inlined]
+   [10] overdub(::Cassette.Context{nametype(##556),SimpleMock.Metadata{true},Nothing,Cassette.var"##PassType#433",Nothing,Nothing}, ::typeof(print), ::IOContext{Base.PipeEndpoint}, ::Type{Vararg{Any,N} where N}) at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:0
+   [11] print at ./strings/io.jl:46 [inlined]
+   [12] overdub(::Cassette.Context{nametype(##556),SimpleMock.Metadata{true},Nothing,Cassette.var"##PassType#433",Nothing,Nothing}, ::typeof(print), ::IOContext{Base.PipeEndpoint}, ::String, ::Type{Vararg{Any,N} where N}) at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:0
+   [13] show_tuple_as_call at ./show.jl:1595 [inlined]
+   [14] overdub(::Cassette.Context{nametype(##556),SimpleMock.Metadata{true},Nothing,Cassette.var"##PassType#433",Nothing,Nothing}, ::typeof(Base.show_tuple_as_call), ::IOContext{Base.PipeEndpoint}, ::Symbol, ::Type{Tuple{typeof(Base.invokelatest),Any,Any,Vararg{Any,N} where N}}, ::Bool, ::Base.Iterators.Zip{Tuple{Array{Any,1},Array{Any,1}}}) at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:0
+   [15] show_spec_linfo at ./stacktraces.jl:240 [inlined]
+   [16] overdub(::Cassette.Context{nametype(##556),SimpleMock.Metadata{true},Nothing,Cassette.var"##PassType#433",Nothing,Nothing}, ::typeof(Base.StackTraces.show_spec_linfo), ::IOContext{Base.PipeEndpoint}, ::Base.StackTraces.StackFrame) at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:0
+   [17] #show#9 at ./stacktraces.jl:253 [inlined]
+   [18] overdub(::Cassette.Context{nametype(##556),SimpleMock.Metadata{true},Nothing,Cassette.var"##PassType#433",Nothing,Nothing}, ::Base.StackTraces.var"##show#9", ::Bool, ::typeof(show), ::IOContext{Base.PipeEndpoint}, ::Base.StackTraces.StackFrame) at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:0 (repeats 2 times)
+   [19] #show_trace_entry#663 at ./errorshow.jl:523 [inlined]
+   [20] overdub(::Cassette.Context{nametype(##556),SimpleMock.Metadata{true},Nothing,Cassette.var"##PassType#433",Nothing,Nothing}, ::Base.var"##show_trace_entry#663", ::String, ::typeof(Base.show_trace_entry), ::IOContext{Base.PipeEndpoint}, ::Base.StackTraces.StackFrame, ::Int64) at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:0 (repeats 2 times)
+   [21] show_backtrace at ./errorshow.jl:627 [inlined]
+   [22] overdub(::Cassette.Context{nametype(##556),SimpleMock.Metadata{true},Nothing,Cassette.var"##PassType#433",Nothing,Nothing}, ::typeof(Base.show_backtrace), ::Base.PipeEndpoint, ::Array{Union{Ptr{Nothing}, Base.InterpreterIP},1}) at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:0
+   [23] record at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/logging.jl:89 [inlined]
+   [24] overdub(::Cassette.Context{nametype(##556),SimpleMock.Metadata{true},Nothing,Cassette.var"##PassType#433",Nothing,Nothing}, ::typeof(Test.record), ::Test.DefaultTestSet, ::Test.LogTestFailure) at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:0
+   [25] #55 at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:169 [inlined]
+   [26] overdub(::Cassette.Context{nametype(##556),SimpleMock.Metadata{true},Nothing,Cassette.var"##PassType#433",Nothing,Nothing}, ::var"#55#77", ::Mock{SimpleMock.var"#15#17"{SimpleMock.var"#15#16#18"}}) at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:0
+   [27] invokelatest(::Any, ::Any, ::Vararg{Any,N} where N; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at ./essentials.jl:711
+   [28] invokelatest(::Any, ::Any, ::Vararg{Any,N} where N) at ./essentials.jl:710
+   [29] mock(::Function, ::Symbol, ::Function; filters::Array{SimpleMock.var"#9#10"{Tuple{}},1}) at /root/.julia/packages/SimpleMock/hN0mL/src/mock_fun.jl:140
+   [30] top-level scope at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:168
+   [31] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [32] top-level scope at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:166
+   [33] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [34] top-level scope at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:154
+   [35] include(::String) at ./client.jl:439
+   [36] macro expansion at /root/.julia/packages/SimpleMock/hN0mL/test/runtests.jl:14 [inlined]
+   [37] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [38] macro expansion at /root/.julia/packages/SimpleMock/hN0mL/test/runtests.jl:14 [inlined]
+   [39] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [40] top-level scope at /root/.julia/packages/SimpleMock/hN0mL/test/runtests.jl:10
+   [41] include(::String) at ./client.jl:439
+   [42] top-level scope at none:6
+   [43] eval(::Module, ::Any) at ./boot.jl:331
+   [44] exec_options(::JLOptions) at ./client.jl:264
+   [45] _start() at ./client.jl:484
+  
+Metadata records original functions and not keyword wrappers: Test Failed at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:196
+  Expression: eq
+Stacktrace:
+ [1] (::var"#66#91"{Bool,typeof(kw_f)})(::SimpleMock.Metadata{true}) at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:196
+ [2] #1 at /root/.julia/packages/SimpleMock/hN0mL/src/metadata.jl:54 [inlined]
+ [3] _all(::SimpleMock.var"#1#2"{SimpleMock.Metadata{true}}, ::Array{var"#66#91"{Bool,typeof(kw_f)},1}, ::Colon) at ./reduce.jl:729
+ [4] all(::Function, ::Array{var"#66#91"{Bool,typeof(kw_f)},1}; dims::Function) at ./reducedim.jl:665
+ [5] all(::Function, ::Array{var"#66#91"{Bool,typeof(kw_f)},1}) at ./reducedim.jl:665
+ [6] should_mock(::SimpleMock.Metadata{true}, ::Tuple{typeof(kw_g),UnionAll}) at /root/.julia/packages/SimpleMock/hN0mL/src/metadata.jl:54
+ [7] #overdub#67 at /root/.julia/packages/SimpleMock/hN0mL/src/mock_fun.jl:210 [inlined]
+ [8] overdub at /root/.julia/packages/SimpleMock/hN0mL/src/mock_fun.jl:219 [inlined]
+ [9] #kw_f#95 at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:183 [inlined]
+ [10] overdub(::Cassette.Context{nametype(##560),SimpleMock.Metadata{true},Nothing,Cassette.var"##PassType#433",Nothing,Nothing}, ::var"##kw_f#95", ::Int64, ::typeof(kw_f)) at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:0 (repeats 2 times)
+ [11] #67 at ./none:0 [inlined]
+ [12] overdub(::Cassette.Context{nametype(##560),SimpleMock.Metadata{true},Nothing,Cassette.var"##PassType#433",Nothing,Nothing}, ::var"#67#92", ::Mock{SimpleMock.var"#15#17"{SimpleMock.var"#15#16#18"}}) at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:0
+ [13] invokelatest(::Any, ::Any, ::Vararg{Any,N} where N; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at ./essentials.jl:711
+ [14] invokelatest(::Any, ::Any, ::Vararg{Any,N} where N) at ./essentials.jl:710
+ [15] mock(::Function, ::Symbol, ::Function; filters::Array{var"#66#91"{Bool,typeof(kw_f)},1}) at /root/.julia/packages/SimpleMock/hN0mL/src/mock_fun.jl:140
+ [16] #mock#26 at /root/.julia/packages/SimpleMock/hN0mL/src/mock_fun.jl:113 [inlined]
+ [17] top-level scope at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:202
+ [18] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+ [19] top-level scope at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:182
+ [20] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+ [21] top-level scope at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:154
+Metadata records original functions and not keyword wrappers: Test Failed at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:196
+  Expression: eq
+Stacktrace:
+ [1] (::var"#66#91"{Bool,var"#97#101"})(::SimpleMock.Metadata{true}) at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:196
+ [2] #1 at /root/.julia/packages/SimpleMock/hN0mL/src/metadata.jl:54 [inlined]
+ [3] _all(::SimpleMock.var"#1#2"{SimpleMock.Metadata{true}}, ::Array{var"#66#91"{Bool,var"#97#101"},1}, ::Colon) at ./reduce.jl:729
+ [4] all(::Function, ::Array{var"#66#91"{Bool,var"#97#101"},1}; dims::Function) at ./reducedim.jl:665
+ [5] all(::Function, ::Array{var"#66#91"{Bool,var"#97#101"},1}) at ./reducedim.jl:665
+ [6] should_mock(::SimpleMock.Metadata{true}, ::Tuple{var"#99#102",UnionAll}) at /root/.julia/packages/SimpleMock/hN0mL/src/metadata.jl:54
+ [7] #overdub#69 at /root/.julia/packages/SimpleMock/hN0mL/src/mock_fun.jl:210 [inlined]
+ [8] overdub(::Cassette.Context{nametype(##565),SimpleMock.Metadata{true},Nothing,Cassette.var"##PassType#433",Nothing,Nothing}, ::var"#99#102##kw", ::NamedTuple{(:x,),Tuple{Int64}}, ::var"#99#102") at /root/.julia/packages/SimpleMock/hN0mL/src/mock_fun.jl:219
+ [9] #97#98 at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:185 [inlined]
+ [10] overdub(::Cassette.Context{nametype(##565),SimpleMock.Metadata{true},Nothing,Cassette.var"##PassType#433",Nothing,Nothing}, ::var"##97#98", ::Int64, ::var"#97#101") at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:0 (repeats 2 times)
+ [11] #68 at ./none:0 [inlined]
+ [12] overdub(::Cassette.Context{nametype(##565),SimpleMock.Metadata{true},Nothing,Cassette.var"##PassType#433",Nothing,Nothing}, ::var"#68#93", ::Mock{SimpleMock.var"#15#17"{SimpleMock.var"#15#16#18"}}) at /root/.julia/packages/Cassette/YCOeN/src/overdub.jl:0
+ [13] invokelatest(::Any, ::Any, ::Vararg{Any,N} where N; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at ./essentials.jl:711
+ [14] invokelatest(::Any, ::Any, ::Vararg{Any,N} where N) at ./essentials.jl:710
+ [15] mock(::Function, ::Symbol, ::Function; filters::Array{var"#66#91"{Bool,var"#97#101"},1}) at /root/.julia/packages/SimpleMock/hN0mL/src/mock_fun.jl:140
+ [16] #mock#26 at /root/.julia/packages/SimpleMock/hN0mL/src/mock_fun.jl:113 [inlined]
+ [17] top-level scope at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:204
+ [18] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+ [19] top-level scope at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:182
+ [20] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+ [21] top-level scope at /root/.julia/packages/SimpleMock/hN0mL/test/mock_fun.jl:154
+Test Summary:                                                      | Pass  Fail  Error  Broken  Total
+SimpleMock.jl                                                      |  115     2      1       1    119
+  Mock type                                                        |   59                          59
+  mock function                                                    |   56     2      1       1     60
+    Basics                                                         |    7                           7
+    Non-Mock mocks                                                 |    1                           1
+    Specific methods                                               |    3                           3
+    Multiple mocks                                                 |    4                           4
+    Varargs                                                        |    5                           5
+    Parametric types                                               |   11                          11
+    mock does not overwrite methods                                |    1                           1
+    Reusing Context                                                |    2                           2
+    Any context name is valid                                      |    1                           1
+    Filters                                                        |   16                          16
+    Keyword arguments                                              |    5     2      1       1      9
+      Keyword arguments are passed to mocked functions             |    2                           2
+      Keyword arguments are discarded when recursing               |                 1              1
+      Metadata records original functions and not keyword wrappers |    3     2              1      6
+ERROR: LoadError: Some tests did not pass: 115 passed, 2 failed, 1 errored, 1 broken.
+in expression starting at /root/.julia/packages/SimpleMock/hN0mL/test/runtests.jl:9
+ERROR: Package SimpleMock errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

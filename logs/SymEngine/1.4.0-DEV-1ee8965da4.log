@@ -1,0 +1,118 @@
+ Resolving package versions...
+ Installed RecipesBase ────── v0.7.0
+ Installed URIParser ──────── v0.4.0
+ Installed SymEngine ──────── v0.7.0
+ Installed Compat ─────────── v2.2.0
+ Installed BinDeps ────────── v0.8.10
+ Installed SpecialFunctions ─ v0.8.0
+ Installed BinaryProvider ─── v0.5.8
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [123dc426] + SymEngine v0.7.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [34da2185] + Compat v2.2.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [276daf66] + SpecialFunctions v0.8.0
+  [123dc426] + SymEngine v0.7.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~/.julia/packages/SpecialFunctions/ne2iw/deps/build.log`
+  Building SymEngine ───────→ `~/.julia/packages/SymEngine/zSUGO/deps/build.log`
+   Testing SymEngine
+Status `/tmp/jl_ybvVSf/Manifest.toml`
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [34da2185] Compat v2.2.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [276daf66] SpecialFunctions v0.8.0
+  [123dc426] SymEngine v0.7.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib/SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Error During Test at /root/.julia/packages/SymEngine/zSUGO/test/test-dense-matrix.jl:30
+  Test threw exception
+  Expression: prod([subs(det(M) - det(A), x, i) == 0 for i = 2:10]) == true
+  ArgumentError: Object can have no free symbols
+  Stacktrace:
+   [1] N(::SymEngine.BasicType{Val{:Abs}}) at /root/.julia/packages/SymEngine/zSUGO/src/numerics.jl:149
+   [2] N(::Basic) at /root/.julia/packages/SymEngine/zSUGO/src/numerics.jl:111
+   [3] <(::Basic, ::Basic) at /root/.julia/packages/SymEngine/zSUGO/src/mathops.jl:84
+   [4] > at ./operators.jl:294 [inlined]
+   [5] generic_lufact!(::Array{Basic,2}, ::Val{true}; check::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/lu.jl:146
+   [6] #lu!#140 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/lu.jl:130 [inlined]
+   [7] #lu#142 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/lu.jl:273 [inlined]
+   [8] det(::Array{Basic,2}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/generic.jl:1473
+   [9] (::var"#3#4")(::Int64) at ./none:0
+   [10] iterate at ./generator.jl:47 [inlined]
+   [11] collect(::Base.Generator{UnitRange{Int64},var"#3#4"}) at ./array.jl:636
+   [12] top-level scope at /root/.julia/packages/SymEngine/zSUGO/test/test-dense-matrix.jl:30
+   [13] include(::String) at ./client.jl:439
+   [14] top-level scope at /root/.julia/packages/SymEngine/zSUGO/test/runtests.jl:6
+   [15] include(::String) at ./client.jl:439
+   [16] top-level scope at none:6
+   [17] eval(::Module, ::Any) at ./boot.jl:331
+   [18] exec_options(::Base.JLOptions) at ./client.jl:264
+   [19] _start() at ./client.jl:484
+  
+ERROR: LoadError: LoadError: There was an error during testing
+in expression starting at /root/.julia/packages/SymEngine/zSUGO/test/test-dense-matrix.jl:30
+in expression starting at /root/.julia/packages/SymEngine/zSUGO/test/runtests.jl:6
+ERROR: Package SymEngine errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

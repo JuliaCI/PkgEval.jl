@@ -1,0 +1,2413 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="DiffEqBayes">DiffEqBayes</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#DiffEqBayes">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 15 hours ago and took 28 minutes, 42 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/DiffEqBayes/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed VersionParsing ────────────── v1.1.3
+ Installed DiffEqBayes ───────────────── v2.1.1
+ Installed Requires ──────────────────── v0.5.2
+ Installed CommonSubexpressions ──────── v0.2.0
+ Installed ColorTypes ────────────────── v0.8.0
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed DocStringExtensions ───────── v0.8.1
+ Installed CoupledFields ─────────────── v0.1.0
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed Inflate ───────────────────── v0.1.1
+ Installed Graphics ──────────────────── v0.4.0
+ Installed Arpack ────────────────────── v0.3.1
+ Installed RecursiveArrayTools ───────── v1.0.2
+ Installed DiffEqDiffTools ───────────── v1.4.0
+ Installed AdvancedHMC ───────────────── v0.2.13
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed ZygoteRules ───────────────── v0.2.0
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed ArrayInterface ────────────── v1.2.1
+ Installed FFTW ──────────────────────── v1.1.0
+ Installed DiffRules ─────────────────── v0.1.0
+ Installed Parsers ───────────────────── v0.3.10
+ Installed FunctionWrappers ──────────── v1.0.0
+ Installed FixedPointNumbers ─────────── v0.6.1
+ Installed PositiveFactorizations ────── v0.2.3
+ Installed DataStructures ────────────── v0.17.6
+ Installed MacroTools ────────────────── v0.5.2
+ Installed Contour ───────────────────── v0.5.1
+ Installed Adapt ─────────────────────── v1.0.0
+ Installed Reexport ──────────────────── v0.2.0
+ Installed Conda ─────────────────────── v1.3.0
+ Installed KernelDensity ─────────────── v0.5.1
+ Installed Polynomials ───────────────── v0.6.0
+ Installed Turing ────────────────────── v0.7.1
+ Installed WoodburyMatrices ──────────── v0.4.1
+ Installed Libtask ───────────────────── v0.3.1
+ Installed AxisArrays ────────────────── v0.3.3
+ Installed Hexagons ──────────────────── v0.2.0
+ Installed BinDeps ───────────────────── v0.8.10
+ Installed ArgCheck ──────────────────── v1.0.1
+ Installed Interpolations ────────────── v0.12.5
+ Installed Showoff ───────────────────── v0.3.1
+ Installed SpecialFunctions ──────────── v0.8.0
+ Installed DynamicHMC ────────────────── v2.1.1
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed Compose ───────────────────── v0.7.3
+ Installed MappedArrays ──────────────── v0.2.2
+ Installed MCMCChains ────────────────── v0.3.15
+ Installed Gadfly ────────────────────── v1.0.1
+ Installed JSON ──────────────────────── v0.21.0
+ Installed TreeViews ─────────────────── v0.3.0
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed AxisAlgorithms ────────────── v1.0.0
+ Installed Distributions ─────────────── v0.21.8
+ Installed InplaceOps ────────────────── v0.3.0
+ Installed Bijectors ─────────────────── v0.4.0
+ Installed PDMats ────────────────────── v0.9.10
+ Installed OffsetArrays ──────────────── v0.11.1
+ Installed Roots ─────────────────────── v0.8.3
+ Installed StructArrays ──────────────── v0.4.0
+ Installed ProgressMeter ─────────────── v1.2.0
+ Installed AbstractFFTs ──────────────── v0.5.0
+ Installed Distances ─────────────────── v0.8.2
+ Installed DistributionsAD ───────────── v0.1.2
+ Installed Zygote ────────────────────── v0.4.1
+ Installed LazyArrays ────────────────── v0.12.3
+ Installed DiffEqBase ────────────────── v6.6.0
+ Installed Juno ──────────────────────── v0.7.2
+ Installed TransformVariables ────────── v0.3.8
+ Installed URIParser ─────────────────── v0.4.0
+ Installed Loess ─────────────────────── v0.5.0
+ Installed Colors ────────────────────── v0.9.6
+ Installed IndirectArrays ────────────── v0.5.0
+ Installed IntervalSets ──────────────── v0.3.2
+ Installed IterativeSolvers ──────────── v0.8.1
+ Installed DataFrames ────────────────── v0.19.4
+ Installed Mamba ─────────────────────── v0.12.2
+ Installed Ratios ────────────────────── v0.3.1
+ Installed StaticArrays ──────────────── v0.11.1
+ Installed LabelledArrays ────────────── v0.7.1
+ Installed DiffResults ───────────────── v0.0.4
+ Installed ArnoldiMethod ─────────────── v0.0.4
+ Installed Media ─────────────────────── v0.5.0
+ Installed RangeArrays ───────────────── v0.3.1
+ Installed ParameterizedFunctions ────── v4.2.1
+ Installed LogDensityProblems ────────── v0.9.2
+ Installed LineSearches ──────────────── v7.0.1
+ Installed NNlib ─────────────────────── v0.6.0
+ Installed Tracker ───────────────────── v0.2.5
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed TimerOutputs ──────────────── v0.5.3
+ Installed StatsBase ─────────────────── v0.32.0
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed FillArrays ────────────────── v0.7.4
+ Installed NLSolversBase ─────────────── v7.5.0
+ Installed SimpleTraits ──────────────── v0.9.1
+ Installed IRTools ───────────────────── v0.3.0
+ Installed Missings ──────────────────── v0.4.3
+ Installed OrderedCollections ────────── v1.1.0
+ Installed Combinatorics ─────────────── v0.7.0
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed BenchmarkTools ────────────── v0.4.3
+ Installed Optim ─────────────────────── v0.19.4
+ Installed ApproxBayes ───────────────── v0.3.1
+ Installed TableTraits ───────────────── v1.0.0
+ Installed Rmath ─────────────────────── v0.5.1
+ Installed QuadGK ────────────────────── v2.1.1
+ Installed SymEngine ─────────────────── v0.7.0
+ Installed Parameters ────────────────── v0.12.0
+ Installed MuladdMacro ───────────────── v0.2.1
+ Installed Calculus ──────────────────── v0.5.1
+ Installed ForwardDiff ───────────────── v0.10.6
+ Installed LightGraphs ───────────────── v1.3.0
+ Installed Measures ──────────────────── v0.3.0
+ Installed Tables ────────────────────── v0.2.11
+ Installed StatsFuns ─────────────────── v0.9.0
+ Installed IterTools ─────────────────── v1.3.0
+ Installed RecursiveFactorization ────── v0.1.0
+ Installed Compat ────────────────────── v2.2.0
+ Installed Cairo ─────────────────────── v0.8.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [ebbdde9d] + DiffEqBayes v2.1.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [621f4979] + AbstractFFTs v0.5.0
+  [79e6a3ab] + Adapt v1.0.0
+  [0bf59076] + AdvancedHMC v0.2.13
+  [f5f396d3] + ApproxBayes v0.3.1
+  [dce04be8] + ArgCheck v1.0.1
+  [ec485272] + ArnoldiMethod v0.0.4
+  [7d9fca2a] + Arpack v0.3.1
+  [4fba245c] + ArrayInterface v1.2.1
+  [13072b0f] + AxisAlgorithms v1.0.0
+  [39de3d68] + AxisArrays v0.3.3
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [76274a88] + Bijectors v0.4.0
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [159f3aea] + Cairo v0.8.0
+  [49dc2e85] + Calculus v0.5.1
+  [324d7699] + CategoricalArrays v0.7.3
+  [3da002f7] + ColorTypes v0.8.0
+  [5ae59095] + Colors v0.9.6
+  [861a8166] + Combinatorics v0.7.0
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [a81c6b42] + Compose v0.7.3
+  [8f4d0f93] + Conda v1.3.0
+  [d38c429a] + Contour v0.5.1
+  [7ad07ef1] + CoupledFields v0.1.0
+  [9a962f9c] + DataAPI v1.1.0
+  [a93c6f00] + DataFrames v0.19.4
+  [864edb3b] + DataStructures v0.17.6
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [2b5f629d] + DiffEqBase v6.6.0
+  [ebbdde9d] + DiffEqBayes v2.1.1
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [b4f34e82] + Distances v0.8.2
+  [31c24e10] + Distributions v0.21.8
+  [ced4e74d] + DistributionsAD v0.1.2
+  [ffbed154] + DocStringExtensions v0.8.1
+  [bbc10e6e] + DynamicHMC v2.1.1
+  [7a1cc6ca] + FFTW v1.1.0
+  [1a297f60] + FillArrays v0.7.4
+  [53c48c17] + FixedPointNumbers v0.6.1
+  [f6369f11] + ForwardDiff v0.10.6
+  [069b7b12] + FunctionWrappers v1.0.0
+  [c91e804a] + Gadfly v1.0.1
+  [a2bd30eb] + Graphics v0.4.0
+  [a1b4810d] + Hexagons v0.2.0
+  [7869d1d1] + IRTools v0.3.0
+  [9b13fd28] + IndirectArrays v0.5.0
+  [d25df0c9] + Inflate v0.1.1
+  [505f98c9] + InplaceOps v0.3.0
+  [a98d9a8b] + Interpolations v0.12.5
+  [8197267c] + IntervalSets v0.3.2
+  [41ab1584] + InvertedIndices v1.0.0
+  [c8e1da08] + IterTools v1.3.0
+  [42fd0dbc] + IterativeSolvers v0.8.1
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [682c06a0] + JSON v0.21.0
+  [e5e0dc1b] + Juno v0.7.2
+  [5ab0869b] + KernelDensity v0.5.1
+  [2ee39098] + LabelledArrays v0.7.1
+  [5078a376] + LazyArrays v0.12.3
+  [6f1fad26] + Libtask v0.3.1
+  [093fc24a] + LightGraphs v1.3.0
+  [d3d80556] + LineSearches v7.0.1
+  [4345ca2d] + Loess v0.5.0
+  [6fdf6af0] + LogDensityProblems v0.9.2
+  [c7f686f2] + MCMCChains v0.3.15
+  [1914dd2f] + MacroTools v0.5.2
+  [5424a776] + Mamba v0.12.2
+  [dbb5928d] + MappedArrays v0.2.2
+  [442fdcdd] + Measures v0.3.0
+  [e89f7d12] + Media v0.5.0
+  [e1d29d7a] + Missings v0.4.3
+  [46d2c3a1] + MuladdMacro v0.2.1
+  [d41bc354] + NLSolversBase v7.5.0
+  [872c559c] + NNlib v0.6.0
+  [77ba4419] + NaNMath v0.3.3
+  [6fe1bfb0] + OffsetArrays v0.11.1
+  [429524aa] + Optim v0.19.4
+  [bac558e1] + OrderedCollections v1.1.0
+  [90014a1f] + PDMats v0.9.10
+  [65888b18] + ParameterizedFunctions v4.2.1
+  [d96e819e] + Parameters v0.12.0
+  [69de0a69] + Parsers v0.3.10
+  [f27b6e38] + Polynomials v0.6.0
+  [2dfb63ee] + PooledArrays v0.5.2
+  [85a6dd25] + PositiveFactorizations v0.2.3
+  [92933f4c] + ProgressMeter v1.2.0
+  [1fd47b50] + QuadGK v2.1.1
+  [b3c3ace0] + RangeArrays v0.3.1
+  [c84ed2f1] + Ratios v0.3.1
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [731186ca] + RecursiveArrayTools v1.0.2
+  [f2c3362d] + RecursiveFactorization v0.1.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [79098fc4] + Rmath v0.5.1
+  [f2b01f46] + Roots v0.8.3
+  [992d4aef] + Showoff v0.3.1
+  [699a6c99] + SimpleTraits v0.9.1
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.11.1
+  [2913bbd2] + StatsBase v0.32.0
+  [4c63d2b9] + StatsFuns v0.9.0
+  [09ab397b] + StructArrays v0.4.0
+  [123dc426] + SymEngine v0.7.0
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [a759f4b9] + TimerOutputs v0.5.3
+  [9f7883ad] + Tracker v0.2.5
+  [84d833dd] + TransformVariables v0.3.8
+  [a2a6695c] + TreeViews v0.3.0
+  [fce5fe82] + Turing v0.7.1
+  [30578b45] + URIParser v0.4.0
+  [81def892] + VersionParsing v1.1.3
+  [efce3f68] + WoodburyMatrices v0.4.1
+  [e88e6eb3] + Zygote v0.4.1
+  [700de1a5] + ZygoteRules v0.2.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [9abbd945] + Profile 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Arpack ──────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+  Building Conda ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building FFTW ────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFTW&#x2F;loJ3F&#x2F;deps&#x2F;build.log`
+  Building Libtask ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Libtask&#x2F;RjRkK&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+  Building Rmath ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+  Building SymEngine ───────→ `~&#x2F;.julia&#x2F;packages&#x2F;SymEngine&#x2F;zSUGO&#x2F;deps&#x2F;build.log`
+  Building Cairo ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Cairo&#x2F;ZbzIH&#x2F;deps&#x2F;build.log`
+   Testing DiffEqBayes
+ Resolving package versions...
+ Installed SteadyStateDiffEq ──── v1.5.0
+ Installed NamedArrays ────────── v0.9.3
+ Installed FilePathsBase ──────── v0.7.0
+ Installed NLsolve ────────────── v4.2.0
+ Installed StatsPlots ─────────── v0.12.0
+ Installed VertexSafeGraphs ───── v0.1.0
+ Installed Widgets ────────────── v0.6.2
+ Installed DiffEqCallbacks ────── v2.9.0
+ Installed GeometryTypes ──────── v0.7.6
+ Installed OrdinaryDiffEq ─────── v5.23.0
+ Installed PlotUtils ──────────── v0.6.1
+ Installed FFMPEG ─────────────── v0.2.3
+ Installed CmdStan ────────────── v5.2.3
+ Installed PlotThemes ─────────── v0.4.0
+ Installed GenericSVD ─────────── v0.2.2
+ Installed Homebrew ───────────── v0.7.1
+ Installed Observables ────────── v0.2.3
+ Installed WeakRefStrings ─────── v0.6.1
+ Installed SparseDiffTools ────── v0.10.3
+ Installed Plots ──────────────── v0.27.0
+ Installed NearestNeighbors ───── v0.4.3
+ Installed ExponentialUtilities ─ v1.5.1
+ Installed DataValues ─────────── v0.4.12
+ Installed Clustering ─────────── v0.13.3
+ Installed Documenter ─────────── v0.24.0
+ Installed GR ─────────────────── v0.42.0
+ Installed CSV ────────────────── v0.5.18
+  Building GR ──────→ `~&#x2F;.julia&#x2F;packages&#x2F;GR&#x2F;f1Iqi&#x2F;deps&#x2F;build.log`
+  Building FFMPEG ──→ `~&#x2F;.julia&#x2F;packages&#x2F;FFMPEG&#x2F;bkWgb&#x2F;deps&#x2F;build.log`
+  Building Plots ───→ `~&#x2F;.julia&#x2F;packages&#x2F;Plots&#x2F;Iuc9S&#x2F;deps&#x2F;build.log`
+  Building Homebrew → `~&#x2F;.julia&#x2F;packages&#x2F;Homebrew&#x2F;s09IX&#x2F;deps&#x2F;build.log`
+  Building CmdStan ─→ `~&#x2F;.julia&#x2F;packages&#x2F;CmdStan&#x2F;2cHgp&#x2F;deps&#x2F;build.log`
+    Status `&#x2F;tmp&#x2F;tmpgT3PLm&#x2F;Manifest.toml`
+  [621f4979] AbstractFFTs v0.5.0
+  [79e6a3ab] Adapt v1.0.0
+  [0bf59076] AdvancedHMC v0.2.13
+  [f5f396d3] ApproxBayes v0.3.1
+  [dce04be8] ArgCheck v1.0.1
+  [ec485272] ArnoldiMethod v0.0.4
+  [7d9fca2a] Arpack v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [13072b0f] AxisAlgorithms v1.0.0
+  [39de3d68] AxisArrays v0.3.3
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [76274a88] Bijectors v0.4.0
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [336ed68f] CSV v0.5.18
+  [159f3aea] Cairo v0.8.0
+  [49dc2e85] Calculus v0.5.1
+  [324d7699] CategoricalArrays v0.7.3
+  [aaaa29a8] Clustering v0.13.3
+  [593b3428] CmdStan v5.2.3
+  [3da002f7] ColorTypes v0.8.0
+  [5ae59095] Colors v0.9.6
+  [861a8166] Combinatorics v0.7.0
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [a81c6b42] Compose v0.7.3
+  [8f4d0f93] Conda v1.3.0
+  [d38c429a] Contour v0.5.1
+  [7ad07ef1] CoupledFields v0.1.0
+  [9a962f9c] DataAPI v1.1.0
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [e7dc6d0d] DataValues v0.4.12
+  [2b5f629d] DiffEqBase v6.6.0
+  [ebbdde9d] DiffEqBayes v2.1.1
+  [459566f4] DiffEqCallbacks v2.9.0
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [31c24e10] Distributions v0.21.8
+  [ced4e74d] DistributionsAD v0.1.2
+  [ffbed154] DocStringExtensions v0.8.1
+  [e30172f5] Documenter v0.24.0
+  [bbc10e6e] DynamicHMC v2.1.1
+  [d4d017d3] ExponentialUtilities v1.5.1
+  [c87230d0] FFMPEG v0.2.3
+  [7a1cc6ca] FFTW v1.1.0
+  [48062228] FilePathsBase v0.7.0
+  [1a297f60] FillArrays v0.7.4
+  [53c48c17] FixedPointNumbers v0.6.1
+  [f6369f11] ForwardDiff v0.10.6
+  [069b7b12] FunctionWrappers v1.0.0
+  [28b8d3ca] GR v0.42.0
+  [c91e804a] Gadfly v1.0.1
+  [01680d73] GenericSVD v0.2.2
+  [4d00f742] GeometryTypes v0.7.6
+  [a2bd30eb] Graphics v0.4.0
+  [a1b4810d] Hexagons v0.2.0
+  [d9be37ee] Homebrew v0.7.1
+  [7869d1d1] IRTools v0.3.0
+  [9b13fd28] IndirectArrays v0.5.0
+  [d25df0c9] Inflate v0.1.1
+  [505f98c9] InplaceOps v0.3.0
+  [a98d9a8b] Interpolations v0.12.5
+  [8197267c] IntervalSets v0.3.2
+  [41ab1584] InvertedIndices v1.0.0
+  [c8e1da08] IterTools v1.3.0
+  [42fd0dbc] IterativeSolvers v0.8.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [682c06a0] JSON v0.21.0
+  [e5e0dc1b] Juno v0.7.2
+  [5ab0869b] KernelDensity v0.5.1
+  [2ee39098] LabelledArrays v0.7.1
+  [5078a376] LazyArrays v0.12.3
+  [6f1fad26] Libtask v0.3.1
+  [093fc24a] LightGraphs v1.3.0
+  [d3d80556] LineSearches v7.0.1
+  [4345ca2d] Loess v0.5.0
+  [6fdf6af0] LogDensityProblems v0.9.2
+  [c7f686f2] MCMCChains v0.3.15
+  [1914dd2f] MacroTools v0.5.2
+  [5424a776] Mamba v0.12.2
+  [dbb5928d] MappedArrays v0.2.2
+  [442fdcdd] Measures v0.3.0
+  [e89f7d12] Media v0.5.0
+  [e1d29d7a] Missings v0.4.3
+  [46d2c3a1] MuladdMacro v0.2.1
+  [d41bc354] NLSolversBase v7.5.0
+  [2774e3e8] NLsolve v4.2.0
+  [872c559c] NNlib v0.6.0
+  [77ba4419] NaNMath v0.3.3
+  [86f7a689] NamedArrays v0.9.3
+  [b8a86587] NearestNeighbors v0.4.3
+  [510215fc] Observables v0.2.3
+  [6fe1bfb0] OffsetArrays v0.11.1
+  [429524aa] Optim v0.19.4
+  [bac558e1] OrderedCollections v1.1.0
+  [1dea7af3] OrdinaryDiffEq v5.23.0
+  [90014a1f] PDMats v0.9.10
+  [65888b18] ParameterizedFunctions v4.2.1
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [ccf2f8ad] PlotThemes v0.4.0
+  [995b91a9] PlotUtils v0.6.1
+  [91a5bcdd] Plots v0.27.0
+  [f27b6e38] Polynomials v0.6.0
+  [2dfb63ee] PooledArrays v0.5.2
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [92933f4c] ProgressMeter v1.2.0
+  [1fd47b50] QuadGK v2.1.1
+  [b3c3ace0] RangeArrays v0.3.1
+  [c84ed2f1] Ratios v0.3.1
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [f2c3362d] RecursiveFactorization v0.1.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [79098fc4] Rmath v0.5.1
+  [f2b01f46] Roots v0.8.3
+  [992d4aef] Showoff v0.3.1
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [47a9eef4] SparseDiffTools v0.10.3
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.11.1
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [f3b207a7] StatsPlots v0.12.0
+  [9672c7b4] SteadyStateDiffEq v1.5.0
+  [09ab397b] StructArrays v0.4.0
+  [123dc426] SymEngine v0.7.0
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [a759f4b9] TimerOutputs v0.5.3
+  [9f7883ad] Tracker v0.2.5
+  [84d833dd] TransformVariables v0.3.8
+  [a2a6695c] TreeViews v0.3.0
+  [fce5fe82] Turing v0.7.1
+  [30578b45] URIParser v0.4.0
+  [81def892] VersionParsing v1.1.3
+  [19fa3120] VertexSafeGraphs v0.1.0
+  [ea10d353] WeakRefStrings v0.6.1
+  [cc8bc4a8] Widgets v0.6.2
+  [efce3f68] WoodburyMatrices v0.4.1
+  [e88e6eb3] Zygote v0.4.1
+  [700de1a5] ZygoteRules v0.2.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [9abbd945] Profile  [`@stdlib&#x2F;Profile`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+  Building Libtask → `~&#x2F;.julia&#x2F;packages&#x2F;Libtask&#x2F;RjRkK&#x2F;deps&#x2F;build.log`
+ Resolving package versions...
+[ Info: Loading DataFrames support into Gadfly.jl
+┌ Warning: Error requiring LogDensityProblems from Turing:
+│ UndefVarError: AbstractLogDensityProblem not defined
+│ Stacktrace:
+│  [1] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Turing&#x2F;xFzfF&#x2F;src&#x2F;Turing.jl:144
+│  [2] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+│  [3] top-level scope at none:0
+│  [4] eval at .&#x2F;boot.jl:319 [inlined]
+│  [5] eval at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Turing&#x2F;xFzfF&#x2F;src&#x2F;Turing.jl:1 [inlined]
+│  [6] (::getfield(Turing, Symbol(&quot;##7#11&quot;)))() at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:67
+│  [7] err(::getfield(Turing, Symbol(&quot;##7#11&quot;)), ::Module, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:38
+│  [8] #6 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:66 [inlined]
+│  [9] withpath(::getfield(Turing, Symbol(&quot;##6#10&quot;)), ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:28
+│  [10] (::getfield(Turing, Symbol(&quot;##5#9&quot;)))() at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:65
+│  [11] #invokelatest#1 at .&#x2F;essentials.jl:697 [inlined]
+│  [12] invokelatest at .&#x2F;essentials.jl:696 [inlined]
+│  [13] #3 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:19 [inlined]
+│  [14] iterate at .&#x2F;generator.jl:47 [inlined]
+│  [15] _collect(::Array{Function,1}, ::Base.Generator{Array{Function,1},getfield(Requires, Symbol(&quot;##3#4&quot;))}, ::Base.EltypeUnknown, ::Base.HasShape{1}) at .&#x2F;array.jl:632
+│  [16] collect_similar at .&#x2F;array.jl:561 [inlined]
+│  [17] map at .&#x2F;abstractarray.jl:1987 [inlined]
+│  [18] loadpkg(::Base.PkgId) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:19
+│  [19] #invokelatest#1 at .&#x2F;essentials.jl:697 [inlined]
+│  [20] invokelatest at .&#x2F;essentials.jl:696 [inlined]
+│  [21] _tryrequire_from_serialized(::Base.PkgId, ::UInt64, ::Nothing) at .&#x2F;loading.jl:651
+│  [22] _require_from_serialized(::String) at .&#x2F;loading.jl:679
+│  [23] _require(::Base.PkgId) at .&#x2F;loading.jl:967
+│  [24] require(::Base.PkgId) at .&#x2F;loading.jl:858
+│  [25] require(::Module, ::Symbol) at .&#x2F;loading.jl:853
+│  [26] include at .&#x2F;boot.jl:317 [inlined]
+│  [27] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+│  [28] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+│  [29] include(::String) at .&#x2F;client.jl:392
+│  [30] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5 [inlined]
+│  [31] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+│  [32] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5 [inlined]
+│  [33] macro expansion at .&#x2F;util.jl:156 [inlined]
+│  [34] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5 [inlined]
+│  [35] top-level scope at .&#x2F;util.jl:156 [inlined]
+│  [36] top-level scope at .&#x2F;none:0
+│  [37] include at .&#x2F;boot.jl:317 [inlined]
+│  [38] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+│  [39] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+│  [40] include(::String) at .&#x2F;client.jl:392
+│  [41] top-level scope at none:0
+│  [42] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+│  [43] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+│  [44] _start() at .&#x2F;client.jl:425
+└ @ Requires ~&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:40
+┌ Warning: Error requiring DynamicHMC from Turing:
+│ UndefVarError: NUTS_init_tune_mcmc not defined
+│ Stacktrace:
+│  [1] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Turing&#x2F;xFzfF&#x2F;src&#x2F;Turing.jl:161
+│  [2] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+│  [3] top-level scope at none:0
+│  [4] eval at .&#x2F;boot.jl:319 [inlined]
+│  [5] eval at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Turing&#x2F;xFzfF&#x2F;src&#x2F;Turing.jl:1 [inlined]
+│  [6] (::getfield(Turing, Symbol(&quot;##15#19&quot;)))() at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:67
+│  [7] err(::getfield(Turing, Symbol(&quot;##15#19&quot;)), ::Module, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:38
+│  [8] #14 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:66 [inlined]
+│  [9] withpath(::getfield(Turing, Symbol(&quot;##14#18&quot;)), ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:28
+│  [10] (::getfield(Turing, Symbol(&quot;##13#17&quot;)))() at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:65
+│  [11] #invokelatest#1 at .&#x2F;essentials.jl:697 [inlined]
+│  [12] invokelatest at .&#x2F;essentials.jl:696 [inlined]
+│  [13] #3 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:19 [inlined]
+│  [14] iterate at .&#x2F;generator.jl:47 [inlined]
+│  [15] _collect(::Array{Function,1}, ::Base.Generator{Array{Function,1},getfield(Requires, Symbol(&quot;##3#4&quot;))}, ::Base.EltypeUnknown, ::Base.HasShape{1}) at .&#x2F;array.jl:632
+│  [16] collect_similar at .&#x2F;array.jl:561 [inlined]
+│  [17] map at .&#x2F;abstractarray.jl:1987 [inlined]
+│  [18] loadpkg(::Base.PkgId) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:19
+│  [19] #invokelatest#1 at .&#x2F;essentials.jl:697 [inlined]
+│  [20] invokelatest at .&#x2F;essentials.jl:696 [inlined]
+│  [21] require(::Base.PkgId) at .&#x2F;loading.jl:861
+│  [22] require(::Module, ::Symbol) at .&#x2F;loading.jl:853
+│  [23] include at .&#x2F;boot.jl:317 [inlined]
+│  [24] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+│  [25] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+│  [26] include(::String) at .&#x2F;client.jl:392
+│  [27] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5 [inlined]
+│  [28] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+│  [29] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5 [inlined]
+│  [30] macro expansion at .&#x2F;util.jl:156 [inlined]
+│  [31] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5 [inlined]
+│  [32] top-level scope at .&#x2F;util.jl:156 [inlined]
+│  [33] top-level scope at .&#x2F;none:0
+│  [34] include at .&#x2F;boot.jl:317 [inlined]
+│  [35] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+│  [36] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+│  [37] include(::String) at .&#x2F;client.jl:392
+│  [38] top-level scope at none:0
+│  [39] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+│  [40] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+│  [41] _start() at .&#x2F;client.jl:425
+└ @ Requires ~&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:40
+┌ Warning: Error requiring DynamicHMC from DiffEqBayes:
+│ LoadError: UndefVarError: TA not defined
+│ Stacktrace:
+│  [1] top-level scope at util.jl:660
+│  [2] include at .&#x2F;boot.jl:317 [inlined]
+│  [3] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+│  [4] include at .&#x2F;sysimg.jl:29 [inlined]
+│  [5] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;src&#x2F;DiffEqBayes.jl:1
+│  [6] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;src&#x2F;DiffEqBayes.jl:23
+│  [7] eval at .&#x2F;boot.jl:319 [inlined]
+│  [8] eval at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;src&#x2F;DiffEqBayes.jl:1 [inlined]
+│  [9] (::getfield(DiffEqBayes, Symbol(&quot;##31#40&quot;)))() at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:67
+│  [10] err(::getfield(DiffEqBayes, Symbol(&quot;##31#40&quot;)), ::Module, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:38
+│  [11] #30 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:66 [inlined]
+│  [12] withpath(::getfield(DiffEqBayes, Symbol(&quot;##30#39&quot;)), ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:28
+│  [13] (::getfield(DiffEqBayes, Symbol(&quot;##29#38&quot;)))() at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:65
+│  [14] #invokelatest#1 at .&#x2F;essentials.jl:697 [inlined]
+│  [15] invokelatest at .&#x2F;essentials.jl:696 [inlined]
+│  [16] #3 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:19 [inlined]
+│  [17] iterate at .&#x2F;generator.jl:47 [inlined]
+│  [18] collect_to!(::Array{Nothing,1}, ::Base.Generator{Array{Function,1},getfield(Requires, Symbol(&quot;##3#4&quot;))}, ::Int64, ::Int64) at .&#x2F;array.jl:656
+│  [19] collect_to_with_first!(::Array{Nothing,1}, ::Nothing, ::Base.Generator{Array{Function,1},getfield(Requires, Symbol(&quot;##3#4&quot;))}, ::Int64) at .&#x2F;array.jl:643
+│  [20] _collect(::Array{Function,1}, ::Base.Generator{Array{Function,1},getfield(Requires, Symbol(&quot;##3#4&quot;))}, ::Base.EltypeUnknown, ::Base.HasShape{1}) at .&#x2F;array.jl:637
+│  [21] collect_similar at .&#x2F;array.jl:561 [inlined]
+│  [22] map at .&#x2F;abstractarray.jl:1987 [inlined]
+│  [23] loadpkg(::Base.PkgId) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:19
+│  [24] #invokelatest#1 at .&#x2F;essentials.jl:697 [inlined]
+│  [25] invokelatest at .&#x2F;essentials.jl:696 [inlined]
+│  [26] require(::Base.PkgId) at .&#x2F;loading.jl:861
+│  [27] require(::Module, ::Symbol) at .&#x2F;loading.jl:853
+│  [28] include at .&#x2F;boot.jl:317 [inlined]
+│  [29] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+│  [30] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+│  [31] include(::String) at .&#x2F;client.jl:392
+│  [32] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5 [inlined]
+│  [33] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+│  [34] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5 [inlined]
+│  [35] macro expansion at .&#x2F;util.jl:156 [inlined]
+│  [36] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5 [inlined]
+│  [37] top-level scope at .&#x2F;util.jl:156 [inlined]
+│  [38] top-level scope at .&#x2F;none:0
+│  [39] include at .&#x2F;boot.jl:317 [inlined]
+│  [40] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+│  [41] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+│  [42] include(::String) at .&#x2F;client.jl:392
+│  [43] top-level scope at none:0
+│  [44] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+│  [45] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+│  [46] _start() at .&#x2F;client.jl:425
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;src&#x2F;dynamichmc_inference.jl:1
+└ @ Requires ~&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:40
+DynamicHMC: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5
+  Got exception outside of a @test
+  LoadError: UndefVarError: dynamichmc_inference not defined
+  Stacktrace:
+   [1] top-level scope at none:0
+   [2] include at .&#x2F;boot.jl:317 [inlined]
+   [3] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [4] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [5] include(::String) at .&#x2F;client.jl:392
+   [6] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5 [inlined]
+   [7] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [8] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5 [inlined]
+   [9] macro expansion at .&#x2F;util.jl:156 [inlined]
+   [10] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5 [inlined]
+   [11] top-level scope at .&#x2F;util.jl:156 [inlined]
+   [12] top-level scope at .&#x2F;none:0
+   [13] include at .&#x2F;boot.jl:317 [inlined]
+   [14] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [15] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [16] include(::String) at .&#x2F;client.jl:392
+   [17] top-level scope at none:0
+   [18] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [19] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [20] _start() at .&#x2F;client.jl:425
+  in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;dynamicHMC.jl:23
+Test Summary: | Error  Total
+DynamicHMC    |     1      1
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:4
+ERROR: Package DiffEqBayes errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1357
+ [3] #test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:278
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:263 [inlined]
+ [6] #test#43 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [8] #test#42 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [10] #test#41 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258 [inlined]
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258
+ [12] top-level scope at none:0
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 11 hours ago and took 25 minutes, 41 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/DiffEqBayes/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Missings ──────────────────── v0.4.3
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed Showoff ───────────────────── v0.3.1
+ Installed DiffEqBayes ───────────────── v2.1.1
+ Installed Inflate ───────────────────── v0.1.1
+ Installed TableTraits ───────────────── v1.0.0
+ Installed ApproxBayes ───────────────── v0.3.1
+ Installed DataFrames ────────────────── v0.19.4
+ Installed AbstractFFTs ──────────────── v0.5.0
+ Installed DistributionsAD ───────────── v0.1.2
+ Installed PDMats ────────────────────── v0.9.10
+ Installed LineSearches ──────────────── v7.0.1
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed CoupledFields ─────────────── v0.1.0
+ Installed Contour ───────────────────── v0.5.1
+ Installed RangeArrays ───────────────── v0.3.1
+ Installed Conda ─────────────────────── v1.3.0
+ Installed CommonSubexpressions ──────── v0.2.0
+ Installed StatsBase ─────────────────── v0.32.0
+ Installed Measures ──────────────────── v0.3.0
+ Installed Tracker ───────────────────── v0.2.5
+ Installed StatsFuns ─────────────────── v0.9.0
+ Installed Adapt ─────────────────────── v1.0.0
+ Installed URIParser ─────────────────── v0.4.0
+ Installed AxisAlgorithms ────────────── v1.0.0
+ Installed DiffEqBase ────────────────── v6.6.0
+ Installed NLSolversBase ─────────────── v7.5.0
+ Installed Polynomials ───────────────── v0.6.0
+ Installed DocStringExtensions ───────── v0.8.1
+ Installed Colors ────────────────────── v0.9.6
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed SymEngine ─────────────────── v0.7.0
+ Installed Zygote ────────────────────── v0.4.1
+ Installed IRTools ───────────────────── v0.3.0
+ Installed Requires ──────────────────── v0.5.2
+ Installed Compose ───────────────────── v0.7.3
+ Installed InplaceOps ────────────────── v0.3.0
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed Reexport ──────────────────── v0.2.0
+ Installed Libtask ───────────────────── v0.3.1
+ Installed Mamba ─────────────────────── v0.12.2
+ Installed TimerOutputs ──────────────── v0.5.3
+ Installed Compat ────────────────────── v2.2.0
+ Installed OffsetArrays ──────────────── v0.11.1
+ Installed ForwardDiff ───────────────── v0.10.6
+ Installed FunctionWrappers ──────────── v1.0.0
+ Installed Rmath ─────────────────────── v0.5.1
+ Installed Tables ────────────────────── v0.2.11
+ Installed OrderedCollections ────────── v1.1.0
+ Installed NNlib ─────────────────────── v0.6.0
+ Installed Loess ─────────────────────── v0.5.0
+ Installed IterTools ─────────────────── v1.3.0
+ Installed AdvancedHMC ───────────────── v0.2.13
+ Installed Calculus ──────────────────── v0.5.1
+ Installed KernelDensity ─────────────── v0.5.1
+ Installed StructArrays ──────────────── v0.4.0
+ Installed MappedArrays ──────────────── v0.2.2
+ Installed Combinatorics ─────────────── v0.7.0
+ Installed Roots ─────────────────────── v0.8.3
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed Gadfly ────────────────────── v1.0.1
+ Installed TreeViews ─────────────────── v0.3.0
+ Installed DataStructures ────────────── v0.17.6
+ Installed ArgCheck ──────────────────── v1.0.1
+ Installed DynamicHMC ────────────────── v2.1.1
+ Installed IterativeSolvers ──────────── v0.8.1
+ Installed FixedPointNumbers ─────────── v0.6.1
+ Installed Distributions ─────────────── v0.21.8
+ Installed Parsers ───────────────────── v0.3.10
+ Installed LightGraphs ───────────────── v1.3.0
+ Installed Turing ────────────────────── v0.7.1
+ Installed FillArrays ────────────────── v0.7.4
+ Installed DiffRules ─────────────────── v0.1.0
+ Installed DiffEqDiffTools ───────────── v1.4.0
+ Installed TransformVariables ────────── v0.3.8
+ Installed RecursiveFactorization ────── v0.1.0
+ Installed Graphics ──────────────────── v0.4.0
+ Installed JSON ──────────────────────── v0.21.0
+ Installed Media ─────────────────────── v0.5.0
+ Installed Ratios ────────────────────── v0.3.1
+ Installed RecursiveArrayTools ───────── v1.0.2
+ Installed ArrayInterface ────────────── v1.2.1
+ Installed Cairo ─────────────────────── v0.8.0
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed Juno ──────────────────────── v0.7.2
+ Installed StaticArrays ──────────────── v0.11.1
+ Installed MCMCChains ────────────────── v0.3.15
+ Installed ParameterizedFunctions ────── v4.2.1
+ Installed DiffResults ───────────────── v0.0.4
+ Installed LabelledArrays ────────────── v0.7.1
+ Installed MuladdMacro ───────────────── v0.2.1
+ Installed SimpleTraits ──────────────── v0.9.1
+ Installed IntervalSets ──────────────── v0.3.2
+ Installed Parameters ────────────────── v0.12.0
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed BenchmarkTools ────────────── v0.4.3
+ Installed FFTW ──────────────────────── v1.1.0
+ Installed Hexagons ──────────────────── v0.2.0
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed QuadGK ────────────────────── v2.1.1
+ Installed WoodburyMatrices ──────────── v0.4.1
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed Bijectors ─────────────────── v0.4.0
+ Installed LazyArrays ────────────────── v0.12.3
+ Installed LogDensityProblems ────────── v0.9.2
+ Installed Interpolations ────────────── v0.12.5
+ Installed VersionParsing ────────────── v1.1.3
+ Installed IndirectArrays ────────────── v0.5.0
+ Installed Distances ─────────────────── v0.8.2
+ Installed MacroTools ────────────────── v0.5.2
+ Installed ZygoteRules ───────────────── v0.2.0
+ Installed PositiveFactorizations ────── v0.2.3
+ Installed ColorTypes ────────────────── v0.8.0
+ Installed SpecialFunctions ──────────── v0.8.0
+ Installed ArnoldiMethod ─────────────── v0.0.4
+ Installed BinDeps ───────────────────── v0.8.10
+ Installed AxisArrays ────────────────── v0.3.3
+ Installed ProgressMeter ─────────────── v1.2.0
+ Installed Optim ─────────────────────── v0.19.4
+ Installed Arpack ────────────────────── v0.3.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [ebbdde9d] + DiffEqBayes v2.1.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [621f4979] + AbstractFFTs v0.5.0
+  [79e6a3ab] + Adapt v1.0.0
+  [0bf59076] + AdvancedHMC v0.2.13
+  [f5f396d3] + ApproxBayes v0.3.1
+  [dce04be8] + ArgCheck v1.0.1
+  [ec485272] + ArnoldiMethod v0.0.4
+  [7d9fca2a] + Arpack v0.3.1
+  [4fba245c] + ArrayInterface v1.2.1
+  [13072b0f] + AxisAlgorithms v1.0.0
+  [39de3d68] + AxisArrays v0.3.3
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [76274a88] + Bijectors v0.4.0
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [159f3aea] + Cairo v0.8.0
+  [49dc2e85] + Calculus v0.5.1
+  [324d7699] + CategoricalArrays v0.7.3
+  [3da002f7] + ColorTypes v0.8.0
+  [5ae59095] + Colors v0.9.6
+  [861a8166] + Combinatorics v0.7.0
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [a81c6b42] + Compose v0.7.3
+  [8f4d0f93] + Conda v1.3.0
+  [d38c429a] + Contour v0.5.1
+  [7ad07ef1] + CoupledFields v0.1.0
+  [9a962f9c] + DataAPI v1.1.0
+  [a93c6f00] + DataFrames v0.19.4
+  [864edb3b] + DataStructures v0.17.6
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [2b5f629d] + DiffEqBase v6.6.0
+  [ebbdde9d] + DiffEqBayes v2.1.1
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [b4f34e82] + Distances v0.8.2
+  [31c24e10] + Distributions v0.21.8
+  [ced4e74d] + DistributionsAD v0.1.2
+  [ffbed154] + DocStringExtensions v0.8.1
+  [bbc10e6e] + DynamicHMC v2.1.1
+  [7a1cc6ca] + FFTW v1.1.0
+  [1a297f60] + FillArrays v0.7.4
+  [53c48c17] + FixedPointNumbers v0.6.1
+  [f6369f11] + ForwardDiff v0.10.6
+  [069b7b12] + FunctionWrappers v1.0.0
+  [c91e804a] + Gadfly v1.0.1
+  [a2bd30eb] + Graphics v0.4.0
+  [a1b4810d] + Hexagons v0.2.0
+  [7869d1d1] + IRTools v0.3.0
+  [9b13fd28] + IndirectArrays v0.5.0
+  [d25df0c9] + Inflate v0.1.1
+  [505f98c9] + InplaceOps v0.3.0
+  [a98d9a8b] + Interpolations v0.12.5
+  [8197267c] + IntervalSets v0.3.2
+  [41ab1584] + InvertedIndices v1.0.0
+  [c8e1da08] + IterTools v1.3.0
+  [42fd0dbc] + IterativeSolvers v0.8.1
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [682c06a0] + JSON v0.21.0
+  [e5e0dc1b] + Juno v0.7.2
+  [5ab0869b] + KernelDensity v0.5.1
+  [2ee39098] + LabelledArrays v0.7.1
+  [5078a376] + LazyArrays v0.12.3
+  [6f1fad26] + Libtask v0.3.1
+  [093fc24a] + LightGraphs v1.3.0
+  [d3d80556] + LineSearches v7.0.1
+  [4345ca2d] + Loess v0.5.0
+  [6fdf6af0] + LogDensityProblems v0.9.2
+  [c7f686f2] + MCMCChains v0.3.15
+  [1914dd2f] + MacroTools v0.5.2
+  [5424a776] + Mamba v0.12.2
+  [dbb5928d] + MappedArrays v0.2.2
+  [442fdcdd] + Measures v0.3.0
+  [e89f7d12] + Media v0.5.0
+  [e1d29d7a] + Missings v0.4.3
+  [46d2c3a1] + MuladdMacro v0.2.1
+  [d41bc354] + NLSolversBase v7.5.0
+  [872c559c] + NNlib v0.6.0
+  [77ba4419] + NaNMath v0.3.3
+  [6fe1bfb0] + OffsetArrays v0.11.1
+  [429524aa] + Optim v0.19.4
+  [bac558e1] + OrderedCollections v1.1.0
+  [90014a1f] + PDMats v0.9.10
+  [65888b18] + ParameterizedFunctions v4.2.1
+  [d96e819e] + Parameters v0.12.0
+  [69de0a69] + Parsers v0.3.10
+  [f27b6e38] + Polynomials v0.6.0
+  [2dfb63ee] + PooledArrays v0.5.2
+  [85a6dd25] + PositiveFactorizations v0.2.3
+  [92933f4c] + ProgressMeter v1.2.0
+  [1fd47b50] + QuadGK v2.1.1
+  [b3c3ace0] + RangeArrays v0.3.1
+  [c84ed2f1] + Ratios v0.3.1
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [731186ca] + RecursiveArrayTools v1.0.2
+  [f2c3362d] + RecursiveFactorization v0.1.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [79098fc4] + Rmath v0.5.1
+  [f2b01f46] + Roots v0.8.3
+  [992d4aef] + Showoff v0.3.1
+  [699a6c99] + SimpleTraits v0.9.1
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.11.1
+  [2913bbd2] + StatsBase v0.32.0
+  [4c63d2b9] + StatsFuns v0.9.0
+  [09ab397b] + StructArrays v0.4.0
+  [123dc426] + SymEngine v0.7.0
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [a759f4b9] + TimerOutputs v0.5.3
+  [9f7883ad] + Tracker v0.2.5
+  [84d833dd] + TransformVariables v0.3.8
+  [a2a6695c] + TreeViews v0.3.0
+  [fce5fe82] + Turing v0.7.1
+  [30578b45] + URIParser v0.4.0
+  [81def892] + VersionParsing v1.1.3
+  [efce3f68] + WoodburyMatrices v0.4.1
+  [e88e6eb3] + Zygote v0.4.1
+  [700de1a5] + ZygoteRules v0.2.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [9abbd945] + Profile 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Conda ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+  Building SymEngine ───────→ `~&#x2F;.julia&#x2F;packages&#x2F;SymEngine&#x2F;zSUGO&#x2F;deps&#x2F;build.log`
+  Building Libtask ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Libtask&#x2F;RjRkK&#x2F;deps&#x2F;build.log`
+  Building Rmath ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+  Building Cairo ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Cairo&#x2F;ZbzIH&#x2F;deps&#x2F;build.log`
+  Building FFTW ────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFTW&#x2F;loJ3F&#x2F;deps&#x2F;build.log`
+  Building Arpack ──────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+   Testing DiffEqBayes
+ Resolving package versions...
+ Installed SteadyStateDiffEq ──── v1.5.0
+ Installed NamedArrays ────────── v0.9.3
+ Installed Plots ──────────────── v0.27.0
+ Installed ExponentialUtilities ─ v1.5.1
+ Installed NearestNeighbors ───── v0.4.3
+ Installed GenericSVD ─────────── v0.2.2
+ Installed Observables ────────── v0.2.3
+ Installed Widgets ────────────── v0.6.2
+ Installed VertexSafeGraphs ───── v0.1.0
+ Installed OrdinaryDiffEq ─────── v5.23.0
+ Installed CmdStan ────────────── v5.2.3
+ Installed Homebrew ───────────── v0.7.1
+ Installed FilePathsBase ──────── v0.7.0
+ Installed WeakRefStrings ─────── v0.6.1
+ Installed FFMPEG ─────────────── v0.2.3
+ Installed SparseDiffTools ────── v0.10.3
+ Installed StatsPlots ─────────── v0.12.0
+ Installed DataValues ─────────── v0.4.12
+ Installed NLsolve ────────────── v4.2.0
+ Installed Documenter ─────────── v0.24.0
+ Installed PlotUtils ──────────── v0.6.1
+ Installed DiffEqCallbacks ────── v2.9.0
+ Installed GeometryTypes ──────── v0.7.6
+ Installed PlotThemes ─────────── v0.4.0
+ Installed CSV ────────────────── v0.5.18
+ Installed Clustering ─────────── v0.13.3
+ Installed GR ─────────────────── v0.42.0
+  Building GR ──────→ `~&#x2F;.julia&#x2F;packages&#x2F;GR&#x2F;f1Iqi&#x2F;deps&#x2F;build.log`
+  Building FFMPEG ──→ `~&#x2F;.julia&#x2F;packages&#x2F;FFMPEG&#x2F;bkWgb&#x2F;deps&#x2F;build.log`
+  Building Plots ───→ `~&#x2F;.julia&#x2F;packages&#x2F;Plots&#x2F;Iuc9S&#x2F;deps&#x2F;build.log`
+  Building Homebrew → `~&#x2F;.julia&#x2F;packages&#x2F;Homebrew&#x2F;s09IX&#x2F;deps&#x2F;build.log`
+  Building CmdStan ─→ `~&#x2F;.julia&#x2F;packages&#x2F;CmdStan&#x2F;2cHgp&#x2F;deps&#x2F;build.log`
+    Status `&#x2F;tmp&#x2F;jl_A8jZU0&#x2F;Manifest.toml`
+  [621f4979] AbstractFFTs v0.5.0
+  [79e6a3ab] Adapt v1.0.0
+  [0bf59076] AdvancedHMC v0.2.13
+  [f5f396d3] ApproxBayes v0.3.1
+  [dce04be8] ArgCheck v1.0.1
+  [ec485272] ArnoldiMethod v0.0.4
+  [7d9fca2a] Arpack v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [13072b0f] AxisAlgorithms v1.0.0
+  [39de3d68] AxisArrays v0.3.3
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [76274a88] Bijectors v0.4.0
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [336ed68f] CSV v0.5.18
+  [159f3aea] Cairo v0.8.0
+  [49dc2e85] Calculus v0.5.1
+  [324d7699] CategoricalArrays v0.7.3
+  [aaaa29a8] Clustering v0.13.3
+  [593b3428] CmdStan v5.2.3
+  [3da002f7] ColorTypes v0.8.0
+  [5ae59095] Colors v0.9.6
+  [861a8166] Combinatorics v0.7.0
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [a81c6b42] Compose v0.7.3
+  [8f4d0f93] Conda v1.3.0
+  [d38c429a] Contour v0.5.1
+  [7ad07ef1] CoupledFields v0.1.0
+  [9a962f9c] DataAPI v1.1.0
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [e7dc6d0d] DataValues v0.4.12
+  [2b5f629d] DiffEqBase v6.6.0
+  [ebbdde9d] DiffEqBayes v2.1.1
+  [459566f4] DiffEqCallbacks v2.9.0
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [31c24e10] Distributions v0.21.8
+  [ced4e74d] DistributionsAD v0.1.2
+  [ffbed154] DocStringExtensions v0.8.1
+  [e30172f5] Documenter v0.24.0
+  [bbc10e6e] DynamicHMC v2.1.1
+  [d4d017d3] ExponentialUtilities v1.5.1
+  [c87230d0] FFMPEG v0.2.3
+  [7a1cc6ca] FFTW v1.1.0
+  [48062228] FilePathsBase v0.7.0
+  [1a297f60] FillArrays v0.7.4
+  [53c48c17] FixedPointNumbers v0.6.1
+  [f6369f11] ForwardDiff v0.10.6
+  [069b7b12] FunctionWrappers v1.0.0
+  [28b8d3ca] GR v0.42.0
+  [c91e804a] Gadfly v1.0.1
+  [01680d73] GenericSVD v0.2.2
+  [4d00f742] GeometryTypes v0.7.6
+  [a2bd30eb] Graphics v0.4.0
+  [a1b4810d] Hexagons v0.2.0
+  [d9be37ee] Homebrew v0.7.1
+  [7869d1d1] IRTools v0.3.0
+  [9b13fd28] IndirectArrays v0.5.0
+  [d25df0c9] Inflate v0.1.1
+  [505f98c9] InplaceOps v0.3.0
+  [a98d9a8b] Interpolations v0.12.5
+  [8197267c] IntervalSets v0.3.2
+  [41ab1584] InvertedIndices v1.0.0
+  [c8e1da08] IterTools v1.3.0
+  [42fd0dbc] IterativeSolvers v0.8.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [682c06a0] JSON v0.21.0
+  [e5e0dc1b] Juno v0.7.2
+  [5ab0869b] KernelDensity v0.5.1
+  [2ee39098] LabelledArrays v0.7.1
+  [5078a376] LazyArrays v0.12.3
+  [6f1fad26] Libtask v0.3.1
+  [093fc24a] LightGraphs v1.3.0
+  [d3d80556] LineSearches v7.0.1
+  [4345ca2d] Loess v0.5.0
+  [6fdf6af0] LogDensityProblems v0.9.2
+  [c7f686f2] MCMCChains v0.3.15
+  [1914dd2f] MacroTools v0.5.2
+  [5424a776] Mamba v0.12.2
+  [dbb5928d] MappedArrays v0.2.2
+  [442fdcdd] Measures v0.3.0
+  [e89f7d12] Media v0.5.0
+  [e1d29d7a] Missings v0.4.3
+  [46d2c3a1] MuladdMacro v0.2.1
+  [d41bc354] NLSolversBase v7.5.0
+  [2774e3e8] NLsolve v4.2.0
+  [872c559c] NNlib v0.6.0
+  [77ba4419] NaNMath v0.3.3
+  [86f7a689] NamedArrays v0.9.3
+  [b8a86587] NearestNeighbors v0.4.3
+  [510215fc] Observables v0.2.3
+  [6fe1bfb0] OffsetArrays v0.11.1
+  [429524aa] Optim v0.19.4
+  [bac558e1] OrderedCollections v1.1.0
+  [1dea7af3] OrdinaryDiffEq v5.23.0
+  [90014a1f] PDMats v0.9.10
+  [65888b18] ParameterizedFunctions v4.2.1
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [ccf2f8ad] PlotThemes v0.4.0
+  [995b91a9] PlotUtils v0.6.1
+  [91a5bcdd] Plots v0.27.0
+  [f27b6e38] Polynomials v0.6.0
+  [2dfb63ee] PooledArrays v0.5.2
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [92933f4c] ProgressMeter v1.2.0
+  [1fd47b50] QuadGK v2.1.1
+  [b3c3ace0] RangeArrays v0.3.1
+  [c84ed2f1] Ratios v0.3.1
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [f2c3362d] RecursiveFactorization v0.1.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [79098fc4] Rmath v0.5.1
+  [f2b01f46] Roots v0.8.3
+  [992d4aef] Showoff v0.3.1
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [47a9eef4] SparseDiffTools v0.10.3
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.11.1
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [f3b207a7] StatsPlots v0.12.0
+  [9672c7b4] SteadyStateDiffEq v1.5.0
+  [09ab397b] StructArrays v0.4.0
+  [123dc426] SymEngine v0.7.0
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [a759f4b9] TimerOutputs v0.5.3
+  [9f7883ad] Tracker v0.2.5
+  [84d833dd] TransformVariables v0.3.8
+  [a2a6695c] TreeViews v0.3.0
+  [fce5fe82] Turing v0.7.1
+  [30578b45] URIParser v0.4.0
+  [81def892] VersionParsing v1.1.3
+  [19fa3120] VertexSafeGraphs v0.1.0
+  [ea10d353] WeakRefStrings v0.6.1
+  [cc8bc4a8] Widgets v0.6.2
+  [efce3f68] WoodburyMatrices v0.4.1
+  [e88e6eb3] Zygote v0.4.1
+  [700de1a5] ZygoteRules v0.2.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [9abbd945] Profile  [`@stdlib&#x2F;Profile`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+  Building Libtask → `~&#x2F;.julia&#x2F;packages&#x2F;Libtask&#x2F;RjRkK&#x2F;deps&#x2F;build.log`
+ Resolving package versions...
+[ Info: Loading DataFrames support into Gadfly.jl
+┌ Warning: Error requiring LogDensityProblems from Turing:
+│ UndefVarError: AbstractLogDensityProblem not defined
+│ Stacktrace:
+│  [1] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Turing&#x2F;xFzfF&#x2F;src&#x2F;Turing.jl:144
+│  [2] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+│  [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;dynamicHMC.jl:2
+│  [4] eval at .&#x2F;boot.jl:330 [inlined]
+│  [5] eval at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Turing&#x2F;xFzfF&#x2F;src&#x2F;Turing.jl:1 [inlined]
+│  [6] (::getfield(Turing, Symbol(&quot;##7#11&quot;)))() at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:67
+│  [7] err(::getfield(Turing, Symbol(&quot;##7#11&quot;)), ::Module, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:38
+│  [8] #6 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:66 [inlined]
+│  [9] withpath(::getfield(Turing, Symbol(&quot;##6#10&quot;)), ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:28
+│  [10] (::getfield(Turing, Symbol(&quot;##5#9&quot;)))() at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:65
+│  [11] #invokelatest#1 at .&#x2F;essentials.jl:790 [inlined]
+│  [12] invokelatest at .&#x2F;essentials.jl:789 [inlined]
+│  [13] #3 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:19 [inlined]
+│  [14] iterate at .&#x2F;generator.jl:47 [inlined]
+│  [15] _collect(::Array{Function,1}, ::Base.Generator{Array{Function,1},getfield(Requires, Symbol(&quot;##3#4&quot;))}, ::Base.EltypeUnknown, ::Base.HasShape{1}) at .&#x2F;array.jl:619
+│  [16] collect_similar at .&#x2F;array.jl:548 [inlined]
+│  [17] map at .&#x2F;abstractarray.jl:2073 [inlined]
+│  [18] loadpkg(::Base.PkgId) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:19
+│  [19] #invokelatest#1 at .&#x2F;essentials.jl:790 [inlined]
+│  [20] invokelatest at .&#x2F;essentials.jl:789 [inlined]
+│  [21] _tryrequire_from_serialized(::Base.PkgId, ::UInt64, ::Nothing) at .&#x2F;loading.jl:703
+│  [22] _require_from_serialized(::String) at .&#x2F;loading.jl:731
+│  [23] _require(::Base.PkgId) at .&#x2F;loading.jl:1023
+│  [24] require(::Base.PkgId) at .&#x2F;loading.jl:911
+│  [25] require(::Module, ::Symbol) at .&#x2F;loading.jl:906
+│  [26] include at .&#x2F;boot.jl:328 [inlined]
+│  [27] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+│  [28] include(::Module, ::String) at .&#x2F;Base.jl:31
+│  [29] include(::String) at .&#x2F;client.jl:431
+│  [30] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5
+│  [31] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+│  [32] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5
+│  [33] top-level scope at util.jl:156
+│  [34] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5
+│  [35] top-level scope at util.jl:156
+│  [36] include at .&#x2F;boot.jl:328 [inlined]
+│  [37] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+│  [38] include(::Module, ::String) at .&#x2F;Base.jl:31
+│  [39] include(::String) at .&#x2F;client.jl:431
+│  [40] top-level scope at none:5
+│  [41] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+│  [42] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+│  [43] _start() at .&#x2F;client.jl:464
+└ @ Requires ~&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:40
+┌ Warning: Error requiring DynamicHMC from Turing:
+│ UndefVarError: NUTS_init_tune_mcmc not defined
+│ Stacktrace:
+│  [1] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Turing&#x2F;xFzfF&#x2F;src&#x2F;Turing.jl:161
+│  [2] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+│  [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;dynamicHMC.jl:2
+│  [4] eval at .&#x2F;boot.jl:330 [inlined]
+│  [5] eval at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Turing&#x2F;xFzfF&#x2F;src&#x2F;Turing.jl:1 [inlined]
+│  [6] (::getfield(Turing, Symbol(&quot;##15#19&quot;)))() at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:67
+│  [7] err(::getfield(Turing, Symbol(&quot;##15#19&quot;)), ::Module, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:38
+│  [8] #14 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:66 [inlined]
+│  [9] withpath(::getfield(Turing, Symbol(&quot;##14#18&quot;)), ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:28
+│  [10] (::getfield(Turing, Symbol(&quot;##13#17&quot;)))() at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:65
+│  [11] #invokelatest#1 at .&#x2F;essentials.jl:790 [inlined]
+│  [12] invokelatest at .&#x2F;essentials.jl:789 [inlined]
+│  [13] #3 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:19 [inlined]
+│  [14] iterate at .&#x2F;generator.jl:47 [inlined]
+│  [15] _collect(::Array{Function,1}, ::Base.Generator{Array{Function,1},getfield(Requires, Symbol(&quot;##3#4&quot;))}, ::Base.EltypeUnknown, ::Base.HasShape{1}) at .&#x2F;array.jl:619
+│  [16] collect_similar at .&#x2F;array.jl:548 [inlined]
+│  [17] map at .&#x2F;abstractarray.jl:2073 [inlined]
+│  [18] loadpkg(::Base.PkgId) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:19
+│  [19] #invokelatest#1 at .&#x2F;essentials.jl:790 [inlined]
+│  [20] invokelatest at .&#x2F;essentials.jl:789 [inlined]
+│  [21] require(::Base.PkgId) at .&#x2F;loading.jl:914
+│  [22] require(::Module, ::Symbol) at .&#x2F;loading.jl:906
+│  [23] include at .&#x2F;boot.jl:328 [inlined]
+│  [24] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+│  [25] include(::Module, ::String) at .&#x2F;Base.jl:31
+│  [26] include(::String) at .&#x2F;client.jl:431
+│  [27] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5
+│  [28] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+│  [29] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5
+│  [30] top-level scope at util.jl:156
+│  [31] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:5
+│  [32] top-level scope at util.jl:156
+│  [33] include at .&#x2F;boot.jl:328 [inlined]
+│  [34] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+│  [35] include(::Module, ::String) at .&#x2F;Base.jl:31
+│  [36] include(::String) at .&#x2F;client.jl:431
+│  [37] top-level scope at none:5
+│  [38] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+│  [39] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+│  [40] _start() at .&#x2F;client.jl:464
+└ @ Requires ~&#x2F;.julia&#x2F;packages&#x2F;Requires&#x2F;9Jse8&#x2F;src&#x2F;require.jl:40
+[ Info: finding initial optimum
+┌ Warning: dt &lt;= dtmin. Aborting. There is either an error in your model specification or the true solution is unstable.
+└ @ DiffEqBase ~&#x2F;.julia&#x2F;packages&#x2F;DiffEqBase&#x2F;IDJcQ&#x2F;src&#x2F;integrator_interface.jl:170
+┌ Warning: Interrupted. Larger maxiters is needed.
+└ @ DiffEqBase ~&#x2F;.julia&#x2F;packages&#x2F;DiffEqBase&#x2F;IDJcQ&#x2F;src&#x2F;integrator_interface.jl:156
+┌ Info: found initial stepsize
+└   ϵ = 0.25
+┌ Info: Starting MCMC
+│   total_steps = 75
+└   tuning = &quot;stepsize&quot;
+┌ Info: MCMC progress
+│   step = 1
+│   seconds_per_step = 0.0053
+│   estimated_seconds_left = 0.39
+└   ϵ = 0.25
+┌ Info: Starting MCMC
+│   total_steps = 25
+└   tuning = &quot;stepsize and Diagonal metric&quot;
+┌ Info: MCMC progress
+│   step = 1
+│   seconds_per_step = 0.0022
+│   estimated_seconds_left = 0.052
+└   ϵ = 0.039
+┌ Warning: Interrupted. Larger maxiters is needed.
+└ @ DiffEqBase ~&#x2F;.julia&#x2F;packages&#x2F;DiffEqBase&#x2F;IDJcQ&#x2F;src&#x2F;integrator_interface.jl:156
+┌ Info: adaptation finished
+└   adapted_kinetic_energy = Gaussian kinetic energy (Diagonal), √diag(M⁻¹): [0.2954465792803579, 0.6604389032735051, 0.9604124487376748]
+┌ Info: Starting MCMC
+│   total_steps = 50
+└   tuning = &quot;stepsize and Diagonal metric&quot;
+┌ Info: MCMC progress
+│   step = 1
+│   seconds_per_step = 0.00036
+│   estimated_seconds_left = 0.018
+└   ϵ = 0.0028
+┌ Info: adaptation finished
+└   adapted_kinetic_energy = Gaussian kinetic energy (Diagonal), √diag(M⁻¹): [0.1376143474697025, 0.5825530187924745, 0.4351728365735188]
+┌ Info: Starting MCMC
+│   total_steps = 100
+└   tuning = &quot;stepsize and Diagonal metric&quot;
+┌ Info: MCMC progress
+│   step = 1
+│   seconds_per_step = 0.1
+│   estimated_seconds_left = 10.0
+└   ϵ = 0.000626
+┌ Info: adaptation finished
+└   adapted_kinetic_energy = Gaussian kinetic energy (Diagonal), √diag(M⁻¹): [0.07138667381621948, 0.31924882210422934, 0.3733490410455637]
+┌ Info: Starting MCMC
+│   total_steps = 200
+└   tuning = &quot;stepsize and Diagonal metric&quot;
+┌ Info: MCMC progress
+│   step = 1
+│   seconds_per_step = 0.092
+│   estimated_seconds_left = 18.0
+└   ϵ = 0.00122
+┌ Info: MCMC progress
+│   step = 101
+│   seconds_per_step = 0.095
+│   estimated_seconds_left = 9.4
+└   ϵ = 0.00421
+┌ Info: adaptation finished
+└   adapted_kinetic_energy = Gaussian kinetic energy (Diagonal), √diag(M⁻¹): [0.04464207115955626, 0.3487014808728058, 0.2823376538858065]
+┌ Info: Starting MCMC
+│   total_steps = 400
+└   tuning = &quot;stepsize and Diagonal metric&quot;
+┌ Info: MCMC progress
+│   step = 1
+│   seconds_per_step = 0.12
+│   estimated_seconds_left = 49.0
+└   ϵ = 0.00236
+┌ Info: MCMC progress
+│   step = 101
+│   seconds_per_step = 0.082
+│   estimated_seconds_left = 24.0
+└   ϵ = 0.00732
+┌ Info: MCMC progress
+│   step = 201
+│   seconds_per_step = 0.091
+│   estimated_seconds_left = 18.0
+└   ϵ = 0.005
+┌ Info: MCMC progress
+│   step = 301
+│   seconds_per_step = 0.06
+│   estimated_seconds_left = 6.0
+└   ϵ = 0.0081
+┌ Info: adaptation finished
+└   adapted_kinetic_energy = Gaussian kinetic energy (Diagonal), √diag(M⁻¹): [0.032339386867355734, 0.31214017098535357, 0.28924242626845953]
+┌ Info: Starting MCMC
+│   total_steps = 50
+└   tuning = &quot;stepsize&quot;
+┌ Info: MCMC progress
+│   step = 1
+│   seconds_per_step = 0.00031
+│   estimated_seconds_left = 0.015
+└   ϵ = 0.00452
+┌ Info: Starting MCMC
+└   total_steps = 1000
+┌ Info: MCMC progress
+│   step = 1
+│   seconds_per_step = 0.026
+└   estimated_seconds_left = 26.0
+┌ Info: MCMC progress
+│   step = 101
+│   seconds_per_step = 0.098
+└   estimated_seconds_left = 88.0
+┌ Info: MCMC progress
+│   step = 201
+│   seconds_per_step = 0.1
+└   estimated_seconds_left = 80.0
+┌ Info: MCMC progress
+│   step = 301
+│   seconds_per_step = 0.12
+└   estimated_seconds_left = 80.0
+┌ Info: MCMC progress
+│   step = 401
+│   seconds_per_step = 0.091
+└   estimated_seconds_left = 55.0
+┌ Info: MCMC progress
+│   step = 501
+│   seconds_per_step = 0.083
+└   estimated_seconds_left = 41.0
+┌ Info: MCMC progress
+│   step = 601
+│   seconds_per_step = 0.08
+└   estimated_seconds_left = 32.0
+┌ Info: MCMC progress
+│   step = 701
+│   seconds_per_step = 0.08
+└   estimated_seconds_left = 24.0
+┌ Info: MCMC progress
+│   step = 801
+│   seconds_per_step = 0.096
+└   estimated_seconds_left = 19.0
+┌ Info: MCMC progress
+│   step = 901
+│   seconds_per_step = 0.1
+└   estimated_seconds_left = 10.0
+[ Info: finding initial optimum
+┌ Warning: dt &lt;= dtmin. Aborting. There is either an error in your model specification or the true solution is unstable.
+└ @ DiffEqBase ~&#x2F;.julia&#x2F;packages&#x2F;DiffEqBase&#x2F;IDJcQ&#x2F;src&#x2F;integrator_interface.jl:170
+┌ Warning: dt &lt;= dtmin. Aborting. There is either an error in your model specification or the true solution is unstable.
+└ @ DiffEqBase ~&#x2F;.julia&#x2F;packages&#x2F;DiffEqBase&#x2F;IDJcQ&#x2F;src&#x2F;integrator_interface.jl:170
+┌ Warning: dt &lt;= dtmin. Aborting. There is either an error in your model specification or the true solution is unstable.
+└ @ DiffEqBase ~&#x2F;.julia&#x2F;packages&#x2F;DiffEqBase&#x2F;IDJcQ&#x2F;src&#x2F;integrator_interface.jl:170
+┌ Warning: Interrupted. Larger maxiters is needed.
+└ @ DiffEqBase ~&#x2F;.julia&#x2F;packages&#x2F;DiffEqBase&#x2F;IDJcQ&#x2F;src&#x2F;integrator_interface.jl:156
+┌ Info: found initial stepsize
+└   ϵ = 0.000183
+┌ Info: Starting MCMC
+│   total_steps = 75
+└   tuning = &quot;stepsize&quot;
+┌ Info: MCMC progress
+│   step = 1
+│   seconds_per_step = 0.011
+│   estimated_seconds_left = 0.79
+└   ϵ = 0.000183
+┌ Info: Starting MCMC
+│   total_steps = 25
+└   tuning = &quot;stepsize and Diagonal metric&quot;
+┌ Info: MCMC progress
+│   step = 1
+│   seconds_per_step = 0.02
+│   estimated_seconds_left = 0.48
+└   ϵ = 0.000158
+┌ Info: adaptation finished
+└   adapted_kinetic_energy = Gaussian kinetic energy (Diagonal), √diag(M⁻¹): [0.014214714338336189, 0.014239911376099406, 0.014288737386198768, 0.014349749540603696, 0.14355753020845444, 0.09619903129877586]
+┌ Info: Starting MCMC
+│   total_steps = 50
+└   tuning = &quot;stepsize and Diagonal metric&quot;
+┌ Info: MCMC progress
+│   step = 1
+│   seconds_per_step = 0.12
+│   estimated_seconds_left = 6.1
+└   ϵ = 0.000147
+┌ Info: adaptation finished
+└   adapted_kinetic_energy = Gaussian kinetic energy (Diagonal), √diag(M⁻¹): [0.01008859814144087, 0.010231997393890207, 0.010174369236826051, 0.010251775465770663, 0.20454678285488456, 0.25069672285030525]
+┌ Info: Starting MCMC
+│   total_steps = 100
+└   tuning = &quot;stepsize and Diagonal metric&quot;
+┌ Info: MCMC progress
+│   step = 1
+│   seconds_per_step = 0.0028
+│   estimated_seconds_left = 0.28
+└   ϵ = 0.0132
+┌ Info: adaptation finished
+└   adapted_kinetic_energy = Gaussian kinetic energy (Diagonal), √diag(M⁻¹): [0.007213658888065689, 0.007427883571990255, 0.007292405482124243, 0.007515292415045942, 0.2951051655601403, 0.2807226189067611]
+┌ Info: Starting MCMC
+│   total_steps = 200
+└   tuning = &quot;stepsize and Diagonal metric&quot;
+┌ Info: MCMC progress
+│   step = 1
+│   seconds_per_step = 0.017
+│   estimated_seconds_left = 3.3
+└   ϵ = 0.0207
+┌ Info: MCMC progress
+│   step = 101
+│   seconds_per_step = 0.019
+│   estimated_seconds_left = 1.9
+└   ϵ = 0.0312
+┌ Info: adaptation finished
+└   adapted_kinetic_energy = Gaussian kinetic energy (Diagonal), √diag(M⁻¹): [0.005153362077458404, 0.00538708797522306, 0.005297522269877566, 0.005416850901521027, 0.23194144810860207, 0.2905460422728791]
+┌ Info: Starting MCMC
+│   total_steps = 400
+└   tuning = &quot;stepsize and Diagonal metric&quot;
+┌ Info: MCMC progress
+│   step = 1
+│   seconds_per_step = 0.0053
+│   estimated_seconds_left = 2.1
+└   ϵ = 0.0284
+┌ Info: MCMC progress
+│   step = 101
+│   seconds_per_step = 0.018
+│   estimated_seconds_left = 5.3
+└   ϵ = 0.0268
+┌ Info: MCMC progress
+│   step = 201
+│   seconds_per_step = 0.014
+│   estimated_seconds_left = 2.7
+└   ϵ = 0.0188
+┌ Info: MCMC progress
+│   step = 301
+│   seconds_per_step = 0.012
+│   estimated_seconds_left = 1.2
+└   ϵ = 0.0388
+┌ Info: adaptation finished
+└   adapted_kinetic_energy = Gaussian kinetic energy (Diagonal), √diag(M⁻¹): [0.003805299600940584, 0.004122062767256763, 0.004031049377480989, 0.00425001020008104, 0.291710795194368, 0.2638869210488545]
+┌ Info: Starting MCMC
+│   total_steps = 50
+└   tuning = &quot;stepsize&quot;
+┌ Info: MCMC progress
+│   step = 1
+│   seconds_per_step = 0.0082
+│   estimated_seconds_left = 0.4
+└   ϵ = 0.0421
+┌ Info: Starting MCMC
+└   total_steps = 1000
+┌ Info: MCMC progress
+│   step = 1
+│   seconds_per_step = 0.0081
+└   estimated_seconds_left = 8.1
+┌ Info: MCMC progress
+│   step = 101
+│   seconds_per_step = 0.012
+└   estimated_seconds_left = 11.0
+┌ Info: MCMC progress
+│   step = 201
+│   seconds_per_step = 0.011
+└   estimated_seconds_left = 9.0
+┌ Info: MCMC progress
+│   step = 301
+│   seconds_per_step = 0.01
+└   estimated_seconds_left = 7.1
+┌ Info: MCMC progress
+│   step = 401
+│   seconds_per_step = 0.011
+└   estimated_seconds_left = 6.6
+┌ Info: MCMC progress
+│   step = 501
+│   seconds_per_step = 0.012
+└   estimated_seconds_left = 5.8
+┌ Info: MCMC progress
+│   step = 601
+│   seconds_per_step = 0.011
+└   estimated_seconds_left = 4.6
+┌ Info: MCMC progress
+│   step = 701
+│   seconds_per_step = 0.012
+└   estimated_seconds_left = 3.7
+┌ Info: MCMC progress
+│   step = 801
+│   seconds_per_step = 0.011
+└   estimated_seconds_left = 2.2
+┌ Info: MCMC progress
+│   step = 901
+│   seconds_per_step = 0.011
+└   estimated_seconds_left = 1.1
+Test Summary: | Pass  Broken  Total
+DynamicHMC    |    2       2      4
+459.649710 seconds (1.38 G allocations: 96.792 GiB, 9.27% gc time)
+┌ Warning: Environment variable CMDSTAN_HOME not set. Use set_cmdstan_home!.
+└ @ CmdStan ~&#x2F;.julia&#x2F;packages&#x2F;CmdStan&#x2F;2cHgp&#x2F;src&#x2F;CmdStan.jl:27
+Starting the test
+Test Summary: | Pass  Total
+Stan_String   |   50     50
+ 67.218035 seconds (4.44 M allocations: 231.534 MiB, 0.33% gc time)
+One parameter case
+
+File &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;tmp&#x2F;parameter_estimation_model.stan will be updated.
+
+Stan: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:7
+  Got exception outside of a @test
+  LoadError: IOError: chdir : no such file or directory (ENOENT)
+  Stacktrace:
+   [1] uv_error at .&#x2F;libuv.jl:90 [inlined]
+   [2] cd(::String) at .&#x2F;file.jl:76
+   [3] cd(::getfield(CmdStan, Symbol(&quot;##6#9&quot;)){Bool,Stanmodel}, ::String) at .&#x2F;file.jl:95
+   [4] #stan#4(::Type, ::Bool, ::Bool, ::String, ::Bool, ::Bool, ::typeof(stan), ::Stanmodel, ::Array{Dict{String,Any},1}, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CmdStan&#x2F;2cHgp&#x2F;src&#x2F;main&#x2F;stancode.jl:106
+   [5] #stan at .&#x2F;none:0 [inlined] (repeats 2 times)
+   [6] #stan_inference#53(::Symbol, ::Int64, ::Int64, ::Float64, ::Float64, ::Int64, ::Type, ::Tuple{DiffEqBayes.StanODEData,InverseGamma{Float64}}, ::Int64, ::typeof(stan_inference), ::ODEProblem{Array{Float64,1},Tuple{Float64,Float64},true,Array{Float64,1},getfield(Main, Symbol(&quot;##394&quot;)){getfield(Main, Symbol(&quot;##29#33&quot;)),getfield(Main, Symbol(&quot;##30#34&quot;)),getfield(Main, Symbol(&quot;##31#35&quot;)),Nothing,Nothing,getfield(Main, Symbol(&quot;##32#36&quot;)),Expr,Expr},Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}},DiffEqBase.StandardODEProblem}, ::Array{Float64,1}, ::Array{Float64,2}, ::Array{Truncated{Normal{Float64},Continuous,Float64},1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;src&#x2F;stan_inference.jl:140
+   [7] (::getfield(DiffEqBayes, Symbol(&quot;#kw##stan_inference&quot;)))(::NamedTuple{(:num_samples, :num_warmup, :likelihood),Tuple{Int64,Int64,UnionAll}}, ::typeof(stan_inference), ::ODEProblem{Array{Float64,1},Tuple{Float64,Float64},true,Array{Float64,1},getfield(Main, Symbol(&quot;##394&quot;)){getfield(Main, Symbol(&quot;##29#33&quot;)),getfield(Main, Symbol(&quot;##30#34&quot;)),getfield(Main, Symbol(&quot;##31#35&quot;)),Nothing,Nothing,getfield(Main, Symbol(&quot;##32#36&quot;)),Expr,Expr},Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}},DiffEqBase.StandardODEProblem}, ::Array{Float64,1}, ::Array{Float64,2}, ::Array{Truncated{Normal{Float64},Continuous,Float64},1}) at .&#x2F;none:0
+   [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;stan.jl:19
+   [9] include at .&#x2F;boot.jl:328 [inlined]
+   [10] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [11] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [12] include(::String) at .&#x2F;client.jl:431
+   [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:7
+   [14] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:1113
+   [15] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:7
+   [16] top-level scope at util.jl:156
+   [17] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:7
+   [18] top-level scope at util.jl:156
+   [19] include at .&#x2F;boot.jl:328 [inlined]
+   [20] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+   [21] include(::Module, ::String) at .&#x2F;Base.jl:31
+   [22] include(::String) at .&#x2F;client.jl:431
+   [23] top-level scope at none:5
+   [24] eval(::Module, ::Any) at .&#x2F;boot.jl:330
+   [25] exec_options(::Base.JLOptions) at .&#x2F;client.jl:271
+   [26] _start() at .&#x2F;client.jl:464
+  in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;stan.jl:19
+  
+Test Summary: | Error  Total
+Stan          |     1      1
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:4
+ERROR: Package DiffEqBayes errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1288
+ [3] #test at .&#x2F;none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:245
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:233 [inlined]
+ [6] #test#61 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:230 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:230 [inlined]
+ [8] #test#60 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:229 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:228
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:228
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: testing failed for unknown reasons.
+      Last evaluation was 1 day, 14 hours ago and took 11 minutes, 22 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/DiffEqBayes/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed DiffEqDiffTools ───────────── v1.4.0
+ Installed DiffEqBayes ───────────────── v2.1.1
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed Distances ─────────────────── v0.8.2
+ Installed FillArrays ────────────────── v0.7.4
+ Installed RecursiveFactorization ────── v0.1.0
+ Installed DiffResults ───────────────── v0.0.4
+ Installed DynamicHMC ────────────────── v2.1.1
+ Installed VersionParsing ────────────── v1.1.3
+ Installed AbstractFFTs ──────────────── v0.5.0
+ Installed Combinatorics ─────────────── v0.7.0
+ Installed ParameterizedFunctions ────── v4.2.1
+ Installed LabelledArrays ────────────── v0.7.1
+ Installed BinDeps ───────────────────── v0.8.10
+ Installed Optim ─────────────────────── v0.19.4
+ Installed CoupledFields ─────────────── v0.1.0
+ Installed ArrayInterface ────────────── v1.2.1
+ Installed Missings ──────────────────── v0.4.3
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed Inflate ───────────────────── v0.1.1
+ Installed ZygoteRules ───────────────── v0.2.0
+ Installed TreeViews ─────────────────── v0.3.0
+ Installed DistributionsAD ───────────── v0.1.2
+ Installed ForwardDiff ───────────────── v0.10.6
+ Installed LineSearches ──────────────── v7.0.1
+ Installed Rmath ─────────────────────── v0.5.1
+ Installed NLSolversBase ─────────────── v7.5.0
+ Installed Graphics ──────────────────── v0.4.0
+ Installed Tables ────────────────────── v0.2.11
+ Installed Parameters ────────────────── v0.12.0
+ Installed Reexport ──────────────────── v0.2.0
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed Calculus ──────────────────── v0.5.1
+ Installed JSON ──────────────────────── v0.21.0
+ Installed StructArrays ──────────────── v0.4.0
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed Zygote ────────────────────── v0.4.1
+ Installed DiffEqBase ────────────────── v6.6.0
+ Installed BenchmarkTools ────────────── v0.4.3
+ Installed Cairo ─────────────────────── v0.8.0
+ Installed OffsetArrays ──────────────── v0.11.1
+ Installed MappedArrays ──────────────── v0.2.2
+ Installed KernelDensity ─────────────── v0.5.1
+ Installed Compose ───────────────────── v0.7.3
+ Installed Distributions ─────────────── v0.21.8
+ Installed Polynomials ───────────────── v0.6.0
+ Installed DiffRules ─────────────────── v0.1.0
+ Installed LazyArrays ────────────────── v0.12.3
+ Installed AxisArrays ────────────────── v0.3.3
+ Installed InplaceOps ────────────────── v0.3.0
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed Arpack ────────────────────── v0.3.1
+ Installed MuladdMacro ───────────────── v0.2.1
+ Installed FunctionWrappers ──────────── v1.0.0
+ Installed LogDensityProblems ────────── v0.9.2
+ Installed QuadGK ────────────────────── v2.1.1
+ Installed NNlib ─────────────────────── v0.6.0
+ Installed Parsers ───────────────────── v0.3.10
+ Installed FixedPointNumbers ─────────── v0.6.1
+ Installed ProgressMeter ─────────────── v1.2.0
+ Installed Contour ───────────────────── v0.5.1
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed Ratios ────────────────────── v0.3.1
+ Installed SymEngine ─────────────────── v0.7.0
+ Installed IndirectArrays ────────────── v0.5.0
+ Installed ApproxBayes ───────────────── v0.3.1
+ Installed StaticArrays ──────────────── v0.11.1
+ Installed SimpleTraits ──────────────── v0.9.1
+ Installed URIParser ─────────────────── v0.4.0
+ Installed TransformVariables ────────── v0.3.8
+ Installed Requires ──────────────────── v0.5.2
+ Installed StatsFuns ─────────────────── v0.9.0
+ Installed IterativeSolvers ──────────── v0.8.1
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed Roots ─────────────────────── v0.8.3
+ Installed RecursiveArrayTools ───────── v1.0.2
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed Tracker ───────────────────── v0.2.5
+ Installed Mamba ─────────────────────── v0.12.2
+ Installed WoodburyMatrices ──────────── v0.4.1
+ Installed AdvancedHMC ───────────────── v0.2.13
+ Installed Gadfly ────────────────────── v1.0.1
+ Installed AxisAlgorithms ────────────── v1.0.0
+ Installed Bijectors ─────────────────── v0.4.0
+ Installed DocStringExtensions ───────── v0.8.1
+ Installed DataStructures ────────────── v0.17.6
+ Installed Interpolations ────────────── v0.12.5
+ Installed Media ─────────────────────── v0.5.0
+ Installed StatsBase ─────────────────── v0.32.0
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed ArnoldiMethod ─────────────── v0.0.4
+ Installed CommonSubexpressions ──────── v0.2.0
+ Installed TableTraits ───────────────── v1.0.0
+ Installed TimerOutputs ──────────────── v0.5.3
+ Installed IntervalSets ──────────────── v0.3.2
+ Installed PDMats ────────────────────── v0.9.10
+ Installed IterTools ─────────────────── v1.3.0
+ Installed IRTools ───────────────────── v0.3.0
+ Installed Conda ─────────────────────── v1.3.0
+ Installed Juno ──────────────────────── v0.7.2
+ Installed LightGraphs ───────────────── v1.3.0
+ Installed MacroTools ────────────────── v0.5.2
+ Installed Loess ─────────────────────── v0.5.0
+ Installed OrderedCollections ────────── v1.1.0
+ Installed ArgCheck ──────────────────── v1.0.1
+ Installed FFTW ──────────────────────── v1.1.0
+ Installed DataFrames ────────────────── v0.19.4
+ Installed ColorTypes ────────────────── v0.8.0
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed SpecialFunctions ──────────── v0.8.0
+ Installed Measures ──────────────────── v0.3.0
+ Installed Turing ────────────────────── v0.7.1
+ Installed Adapt ─────────────────────── v1.0.0
+ Installed Libtask ───────────────────── v0.3.1
+ Installed Compat ────────────────────── v2.2.0
+ Installed Showoff ───────────────────── v0.3.1
+ Installed Hexagons ──────────────────── v0.2.0
+ Installed RangeArrays ───────────────── v0.3.1
+ Installed Colors ────────────────────── v0.9.6
+   Cloning [85a6dd25-e78a-55b7-8502-1745935b8125] PositiveFactorizations from https:&#x2F;&#x2F;github.com&#x2F;timholy&#x2F;PositiveFactorizations.jl.git
+[?25l    Fetching: [&gt;                                        ]  0.0 %[2K[?25h Installed PositiveFactorizations ────── v0.2.3
+   Cloning [c7f686f2-ff18-58e9-bc7b-31028e88f75d] MCMCChains from https:&#x2F;&#x2F;github.com&#x2F;TuringLang&#x2F;MCMCChains.jl.git
+[?25l    Fetching: [&gt;                                        ]  0.0 %[2K[?25h Installed MCMCChains ────────────────── v0.3.15
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [ebbdde9d] + DiffEqBayes v2.1.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [621f4979] + AbstractFFTs v0.5.0
+  [79e6a3ab] + Adapt v1.0.0
+  [0bf59076] + AdvancedHMC v0.2.13
+  [f5f396d3] + ApproxBayes v0.3.1
+  [dce04be8] + ArgCheck v1.0.1
+  [ec485272] + ArnoldiMethod v0.0.4
+  [7d9fca2a] + Arpack v0.3.1
+  [4fba245c] + ArrayInterface v1.2.1
+  [13072b0f] + AxisAlgorithms v1.0.0
+  [39de3d68] + AxisArrays v0.3.3
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [76274a88] + Bijectors v0.4.0
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [159f3aea] + Cairo v0.8.0
+  [49dc2e85] + Calculus v0.5.1
+  [324d7699] + CategoricalArrays v0.7.3
+  [3da002f7] + ColorTypes v0.8.0
+  [5ae59095] + Colors v0.9.6
+  [861a8166] + Combinatorics v0.7.0
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [a81c6b42] + Compose v0.7.3
+  [8f4d0f93] + Conda v1.3.0
+  [d38c429a] + Contour v0.5.1
+  [7ad07ef1] + CoupledFields v0.1.0
+  [9a962f9c] + DataAPI v1.1.0
+  [a93c6f00] + DataFrames v0.19.4
+  [864edb3b] + DataStructures v0.17.6
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [2b5f629d] + DiffEqBase v6.6.0
+  [ebbdde9d] + DiffEqBayes v2.1.1
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [b4f34e82] + Distances v0.8.2
+  [31c24e10] + Distributions v0.21.8
+  [ced4e74d] + DistributionsAD v0.1.2
+  [ffbed154] + DocStringExtensions v0.8.1
+  [bbc10e6e] + DynamicHMC v2.1.1
+  [7a1cc6ca] + FFTW v1.1.0
+  [1a297f60] + FillArrays v0.7.4
+  [53c48c17] + FixedPointNumbers v0.6.1
+  [f6369f11] + ForwardDiff v0.10.6
+  [069b7b12] + FunctionWrappers v1.0.0
+  [c91e804a] + Gadfly v1.0.1
+  [a2bd30eb] + Graphics v0.4.0
+  [a1b4810d] + Hexagons v0.2.0
+  [7869d1d1] + IRTools v0.3.0
+  [9b13fd28] + IndirectArrays v0.5.0
+  [d25df0c9] + Inflate v0.1.1
+  [505f98c9] + InplaceOps v0.3.0
+  [a98d9a8b] + Interpolations v0.12.5
+  [8197267c] + IntervalSets v0.3.2
+  [41ab1584] + InvertedIndices v1.0.0
+  [c8e1da08] + IterTools v1.3.0
+  [42fd0dbc] + IterativeSolvers v0.8.1
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [682c06a0] + JSON v0.21.0
+  [e5e0dc1b] + Juno v0.7.2
+  [5ab0869b] + KernelDensity v0.5.1
+  [2ee39098] + LabelledArrays v0.7.1
+  [5078a376] + LazyArrays v0.12.3
+  [6f1fad26] + Libtask v0.3.1
+  [093fc24a] + LightGraphs v1.3.0
+  [d3d80556] + LineSearches v7.0.1
+  [4345ca2d] + Loess v0.5.0
+  [6fdf6af0] + LogDensityProblems v0.9.2
+  [c7f686f2] + MCMCChains v0.3.15
+  [1914dd2f] + MacroTools v0.5.2
+  [5424a776] + Mamba v0.12.2
+  [dbb5928d] + MappedArrays v0.2.2
+  [442fdcdd] + Measures v0.3.0
+  [e89f7d12] + Media v0.5.0
+  [e1d29d7a] + Missings v0.4.3
+  [46d2c3a1] + MuladdMacro v0.2.1
+  [d41bc354] + NLSolversBase v7.5.0
+  [872c559c] + NNlib v0.6.0
+  [77ba4419] + NaNMath v0.3.3
+  [6fe1bfb0] + OffsetArrays v0.11.1
+  [429524aa] + Optim v0.19.4
+  [bac558e1] + OrderedCollections v1.1.0
+  [90014a1f] + PDMats v0.9.10
+  [65888b18] + ParameterizedFunctions v4.2.1
+  [d96e819e] + Parameters v0.12.0
+  [69de0a69] + Parsers v0.3.10
+  [f27b6e38] + Polynomials v0.6.0
+  [2dfb63ee] + PooledArrays v0.5.2
+  [85a6dd25] + PositiveFactorizations v0.2.3
+  [92933f4c] + ProgressMeter v1.2.0
+  [1fd47b50] + QuadGK v2.1.1
+  [b3c3ace0] + RangeArrays v0.3.1
+  [c84ed2f1] + Ratios v0.3.1
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [731186ca] + RecursiveArrayTools v1.0.2
+  [f2c3362d] + RecursiveFactorization v0.1.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [79098fc4] + Rmath v0.5.1
+  [f2b01f46] + Roots v0.8.3
+  [992d4aef] + Showoff v0.3.1
+  [699a6c99] + SimpleTraits v0.9.1
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.11.1
+  [2913bbd2] + StatsBase v0.32.0
+  [4c63d2b9] + StatsFuns v0.9.0
+  [09ab397b] + StructArrays v0.4.0
+  [123dc426] + SymEngine v0.7.0
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [a759f4b9] + TimerOutputs v0.5.3
+  [9f7883ad] + Tracker v0.2.5
+  [84d833dd] + TransformVariables v0.3.8
+  [a2a6695c] + TreeViews v0.3.0
+  [fce5fe82] + Turing v0.7.1
+  [30578b45] + URIParser v0.4.0
+  [81def892] + VersionParsing v1.1.3
+  [efce3f68] + WoodburyMatrices v0.4.1
+  [e88e6eb3] + Zygote v0.4.1
+  [700de1a5] + ZygoteRules v0.2.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [9abbd945] + Profile 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Rmath ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+  Building Cairo ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Cairo&#x2F;ZbzIH&#x2F;deps&#x2F;build.log`
+  Building Arpack ──────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+  Building SymEngine ───────→ `~&#x2F;.julia&#x2F;packages&#x2F;SymEngine&#x2F;zSUGO&#x2F;deps&#x2F;build.log`
+  Building Conda ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building FFTW ────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFTW&#x2F;loJ3F&#x2F;deps&#x2F;build.log`
+  Building Libtask ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Libtask&#x2F;RjRkK&#x2F;deps&#x2F;build.log`
+   Testing DiffEqBayes
+ Resolving package versions...
+ Installed GenericSVD ─────────── v0.2.2
+ Installed SteadyStateDiffEq ──── v1.5.0
+ Installed NamedArrays ────────── v0.9.3
+ Installed ExponentialUtilities ─ v1.5.1
+ Installed NearestNeighbors ───── v0.4.3
+ Installed PlotThemes ─────────── v0.4.0
+ Installed OrdinaryDiffEq ─────── v5.23.0
+ Installed Homebrew ───────────── v0.7.1
+ Installed Documenter ─────────── v0.24.0
+ Installed VertexSafeGraphs ───── v0.1.0
+ Installed GeometryTypes ──────── v0.7.6
+ Installed Widgets ────────────── v0.6.2
+ Installed Plots ──────────────── v0.27.0
+ Installed Clustering ─────────── v0.13.3
+ Installed DataValues ─────────── v0.4.12
+ Installed FilePathsBase ──────── v0.7.0
+ Installed WeakRefStrings ─────── v0.6.1
+ Installed NLsolve ────────────── v4.2.0
+ Installed DiffEqCallbacks ────── v2.9.0
+ Installed PlotUtils ──────────── v0.6.1
+ Installed Observables ────────── v0.2.3
+ Installed CmdStan ────────────── v5.2.3
+ Installed SparseDiffTools ────── v0.10.3
+ Installed StatsPlots ─────────── v0.12.0
+ Installed GR ─────────────────── v0.42.0
+ Installed CSV ────────────────── v0.5.18
+   Cloning [c87230d0-a227-11e9-1b43-d7ebe4e7570a] FFMPEG from https:&#x2F;&#x2F;github.com&#x2F;JuliaIO&#x2F;FFMPEG.jl.git
+[?25l    Fetching: [&gt;                                        ]  0.0 %    Fetching: [==========================&gt;              ]  63.5 %[2K[?25h Installed FFMPEG ─────────────── v0.2.3
+  Building GR ──────→ `~&#x2F;.julia&#x2F;packages&#x2F;GR&#x2F;f1Iqi&#x2F;deps&#x2F;build.log`
+  Building FFMPEG ──→ `~&#x2F;.julia&#x2F;packages&#x2F;FFMPEG&#x2F;bkWgb&#x2F;deps&#x2F;build.log`
+  Building Plots ───→ `~&#x2F;.julia&#x2F;packages&#x2F;Plots&#x2F;Iuc9S&#x2F;deps&#x2F;build.log`
+  Building Homebrew → `~&#x2F;.julia&#x2F;packages&#x2F;Homebrew&#x2F;s09IX&#x2F;deps&#x2F;build.log`
+  Building CmdStan ─→ `~&#x2F;.julia&#x2F;packages&#x2F;CmdStan&#x2F;2cHgp&#x2F;deps&#x2F;build.log`
+Status `&#x2F;tmp&#x2F;jl_vlACLg&#x2F;Manifest.toml`
+  [621f4979] AbstractFFTs v0.5.0
+  [79e6a3ab] Adapt v1.0.0
+  [0bf59076] AdvancedHMC v0.2.13
+  [f5f396d3] ApproxBayes v0.3.1
+  [dce04be8] ArgCheck v1.0.1
+  [ec485272] ArnoldiMethod v0.0.4
+  [7d9fca2a] Arpack v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [13072b0f] AxisAlgorithms v1.0.0
+  [39de3d68] AxisArrays v0.3.3
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [76274a88] Bijectors v0.4.0
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [336ed68f] CSV v0.5.18
+  [159f3aea] Cairo v0.8.0
+  [49dc2e85] Calculus v0.5.1
+  [324d7699] CategoricalArrays v0.7.3
+  [aaaa29a8] Clustering v0.13.3
+  [593b3428] CmdStan v5.2.3
+  [3da002f7] ColorTypes v0.8.0
+  [5ae59095] Colors v0.9.6
+  [861a8166] Combinatorics v0.7.0
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [a81c6b42] Compose v0.7.3
+  [8f4d0f93] Conda v1.3.0
+  [d38c429a] Contour v0.5.1
+  [7ad07ef1] CoupledFields v0.1.0
+  [9a962f9c] DataAPI v1.1.0
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [e7dc6d0d] DataValues v0.4.12
+  [2b5f629d] DiffEqBase v6.6.0
+  [ebbdde9d] DiffEqBayes v2.1.1
+  [459566f4] DiffEqCallbacks v2.9.0
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [31c24e10] Distributions v0.21.8
+  [ced4e74d] DistributionsAD v0.1.2
+  [ffbed154] DocStringExtensions v0.8.1
+  [e30172f5] Documenter v0.24.0
+  [bbc10e6e] DynamicHMC v2.1.1
+  [d4d017d3] ExponentialUtilities v1.5.1
+  [c87230d0] FFMPEG v0.2.3
+  [7a1cc6ca] FFTW v1.1.0
+  [48062228] FilePathsBase v0.7.0
+  [1a297f60] FillArrays v0.7.4
+  [53c48c17] FixedPointNumbers v0.6.1
+  [f6369f11] ForwardDiff v0.10.6
+  [069b7b12] FunctionWrappers v1.0.0
+  [28b8d3ca] GR v0.42.0
+  [c91e804a] Gadfly v1.0.1
+  [01680d73] GenericSVD v0.2.2
+  [4d00f742] GeometryTypes v0.7.6
+  [a2bd30eb] Graphics v0.4.0
+  [a1b4810d] Hexagons v0.2.0
+  [d9be37ee] Homebrew v0.7.1
+  [7869d1d1] IRTools v0.3.0
+  [9b13fd28] IndirectArrays v0.5.0
+  [d25df0c9] Inflate v0.1.1
+  [505f98c9] InplaceOps v0.3.0
+  [a98d9a8b] Interpolations v0.12.5
+  [8197267c] IntervalSets v0.3.2
+  [41ab1584] InvertedIndices v1.0.0
+  [c8e1da08] IterTools v1.3.0
+  [42fd0dbc] IterativeSolvers v0.8.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [682c06a0] JSON v0.21.0
+  [e5e0dc1b] Juno v0.7.2
+  [5ab0869b] KernelDensity v0.5.1
+  [2ee39098] LabelledArrays v0.7.1
+  [5078a376] LazyArrays v0.12.3
+  [6f1fad26] Libtask v0.3.1
+  [093fc24a] LightGraphs v1.3.0
+  [d3d80556] LineSearches v7.0.1
+  [4345ca2d] Loess v0.5.0
+  [6fdf6af0] LogDensityProblems v0.9.2
+  [c7f686f2] MCMCChains v0.3.15
+  [1914dd2f] MacroTools v0.5.2
+  [5424a776] Mamba v0.12.2
+  [dbb5928d] MappedArrays v0.2.2
+  [442fdcdd] Measures v0.3.0
+  [e89f7d12] Media v0.5.0
+  [e1d29d7a] Missings v0.4.3
+  [46d2c3a1] MuladdMacro v0.2.1
+  [d41bc354] NLSolversBase v7.5.0
+  [2774e3e8] NLsolve v4.2.0
+  [872c559c] NNlib v0.6.0
+  [77ba4419] NaNMath v0.3.3
+  [86f7a689] NamedArrays v0.9.3
+  [b8a86587] NearestNeighbors v0.4.3
+  [510215fc] Observables v0.2.3
+  [6fe1bfb0] OffsetArrays v0.11.1
+  [429524aa] Optim v0.19.4
+  [bac558e1] OrderedCollections v1.1.0
+  [1dea7af3] OrdinaryDiffEq v5.23.0
+  [90014a1f] PDMats v0.9.10
+  [65888b18] ParameterizedFunctions v4.2.1
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [ccf2f8ad] PlotThemes v0.4.0
+  [995b91a9] PlotUtils v0.6.1
+  [91a5bcdd] Plots v0.27.0
+  [f27b6e38] Polynomials v0.6.0
+  [2dfb63ee] PooledArrays v0.5.2
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [92933f4c] ProgressMeter v1.2.0
+  [1fd47b50] QuadGK v2.1.1
+  [b3c3ace0] RangeArrays v0.3.1
+  [c84ed2f1] Ratios v0.3.1
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [f2c3362d] RecursiveFactorization v0.1.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [79098fc4] Rmath v0.5.1
+  [f2b01f46] Roots v0.8.3
+  [992d4aef] Showoff v0.3.1
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [47a9eef4] SparseDiffTools v0.10.3
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.11.1
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [f3b207a7] StatsPlots v0.12.0
+  [9672c7b4] SteadyStateDiffEq v1.5.0
+  [09ab397b] StructArrays v0.4.0
+  [123dc426] SymEngine v0.7.0
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [a759f4b9] TimerOutputs v0.5.3
+  [9f7883ad] Tracker v0.2.5
+  [84d833dd] TransformVariables v0.3.8
+  [a2a6695c] TreeViews v0.3.0
+  [fce5fe82] Turing v0.7.1
+  [30578b45] URIParser v0.4.0
+  [81def892] VersionParsing v1.1.3
+  [19fa3120] VertexSafeGraphs v0.1.0
+  [ea10d353] WeakRefStrings v0.6.1
+  [cc8bc4a8] Widgets v0.6.2
+  [efce3f68] WoodburyMatrices v0.4.1
+  [e88e6eb3] Zygote v0.4.1
+  [700de1a5] ZygoteRules v0.2.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [9abbd945] Profile  [`@stdlib&#x2F;Profile`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+  Building Libtask → `~&#x2F;.julia&#x2F;packages&#x2F;Libtask&#x2F;RjRkK&#x2F;deps&#x2F;build.log`
+ Resolving package versions...
+ERROR: LoadError: LoadError: UndefVarError: libtask_v1_3 not defined
+Stacktrace:
+ [1] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Libtask&#x2F;RjRkK&#x2F;src&#x2F;taskcopy.jl:10
+ [2] include(::Module, ::String) at .&#x2F;Base.jl:377
+ [3] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Libtask&#x2F;RjRkK&#x2F;src&#x2F;Libtask.jl:1
+ [4] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Libtask&#x2F;RjRkK&#x2F;src&#x2F;Libtask.jl:11
+ [5] include(::Module, ::String) at .&#x2F;Base.jl:377
+ [6] top-level scope at none:2
+ [7] eval at .&#x2F;boot.jl:331 [inlined]
+ [8] eval(::Expr) at .&#x2F;client.jl:449
+ [9] top-level scope at .&#x2F;none:3
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Libtask&#x2F;RjRkK&#x2F;src&#x2F;taskcopy.jl:3
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Libtask&#x2F;RjRkK&#x2F;src&#x2F;Libtask.jl:11
+ERROR: LoadError: Failed to precompile Libtask [6f1fad26-d15e-5dc8-ae53-837a1d7b8c9f] to &#x2F;root&#x2F;.julia&#x2F;compiled&#x2F;v1.4&#x2F;Libtask&#x2F;KIaXx_Bn2Vp.ji.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at .&#x2F;loading.jl:1263
+ [3] _require(::Base.PkgId) at .&#x2F;loading.jl:1022
+ [4] require(::Base.PkgId) at .&#x2F;loading.jl:920
+ [5] require(::Module, ::Symbol) at .&#x2F;loading.jl:915
+ [6] include(::Module, ::String) at .&#x2F;Base.jl:377
+ [7] top-level scope at none:2
+ [8] eval at .&#x2F;boot.jl:331 [inlined]
+ [9] eval(::Expr) at .&#x2F;client.jl:449
+ [10] top-level scope at .&#x2F;none:3
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Turing&#x2F;xFzfF&#x2F;src&#x2F;Turing.jl:14
+ERROR: LoadError: Failed to precompile Turing [fce5fe82-541a-59a6-adf8-730c64b5f9a0] to &#x2F;root&#x2F;.julia&#x2F;compiled&#x2F;v1.4&#x2F;Turing&#x2F;gm4QC_Bn2Vp.ji.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at .&#x2F;loading.jl:1263
+ [3] _require(::Base.PkgId) at .&#x2F;loading.jl:1022
+ [4] require(::Base.PkgId) at .&#x2F;loading.jl:920
+ [5] require(::Module, ::Symbol) at .&#x2F;loading.jl:915
+ [6] include(::Module, ::String) at .&#x2F;Base.jl:377
+ [7] top-level scope at none:2
+ [8] eval at .&#x2F;boot.jl:331 [inlined]
+ [9] eval(::Expr) at .&#x2F;client.jl:449
+ [10] top-level scope at .&#x2F;none:3
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;src&#x2F;DiffEqBayes.jl:2
+ERROR: LoadError: Failed to precompile DiffEqBayes [ebbdde9d-f333-5424-9be2-dbf1e9acfb5e] to &#x2F;root&#x2F;.julia&#x2F;compiled&#x2F;v1.4&#x2F;DiffEqBayes&#x2F;RkXoF_Bn2Vp.ji.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at .&#x2F;loading.jl:1263
+ [3] _require(::Base.PkgId) at .&#x2F;loading.jl:1022
+ [4] require(::Base.PkgId) at .&#x2F;loading.jl:920
+ [5] require(::Module, ::Symbol) at .&#x2F;loading.jl:915
+ [6] include(::String) at .&#x2F;client.jl:439
+ [7] top-level scope at none:6
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBayes&#x2F;LEkPB&#x2F;test&#x2F;runtests.jl:1
+ERROR: Package DiffEqBayes errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:274
+ [5] #test#56 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [6] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [7] #test#55 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [8] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [10] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [11] top-level scope at none:10
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

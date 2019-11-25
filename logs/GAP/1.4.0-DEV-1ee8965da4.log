@@ -1,0 +1,101 @@
+ Resolving package versions...
+ Installed GAPTypes ─ v1.0.0
+ Installed GAP ────── v0.2.1
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [c863536a] + GAP v0.2.1
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [c863536a] + GAP v0.2.1
+  [cd4130c4] + GAPTypes v1.0.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building GAP → `~/.julia/packages/GAP/JMFDD/deps/build.log`
+┌ Error: Error building `GAP`: 
+│ Cloning into 'gap'...
+│ + autoconf -Wall -f
+│ ./autogen.sh: 5: ./autogen.sh: autoconf: not found
+│ ERROR: LoadError: failed process: Process(`./autogen.sh`, ProcessExited(127)) [127]
+│ 
+│ Stacktrace:
+│  [1] pipeline_error at ./process.jl:525 [inlined]
+│  [2] run(::Cmd; wait::Bool) at ./process.jl:440
+│  [3] run(::Cmd) at ./process.jl:438
+│  [4] top-level scope at /root/.julia/packages/GAP/JMFDD/deps/build.jl:38
+│  [5] include(::String) at ./client.jl:439
+│  [6] top-level scope at none:5
+│ in expression starting at /root/.julia/packages/GAP/JMFDD/deps/build.jl:23
+│ gap_root = /root/.julia/packages/GAP/JMFDD/gap
+│ extra_gap_root = /root/.julia/packages/GAP/JMFDD/
+│ install_gap = true
+│ Installing GAP ...
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:601
+   Testing GAP
+ Resolving package versions...
+Status `/tmp/jl_TVLJhL/Manifest.toml`
+  [c863536a] GAP v0.2.1
+  [cd4130c4] GAPTypes v1.0.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: could not open file /root/.julia/packages/GAP/JMFDD/deps/deps.jl
+Stacktrace:
+ [1] include(::Module, ::String) at ./Base.jl:377
+ [2] include(::String) at /root/.julia/packages/GAP/JMFDD/src/GAP.jl:1
+ [3] top-level scope at /root/.julia/packages/GAP/JMFDD/src/GAP.jl:3
+ [4] include(::Module, ::String) at ./Base.jl:377
+ [5] top-level scope at none:2
+ [6] eval at ./boot.jl:331 [inlined]
+ [7] eval(::Expr) at ./client.jl:449
+ [8] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/GAP/JMFDD/src/GAP.jl:3
+ERROR: LoadError: Failed to precompile GAP [c863536a-3901-11e9-33e7-d5cd0df7b904] to /root/.julia/compiled/v1.4/GAP/YqHod_LkszN.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1263
+ [3] _require(::Base.PkgId) at ./loading.jl:1022
+ [4] require(::Base.PkgId) at ./loading.jl:920
+ [5] require(::Module, ::Symbol) at ./loading.jl:915
+ [6] include(::String) at ./client.jl:439
+ [7] top-level scope at none:6
+in expression starting at /root/.julia/packages/GAP/JMFDD/test/runtests.jl:3
+ERROR: Package GAP errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

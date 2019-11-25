@@ -1,0 +1,91 @@
+ Resolving package versions...
+ Installed SortingAlgorithms ── v0.3.1
+ Installed DataAPI ──────────── v1.1.0
+ Installed Missings ─────────── v0.4.3
+ Installed MultivariateStats ── v0.7.0
+ Installed OrderedCollections ─ v1.1.0
+ Installed Arpack ───────────── v0.3.1
+ Installed DataStructures ───── v0.17.6
+ Installed BinaryProvider ───── v0.5.8
+ Installed StatsBase ────────── v0.32.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [6f286f6a] + MultivariateStats v0.7.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [7d9fca2a] + Arpack v0.3.1
+  [b99e7846] + BinaryProvider v0.5.8
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [e1d29d7a] + Missings v0.4.3
+  [6f286f6a] + MultivariateStats v0.7.0
+  [bac558e1] + OrderedCollections v1.1.0
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [2913bbd2] + StatsBase v0.32.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+  Building Arpack → `~/.julia/packages/Arpack/cu5By/deps/build.log`
+   Testing MultivariateStats
+ Resolving package versions...
+Status `/tmp/jl_Z7OlR2/Manifest.toml`
+  [7d9fca2a] Arpack v0.3.1
+  [b99e7846] BinaryProvider v0.5.8
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [e1d29d7a] Missings v0.4.3
+  [6f286f6a] MultivariateStats v0.7.0
+  [bac558e1] OrderedCollections v1.1.0
+  [a2af1166] SortingAlgorithms v0.3.1
+  [2913bbd2] StatsBase v0.32.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: LoadError: ArgumentError: Package Random not found in current path:
+- Run `import Pkg; Pkg.add("Random")` to install the Random package.
+
+Stacktrace:
+ [1] require(::Module, ::Symbol) at ./loading.jl:885
+ [2] include(::String) at ./client.jl:439
+ [3] top-level scope at /root/.julia/packages/MultivariateStats/BYMwD/test/runtests.jl:14
+ [4] include(::String) at ./client.jl:439
+ [5] top-level scope at none:6
+in expression starting at /root/.julia/packages/MultivariateStats/BYMwD/test/lreg.jl:4
+in expression starting at /root/.julia/packages/MultivariateStats/BYMwD/test/runtests.jl:13
+ERROR: Package MultivariateStats errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

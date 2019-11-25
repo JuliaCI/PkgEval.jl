@@ -1,0 +1,1902 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="AIBECS">AIBECS</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#AIBECS">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 9 hours ago and took 14 minutes, 12 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/AIBECS/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed Requires ──────────────────── v0.5.2
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed DiffEqDiffTools ───────────── v1.4.0
+ Installed RecursiveArrayTools ───────── v1.0.2
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed DocStringExtensions ───────── v0.8.1
+ Installed AIBECS ────────────────────── v0.1.8
+ Installed FunctionWrappers ──────────── v1.0.0
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed ArrayInterface ────────────── v1.2.1
+ Installed Parsers ───────────────────── v0.3.10
+ Installed UnitfulAngles ─────────────── v0.5.0
+ Installed DataStructures ────────────── v0.17.6
+ Installed FieldMetadata ─────────────── v0.1.1
+ Installed Reexport ──────────────────── v0.2.0
+ Installed BinDeps ───────────────────── v0.8.10
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed MacroTools ────────────────── v0.5.2
+ Installed SpecialFunctions ──────────── v0.8.0
+ Installed TreeViews ─────────────────── v0.3.0
+ Installed JSON ──────────────────────── v0.21.0
+ Installed Unitful ───────────────────── v0.17.0
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed IniFile ───────────────────── v0.5.0
+ Installed DiffEqBase ────────────────── v6.6.0
+ Installed DualMatrixTools ───────────── v1.2.5
+ Installed HyperDualMatrixTools ──────── v2.0.2
+ Installed URIParser ─────────────────── v0.4.0
+ Installed MbedTLS ───────────────────── v0.6.8
+ Installed StaticArrays ──────────────── v0.12.1
+ Installed Flatten ───────────────────── v0.2.1
+ Installed Roots ─────────────────────── v0.8.3
+ Installed HyperDualNumbers ──────────── v4.0.0
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed IterativeSolvers ──────────── v0.8.1
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed DataFrames ────────────────── v0.19.4
+ Installed Missings ──────────────────── v0.4.3
+ Installed HTTP ──────────────────────── v0.8.8
+ Installed FileIO ────────────────────── v1.0.7
+ Installed TableTraits ───────────────── v1.0.0
+ Installed CodecZlib ─────────────────── v0.6.0
+ Installed OrderedCollections ────────── v1.1.0
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed JLD2 ──────────────────────── v0.1.8
+ Installed DataDeps ──────────────────── v0.7.1
+ Installed Parameters ────────────────── v0.12.0
+ Installed MuladdMacro ───────────────── v0.2.1
+ Installed Calculus ──────────────────── v0.5.1
+ Installed DualNumbers ───────────────── v0.6.2
+ Installed RecursiveFactorization ────── v0.1.0
+ Installed Compat ────────────────────── v2.2.0
+ Installed Tables ────────────────────── v0.2.11
+ Installed UnitfulAstro ──────────────── v0.4.0
+ Installed TranscodingStreams ────────── v0.9.5
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [ace601d6] + AIBECS v0.1.8
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [ace601d6] + AIBECS v0.1.8
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [324d7699] + CategoricalArrays v0.7.3
+  [944b1d66] + CodecZlib v0.6.0
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [124859b0] + DataDeps v0.7.1
+  [a93c6f00] + DataFrames v0.19.4
+  [864edb3b] + DataStructures v0.17.6
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [2b5f629d] + DiffEqBase v6.6.0
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [ffbed154] + DocStringExtensions v0.8.1
+  [31f4e45d] + DualMatrixTools v1.2.5
+  [fa6b7ba4] + DualNumbers v0.6.2
+  [bf96fef3] + FieldMetadata v0.1.1
+  [5789e2e9] + FileIO v1.0.7
+  [4c728ea3] + Flatten v0.2.1
+  [069b7b12] + FunctionWrappers v1.0.0
+  [cd3eb016] + HTTP v0.8.8
+  [04d39a18] + HyperDualMatrixTools v2.0.2
+  [50ceba7f] + HyperDualNumbers v4.0.0
+  [83e8ac13] + IniFile v0.5.0
+  [41ab1584] + InvertedIndices v1.0.0
+  [42fd0dbc] + IterativeSolvers v0.8.1
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [033835bb] + JLD2 v0.1.8
+  [682c06a0] + JSON v0.21.0
+  [1914dd2f] + MacroTools v0.5.2
+  [739be429] + MbedTLS v0.6.8
+  [e1d29d7a] + Missings v0.4.3
+  [46d2c3a1] + MuladdMacro v0.2.1
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [69de0a69] + Parsers v0.3.10
+  [2dfb63ee] + PooledArrays v0.5.2
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [731186ca] + RecursiveArrayTools v1.0.2
+  [f2c3362d] + RecursiveFactorization v0.1.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [f2b01f46] + Roots v0.8.3
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [3bb67fe8] + TranscodingStreams v0.9.5
+  [a2a6695c] + TreeViews v0.3.0
+  [30578b45] + URIParser v0.4.0
+  [1986cc42] + Unitful v0.17.0
+  [6fb2a4bd] + UnitfulAngles v0.5.0
+  [6112ee07] + UnitfulAstro v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+  Building MbedTLS ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;MbedTLS&#x2F;X4xar&#x2F;deps&#x2F;build.log`
+  Building CodecZlib ───────→ `~&#x2F;.julia&#x2F;packages&#x2F;CodecZlib&#x2F;5t9zO&#x2F;deps&#x2F;build.log`
+   Testing AIBECS
+ Resolving package versions...
+ Installed Conda ──────────────── v1.3.0
+ Installed Memoize ────────────── v0.3.0
+ Installed DiffRules ──────────── v0.1.0
+ Installed WorldOceanAtlasTools ─ v0.2.4
+ Installed CFTime ─────────────── v0.0.3
+ Installed ForwardDiff ────────── v0.10.6
+ Installed CommonSubexpressions ─ v0.2.0
+ Installed DiffResults ────────── v0.0.4
+ Installed Match ──────────────── v1.0.2
+ Installed NCDatasets ─────────── v0.9.5
+ Installed StatsBase ──────────── v0.32.0
+ Installed CondaBinDeps ───────── v0.1.0
+ Installed VersionParsing ─────── v1.1.3
+  Building Conda ─────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building NCDatasets → `~&#x2F;.julia&#x2F;packages&#x2F;NCDatasets&#x2F;uW2kc&#x2F;deps&#x2F;build.log`
+    Status `&#x2F;tmp&#x2F;tmpEXjui6&#x2F;Manifest.toml`
+  [ace601d6] AIBECS v0.1.8
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [179af706] CFTime v0.0.3
+  [49dc2e85] Calculus v0.5.1
+  [324d7699] CategoricalArrays v0.7.3
+  [944b1d66] CodecZlib v0.6.0
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [8f4d0f93] Conda v1.3.0
+  [a9693cdc] CondaBinDeps v0.1.0
+  [9a962f9c] DataAPI v1.1.0
+  [124859b0] DataDeps v0.7.1
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [2b5f629d] DiffEqBase v6.6.0
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [ffbed154] DocStringExtensions v0.8.1
+  [31f4e45d] DualMatrixTools v1.2.5
+  [fa6b7ba4] DualNumbers v0.6.2
+  [bf96fef3] FieldMetadata v0.1.1
+  [5789e2e9] FileIO v1.0.7
+  [4c728ea3] Flatten v0.2.1
+  [f6369f11] ForwardDiff v0.10.6
+  [069b7b12] FunctionWrappers v1.0.0
+  [cd3eb016] HTTP v0.8.8
+  [04d39a18] HyperDualMatrixTools v2.0.2
+  [50ceba7f] HyperDualNumbers v4.0.0
+  [83e8ac13] IniFile v0.5.0
+  [41ab1584] InvertedIndices v1.0.0
+  [42fd0dbc] IterativeSolvers v0.8.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [033835bb] JLD2 v0.1.8
+  [682c06a0] JSON v0.21.0
+  [1914dd2f] MacroTools v0.5.2
+  [7eb4fadd] Match v1.0.2
+  [739be429] MbedTLS v0.6.8
+  [c03570c3] Memoize v0.3.0
+  [e1d29d7a] Missings v0.4.3
+  [46d2c3a1] MuladdMacro v0.2.1
+  [85f8d34a] NCDatasets v0.9.5
+  [77ba4419] NaNMath v0.3.3
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [2dfb63ee] PooledArrays v0.5.2
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [f2c3362d] RecursiveFactorization v0.1.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [f2b01f46] Roots v0.8.3
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [3bb67fe8] TranscodingStreams v0.9.5
+  [a2a6695c] TreeViews v0.3.0
+  [30578b45] URIParser v0.4.0
+  [1986cc42] Unitful v0.17.0
+  [6fb2a4bd] UnitfulAngles v0.5.0
+  [6112ee07] UnitfulAstro v0.4.0
+  [81def892] VersionParsing v1.1.3
+  [04f20302] WorldOceanAtlasTools v0.2.4
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+WARNING: eval from module Memoize to WorldOceanAtlasTools:    
+Expr(:const, Symbol(&quot;##bin_index_memoized_cache&quot;) = Expr(:call, :IdDict))
+  ** incremental compilation may be broken for this module **
+
+Loading 6-box model ✅
+┌ Warning: `getindex(df::DataFrame, col_ind::ColumnIndex)` is deprecated, use `df[!, col_ind]` instead.
+│   caller = #add_parameter!#45(::Base.Iterators.Pairs{Symbol,Any,Tuple{Symbol,Symbol,Symbol},NamedTuple{(:variance_obs, :description, :LaTeX),Tuple{Float64,String,String}}}, ::Function, ::DataFrames.DataFrame, ::Symbol, ::Vararg{Any,N} where N) at Parameters.jl:64
+└ @ AIBECS ~&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:64
+┌ Warning: `getindex(df::DataFrame, col_ind::ColumnIndex)` is deprecated, use `df[!, col_ind]` instead.
+│   caller = #add_parameter!#45(::Base.Iterators.Pairs{Symbol,String,Tuple{Symbol,Symbol},NamedTuple{(:description, :LaTeX),Tuple{String,String}}}, ::Function, ::DataFrames.DataFrame, ::Symbol, ::Vararg{Any,N} where N) at Parameters.jl:64
+└ @ AIBECS ~&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:64
+┌ Warning: `getindex(df::DataFrame, col_ind::ColumnIndex)` is deprecated, use `df[!, col_ind]` instead.
+│   caller = #add_parameter!#45(::Base.Iterators.Pairs{Symbol,Any,Tuple{Symbol,Symbol,Symbol},NamedTuple{(:optimizable, :description, :LaTeX),Tuple{Bool,String,String}}}, ::Function, ::DataFrames.DataFrame, ::Symbol, ::Vararg{Any,N} where N) at Parameters.jl:64
+└ @ AIBECS ~&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:64
+┌ Warning: `getindex(df::DataFrame, col_ind::ColumnIndex)` is deprecated, use `df[!, col_ind]` instead.
+│   caller = #add_parameter!#45(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::DataFrames.DataFrame, ::Symbol, ::Vararg{Any,N} where N) at Parameters.jl:64
+└ @ AIBECS ~&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:64
+┌ Warning: `getindex(df::DataFrame, col_ind::ColumnIndex)` is deprecated, use `df[!, col_ind]` instead.
+│   caller = delete_parameter!(::DataFrames.DataFrame, ::Symbol) at Parameters.jl:74
+└ @ AIBECS ~&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:74
+┌ Warning: `getindex(df::DataFrame, col_ind::ColumnIndex)` is deprecated, use `df[!, col_ind]` instead.
+│   caller = initialize_Parameters_type(::DataFrames.DataFrame, ::String) at Parameters.jl:128
+└ @ AIBECS ~&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:128
+┌ Warning: `getindex(df::DataFrame, col_ind::ColumnIndex)` is deprecated, use `df[!, col_ind]` instead.
+│   caller = initialize_Parameters_type(::DataFrames.DataFrame, ::String) at Parameters.jl:129
+└ @ AIBECS ~&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:129
+┌ Warning: `getindex(df::DataFrame, col_ind::ColumnIndex)` is deprecated, use `df[!, col_ind]` instead.
+│   caller = initialize_Parameters_type(::DataFrames.DataFrame, ::String) at Parameters.jl:137
+└ @ AIBECS ~&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:137
+┌ Warning: `getindex(df::DataFrame, col_ind::ColumnIndex)` is deprecated, use `df[!, col_ind]` instead.
+│   caller = initialize_Parameters_type(::DataFrames.DataFrame, ::String) at Parameters.jl:138
+└ @ AIBECS ~&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:138
+┌ Warning: `getindex(df::DataFrame, col_ind::ColumnIndex)` is deprecated, use `df[!, col_ind]` instead.
+│   caller = initialize_Parameters_type(::DataFrames.DataFrame, ::String) at Parameters.jl:139
+└ @ AIBECS ~&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:139
+┌ Warning: `getindex(df::DataFrame, col_ind::ColumnIndex)` is deprecated, use `df[!, col_ind]` instead.
+│   caller = initialize_Parameters_type(::DataFrames.DataFrame, ::String) at Parameters.jl:141
+└ @ AIBECS ~&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:141
+┌ Warning: `getindex(df::DataFrame, col_ind::ColumnIndex)` is deprecated, use `df[!, col_ind]` instead.
+│   caller = initialize_Parameters_type(::DataFrames.DataFrame, ::String) at Parameters.jl:142
+└ @ AIBECS ~&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:142
+AIBECS.Parameters{Float64}
+  xgeo = 2.17e+00 [mmol m⁻³] (fixed)
+    τg = 1.00e+00 [Myr] (fixed)
+    ku = 1.00e+01 [μmol m⁻³] 
+    z₀ = 8.00e+01 [m] (fixed)
+    w₀ = 1.00e+00 [m d⁻¹] 
+    w′ = 2.24e-01 [d⁻¹] 
+  κDOP = 4.00e+00 [yr⁻¹] 
+  κPOP = 1.90e-01 [d⁻¹] 
+     σ = 3.00e-01 [] (fixed)
+    τu = 3.00e+01 [d] 
+
+Parameters: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;parameters.jl:49
+  Got exception outside of a @test
+  ArgumentError: type does not have a definite number of fields
+  Stacktrace:
+   [1] fieldcount(::Any) at .&#x2F;reflection.jl:621
+   [2] fieldnames(::DataType) at .&#x2F;reflection.jl:172
+   [3] nested(::Type, ::Type, ::typeof(Flatten.flatten_builder), ::typeof(Flatten.flatten_combiner), ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:104
+   [4] nested(::Type, ::Function, ::Function, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:102
+   [5] flatten_inner(::Type, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:199
+   [6] #s13#10(::Any, ::Any, ::Any, ::Any, ::Any) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:208
+   [7] (::Core.GeneratedFunctionStub)(::Any, ::Vararg{Any,N} where N) at .&#x2F;boot.jl:506
+   [8] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:205 [inlined]
+   [9] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:203 [inlined]
+   [10] optvec at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:180 [inlined]
+   [11] *(::Complex{Bool}, ::AIBECS.Parameters{Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:195
+   [12] *(::AIBECS.Parameters{Float64}, ::Complex{Bool}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:196
+   [13] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;parameters.jl:60 [inlined]
+   [14] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [15] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;parameters.jl:50
+   [16] include at .&#x2F;boot.jl:317 [inlined]
+   [17] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [18] include at .&#x2F;sysimg.jl:29 [inlined]
+   [19] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:2
+   [20] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:17 [inlined]
+   [21] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [22] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:16
+   [23] include at .&#x2F;boot.jl:317 [inlined]
+   [24] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [25] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [26] include(::String) at .&#x2F;client.jl:392
+   [27] top-level scope at none:0
+   [28] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [29] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [30] _start() at .&#x2F;client.jl:425
+Trying OPeNDAP first
+  Reading NetCDF file
+  Rearranging data
+  Filtering data
+  Averaging data over each grid box
+  Setting μ = 0 and σ² = ∞ where no obs
+  Setting a realistic minimum for σ²
+Mismatch &#x2F; cost functions: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;cost_functions.jl:19
+  Got exception outside of a @test
+  ArgumentError: type does not have a definite number of fields
+  Stacktrace:
+   [1] fieldcount(::Any) at .&#x2F;reflection.jl:621
+   [2] fieldnames(::DataType) at .&#x2F;reflection.jl:172
+   [3] nested(::Type, ::Type, ::typeof(Flatten.flatten_builder), ::typeof(Flatten.flatten_combiner), ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:104
+   [4] nested(::Type, ::Function, ::Function, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:102
+   [5] flatten_inner(::Type, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:199
+   [6] #s13#10(::Any, ::Any, ::Any, ::Any, ::Any) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:208
+   [7] (::Core.GeneratedFunctionStub)(::Any, ::Vararg{Any,N} where N) at .&#x2F;boot.jl:506
+   [8] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:205 [inlined]
+   [9] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:203 [inlined]
+   [10] optvec at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:180 [inlined]
+   [11] mismatch(::AIBECS.Parameters{Float64}, ::Array{Float64,1}, ::Array{Float64,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;multiTracer.jl:110
+   [12] (::getfield(AIBECS, Symbol(&quot;#f#35&quot;)){Array{Float64,1},Tuple{Array{Float64,1},Missing,Missing},Tuple{Array{Float64,1},Missing,Missing},Array{Float64,1},Float64,Array{Float64,1},Array{Float64,1},getfield(AIBECS, Symbol(&quot;#tracers#34&quot;)){Int64,Int64}})(::Array{Float64,1}, ::AIBECS.Parameters{Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;multiTracer.jl:45
+   [13] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;cost_functions.jl:23 [inlined]
+   [14] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [15] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;cost_functions.jl:20
+   [16] include at .&#x2F;boot.jl:317 [inlined]
+   [17] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [18] include at .&#x2F;sysimg.jl:29 [inlined]
+   [19] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:2
+   [20] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:20 [inlined]
+   [21] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [22] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:16
+   [23] include at .&#x2F;boot.jl:317 [inlined]
+   [24] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [25] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [26] include(::String) at .&#x2F;client.jl:392
+   [27] top-level scope at none:0
+   [28] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [29] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [30] _start() at .&#x2F;client.jl:425
+1x₀, 1p₀: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:11
+  Got exception outside of a @test
+  ArgumentError: type does not have a definite number of fields
+  Stacktrace:
+   [1] fieldcount(::Any) at .&#x2F;reflection.jl:621
+   [2] fieldnames(::DataType) at .&#x2F;reflection.jl:172
+   [3] nested(::Type, ::Type, ::typeof(Flatten.flatten_builder), ::typeof(Flatten.flatten_combiner), ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:104
+   [4] nested(::Type, ::Function, ::Function, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:102
+   [5] flatten_inner(::Type, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:199
+   [6] #s13#10(::Any, ::Any, ::Any, ::Any, ::Any) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:208
+   [7] (::Core.GeneratedFunctionStub)(::Any, ::Vararg{Any,N} where N) at .&#x2F;boot.jl:506
+   [8] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:205 [inlined]
+   [9] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:203 [inlined]
+   [10] optvec at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:180 [inlined]
+   [11] *(::Int64, ::AIBECS.Parameters{Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:195
+   [12] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:12 [inlined]
+   [13] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1156 [inlined]
+   [14] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:11 [inlined]
+   [15] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1156 [inlined]
+   [16] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:9 [inlined]
+   [17] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [18] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:6
+   [19] include at .&#x2F;boot.jl:317 [inlined]
+   [20] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [21] include at .&#x2F;sysimg.jl:29 [inlined]
+   [22] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:2
+   [23] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:21 [inlined]
+   [24] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [25] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:16
+   [26] include at .&#x2F;boot.jl:317 [inlined]
+   [27] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [28] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [29] include(::String) at .&#x2F;client.jl:392
+   [30] top-level scope at none:0
+   [31] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [32] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [33] _start() at .&#x2F;client.jl:425
+1x₀, 2p₀: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:11
+  Got exception outside of a @test
+  ArgumentError: type does not have a definite number of fields
+  Stacktrace:
+   [1] fieldcount(::Any) at .&#x2F;reflection.jl:621
+   [2] fieldnames(::DataType) at .&#x2F;reflection.jl:172
+   [3] nested(::Type, ::Type, ::typeof(Flatten.flatten_builder), ::typeof(Flatten.flatten_combiner), ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:104
+   [4] nested(::Type, ::Function, ::Function, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:102
+   [5] flatten_inner(::Type, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:199
+   [6] #s13#10(::Any, ::Any, ::Any, ::Any, ::Any) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:208
+   [7] (::Core.GeneratedFunctionStub)(::Any, ::Vararg{Any,N} where N) at .&#x2F;boot.jl:506
+   [8] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:205 [inlined]
+   [9] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:203 [inlined]
+   [10] optvec at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:180 [inlined]
+   [11] *(::Int64, ::AIBECS.Parameters{Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:195
+   [12] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:12 [inlined]
+   [13] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1156 [inlined]
+   [14] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:11 [inlined]
+   [15] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1156 [inlined]
+   [16] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:9 [inlined]
+   [17] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [18] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:6
+   [19] include at .&#x2F;boot.jl:317 [inlined]
+   [20] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [21] include at .&#x2F;sysimg.jl:29 [inlined]
+   [22] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:2
+   [23] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:21 [inlined]
+   [24] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [25] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:16
+   [26] include at .&#x2F;boot.jl:317 [inlined]
+   [27] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [28] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [29] include(::String) at .&#x2F;client.jl:392
+   [30] top-level scope at none:0
+   [31] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [32] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [33] _start() at .&#x2F;client.jl:425
+2x₀, 1p₀: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:11
+  Got exception outside of a @test
+  ArgumentError: type does not have a definite number of fields
+  Stacktrace:
+   [1] fieldcount(::Any) at .&#x2F;reflection.jl:621
+   [2] fieldnames(::DataType) at .&#x2F;reflection.jl:172
+   [3] nested(::Type, ::Type, ::typeof(Flatten.flatten_builder), ::typeof(Flatten.flatten_combiner), ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:104
+   [4] nested(::Type, ::Function, ::Function, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:102
+   [5] flatten_inner(::Type, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:199
+   [6] #s13#10(::Any, ::Any, ::Any, ::Any, ::Any) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:208
+   [7] (::Core.GeneratedFunctionStub)(::Any, ::Vararg{Any,N} where N) at .&#x2F;boot.jl:506
+   [8] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:205 [inlined]
+   [9] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:203 [inlined]
+   [10] optvec at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:180 [inlined]
+   [11] *(::Int64, ::AIBECS.Parameters{Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:195
+   [12] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:12 [inlined]
+   [13] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1156 [inlined]
+   [14] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:11 [inlined]
+   [15] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1156 [inlined]
+   [16] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:9 [inlined]
+   [17] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [18] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:6
+   [19] include at .&#x2F;boot.jl:317 [inlined]
+   [20] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [21] include at .&#x2F;sysimg.jl:29 [inlined]
+   [22] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:2
+   [23] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:21 [inlined]
+   [24] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [25] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:16
+   [26] include at .&#x2F;boot.jl:317 [inlined]
+   [27] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [28] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [29] include(::String) at .&#x2F;client.jl:392
+   [30] top-level scope at none:0
+   [31] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [32] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [33] _start() at .&#x2F;client.jl:425
+2x₀, 2p₀: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:11
+  Got exception outside of a @test
+  ArgumentError: type does not have a definite number of fields
+  Stacktrace:
+   [1] fieldcount(::Any) at .&#x2F;reflection.jl:621
+   [2] fieldnames(::DataType) at .&#x2F;reflection.jl:172
+   [3] nested(::Type, ::Type, ::typeof(Flatten.flatten_builder), ::typeof(Flatten.flatten_combiner), ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:104
+   [4] nested(::Type, ::Function, ::Function, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:102
+   [5] flatten_inner(::Type, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:199
+   [6] #s13#10(::Any, ::Any, ::Any, ::Any, ::Any) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:208
+   [7] (::Core.GeneratedFunctionStub)(::Any, ::Vararg{Any,N} where N) at .&#x2F;boot.jl:506
+   [8] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:205 [inlined]
+   [9] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:203 [inlined]
+   [10] optvec at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:180 [inlined]
+   [11] *(::Int64, ::AIBECS.Parameters{Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:195
+   [12] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:12 [inlined]
+   [13] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1156 [inlined]
+   [14] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:11 [inlined]
+   [15] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1156 [inlined]
+   [16] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:9 [inlined]
+   [17] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [18] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:6
+   [19] include at .&#x2F;boot.jl:317 [inlined]
+   [20] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [21] include at .&#x2F;sysimg.jl:29 [inlined]
+   [22] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:2
+   [23] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:21 [inlined]
+   [24] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [25] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:16
+   [26] include at .&#x2F;boot.jl:317 [inlined]
+   [27] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [28] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [29] include(::String) at .&#x2F;client.jl:392
+   [30] top-level scope at none:0
+   [31] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [32] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [33] _start() at .&#x2F;client.jl:425
+1x₀, 1p₀: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:11
+  Got exception outside of a @test
+  ArgumentError: type does not have a definite number of fields
+  Stacktrace:
+   [1] fieldcount(::Any) at .&#x2F;reflection.jl:621
+   [2] fieldnames(::DataType) at .&#x2F;reflection.jl:172
+   [3] nested(::Type, ::Type, ::typeof(Flatten.flatten_builder), ::typeof(Flatten.flatten_combiner), ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:104
+   [4] nested(::Type, ::Function, ::Function, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:102
+   [5] flatten_inner(::Type, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:199
+   [6] #s13#10(::Any, ::Any, ::Any, ::Any, ::Any) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:208
+   [7] (::Core.GeneratedFunctionStub)(::Any, ::Vararg{Any,N} where N) at .&#x2F;boot.jl:506
+   [8] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:205 [inlined]
+   [9] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:203 [inlined]
+   [10] optvec at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:180 [inlined]
+   [11] *(::Int64, ::AIBECS.Parameters{Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:195
+   [12] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:12 [inlined]
+   [13] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1156 [inlined]
+   [14] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:11 [inlined]
+   [15] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1156 [inlined]
+   [16] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:9 [inlined]
+   [17] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [18] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:6
+   [19] include at .&#x2F;boot.jl:317 [inlined]
+   [20] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [21] include at .&#x2F;sysimg.jl:29 [inlined]
+   [22] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:2
+   [23] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:21 [inlined]
+   [24] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [25] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:16
+   [26] include at .&#x2F;boot.jl:317 [inlined]
+   [27] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [28] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [29] include(::String) at .&#x2F;client.jl:392
+   [30] top-level scope at none:0
+   [31] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [32] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [33] _start() at .&#x2F;client.jl:425
+1x₀, 2p₀: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:11
+  Got exception outside of a @test
+  ArgumentError: type does not have a definite number of fields
+  Stacktrace:
+   [1] fieldcount(::Any) at .&#x2F;reflection.jl:621
+   [2] fieldnames(::DataType) at .&#x2F;reflection.jl:172
+   [3] nested(::Type, ::Type, ::typeof(Flatten.flatten_builder), ::typeof(Flatten.flatten_combiner), ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:104
+   [4] nested(::Type, ::Function, ::Function, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:102
+   [5] flatten_inner(::Type, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:199
+   [6] #s13#10(::Any, ::Any, ::Any, ::Any, ::Any) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:208
+   [7] (::Core.GeneratedFunctionStub)(::Any, ::Vararg{Any,N} where N) at .&#x2F;boot.jl:506
+   [8] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:205 [inlined]
+   [9] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:203 [inlined]
+   [10] optvec at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:180 [inlined]
+   [11] *(::Int64, ::AIBECS.Parameters{Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:195
+   [12] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:12 [inlined]
+   [13] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1156 [inlined]
+   [14] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:11 [inlined]
+   [15] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1156 [inlined]
+   [16] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:9 [inlined]
+   [17] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [18] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:6
+   [19] include at .&#x2F;boot.jl:317 [inlined]
+   [20] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [21] include at .&#x2F;sysimg.jl:29 [inlined]
+   [22] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:2
+   [23] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:21 [inlined]
+   [24] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [25] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:16
+   [26] include at .&#x2F;boot.jl:317 [inlined]
+   [27] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [28] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [29] include(::String) at .&#x2F;client.jl:392
+   [30] top-level scope at none:0
+   [31] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [32] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [33] _start() at .&#x2F;client.jl:425
+2x₀, 1p₀: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:11
+  Got exception outside of a @test
+  ArgumentError: type does not have a definite number of fields
+  Stacktrace:
+   [1] fieldcount(::Any) at .&#x2F;reflection.jl:621
+   [2] fieldnames(::DataType) at .&#x2F;reflection.jl:172
+   [3] nested(::Type, ::Type, ::typeof(Flatten.flatten_builder), ::typeof(Flatten.flatten_combiner), ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:104
+   [4] nested(::Type, ::Function, ::Function, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:102
+   [5] flatten_inner(::Type, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:199
+   [6] #s13#10(::Any, ::Any, ::Any, ::Any, ::Any) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:208
+   [7] (::Core.GeneratedFunctionStub)(::Any, ::Vararg{Any,N} where N) at .&#x2F;boot.jl:506
+   [8] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:205 [inlined]
+   [9] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:203 [inlined]
+   [10] optvec at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:180 [inlined]
+   [11] *(::Int64, ::AIBECS.Parameters{Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:195
+   [12] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:12 [inlined]
+   [13] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1156 [inlined]
+   [14] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:11 [inlined]
+   [15] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1156 [inlined]
+   [16] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:9 [inlined]
+   [17] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [18] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:6
+   [19] include at .&#x2F;boot.jl:317 [inlined]
+   [20] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [21] include at .&#x2F;sysimg.jl:29 [inlined]
+   [22] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:2
+   [23] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:21 [inlined]
+   [24] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [25] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:16
+   [26] include at .&#x2F;boot.jl:317 [inlined]
+   [27] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [28] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [29] include(::String) at .&#x2F;client.jl:392
+   [30] top-level scope at none:0
+   [31] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [32] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [33] _start() at .&#x2F;client.jl:425
+2x₀, 2p₀: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:11
+  Got exception outside of a @test
+  ArgumentError: type does not have a definite number of fields
+  Stacktrace:
+   [1] fieldcount(::Any) at .&#x2F;reflection.jl:621
+   [2] fieldnames(::DataType) at .&#x2F;reflection.jl:172
+   [3] nested(::Type, ::Type, ::typeof(Flatten.flatten_builder), ::typeof(Flatten.flatten_combiner), ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:104
+   [4] nested(::Type, ::Function, ::Function, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:102
+   [5] flatten_inner(::Type, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:199
+   [6] #s13#10(::Any, ::Any, ::Any, ::Any, ::Any) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:208
+   [7] (::Core.GeneratedFunctionStub)(::Any, ::Vararg{Any,N} where N) at .&#x2F;boot.jl:506
+   [8] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:205 [inlined]
+   [9] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:203 [inlined]
+   [10] optvec at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:180 [inlined]
+   [11] *(::Int64, ::AIBECS.Parameters{Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:195
+   [12] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:12 [inlined]
+   [13] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1156 [inlined]
+   [14] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:11 [inlined]
+   [15] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1156 [inlined]
+   [16] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:9 [inlined]
+   [17] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [18] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;solvers.jl:6
+   [19] include at .&#x2F;boot.jl:317 [inlined]
+   [20] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [21] include at .&#x2F;sysimg.jl:29 [inlined]
+   [22] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:2
+   [23] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:21 [inlined]
+   [24] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [25] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:16
+   [26] include at .&#x2F;boot.jl:317 [inlined]
+   [27] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [28] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [29] include(::String) at .&#x2F;client.jl:392
+   [30] top-level scope at none:0
+   [31] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [32] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+   [33] _start() at .&#x2F;client.jl:425
+∇ₓF: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:14
+  Test threw exception
+  Expression: ≈(ForwardDiff.jacobian((x-&gt;begin
+                F(x, 2p₀)
+            end), x₀), ∇ₓF(x₀, 2p₀), rtol=1.0e-14)
+  ArgumentError: type does not have a definite number of fields
+  Stacktrace:
+   [1] fieldcount(::Any) at .&#x2F;reflection.jl:621
+   [2] fieldnames(::DataType) at .&#x2F;reflection.jl:172
+   [3] nested(::Type, ::Type, ::typeof(Flatten.flatten_builder), ::typeof(Flatten.flatten_combiner), ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:104
+   [4] nested(::Type, ::Function, ::Function, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:102
+   [5] flatten_inner(::Type, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:199
+   [6] #s13#10(::Any, ::Any, ::Any, ::Any, ::Any) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:208
+   [7] (::Core.GeneratedFunctionStub)(::Any, ::Vararg{Any,N} where N) at .&#x2F;boot.jl:506
+   [8] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:205 [inlined]
+   [9] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:203 [inlined]
+   [10] optvec at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:180 [inlined]
+   [11] *(::Int64, ::AIBECS.Parameters{Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:195
+   [12] (::getfield(Main.SixBoxModelTest, Symbol(&quot;##2#12&quot;)))(::Array{ForwardDiff.Dual{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##2#12&quot;)),Float64},Float64,9},1}) at .&#x2F;none:0
+   [13] chunk_mode_jacobian(::getfield(Main.SixBoxModelTest, Symbol(&quot;##2#12&quot;)), ::Array{Float64,1}, ::ForwardDiff.JacobianConfig{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##2#12&quot;)),Float64},Float64,9,Array{ForwardDiff.Dual{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##2#12&quot;)),Float64},Float64,9},1}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;jacobian.jl:213
+   [14] jacobian(::Function, ::Array{Float64,1}, ::ForwardDiff.JacobianConfig{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##2#12&quot;)),Float64},Float64,9,Array{ForwardDiff.Dual{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##2#12&quot;)),Float64},Float64,9},1}}, ::Val{true}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;jacobian.jl:19
+   [15] jacobian(::Function, ::Array{Float64,1}, ::ForwardDiff.JacobianConfig{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##2#12&quot;)),Float64},Float64,9,Array{ForwardDiff.Dual{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##2#12&quot;)),Float64},Float64,9},1}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;jacobian.jl:15 (repeats 2 times)
+   [16] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:14 [inlined]
+   [17] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [18] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:13 [inlined]
+   [19] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [20] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:9
+∇ₚf: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:19
+  Test threw exception
+  Expression: ≈(ForwardDiff.jacobian((p-&gt;begin
+                [f(x₀, p)]
+            end), p₀), ∇ₚf(x₀, p₀), rtol=1.0e-14)
+  ArgumentError: type does not have a definite number of fields
+  Stacktrace:
+   [1] fieldcount(::Any) at .&#x2F;reflection.jl:621
+   [2] fieldnames(::DataType) at .&#x2F;reflection.jl:172
+   [3] nested(::Type, ::Type, ::typeof(Flatten.flatten_builder), ::typeof(Flatten.flatten_combiner), ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:104
+   [4] nested(::Type, ::Function, ::Function, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:102
+   [5] flatten_inner(::Type, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:199
+   [6] #s13#10(::Any, ::Any, ::Any, ::Any, ::Any) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:208
+   [7] (::Core.GeneratedFunctionStub)(::Any, ::Vararg{Any,N} where N) at .&#x2F;boot.jl:506
+   [8] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:205 [inlined]
+   [9] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:203 [inlined]
+   [10] optvec at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:180 [inlined]
+   [11] ∇mismatch(::AIBECS.Parameters{Float64}, ::Array{Float64,1}, ::Array{Float64,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;multiTracer.jl:117
+   [12] (::getfield(AIBECS, Symbol(&quot;#∇ₚf#42&quot;)){Float64,Array{Float64,1},Array{Float64,1}})(::Array{Float64,1}, ::AIBECS.Parameters{Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;multiTracer.jl:60
+   [13] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:19 [inlined]
+   [14] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [15] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:19 [inlined]
+   [16] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [17] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:9
+∇ₚf: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:20
+  Test threw exception
+  Expression: ≈(ForwardDiff.jacobian((p-&gt;begin
+                [f(x₀, p)]
+            end), 2p₀), ∇ₚf(x₀, 2p₀), rtol=1.0e-14)
+  ArgumentError: type does not have a definite number of fields
+  Stacktrace:
+   [1] fieldcount(::Any) at .&#x2F;reflection.jl:621
+   [2] fieldnames(::DataType) at .&#x2F;reflection.jl:172
+   [3] nested(::Type, ::Type, ::typeof(Flatten.flatten_builder), ::typeof(Flatten.flatten_combiner), ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:104
+   [4] nested(::Type, ::Function, ::Function, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:102
+   [5] flatten_inner(::Type, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:199
+   [6] #s13#10(::Any, ::Any, ::Any, ::Any, ::Any) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:208
+   [7] (::Core.GeneratedFunctionStub)(::Any, ::Vararg{Any,N} where N) at .&#x2F;boot.jl:506
+   [8] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:205 [inlined]
+   [9] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:203 [inlined]
+   [10] optvec at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:180 [inlined]
+   [11] *(::Int64, ::AIBECS.Parameters{Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:195
+   [12] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:20 [inlined]
+   [13] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [14] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:19 [inlined]
+   [15] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [16] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:9
+∇ₚf: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:21
+  Test threw exception
+  Expression: ≈(ForwardDiff.jacobian((p-&gt;begin
+                [f(2x₀, p)]
+            end), p₀), ∇ₚf(2x₀, p₀), rtol=1.0e-14)
+  ArgumentError: type does not have a definite number of fields
+  Stacktrace:
+   [1] fieldcount(::Any) at .&#x2F;reflection.jl:621
+   [2] fieldnames(::DataType) at .&#x2F;reflection.jl:172
+   [3] nested(::Type, ::Type, ::typeof(Flatten.flatten_builder), ::typeof(Flatten.flatten_combiner), ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:104
+   [4] nested(::Type, ::Function, ::Function, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:102
+   [5] flatten_inner(::Type, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:199
+   [6] #s13#10(::Any, ::Any, ::Any, ::Any, ::Any) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:208
+   [7] (::Core.GeneratedFunctionStub)(::Any, ::Vararg{Any,N} where N) at .&#x2F;boot.jl:506
+   [8] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:205 [inlined]
+   [9] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:203 [inlined]
+   [10] optvec at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:180 [inlined]
+   [11] ∇mismatch(::AIBECS.Parameters{Float64}, ::Array{Float64,1}, ::Array{Float64,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;multiTracer.jl:117
+   [12] (::getfield(AIBECS, Symbol(&quot;#∇ₚf#42&quot;)){Float64,Array{Float64,1},Array{Float64,1}})(::Array{Float64,1}, ::AIBECS.Parameters{Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;multiTracer.jl:60
+   [13] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:21 [inlined]
+   [14] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [15] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:19 [inlined]
+   [16] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [17] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:9
+∇ₓf: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:24
+  Test threw exception
+  Expression: ≈(ForwardDiff.jacobian((x-&gt;begin
+                [f(x, p₀)]
+            end), x₀), ∇ₓf(x₀, p₀), rtol=1.0e-14)
+  ArgumentError: type does not have a definite number of fields
+  Stacktrace:
+   [1] fieldcount(::Any) at .&#x2F;reflection.jl:621
+   [2] fieldnames(::DataType) at .&#x2F;reflection.jl:172
+   [3] nested(::Type, ::Type, ::typeof(Flatten.flatten_builder), ::typeof(Flatten.flatten_combiner), ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:104
+   [4] nested(::Type, ::Function, ::Function, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:102
+   [5] flatten_inner(::Type, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:199
+   [6] #s13#10(::Any, ::Any, ::Any, ::Any, ::Any) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:208
+   [7] (::Core.GeneratedFunctionStub)(::Any, ::Vararg{Any,N} where N) at .&#x2F;boot.jl:506
+   [8] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:205 [inlined]
+   [9] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:203 [inlined]
+   [10] optvec at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:180 [inlined]
+   [11] mismatch(::AIBECS.Parameters{Float64}, ::Array{Float64,1}, ::Array{Float64,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;multiTracer.jl:110
+   [12] (::getfield(AIBECS, Symbol(&quot;#f#35&quot;)){Array{Float64,1},Tuple{Array{Float64,1},Missing,Missing},Tuple{Array{Float64,1},Missing,Missing},Array{Float64,1},Float64,Array{Float64,1},Array{Float64,1},getfield(AIBECS, Symbol(&quot;#tracers#34&quot;)){Int64,Int64}})(::Array{ForwardDiff.Dual{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##8#18&quot;)),Float64},Float64,9},1}, ::AIBECS.Parameters{Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;multiTracer.jl:45
+   [13] (::getfield(Main.SixBoxModelTest, Symbol(&quot;##8#18&quot;)))(::Array{ForwardDiff.Dual{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##8#18&quot;)),Float64},Float64,9},1}) at .&#x2F;none:0
+   [14] chunk_mode_jacobian(::getfield(Main.SixBoxModelTest, Symbol(&quot;##8#18&quot;)), ::Array{Float64,1}, ::ForwardDiff.JacobianConfig{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##8#18&quot;)),Float64},Float64,9,Array{ForwardDiff.Dual{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##8#18&quot;)),Float64},Float64,9},1}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;jacobian.jl:213
+   [15] jacobian(::Function, ::Array{Float64,1}, ::ForwardDiff.JacobianConfig{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##8#18&quot;)),Float64},Float64,9,Array{ForwardDiff.Dual{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##8#18&quot;)),Float64},Float64,9},1}}, ::Val{true}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;jacobian.jl:19
+   [16] jacobian(::Function, ::Array{Float64,1}, ::ForwardDiff.JacobianConfig{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##8#18&quot;)),Float64},Float64,9,Array{ForwardDiff.Dual{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##8#18&quot;)),Float64},Float64,9},1}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;jacobian.jl:15 (repeats 2 times)
+   [17] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:24 [inlined]
+   [18] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [19] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:24 [inlined]
+   [20] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [21] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:9
+∇ₓf: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:25
+  Test threw exception
+  Expression: ≈(ForwardDiff.jacobian((x-&gt;begin
+                [f(x, 2p₀)]
+            end), x₀), ∇ₓf(x₀, 2p₀), rtol=1.0e-14)
+  ArgumentError: type does not have a definite number of fields
+  Stacktrace:
+   [1] fieldcount(::Any) at .&#x2F;reflection.jl:621
+   [2] fieldnames(::DataType) at .&#x2F;reflection.jl:172
+   [3] nested(::Type, ::Type, ::typeof(Flatten.flatten_builder), ::typeof(Flatten.flatten_combiner), ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:104
+   [4] nested(::Type, ::Function, ::Function, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:102
+   [5] flatten_inner(::Type, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:199
+   [6] #s13#10(::Any, ::Any, ::Any, ::Any, ::Any) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:208
+   [7] (::Core.GeneratedFunctionStub)(::Any, ::Vararg{Any,N} where N) at .&#x2F;boot.jl:506
+   [8] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:205 [inlined]
+   [9] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:203 [inlined]
+   [10] optvec at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:180 [inlined]
+   [11] *(::Int64, ::AIBECS.Parameters{Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:195
+   [12] (::getfield(Main.SixBoxModelTest, Symbol(&quot;##9#19&quot;)))(::Array{ForwardDiff.Dual{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##9#19&quot;)),Float64},Float64,9},1}) at .&#x2F;none:0
+   [13] chunk_mode_jacobian(::getfield(Main.SixBoxModelTest, Symbol(&quot;##9#19&quot;)), ::Array{Float64,1}, ::ForwardDiff.JacobianConfig{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##9#19&quot;)),Float64},Float64,9,Array{ForwardDiff.Dual{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##9#19&quot;)),Float64},Float64,9},1}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;jacobian.jl:213
+   [14] jacobian(::Function, ::Array{Float64,1}, ::ForwardDiff.JacobianConfig{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##9#19&quot;)),Float64},Float64,9,Array{ForwardDiff.Dual{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##9#19&quot;)),Float64},Float64,9},1}}, ::Val{true}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;jacobian.jl:19
+   [15] jacobian(::Function, ::Array{Float64,1}, ::ForwardDiff.JacobianConfig{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##9#19&quot;)),Float64},Float64,9,Array{ForwardDiff.Dual{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##9#19&quot;)),Float64},Float64,9},1}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;jacobian.jl:15 (repeats 2 times)
+   [16] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:25 [inlined]
+   [17] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [18] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:24 [inlined]
+   [19] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [20] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:9
+∇ₓf: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:26
+  Test threw exception
+  Expression: ≈(ForwardDiff.jacobian((x-&gt;begin
+                [f(x, p₀)]
+            end), 2x₀), ∇ₓf(2x₀, p₀), rtol=1.0e-14)
+  ArgumentError: type does not have a definite number of fields
+  Stacktrace:
+   [1] fieldcount(::Any) at .&#x2F;reflection.jl:621
+   [2] fieldnames(::DataType) at .&#x2F;reflection.jl:172
+   [3] nested(::Type, ::Type, ::typeof(Flatten.flatten_builder), ::typeof(Flatten.flatten_combiner), ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:104
+   [4] nested(::Type, ::Function, ::Function, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:102
+   [5] flatten_inner(::Type, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:199
+   [6] #s13#10(::Any, ::Any, ::Any, ::Any, ::Any) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:208
+   [7] (::Core.GeneratedFunctionStub)(::Any, ::Vararg{Any,N} where N) at .&#x2F;boot.jl:506
+   [8] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:205 [inlined]
+   [9] flatten at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Flatten&#x2F;kadnv&#x2F;src&#x2F;Flatten.jl:203 [inlined]
+   [10] optvec at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;Parameters.jl:180 [inlined]
+   [11] mismatch(::AIBECS.Parameters{Float64}, ::Array{Float64,1}, ::Array{Float64,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;multiTracer.jl:110
+   [12] (::getfield(AIBECS, Symbol(&quot;#f#35&quot;)){Array{Float64,1},Tuple{Array{Float64,1},Missing,Missing},Tuple{Array{Float64,1},Missing,Missing},Array{Float64,1},Float64,Array{Float64,1},Array{Float64,1},getfield(AIBECS, Symbol(&quot;#tracers#34&quot;)){Int64,Int64}})(::Array{ForwardDiff.Dual{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##10#20&quot;)),Float64},Float64,9},1}, ::AIBECS.Parameters{Float64}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;src&#x2F;multiTracer.jl:45
+   [13] (::getfield(Main.SixBoxModelTest, Symbol(&quot;##10#20&quot;)))(::Array{ForwardDiff.Dual{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##10#20&quot;)),Float64},Float64,9},1}) at .&#x2F;none:0
+   [14] chunk_mode_jacobian(::getfield(Main.SixBoxModelTest, Symbol(&quot;##10#20&quot;)), ::Array{Float64,1}, ::ForwardDiff.JacobianConfig{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##10#20&quot;)),Float64},Float64,9,Array{ForwardDiff.Dual{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##10#20&quot;)),Float64},Float64,9},1}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;jacobian.jl:213
+   [15] jacobian(::Function, ::Array{Float64,1}, ::ForwardDiff.JacobianConfig{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##10#20&quot;)),Float64},Float64,9,Array{ForwardDiff.Dual{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##10#20&quot;)),Float64},Float64,9},1}}, ::Val{true}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;jacobian.jl:19
+   [16] jacobian(::Function, ::Array{Float64,1}, ::ForwardDiff.JacobianConfig{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##10#20&quot;)),Float64},Float64,9,Array{ForwardDiff.Dual{ForwardDiff.Tag{getfield(Main.SixBoxModelTest, Symbol(&quot;##10#20&quot;)),Float64},Float64,9},1}}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;jacobian.jl:15 (repeats 2 times)
+   [17] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:26 [inlined]
+   [18] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [19] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:24 [inlined]
+   [20] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [21] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;derivatives.jl:9
+Test Summary:                            | Pass  Error  Total
+Six-box model                            |   54     17     71
+  Circulation and grid                   |   16            16
+  Constants, vectors, and matrices types |   13            13
+  Parameters                             |    8      1      9
+  Biogeochemical functions               |    6             6
+  GridTools                              |    6             6
+  Mismatch &#x2F; cost functions              |           1      1
+  Solvers                                |    2      8     10
+    AIBECS.CTKAlg                        |    1      4      5
+      1x₀, 1p₀                           |           1      1
+      1x₀, 2p₀                           |           1      1
+      2x₀, 1p₀                           |           1      1
+      2x₀, 2p₀                           |           1      1
+    AIBECS.CTKAlg2                       |    1      4      5
+      1x₀, 1p₀                           |           1      1
+      1x₀, 2p₀                           |           1      1
+      2x₀, 1p₀                           |           1      1
+      2x₀, 2p₀                           |           1      1
+  Derivatives                            |    3      7     10
+    ∇ₓF                                  |    3      1      4
+    ∇ₚf                                  |           3      3
+    ∇ₓf                                  |           3      3
+ERROR: LoadError: Some tests did not pass: 54 passed, 0 failed, 17 errored, 0 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;LNPYC&#x2F;test&#x2F;runtests.jl:14
+ERROR: Package AIBECS errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1357
+ [3] #test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:278
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:263 [inlined]
+ [6] #test#43 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [8] #test#42 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [10] #test#41 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258 [inlined]
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258
+ [12] top-level scope at none:0
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 12 hours ago and took 13 minutes, 25 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/AIBECS/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed FieldMetadata ─────────────── v0.1.1
+ Installed Missings ──────────────────── v0.4.3
+ Installed TableTraits ───────────────── v1.0.0
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed MbedTLS ───────────────────── v0.7.0
+ Installed AIBECS ────────────────────── v0.3.1
+ Installed DataFrames ────────────────── v0.19.4
+ Installed DualMatrixTools ───────────── v1.2.5
+ Installed URIParser ─────────────────── v0.4.0
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed OceanGrids ────────────────── v0.1.3
+ Installed DocStringExtensions ───────── v0.8.1
+ Installed DataDeps ──────────────────── v0.7.1
+ Installed DiffEqBase ────────────────── v6.6.0
+ Installed Requires ──────────────────── v0.5.2
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed Flatten ───────────────────── v0.2.1
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed Reexport ──────────────────── v0.2.0
+ Installed HyperDualMatrixTools ──────── v2.0.2
+ Installed IniFile ───────────────────── v0.5.0
+ Installed OrderedCollections ────────── v1.1.0
+ Installed Tables ────────────────────── v0.2.11
+ Installed Compat ────────────────────── v2.2.0
+ Installed BSON ──────────────────────── v0.2.4
+ Installed FunctionWrappers ──────────── v1.0.0
+ Installed Calculus ──────────────────── v0.5.1
+ Installed Roots ─────────────────────── v0.8.3
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed TreeViews ─────────────────── v0.3.0
+ Installed DualNumbers ───────────────── v0.6.2
+ Installed IterativeSolvers ──────────── v0.8.1
+ Installed DataStructures ────────────── v0.17.6
+ Installed UnitfulAngles ─────────────── v0.5.0
+ Installed UnitfulAstro ──────────────── v0.4.0
+ Installed Parsers ───────────────────── v0.3.10
+ Installed DiffEqDiffTools ───────────── v1.4.0
+ Installed JSON ──────────────────────── v0.21.0
+ Installed RecursiveFactorization ────── v0.1.0
+ Installed RecursiveArrayTools ───────── v1.0.2
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed HTTP ──────────────────────── v0.8.8
+ Installed MuladdMacro ───────────────── v0.2.1
+ Installed ArrayInterface ────────────── v1.2.1
+ Installed StaticArrays ──────────────── v0.12.1
+ Installed Parameters ────────────────── v0.12.0
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed MacroTools ────────────────── v0.5.2
+ Installed Unitful ───────────────────── v0.17.0
+ Installed SpecialFunctions ──────────── v0.8.0
+ Installed HyperDualNumbers ──────────── v4.0.0
+ Installed BinDeps ───────────────────── v0.8.10
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [ace601d6] + AIBECS v0.3.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [ace601d6] + AIBECS v0.3.1
+  [4fba245c] + ArrayInterface v1.2.1
+  [fbb218c0] + BSON v0.2.4
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [324d7699] + CategoricalArrays v0.7.3
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [124859b0] + DataDeps v0.7.1
+  [a93c6f00] + DataFrames v0.19.4
+  [864edb3b] + DataStructures v0.17.6
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [2b5f629d] + DiffEqBase v6.6.0
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [ffbed154] + DocStringExtensions v0.8.1
+  [31f4e45d] + DualMatrixTools v1.2.5
+  [fa6b7ba4] + DualNumbers v0.6.2
+  [bf96fef3] + FieldMetadata v0.1.1
+  [4c728ea3] + Flatten v0.2.1
+  [069b7b12] + FunctionWrappers v1.0.0
+  [cd3eb016] + HTTP v0.8.8
+  [04d39a18] + HyperDualMatrixTools v2.0.2
+  [50ceba7f] + HyperDualNumbers v4.0.0
+  [83e8ac13] + IniFile v0.5.0
+  [41ab1584] + InvertedIndices v1.0.0
+  [42fd0dbc] + IterativeSolvers v0.8.1
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [682c06a0] + JSON v0.21.0
+  [1914dd2f] + MacroTools v0.5.2
+  [739be429] + MbedTLS v0.7.0
+  [e1d29d7a] + Missings v0.4.3
+  [46d2c3a1] + MuladdMacro v0.2.1
+  [77ba4419] + NaNMath v0.3.3
+  [cfe838f4] + OceanGrids v0.1.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [69de0a69] + Parsers v0.3.10
+  [2dfb63ee] + PooledArrays v0.5.2
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [731186ca] + RecursiveArrayTools v1.0.2
+  [f2c3362d] + RecursiveFactorization v0.1.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [f2b01f46] + Roots v0.8.3
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [a2a6695c] + TreeViews v0.3.0
+  [30578b45] + URIParser v0.4.0
+  [1986cc42] + Unitful v0.17.0
+  [6fb2a4bd] + UnitfulAngles v0.5.0
+  [6112ee07] + UnitfulAstro v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building MbedTLS ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;MbedTLS&#x2F;a1JFn&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing AIBECS
+ Resolving package versions...
+ Installed Conda ──────────────── v1.3.0
+ Installed CondaBinDeps ───────── v0.1.0
+ Installed WorldOceanAtlasTools ─ v0.3.3
+ Installed CFTime ─────────────── v0.0.3
+ Installed ForwardDiff ────────── v0.10.6
+ Installed CommonSubexpressions ─ v0.2.0
+ Installed NearestNeighbors ───── v0.4.3
+ Installed StatsBase ──────────── v0.32.0
+ Installed DiffRules ──────────── v0.1.0
+ Installed DiffResults ────────── v0.0.4
+ Installed Match ──────────────── v1.0.2
+ Installed VersionParsing ─────── v1.1.3
+ Installed Distances ──────────── v0.8.2
+ Installed NCDatasets ─────────── v0.9.5
+  Building Conda ─────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building NCDatasets → `~&#x2F;.julia&#x2F;packages&#x2F;NCDatasets&#x2F;uW2kc&#x2F;deps&#x2F;build.log`
+    Status `&#x2F;tmp&#x2F;jl_L7j74y&#x2F;Manifest.toml`
+  [ace601d6] AIBECS v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [fbb218c0] BSON v0.2.4
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [179af706] CFTime v0.0.3
+  [49dc2e85] Calculus v0.5.1
+  [324d7699] CategoricalArrays v0.7.3
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [8f4d0f93] Conda v1.3.0
+  [a9693cdc] CondaBinDeps v0.1.0
+  [9a962f9c] DataAPI v1.1.0
+  [124859b0] DataDeps v0.7.1
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [2b5f629d] DiffEqBase v6.6.0
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [ffbed154] DocStringExtensions v0.8.1
+  [31f4e45d] DualMatrixTools v1.2.5
+  [fa6b7ba4] DualNumbers v0.6.2
+  [bf96fef3] FieldMetadata v0.1.1
+  [4c728ea3] Flatten v0.2.1
+  [f6369f11] ForwardDiff v0.10.6
+  [069b7b12] FunctionWrappers v1.0.0
+  [cd3eb016] HTTP v0.8.8
+  [04d39a18] HyperDualMatrixTools v2.0.2
+  [50ceba7f] HyperDualNumbers v4.0.0
+  [83e8ac13] IniFile v0.5.0
+  [41ab1584] InvertedIndices v1.0.0
+  [42fd0dbc] IterativeSolvers v0.8.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [682c06a0] JSON v0.21.0
+  [1914dd2f] MacroTools v0.5.2
+  [7eb4fadd] Match v1.0.2
+  [739be429] MbedTLS v0.7.0
+  [e1d29d7a] Missings v0.4.3
+  [46d2c3a1] MuladdMacro v0.2.1
+  [85f8d34a] NCDatasets v0.9.5
+  [77ba4419] NaNMath v0.3.3
+  [b8a86587] NearestNeighbors v0.4.3
+  [cfe838f4] OceanGrids v0.1.3
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [2dfb63ee] PooledArrays v0.5.2
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [f2c3362d] RecursiveFactorization v0.1.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [f2b01f46] Roots v0.8.3
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [a2a6695c] TreeViews v0.3.0
+  [30578b45] URIParser v0.4.0
+  [1986cc42] Unitful v0.17.0
+  [6fb2a4bd] UnitfulAngles v0.5.0
+  [6112ee07] UnitfulAstro v0.4.0
+  [81def892] VersionParsing v1.1.3
+  [04f20302] WorldOceanAtlasTools v0.3.3
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Creating 6-box model ✔
+┌ Info: You are about to use the 3-box model of Archer et al. [2000].
+│ If you use it for research, please cite:
+│ 
+│ - Archer, D. E., Eshel, G., Winguth, A., Broecker, W., Pierrehumbert, R., Tobis, M., and Jacob, R. (2000), Atmospheric pCO2 sensitivity to the biological pump in the ocean, Global Biogeochem. Cycles, 14 (4), 1219–1230, doi:10.1029&#x2F;1999GB001216.
+│ 
+│ You can find the corresponding BibTeX entry in the CITATION.bib file
+│ at the root of the AIBECS.jl package repository.
+│ (Look for the &quot;Archer_etal_2000&quot; key.)
+│ 
+│ Note that although this model represents the 3-box model of Archer et al. [2000],
+│ it effectively requires 6 boxes to represent in the AIBECS, 
+│ so that particulate sinking flux divergence operators can be built.
+└ (See the comments at the start of the Archer_etal_2000.jl file for details.)
+Test Summary:                | Pass  Total
+Archer_etal_2000 3-box model |   19     19
+Creating François Primeau&#39;s 2x2x2 model ✔
+You should see a warning below:
+┌ Warning: The name `Parameters` is already used.
+│ Will error if you changed the set of parameters.
+│ You can specify the name of the new parameters type via the syntax:
+│ 
+│ julia&gt; initialize_Parameters_type(t, PName)
+│ 
+│ See examples in the documentation of `initialize_Parameters_type`.
+│ (Type `?` and then `initialize_Parameters_type` to see the help.)
+└ @ AIBECS ~&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;E4QIE&#x2F;src&#x2F;Parameters.jl:116
+Parameters{Float64}
+  xgeo = 2.17e+00 [mmol m⁻³] (fixed)
+  τgeo = 1.00e+00 [Myr] (fixed)
+     k = 1.00e+01 [μmol m⁻³] 
+    z₀ = 8.00e+01 [m] (fixed)
+    w₀ = 1.00e+00 [m d⁻¹] 
+    w′ = 2.24e-01 [d⁻¹] 
+  κDOP = 4.00e+00 [yr⁻¹] 
+  κPOP = 1.90e-01 [d⁻¹] 
+     σ = 3.00e-01 [] (fixed)
+     τ = 3.00e+01 [d] 
+
+Parameters{Complex{Float64}}
+  xgeo = 2.17e+00 + 0.00e+00i [mmol m⁻³] (fixed)
+  τgeo = 1.00e+00 + 0.00e+00i [Myr] (fixed)
+     k = 0.00e+00 + 1.00e+01i [μmol m⁻³] 
+    z₀ = 8.00e+01 + 0.00e+00i [m] (fixed)
+    w₀ = 0.00e+00 + 1.00e+00i [m d⁻¹] 
+    w′ = 0.00e+00 + 2.24e-01i [d⁻¹] 
+  κDOP = 0.00e+00 + 4.00e+00i [yr⁻¹] 
+  κPOP = 0.00e+00 + 1.90e-01i [d⁻¹] 
+     σ = 3.00e-01 + 0.00e+00i [] (fixed)
+     τ = 0.00e+00 + 3.00e+01i [d] 
+
+Parameters{Dual{Float64}}
+  xgeo = 2.17e+00 + 0.00e+00ε [mmol m⁻³] (fixed)
+  τgeo = 1.00e+00 + 0.00e+00ε [Myr] (fixed)
+     k = 0.00e+00 + 1.00e+01ε [μmol m⁻³] 
+    z₀ = 8.00e+01 + 0.00e+00ε [m] (fixed)
+    w₀ = 0.00e+00 + 1.00e+00ε [m d⁻¹] 
+    w′ = 0.00e+00 + 2.24e-01ε [d⁻¹] 
+  κDOP = 0.00e+00 + 4.00e+00ε [yr⁻¹] 
+  κPOP = 0.00e+00 + 1.90e-01ε [d⁻¹] 
+     σ = 3.00e-01 + 0.00e+00ε [] (fixed)
+     τ = 0.00e+00 + 3.00e+01ε [d] 
+
+Parameters{Hyper{Float64}}
+  xgeo = 2.17e+00 + 0.00e+00ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [mmol m⁻³] (fixed)
+  τgeo = 1.00e+00 + 0.00e+00ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [Myr] (fixed)
+     k = 0.00e+00 + 1.00e+01ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [μmol m⁻³] 
+    z₀ = 8.00e+01 + 0.00e+00ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [m] (fixed)
+    w₀ = 0.00e+00 + 1.00e+00ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [m d⁻¹] 
+    w′ = 0.00e+00 + 2.24e-01ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [d⁻¹] 
+  κDOP = 0.00e+00 + 4.00e+00ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [yr⁻¹] 
+  κPOP = 0.00e+00 + 1.90e-01ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [d⁻¹] 
+     σ = 3.00e-01 + 0.00e+00ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [] (fixed)
+     τ = 0.00e+00 + 3.00e+01ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [d] 
+
+Registering World Ocean Atlas data with DataDeps
+┌ Warning: You are about to use World Ocean Atlas data.
+│ Please cite the following corresponding reference(s):
+│ 
+│ Garcia, H. E., K. Weathers, C. R. Paver, I. Smolyar, T. P. Boyer, R. A. Locarnini, M. M. Zweng, A. V. Mishonov, O. K. Baranova, D. Seidov, and J. R. Reagan, 2018. World Ocean Atlas 2018, Volume 4: Dissolved Inorganic Nutrients (phosphate, nitrate and nitrate+nitrite, silicate). A. Mishonov Technical Ed.; in preparation.)
+└ @ WorldOceanAtlasTools ~&#x2F;.julia&#x2F;packages&#x2F;WorldOceanAtlasTools&#x2F;StiyS&#x2F;src&#x2F;functions.jl:138
+┌ Warning: Checksum not provided, add to the Datadep Registration the following hash line
+│   hash = &quot;53a32321db4115a939f50c8d767f0df4e7263117e4afc8fd98ca861f67223eec&quot;
+└ @ DataDeps ~&#x2F;.julia&#x2F;packages&#x2F;DataDeps&#x2F;ai3FE&#x2F;src&#x2F;verification.jl:44
+  Reading NetCDF file
+  Rearranging data
+  Filtering data
+  Averaging data over each grid box
+  Setting μ = 0 and σ² = ∞ where no obs
+  Setting a realistic minimum for σ²
+Test Summary:         | Pass  Total
+Primeau&#39;s 6-box model |   84     84
+Loading OCIM1 ✔
+┌ Info: You are about to use OCIM1 model.
+│ If you use it for research, please cite:
+│ 
+│ - DeVries, T., 2014: The oceanic anthropogenic CO2 sink: Storage, air‐sea fluxes, and transports over the industrial era, Global Biogeochem. Cycles, 28, 631–647, doi:10.1002&#x2F;2013GB004739.
+│ - DeVries, T. and F. Primeau, 2011: Dynamically and Observationally Constrained Estimates of Water-Mass Distributions and Ages in the Global Ocean. J. Phys. Oceanogr., 41, 2381–2401, doi:10.1175&#x2F;JPO-D-10-05011.1
+│ 
+│ You can find the corresponding BibTeX entries in the CITATION.bib file
+│ at the root of the AIBECS.jl package repository.
+└ (Look for the &quot;DeVries_Primeau_2011&quot; and &quot;DeVries_2014&quot; keys.)
+Test Summary: | Pass  Total
+OCIM1         |   19     19
+Loading OCIM0.1 ✔
+┌ Info: You are about to use OCIM0.1 model.
+│ If you use it for research, please cite:
+│ 
+│ - Primeau, F. W., Holzer, M., and DeVries, T. (2013), Southern Ocean nutrient trapping and the efficiency of the biological pump, J. Geophys. Res. Oceans, 118, 2547–2564, doi:10.1002&#x2F;jgrc.20181.
+│ - DeVries, T. and F. Primeau, 2011: Dynamically and Observationally Constrained Estimates of Water-Mass Distributions and Ages in the Global Ocean. J. Phys. Oceanogr., 41, 2381–2401, doi:10.1175&#x2F;JPO-D-10-05011.1
+│ 
+│ You can find the corresponding BibTeX entries in the CITATION.bib file
+│ at the root of the AIBECS.jl package repository.
+└ (Look for the &quot;DeVries_Primeau_2011&quot; and &quot;Primeau_etal_2013&quot; keys.)
+Test Summary: | Pass  Total
+OCIM0.1       |   19     19
+   Testing AIBECS tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 11 hours ago and took 14 minutes, 29 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/AIBECS/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed DiffEqDiffTools ───────────── v1.4.0
+ Installed ArrayInterface ────────────── v1.2.1
+ Installed Missings ──────────────────── v0.4.3
+ Installed RecursiveFactorization ────── v0.1.0
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed BinDeps ───────────────────── v0.8.10
+ Installed AIBECS ────────────────────── v0.3.1
+ Installed DualMatrixTools ───────────── v1.2.5
+ Installed UnitfulAngles ─────────────── v0.5.0
+ Installed TreeViews ─────────────────── v0.3.0
+ Installed Reexport ──────────────────── v0.2.0
+ Installed Tables ────────────────────── v0.2.11
+ Installed Parameters ────────────────── v0.12.0
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed Calculus ──────────────────── v0.5.1
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed JSON ──────────────────────── v0.21.0
+ Installed HyperDualNumbers ──────────── v4.0.0
+ Installed DiffEqBase ────────────────── v6.6.0
+ Installed DataDeps ──────────────────── v0.7.1
+ Installed FunctionWrappers ──────────── v1.0.0
+ Installed DataStructures ────────────── v0.17.6
+ Installed MuladdMacro ───────────────── v0.2.1
+ Installed HTTP ──────────────────────── v0.8.8
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed HyperDualMatrixTools ──────── v2.0.2
+ Installed BSON ──────────────────────── v0.2.4
+ Installed MbedTLS ───────────────────── v0.7.0
+ Installed IniFile ───────────────────── v0.5.0
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed Parsers ───────────────────── v0.3.10
+ Installed UnitfulAstro ──────────────── v0.4.0
+ Installed URIParser ─────────────────── v0.4.0
+ Installed StaticArrays ──────────────── v0.12.1
+ Installed Requires ──────────────────── v0.5.2
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed RecursiveArrayTools ───────── v1.0.2
+ Installed IterativeSolvers ──────────── v0.8.1
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed FieldMetadata ─────────────── v0.1.1
+ Installed Roots ─────────────────────── v0.8.3
+ Installed DocStringExtensions ───────── v0.8.1
+ Installed OceanGrids ────────────────── v0.1.3
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed TableTraits ───────────────── v1.0.0
+ Installed MacroTools ────────────────── v0.5.2
+ Installed OrderedCollections ────────── v1.1.0
+ Installed Unitful ───────────────────── v0.17.0
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed DataFrames ────────────────── v0.19.4
+ Installed Flatten ───────────────────── v0.2.1
+ Installed DualNumbers ───────────────── v0.6.2
+ Installed Compat ────────────────────── v2.2.0
+ Installed SpecialFunctions ──────────── v0.8.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [ace601d6] + AIBECS v0.3.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [ace601d6] + AIBECS v0.3.1
+  [4fba245c] + ArrayInterface v1.2.1
+  [fbb218c0] + BSON v0.2.4
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [324d7699] + CategoricalArrays v0.7.3
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [124859b0] + DataDeps v0.7.1
+  [a93c6f00] + DataFrames v0.19.4
+  [864edb3b] + DataStructures v0.17.6
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [2b5f629d] + DiffEqBase v6.6.0
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [ffbed154] + DocStringExtensions v0.8.1
+  [31f4e45d] + DualMatrixTools v1.2.5
+  [fa6b7ba4] + DualNumbers v0.6.2
+  [bf96fef3] + FieldMetadata v0.1.1
+  [4c728ea3] + Flatten v0.2.1
+  [069b7b12] + FunctionWrappers v1.0.0
+  [cd3eb016] + HTTP v0.8.8
+  [04d39a18] + HyperDualMatrixTools v2.0.2
+  [50ceba7f] + HyperDualNumbers v4.0.0
+  [83e8ac13] + IniFile v0.5.0
+  [41ab1584] + InvertedIndices v1.0.0
+  [42fd0dbc] + IterativeSolvers v0.8.1
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [682c06a0] + JSON v0.21.0
+  [1914dd2f] + MacroTools v0.5.2
+  [739be429] + MbedTLS v0.7.0
+  [e1d29d7a] + Missings v0.4.3
+  [46d2c3a1] + MuladdMacro v0.2.1
+  [77ba4419] + NaNMath v0.3.3
+  [cfe838f4] + OceanGrids v0.1.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [69de0a69] + Parsers v0.3.10
+  [2dfb63ee] + PooledArrays v0.5.2
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [731186ca] + RecursiveArrayTools v1.0.2
+  [f2c3362d] + RecursiveFactorization v0.1.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [f2b01f46] + Roots v0.8.3
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [a2a6695c] + TreeViews v0.3.0
+  [30578b45] + URIParser v0.4.0
+  [1986cc42] + Unitful v0.17.0
+  [6fb2a4bd] + UnitfulAngles v0.5.0
+  [6112ee07] + UnitfulAstro v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building MbedTLS ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;MbedTLS&#x2F;a1JFn&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing AIBECS
+ Resolving package versions...
+ Installed CondaBinDeps ───────── v0.1.0
+ Installed WorldOceanAtlasTools ─ v0.3.3
+ Installed DiffResults ────────── v0.0.4
+ Installed VersionParsing ─────── v1.1.3
+ Installed Distances ──────────── v0.8.2
+ Installed CFTime ─────────────── v0.0.3
+ Installed ForwardDiff ────────── v0.10.6
+ Installed NearestNeighbors ───── v0.4.3
+ Installed DiffRules ──────────── v0.1.0
+ Installed CommonSubexpressions ─ v0.2.0
+ Installed NCDatasets ─────────── v0.9.5
+ Installed Conda ──────────────── v1.3.0
+ Installed Match ──────────────── v1.0.2
+ Installed StatsBase ──────────── v0.32.0
+  Building Conda ─────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building NCDatasets → `~&#x2F;.julia&#x2F;packages&#x2F;NCDatasets&#x2F;uW2kc&#x2F;deps&#x2F;build.log`
+Status `&#x2F;tmp&#x2F;jl_z3JNHE&#x2F;Manifest.toml`
+  [ace601d6] AIBECS v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [fbb218c0] BSON v0.2.4
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [179af706] CFTime v0.0.3
+  [49dc2e85] Calculus v0.5.1
+  [324d7699] CategoricalArrays v0.7.3
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [8f4d0f93] Conda v1.3.0
+  [a9693cdc] CondaBinDeps v0.1.0
+  [9a962f9c] DataAPI v1.1.0
+  [124859b0] DataDeps v0.7.1
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [2b5f629d] DiffEqBase v6.6.0
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [ffbed154] DocStringExtensions v0.8.1
+  [31f4e45d] DualMatrixTools v1.2.5
+  [fa6b7ba4] DualNumbers v0.6.2
+  [bf96fef3] FieldMetadata v0.1.1
+  [4c728ea3] Flatten v0.2.1
+  [f6369f11] ForwardDiff v0.10.6
+  [069b7b12] FunctionWrappers v1.0.0
+  [cd3eb016] HTTP v0.8.8
+  [04d39a18] HyperDualMatrixTools v2.0.2
+  [50ceba7f] HyperDualNumbers v4.0.0
+  [83e8ac13] IniFile v0.5.0
+  [41ab1584] InvertedIndices v1.0.0
+  [42fd0dbc] IterativeSolvers v0.8.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [682c06a0] JSON v0.21.0
+  [1914dd2f] MacroTools v0.5.2
+  [7eb4fadd] Match v1.0.2
+  [739be429] MbedTLS v0.7.0
+  [e1d29d7a] Missings v0.4.3
+  [46d2c3a1] MuladdMacro v0.2.1
+  [85f8d34a] NCDatasets v0.9.5
+  [77ba4419] NaNMath v0.3.3
+  [b8a86587] NearestNeighbors v0.4.3
+  [cfe838f4] OceanGrids v0.1.3
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [2dfb63ee] PooledArrays v0.5.2
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [f2c3362d] RecursiveFactorization v0.1.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [f2b01f46] Roots v0.8.3
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [a2a6695c] TreeViews v0.3.0
+  [30578b45] URIParser v0.4.0
+  [1986cc42] Unitful v0.17.0
+  [6fb2a4bd] UnitfulAngles v0.5.0
+  [6112ee07] UnitfulAstro v0.4.0
+  [81def892] VersionParsing v1.1.3
+  [04f20302] WorldOceanAtlasTools v0.3.3
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Creating 6-box model ✔
+┌ Info: You are about to use the 3-box model of Archer et al. [2000].
+│ If you use it for research, please cite:
+│ 
+│ - Archer, D. E., Eshel, G., Winguth, A., Broecker, W., Pierrehumbert, R., Tobis, M., and Jacob, R. (2000), Atmospheric pCO2 sensitivity to the biological pump in the ocean, Global Biogeochem. Cycles, 14 (4), 1219–1230, doi:10.1029&#x2F;1999GB001216.
+│ 
+│ You can find the corresponding BibTeX entry in the CITATION.bib file
+│ at the root of the AIBECS.jl package repository.
+│ (Look for the &quot;Archer_etal_2000&quot; key.)
+│ 
+│ Note that although this model represents the 3-box model of Archer et al. [2000],
+│ it effectively requires 6 boxes to represent in the AIBECS, 
+│ so that particulate sinking flux divergence operators can be built.
+└ (See the comments at the start of the Archer_etal_2000.jl file for details.)
+Test Summary:                | Pass  Total
+Archer_etal_2000 3-box model |   19     19
+Creating François Primeau&#39;s 2x2x2 model ✔
+You should see a warning below:
+┌ Warning: The name `Parameters` is already used.
+│ Will error if you changed the set of parameters.
+│ You can specify the name of the new parameters type via the syntax:
+│ 
+│ julia&gt; initialize_Parameters_type(t, PName)
+│ 
+│ See examples in the documentation of `initialize_Parameters_type`.
+│ (Type `?` and then `initialize_Parameters_type` to see the help.)
+└ @ AIBECS ~&#x2F;.julia&#x2F;packages&#x2F;AIBECS&#x2F;E4QIE&#x2F;src&#x2F;Parameters.jl:116
+Parameters{Float64}
+  xgeo = 2.17e+00 [mmol m⁻³] (fixed)
+  τgeo = 1.00e+00 [Myr] (fixed)
+     k = 1.00e+01 [μmol m⁻³] 
+    z₀ = 8.00e+01 [m] (fixed)
+    w₀ = 1.00e+00 [m d⁻¹] 
+    w′ = 2.24e-01 [d⁻¹] 
+  κDOP = 4.00e+00 [yr⁻¹] 
+  κPOP = 1.90e-01 [d⁻¹] 
+     σ = 3.00e-01 [] (fixed)
+     τ = 3.00e+01 [d] 
+
+Parameters{Complex{Float64}}
+  xgeo = 2.17e+00 + 0.00e+00i [mmol m⁻³] (fixed)
+  τgeo = 1.00e+00 + 0.00e+00i [Myr] (fixed)
+     k = 0.00e+00 + 1.00e+01i [μmol m⁻³] 
+    z₀ = 8.00e+01 + 0.00e+00i [m] (fixed)
+    w₀ = 0.00e+00 + 1.00e+00i [m d⁻¹] 
+    w′ = 0.00e+00 + 2.24e-01i [d⁻¹] 
+  κDOP = 0.00e+00 + 4.00e+00i [yr⁻¹] 
+  κPOP = 0.00e+00 + 1.90e-01i [d⁻¹] 
+     σ = 3.00e-01 + 0.00e+00i [] (fixed)
+     τ = 0.00e+00 + 3.00e+01i [d] 
+
+Parameters{Dual{Float64}}
+  xgeo = 2.17e+00 + 0.00e+00ε [mmol m⁻³] (fixed)
+  τgeo = 1.00e+00 + 0.00e+00ε [Myr] (fixed)
+     k = 0.00e+00 + 1.00e+01ε [μmol m⁻³] 
+    z₀ = 8.00e+01 + 0.00e+00ε [m] (fixed)
+    w₀ = 0.00e+00 + 1.00e+00ε [m d⁻¹] 
+    w′ = 0.00e+00 + 2.24e-01ε [d⁻¹] 
+  κDOP = 0.00e+00 + 4.00e+00ε [yr⁻¹] 
+  κPOP = 0.00e+00 + 1.90e-01ε [d⁻¹] 
+     σ = 3.00e-01 + 0.00e+00ε [] (fixed)
+     τ = 0.00e+00 + 3.00e+01ε [d] 
+
+Parameters{Hyper{Float64}}
+  xgeo = 2.17e+00 + 0.00e+00ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [mmol m⁻³] (fixed)
+  τgeo = 1.00e+00 + 0.00e+00ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [Myr] (fixed)
+     k = 0.00e+00 + 1.00e+01ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [μmol m⁻³] 
+    z₀ = 8.00e+01 + 0.00e+00ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [m] (fixed)
+    w₀ = 0.00e+00 + 1.00e+00ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [m d⁻¹] 
+    w′ = 0.00e+00 + 2.24e-01ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [d⁻¹] 
+  κDOP = 0.00e+00 + 4.00e+00ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [yr⁻¹] 
+  κPOP = 0.00e+00 + 1.90e-01ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [d⁻¹] 
+     σ = 3.00e-01 + 0.00e+00ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [] (fixed)
+     τ = 0.00e+00 + 3.00e+01ε₁ + 0.00e+00ε₂ + 0.00e+00ε₁ε₂ [d] 
+
+Registering World Ocean Atlas data with DataDeps
+┌ Warning: You are about to use World Ocean Atlas data.
+│ Please cite the following corresponding reference(s):
+│ 
+│ Garcia, H. E., K. Weathers, C. R. Paver, I. Smolyar, T. P. Boyer, R. A. Locarnini, M. M. Zweng, A. V. Mishonov, O. K. Baranova, D. Seidov, and J. R. Reagan, 2018. World Ocean Atlas 2018, Volume 4: Dissolved Inorganic Nutrients (phosphate, nitrate and nitrate+nitrite, silicate). A. Mishonov Technical Ed.; in preparation.)
+└ @ WorldOceanAtlasTools ~&#x2F;.julia&#x2F;packages&#x2F;WorldOceanAtlasTools&#x2F;StiyS&#x2F;src&#x2F;functions.jl:138
+┌ Warning: Checksum not provided, add to the Datadep Registration the following hash line
+│   hash = &quot;53a32321db4115a939f50c8d767f0df4e7263117e4afc8fd98ca861f67223eec&quot;
+└ @ DataDeps ~&#x2F;.julia&#x2F;packages&#x2F;DataDeps&#x2F;ai3FE&#x2F;src&#x2F;verification.jl:44
+  Reading NetCDF file
+  Rearranging data
+  Filtering data
+  Averaging data over each grid box
+  Setting μ = 0 and σ² = ∞ where no obs
+  Setting a realistic minimum for σ²
+Test Summary:         | Pass  Total
+Primeau&#39;s 6-box model |   84     84
+Loading OCIM1 ✔
+┌ Info: You are about to use OCIM1 model.
+│ If you use it for research, please cite:
+│ 
+│ - DeVries, T., 2014: The oceanic anthropogenic CO2 sink: Storage, air‐sea fluxes, and transports over the industrial era, Global Biogeochem. Cycles, 28, 631–647, doi:10.1002&#x2F;2013GB004739.
+│ - DeVries, T. and F. Primeau, 2011: Dynamically and Observationally Constrained Estimates of Water-Mass Distributions and Ages in the Global Ocean. J. Phys. Oceanogr., 41, 2381–2401, doi:10.1175&#x2F;JPO-D-10-05011.1
+│ 
+│ You can find the corresponding BibTeX entries in the CITATION.bib file
+│ at the root of the AIBECS.jl package repository.
+└ (Look for the &quot;DeVries_Primeau_2011&quot; and &quot;DeVries_2014&quot; keys.)
+Test Summary: | Pass  Total
+OCIM1         |   19     19
+Loading OCIM0.1 ✔
+┌ Info: You are about to use OCIM0.1 model.
+│ If you use it for research, please cite:
+│ 
+│ - Primeau, F. W., Holzer, M., and DeVries, T. (2013), Southern Ocean nutrient trapping and the efficiency of the biological pump, J. Geophys. Res. Oceans, 118, 2547–2564, doi:10.1002&#x2F;jgrc.20181.
+│ - DeVries, T. and F. Primeau, 2011: Dynamically and Observationally Constrained Estimates of Water-Mass Distributions and Ages in the Global Ocean. J. Phys. Oceanogr., 41, 2381–2401, doi:10.1175&#x2F;JPO-D-10-05011.1
+│ 
+│ You can find the corresponding BibTeX entries in the CITATION.bib file
+│ at the root of the AIBECS.jl package repository.
+└ (Look for the &quot;DeVries_Primeau_2011&quot; and &quot;Primeau_etal_2013&quot; keys.)
+Test Summary: | Pass  Total
+OCIM0.1       |   19     19
+   Testing AIBECS tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

@@ -1,0 +1,61 @@
+ Resolving package versions...
+ Installed Memcache ─ v0.3.1
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [2542163d] + Memcache v0.3.1
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [2542163d] + Memcache v0.3.1
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+   Testing Memcache
+ Resolving package versions...
+    Status `/tmp/tmpZf4qLJ/Manifest.toml`
+  [2542163d] Memcache v0.3.1
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+ERROR: LoadError: LoadError: IOError: connect: connection refused (ECONNREFUSED)
+Stacktrace:
+ [1] try_yieldto(::typeof(Base.ensure_rescheduled), ::Base.RefValue{Task}) at ./event.jl:196
+ [2] wait() at ./event.jl:255
+ [3] wait(::Condition) at ./event.jl:46
+ [4] stream_wait(::Sockets.TCPSocket, ::Condition) at ./stream.jl:47
+ [5] wait_connected(::Sockets.TCPSocket) at ./stream.jl:259
+ [6] connect at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Sockets/src/Sockets.jl:444 [inlined]
+ [7] connect(::String, ::Int64) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Sockets/src/Sockets.jl:427
+ [8] Type at /root/.julia/packages/Memcache/EyftV/src/client.jl:8 [inlined] (repeats 2 times)
+ [9] test_begin() at /root/.julia/packages/Memcache/EyftV/test/test.jl:5
+ [10] top-level scope at none:0
+ [11] include at ./boot.jl:317 [inlined]
+ [12] include_relative(::Module, ::String) at ./loading.jl:1044
+ [13] include(::Module, ::String) at ./sysimg.jl:29
+ [14] include(::String) at ./client.jl:392
+ [15] top-level scope at none:0
+ [16] include at ./boot.jl:317 [inlined]
+ [17] include_relative(::Module, ::String) at ./loading.jl:1044
+ [18] include(::Module, ::String) at ./sysimg.jl:29
+ [19] include(::String) at ./client.jl:392
+ [20] top-level scope at none:0
+in expression starting at /root/.julia/packages/Memcache/EyftV/test/test.jl:104
+in expression starting at /root/.julia/packages/Memcache/EyftV/test/runtests.jl:6
+ERROR: Package Memcache errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

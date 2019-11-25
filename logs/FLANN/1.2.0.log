@@ -1,0 +1,143 @@
+ Resolving package versions...
+ Installed URIParser ─ v0.4.0
+ Installed FLANN ───── v1.0.1
+ Installed Compat ──── v2.2.0
+ Installed Distances ─ v0.8.2
+ Installed BinDeps ─── v0.8.10
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [4ef67f76] + FLANN v1.0.1
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [34da2185] + Compat v2.2.0
+  [b4f34e82] + Distances v0.8.2
+  [4ef67f76] + FLANN v1.0.1
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building FLANN → `~/.julia/packages/FLANN/NkQL3/deps/build.log`
+┌ Error: Error building `FLANN`: 
+│   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+│                                  Dload  Upload   Total   Spent    Left  Speed
+│   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   123    0   123    0     0    544      0 --:--:-- --:--:-- --:--:--   541
+│ 100  362k    0  362k    0     0   346k      0 --:--:--  0:00:01 --:--:--  346k100  474k    0  474k    0     0   451k      0 --:--:--  0:00:01 --:--:--  108M
+│ [ Info: Attempting to create directory /root/.julia/packages/FLANN/NkQL3/deps/downloads
+│ [ Info: Downloading file https://github.com/mariusmuja/flann/archive/1.9.1.tar.gz
+│ [ Info: Done downloading file https://github.com/mariusmuja/flann/archive/1.9.1.tar.gz
+│ [ Info: Attempting to create directory /root/.julia/packages/FLANN/NkQL3/deps/src
+│ [ Info: Attempting to create directory /root/.julia/packages/FLANN/NkQL3/deps
+│ [ Info: Directory /root/.julia/packages/FLANN/NkQL3/deps already exists
+│ [ Info: Attempting to create directory /root/.julia/packages/FLANN/NkQL3/deps/builds/1.9.1
+│ [ Info: Changing directory to /root/.julia/packages/FLANN/NkQL3/deps/builds/1.9.1
+│ ERROR: LoadError: IOError: could not spawn `cmake -Wno-dev -DCMAKE_BUILD_TYPE=Release '\' -DCMAKE_INSTALL_PREFIX=/root/.julia/packages/FLANN/NkQL3/deps/usr '\' -DBUILD_PYTHON_BINDINGS=OFF '\' -DBUILD_EXAMPLES=OFF '\' -DBUILD_TESTS=OFF '\' -DBUILD_DOC=OFF '\' -DBUILD_MATLAB_BINDINGS=OFF /root/.julia/packages/FLANN/NkQL3/deps/src/flann-1.9.1`: no such file or directory (ENOENT)
+│ Stacktrace:
+│  [1] _spawn_primitive(::String, ::Cmd, ::Array{Any,1}) at ./process.jl:401
+│  [2] setup_stdios(::getfield(Base, Symbol("##526#527")){Cmd}, ::Array{Any,1}) at ./process.jl:414
+│  [3] _spawn at ./process.jl:413 [inlined]
+│  [4] #run#536(::Bool, ::typeof(run), ::Cmd) at ./process.jl:727
+│  [5] run(::Cmd) at ./process.jl:726
+│  [6] run(::BinDeps.SynchronousStepCollection) at /root/.julia/packages/BinDeps/ZEval/src/BinDeps.jl:521
+│  [7] run(::FileRule) at /root/.julia/packages/BinDeps/ZEval/src/BinDeps.jl:483
+│  [8] run(::BinDeps.SynchronousStepCollection) at /root/.julia/packages/BinDeps/ZEval/src/BinDeps.jl:521 (repeats 2 times)
+│  [9] satisfy!(::BinDeps.LibraryDependency, ::Array{DataType,1}) at /root/.julia/packages/BinDeps/ZEval/src/dependencies.jl:944
+│  [10] satisfy!(::BinDeps.LibraryDependency) at /root/.julia/packages/BinDeps/ZEval/src/dependencies.jl:922
+│  [11] top-level scope at /root/.julia/packages/BinDeps/ZEval/src/dependencies.jl:977
+│  [12] include at ./boot.jl:328 [inlined]
+│  [13] include_relative(::Module, ::String) at ./loading.jl:1094
+│  [14] include(::Module, ::String) at ./Base.jl:31
+│  [15] include(::String) at ./client.jl:431
+│  [16] top-level scope at none:5
+│ in expression starting at /root/.julia/packages/FLANN/NkQL3/deps/build.jl:44
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:647
+   Testing FLANN
+ Resolving package versions...
+    Status `/tmp/jl_Dqt2Ue/Manifest.toml`
+  [9e28174c] BinDeps v0.8.10
+  [34da2185] Compat v2.2.0
+  [b4f34e82] Distances v0.8.2
+  [4ef67f76] FLANN v1.0.1
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib/SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: FLANN not properly installed. Please run Pkg.build("FLANN")
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] top-level scope at /root/.julia/packages/FLANN/NkQL3/src/FLANN.jl:12
+ [3] include at ./boot.jl:328 [inlined]
+ [4] include_relative(::Module, ::String) at ./loading.jl:1094
+ [5] include(::Module, ::String) at ./Base.jl:31
+ [6] top-level scope at none:2
+ [7] eval at ./boot.jl:330 [inlined]
+ [8] eval(::Expr) at ./client.jl:432
+ [9] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/FLANN/NkQL3/src/FLANN.jl:9
+ERROR: LoadError: Failed to precompile FLANN [4ef67f76-e0de-5105-ac01-03b6482fb4f8] to /root/.julia/compiled/v1.2/FLANN/vzn1h.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1253
+ [3] _require(::Base.PkgId) at ./loading.jl:1013
+ [4] require(::Base.PkgId) at ./loading.jl:911
+ [5] require(::Module, ::Symbol) at ./loading.jl:906
+ [6] include at ./boot.jl:328 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1094
+ [8] include(::Module, ::String) at ./Base.jl:31
+ [9] include(::String) at ./client.jl:431
+ [10] top-level scope at none:5
+in expression starting at /root/.julia/packages/FLANN/NkQL3/test/runtests.jl:3
+ERROR: Package FLANN errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1288
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

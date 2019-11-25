@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="HierarchicalMatrices">HierarchicalMatrices</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#HierarchicalMatrices">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 10 hours ago and took 58 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/HierarchicalMatrices/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed HierarchicalMatrices ─ v0.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [7c893195] + HierarchicalMatrices v0.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [7c893195] + HierarchicalMatrices v0.2.0
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+   Testing HierarchicalMatrices
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;tmppKPOMv&#x2F;Manifest.toml`
+  [7c893195] HierarchicalMatrices v0.2.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+
+cauchykernel matrix construction at N = 1000
+
+  0.776004 seconds (71.03 k allocations: 7.656 MiB)
+  0.021802 seconds (2.02 k allocations: 4.166 MiB)
+  0.062068 seconds (479 allocations: 7.655 MiB, 45.15% gc time)
+  0.005850 seconds (2 allocations: 7.629 MiB)
+
+cauchykernel matrix-vector multiplication at N = 1000
+
+  0.076334 seconds (43.76 k allocations: 2.257 MiB)
+  0.001296 seconds (2 allocations: 7.953 KiB)
+  0.002941 seconds (1 allocation: 7.938 KiB)
+  0.001565 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 2.7442363420288664e-16
+
+
+cauchykernel matrix construction at N = 10000
+
+  0.200392 seconds (16.61 k allocations: 68.576 MiB, 50.68% gc time)
+  0.237236 seconds (16.61 k allocations: 68.576 MiB, 74.26% gc time)
+  0.683451 seconds (2 allocations: 762.940 MiB, 12.46% gc time)
+  0.730338 seconds (2 allocations: 762.940 MiB, 22.56% gc time)
+
+cauchykernel matrix-vector multiplication at N = 10000
+
+  0.017860 seconds (507 allocations: 86.094 KiB)
+  0.018966 seconds (507 allocations: 86.094 KiB)
+  0.128995 seconds (2 allocations: 78.203 KiB)
+  0.175694 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 1.942526757226043e-15
+
+
+coulombkernel matrix construction at N = 1000
+
+  0.497758 seconds (11.62 k allocations: 4.589 MiB)
+  0.003802 seconds (2.02 k allocations: 4.166 MiB)
+  0.033561 seconds (21.34 k allocations: 8.652 MiB)
+  0.004397 seconds (2 allocations: 7.629 MiB)
+
+coulombkernel matrix-vector multiplication at N = 1000
+
+  0.000737 seconds (2 allocations: 7.953 KiB)
+  0.000761 seconds (2 allocations: 7.953 KiB)
+  0.021238 seconds (1 allocation: 7.938 KiB)
+  0.003609 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 2.411969040954078e-15
+
+
+coulombkernel matrix construction at N = 10000
+
+  0.125161 seconds (16.61 k allocations: 68.576 MiB)
+  0.302302 seconds (16.61 k allocations: 68.576 MiB, 75.24% gc time)
+  0.756254 seconds (2 allocations: 762.940 MiB, 15.14% gc time)
+  0.776945 seconds (2 allocations: 762.940 MiB, 26.98% gc time)
+
+coulombkernel matrix-vector multiplication at N = 10000
+
+  0.032037 seconds (507 allocations: 86.094 KiB)
+  0.017013 seconds (507 allocations: 86.094 KiB)
+  0.083076 seconds (2 allocations: 78.203 KiB)
+  0.062357 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 3.4883851454405176e-15
+
+
+coulombprimekernel matrix construction at N = 1000
+
+  0.706248 seconds (269.08 k allocations: 16.799 MiB)
+  0.015131 seconds (2.02 k allocations: 4.166 MiB)
+  0.050840 seconds (21.41 k allocations: 8.654 MiB)
+  0.004447 seconds (2 allocations: 7.629 MiB)
+
+coulombprimekernel matrix-vector multiplication at N = 1000
+
+  0.001509 seconds (2 allocations: 7.953 KiB)
+  0.001614 seconds (2 allocations: 7.953 KiB)
+  0.027934 seconds (1 allocation: 7.938 KiB)
+  0.004727 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 2.524509764377813e-16
+
+
+coulombprimekernel matrix construction at N = 10000
+
+  0.289911 seconds (16.61 k allocations: 68.576 MiB, 67.87% gc time)
+  0.276010 seconds (16.61 k allocations: 68.576 MiB, 76.68% gc time)
+  0.709530 seconds (2 allocations: 762.940 MiB, 12.44% gc time)
+  0.826107 seconds (2 allocations: 762.940 MiB, 24.10% gc time)
+
+coulombprimekernel matrix-vector multiplication at N = 10000
+
+  0.038968 seconds (507 allocations: 86.094 KiB)
+  0.021480 seconds (507 allocations: 86.094 KiB)
+  0.077362 seconds (2 allocations: 78.203 KiB)
+  0.089993 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 9.628055464089851e-18
+
+
+logkernel matrix construction at N = 1000
+
+  0.667284 seconds (266.63 k allocations: 16.678 MiB)
+  0.006734 seconds (2.02 k allocations: 4.166 MiB)
+  0.052436 seconds (21.32 k allocations: 8.651 MiB)
+  0.015820 seconds (2 allocations: 7.629 MiB)
+
+logkernel matrix-vector multiplication at N = 1000
+
+  0.001114 seconds (2 allocations: 7.953 KiB)
+  0.001161 seconds (2 allocations: 7.953 KiB)
+  0.001992 seconds (1 allocation: 7.938 KiB)
+  0.000962 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 8.96375043870082e-16
+
+
+logkernel matrix construction at N = 10000
+
+  0.132776 seconds (16.61 k allocations: 68.576 MiB)
+  0.439843 seconds (16.61 k allocations: 68.576 MiB, 75.00% gc time)
+  2.037368 seconds (2 allocations: 762.940 MiB, 4.39% gc time)
+  2.226206 seconds (2 allocations: 762.940 MiB, 10.75% gc time)
+
+logkernel matrix-vector multiplication at N = 10000
+
+  0.042019 seconds (507 allocations: 86.094 KiB)
+  0.017726 seconds (507 allocations: 86.094 KiB)
+  0.094898 seconds (2 allocations: 78.203 KiB)
+  0.137300 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 1.8504719787538233e-15
+
+
+
+cauchykernel matrix construction at N = 1000
+
+  0.004512 seconds (1.73 k allocations: 4.149 MiB)
+  0.004727 seconds (1.73 k allocations: 4.149 MiB)
+  0.004168 seconds (2 allocations: 7.629 MiB)
+  0.003825 seconds (2 allocations: 7.629 MiB)
+
+cauchykernel matrix-vector multiplication at N = 1000
+
+  0.001127 seconds (4 allocations: 7.984 KiB)
+  0.001071 seconds (4 allocations: 7.984 KiB)
+  0.034924 seconds (1 allocation: 7.938 KiB)
+  0.003595 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 1.7804588323470955e-16
+
+
+cauchykernel matrix construction at N = 10000
+
+  0.288648 seconds (16.70 k allocations: 70.265 MiB, 63.91% gc time)
+  0.083385 seconds (16.70 k allocations: 70.265 MiB, 29.41% gc time)
+  0.624964 seconds (2 allocations: 762.940 MiB, 12.97% gc time)
+  0.699494 seconds (2 allocations: 762.940 MiB, 23.12% gc time)
+
+cauchykernel matrix-vector multiplication at N = 10000
+
+  0.018520 seconds (512 allocations: 86.172 KiB)
+  0.019539 seconds (512 allocations: 86.172 KiB)
+  0.077400 seconds (2 allocations: 78.203 KiB)
+  0.108852 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 1.5024010998705635e-16
+
+
+coulombkernel matrix construction at N = 1000
+
+  0.003855 seconds (1.73 k allocations: 4.149 MiB)
+  0.003896 seconds (1.73 k allocations: 4.149 MiB)
+  0.001813 seconds (2 allocations: 7.629 MiB)
+  0.002049 seconds (2 allocations: 7.629 MiB)
+
+coulombkernel matrix-vector multiplication at N = 1000
+
+  0.001204 seconds (4 allocations: 7.984 KiB)
+  0.001008 seconds (4 allocations: 7.984 KiB)
+  0.004955 seconds (1 allocation: 7.938 KiB)
+  0.002713 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 4.9768445732849305e-17
+
+
+coulombkernel matrix construction at N = 10000
+
+  0.295123 seconds (16.70 k allocations: 70.265 MiB, 65.27% gc time)
+  0.216657 seconds (16.70 k allocations: 70.265 MiB, 57.48% gc time)
+  0.675814 seconds (2 allocations: 762.940 MiB, 14.12% gc time)
+  0.866529 seconds (2 allocations: 762.940 MiB, 20.72% gc time)
+
+coulombkernel matrix-vector multiplication at N = 10000
+
+  0.043585 seconds (512 allocations: 86.172 KiB)
+  0.021757 seconds (512 allocations: 86.172 KiB)
+  0.107559 seconds (2 allocations: 78.203 KiB)
+  0.148188 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 7.049614008488166e-17
+
+
+coulombprimekernel matrix construction at N = 1000
+
+  0.005264 seconds (1.73 k allocations: 4.149 MiB)
+  0.004903 seconds (1.73 k allocations: 4.149 MiB)
+  0.004394 seconds (2 allocations: 7.629 MiB)
+  0.003859 seconds (2 allocations: 7.629 MiB)
+
+coulombprimekernel matrix-vector multiplication at N = 1000
+
+  0.001249 seconds (4 allocations: 7.984 KiB)
+  0.001161 seconds (4 allocations: 7.984 KiB)
+  0.024243 seconds (1 allocation: 7.938 KiB)
+  0.027847 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 7.498774556940561e-18
+
+
+coulombprimekernel matrix construction at N = 10000
+
+  0.281470 seconds (16.70 k allocations: 70.265 MiB, 73.83% gc time)
+  0.220291 seconds (16.70 k allocations: 70.265 MiB, 66.69% gc time)
+  0.966712 seconds (2 allocations: 762.940 MiB, 11.57% gc time)
+  0.864877 seconds (2 allocations: 762.940 MiB, 28.17% gc time)
+
+coulombprimekernel matrix-vector multiplication at N = 10000
+
+  0.023742 seconds (512 allocations: 86.172 KiB)
+  0.019951 seconds (512 allocations: 86.172 KiB)
+  0.099516 seconds (2 allocations: 78.203 KiB)
+  0.071345 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 3.8426811335564856e-17
+
+
+logkernel matrix construction at N = 1000
+
+  0.008826 seconds (1.73 k allocations: 4.149 MiB)
+  0.006941 seconds (1.73 k allocations: 4.149 MiB)
+  0.015020 seconds (2 allocations: 7.629 MiB)
+  0.015209 seconds (2 allocations: 7.629 MiB)
+
+logkernel matrix-vector multiplication at N = 1000
+
+  0.001398 seconds (4 allocations: 7.984 KiB)
+  0.001400 seconds (4 allocations: 7.984 KiB)
+  0.001567 seconds (1 allocation: 7.938 KiB)
+  0.030497 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 4.266197012073464e-15
+
+
+logkernel matrix construction at N = 10000
+
+  0.343296 seconds (16.70 k allocations: 70.265 MiB, 64.05% gc time)
+  0.196192 seconds (16.70 k allocations: 70.265 MiB, 49.21% gc time)
+  1.995496 seconds (2 allocations: 762.940 MiB, 5.64% gc time)
+  2.094145 seconds (2 allocations: 762.940 MiB, 9.76% gc time)
+
+logkernel matrix-vector multiplication at N = 10000
+
+  0.039571 seconds (512 allocations: 86.172 KiB)
+  0.018084 seconds (512 allocations: 86.172 KiB)
+  0.121288 seconds (2 allocations: 78.203 KiB)
+  0.084091 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 1.7188914220058742e-15
+
+   Testing HierarchicalMatrices tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 13 hours ago and took 51 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/HierarchicalMatrices/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed HierarchicalMatrices ─ v0.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [7c893195] + HierarchicalMatrices v0.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [7c893195] + HierarchicalMatrices v0.2.0
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+   Testing HierarchicalMatrices
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;jl_sDtSTB&#x2F;Manifest.toml`
+  [7c893195] HierarchicalMatrices v0.2.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+
+cauchykernel matrix construction at N = 1000
+
+  0.906850 seconds (317.61 k allocations: 19.745 MiB, 1.28% gc time)
+  0.006577 seconds (2.02 k allocations: 4.166 MiB)
+  0.031426 seconds (449 allocations: 7.654 MiB)
+  0.027506 seconds (2 allocations: 7.629 MiB, 85.20% gc time)
+
+cauchykernel matrix-vector multiplication at N = 1000
+
+  0.195854 seconds (51.15 k allocations: 2.700 MiB)
+  0.001336 seconds (2 allocations: 7.953 KiB)
+  0.008850 seconds (1 allocation: 7.938 KiB)
+  0.002849 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 2.7442363420288664e-16
+
+
+cauchykernel matrix construction at N = 10000
+
+  0.173714 seconds (16.61 k allocations: 68.576 MiB, 50.94% gc time)
+  0.276678 seconds (16.61 k allocations: 68.576 MiB, 66.93% gc time)
+  0.647188 seconds (2 allocations: 762.940 MiB, 12.45% gc time)
+  0.717504 seconds (2 allocations: 762.940 MiB, 20.56% gc time)
+
+cauchykernel matrix-vector multiplication at N = 10000
+
+  0.019069 seconds (507 allocations: 86.094 KiB)
+  0.019601 seconds (507 allocations: 86.094 KiB)
+  0.065895 seconds (2 allocations: 78.203 KiB)
+  0.067692 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 1.942526757226043e-15
+
+
+coulombkernel matrix construction at N = 1000
+
+  0.502922 seconds (10.89 k allocations: 4.566 MiB)
+  0.005951 seconds (2.02 k allocations: 4.166 MiB)
+  0.039729 seconds (15.79 k allocations: 8.362 MiB)
+  0.005551 seconds (2 allocations: 7.629 MiB)
+
+coulombkernel matrix-vector multiplication at N = 1000
+
+  0.001235 seconds (2 allocations: 7.953 KiB)
+  0.001197 seconds (2 allocations: 7.953 KiB)
+  0.011732 seconds (1 allocation: 7.938 KiB)
+  0.003770 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 2.411969040954078e-15
+
+
+coulombkernel matrix construction at N = 10000
+
+  0.099225 seconds (16.61 k allocations: 68.576 MiB)
+  0.240233 seconds (16.61 k allocations: 68.576 MiB, 69.35% gc time)
+  0.715533 seconds (2 allocations: 762.940 MiB, 17.17% gc time)
+  0.754241 seconds (2 allocations: 762.940 MiB, 20.63% gc time)
+
+coulombkernel matrix-vector multiplication at N = 10000
+
+  0.020455 seconds (507 allocations: 86.094 KiB)
+  0.021272 seconds (507 allocations: 86.094 KiB)
+  0.293662 seconds (2 allocations: 78.203 KiB)
+  0.082712 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 3.4883851454405176e-15
+
+
+coulombprimekernel matrix construction at N = 1000
+
+  0.606336 seconds (318.92 k allocations: 19.754 MiB)
+  0.003397 seconds (2.02 k allocations: 4.166 MiB)
+  0.029719 seconds (15.86 k allocations: 8.364 MiB)
+  0.002153 seconds (2 allocations: 7.629 MiB)
+
+coulombprimekernel matrix-vector multiplication at N = 1000
+
+  0.001120 seconds (2 allocations: 7.953 KiB)
+  0.001185 seconds (2 allocations: 7.953 KiB)
+  0.018751 seconds (1 allocation: 7.938 KiB)
+  0.002646 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 2.524509764377813e-16
+
+
+coulombprimekernel matrix construction at N = 10000
+
+  0.321451 seconds (16.61 k allocations: 68.576 MiB, 81.62% gc time)
+  0.050532 seconds (16.61 k allocations: 68.576 MiB)
+  0.660582 seconds (2 allocations: 762.940 MiB, 11.25% gc time)
+  0.668084 seconds (2 allocations: 762.940 MiB, 21.50% gc time)
+
+coulombprimekernel matrix-vector multiplication at N = 10000
+
+  0.018310 seconds (507 allocations: 86.094 KiB)
+  0.019025 seconds (507 allocations: 86.094 KiB)
+  0.100451 seconds (2 allocations: 78.203 KiB)
+  0.135054 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 9.628055464089851e-18
+
+
+logkernel matrix construction at N = 1000
+
+  0.764289 seconds (316.38 k allocations: 19.626 MiB)
+  0.006968 seconds (2.02 k allocations: 4.166 MiB)
+  0.050398 seconds (15.77 k allocations: 8.361 MiB)
+  0.018987 seconds (2 allocations: 7.629 MiB)
+
+logkernel matrix-vector multiplication at N = 1000
+
+  0.002157 seconds (2 allocations: 7.953 KiB)
+  0.001443 seconds (2 allocations: 7.953 KiB)
+  0.004924 seconds (1 allocation: 7.938 KiB)
+  0.004330 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 8.96375043870082e-16
+
+
+logkernel matrix construction at N = 10000
+
+  0.155346 seconds (16.61 k allocations: 68.576 MiB)
+  0.398699 seconds (16.61 k allocations: 68.576 MiB, 77.84% gc time)
+  1.875536 seconds (2 allocations: 762.940 MiB, 4.95% gc time)
+  1.824701 seconds (2 allocations: 762.940 MiB, 6.86% gc time)
+
+logkernel matrix-vector multiplication at N = 10000
+
+  0.033047 seconds (507 allocations: 86.094 KiB)
+  0.018679 seconds (507 allocations: 86.094 KiB)
+  0.047193 seconds (2 allocations: 78.203 KiB)
+  0.083690 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 1.8504719787538233e-15
+
+
+
+cauchykernel matrix construction at N = 1000
+
+  0.004530 seconds (1.73 k allocations: 4.149 MiB)
+  0.004794 seconds (1.73 k allocations: 4.149 MiB)
+  0.003791 seconds (2 allocations: 7.629 MiB)
+  0.003649 seconds (2 allocations: 7.629 MiB)
+
+cauchykernel matrix-vector multiplication at N = 1000
+
+  0.001203 seconds (5 allocations: 8.000 KiB)
+  0.001202 seconds (5 allocations: 8.000 KiB)
+  0.009544 seconds (1 allocation: 7.938 KiB)
+  0.001235 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 1.7804588323470955e-16
+
+
+cauchykernel matrix construction at N = 10000
+
+  0.294054 seconds (16.70 k allocations: 70.265 MiB, 65.82% gc time)
+  0.079705 seconds (16.70 k allocations: 70.265 MiB, 23.49% gc time)
+  0.561330 seconds (2 allocations: 762.940 MiB, 13.31% gc time)
+  0.664202 seconds (2 allocations: 762.940 MiB, 22.58% gc time)
+
+cauchykernel matrix-vector multiplication at N = 10000
+
+  0.017790 seconds (513 allocations: 86.188 KiB)
+  0.017453 seconds (513 allocations: 86.188 KiB)
+  0.069175 seconds (2 allocations: 78.203 KiB)
+  0.074175 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 1.5024010998705635e-16
+
+
+coulombkernel matrix construction at N = 1000
+
+  0.014076 seconds (1.73 k allocations: 4.149 MiB)
+  0.004014 seconds (1.73 k allocations: 4.149 MiB)
+  0.002151 seconds (2 allocations: 7.629 MiB)
+  0.001949 seconds (2 allocations: 7.629 MiB)
+
+coulombkernel matrix-vector multiplication at N = 1000
+
+  0.000984 seconds (5 allocations: 8.000 KiB)
+  0.000976 seconds (5 allocations: 8.000 KiB)
+  0.006165 seconds (1 allocation: 7.938 KiB)
+  0.002773 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 4.9768445732849305e-17
+
+
+coulombkernel matrix construction at N = 10000
+
+  0.240507 seconds (16.70 k allocations: 70.265 MiB, 74.15% gc time)
+  0.154127 seconds (16.70 k allocations: 70.265 MiB, 56.19% gc time)
+  0.631962 seconds (2 allocations: 762.940 MiB, 11.86% gc time)
+  0.687423 seconds (2 allocations: 762.940 MiB, 23.56% gc time)
+
+coulombkernel matrix-vector multiplication at N = 10000
+
+  0.035225 seconds (513 allocations: 86.188 KiB)
+  0.017740 seconds (513 allocations: 86.188 KiB)
+  0.073949 seconds (2 allocations: 78.203 KiB)
+  0.088646 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 7.049614008488166e-17
+
+
+coulombprimekernel matrix construction at N = 1000
+
+  0.005940 seconds (1.73 k allocations: 4.149 MiB)
+  0.005144 seconds (1.73 k allocations: 4.149 MiB)
+  0.003495 seconds (2 allocations: 7.629 MiB)
+  0.004082 seconds (2 allocations: 7.629 MiB)
+
+coulombprimekernel matrix-vector multiplication at N = 1000
+
+  0.001106 seconds (5 allocations: 8.000 KiB)
+  0.000957 seconds (5 allocations: 8.000 KiB)
+  0.012040 seconds (1 allocation: 7.938 KiB)
+  0.006356 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 7.498774556940561e-18
+
+
+coulombprimekernel matrix construction at N = 10000
+
+  0.263670 seconds (16.70 k allocations: 70.265 MiB, 69.93% gc time)
+  0.141617 seconds (16.70 k allocations: 70.265 MiB, 57.70% gc time)
+  0.614004 seconds (2 allocations: 762.940 MiB, 12.35% gc time)
+  0.696706 seconds (2 allocations: 762.940 MiB, 22.63% gc time)
+
+coulombprimekernel matrix-vector multiplication at N = 10000
+
+  0.016989 seconds (513 allocations: 86.188 KiB)
+  0.016272 seconds (513 allocations: 86.188 KiB)
+  0.093814 seconds (2 allocations: 78.203 KiB)
+  0.116262 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 3.8426811335564856e-17
+
+
+logkernel matrix construction at N = 1000
+
+  0.006257 seconds (1.73 k allocations: 4.149 MiB)
+  0.011423 seconds (1.73 k allocations: 4.149 MiB)
+  0.030175 seconds (2 allocations: 7.629 MiB)
+  0.022830 seconds (2 allocations: 7.629 MiB)
+
+logkernel matrix-vector multiplication at N = 1000
+
+  0.000976 seconds (5 allocations: 8.000 KiB)
+  0.000829 seconds (5 allocations: 8.000 KiB)
+  0.004463 seconds (1 allocation: 7.938 KiB)
+  0.024784 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 4.266197012073464e-15
+
+
+logkernel matrix construction at N = 10000
+
+  0.276627 seconds (16.70 k allocations: 70.265 MiB, 57.20% gc time)
+  0.197704 seconds (16.70 k allocations: 70.265 MiB, 51.52% gc time)
+  1.896482 seconds (2 allocations: 762.940 MiB, 5.65% gc time)
+  1.932767 seconds (2 allocations: 762.940 MiB, 8.34% gc time)
+
+logkernel matrix-vector multiplication at N = 10000
+
+  0.055017 seconds (513 allocations: 86.188 KiB)
+  0.020280 seconds (513 allocations: 86.188 KiB)
+  0.097981 seconds (2 allocations: 78.203 KiB)
+  0.095363 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 1.7188914220058742e-15
+
+   Testing HierarchicalMatrices tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 12 hours ago and took 54 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/HierarchicalMatrices/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed HierarchicalMatrices ─ v0.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [7c893195] + HierarchicalMatrices v0.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [7c893195] + HierarchicalMatrices v0.2.0
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+   Testing HierarchicalMatrices
+ Resolving package versions...
+Status `&#x2F;tmp&#x2F;jl_mC7sUm&#x2F;Manifest.toml`
+  [7c893195] HierarchicalMatrices v0.2.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+
+cauchykernel matrix construction at N = 1000
+
+  0.926019 seconds (242.26 k allocations: 15.618 MiB)
+  0.005384 seconds (2.02 k allocations: 4.166 MiB)
+  0.035730 seconds (504 allocations: 7.657 MiB)
+  0.104810 seconds (2 allocations: 7.629 MiB, 94.60% gc time)
+
+cauchykernel matrix-vector multiplication at N = 1000
+
+  0.211501 seconds (44.78 k allocations: 2.313 MiB)
+  0.001311 seconds (2 allocations: 7.953 KiB)
+  0.001394 seconds (1 allocation: 7.938 KiB)
+  0.000957 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 2.7442363420288664e-16
+
+
+cauchykernel matrix construction at N = 10000
+
+  0.115738 seconds (16.61 k allocations: 68.576 MiB, 13.21% gc time)
+  0.095014 seconds (16.61 k allocations: 68.576 MiB, 4.14% gc time)
+  0.486348 seconds (2 allocations: 762.940 MiB, 0.50% gc time)
+  0.675056 seconds (2 allocations: 762.940 MiB, 17.51% gc time)
+
+cauchykernel matrix-vector multiplication at N = 10000
+
+  0.021601 seconds (507 allocations: 86.094 KiB)
+  0.020373 seconds (507 allocations: 86.094 KiB)
+  0.137317 seconds (2 allocations: 78.203 KiB)
+  0.095052 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 1.942526757226043e-15
+
+
+coulombkernel matrix construction at N = 1000
+
+  0.567862 seconds (11.12 k allocations: 4.572 MiB)
+  0.007468 seconds (2.02 k allocations: 4.166 MiB)
+  0.059051 seconds (15.64 k allocations: 8.338 MiB)
+  0.007045 seconds (2 allocations: 7.629 MiB)
+
+coulombkernel matrix-vector multiplication at N = 1000
+
+  0.001825 seconds (2 allocations: 7.953 KiB)
+  0.001545 seconds (2 allocations: 7.953 KiB)
+  0.001472 seconds (1 allocation: 7.938 KiB)
+  0.008871 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 2.411969040954078e-15
+
+
+coulombkernel matrix construction at N = 10000
+
+  0.615211 seconds (16.61 k allocations: 68.576 MiB, 85.80% gc time)
+  0.119875 seconds (16.61 k allocations: 68.576 MiB)
+  0.763894 seconds (2 allocations: 762.940 MiB, 19.52% gc time)
+  0.695208 seconds (2 allocations: 762.940 MiB, 13.16% gc time)
+
+coulombkernel matrix-vector multiplication at N = 10000
+
+  0.039161 seconds (507 allocations: 86.094 KiB)
+  0.024646 seconds (507 allocations: 86.094 KiB)
+  0.118545 seconds (2 allocations: 78.203 KiB)
+  0.090530 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 3.4883851454405176e-15
+
+
+coulombprimekernel matrix construction at N = 1000
+
+  0.950251 seconds (242.23 k allocations: 15.545 MiB)
+  0.007917 seconds (2.02 k allocations: 4.166 MiB)
+  0.055077 seconds (15.72 k allocations: 8.340 MiB)
+  0.007010 seconds (2 allocations: 7.629 MiB)
+
+coulombprimekernel matrix-vector multiplication at N = 1000
+
+  0.001973 seconds (2 allocations: 7.953 KiB)
+  0.001901 seconds (2 allocations: 7.953 KiB)
+  0.033870 seconds (1 allocation: 7.938 KiB)
+  0.002961 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 2.524509764377813e-16
+
+
+coulombprimekernel matrix construction at N = 10000
+
+  0.245153 seconds (16.61 k allocations: 68.576 MiB)
+  0.142003 seconds (16.61 k allocations: 68.576 MiB)
+  0.779680 seconds (2 allocations: 762.940 MiB, 14.26% gc time)
+  0.722397 seconds (2 allocations: 762.940 MiB, 10.61% gc time)
+
+coulombprimekernel matrix-vector multiplication at N = 10000
+
+  0.022206 seconds (507 allocations: 86.094 KiB)
+  0.021460 seconds (507 allocations: 86.094 KiB)
+  0.131039 seconds (2 allocations: 78.203 KiB)
+  0.146836 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 9.628055464089851e-18
+
+
+logkernel matrix construction at N = 1000
+
+  0.940043 seconds (240.15 k allocations: 15.446 MiB)
+  0.007789 seconds (2.02 k allocations: 4.166 MiB)
+  0.061317 seconds (15.62 k allocations: 8.337 MiB)
+  0.017579 seconds (2 allocations: 7.629 MiB)
+
+logkernel matrix-vector multiplication at N = 1000
+
+  0.001748 seconds (2 allocations: 7.953 KiB)
+  0.001691 seconds (2 allocations: 7.953 KiB)
+  0.030056 seconds (1 allocation: 7.938 KiB)
+  0.005335 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 8.96375043870082e-16
+
+
+logkernel matrix construction at N = 10000
+
+  0.218996 seconds (16.61 k allocations: 68.576 MiB)
+  0.118304 seconds (16.61 k allocations: 68.576 MiB)
+  1.931259 seconds (2 allocations: 762.940 MiB, 3.96% gc time)
+  1.970231 seconds (2 allocations: 762.940 MiB, 5.54% gc time)
+
+logkernel matrix-vector multiplication at N = 10000
+
+  0.041386 seconds (507 allocations: 86.094 KiB)
+  0.023872 seconds (507 allocations: 86.094 KiB)
+  0.157380 seconds (2 allocations: 78.203 KiB)
+  0.171737 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 1.8504719787538233e-15
+
+
+
+cauchykernel matrix construction at N = 1000
+
+  0.006113 seconds (1.73 k allocations: 4.149 MiB)
+  0.006834 seconds (1.73 k allocations: 4.149 MiB)
+  0.004229 seconds (2 allocations: 7.629 MiB)
+  0.006881 seconds (2 allocations: 7.629 MiB)
+
+cauchykernel matrix-vector multiplication at N = 1000
+
+  0.002118 seconds (5 allocations: 8.000 KiB)
+  0.002097 seconds (5 allocations: 8.000 KiB)
+  0.021501 seconds (1 allocation: 7.938 KiB)
+  0.007176 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 1.7804588323470955e-16
+
+
+cauchykernel matrix construction at N = 10000
+
+  0.164135 seconds (16.70 k allocations: 70.265 MiB)
+  0.098412 seconds (16.70 k allocations: 70.265 MiB)
+  0.790264 seconds (2 allocations: 762.940 MiB, 14.86% gc time)
+  0.899579 seconds (2 allocations: 762.940 MiB, 13.07% gc time)
+
+cauchykernel matrix-vector multiplication at N = 10000
+
+  0.027516 seconds (513 allocations: 86.188 KiB)
+  0.023412 seconds (513 allocations: 86.188 KiB)
+  0.146358 seconds (2 allocations: 78.203 KiB)
+  0.201665 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 1.5024010998705635e-16
+
+
+coulombkernel matrix construction at N = 1000
+
+  0.007955 seconds (1.73 k allocations: 4.149 MiB)
+  0.007269 seconds (1.73 k allocations: 4.149 MiB)
+  0.006209 seconds (2 allocations: 7.629 MiB)
+  0.009001 seconds (2 allocations: 7.629 MiB)
+
+coulombkernel matrix-vector multiplication at N = 1000
+
+  0.002298 seconds (5 allocations: 8.000 KiB)
+  0.001886 seconds (5 allocations: 8.000 KiB)
+  0.028687 seconds (1 allocation: 7.938 KiB)
+  0.006537 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 4.9768445732849305e-17
+
+
+coulombkernel matrix construction at N = 10000
+
+  0.233593 seconds (16.70 k allocations: 70.265 MiB)
+  0.133452 seconds (16.70 k allocations: 70.265 MiB)
+  0.791374 seconds (2 allocations: 762.940 MiB, 15.31% gc time)
+  0.715263 seconds (2 allocations: 762.940 MiB, 11.96% gc time)
+
+coulombkernel matrix-vector multiplication at N = 10000
+
+  0.022249 seconds (513 allocations: 86.188 KiB)
+  0.022591 seconds (513 allocations: 86.188 KiB)
+  0.176825 seconds (2 allocations: 78.203 KiB)
+  0.155362 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 7.049614008488166e-17
+
+
+coulombprimekernel matrix construction at N = 1000
+
+  0.004770 seconds (1.73 k allocations: 4.149 MiB)
+  0.004318 seconds (1.73 k allocations: 4.149 MiB)
+  0.003245 seconds (2 allocations: 7.629 MiB)
+  0.002222 seconds (2 allocations: 7.629 MiB)
+
+coulombprimekernel matrix-vector multiplication at N = 1000
+
+  0.001308 seconds (5 allocations: 8.000 KiB)
+  0.001252 seconds (5 allocations: 8.000 KiB)
+  0.025062 seconds (1 allocation: 7.938 KiB)
+  0.004616 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 7.498774556940561e-18
+
+
+coulombprimekernel matrix construction at N = 10000
+
+  0.185261 seconds (16.70 k allocations: 70.265 MiB)
+  0.113475 seconds (16.70 k allocations: 70.265 MiB)
+  0.735083 seconds (2 allocations: 762.940 MiB, 13.31% gc time)
+  0.699902 seconds (2 allocations: 762.940 MiB, 13.23% gc time)
+
+coulombprimekernel matrix-vector multiplication at N = 10000
+
+  0.023010 seconds (513 allocations: 86.188 KiB)
+  0.019914 seconds (513 allocations: 86.188 KiB)
+  0.112900 seconds (2 allocations: 78.203 KiB)
+  0.088786 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 3.8426811335564856e-17
+
+
+logkernel matrix construction at N = 1000
+
+  0.007250 seconds (1.73 k allocations: 4.149 MiB)
+  0.006729 seconds (1.73 k allocations: 4.149 MiB)
+  0.015677 seconds (2 allocations: 7.629 MiB)
+  0.016614 seconds (2 allocations: 7.629 MiB)
+
+logkernel matrix-vector multiplication at N = 1000
+
+  0.005967 seconds (5 allocations: 8.000 KiB)
+  0.001282 seconds (5 allocations: 8.000 KiB)
+  0.025817 seconds (1 allocation: 7.938 KiB)
+  0.003778 seconds (1 allocation: 7.938 KiB)
+
+2-norm relative error: 4.266197012073464e-15
+
+
+logkernel matrix construction at N = 10000
+
+  0.376022 seconds (16.70 k allocations: 70.265 MiB)
+  0.132749 seconds (16.70 k allocations: 70.265 MiB)
+  2.163049 seconds (2 allocations: 762.940 MiB, 4.24% gc time)
+  2.240067 seconds (2 allocations: 762.940 MiB, 4.08% gc time)
+
+logkernel matrix-vector multiplication at N = 10000
+
+  0.051769 seconds (513 allocations: 86.188 KiB)
+  0.026421 seconds (513 allocations: 86.188 KiB)
+  0.151740 seconds (2 allocations: 78.203 KiB)
+  0.224366 seconds (2 allocations: 78.203 KiB)
+
+2-norm relative error: 1.7188914220058742e-15
+
+   Testing HierarchicalMatrices tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

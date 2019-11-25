@@ -1,0 +1,169 @@
+ Resolving package versions...
+ Installed URIParser ────── v0.4.0
+ Installed CMake ────────── v1.1.2
+ Installed Compat ───────── v2.2.0
+ Installed GLFW ─────────── v3.1.0
+ Installed BinDeps ──────── v0.8.10
+ Installed BinaryProvider ─ v0.5.8
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [f7f18e0c] + GLFW v3.1.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [631607c0] + CMake v1.1.2
+  [34da2185] + Compat v2.2.0
+  [f7f18e0c] + GLFW v3.1.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building CMake → `~/.julia/packages/CMake/nSK2r/deps/build.log`
+  Building GLFW ─→ `~/.julia/packages/GLFW/e257h/deps/build.log`
+┌ Error: Error building `GLFW`: 
+│ -- The C compiler identification is GNU 7.4.0
+│ -- Check for working C compiler: /usr/bin/cc
+│ -- Check for working C compiler: /usr/bin/cc -- works
+│ -- Detecting C compiler ABI info
+│ -- Detecting C compiler ABI info - done
+│ -- Detecting C compile features
+│ -- Detecting C compile features - done
+│ -- Looking for pthread.h
+│ -- Looking for pthread.h - found
+│ -- Looking for pthread_create
+│ -- Looking for pthread_create - not found
+│ -- Looking for pthread_create in pthreads
+│ -- Looking for pthread_create in pthreads - not found
+│ -- Looking for pthread_create in pthread
+│ -- Looking for pthread_create in pthread - found
+│ -- Found Threads: TRUE  
+│ -- Using X11 for window creation
+│ CMake Error at /root/.julia/packages/CMake/nSK2r/deps/downloads/cmake-3.12.3-Linux-x86_64/share/cmake-3.12/Modules/FindX11.cmake:429 (message):
+│   Could not find X11
+│ Call Stack (most recent call first):
+│   CMakeLists.txt:205 (find_package)
+│ 
+│ 
+│ -- Configuring incomplete, errors occurred!
+│ See also "/root/.julia/packages/GLFW/e257h/deps/usr/downloads/src/build/CMakeFiles/CMakeOutput.log".
+│ See also "/root/.julia/packages/GLFW/e257h/deps/usr/downloads/src/build/CMakeFiles/CMakeError.log".
+│ [ Info: Downloading https://github.com/glfw/glfw/archive/3.3.tar.gz to /root/.julia/packages/GLFW/e257h/deps/usr/downloads/src.tar.gz...
+│ [ Info: Unpacking /root/.julia/packages/GLFW/e257h/deps/usr/downloads/src.tar.gz into /root/.julia/packages/GLFW/e257h/deps/usr/downloads/src
+│ ┌ Warning: 
+│ │ ================================================================
+│ │ ================================================================
+│ │ === Building GLFW has failed. Most common problem is,        ===
+│ │ === that you don't have x-org installed.                     ===
+│ │ === You can install it via: `sudo apt-get install xorg-dev`  ===
+│ │ ================================================================
+│ │ ================================================================
+│ └ @ Main ~/.julia/packages/GLFW/e257h/deps/build.jl:56
+│ ERROR: LoadError: failed process: Process(`/root/.julia/packages/CMake/nSK2r/deps/usr/bin/cmake -DBUILD_SHARED_LIBS=on -DGLFW_BUILD_DOCS=OFF -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF ..`, ProcessExited(1)) [1]
+│ Stacktrace:
+│  [1] error(::String, ::Base.Process, ::String, ::Int64, ::String) at ./error.jl:42
+│  [2] pipeline_error at ./process.jl:705 [inlined]
+│  [3] #run#505(::Bool, ::Function, ::Cmd) at ./process.jl:663
+│  [4] run at ./process.jl:661 [inlined]
+│  [5] (::getfield(Main, Symbol("##9#10")))() at /root/.julia/packages/GLFW/e257h/deps/build.jl:51
+│  [6] cd(::getfield(Main, Symbol("##9#10")), ::String) at ./file.jl:96
+│  [7] top-level scope at /root/.julia/packages/GLFW/e257h/deps/build.jl:43
+│  [8] include at ./boot.jl:317 [inlined]
+│  [9] include_relative(::Module, ::String) at ./loading.jl:1044
+│  [10] include(::Module, ::String) at ./sysimg.jl:29
+│  [11] include(::String) at ./client.jl:392
+│  [12] top-level scope at none:0
+│ in expression starting at /root/.julia/packages/GLFW/e257h/deps/build.jl:21
+│ [18:47:58] #=#=#                                                                         [18:47:59] ##O#- #                                                                       [18:47:59] ##O=#  #                                                                      [18:47:59] #=#=-#  #                                                                     [18:48:00] -#O#- #   #                                                                   [18:48:00] -=#=#   #   #                                                                 [18:48:00]  -=#=-#  #    #                                                               [18:48:00]   -=#=-#   #   #                                                              [18:48:00]    -=#=-#    #   #                                                            [18:48:00] 
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1096
+   Testing GLFW
+ Resolving package versions...
+    Status `/tmp/tmpzDGQm2/Manifest.toml`
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [631607c0] CMake v1.1.2
+  [34da2185] Compat v2.2.0
+  [f7f18e0c] GLFW v3.1.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib/SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: GLFW not installed properly, run Pkg.build("GLFW"), restart Julia and try again
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] top-level scope at /root/.julia/packages/GLFW/e257h/src/GLFW.jl:5
+ [3] include at ./boot.jl:317 [inlined]
+ [4] include_relative(::Module, ::String) at ./loading.jl:1044
+ [5] include(::Module, ::String) at ./sysimg.jl:29
+ [6] top-level scope at none:2
+ [7] eval at ./boot.jl:319 [inlined]
+ [8] eval(::Expr) at ./client.jl:393
+ [9] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/GLFW/e257h/src/GLFW.jl:4
+ERROR: LoadError: Failed to precompile GLFW [f7f18e0c-5ee9-5ccd-a5bf-e8befd85ed98] to /root/.julia/compiled/v1.0/GLFW/n8HlT.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1203
+ [3] _require(::Base.PkgId) at ./loading.jl:960
+ [4] require(::Base.PkgId) at ./loading.jl:858
+ [5] require(::Module, ::Symbol) at ./loading.jl:853
+ [6] include at ./boot.jl:317 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1044
+ [8] include(::Module, ::String) at ./sysimg.jl:29
+ [9] include(::String) at ./client.jl:392
+ [10] top-level scope at none:0
+in expression starting at /root/.julia/packages/GLFW/e257h/test/runtests.jl:1
+ERROR: Package GLFW errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

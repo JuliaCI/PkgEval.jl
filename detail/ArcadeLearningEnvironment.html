@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="ArcadeLearningEnvironment">ArcadeLearningEnvironment</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#ArcadeLearningEnvironment">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: testing failed for unknown reasons.
+      Last evaluation was 1 day, 14 hours ago and took 47 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/ArcadeLearningEnvironment/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed URIParser ───────────────── v0.4.0
+ Installed ArcadeLearningEnvironment ─ v0.2.1
+ Installed Compat ──────────────────── v2.2.0
+ Installed BinDeps ─────────────────── v0.8.10
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [b7f77d8d] + ArcadeLearningEnvironment v0.2.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [b7f77d8d] + ArcadeLearningEnvironment v0.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [34da2185] + Compat v2.2.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building ArcadeLearningEnvironment → `~&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;build.log`
+┌ Error: Error building `ArcadeLearningEnvironment`: 
+│   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+│                                  Dload  Upload   Total   Spent    Left  Speed
+│   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   144    0   144    0     0    702      0 --:--:-- --:--:-- --:--:--   705
+│ 100 41264    0 41264    0     0  48833      0 --:--:-- --:--:-- --:--:-- 48833100 1288k    0 1288k    0     0   873k      0 --:--:--  0:00:01 --:--:-- 1983k
+│ Archive:  v0.6.0.zip
+│ ed5115bc29d4b264519e7fe7a455794ecc6ba42b
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;.gitignore  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;.travis.yml  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;CMakeLists.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;ChangeLog  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;Copyright.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;License.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;README-SDL.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;README.md  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;ale.cfg  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;ale_python_interface&#x2F;
+│  extracting: Arcade-Learning-Environment-0.6.0&#x2F;ale_python_interface&#x2F;__init__.py  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;ale_python_interface&#x2F;ale_c_wrapper.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;ale_python_interface&#x2F;ale_c_wrapper.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;ale_python_interface&#x2F;ale_python_interface.py  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;common.rules  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;Makefile  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;Makefile.fifo  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;Makefile.recording  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;Makefile.rlglue  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;Makefile.sharedLibraryWithModes  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;Makefile.sharedlibrary  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;RLGlueAgent.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;RLGlueExperiment.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;fifoInterfaceExample.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;python_example.py  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;python_example_with_modes.py  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;sharedLibraryInterfaceExample.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;sharedLibraryInterfaceWithModesExample.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;videoRecordingExample.cpp  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;build.xml  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;manifest.mf  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;build-impl.xml  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;configs&#x2F;
+│  extracting: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;configs&#x2F;Human.properties  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;configs&#x2F;RL.properties  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;genfiles.properties  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;project.properties  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;project.xml  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;run_agent.perl  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;agents&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;agents&#x2F;AbstractAgent.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;agents&#x2F;HumanAgent.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;agents&#x2F;RLAgent.java  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;AbstractUI.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;AgentGUI.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;KeyboardControl.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;MessageHistory.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;NullUI.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;ScreenDisplay.java  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;io&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;io&#x2F;ALEPipes.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;io&#x2F;Actions.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;io&#x2F;ConsoleRAM.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;io&#x2F;RLData.java  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;movie&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;movie&#x2F;MovieGenerator.java  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;rl&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;rl&#x2F;FeatureMap.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;rl&#x2F;FrameHistory.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;rl&#x2F;LinearModel.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;rl&#x2F;SarsaLearner.java  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;screen&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;screen&#x2F;ColorPalette.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;screen&#x2F;NTSCPalette.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;screen&#x2F;SECAMPalette.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;screen&#x2F;ScreenConverter.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;screen&#x2F;ScreenMatrix.java  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;manual&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;manual&#x2F;Makefile  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;manual&#x2F;java-agent.pdf  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;manual&#x2F;java-agent.tex  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;manual&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;manual&#x2F;Makefile  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;manual&#x2F;figures&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;manual&#x2F;figures&#x2F;ale.gif  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;manual&#x2F;manual.pdf  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;manual&#x2F;manual.tex  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;scripts&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;scripts&#x2F;test_ale.sh  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;scripts&#x2F;videoRecordingExampleJoinMacOSX.sh  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;scripts&#x2F;videoRecordingExampleJoinUnix.sh  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;makefile.mac  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;makefile.unix  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;md5.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;setup.py  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;ale_interface.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;ale_interface.hpp  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Array.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;ColourPalette.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;ColourPalette.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Constants.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Constants.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Log.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Log.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Palettes.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;ScreenExporter.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;ScreenExporter.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;SoundExporter.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;SoundExporter.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;SoundNull.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;SoundNull.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;SoundSDL.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;SoundSDL.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Version.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;VideoModeList.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;display_screen.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;display_screen.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;misc_tools.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;module.mk  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;stella.png  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;stella.xpm  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;ale_controller.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;ale_controller.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;fifo_controller.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;fifo_controller.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;module.mk  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;rlglue_controller.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;rlglue_controller.hpp  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;AtariVox.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;AtariVox.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Booster.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Booster.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart0840.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart0840.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart2K.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart2K.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart3E.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart3E.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart3F.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart3F.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart4A50.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart4A50.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart4K.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart4K.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartAR.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartAR.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartCV.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartCV.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartDPC.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartDPC.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartE0.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartE0.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartE7.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartE7.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF4.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF4.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF4SC.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF4SC.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF6.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF6.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF6SC.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF6SC.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF8.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF8.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF8SC.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF8SC.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartFASC.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartFASC.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartFE.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartFE.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartMB.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartMB.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartMC.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartMC.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartUA.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartUA.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Console.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Console.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Control.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Control.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;DefProps.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Deserializer.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Deserializer.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Driving.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Driving.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Event.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Event.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;FSNode.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;FSNode.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Joystick.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Joystick.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Keyboard.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Keyboard.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;M6532.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;M6532.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;MD5.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;MD5.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;MediaSrc.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;MediaSrc.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;OSystem.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;OSystem.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Paddles.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Paddles.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Props.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Props.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;PropsSet.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;PropsSet.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Random.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Random.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Serializer.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Serializer.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Settings.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Settings.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Sound.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;SpeakJet.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;SpeakJet.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Switches.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Switches.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;TIA.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;TIA.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;TIASnd.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;TIASnd.hxx  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;Copyright.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;License.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;module.mk  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;Device.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;Device.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502.m4  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Hi.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Hi.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Hi.ins  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Hi.m4  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Low.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Low.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Low.ins  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Low.m4  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;NullDev.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;NullDev.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;System.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;System.hxx  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;bspf&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;bspf&#x2F;Copyright.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;bspf&#x2F;License.txt  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;bspf&#x2F;src&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;bspf&#x2F;src&#x2F;bspf.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;module.mk  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;COPYING  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;Elements.def  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;PORTING  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;config.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;darray.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;darray.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;elements.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;holmes.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;kmap  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;module.mk  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;opsynth.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phfeat.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phones.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phones.def  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phones.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phtoelm.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phtoelm.def  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phtoelm.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;rsynth.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;trie.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;trie.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;useconfig.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;stella.pro  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;ale_ram.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;ale_screen.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;ale_state.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;ale_state.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;module.mk  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;phosphor_blend.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;phosphor_blend.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;stella_environment.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;stella_environment.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;stella_environment_wrapper.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;stella_environment_wrapper.hpp  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;external&#x2F;
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;external&#x2F;TinyMT&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;external&#x2F;TinyMT&#x2F;LICENSE.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;external&#x2F;TinyMT&#x2F;tinymt32.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;external&#x2F;TinyMT&#x2F;tinymt32.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;external&#x2F;module.mk  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;RomSettings.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;RomSettings.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;RomUtils.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;RomUtils.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;Roms.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;Roms.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;module.mk  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Adventure.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Adventure.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;AirRaid.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;AirRaid.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Alien.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Alien.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Amidar.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Amidar.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Assault.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Assault.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Asterix.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Asterix.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Asteroids.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Asteroids.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Atlantis.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Atlantis.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;BankHeist.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;BankHeist.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;BattleZone.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;BattleZone.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;BeamRider.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;BeamRider.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Berzerk.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Berzerk.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Bowling.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Bowling.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Boxing.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Boxing.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Breakout.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Breakout.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Carnival.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Carnival.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Centipede.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Centipede.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;ChopperCommand.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;ChopperCommand.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;CrazyClimber.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;CrazyClimber.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Defender.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Defender.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;DemonAttack.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;DemonAttack.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;DonkeyKong.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;DonkeyKong.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;DoubleDunk.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;DoubleDunk.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;ElevatorAction.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;ElevatorAction.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Enduro.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Enduro.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;FishingDerby.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;FishingDerby.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Freeway.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Freeway.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Frogger.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Frogger.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Frostbite.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Frostbite.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Galaxian.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Galaxian.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Gopher.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Gopher.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Gravitar.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Gravitar.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Hero.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Hero.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;IceHockey.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;IceHockey.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;JamesBond.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;JamesBond.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;JourneyEscape.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;JourneyEscape.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Kaboom.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Kaboom.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Kangaroo.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Kangaroo.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;KeystoneKapers.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;KeystoneKapers.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Kingkong.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Kingkong.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Koolaid.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Koolaid.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Krull.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Krull.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;KungFuMaster.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;KungFuMaster.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;LaserGates.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;LaserGates.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;LostLuggage.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;LostLuggage.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;MontezumaRevenge.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;MontezumaRevenge.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;MrDo.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;MrDo.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;MsPacman.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;MsPacman.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;NameThisGame.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;NameThisGame.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Phoenix.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Phoenix.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Pitfall.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Pitfall.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Pong.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Pong.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Pooyan.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Pooyan.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;PrivateEye.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;PrivateEye.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;QBert.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;QBert.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;RiverRaid.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;RiverRaid.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;RoadRunner.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;RoadRunner.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;RoboTank.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;RoboTank.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Seaquest.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Seaquest.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;SirLancelot.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;SirLancelot.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Skiing.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Skiing.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Solaris.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Solaris.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;SpaceInvaders.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;SpaceInvaders.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;StarGunner.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;StarGunner.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Tennis.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Tennis.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Tetris.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Tetris.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;TimePilot.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;TimePilot.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Trondead.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Trondead.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Turmoil.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Turmoil.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Tutankham.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Tutankham.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;UpNDown.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;UpNDown.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Venture.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Venture.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;VideoPinball.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;VideoPinball.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;WizardOfWor.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;WizardOfWor.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;YarsRevenge.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;YarsRevenge.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Zaxxon.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Zaxxon.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;main.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;module.mk  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;FSNodePOSIX.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;FSNodeWin32.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;OSystemUNIX.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;OSystemUNIX.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;OSystemWin32.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;OSystemWin32.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;SettingsUNIX.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;SettingsUNIX.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;SettingsWin32.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;SettingsWin32.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;module.mk  
+│ [ Info: Attempting to create directory &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Attempting to create directory &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;usr&#x2F;lib
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src&#x2F;Arcade-Learning-Environment-0.6.0
+│ ERROR: LoadError: IOError: could not spawn `cmake -DUSE_SDL=OFF -DBUILD_EXAMPLES=OFF -DBUILD_CPP_LIB=OFF -DBUILD_CLI=OFF .`: no such file or directory (ENOENT)
+│ Stacktrace:
+│  [1] _jl_spawn(::String, ::Array{String,1}, ::Cmd, ::Tuple{RawFD,RawFD,RawFD}) at .&#x2F;process.jl:367
+│  [2] #495 at .&#x2F;process.jl:509 [inlined]
+│  [3] setup_stdio(::getfield(Base, Symbol(&quot;##495#496&quot;)){Cmd,Base.Process}, ::Tuple{RawFD,RawFD,RawFD}) at .&#x2F;process.jl:490
+│  [4] #_spawn#494(::Nothing, ::Function, ::Cmd, ::Tuple{RawFD,RawFD,RawFD}) at .&#x2F;process.jl:508
+│  [5] _spawn at .&#x2F;process.jl:504 [inlined]
+│  [6] #run#505(::Bool, ::Function, ::Cmd) at .&#x2F;process.jl:662
+│  [7] run(::Cmd) at .&#x2F;process.jl:661
+│  [8] run(::BinDeps.SynchronousStepCollection) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;BinDeps.jl:521 (repeats 2 times)
+│  [9] run(::FileRule) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;BinDeps.jl:483
+│  [10] run(::BinDeps.SynchronousStepCollection) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;BinDeps.jl:521 (repeats 2 times)
+│  [11] satisfy!(::BinDeps.LibraryDependency, ::Array{DataType,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:944
+│  [12] satisfy!(::BinDeps.LibraryDependency) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:922
+│  [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:977
+│  [14] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;build.jl:70
+│  [15] include at .&#x2F;boot.jl:317 [inlined]
+│  [16] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+│  [17] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+│  [18] include(::String) at .&#x2F;client.jl:392
+│  [19] top-level scope at none:0
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;build.jl:31
+└ @ Pkg.Operations &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1096
+   Testing ArcadeLearningEnvironment
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;tmpFVLGpm&#x2F;Manifest.toml`
+  [b7f77d8d] ArcadeLearningEnvironment v0.2.1
+  [9e28174c] BinDeps v0.8.10
+  [34da2185] Compat v2.2.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+ERROR: LoadError: LoadError: libale_c not properly installed. Please run Pkg.build(&quot;ArcadeLearningEnvironment&quot;)
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;src&#x2F;aleinterface.jl:5
+ [3] include at .&#x2F;boot.jl:317 [inlined]
+ [4] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+ [5] include at .&#x2F;sysimg.jl:29 [inlined]
+ [6] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;src&#x2F;ArcadeLearningEnvironment.jl:2
+ [7] top-level scope at none:0
+ [8] include at .&#x2F;boot.jl:317 [inlined]
+ [9] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+ [10] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+ [11] top-level scope at none:2
+ [12] eval at .&#x2F;boot.jl:319 [inlined]
+ [13] eval(::Expr) at .&#x2F;client.jl:393
+ [14] top-level scope at .&#x2F;none:3
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;src&#x2F;aleinterface.jl:2
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;src&#x2F;ArcadeLearningEnvironment.jl:6
+ERROR: LoadError: Failed to precompile ArcadeLearningEnvironment [b7f77d8d-088d-5e02-8ac0-89aab2acc977] to &#x2F;root&#x2F;.julia&#x2F;compiled&#x2F;v1.0&#x2F;ArcadeLearningEnvironment&#x2F;PemWP.ji.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at .&#x2F;loading.jl:1203
+ [3] _require(::Base.PkgId) at .&#x2F;loading.jl:960
+ [4] require(::Base.PkgId) at .&#x2F;loading.jl:858
+ [5] require(::Module, ::Symbol) at .&#x2F;loading.jl:853
+ [6] include at .&#x2F;boot.jl:317 [inlined]
+ [7] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+ [8] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+ [9] include(::String) at .&#x2F;client.jl:392
+ [10] top-level scope at none:0
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;test&#x2F;runtests.jl:1
+ERROR: Package ArcadeLearningEnvironment errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1357
+ [3] #test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:278
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:263 [inlined]
+ [6] #test#43 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [8] #test#42 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [10] #test#41 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258 [inlined]
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258
+ [12] top-level scope at none:0
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: testing failed for unknown reasons.
+      Last evaluation was 1 day, 17 hours ago and took 36 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/ArcadeLearningEnvironment/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed URIParser ───────────────── v0.4.0
+ Installed ArcadeLearningEnvironment ─ v0.2.1
+ Installed Compat ──────────────────── v2.2.0
+ Installed BinDeps ─────────────────── v0.8.10
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [b7f77d8d] + ArcadeLearningEnvironment v0.2.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [b7f77d8d] + ArcadeLearningEnvironment v0.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [34da2185] + Compat v2.2.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building ArcadeLearningEnvironment → `~&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;build.log`
+┌ Error: Error building `ArcadeLearningEnvironment`: 
+│   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+│                                  Dload  Upload   Total   Spent    Left  Speed
+│   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   144    0   144    0     0    605      0 --:--:-- --:--:-- --:--:--   605
+│ 100 51505    0 51505    0     0  68128      0 --:--:-- --:--:-- --:--:-- 68128100 1288k    0 1288k    0     0  1057k      0 --:--:--  0:00:01 --:--:-- 2679k
+│ Archive:  v0.6.0.zip
+│ ed5115bc29d4b264519e7fe7a455794ecc6ba42b
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;.gitignore  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;.travis.yml  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;CMakeLists.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;ChangeLog  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;Copyright.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;License.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;README-SDL.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;README.md  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;ale.cfg  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;ale_python_interface&#x2F;
+│  extracting: Arcade-Learning-Environment-0.6.0&#x2F;ale_python_interface&#x2F;__init__.py  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;ale_python_interface&#x2F;ale_c_wrapper.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;ale_python_interface&#x2F;ale_c_wrapper.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;ale_python_interface&#x2F;ale_python_interface.py  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;common.rules  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;Makefile  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;Makefile.fifo  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;Makefile.recording  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;Makefile.rlglue  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;Makefile.sharedLibraryWithModes  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;Makefile.sharedlibrary  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;RLGlueAgent.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;RLGlueExperiment.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;fifoInterfaceExample.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;python_example.py  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;python_example_with_modes.py  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;sharedLibraryInterfaceExample.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;sharedLibraryInterfaceWithModesExample.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;videoRecordingExample.cpp  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;build.xml  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;manifest.mf  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;build-impl.xml  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;configs&#x2F;
+│  extracting: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;configs&#x2F;Human.properties  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;configs&#x2F;RL.properties  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;genfiles.properties  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;project.properties  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;project.xml  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;run_agent.perl  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;agents&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;agents&#x2F;AbstractAgent.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;agents&#x2F;HumanAgent.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;agents&#x2F;RLAgent.java  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;AbstractUI.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;AgentGUI.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;KeyboardControl.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;MessageHistory.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;NullUI.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;ScreenDisplay.java  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;io&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;io&#x2F;ALEPipes.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;io&#x2F;Actions.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;io&#x2F;ConsoleRAM.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;io&#x2F;RLData.java  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;movie&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;movie&#x2F;MovieGenerator.java  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;rl&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;rl&#x2F;FeatureMap.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;rl&#x2F;FrameHistory.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;rl&#x2F;LinearModel.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;rl&#x2F;SarsaLearner.java  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;screen&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;screen&#x2F;ColorPalette.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;screen&#x2F;NTSCPalette.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;screen&#x2F;SECAMPalette.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;screen&#x2F;ScreenConverter.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;screen&#x2F;ScreenMatrix.java  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;manual&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;manual&#x2F;Makefile  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;manual&#x2F;java-agent.pdf  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;manual&#x2F;java-agent.tex  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;manual&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;manual&#x2F;Makefile  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;manual&#x2F;figures&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;manual&#x2F;figures&#x2F;ale.gif  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;manual&#x2F;manual.pdf  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;manual&#x2F;manual.tex  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;scripts&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;scripts&#x2F;test_ale.sh  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;scripts&#x2F;videoRecordingExampleJoinMacOSX.sh  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;scripts&#x2F;videoRecordingExampleJoinUnix.sh  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;makefile.mac  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;makefile.unix  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;md5.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;setup.py  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;ale_interface.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;ale_interface.hpp  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Array.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;ColourPalette.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;ColourPalette.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Constants.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Constants.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Log.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Log.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Palettes.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;ScreenExporter.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;ScreenExporter.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;SoundExporter.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;SoundExporter.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;SoundNull.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;SoundNull.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;SoundSDL.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;SoundSDL.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Version.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;VideoModeList.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;display_screen.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;display_screen.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;misc_tools.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;module.mk  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;stella.png  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;stella.xpm  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;ale_controller.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;ale_controller.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;fifo_controller.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;fifo_controller.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;module.mk  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;rlglue_controller.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;rlglue_controller.hpp  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;AtariVox.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;AtariVox.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Booster.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Booster.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart0840.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart0840.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart2K.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart2K.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart3E.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart3E.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart3F.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart3F.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart4A50.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart4A50.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart4K.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart4K.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartAR.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartAR.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartCV.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartCV.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartDPC.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartDPC.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartE0.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartE0.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartE7.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartE7.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF4.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF4.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF4SC.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF4SC.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF6.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF6.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF6SC.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF6SC.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF8.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF8.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF8SC.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF8SC.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartFASC.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartFASC.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartFE.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartFE.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartMB.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartMB.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartMC.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartMC.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartUA.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartUA.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Console.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Console.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Control.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Control.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;DefProps.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Deserializer.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Deserializer.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Driving.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Driving.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Event.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Event.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;FSNode.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;FSNode.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Joystick.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Joystick.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Keyboard.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Keyboard.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;M6532.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;M6532.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;MD5.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;MD5.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;MediaSrc.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;MediaSrc.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;OSystem.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;OSystem.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Paddles.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Paddles.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Props.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Props.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;PropsSet.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;PropsSet.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Random.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Random.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Serializer.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Serializer.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Settings.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Settings.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Sound.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;SpeakJet.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;SpeakJet.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Switches.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Switches.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;TIA.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;TIA.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;TIASnd.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;TIASnd.hxx  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;Copyright.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;License.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;module.mk  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;Device.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;Device.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502.m4  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Hi.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Hi.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Hi.ins  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Hi.m4  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Low.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Low.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Low.ins  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Low.m4  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;NullDev.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;NullDev.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;System.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;System.hxx  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;bspf&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;bspf&#x2F;Copyright.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;bspf&#x2F;License.txt  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;bspf&#x2F;src&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;bspf&#x2F;src&#x2F;bspf.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;module.mk  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;COPYING  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;Elements.def  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;PORTING  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;config.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;darray.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;darray.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;elements.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;holmes.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;kmap  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;module.mk  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;opsynth.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phfeat.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phones.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phones.def  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phones.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phtoelm.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phtoelm.def  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phtoelm.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;rsynth.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;trie.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;trie.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;useconfig.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;stella.pro  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;ale_ram.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;ale_screen.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;ale_state.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;ale_state.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;module.mk  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;phosphor_blend.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;phosphor_blend.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;stella_environment.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;stella_environment.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;stella_environment_wrapper.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;stella_environment_wrapper.hpp  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;external&#x2F;
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;external&#x2F;TinyMT&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;external&#x2F;TinyMT&#x2F;LICENSE.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;external&#x2F;TinyMT&#x2F;tinymt32.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;external&#x2F;TinyMT&#x2F;tinymt32.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;external&#x2F;module.mk  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;RomSettings.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;RomSettings.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;RomUtils.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;RomUtils.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;Roms.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;Roms.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;module.mk  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Adventure.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Adventure.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;AirRaid.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;AirRaid.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Alien.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Alien.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Amidar.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Amidar.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Assault.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Assault.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Asterix.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Asterix.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Asteroids.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Asteroids.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Atlantis.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Atlantis.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;BankHeist.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;BankHeist.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;BattleZone.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;BattleZone.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;BeamRider.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;BeamRider.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Berzerk.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Berzerk.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Bowling.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Bowling.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Boxing.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Boxing.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Breakout.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Breakout.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Carnival.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Carnival.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Centipede.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Centipede.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;ChopperCommand.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;ChopperCommand.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;CrazyClimber.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;CrazyClimber.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Defender.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Defender.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;DemonAttack.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;DemonAttack.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;DonkeyKong.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;DonkeyKong.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;DoubleDunk.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;DoubleDunk.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;ElevatorAction.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;ElevatorAction.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Enduro.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Enduro.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;FishingDerby.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;FishingDerby.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Freeway.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Freeway.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Frogger.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Frogger.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Frostbite.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Frostbite.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Galaxian.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Galaxian.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Gopher.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Gopher.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Gravitar.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Gravitar.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Hero.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Hero.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;IceHockey.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;IceHockey.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;JamesBond.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;JamesBond.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;JourneyEscape.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;JourneyEscape.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Kaboom.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Kaboom.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Kangaroo.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Kangaroo.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;KeystoneKapers.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;KeystoneKapers.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Kingkong.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Kingkong.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Koolaid.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Koolaid.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Krull.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Krull.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;KungFuMaster.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;KungFuMaster.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;LaserGates.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;LaserGates.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;LostLuggage.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;LostLuggage.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;MontezumaRevenge.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;MontezumaRevenge.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;MrDo.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;MrDo.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;MsPacman.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;MsPacman.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;NameThisGame.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;NameThisGame.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Phoenix.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Phoenix.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Pitfall.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Pitfall.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Pong.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Pong.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Pooyan.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Pooyan.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;PrivateEye.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;PrivateEye.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;QBert.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;QBert.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;RiverRaid.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;RiverRaid.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;RoadRunner.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;RoadRunner.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;RoboTank.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;RoboTank.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Seaquest.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Seaquest.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;SirLancelot.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;SirLancelot.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Skiing.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Skiing.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Solaris.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Solaris.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;SpaceInvaders.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;SpaceInvaders.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;StarGunner.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;StarGunner.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Tennis.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Tennis.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Tetris.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Tetris.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;TimePilot.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;TimePilot.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Trondead.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Trondead.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Turmoil.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Turmoil.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Tutankham.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Tutankham.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;UpNDown.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;UpNDown.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Venture.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Venture.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;VideoPinball.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;VideoPinball.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;WizardOfWor.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;WizardOfWor.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;YarsRevenge.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;YarsRevenge.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Zaxxon.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Zaxxon.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;main.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;module.mk  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;FSNodePOSIX.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;FSNodeWin32.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;OSystemUNIX.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;OSystemUNIX.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;OSystemWin32.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;OSystemWin32.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;SettingsUNIX.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;SettingsUNIX.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;SettingsWin32.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;SettingsWin32.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;module.mk  
+│ [ Info: Attempting to create directory &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Attempting to create directory &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;usr&#x2F;lib
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src&#x2F;Arcade-Learning-Environment-0.6.0
+│ ERROR: LoadError: IOError: could not spawn `cmake -DUSE_SDL=OFF -DBUILD_EXAMPLES=OFF -DBUILD_CPP_LIB=OFF -DBUILD_CLI=OFF .`: no such file or directory (ENOENT)
+│ Stacktrace:
+│  [1] _spawn_primitive(::String, ::Cmd, ::Array{Any,1}) at .&#x2F;process.jl:401
+│  [2] setup_stdios(::getfield(Base, Symbol(&quot;##526#527&quot;)){Cmd}, ::Array{Any,1}) at .&#x2F;process.jl:414
+│  [3] _spawn at .&#x2F;process.jl:413 [inlined]
+│  [4] #run#536(::Bool, ::typeof(run), ::Cmd) at .&#x2F;process.jl:727
+│  [5] run(::Cmd) at .&#x2F;process.jl:726
+│  [6] run(::BinDeps.SynchronousStepCollection) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;BinDeps.jl:521 (repeats 2 times)
+│  [7] run(::FileRule) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;BinDeps.jl:483
+│  [8] run(::BinDeps.SynchronousStepCollection) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;BinDeps.jl:521 (repeats 2 times)
+│  [9] satisfy!(::BinDeps.LibraryDependency, ::Array{DataType,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:944
+│  [10] satisfy!(::BinDeps.LibraryDependency) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:922
+│  [11] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:977
+│  [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;build.jl:70
+│  [13] include at .&#x2F;boot.jl:328 [inlined]
+│  [14] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+│  [15] include(::Module, ::String) at .&#x2F;Base.jl:31
+│  [16] include(::String) at .&#x2F;client.jl:431
+│  [17] top-level scope at none:5
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;build.jl:31
+└ @ Pkg.Operations &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;backwards_compatible_isolation.jl:647
+   Testing ArcadeLearningEnvironment
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;jl_TbxhdX&#x2F;Manifest.toml`
+  [b7f77d8d] ArcadeLearningEnvironment v0.2.1
+  [9e28174c] BinDeps v0.8.10
+  [34da2185] Compat v2.2.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+ERROR: LoadError: LoadError: libale_c not properly installed. Please run Pkg.build(&quot;ArcadeLearningEnvironment&quot;)
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;src&#x2F;aleinterface.jl:5
+ [3] include at .&#x2F;boot.jl:328 [inlined]
+ [4] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+ [5] include at .&#x2F;Base.jl:31 [inlined]
+ [6] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;src&#x2F;ArcadeLearningEnvironment.jl:2
+ [7] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;src&#x2F;ArcadeLearningEnvironment.jl:6
+ [8] include at .&#x2F;boot.jl:328 [inlined]
+ [9] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+ [10] include(::Module, ::String) at .&#x2F;Base.jl:31
+ [11] top-level scope at none:2
+ [12] eval at .&#x2F;boot.jl:330 [inlined]
+ [13] eval(::Expr) at .&#x2F;client.jl:432
+ [14] top-level scope at .&#x2F;none:3
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;src&#x2F;aleinterface.jl:2
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;src&#x2F;ArcadeLearningEnvironment.jl:6
+ERROR: LoadError: Failed to precompile ArcadeLearningEnvironment [b7f77d8d-088d-5e02-8ac0-89aab2acc977] to &#x2F;root&#x2F;.julia&#x2F;compiled&#x2F;v1.2&#x2F;ArcadeLearningEnvironment&#x2F;PemWP.ji.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at .&#x2F;loading.jl:1253
+ [3] _require(::Base.PkgId) at .&#x2F;loading.jl:1013
+ [4] require(::Base.PkgId) at .&#x2F;loading.jl:911
+ [5] require(::Module, ::Symbol) at .&#x2F;loading.jl:906
+ [6] include at .&#x2F;boot.jl:328 [inlined]
+ [7] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+ [8] include(::Module, ::String) at .&#x2F;Base.jl:31
+ [9] include(::String) at .&#x2F;client.jl:431
+ [10] top-level scope at none:5
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;test&#x2F;runtests.jl:1
+ERROR: Package ArcadeLearningEnvironment errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1288
+ [3] #test at .&#x2F;none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:245
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:233 [inlined]
+ [6] #test#61 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:230 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:230 [inlined]
+ [8] #test#60 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:229 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:228
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:228
+ [12] top-level scope at none:10
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: testing failed for unknown reasons.
+      Last evaluation was 1 day, 14 hours ago and took 33 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/ArcadeLearningEnvironment/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed URIParser ───────────────── v0.4.0
+ Installed ArcadeLearningEnvironment ─ v0.2.1
+ Installed Compat ──────────────────── v2.2.0
+ Installed BinDeps ─────────────────── v0.8.10
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [b7f77d8d] + ArcadeLearningEnvironment v0.2.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [b7f77d8d] + ArcadeLearningEnvironment v0.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [34da2185] + Compat v2.2.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building ArcadeLearningEnvironment → `~&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;build.log`
+┌ Error: Error building `ArcadeLearningEnvironment`: 
+│   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+│                                  Dload  Upload   Total   Spent    Left  Speed
+│   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   144    0   144    0     0    663      0 --:--:-- --:--:-- --:--:--   663
+│ 100 43281    0 43281    0     0  58408      0 --:--:-- --:--:-- --:--:-- 58408100 1288k    0 1288k    0     0   791k      0 --:--:--  0:00:01 --:--:-- 1407k
+│ Archive:  v0.6.0.zip
+│ ed5115bc29d4b264519e7fe7a455794ecc6ba42b
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;.gitignore  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;.travis.yml  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;CMakeLists.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;ChangeLog  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;Copyright.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;License.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;README-SDL.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;README.md  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;ale.cfg  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;ale_python_interface&#x2F;
+│  extracting: Arcade-Learning-Environment-0.6.0&#x2F;ale_python_interface&#x2F;__init__.py  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;ale_python_interface&#x2F;ale_c_wrapper.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;ale_python_interface&#x2F;ale_c_wrapper.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;ale_python_interface&#x2F;ale_python_interface.py  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;common.rules  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;Makefile  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;Makefile.fifo  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;Makefile.recording  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;Makefile.rlglue  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;Makefile.sharedLibraryWithModes  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;Makefile.sharedlibrary  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;RLGlueAgent.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;RLGlueExperiment.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;fifoInterfaceExample.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;python_example.py  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;python_example_with_modes.py  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;sharedLibraryInterfaceExample.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;sharedLibraryInterfaceWithModesExample.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;examples&#x2F;videoRecordingExample.cpp  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;build.xml  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;manifest.mf  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;build-impl.xml  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;configs&#x2F;
+│  extracting: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;configs&#x2F;Human.properties  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;configs&#x2F;RL.properties  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;genfiles.properties  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;project.properties  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;nbproject&#x2F;project.xml  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;run_agent.perl  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;agents&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;agents&#x2F;AbstractAgent.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;agents&#x2F;HumanAgent.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;agents&#x2F;RLAgent.java  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;AbstractUI.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;AgentGUI.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;KeyboardControl.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;MessageHistory.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;NullUI.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;gui&#x2F;ScreenDisplay.java  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;io&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;io&#x2F;ALEPipes.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;io&#x2F;Actions.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;io&#x2F;ConsoleRAM.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;io&#x2F;RLData.java  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;movie&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;movie&#x2F;MovieGenerator.java  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;rl&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;rl&#x2F;FeatureMap.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;rl&#x2F;FrameHistory.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;rl&#x2F;LinearModel.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;rl&#x2F;SarsaLearner.java  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;screen&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;screen&#x2F;ColorPalette.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;screen&#x2F;NTSCPalette.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;screen&#x2F;SECAMPalette.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;screen&#x2F;ScreenConverter.java  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;code&#x2F;src&#x2F;ale&#x2F;screen&#x2F;ScreenMatrix.java  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;manual&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;manual&#x2F;Makefile  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;manual&#x2F;java-agent.pdf  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;java-agent&#x2F;manual&#x2F;java-agent.tex  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;manual&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;manual&#x2F;Makefile  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;manual&#x2F;figures&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;manual&#x2F;figures&#x2F;ale.gif  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;manual&#x2F;manual.pdf  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;manual&#x2F;manual.tex  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;scripts&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;scripts&#x2F;test_ale.sh  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;scripts&#x2F;videoRecordingExampleJoinMacOSX.sh  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;doc&#x2F;scripts&#x2F;videoRecordingExampleJoinUnix.sh  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;makefile.mac  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;makefile.unix  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;md5.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;setup.py  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;ale_interface.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;ale_interface.hpp  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Array.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;ColourPalette.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;ColourPalette.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Constants.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Constants.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Log.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Log.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Palettes.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;ScreenExporter.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;ScreenExporter.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;SoundExporter.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;SoundExporter.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;SoundNull.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;SoundNull.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;SoundSDL.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;SoundSDL.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;Version.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;VideoModeList.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;display_screen.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;display_screen.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;misc_tools.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;module.mk  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;stella.png  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;common&#x2F;stella.xpm  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;ale_controller.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;ale_controller.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;fifo_controller.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;fifo_controller.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;module.mk  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;rlglue_controller.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;controllers&#x2F;rlglue_controller.hpp  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;AtariVox.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;AtariVox.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Booster.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Booster.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart0840.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart0840.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart2K.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart2K.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart3E.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart3E.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart3F.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart3F.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart4A50.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart4A50.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart4K.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Cart4K.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartAR.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartAR.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartCV.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartCV.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartDPC.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartDPC.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartE0.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartE0.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartE7.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartE7.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF4.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF4.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF4SC.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF4SC.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF6.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF6.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF6SC.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF6SC.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF8.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF8.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF8SC.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartF8SC.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartFASC.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartFASC.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartFE.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartFE.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartMB.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartMB.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartMC.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartMC.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartUA.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;CartUA.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Console.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Console.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Control.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Control.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;DefProps.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Deserializer.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Deserializer.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Driving.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Driving.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Event.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Event.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;FSNode.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;FSNode.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Joystick.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Joystick.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Keyboard.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Keyboard.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;M6532.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;M6532.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;MD5.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;MD5.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;MediaSrc.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;MediaSrc.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;OSystem.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;OSystem.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Paddles.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Paddles.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Props.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Props.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;PropsSet.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;PropsSet.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Random.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Random.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Serializer.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Serializer.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Settings.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Settings.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Sound.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;SpeakJet.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;SpeakJet.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Switches.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;Switches.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;TIA.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;TIA.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;TIASnd.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;TIASnd.hxx  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;Copyright.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;License.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;module.mk  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;Device.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;Device.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502.m4  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Hi.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Hi.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Hi.ins  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Hi.m4  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Low.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Low.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Low.ins  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;M6502Low.m4  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;NullDev.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;NullDev.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;System.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;System.hxx  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;bspf&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;bspf&#x2F;Copyright.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;bspf&#x2F;License.txt  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;bspf&#x2F;src&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;m6502&#x2F;src&#x2F;bspf&#x2F;src&#x2F;bspf.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;module.mk  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;COPYING  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;Elements.def  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;PORTING  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;config.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;darray.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;darray.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;elements.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;holmes.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;kmap  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;module.mk  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;opsynth.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phfeat.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phones.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phones.def  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phones.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phtoelm.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phtoelm.def  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;phtoelm.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;rsynth.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;trie.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;trie.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;rsynth&#x2F;useconfig.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;emucore&#x2F;stella.pro  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;ale_ram.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;ale_screen.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;ale_state.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;ale_state.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;module.mk  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;phosphor_blend.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;phosphor_blend.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;stella_environment.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;stella_environment.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;stella_environment_wrapper.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;environment&#x2F;stella_environment_wrapper.hpp  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;external&#x2F;
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;external&#x2F;TinyMT&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;external&#x2F;TinyMT&#x2F;LICENSE.txt  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;external&#x2F;TinyMT&#x2F;tinymt32.c  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;external&#x2F;TinyMT&#x2F;tinymt32.h  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;external&#x2F;module.mk  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;RomSettings.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;RomSettings.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;RomUtils.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;RomUtils.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;Roms.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;Roms.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;module.mk  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Adventure.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Adventure.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;AirRaid.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;AirRaid.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Alien.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Alien.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Amidar.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Amidar.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Assault.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Assault.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Asterix.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Asterix.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Asteroids.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Asteroids.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Atlantis.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Atlantis.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;BankHeist.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;BankHeist.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;BattleZone.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;BattleZone.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;BeamRider.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;BeamRider.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Berzerk.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Berzerk.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Bowling.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Bowling.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Boxing.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Boxing.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Breakout.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Breakout.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Carnival.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Carnival.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Centipede.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Centipede.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;ChopperCommand.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;ChopperCommand.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;CrazyClimber.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;CrazyClimber.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Defender.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Defender.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;DemonAttack.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;DemonAttack.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;DonkeyKong.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;DonkeyKong.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;DoubleDunk.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;DoubleDunk.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;ElevatorAction.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;ElevatorAction.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Enduro.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Enduro.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;FishingDerby.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;FishingDerby.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Freeway.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Freeway.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Frogger.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Frogger.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Frostbite.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Frostbite.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Galaxian.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Galaxian.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Gopher.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Gopher.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Gravitar.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Gravitar.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Hero.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Hero.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;IceHockey.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;IceHockey.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;JamesBond.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;JamesBond.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;JourneyEscape.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;JourneyEscape.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Kaboom.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Kaboom.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Kangaroo.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Kangaroo.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;KeystoneKapers.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;KeystoneKapers.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Kingkong.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Kingkong.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Koolaid.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Koolaid.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Krull.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Krull.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;KungFuMaster.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;KungFuMaster.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;LaserGates.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;LaserGates.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;LostLuggage.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;LostLuggage.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;MontezumaRevenge.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;MontezumaRevenge.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;MrDo.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;MrDo.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;MsPacman.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;MsPacman.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;NameThisGame.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;NameThisGame.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Phoenix.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Phoenix.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Pitfall.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Pitfall.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Pong.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Pong.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Pooyan.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Pooyan.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;PrivateEye.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;PrivateEye.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;QBert.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;QBert.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;RiverRaid.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;RiverRaid.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;RoadRunner.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;RoadRunner.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;RoboTank.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;RoboTank.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Seaquest.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Seaquest.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;SirLancelot.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;SirLancelot.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Skiing.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Skiing.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Solaris.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Solaris.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;SpaceInvaders.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;SpaceInvaders.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;StarGunner.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;StarGunner.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Tennis.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Tennis.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Tetris.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Tetris.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;TimePilot.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;TimePilot.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Trondead.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Trondead.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Turmoil.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Turmoil.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Tutankham.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Tutankham.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;UpNDown.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;UpNDown.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Venture.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Venture.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;VideoPinball.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;VideoPinball.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;WizardOfWor.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;WizardOfWor.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;YarsRevenge.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;YarsRevenge.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Zaxxon.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;games&#x2F;supported&#x2F;Zaxxon.hpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;main.cpp  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;module.mk  
+│    creating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;FSNodePOSIX.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;FSNodeWin32.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;OSystemUNIX.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;OSystemUNIX.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;OSystemWin32.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;OSystemWin32.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;SettingsUNIX.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;SettingsUNIX.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;SettingsWin32.cxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;SettingsWin32.hxx  
+│   inflating: Arcade-Learning-Environment-0.6.0&#x2F;src&#x2F;os_dependent&#x2F;module.mk  
+│ [ Info: Attempting to create directory &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Attempting to create directory &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;usr&#x2F;lib
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src
+│ [ Info: Changing directory to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;src&#x2F;Arcade-Learning-Environment-0.6.0
+│ ERROR: LoadError: IOError: could not spawn `cmake -DUSE_SDL=OFF -DBUILD_EXAMPLES=OFF -DBUILD_CPP_LIB=OFF -DBUILD_CLI=OFF .`: no such file or directory (ENOENT)
+│ Stacktrace:
+│  [1] _spawn_primitive(::String, ::Cmd, ::Array{Any,1}) at .&#x2F;process.jl:99
+│  [2] #546 at .&#x2F;process.jl:112 [inlined]
+│  [3] setup_stdios(::Base.var&quot;#546#547&quot;{Cmd}, ::Array{Any,1}) at .&#x2F;process.jl:196
+│  [4] _spawn at .&#x2F;process.jl:111 [inlined]
+│  [5] run(::Cmd; wait::Bool) at .&#x2F;process.jl:439
+│  [6] run(::Cmd) at .&#x2F;process.jl:438
+│  [7] run(::BinDeps.SynchronousStepCollection) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;BinDeps.jl:521 (repeats 2 times)
+│  [8] run(::FileRule) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;BinDeps.jl:483
+│  [9] run(::BinDeps.SynchronousStepCollection) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;BinDeps.jl:521 (repeats 2 times)
+│  [10] satisfy!(::BinDeps.LibraryDependency, ::Array{DataType,1}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:944
+│  [11] satisfy!(::BinDeps.LibraryDependency) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:922
+│  [12] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinDeps&#x2F;ZEval&#x2F;src&#x2F;dependencies.jl:977
+│  [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;build.jl:70
+│  [14] include(::String) at .&#x2F;client.jl:439
+│  [15] top-level scope at none:5
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;deps&#x2F;build.jl:31
+└ @ Pkg.Operations &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;backwards_compatible_isolation.jl:601
+   Testing ArcadeLearningEnvironment
+ Resolving package versions...
+Status `&#x2F;tmp&#x2F;jl_xHkzei&#x2F;Manifest.toml`
+  [b7f77d8d] ArcadeLearningEnvironment v0.2.1
+  [9e28174c] BinDeps v0.8.10
+  [34da2185] Compat v2.2.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+ERROR: LoadError: LoadError: libale_c not properly installed. Please run Pkg.build(&quot;ArcadeLearningEnvironment&quot;)
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;src&#x2F;aleinterface.jl:5
+ [3] include(::Module, ::String) at .&#x2F;Base.jl:377
+ [4] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;src&#x2F;ArcadeLearningEnvironment.jl:2
+ [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;src&#x2F;ArcadeLearningEnvironment.jl:6
+ [6] include(::Module, ::String) at .&#x2F;Base.jl:377
+ [7] top-level scope at none:2
+ [8] eval at .&#x2F;boot.jl:331 [inlined]
+ [9] eval(::Expr) at .&#x2F;client.jl:449
+ [10] top-level scope at .&#x2F;none:3
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;src&#x2F;aleinterface.jl:2
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;src&#x2F;ArcadeLearningEnvironment.jl:6
+ERROR: LoadError: Failed to precompile ArcadeLearningEnvironment [b7f77d8d-088d-5e02-8ac0-89aab2acc977] to &#x2F;root&#x2F;.julia&#x2F;compiled&#x2F;v1.4&#x2F;ArcadeLearningEnvironment&#x2F;PemWP_kaVhi.ji.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at .&#x2F;loading.jl:1263
+ [3] _require(::Base.PkgId) at .&#x2F;loading.jl:1022
+ [4] require(::Base.PkgId) at .&#x2F;loading.jl:920
+ [5] require(::Module, ::Symbol) at .&#x2F;loading.jl:915
+ [6] include(::String) at .&#x2F;client.jl:439
+ [7] top-level scope at none:6
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ArcadeLearningEnvironment&#x2F;YJh2g&#x2F;test&#x2F;runtests.jl:1
+ERROR: Package ArcadeLearningEnvironment errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:274
+ [5] #test#56 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [6] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [7] #test#55 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [8] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [10] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [11] top-level scope at none:10
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

@@ -1,0 +1,102 @@
+ Resolving package versions...
+ Installed FastIOBuffers ─ v0.3.1
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [6ccb8d0d] + FastIOBuffers v0.3.1
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [6ccb8d0d] + FastIOBuffers v0.3.1
+   Testing FastIOBuffers
+ Resolving package versions...
+ Installed JSON ─────────── v0.21.0
+ Installed Parsers ──────── v0.3.10
+ Installed BenchmarkTools ─ v0.4.3
+    Status `/tmp/tmpuaBosR/Manifest.toml`
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [6ccb8d0d] FastIOBuffers v0.3.1
+  [682c06a0] JSON v0.21.0
+  [69de0a69] Parsers v0.3.10
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Test Summary:           | Pass  Total
+write: bitstype numbers |  195    195
+Test Summary:  | Pass  Total
+write: strings | 2001   2001
+Test Summary:          | Pass  Total
+read: bitstype numbers |  251    251
+Test Summary: | Pass  Total
+read: string  |    2      2
+(1/2) benchmarking "write"...
+  (1/2) benchmarking "Float64"...
+  done (took 1.371860481 seconds)
+  (2/2) benchmarking "String"...
+  done (took 0.563315715 seconds)
+done (took 2.386298772 seconds)
+(2/2) benchmarking "read"...
+  (1/2) benchmarking "Float64"...
+  done (took 1.239743332 seconds)
+  (2/2) benchmarking "String"...
+  done (took 0.609293209 seconds)
+done (took 2.47717291 seconds)
+Float64:
+BenchmarkTools.Trial: 
+  memory estimate:  0 bytes
+  allocs estimate:  0
+  --------------
+  minimum time:     30.418 ns (0.00% GC)
+  median time:      35.377 ns (0.00% GC)
+  mean time:        41.633 ns (0.00% GC)
+  maximum time:     6.060 μs (0.00% GC)
+  --------------
+  samples:          10000
+  evals/sample:     1000
+String:
+BenchmarkTools.Trial: 
+  memory estimate:  0 bytes
+  allocs estimate:  0
+  --------------
+  minimum time:     13.767 ns (0.00% GC)
+  median time:      18.585 ns (0.00% GC)
+  mean time:        27.258 ns (0.00% GC)
+  maximum time:     16.076 μs (0.00% GC)
+  --------------
+  samples:          10000
+  evals/sample:     1000
+Float64:
+BenchmarkTools.Trial: 
+  memory estimate:  0 bytes
+  allocs estimate:  0
+  --------------
+  minimum time:     2.715 ns (0.00% GC)
+  median time:      3.116 ns (0.00% GC)
+  mean time:        3.208 ns (0.00% GC)
+  maximum time:     106.152 ns (0.00% GC)
+  --------------
+  samples:          10000
+  evals/sample:     1000
+String:
+BenchmarkTools.Trial: 
+  memory estimate:  2.20 KiB
+  allocs estimate:  2
+  --------------
+  minimum time:     239.970 ns (0.00% GC)
+  median time:      700.970 ns (0.00% GC)
+  mean time:        814.189 ns (0.00% GC)
+  maximum time:     34.876 μs (0.00% GC)
+  --------------
+  samples:          10000
+  evals/sample:     1
+   Testing FastIOBuffers tests passed 

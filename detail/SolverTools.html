@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="SolverTools">SolverTools</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#SolverTools">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 10 hours ago and took 6 minutes, 38 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/SolverTools/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed Parsers ───────────────────── v0.3.10
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed CommonSubexpressions ──────── v0.2.0
+ Installed DiffRules ─────────────────── v0.1.0
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed SolverTools ───────────────── v0.1.7
+ Installed Reexport ──────────────────── v0.2.0
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed JSON ──────────────────────── v0.21.0
+ Installed SpecialFunctions ──────────── v0.8.0
+ Installed DataStructures ────────────── v0.17.6
+ Installed BinDeps ───────────────────── v0.8.10
+ Installed StaticArrays ──────────────── v0.12.1
+ Installed URIParser ─────────────────── v0.4.0
+ Installed FastClosures ──────────────── v0.3.2
+ Installed DiffResults ───────────────── v0.0.4
+ Installed TimerOutputs ──────────────── v0.5.3
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed NLPModels ─────────────────── v0.10.0
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed DataFrames ────────────────── v0.19.4
+ Installed Missings ──────────────────── v0.4.3
+ Installed OrderedCollections ────────── v1.1.0
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed TableTraits ───────────────── v1.0.0
+ Installed Tables ────────────────────── v0.2.11
+ Installed ForwardDiff ───────────────── v0.10.6
+ Installed Compat ────────────────────── v2.2.0
+ Installed LinearOperators ───────────── v0.7.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [b5612192] + SolverTools v0.1.7
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [324d7699] + CategoricalArrays v0.7.3
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [a93c6f00] + DataFrames v0.19.4
+  [864edb3b] + DataStructures v0.17.6
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [9aa1b823] + FastClosures v0.3.2
+  [f6369f11] + ForwardDiff v0.10.6
+  [41ab1584] + InvertedIndices v1.0.0
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [682c06a0] + JSON v0.21.0
+  [5c8ed15e] + LinearOperators v0.7.1
+  [e1d29d7a] + Missings v0.4.3
+  [a4795742] + NLPModels v0.10.0
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [2dfb63ee] + PooledArrays v0.5.2
+  [189a3867] + Reexport v0.2.0
+  [b5612192] + SolverTools v0.1.7
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [a759f4b9] + TimerOutputs v0.5.3
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing SolverTools
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;tmpS47m4N&#x2F;Manifest.toml`
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [324d7699] CategoricalArrays v0.7.3
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [9aa1b823] FastClosures v0.3.2
+  [f6369f11] ForwardDiff v0.10.6
+  [41ab1584] InvertedIndices v1.0.0
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [682c06a0] JSON v0.21.0
+  [5c8ed15e] LinearOperators v0.7.1
+  [e1d29d7a] Missings v0.4.3
+  [a4795742] NLPModels v0.10.0
+  [77ba4419] NaNMath v0.3.3
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [2dfb63ee] PooledArrays v0.5.2
+  [189a3867] Reexport v0.2.0
+  [b5612192] SolverTools v0.1.7
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [a759f4b9] TimerOutputs v0.5.3
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Test Summary: | Pass  Total
+BLAS          |   24     24
+Test Summary: | Pass  Total
+Bounds        |    6      6
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown   1.6e-01   7.4e-15   1.7e-07   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown   2.5e-03  -1.8e+02   9.2e+01   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown   2.0e-03   3.1e-02   2.1e-01   0.0e+00
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown   0.0e+00   7.4e-15   1.7e-07   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown   0.0e+00  -1.8e+02   9.2e+01   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown   0.0e+00   3.1e-02   2.1e-01   0.0e+00
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown   1.4e-03   4.3e-21   1.3e-10   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown   1.8e-03  -3.8e+03   6.7e+02   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown   2.0e-03   3.6e-03   4.1e-02   0.0e+00
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown       Inf       Inf       Inf   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown       Inf       Inf       Inf   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown       Inf       Inf       Inf   0.0e+00
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown   1.4e-03   2.6e-25   1.0e-12   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown   2.1e-03  -1.6e+04   1.8e+03   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown   2.3e-03   1.4e-05   5.9e-04   0.0e+00
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown       Inf       Inf       Inf   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown       Inf       Inf       Inf   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown       Inf       Inf       Inf   0.0e+00
+Test Summary: | Pass  Total
+Testing bmark |    4      4
+STATUSES:
+  :acceptable     =&gt; solved to within acceptable tolerances
+  :exception      =&gt; unhandled exception
+  :first_order    =&gt; first-order stationary
+  :infeasible     =&gt; problem may be infeasible
+  :max_eval       =&gt; maximum number of function evaluations
+  :max_iter       =&gt; maximum iteration
+  :max_time       =&gt; maximum elapsed time
+  :neg_pred       =&gt; negative predicted reduction
+  :not_desc       =&gt; not a descent direction
+  :small_residual =&gt; small residual
+  :small_step     =&gt; step too small
+  :stalled        =&gt; stalled
+  :unbounded      =&gt; objective function may be unbounded from below
+  :unknown        =&gt; unknown
+  :user           =&gt; user-requested stop
+&quot;Execution stats: first-order stationary&quot;Generic Execution stats
+  status: &quot;first-order stationary&quot;
+  objective value: 1.0
+  primal feasibility: 0.0
+  dual feasibility: 1.0e-12
+  solution: [1.0  1.0  1.0  1.0 ⋯ 1.0]
+  iterations: 10
+  elapsed time: Inf
+  solver specific:
+    empty_vec: ∅
+    dot: 25
+    small_vec: [2.0  3.0]
+    axpy: 20
+    ray: [-1.0  -0.5  -0.333333  -0.25 ⋯ -0.01]
+    matvec: 10
+Generic Execution stats
+  status: &quot;first-order stationary&quot;
+  objective value: 1.0
+  primal feasibility: 0.0
+  dual feasibility: 1.0e-12
+  solution: [1.0  1.0  1.0  1.0 ⋯ 1.0]
+  iterations: 10
+  elapsed time: Inf
+  solver specific:
+    empty_vec: ∅
+    dot: 25
+    small_vec: [2.0  3.0]
+    axpy: 20
+    ray: [-1.0  -0.5  -0.333333  -0.25 ⋯ -0.01]
+    matvec: 10
+Generic Execution stats
+  status: &quot;first-order stationary&quot;
+  objective value: 1.0
+  primal feasibility: 0.0
+  dual feasibility: 1.0e-12
+  solution: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+  iterations: 10
+  elapsed time: Inf
+  solver specific:
+    empty_vec: Any[]
+    dot: 25
+    small_vec: [2.0, 3.0]
+    axpy: 20
+    ray: [-1.0, -0.5, -0.333333, -0.25, -0.2, -0.166667, -0.142857, -0.125, -0.111111, -0.1, -0.0909091, -0.0833333, -0.0769231, -0.0714286, -0.0666667, -0.0625, -0.0588235, -0.0555556, -0.0526316, -0.05, -0.047619, -0.0454545, -0.0434783, -0.0416667, -0.04, -0.0384615, -0.037037, -0.0357143, -0.0344828, -0.0333333, -0.0322581, -0.03125, -0.030303, -0.0294118, -0.0285714, -0.0277778, -0.027027, -0.0263158, -0.025641, -0.025, -0.0243902, -0.0238095, -0.0232558, -0.0227273, -0.0222222, -0.0217391, -0.0212766, -0.0208333, -0.0204082, -0.02, -0.0196078, -0.0192308, -0.0188679, -0.0185185, -0.0181818, -0.0178571, -0.0175439, -0.0172414, -0.0169492, -0.0166667, -0.0163934, -0.016129, -0.015873, -0.015625, -0.0153846, -0.0151515, -0.0149254, -0.0147059, -0.0144928, -0.0142857, -0.0140845, -0.0138889, -0.0136986, -0.0135135, -0.0133333, -0.0131579, -0.012987, -0.0128205, -0.0126582, -0.0125, -0.0123457, -0.0121951, -0.0120482, -0.0119048, -0.0117647, -0.0116279, -0.0114943, -0.0113636, -0.011236, -0.0111111, -0.010989, -0.0108696, -0.0107527, -0.0106383, -0.0105263, -0.0104167, -0.0103093, -0.0102041, -0.010101, -0.01]
+    matvec: 10
+status -&gt; first-order stationary
+neval_obj -&gt;       0
+objective -&gt;  1.00000000e+00
+iter -&gt;      10
+  Status     #obj                f     Iter
+first-order stationary        0   1.00000000e+00       10
+Test Summary:     | Pass  Total
+Testing inference |   32     32
+┌ Error: status bad is not a valid status. Use one of the following: 
+│   join(keys(STATUSES), &quot;, &quot;) = &quot;max_time, user, unbounded, not_desc, exception, small_step, small_residual, first_order, neg_pred, max_iter, acceptable, stalled, max_eval, infeasible, unknown&quot;
+└ @ SolverTools ~&#x2F;.julia&#x2F;packages&#x2F;SolverTools&#x2F;IhyBS&#x2F;src&#x2F;stats&#x2F;stats.jl:79
+Test Summary: | Pass  Total
+Test throws   |    2      2
+Test Summary:                             | Pass  Total
+Testing Dummy Solver with multi-precision |   24     24
+[ Info: Testing logger
+[ Info: Testing dummy solver with logger
+[ Info:   iter         f         c         t  
+[ Info:      0   4.0e+00   0.0e+00   0.0e+00
+[ Info:      1   4.0e+00   0.0e+00   7.5e-02
+[ Info:      2   4.0e+00   0.0e+00   7.5e-02
+[ Info:      3   1.1e+00   0.0e+00   7.5e-02
+[ Info:      4   4.7e-01   0.0e+00   7.5e-02
+[ Info:      5   4.7e-01   0.0e+00   7.5e-02
+[ Info:      6   4.7e-01   0.0e+00   7.5e-02
+[ Info:      7   4.7e-01   0.0e+00   7.5e-02
+[ Info:      8   4.7e-01   0.0e+00   7.5e-02
+[ Info:      9   4.7e-01   0.0e+00   7.5e-02
+[ Info:     10   4.7e-01   0.0e+00   7.5e-02
+[ Info:     11   4.5e-01   0.0e+00   7.5e-02
+[ Info:     12   4.5e-01   0.0e+00   7.5e-02
+[ Info:     13   4.5e-01   0.0e+00   7.5e-02
+[ Info:     14   4.5e-01   0.0e+00   7.5e-02
+[ Info:     15   4.5e-01   0.0e+00   7.5e-02
+[ Info:     16   4.5e-01   0.0e+00   7.5e-02
+[ Info:     17   3.1e-01   0.0e+00   7.5e-02
+[ Info:     18   3.1e-01   0.0e+00   7.6e-02
+[ Info:     19   3.1e-01   0.0e+00   7.6e-02
+[ Info:     20   1.9e-01   0.0e+00   7.6e-02
+[ Info: Testing simple logger on `solve_problems`
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown   1.9e-03   6.6e-13   1.6e-06   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown   2.7e-03  -1.8e+02   9.6e+01   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown   2.3e-03   3.9e-01   1.4e+00   0.0e+00
+[ Info:         linquad       2       1          unknown   2.7e-02   5.4e-02   4.7e-01   6.8e-01
+[ Info: Testing logger with specific columns on `solve_problems`
+[ Info:            Name    nvar      Time      f(x)      Dual  
+[ Info:  Sum of power 2       4   1.1e-03   2.1e-14   2.9e-07
+[ Info:  Sum of power 3       6   1.9e-03  -9.2e+02   2.9e+02
+[ Info:  Sum of power 4       8   1.8e-03   3.1e-02   2.2e-01
+[ Info:         linquad       2   5.0e-04   5.4e-02   4.6e-01
+[ Info: Testing logger with hdr_override on `solve_problems`
+[ Info:            Name    nvar    ncon           status      Time      f(x)   ‖∇L(x)‖    ‖c(x)‖  
+[ Info:  Sum of power 2       4       0          unknown   9.5e-04   6.6e-17   1.6e-08   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown   1.8e-03  -3.5e+03   7.1e+02   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown   2.3e-03   1.1e-03   1.6e-02   0.0e+00
+[ Info:         linquad       2       1          unknown   4.6e-04   5.4e-02   4.6e-01   6.8e-01
+   Testing SolverTools tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 13 hours ago and took 4 minutes, 56 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/SolverTools/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed FastClosures ──────────────── v0.3.2
+ Installed Missings ──────────────────── v0.4.3
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed TableTraits ───────────────── v1.0.0
+ Installed CommonSubexpressions ──────── v0.2.0
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed DataFrames ────────────────── v0.19.4
+ Installed SolverTools ───────────────── v0.1.7
+ Installed URIParser ─────────────────── v0.4.0
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed Reexport ──────────────────── v0.2.0
+ Installed TimerOutputs ──────────────── v0.5.3
+ Installed Compat ────────────────────── v2.2.0
+ Installed ForwardDiff ───────────────── v0.10.6
+ Installed DiffRules ─────────────────── v0.1.0
+ Installed Tables ────────────────────── v0.2.11
+ Installed Parsers ───────────────────── v0.3.10
+ Installed DataStructures ────────────── v0.17.6
+ Installed OrderedCollections ────────── v1.1.0
+ Installed NLPModels ─────────────────── v0.10.0
+ Installed JSON ──────────────────────── v0.21.0
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed DiffResults ───────────────── v0.0.4
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed LinearOperators ───────────── v0.7.1
+ Installed StaticArrays ──────────────── v0.12.1
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed BinDeps ───────────────────── v0.8.10
+ Installed SpecialFunctions ──────────── v0.8.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [b5612192] + SolverTools v0.1.7
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [324d7699] + CategoricalArrays v0.7.3
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [a93c6f00] + DataFrames v0.19.4
+  [864edb3b] + DataStructures v0.17.6
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [9aa1b823] + FastClosures v0.3.2
+  [f6369f11] + ForwardDiff v0.10.6
+  [41ab1584] + InvertedIndices v1.0.0
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [682c06a0] + JSON v0.21.0
+  [5c8ed15e] + LinearOperators v0.7.1
+  [e1d29d7a] + Missings v0.4.3
+  [a4795742] + NLPModels v0.10.0
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [2dfb63ee] + PooledArrays v0.5.2
+  [189a3867] + Reexport v0.2.0
+  [b5612192] + SolverTools v0.1.7
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [a759f4b9] + TimerOutputs v0.5.3
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing SolverTools
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;jl_PNHlGU&#x2F;Manifest.toml`
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [324d7699] CategoricalArrays v0.7.3
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [9aa1b823] FastClosures v0.3.2
+  [f6369f11] ForwardDiff v0.10.6
+  [41ab1584] InvertedIndices v1.0.0
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [682c06a0] JSON v0.21.0
+  [5c8ed15e] LinearOperators v0.7.1
+  [e1d29d7a] Missings v0.4.3
+  [a4795742] NLPModels v0.10.0
+  [77ba4419] NaNMath v0.3.3
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [2dfb63ee] PooledArrays v0.5.2
+  [189a3867] Reexport v0.2.0
+  [b5612192] SolverTools v0.1.7
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [a759f4b9] TimerOutputs v0.5.3
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Test Summary: | Pass  Total
+BLAS          |   24     24
+Test Summary: | Pass  Total
+Bounds        |    6      6
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown   3.1e-01   1.0e-01   6.4e-01   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown   2.4e-03  -2.4e+01   2.6e+01   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown   2.1e-03   1.1e+00   2.8e+00   0.0e+00
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown   0.0e+00   1.0e-01   6.4e-01   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown   0.0e+00  -2.4e+01   2.6e+01   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown   0.0e+00   1.1e+00   2.8e+00   0.0e+00
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown   1.2e-03   3.1e-15   1.1e-07   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown   2.1e-03  -7.9e+02   2.4e+02   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown   2.4e-03   7.2e-03   6.3e-02   0.0e+00
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown       Inf       Inf       Inf   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown       Inf       Inf       Inf   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown       Inf       Inf       Inf   0.0e+00
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown   1.4e-03   2.8e-21   1.1e-10   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown   2.1e-03  -4.9e+03   8.8e+02   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown   2.3e-03   9.1e-05   2.7e-03   0.0e+00
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown       Inf       Inf       Inf   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown       Inf       Inf       Inf   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown       Inf       Inf       Inf   0.0e+00
+Test Summary: | Pass  Total
+Testing bmark |    4      4
+STATUSES:
+  :acceptable     =&gt; solved to within acceptable tolerances
+  :exception      =&gt; unhandled exception
+  :first_order    =&gt; first-order stationary
+  :infeasible     =&gt; problem may be infeasible
+  :max_eval       =&gt; maximum number of function evaluations
+  :max_iter       =&gt; maximum iteration
+  :max_time       =&gt; maximum elapsed time
+  :neg_pred       =&gt; negative predicted reduction
+  :not_desc       =&gt; not a descent direction
+  :small_residual =&gt; small residual
+  :small_step     =&gt; step too small
+  :stalled        =&gt; stalled
+  :unbounded      =&gt; objective function may be unbounded from below
+  :unknown        =&gt; unknown
+  :user           =&gt; user-requested stop
+&quot;Execution stats: first-order stationary&quot;Generic Execution stats
+  status: &quot;first-order stationary&quot;
+  objective value: 1.0
+  primal feasibility: 0.0
+  dual feasibility: 1.0e-12
+  solution: [1.0  1.0  1.0  1.0 ⋯ 1.0]
+  iterations: 10
+  elapsed time: Inf
+  solver specific:
+    empty_vec: ∅
+    dot: 25
+    small_vec: [2.0  3.0]
+    axpy: 20
+    ray: [-1.0  -0.5  -0.3333333333333333  -0.25 ⋯ -0.01]
+    matvec: 10
+Generic Execution stats
+  status: &quot;first-order stationary&quot;
+  objective value: 1.0
+  primal feasibility: 0.0
+  dual feasibility: 1.0e-12
+  solution: [1.0  1.0  1.0  1.0 ⋯ 1.0]
+  iterations: 10
+  elapsed time: Inf
+  solver specific:
+    empty_vec: ∅
+    dot: 25
+    small_vec: [2.0  3.0]
+    axpy: 20
+    ray: [-1.0  -0.5  -0.3333333333333333  -0.25 ⋯ -0.01]
+    matvec: 10
+Generic Execution stats
+  status: &quot;first-order stationary&quot;
+  objective value: 1.0
+  primal feasibility: 0.0
+  dual feasibility: 1.0e-12
+  solution: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+  iterations: 10
+  elapsed time: Inf
+  solver specific:
+    empty_vec: Any[]
+    dot: 25
+    small_vec: [2.0, 3.0]
+    axpy: 20
+    ray: [-1.0, -0.5, -0.3333333333333333, -0.25, -0.2, -0.16666666666666666, -0.14285714285714285, -0.125, -0.1111111111111111, -0.1, -0.09090909090909091, -0.08333333333333333, -0.07692307692307693, -0.07142857142857142, -0.06666666666666667, -0.0625, -0.058823529411764705, -0.05555555555555555, -0.05263157894736842, -0.05, -0.047619047619047616, -0.045454545454545456, -0.043478260869565216, -0.041666666666666664, -0.04, -0.038461538461538464, -0.037037037037037035, -0.03571428571428571, -0.034482758620689655, -0.03333333333333333, -0.03225806451612903, -0.03125, -0.030303030303030304, -0.029411764705882353, -0.02857142857142857, -0.027777777777777776, -0.02702702702702703, -0.02631578947368421, -0.02564102564102564, -0.025, -0.024390243902439025, -0.023809523809523808, -0.023255813953488372, -0.022727272727272728, -0.022222222222222223, -0.021739130434782608, -0.02127659574468085, -0.020833333333333332, -0.02040816326530612, -0.02, -0.0196078431372549, -0.019230769230769232, -0.018867924528301886, -0.018518518518518517, -0.01818181818181818, -0.017857142857142856, -0.017543859649122806, -0.017241379310344827, -0.01694915254237288, -0.016666666666666666, -0.01639344262295082, -0.016129032258064516, -0.015873015873015872, -0.015625, -0.015384615384615385, -0.015151515151515152, -0.014925373134328358, -0.014705882352941176, -0.014492753623188406, -0.014285714285714285, -0.014084507042253521, -0.013888888888888888, -0.0136986301369863, -0.013513513513513514, -0.013333333333333334, -0.013157894736842105, -0.012987012987012988, -0.01282051282051282, -0.012658227848101266, -0.0125, -0.012345679012345678, -0.012195121951219513, -0.012048192771084338, -0.011904761904761904, -0.011764705882352941, -0.011627906976744186, -0.011494252873563218, -0.011363636363636364, -0.011235955056179775, -0.011111111111111112, -0.01098901098901099, -0.010869565217391304, -0.010752688172043012, -0.010638297872340425, -0.010526315789473684, -0.010416666666666666, -0.010309278350515464, -0.01020408163265306, -0.010101010101010102, -0.01]
+    matvec: 10
+status -&gt; first-order stationary
+neval_obj -&gt;       0
+objective -&gt;  1.00000000e+00
+iter -&gt;      10
+  Status     #obj                f     Iter
+first-order stationary        0   1.00000000e+00       10
+Test Summary:     | Pass  Total
+Testing inference |   32     32
+┌ Error: status bad is not a valid status. Use one of the following: 
+│   join(keys(STATUSES), &quot;, &quot;) = &quot;max_time, user, unbounded, not_desc, exception, small_step, small_residual, first_order, neg_pred, max_iter, acceptable, stalled, max_eval, infeasible, unknown&quot;
+└ @ SolverTools ~&#x2F;.julia&#x2F;packages&#x2F;SolverTools&#x2F;IhyBS&#x2F;src&#x2F;stats&#x2F;stats.jl:79
+Test Summary: | Pass  Total
+Test throws   |    2      2
+Test Summary:                             | Pass  Total
+Testing Dummy Solver with multi-precision |   24     24
+[ Info: Testing logger
+[ Info: Testing dummy solver with logger
+[ Info:   iter         f         c         t  
+[ Info:      0   4.0e+00   0.0e+00   0.0e+00
+[ Info:      1   4.0e+00   0.0e+00   6.6e-02
+[ Info:      2   4.0e+00   0.0e+00   6.6e-02
+[ Info:      3   4.0e+00   0.0e+00   6.6e-02
+[ Info:      4   4.0e+00   0.0e+00   6.6e-02
+[ Info:      5   4.0e+00   0.0e+00   6.6e-02
+[ Info:      6   4.0e+00   0.0e+00   6.6e-02
+[ Info:      7   3.0e+00   0.0e+00   6.6e-02
+[ Info:      8   3.0e+00   0.0e+00   6.6e-02
+[ Info:      9   1.4e+00   0.0e+00   6.6e-02
+[ Info:     10   1.4e+00   0.0e+00   6.6e-02
+[ Info:     11   1.4e+00   0.0e+00   6.7e-02
+[ Info:     12   1.4e+00   0.0e+00   6.7e-02
+[ Info:     13   1.4e+00   0.0e+00   6.7e-02
+[ Info:     14   1.4e+00   0.0e+00   6.7e-02
+[ Info:     15   1.4e+00   0.0e+00   6.7e-02
+[ Info:     16   1.4e+00   0.0e+00   6.7e-02
+[ Info:     17   1.2e+00   0.0e+00   6.7e-02
+[ Info:     18   1.2e+00   0.0e+00   6.7e-02
+[ Info:     19   1.2e+00   0.0e+00   6.7e-02
+[ Info:     20   1.2e+00   0.0e+00   6.7e-02
+[ Info: Testing simple logger on `solve_problems`
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown   9.7e-04   1.7e-08   2.6e-04   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown   1.7e-03  -2.2e+00   5.2e+00   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown   2.2e-03   2.4e-01   9.9e-01   0.0e+00
+[ Info:         linquad       2       1          unknown   3.5e-02   1.0e-01   6.4e-01   5.7e-01
+[ Info: Testing logger with specific columns on `solve_problems`
+[ Info:            Name    nvar      Time      f(x)      Dual  
+[ Info:  Sum of power 2       4   1.2e-03   8.3e-11   1.8e-05
+[ Info:  Sum of power 3       6   2.0e-03  -3.5e+02   1.4e+02
+[ Info:  Sum of power 4       8   2.2e-03   2.9e-03   3.2e-02
+[ Info:         linquad       2   5.6e-04   9.9e-02   6.3e-01
+[ Info: Testing logger with hdr_override on `solve_problems`
+[ Info:            Name    nvar    ncon           status      Time      f(x)   ‖∇L(x)‖    ‖c(x)‖  
+[ Info:  Sum of power 2       4       0          unknown   1.1e-03   2.8e-19   1.1e-09   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown   2.0e-03  -1.1e+04   1.5e+03   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown   2.5e-03   2.3e-06   1.5e-04   0.0e+00
+[ Info:         linquad       2       1          unknown   6.2e-04   9.8e-02   6.3e-01   5.6e-01
+   Testing SolverTools tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 14 hours ago and took 4 minutes, 37 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/SolverTools/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Missings ──────────────────── v0.4.3
+ Installed Tables ────────────────────── v0.2.11
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed DiffResults ───────────────── v0.0.4
+ Installed BinDeps ───────────────────── v0.8.10
+ Installed NLPModels ─────────────────── v0.10.0
+ Installed ForwardDiff ───────────────── v0.10.6
+ Installed SolverTools ───────────────── v0.1.7
+ Installed Reexport ──────────────────── v0.2.0
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed JSON ──────────────────────── v0.21.0
+ Installed DiffRules ─────────────────── v0.1.0
+ Installed DataStructures ────────────── v0.17.6
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed CategoricalArrays ─────────── v0.7.3
+ Installed InvertedIndices ───────────── v1.0.0
+ Installed LinearOperators ───────────── v0.7.1
+ Installed URIParser ─────────────────── v0.4.0
+ Installed Parsers ───────────────────── v0.3.10
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed FastClosures ──────────────── v0.3.2
+ Installed StaticArrays ──────────────── v0.12.1
+ Installed PooledArrays ──────────────── v0.5.2
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed CommonSubexpressions ──────── v0.2.0
+ Installed TimerOutputs ──────────────── v0.5.3
+ Installed TableTraits ───────────────── v1.0.0
+ Installed OrderedCollections ────────── v1.1.0
+ Installed SpecialFunctions ──────────── v0.8.0
+ Installed Compat ────────────────────── v2.2.0
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed DataFrames ────────────────── v0.19.4
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [b5612192] + SolverTools v0.1.7
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [324d7699] + CategoricalArrays v0.7.3
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [a93c6f00] + DataFrames v0.19.4
+  [864edb3b] + DataStructures v0.17.6
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [9aa1b823] + FastClosures v0.3.2
+  [f6369f11] + ForwardDiff v0.10.6
+  [41ab1584] + InvertedIndices v1.0.0
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [682c06a0] + JSON v0.21.0
+  [5c8ed15e] + LinearOperators v0.7.1
+  [e1d29d7a] + Missings v0.4.3
+  [a4795742] + NLPModels v0.10.0
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [2dfb63ee] + PooledArrays v0.5.2
+  [189a3867] + Reexport v0.2.0
+  [b5612192] + SolverTools v0.1.7
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v0.2.11
+  [a759f4b9] + TimerOutputs v0.5.3
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing SolverTools
+ Resolving package versions...
+Status `&#x2F;tmp&#x2F;jl_uuCErN&#x2F;Manifest.toml`
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [324d7699] CategoricalArrays v0.7.3
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [9aa1b823] FastClosures v0.3.2
+  [f6369f11] ForwardDiff v0.10.6
+  [41ab1584] InvertedIndices v1.0.0
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [682c06a0] JSON v0.21.0
+  [5c8ed15e] LinearOperators v0.7.1
+  [e1d29d7a] Missings v0.4.3
+  [a4795742] NLPModels v0.10.0
+  [77ba4419] NaNMath v0.3.3
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [2dfb63ee] PooledArrays v0.5.2
+  [189a3867] Reexport v0.2.0
+  [b5612192] SolverTools v0.1.7
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [a759f4b9] TimerOutputs v0.5.3
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Test Summary: | Pass  Total
+BLAS          |   24     24
+Test Summary: | Pass  Total
+Bounds        |    6      6
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown   2.0e-01   4.9e-04   4.4e-02   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown   2.0e-03  -7.7e+01   5.4e+01   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown   2.0e-03   3.8e-01   1.3e+00   0.0e+00
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown   0.0e+00   4.9e-04   4.4e-02   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown   0.0e+00  -7.7e+01   5.4e+01   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown   0.0e+00   3.8e-01   1.3e+00   0.0e+00
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown   1.5e-03   1.6e-05   8.0e-03   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown   4.4e-03  -2.8e+03   6.0e+02   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown   2.5e-03   2.4e-02   1.6e-01   0.0e+00
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown       Inf       Inf       Inf   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown       Inf       Inf       Inf   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown       Inf       Inf       Inf   0.0e+00
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown   1.1e-03   1.2e-10   2.2e-05   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown   1.9e-03  -1.5e+04   1.8e+03   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown   1.9e-03   7.1e-04   1.1e-02   0.0e+00
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown       Inf       Inf       Inf   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown       Inf       Inf       Inf   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown       Inf       Inf       Inf   0.0e+00
+Test Summary: | Pass  Total
+Testing bmark |    4      4
+STATUSES:
+  :acceptable     =&gt; solved to within acceptable tolerances
+  :exception      =&gt; unhandled exception
+  :first_order    =&gt; first-order stationary
+  :infeasible     =&gt; problem may be infeasible
+  :max_eval       =&gt; maximum number of function evaluations
+  :max_iter       =&gt; maximum iteration
+  :max_time       =&gt; maximum elapsed time
+  :neg_pred       =&gt; negative predicted reduction
+  :not_desc       =&gt; not a descent direction
+  :small_residual =&gt; small residual
+  :small_step     =&gt; step too small
+  :stalled        =&gt; stalled
+  :unbounded      =&gt; objective function may be unbounded from below
+  :unknown        =&gt; unknown
+  :user           =&gt; user-requested stop
+&quot;Execution stats: first-order stationary&quot;Generic Execution stats
+  status: &quot;first-order stationary&quot;
+  objective value: 1.0
+  primal feasibility: 0.0
+  dual feasibility: 1.0e-12
+  solution: [1.0  1.0  1.0  1.0 ⋯ 1.0]
+  iterations: 10
+  elapsed time: Inf
+  solver specific:
+    empty_vec: ∅
+    dot: 25
+    small_vec: [2.0  3.0]
+    axpy: 20
+    ray: [-1.0  -0.5  -0.3333333333333333  -0.25 ⋯ -0.01]
+    matvec: 10
+Generic Execution stats
+  status: &quot;first-order stationary&quot;
+  objective value: 1.0
+  primal feasibility: 0.0
+  dual feasibility: 1.0e-12
+  solution: [1.0  1.0  1.0  1.0 ⋯ 1.0]
+  iterations: 10
+  elapsed time: Inf
+  solver specific:
+    empty_vec: ∅
+    dot: 25
+    small_vec: [2.0  3.0]
+    axpy: 20
+    ray: [-1.0  -0.5  -0.3333333333333333  -0.25 ⋯ -0.01]
+    matvec: 10
+Generic Execution stats
+  status: &quot;first-order stationary&quot;
+  objective value: 1.0
+  primal feasibility: 0.0
+  dual feasibility: 1.0e-12
+  solution: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+  iterations: 10
+  elapsed time: Inf
+  solver specific:
+    empty_vec: Any[]
+    dot: 25
+    small_vec: [2.0, 3.0]
+    axpy: 20
+    ray: [-1.0, -0.5, -0.3333333333333333, -0.25, -0.2, -0.16666666666666666, -0.14285714285714285, -0.125, -0.1111111111111111, -0.1, -0.09090909090909091, -0.08333333333333333, -0.07692307692307693, -0.07142857142857142, -0.06666666666666667, -0.0625, -0.058823529411764705, -0.05555555555555555, -0.05263157894736842, -0.05, -0.047619047619047616, -0.045454545454545456, -0.043478260869565216, -0.041666666666666664, -0.04, -0.038461538461538464, -0.037037037037037035, -0.03571428571428571, -0.034482758620689655, -0.03333333333333333, -0.03225806451612903, -0.03125, -0.030303030303030304, -0.029411764705882353, -0.02857142857142857, -0.027777777777777776, -0.02702702702702703, -0.02631578947368421, -0.02564102564102564, -0.025, -0.024390243902439025, -0.023809523809523808, -0.023255813953488372, -0.022727272727272728, -0.022222222222222223, -0.021739130434782608, -0.02127659574468085, -0.020833333333333332, -0.02040816326530612, -0.02, -0.0196078431372549, -0.019230769230769232, -0.018867924528301886, -0.018518518518518517, -0.01818181818181818, -0.017857142857142856, -0.017543859649122806, -0.017241379310344827, -0.01694915254237288, -0.016666666666666666, -0.01639344262295082, -0.016129032258064516, -0.015873015873015872, -0.015625, -0.015384615384615385, -0.015151515151515152, -0.014925373134328358, -0.014705882352941176, -0.014492753623188406, -0.014285714285714285, -0.014084507042253521, -0.013888888888888888, -0.0136986301369863, -0.013513513513513514, -0.013333333333333334, -0.013157894736842105, -0.012987012987012988, -0.01282051282051282, -0.012658227848101266, -0.0125, -0.012345679012345678, -0.012195121951219513, -0.012048192771084338, -0.011904761904761904, -0.011764705882352941, -0.011627906976744186, -0.011494252873563218, -0.011363636363636364, -0.011235955056179775, -0.011111111111111112, -0.01098901098901099, -0.010869565217391304, -0.010752688172043012, -0.010638297872340425, -0.010526315789473684, -0.010416666666666666, -0.010309278350515464, -0.01020408163265306, -0.010101010101010102, -0.01]
+    matvec: 10
+status -&gt; first-order stationary
+neval_obj -&gt;       0
+objective -&gt;  1.00000000e+00
+iter -&gt;      10
+  Status     #obj                f     Iter
+first-order stationary        0   1.00000000e+00       10
+Test Summary:     | Pass  Total
+Testing inference |   32     32
+┌ Error: status bad is not a valid status. Use one of the following: 
+│   join(keys(STATUSES), &quot;, &quot;) = &quot;max_time, user, unbounded, not_desc, exception, small_step, small_residual, first_order, neg_pred, max_iter, acceptable, stalled, max_eval, infeasible, unknown&quot;
+└ @ SolverTools ~&#x2F;.julia&#x2F;packages&#x2F;SolverTools&#x2F;IhyBS&#x2F;src&#x2F;stats&#x2F;stats.jl:79
+Test Summary: | Pass  Total
+Test throws   |    2      2
+Test Summary:                             | Pass  Total
+Testing Dummy Solver with multi-precision |   24     24
+[ Info: Testing logger
+[ Info: Testing dummy solver with logger
+[ Info:   iter         f         c         t  
+[ Info:      0   4.0e+00   0.0e+00   0.0e+00
+[ Info:      1   4.0e+00   0.0e+00   5.1e-02
+[ Info:      2   4.0e+00   0.0e+00   5.1e-02
+[ Info:      3   3.6e+00   0.0e+00   5.1e-02
+[ Info:      4   3.9e-01   0.0e+00   5.1e-02
+[ Info:      5   3.9e-01   0.0e+00   5.2e-02
+[ Info:      6   2.1e-01   0.0e+00   5.2e-02
+[ Info:      7   2.1e-01   0.0e+00   5.2e-02
+[ Info:      8   2.1e-01   0.0e+00   5.2e-02
+[ Info:      9   2.1e-01   0.0e+00   5.2e-02
+[ Info:     10   2.1e-01   0.0e+00   5.2e-02
+[ Info:     11   2.1e-01   0.0e+00   5.2e-02
+[ Info:     12   2.1e-01   0.0e+00   5.2e-02
+[ Info:     13   2.1e-01   0.0e+00   5.2e-02
+[ Info:     14   2.1e-01   0.0e+00   5.2e-02
+[ Info:     15   2.1e-01   0.0e+00   5.2e-02
+[ Info:     16   2.1e-01   0.0e+00   5.2e-02
+[ Info:     17   2.1e-01   0.0e+00   5.2e-02
+[ Info:     18   1.8e-01   0.0e+00   5.2e-02
+[ Info:     19   1.8e-01   0.0e+00   5.2e-02
+[ Info:     20   1.8e-01   0.0e+00   5.2e-02
+[ Info: Testing simple logger on `solve_problems`
+[ Info:            Name    nvar    ncon           status      Time      f(x)      Dual    Primal  
+[ Info:  Sum of power 2       4       0          unknown   1.4e-03   6.8e-06   5.2e-03   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown   3.8e-02  -6.6e+02   2.1e+02   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown   1.4e-02   7.6e-01   2.1e+00   0.0e+00
+[ Info:         linquad       2       1          unknown   3.1e-02   6.6e-01   1.6e+00   3.4e-04
+[ Info: Testing logger with specific columns on `solve_problems`
+[ Info:            Name    nvar      Time      f(x)      Dual  
+[ Info:  Sum of power 2       4   1.5e-03   7.9e-12   5.6e-06
+[ Info:  Sum of power 3       6   2.0e-03  -2.9e+03   5.4e+02
+[ Info:  Sum of power 4       8   1.9e-03   9.3e-02   4.8e-01
+[ Info:         linquad       2   6.3e-04   6.6e-01   1.6e+00
+[ Info: Testing logger with hdr_override on `solve_problems`
+[ Info:            Name    nvar    ncon           status      Time      f(x)   ‖∇L(x)‖    ‖c(x)‖  
+[ Info:  Sum of power 2       4       0          unknown   1.2e-03   8.7e-14   5.9e-07   0.0e+00
+[ Info:  Sum of power 3       6       0          unknown   2.1e-03  -1.8e+04   1.9e+03   0.0e+00
+[ Info:  Sum of power 4       8       0          unknown   2.2e-03   8.4e-04   1.4e-02   0.0e+00
+[ Info:         linquad       2       1          unknown   5.4e-04   6.6e-01   1.6e+00   7.8e-12
+   Testing SolverTools tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

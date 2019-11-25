@@ -1,0 +1,105 @@
+ Resolving package versions...
+ Installed SurrealNumbers ─ v0.1.1
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [58abba7c] + SurrealNumbers v0.1.1
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [58abba7c] + SurrealNumbers v0.1.1
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+   Testing SurrealNumbers
+    Status `/tmp/jl_XI8CpZ/Manifest.toml`
+  [58abba7c] SurrealNumbers v0.1.1
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+WARNING: could not import Base.expand into SurrealNumbers
+x1 = { 0 | ∅ }
+
+ z = 0
+x4 = { -1 | 0, 1 }
+x5 = { -1, { -1 | 0, 1 }, 0 | 1 }
+s1 = { 0 | 1 }
+
+s2 = { 1//2 | 1 }
+
+x41 = 4, x42 = { 3 | ∅ }, x43 = (2 * 2)
+{ (4 + -1) | ∅ }
+
+{ 3 | Any[] }
+Test Summary:    | Pass  Total
+constructor test |   19     19
+Test Summary: | Pass  Total
+comparisons   |   25     25
+Test Summary:   | Pass  Total
+basic operators |   17     17
+Test Summary:      | Pass  Total
+convert to surreal |    8      8
+Test Summary:    | Pass  Total
+array operations |   17     17
+v = -6.25
+v = -4.0
+v = -3.25
+v = -2.5
+v = -2.0
+v = -1.625
+v = -1.0
+v = -0.25
+v = 0.0
+v = 1.0
+v = 7.0
+v = 0.5
+v = 1.625
+v = 2.25
+v = 4.5
+v = 6.75
+v = 8.0
+v = 12.125
+Test Summary:    | Pass  Total
+simple functions |  161    161
+Test Summary:   | Pass  Total
+simplifications |    6      6
+Test Summary:                        | Pass  Total
+conversion from surreal back to real |   26     26
+Test Summary: | Pass  Total
+promotion     |    6      6
+ \{   \{   \{   \{   \emptyset   \mid   \emptyset   \}   \mid   \{   \{   \emptyset   \mid   \emptyset   \}   \mid   \emptyset   \}   \}   \mid   \{   \{   \emptyset   \mid   \emptyset   \}   \mid   \emptyset   \}   \}   \mid   \{   \{   \{   \{   \emptyset   \mid   \emptyset   \}   \mid   \{   \{   \emptyset   \mid   \emptyset   \}   \mid   \emptyset   \}   \}   \mid   \{   \{   \emptyset   \mid   \emptyset   \}   \mid   \emptyset   \}   \}   \mid   \{   \{   \emptyset   \mid   \emptyset   \}   \mid   \emptyset   \}   \}   \} 
+Test Summary:          | Pass  Total
+I/O and string parsing |   10     10
+digraph "0.0" {
+   node_1 [shape=none,margin=0,label=<<B>0</B>>]
+}
+Test Summary:     | Pass  Total
+structured output |    5      5
+┌ Warning: In `filter(f, dict)`, `f` is now passed a single pair instead of two arguments.
+│   caller = uniqueness_failure(::Dict{UInt64,Int64}, ::Dict{UInt64,SurrealFinite}) at SurrealFinite.jl:1189
+└ @ SurrealNumbers ~/.julia/packages/SurrealNumbers/x1w8s/src/SurrealFinite.jl:1189
+┌ Warning: In `filter(f, dict)`, `f` is now passed a single pair instead of two arguments.
+│   caller = top-level scope at runtests.jl:381
+└ @ Core ~/.julia/packages/SurrealNumbers/x1w8s/test/runtests.jl:381
+┌ Warning: In `filter(f, dict)`, `f` is now passed a single pair instead of two arguments.
+│   caller = top-level scope at runtests.jl:382
+└ @ Core ~/.julia/packages/SurrealNumbers/x1w8s/test/runtests.jl:382
+Test Summary:  | Pass  Total
+DAG statistics |   40     40
+Test Summary:                 | Pass  Total
+memory allocation and caching |    7      7
+Test Summary:     | Pass  Total
+new identity test |    2      2
+   Testing SurrealNumbers tests passed 

@@ -1,0 +1,114 @@
+ Resolving package versions...
+ Installed Reactive ─────────── v0.8.3
+ Installed OrderedCollections ─ v1.1.0
+ Installed DataStructures ───── v0.17.6
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [a223df75] + Reactive v0.8.3
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [864edb3b] + DataStructures v0.17.6
+  [bac558e1] + OrderedCollections v1.1.0
+  [a223df75] + Reactive v0.8.3
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+   Testing Reactive
+Status `/tmp/jl_2I9YUg/Manifest.toml`
+  [864edb3b] DataStructures v0.17.6
+  [bac558e1] OrderedCollections v1.1.0
+  [a223df75] Reactive v0.8.3
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+Test Summary: | Pass  Total
+Queue runner  |    2      2
+step 1
+step 2
+step 3
+queue_size() = 0
+Test Summary: | Pass  Total
+Basic checks  |   91     91
+Test Summary:           | Pass  Total
+Push to non-input nodes |   32     32
+av = 1
+bv = 2
+av = 1
+bv = 3
+av = 7
+bv = 7
+Test Summary:       | Pass  Total
+multi-path graphs 1 |   17     17
+Test Summary:       | Pass  Total
+multi-path graphs 2 |   16     16
+Test Summary:                        | Pass  Total
+multi-path graphs: dfs good, bfs bad |    2      2
+Test Summary:                        | Pass  Total
+multi-path graphs: bfs good, dfs bad |    2      2
+Test Summary:                       | Pass  Total
+multi-path graphs: dfs bad, bfs bad |    2      2
+Test Summary: | Pass  Total
+Call counting |  600    600
+Test Summary: | Pass  Total
+Flatten       |   30     30
+dt = 1.432484513
+fpswhen: Test Failed at /root/.julia/packages/Reactive/g1LZ6/test/time.jl:22
+  Expression: isapprox(dt, 1, atol=0.3)
+   Evaluated: isapprox(1.432484513, 1; atol=0.3)
+Stacktrace:
+ [1] top-level scope at /root/.julia/packages/Reactive/g1LZ6/test/time.jl:22
+ [2] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+ [3] top-level scope at /root/.julia/packages/Reactive/g1LZ6/test/time.jl:4
+ [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+ [5] top-level scope at /root/.julia/packages/Reactive/g1LZ6/test/time.jl:3
+end_t = 1.57453393866875e9
+end_t .- accval = [1.508044958114624, 1.0074679851531982, 0.506706953048706, 0.006958961486816406]
+z got 2
+z got 5
+z′ got [1, 2, 3, 4, 5, 6, 7]
+z got 7
+z got 9
+z got 10
+z′ got [8, 9, 10]
+i = 10
+dt = 2.219089984893799
+ydt = 0.5
+y′dt = 1.1
+zcount = 5.0
+z′count = 3.0
+value(y) = 10
+value(y′) = [8, 9, 10]
+value(z) = 5
+value(z′) = 2
+Test Summary:    | Pass  Fail  Total
+Timing functions |   27     1     28
+  fpswhen        |    3     1      4
+  every          |    3            3
+  throttle       |    6            6
+  debounce       |   15           15
+ERROR: LoadError: LoadError: Some tests did not pass: 27 passed, 1 failed, 0 errored, 0 broken.
+in expression starting at /root/.julia/packages/Reactive/g1LZ6/test/time.jl:1
+in expression starting at /root/.julia/packages/Reactive/g1LZ6/test/runtests.jl:22
+ERROR: Package Reactive errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

@@ -1,0 +1,121 @@
+ Resolving package versions...
+ Installed Reexport ────────────── v0.2.0
+ Installed JSExpr ──────────────── v0.5.1
+ Installed Knockout ────────────── v0.2.3
+ Installed CSTParser ───────────── v1.0.0
+ Installed MbedTLS ─────────────── v0.7.0
+ Installed DataStructures ──────── v0.17.6
+ Installed HTTP ────────────────── v0.8.8
+ Installed JSON ────────────────── v0.21.0
+ Installed IniFile ─────────────── v0.5.0
+ Installed Pidfile ─────────────── v1.1.0
+ Installed Widgets ─────────────── v0.6.2
+ Installed FixedPointNumbers ───── v0.6.1
+ Installed AssetRegistry ───────── v0.1.0
+ Installed Parsers ─────────────── v0.3.10
+ Installed FunctionalCollections ─ v0.5.0
+ Installed WebSockets ──────────── v1.5.2
+ Installed Requires ────────────── v0.5.2
+ Installed Observables ─────────── v0.2.3
+ Installed OrderedCollections ──── v1.1.0
+ Installed WebIO ───────────────── v0.8.11
+ Installed BinaryProvider ──────── v0.5.8
+ Installed MacroTools ──────────── v0.5.1
+ Installed Compat ──────────────── v3.0.0
+ Installed ColorTypes ──────────── v0.8.0
+ Installed Tokenize ────────────── v0.5.6
+ Installed Colors ──────────────── v0.9.6
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [bcebb21b] + Knockout v0.2.3
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [bf4720bc] + AssetRegistry v0.1.0
+  [b99e7846] + BinaryProvider v0.5.8
+  [00ebfdb7] + CSTParser v1.0.0
+  [3da002f7] + ColorTypes v0.8.0
+  [5ae59095] + Colors v0.9.6
+  [34da2185] + Compat v3.0.0
+  [864edb3b] + DataStructures v0.17.6
+  [53c48c17] + FixedPointNumbers v0.6.1
+  [de31a74c] + FunctionalCollections v0.5.0
+  [cd3eb016] + HTTP v0.8.8
+  [83e8ac13] + IniFile v0.5.0
+  [97c1335a] + JSExpr v0.5.1
+  [682c06a0] + JSON v0.21.0
+  [bcebb21b] + Knockout v0.2.3
+  [1914dd2f] + MacroTools v0.5.1
+  [739be429] + MbedTLS v0.7.0
+  [510215fc] + Observables v0.2.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [fa939f87] + Pidfile v1.1.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [0796e94c] + Tokenize v0.5.6
+  [0f1e0344] + WebIO v0.8.11
+  [104b5d7c] + WebSockets v1.5.2
+  [cc8bc4a8] + Widgets v0.6.2
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [7b1f6079] + FileWatching 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building MbedTLS ─→ `~/.julia/packages/MbedTLS/a1JFn/deps/build.log`
+  Building WebIO ───→ `~/.julia/packages/WebIO/2mZPb/deps/build.log`
+  Building Knockout → `~/.julia/packages/Knockout/1sDlc/deps/build.log`
+   Testing Knockout
+ Resolving package versions...
+ERROR: Unsatisfiable requirements detected for package BinDeps [9e28174c]:
+ BinDeps [9e28174c] log:
+ ├─possible versions are: [0.7.0, 0.8.9-0.8.10] or uninstalled
+ ├─restricted by compatibility requirements with Blink [ad839575] to versions: [0.7.0, 0.8.9-0.8.10]
+ │ └─Blink [ad839575] log:
+ │   ├─possible versions are: [0.8.0-0.8.1, 0.9.0, 0.10.0-0.10.1, 0.11.0, 0.12.0] or uninstalled
+ │   └─restricted to versions * by an explicit requirement, leaving only versions [0.8.0-0.8.1, 0.9.0, 0.10.0-0.10.1, 0.11.0, 0.12.0]
+ └─restricted by compatibility requirements with Compat [34da2185] to versions: uninstalled — no versions left
+   └─Compat [34da2185] log:
+     ├─possible versions are: [1.0.0-1.0.1, 1.1.0, 1.2.0, 1.3.0, 1.4.0, 1.5.0-1.5.1, 2.0.0, 2.1.0, 2.2.0, 3.0.0] or uninstalled
+     └─restricted to versions 3.0.0 by an explicit requirement, leaving only versions 3.0.0
+Stacktrace:
+ [1] propagate_constraints!(::Pkg.Resolve.Graph, ::Set{Int64}; log_events::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Resolve/graphtype.jl:1010
+ [2] propagate_constraints! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Resolve/graphtype.jl:951 [inlined] (repeats 2 times)
+ [3] simplify_graph!(::Pkg.Resolve.Graph, ::Set{Int64}; clean_graph::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Resolve/graphtype.jl:1465
+ [4] simplify_graph! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Resolve/graphtype.jl:1465 [inlined] (repeats 2 times)
+ [5] _resolve_versions!(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}, ::Nothing) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:121
+ [6] _resolve_versions! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:69 [inlined]
+ [7] _add_or_develop(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; new_git::Array{Base.UUID,1}, mode::Symbol) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:313
+ [8] _add_or_develop at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:298 [inlined]
+ [9] (::Pkg.Operations.var"#32#38"{Bool,Pkg.Operations.var"#44#46"{Pkg.Types.Context,Pkg.Types.PackageSpec,Pkg.Operations.var"#43#45"{Pkg.Types.Context,Pkg.Types.PackageSpec,Array{String,1},Cmd}},Pkg.Types.Context,Pkg.Types.PackageSpec,Pkg.Types.Context,Set{Base.UUID},Set{Base.UUID},Array{Pkg.Types.PackageSpec,1}})(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:492
+ [10] mktempdir(::Pkg.Operations.var"#32#38"{Bool,Pkg.Operations.var"#44#46"{Pkg.Types.Context,Pkg.Types.PackageSpec,Pkg.Operations.var"#43#45"{Pkg.Types.Context,Pkg.Types.PackageSpec,Array{String,1},Cmd}},Pkg.Types.Context,Pkg.Types.PackageSpec,Pkg.Types.Context,Set{Base.UUID},Set{Base.UUID},Array{Pkg.Types.PackageSpec,1}}, ::String; prefix::String) at ./file.jl:669
+ [11] mktempdir at ./file.jl:667 [inlined] (repeats 2 times)
+ [12] with_dependencies_loadable_at_toplevel(::Pkg.Operations.var"#44#46"{Pkg.Types.Context,Pkg.Types.PackageSpec,Pkg.Operations.var"#43#45"{Pkg.Types.Context,Pkg.Types.PackageSpec,Array{String,1},Cmd}}, ::Pkg.Types.Context, ::Pkg.Types.PackageSpec; might_need_to_resolve::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:471
+ [13] backwards_compatibility_for_test(::Pkg.Types.Context, ::Pkg.Types.PackageSpec, ::String, ::Array{String,1}, ::Bool; julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:559
+ [14] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1357
+ [15] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [16] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [17] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [18] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [19] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [20] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [21] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [22] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [23] top-level scope at none:10

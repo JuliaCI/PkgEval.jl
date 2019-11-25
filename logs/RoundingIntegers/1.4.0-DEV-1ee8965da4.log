@@ -1,0 +1,96 @@
+ Resolving package versions...
+ Installed RoundingIntegers ─ v0.2.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [d5f540fe] + RoundingIntegers v0.2.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [d5f540fe] + RoundingIntegers v0.2.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+   Testing RoundingIntegers
+Status `/tmp/jl_FXW4Kd/Manifest.toml`
+  [d5f540fe] RoundingIntegers v0.2.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+Skipping Base.active_repl
+Skipping Base.active_repl_backend
+Basics: Error During Test at /root/.julia/packages/RoundingIntegers/5Xy7e/test/runtests.jl:47
+  Test threw exception
+  Expression: r ÷ r === RInt(1)
+  MethodError: no method matching div(::RInt64, ::RInt64, ::RoundingMode{:ToZero})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::Integer, ::Integer, !Matched::Union{RoundingMode{:Nearest}, RoundingMode{:NearestTiesAway}, RoundingMode{:NearestTiesUp}}) at div.jl:198
+    ...
+  Stacktrace:
+   [1] div(::RInt64, ::RInt64, ::RoundingMode{:ToZero}) at ./div.jl:235
+   [2] div(::RInt64, ::RInt64) at ./div.jl:35
+   [3] macro expansion at /root/.julia/packages/RoundingIntegers/5Xy7e/test/runtests.jl:47 [inlined]
+   [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [5] top-level scope at /root/.julia/packages/RoundingIntegers/5Xy7e/test/runtests.jl:6
+  
+Basics: Error During Test at /root/.julia/packages/RoundingIntegers/5Xy7e/test/runtests.jl:50
+  Test threw exception
+  Expression: fld(r, r) === 1
+  MethodError: no method matching div(::RInt64, ::RInt64, ::RoundingMode{:ToZero})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::Integer, ::Integer, !Matched::Union{RoundingMode{:Nearest}, RoundingMode{:NearestTiesAway}, RoundingMode{:NearestTiesUp}}) at div.jl:198
+    ...
+  Stacktrace:
+   [1] div(::RInt64, ::RInt64, ::RoundingMode{:ToZero}) at ./div.jl:235
+   [2] div(::RInt64, ::RInt64, ::RoundingMode{:Down}) at ./div.jl:248
+   [3] fld(::RInt64, ::RInt64) at ./div.jl:214
+   [4] macro expansion at /root/.julia/packages/RoundingIntegers/5Xy7e/test/runtests.jl:50 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [6] top-level scope at /root/.julia/packages/RoundingIntegers/5Xy7e/test/runtests.jl:6
+  
+Basics: Error During Test at /root/.julia/packages/RoundingIntegers/5Xy7e/test/runtests.jl:51
+  Test threw exception
+  Expression: cld(r, r) === 1
+  MethodError: no method matching div(::RInt64, ::RInt64, ::RoundingMode{:ToZero})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::Integer, ::Integer, !Matched::Union{RoundingMode{:Nearest}, RoundingMode{:NearestTiesAway}, RoundingMode{:NearestTiesUp}}) at div.jl:198
+    ...
+  Stacktrace:
+   [1] div(::RInt64, ::RInt64, ::RoundingMode{:ToZero}) at ./div.jl:235
+   [2] div(::RInt64, ::RInt64, ::RoundingMode{:Up}) at ./div.jl:258
+   [3] cld(::RInt64, ::RInt64) at ./div.jl:215
+   [4] macro expansion at /root/.julia/packages/RoundingIntegers/5Xy7e/test/runtests.jl:51 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [6] top-level scope at /root/.julia/packages/RoundingIntegers/5Xy7e/test/runtests.jl:6
+  
+Test Summary: | Pass  Error  Total
+Basics        |   42      3     45
+ERROR: LoadError: Some tests did not pass: 42 passed, 0 failed, 3 errored, 0 broken.
+in expression starting at /root/.julia/packages/RoundingIntegers/5Xy7e/test/runtests.jl:5
+ERROR: Package RoundingIntegers errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

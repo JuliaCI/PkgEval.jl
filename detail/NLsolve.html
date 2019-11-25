@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="NLsolve">NLsolve</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#NLsolve">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 15 hours ago and took 6 minutes, 35 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/NLsolve/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed NaNMath ────────────── v0.3.3
+ Installed Requires ───────────── v0.5.2
+ Installed DiffEqDiffTools ────── v1.4.0
+ Installed ArrayInterface ─────── v1.2.1
+ Installed DiffRules ──────────── v0.1.0
+ Installed CommonSubexpressions ─ v0.2.0
+ Installed NLsolve ────────────── v4.2.0
+ Installed BinaryProvider ─────── v0.5.8
+ Installed Reexport ───────────── v0.2.0
+ Installed URIParser ──────────── v0.4.0
+ Installed DiffResults ────────── v0.0.4
+ Installed BinDeps ────────────── v0.8.10
+ Installed Distances ──────────── v0.8.2
+ Installed LineSearches ───────── v7.0.1
+ Installed SpecialFunctions ───── v0.8.0
+ Installed StaticArrays ───────── v0.12.1
+ Installed NLSolversBase ──────── v7.5.0
+ Installed Calculus ───────────── v0.5.1
+ Installed Parameters ─────────── v0.12.0
+ Installed ForwardDiff ────────── v0.10.6
+ Installed Compat ─────────────── v2.2.0
+ Installed OrderedCollections ─── v1.1.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [2774e3e8] + NLsolve v4.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [b4f34e82] + Distances v0.8.2
+  [f6369f11] + ForwardDiff v0.10.6
+  [d3d80556] + LineSearches v7.0.1
+  [d41bc354] + NLSolversBase v7.5.0
+  [2774e3e8] + NLsolve v4.2.0
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing NLsolve
+ Resolving package versions...
+ Installed TreeViews ─────────────────── v0.3.0
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed DocStringExtensions ───────── v0.8.1
+ Installed IterativeSolvers ──────────── v0.8.1
+ Installed DiffEqBase ────────────────── v6.6.0
+ Installed TableTraits ───────────────── v1.0.0
+ Installed RecursiveArrayTools ───────── v1.0.2
+ Installed MacroTools ────────────────── v0.5.2
+ Installed MuladdMacro ───────────────── v0.2.1
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed FunctionWrappers ──────────── v1.0.0
+ Installed RecursiveFactorization ────── v0.1.0
+ Installed Roots ─────────────────────── v0.8.3
+ Installed DataStructures ────────────── v0.17.6
+    Status `&#x2F;tmp&#x2F;tmp0V5PiB&#x2F;Manifest.toml`
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [864edb3b] DataStructures v0.17.6
+  [2b5f629d] DiffEqBase v6.6.0
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [ffbed154] DocStringExtensions v0.8.1
+  [f6369f11] ForwardDiff v0.10.6
+  [069b7b12] FunctionWrappers v1.0.0
+  [42fd0dbc] IterativeSolvers v0.8.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [d3d80556] LineSearches v7.0.1
+  [1914dd2f] MacroTools v0.5.2
+  [46d2c3a1] MuladdMacro v0.2.1
+  [d41bc354] NLSolversBase v7.5.0
+  [2774e3e8] NLsolve v4.2.0
+  [77ba4419] NaNMath v0.3.3
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [f2c3362d] RecursiveFactorization v0.1.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [f2b01f46] Roots v0.8.3
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [3783bdb8] TableTraits v1.0.0
+  [a2a6695c] TreeViews v0.3.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Running tests:
+Test Summary: | Pass  Total
+2by2          |   23     23
+Test Summary: | Pass  Total
+linsolve      |    3      3
+Function                                          Dim    NFEV    NJEV   Final inf-norm     total time
+--------------------------------------------------------------------------------------
+Rosenbrock-trust_region                             2      30      17     1.310063e-13   4.136402e-01
+Rosenbrock-trust_region-AD                          2      30      17     0.000000e+00   4.136402e-01
+Rosenbrock-newton                                   2       3       2     2.479261e-10   1.193160e-04
+Rosenbrock-newton-AD                                2       3       2     8.881784e-15   1.193160e-04
+Rosenbrock-broyden                                  2     697       0     1.038196e-09   5.686966e-01
+Powell singular-trust_region                        4      17      17     2.945101e-09   2.113622e-01
+Powell singular-trust_region-AD                     4      17      17     2.945101e-09   2.113622e-01
+Powell singular-newton                              4      17      16     2.945101e-09   1.328920e-04
+Powell singular-newton-AD                           4      17      16     2.945101e-09   1.328920e-04
+Powell badly scaled-trust_region                    2      15      14     7.051693e-12   1.901495e-01
+Powell badly scaled-trust_region-AD                 2      15      14     7.051582e-12   1.901495e-01
+Powell badly scaled-newton                          2      13      12     1.573319e-11   1.280730e-04
+Powell badly scaled-newton-AD                       2      13      12     1.573341e-11   1.280730e-04
+Powell badly scaled-broyden                         2    1283       0     7.098400e-10   1.703685e-03
+Wood-trust_region                                   4      19      15     1.152257e-10   2.509289e-01
+Wood-trust_region-AD                                4      19      15     1.152340e-10   2.509289e-01
+Wood-newton                                         4      15      14     4.241052e-14   1.336130e-04
+Wood-newton-AD                                      4      15      14     4.884981e-14   1.336130e-04
+Helical Valley-trust_region                         3      10       9     1.110223e-14   2.565832e-01
+Helical Valley-trust_region-AD                      3      10       9     1.110223e-14   2.565832e-01
+Helical Valley-newton                               3      11      10     1.146398e-14   1.028050e-04
+Helical Valley-newton-AD                            3      11      10     1.145685e-14   1.028050e-04
+Helical Valley-broyden                              3      94       0     1.555335e-09   3.184650e-04
+Watson-trust_region                                 6      18      16     2.827721e-13   2.452215e-01
+Watson-trust_region-AD                              6      18      16     2.958363e-13   2.452215e-01
+Watson-newton                                       6      13      12     3.192030e-13   2.491230e-04
+Watson-newton-AD                                    6      13      12     3.107306e-13   2.491230e-04
+Watson-trust_region                                 9      17      17     1.646805e-12   6.331020e-04
+Watson-trust_region-AD                              9      17      17     1.619032e-12   6.331020e-04
+Watson-newton                                       9      14      13     7.178719e-15   5.078940e-04
+Watson-newton-AD                                    9      14      13     1.418956e-14   5.078940e-04
+Chebyquad-trust_region                              5       6       5     9.143921e-09   2.511205e-01
+Chebyquad-trust_region-AD                           5       6       5     9.143861e-09   2.511205e-01
+Chebyquad-broyden                                   5     544       0     2.387715e-09   7.994580e-04
+Chebyquad-trust_region                              6      12       8     8.049117e-16   2.175530e-04
+Chebyquad-trust_region-AD                           6      12       8     7.320533e-16   2.175530e-04
+Chebyquad-broyden                                   6     531       0     4.589862e-09   8.918840e-04
+Chebyquad-trust_region                              7       8       6     6.328884e-10   1.400760e-04
+Chebyquad-trust_region-AD                           7       8       6     6.329061e-10   1.400760e-04
+Chebyquad-broyden                                   7     482       0     1.632946e-10   8.197960e-04
+Chebyquad-trust_region                              9      13       8     1.620579e-14   1.786990e-04
+Chebyquad-trust_region-AD                           9      13       8     1.641395e-14   1.786990e-04
+Chebyquad-broyden                                   9     844       0     9.680938e-09   1.567277e-03
+Brown almost-linear-trust_region                   10       5       5     3.382332e-09   3.647639e-01
+Brown almost-linear-trust_region-AD                10       5       5     3.382330e-09   3.647639e-01
+Brown almost-linear-broyden                        10      41       0     8.740535e-10   3.182240e-04
+Brown almost-linear-trust_region                   30       4       4     8.883189e-09   1.990384e-02
+Brown almost-linear-trust_region-AD                30       4       4     8.883263e-09   1.990384e-02
+Brown almost-linear-broyden                        30      45       0     5.158425e-09   4.813240e-04
+Brown almost-linear-trust_region                   40       2       2     7.242883e-10   4.279118e-02
+Brown almost-linear-trust_region-AD                40       4       4     1.570835e-09   4.279118e-02
+Brown almost-linear-broyden                        40      64       0     2.491596e-10   7.474900e-04
+Discrete boundary value-trust_region               10       4       4     2.636780e-16   2.207052e-01
+Discrete boundary value-trust_region-AD            10       4       4     2.636780e-16   2.207052e-01
+Discrete boundary value-newton                     10       4       3     2.636780e-16   9.888800e-05
+Discrete boundary value-newton-AD                  10       4       3     2.636780e-16   9.888800e-05
+Discrete boundary value-broyden                    10     334       0     4.344250e-09   8.178030e-04
+Discrete integral equation-trust_region             1       4       4     8.537615e-14   2.490322e-01
+Discrete integral equation-trust_region-AD          1       4       4     8.537615e-14   2.490322e-01
+Discrete integral equation-newton                   1       4       3     8.537615e-14   6.098600e-05
+Discrete integral equation-newton-AD                1       4       3     8.537615e-14   6.098600e-05
+Discrete integral equation-broyden                  1       5       0     4.608538e-10   1.120920e-04
+Discrete integral equation-trust_region            10       4       4     2.720046e-15   2.286950e-04
+Discrete integral equation-trust_region-AD         10       4       4     2.747802e-15   2.286950e-04
+Discrete integral equation-newton                  10       4       3     2.720046e-15   1.015930e-04
+Discrete integral equation-newton-AD               10       4       3     2.747802e-15   1.015930e-04
+Discrete integral equation-broyden                 10       6       0     4.266497e-09   1.882680e-04
+Trigonometric-trust_region                         10      14       8     1.204281e-10   3.691772e-01
+Trigonometric-trust_region-AD                      10      14       8     1.204299e-10   3.691772e-01
+Variably dimensioned-trust_region                  10      15      15     2.868483e-12   2.084551e-01
+Variably dimensioned-trust_region-AD               10      15      15     1.323497e-12   2.084551e-01
+Variably dimensioned-newton                        10      15      14     2.868483e-12   1.864140e-04
+Variably dimensioned-newton-AD                     10      15      14     1.323497e-12   1.864140e-04
+Variably dimensioned-broyden                       10    1804       0     0.000000e+00   4.390788e-03
+Broyden tridiagonal-trust_region                   10       5       5     7.548397e-10   2.278182e-01
+Broyden tridiagonal-trust_region-AD                10       5       5     7.548402e-10   2.278182e-01
+Broyden tridiagonal-newton                         10       5       4     7.548397e-10   7.369000e-05
+Broyden tridiagonal-newton-AD                      10       5       4     7.548402e-10   7.369000e-05
+Broyden tridiagonal-broyden                        10     229       0     7.176069e-09   4.583800e-04
+Broyden banded-trust_region                        10       6       6     9.359472e-09   2.088314e-01
+Broyden banded-trust_region-AD                     10       6       6     9.359466e-09   2.088314e-01
+Broyden banded-newton                              10       6       5     9.359472e-09   1.192860e-04
+Broyden banded-newton-AD                           10       6       5     9.359466e-09   1.192860e-04
+Broyden banded-broyden                             10     171       0     9.799625e-09   5.363680e-04
+Test Summary: | Pass  Total
+minpack       |   84     84
+Test Summary: | Pass  Broken  Total
+singular case |    6       2      8
+Test Summary:     | Pass  Total
+finite_difference |    1      1
+Iter     f(x) inf-norm    Step 2-norm 
+------   --------------   --------------
+     1     1.494000e-01              NaN
+     2     1.403961e-01     1.971344e-06
+     3     2.416811e-02     6.187459e-08
+     4     2.207036e-02     5.105990e-08
+     5     1.221892e-03     1.542135e-10
+     6     1.597480e-03     2.635656e-10
+     7     3.048944e-07     9.296098e-18
+     8     1.620505e-08     2.629202e-20
+     9     8.668621e-13     7.519430e-29
+Test Summary: | Pass  Total
+iface         |   11     11
+Test Summary:        | Pass  Total
+incomplete objective |    2      2
+Test Summary:     | Pass  Total
+already converged |    6      6
+Test Summary: | Pass  Total
+autodiff      |    2      2
+Test Summary: | Pass  Total
+mcp_josephy   |   18     18
+Test Summary: |
+difficult_mcp | No tests
+Test Summary: | Pass  Total
+sparse        |   10     10
+Test Summary: | Pass  Total
+throws        |    4      4
+Test Summary: | Pass  Total
+f_g_counts    |    4      4
+Test Summary: | Pass  Total
+no linesearch |    1      1
+Test Summary: | Pass  Total
+abstractarray |   32     32
+Test Summary: | Pass  Total
+complex       |   16     16
+Test Summary: | Pass  Total
+caches        |    3      3
+Test Summary: | Pass  Total
+fixed points  |   18     18
+   Testing NLsolve tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 15 hours ago and took 5 minutes, 20 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/NLsolve/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Requires ───────────── v0.5.2
+ Installed URIParser ──────────── v0.4.0
+ Installed Reexport ───────────── v0.2.0
+ Installed NLSolversBase ──────── v7.5.0
+ Installed CommonSubexpressions ─ v0.2.0
+ Installed LineSearches ───────── v7.0.1
+ Installed NLsolve ────────────── v4.2.0
+ Installed BinaryProvider ─────── v0.5.8
+ Installed ArrayInterface ─────── v1.2.1
+ Installed Calculus ───────────── v0.5.1
+ Installed DiffRules ──────────── v0.1.0
+ Installed Compat ─────────────── v2.2.0
+ Installed DiffEqDiffTools ────── v1.4.0
+ Installed ForwardDiff ────────── v0.10.6
+ Installed OrderedCollections ─── v1.1.0
+ Installed StaticArrays ───────── v0.12.1
+ Installed NaNMath ────────────── v0.3.3
+ Installed Parameters ─────────── v0.12.0
+ Installed Distances ──────────── v0.8.2
+ Installed BinDeps ────────────── v0.8.10
+ Installed DiffResults ────────── v0.0.4
+ Installed SpecialFunctions ───── v0.8.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [2774e3e8] + NLsolve v4.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [b4f34e82] + Distances v0.8.2
+  [f6369f11] + ForwardDiff v0.10.6
+  [d3d80556] + LineSearches v7.0.1
+  [d41bc354] + NLSolversBase v7.5.0
+  [2774e3e8] + NLsolve v4.2.0
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing NLsolve
+ Resolving package versions...
+ Installed TreeViews ─────────────────── v0.3.0
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed TableTraits ───────────────── v1.0.0
+ Installed MuladdMacro ───────────────── v0.2.1
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed DataStructures ────────────── v0.17.6
+ Installed IterativeSolvers ──────────── v0.8.1
+ Installed DiffEqBase ────────────────── v6.6.0
+ Installed FunctionWrappers ──────────── v1.0.0
+ Installed RecursiveArrayTools ───────── v1.0.2
+ Installed RecursiveFactorization ────── v0.1.0
+ Installed MacroTools ────────────────── v0.5.2
+ Installed DocStringExtensions ───────── v0.8.1
+ Installed Roots ─────────────────────── v0.8.3
+    Status `&#x2F;tmp&#x2F;jl_SNAp9q&#x2F;Manifest.toml`
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [864edb3b] DataStructures v0.17.6
+  [2b5f629d] DiffEqBase v6.6.0
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [ffbed154] DocStringExtensions v0.8.1
+  [f6369f11] ForwardDiff v0.10.6
+  [069b7b12] FunctionWrappers v1.0.0
+  [42fd0dbc] IterativeSolvers v0.8.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [d3d80556] LineSearches v7.0.1
+  [1914dd2f] MacroTools v0.5.2
+  [46d2c3a1] MuladdMacro v0.2.1
+  [d41bc354] NLSolversBase v7.5.0
+  [2774e3e8] NLsolve v4.2.0
+  [77ba4419] NaNMath v0.3.3
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [f2c3362d] RecursiveFactorization v0.1.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [f2b01f46] Roots v0.8.3
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [3783bdb8] TableTraits v1.0.0
+  [a2a6695c] TreeViews v0.3.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Running tests:
+Test Summary: | Pass  Total
+2by2          |   23     23
+Test Summary: | Pass  Total
+linsolve      |    3      3
+Function                                          Dim    NFEV    NJEV   Final inf-norm     total time
+--------------------------------------------------------------------------------------
+Rosenbrock-trust_region                             2      30      17     1.310063e-13   4.065768e-01
+Rosenbrock-trust_region-AD                          2      30      17     0.000000e+00   4.065768e-01
+Rosenbrock-newton                                   2       3       2     2.479261e-10   7.904000e-05
+Rosenbrock-newton-AD                                2       3       2     8.881784e-15   7.904000e-05
+Rosenbrock-broyden                                  2     697       0     1.038196e-09   5.904027e-01
+Powell singular-trust_region                        4      17      17     2.945101e-09   2.223487e-01
+Powell singular-trust_region-AD                     4      17      17     2.945101e-09   2.223487e-01
+Powell singular-newton                              4      17      16     2.945101e-09   1.169220e-04
+Powell singular-newton-AD                           4      17      16     2.945101e-09   1.169220e-04
+Powell badly scaled-trust_region                    2      15      14     7.051693e-12   2.130339e-01
+Powell badly scaled-trust_region-AD                 2      15      14     7.051582e-12   2.130339e-01
+Powell badly scaled-newton                          2      13      12     1.573319e-11   1.054710e-04
+Powell badly scaled-newton-AD                       2      13      12     1.573341e-11   1.054710e-04
+Powell badly scaled-broyden                         2    1283       0     7.098400e-10   4.673788e-03
+Wood-trust_region                                   4      19      15     1.152257e-10   2.248650e-01
+Wood-trust_region-AD                                4      19      15     1.152340e-10   2.248650e-01
+Wood-newton                                         4      15      14     4.241052e-14   1.096780e-04
+Wood-newton-AD                                      4      15      14     4.884981e-14   1.096780e-04
+Helical Valley-trust_region                         3      10       9     1.110223e-14   2.179491e-01
+Helical Valley-trust_region-AD                      3      10       9     1.110223e-14   2.179491e-01
+Helical Valley-newton                               3      11      10     1.146398e-14   8.663500e-05
+Helical Valley-newton-AD                            3      11      10     1.145685e-14   8.663500e-05
+Helical Valley-broyden                              3      94       0     1.555335e-09   1.141408e-02
+Watson-trust_region                                 6      18      16     2.827721e-13   2.679434e-01
+Watson-trust_region-AD                              6      18      16     2.958363e-13   2.679434e-01
+Watson-newton                                       6      13      12     3.192030e-13   2.482510e-04
+Watson-newton-AD                                    6      13      12     3.107306e-13   2.482510e-04
+Watson-trust_region                                 9      17      17     1.646805e-12   6.467480e-04
+Watson-trust_region-AD                              9      17      17     1.619032e-12   6.467480e-04
+Watson-newton                                       9      14      13     7.178719e-15   4.529510e-04
+Watson-newton-AD                                    9      14      13     1.418956e-14   4.529510e-04
+Chebyquad-trust_region                              5       6       5     9.143921e-09   2.625147e-01
+Chebyquad-trust_region-AD                           5       6       5     9.143861e-09   2.625147e-01
+Chebyquad-broyden                                   5     544       0     2.387715e-09   1.422793e-03
+Chebyquad-trust_region                              6      12       8     8.049117e-16   1.445340e-04
+Chebyquad-trust_region-AD                           6      12       8     7.320533e-16   1.445340e-04
+Chebyquad-broyden                                   6     531       0     4.589862e-09   1.251938e-03
+Chebyquad-trust_region                              7       8       6     6.328884e-10   1.396050e-04
+Chebyquad-trust_region-AD                           7       8       6     6.329061e-10   1.396050e-04
+Chebyquad-broyden                                   7     482       0     1.632946e-10   1.313726e-03
+Chebyquad-trust_region                              9      13       8     1.620579e-14   1.730580e-04
+Chebyquad-trust_region-AD                           9      13       8     1.641395e-14   1.730580e-04
+Chebyquad-broyden                                   9     844       0     9.680938e-09   1.506951e-02
+Brown almost-linear-trust_region                   10       5       5     3.382332e-09   3.024849e-01
+Brown almost-linear-trust_region-AD                10       5       5     3.382330e-09   3.024849e-01
+Brown almost-linear-broyden                        10      41       0     8.740535e-10   7.026950e-04
+Brown almost-linear-trust_region                   30       4       4     8.883189e-09   8.633401e-02
+Brown almost-linear-trust_region-AD                30       4       4     8.883263e-09   8.633401e-02
+Brown almost-linear-broyden                        30      45       0     5.158425e-09   9.232240e-04
+Brown almost-linear-trust_region                   40       2       2     7.242883e-10   5.008345e-02
+Brown almost-linear-trust_region-AD                40       4       4     1.570835e-09   5.008345e-02
+Brown almost-linear-broyden                        40      64       0     2.491596e-10   1.267317e-03
+Discrete boundary value-trust_region               10       4       4     2.636780e-16   2.679733e-01
+Discrete boundary value-trust_region-AD            10       4       4     2.636780e-16   2.679733e-01
+Discrete boundary value-newton                     10       4       3     2.636780e-16   8.642500e-05
+Discrete boundary value-newton-AD                  10       4       3     2.636780e-16   8.642500e-05
+Discrete boundary value-broyden                    10     334       0     4.344250e-09   1.246377e-03
+Discrete integral equation-trust_region             1       4       4     8.537615e-14   4.018632e-01
+Discrete integral equation-trust_region-AD          1       4       4     8.537615e-14   4.018632e-01
+Discrete integral equation-newton                   1       4       3     8.537615e-14   6.610500e-05
+Discrete integral equation-newton-AD                1       4       3     8.537615e-14   6.610500e-05
+Discrete integral equation-broyden                  1       5       0     4.608538e-10   1.379820e-04
+Discrete integral equation-trust_region            10       4       4     2.720046e-15   1.584910e-04
+Discrete integral equation-trust_region-AD         10       4       4     2.747802e-15   1.584910e-04
+Discrete integral equation-newton                  10       4       3     2.720046e-15   1.220910e-04
+Discrete integral equation-newton-AD               10       4       3     2.747802e-15   1.220910e-04
+Discrete integral equation-broyden                 10       6       0     4.266497e-09   2.194770e-04
+Trigonometric-trust_region                         10      14       8     1.204281e-10   2.332443e-01
+Trigonometric-trust_region-AD                      10      14       8     1.204299e-10   2.332443e-01
+Variably dimensioned-trust_region                  10      15      15     2.868483e-12   2.358845e-01
+Variably dimensioned-trust_region-AD               10      15      15     1.323497e-12   2.358845e-01
+Variably dimensioned-newton                        10      15      14     2.868483e-12   2.075340e-04
+Variably dimensioned-newton-AD                     10      15      14     1.323497e-12   2.075340e-04
+Variably dimensioned-broyden                       10    1804       0     0.000000e+00   9.368396e-03
+Broyden tridiagonal-trust_region                   10       5       5     7.548397e-10   2.075639e-01
+Broyden tridiagonal-trust_region-AD                10       5       5     7.548402e-10   2.075639e-01
+Broyden tridiagonal-newton                         10       5       4     7.548397e-10   2.089060e-04
+Broyden tridiagonal-newton-AD                      10       5       4     7.548402e-10   2.089060e-04
+Broyden tridiagonal-broyden                        10     229       0     7.176069e-09   1.293207e-03
+Broyden banded-trust_region                        10       6       6     9.359472e-09   2.479747e-01
+Broyden banded-trust_region-AD                     10       6       6     9.359466e-09   2.479747e-01
+Broyden banded-newton                              10       6       5     9.359472e-09   1.143070e-04
+Broyden banded-newton-AD                           10       6       5     9.359466e-09   1.143070e-04
+Broyden banded-broyden                             10     171       0     9.799625e-09   1.150245e-03
+Test Summary: | Pass  Total
+minpack       |   84     84
+Test Summary: | Pass  Broken  Total
+singular case |    6       2      8
+Test Summary:     | Pass  Total
+finite_difference |    1      1
+Iter     f(x) inf-norm    Step 2-norm 
+------   --------------   --------------
+     1     1.494000e-01              NaN
+     2     1.403961e-01     1.971344e-06
+     3     2.416811e-02     6.187459e-08
+     4     2.207036e-02     5.105990e-08
+     5     1.221892e-03     1.542135e-10
+     6     1.597480e-03     2.635656e-10
+     7     3.048944e-07     9.296098e-18
+     8     1.620505e-08     2.629202e-20
+     9     8.668621e-13     7.519430e-29
+Test Summary: | Pass  Total
+iface         |   11     11
+Test Summary:        | Pass  Total
+incomplete objective |    2      2
+Test Summary:     | Pass  Total
+already converged |    6      6
+Test Summary: | Pass  Total
+autodiff      |    2      2
+Test Summary: | Pass  Total
+mcp_josephy   |   18     18
+Test Summary: |
+difficult_mcp | No tests
+Test Summary: | Pass  Total
+sparse        |   10     10
+Test Summary: | Pass  Total
+throws        |    4      4
+Test Summary: | Pass  Total
+f_g_counts    |    4      4
+Test Summary: | Pass  Total
+no linesearch |    1      1
+Test Summary: | Pass  Total
+abstractarray |   32     32
+Test Summary: | Pass  Total
+complex       |   16     16
+Test Summary: | Pass  Total
+caches        |    3      3
+Test Summary: | Pass  Total
+fixed points  |   18     18
+   Testing NLsolve tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 14 hours ago and took 5 minutes, 14 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/NLsolve/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed DiffEqDiffTools ────── v1.4.0
+ Installed ArrayInterface ─────── v1.2.1
+ Installed Distances ──────────── v0.8.2
+ Installed DiffResults ────────── v0.0.4
+ Installed BinDeps ────────────── v0.8.10
+ Installed LineSearches ───────── v7.0.1
+ Installed NLsolve ────────────── v4.2.0
+ Installed ForwardDiff ────────── v0.10.6
+ Installed Reexport ───────────── v0.2.0
+ Installed URIParser ──────────── v0.4.0
+ Installed Requires ───────────── v0.5.2
+ Installed NLSolversBase ──────── v7.5.0
+ Installed DiffRules ──────────── v0.1.0
+ Installed Parameters ─────────── v0.12.0
+ Installed Calculus ───────────── v0.5.1
+ Installed StaticArrays ───────── v0.12.1
+ Installed NaNMath ────────────── v0.3.3
+ Installed CommonSubexpressions ─ v0.2.0
+ Installed OrderedCollections ─── v1.1.0
+ Installed Compat ─────────────── v2.2.0
+ Installed SpecialFunctions ───── v0.8.0
+ Installed BinaryProvider ─────── v0.5.8
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [2774e3e8] + NLsolve v4.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [b4f34e82] + Distances v0.8.2
+  [f6369f11] + ForwardDiff v0.10.6
+  [d3d80556] + LineSearches v7.0.1
+  [d41bc354] + NLSolversBase v7.5.0
+  [2774e3e8] + NLsolve v4.2.0
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing NLsolve
+ Resolving package versions...
+ Installed TableTraits ───────────────── v1.0.0
+ Installed MacroTools ────────────────── v0.5.2
+ Installed RecursiveFactorization ────── v0.1.0
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed DiffEqBase ────────────────── v6.6.0
+ Installed IterativeSolvers ──────────── v0.8.1
+ Installed DataStructures ────────────── v0.17.6
+ Installed Roots ─────────────────────── v0.8.3
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed FunctionWrappers ──────────── v1.0.0
+ Installed RecursiveArrayTools ───────── v1.0.2
+ Installed MuladdMacro ───────────────── v0.2.1
+ Installed TreeViews ─────────────────── v0.3.0
+ Installed DocStringExtensions ───────── v0.8.1
+Status `&#x2F;tmp&#x2F;jl_4X0tcR&#x2F;Manifest.toml`
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [864edb3b] DataStructures v0.17.6
+  [2b5f629d] DiffEqBase v6.6.0
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [ffbed154] DocStringExtensions v0.8.1
+  [f6369f11] ForwardDiff v0.10.6
+  [069b7b12] FunctionWrappers v1.0.0
+  [42fd0dbc] IterativeSolvers v0.8.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [d3d80556] LineSearches v7.0.1
+  [1914dd2f] MacroTools v0.5.2
+  [46d2c3a1] MuladdMacro v0.2.1
+  [d41bc354] NLSolversBase v7.5.0
+  [2774e3e8] NLsolve v4.2.0
+  [77ba4419] NaNMath v0.3.3
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [f2c3362d] RecursiveFactorization v0.1.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [f2b01f46] Roots v0.8.3
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [3783bdb8] TableTraits v1.0.0
+  [a2a6695c] TreeViews v0.3.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Running tests:
+Test Summary: | Pass  Total
+2by2          |   23     23
+Test Summary: | Pass  Total
+linsolve      |    3      3
+Function                                          Dim    NFEV    NJEV   Final inf-norm     total time
+--------------------------------------------------------------------------------------
+Rosenbrock-trust_region                             2      30      17     1.310063e-13   4.542954e-01
+Rosenbrock-trust_region-AD                          2      30      17     0.000000e+00   4.542954e-01
+Rosenbrock-newton                                   2       3       2     2.479261e-10   1.528700e-04
+Rosenbrock-newton-AD                                2       3       2     8.881784e-15   1.528700e-04
+Rosenbrock-broyden                                  2     697       0     1.038196e-09   8.142317e-01
+Powell singular-trust_region                        4      17      17     2.945101e-09   2.131305e-01
+Powell singular-trust_region-AD                     4      17      17     2.945101e-09   2.131305e-01
+Powell singular-newton                              4      17      16     2.945101e-09   1.987780e-04
+Powell singular-newton-AD                           4      17      16     2.945101e-09   1.987780e-04
+Powell badly scaled-trust_region                    2      15      14     7.051693e-12   3.378772e-01
+Powell badly scaled-trust_region-AD                 2      15      14     7.051582e-12   3.378772e-01
+Powell badly scaled-newton                          2      13      12     1.573319e-11   1.780780e-04
+Powell badly scaled-newton-AD                       2      13      12     1.573341e-11   1.780780e-04
+Powell badly scaled-broyden                         2    1283       0     7.098400e-10   7.159800e-04
+Wood-trust_region                                   4      19      15     1.152257e-10   2.824777e-01
+Wood-trust_region-AD                                4      19      15     1.152340e-10   2.824777e-01
+Wood-newton                                         4      15      14     4.241052e-14   2.172230e-04
+Wood-newton-AD                                      4      15      14     4.884981e-14   2.172230e-04
+Helical Valley-trust_region                         3      10       9     1.110223e-14   2.566473e-01
+Helical Valley-trust_region-AD                      3      10       9     1.110223e-14   2.566473e-01
+Helical Valley-newton                               3      11      10     1.146398e-14   1.749020e-04
+Helical Valley-newton-AD                            3      11      10     1.145685e-14   1.749020e-04
+Helical Valley-broyden                              3      94       0     1.555335e-09   1.811140e-04
+Watson-trust_region                                 6      18      16     2.827721e-13   3.407842e-01
+Watson-trust_region-AD                              6      18      16     2.958363e-13   3.407842e-01
+Watson-newton                                       6      13      12     3.192030e-13   2.679690e-04
+Watson-newton-AD                                    6      13      12     3.107306e-13   2.679690e-04
+Watson-trust_region                                 9      17      17     1.646805e-12   6.741600e-04
+Watson-trust_region-AD                              9      17      17     1.619032e-12   6.741600e-04
+Watson-newton                                       9      14      13     7.178719e-15   4.341840e-04
+Watson-newton-AD                                    9      14      13     1.418956e-14   4.341840e-04
+Chebyquad-trust_region                              5       6       5     9.143921e-09   2.407199e-01
+Chebyquad-trust_region-AD                           5       6       5     9.143861e-09   2.407199e-01
+Chebyquad-broyden                                   5     544       0     2.387715e-09   3.616060e-04
+Chebyquad-trust_region                              6      12       8     8.049117e-16   1.340740e-04
+Chebyquad-trust_region-AD                           6      12       8     7.320533e-16   1.340740e-04
+Chebyquad-broyden                                   6     531       0     4.589862e-09   4.898000e-04
+Chebyquad-trust_region                              7       8       6     6.328884e-10   1.180250e-04
+Chebyquad-trust_region-AD                           7       8       6     6.329061e-10   1.180250e-04
+Chebyquad-broyden                                   7     482       0     1.632946e-10   3.540530e-04
+Chebyquad-trust_region                              9      13       8     1.620579e-14   1.785390e-04
+Chebyquad-trust_region-AD                           9      13       8     1.641395e-14   1.785390e-04
+Chebyquad-broyden                                   9     844       0     9.680938e-09   7.432220e-04
+Brown almost-linear-trust_region                   10       5       5     3.382332e-09   4.325066e-01
+Brown almost-linear-trust_region-AD                10       5       5     3.382330e-09   4.325066e-01
+Brown almost-linear-broyden                        10      41       0     8.740535e-10   1.782780e-04
+Brown almost-linear-trust_region                   30       4       4     8.883189e-09   1.093882e-01
+Brown almost-linear-trust_region-AD                30       4       4     8.883263e-09   1.093882e-01
+Brown almost-linear-broyden                        30      45       0     5.158425e-09   3.548040e-04
+Brown almost-linear-trust_region                   40       2       2     7.242883e-10   4.729681e-02
+Brown almost-linear-trust_region-AD                40       4       4     1.570835e-09   4.729681e-02
+Brown almost-linear-broyden                        40      64       0     2.491596e-10   9.001900e-04
+Discrete boundary value-trust_region               10       4       4     2.636780e-16   2.182568e-01
+Discrete boundary value-trust_region-AD            10       4       4     2.636780e-16   2.182568e-01
+Discrete boundary value-newton                     10       4       3     2.636780e-16   1.374010e-04
+Discrete boundary value-newton-AD                  10       4       3     2.636780e-16   1.374010e-04
+Discrete boundary value-broyden                    10     334       0     4.344250e-09   4.149980e-04
+Discrete integral equation-trust_region             1       4       4     8.537615e-14   2.418502e-01
+Discrete integral equation-trust_region-AD          1       4       4     8.537615e-14   2.418502e-01
+Discrete integral equation-newton                   1       4       3     8.537615e-14   6.148600e-05
+Discrete integral equation-newton-AD                1       4       3     8.537615e-14   6.148600e-05
+Discrete integral equation-broyden                  1       5       0     4.608538e-10   5.290100e-05
+Discrete integral equation-trust_region            10       4       4     2.720046e-15   1.405070e-04
+Discrete integral equation-trust_region-AD         10       4       4     2.747802e-15   1.405070e-04
+Discrete integral equation-newton                  10       4       3     2.720046e-15   1.222320e-04
+Discrete integral equation-newton-AD               10       4       3     2.747802e-15   1.222320e-04
+Discrete integral equation-broyden                 10       6       0     4.266497e-09   7.901000e-05
+Trigonometric-trust_region                         10      14       8     1.204281e-10   2.897760e-01
+Trigonometric-trust_region-AD                      10      14       8     1.204299e-10   2.897760e-01
+Variably dimensioned-trust_region                  10      15      15     2.868483e-12   2.664985e-01
+Variably dimensioned-trust_region-AD               10      15      15     1.323497e-12   2.664985e-01
+Variably dimensioned-newton                        10      15      14     2.868483e-12   2.812150e-04
+Variably dimensioned-newton-AD                     10      15      14     1.323497e-12   2.812150e-04
+Variably dimensioned-broyden                       10    1804       0     0.000000e+00   1.774812e-03
+Broyden tridiagonal-trust_region                   10       5       5     7.548397e-10   2.733419e-01
+Broyden tridiagonal-trust_region-AD                10       5       5     7.548402e-10   2.733419e-01
+Broyden tridiagonal-newton                         10       5       4     7.548397e-10   1.887790e-04
+Broyden tridiagonal-newton-AD                      10       5       4     7.548402e-10   1.887790e-04
+Broyden tridiagonal-broyden                        10     229       0     7.176069e-09   2.385630e-04
+Broyden banded-trust_region                        10       6       6     9.359472e-09   2.588353e-01
+Broyden banded-trust_region-AD                     10       6       6     9.359466e-09   2.588353e-01
+Broyden banded-newton                              10       6       5     9.359472e-09   1.483320e-04
+Broyden banded-newton-AD                           10       6       5     9.359466e-09   1.483320e-04
+Broyden banded-broyden                             10     171       0     9.799625e-09   3.013330e-04
+Test Summary: | Pass  Total
+minpack       |   84     84
+Test Summary: | Pass  Broken  Total
+singular case |    6       2      8
+Test Summary:     | Pass  Total
+finite_difference |    1      1
+Iter     f(x) inf-norm    Step 2-norm 
+------   --------------   --------------
+     1     1.494000e-01              NaN
+     2     1.403961e-01     1.971344e-06
+     3     2.416811e-02     6.187459e-08
+     4     2.207036e-02     5.105990e-08
+     5     1.221892e-03     1.542135e-10
+     6     1.597480e-03     2.635656e-10
+     7     3.048944e-07     9.296098e-18
+     8     1.620505e-08     2.629202e-20
+     9     8.668621e-13     7.519430e-29
+Test Summary: | Pass  Total
+iface         |   11     11
+Test Summary:        | Pass  Total
+incomplete objective |    2      2
+Test Summary:     | Pass  Total
+already converged |    6      6
+Test Summary: | Pass  Total
+autodiff      |    2      2
+Test Summary: | Pass  Total
+mcp_josephy   |   18     18
+Test Summary: |
+difficult_mcp | No tests
+Test Summary: | Pass  Total
+sparse        |   10     10
+Test Summary: | Pass  Total
+throws        |    4      4
+Test Summary: | Pass  Total
+f_g_counts    |    4      4
+Test Summary: | Pass  Total
+no linesearch |    1      1
+Test Summary: | Pass  Total
+abstractarray |   32     32
+Test Summary: | Pass  Total
+complex       |   16     16
+Test Summary: | Pass  Total
+caches        |    3      3
+Test Summary: | Pass  Total
+fixed points  |   18     18
+   Testing NLsolve tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

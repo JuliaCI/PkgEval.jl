@@ -1,0 +1,31 @@
+ Resolving package versions...
+ Installed DevIL ─ v0.5.0
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [01638602] + DevIL v0.5.0
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [01638602] + DevIL v0.5.0
+  [8f399da3] + Libdl 
+  Building DevIL → `~/.julia/packages/DevIL/J5xvy/deps/build.log`
+[ Info: No changes
+┌ Error: Error building `DevIL`: 
+│ ERROR: LoadError: IOError: could not spawn `sudo apt-get install libdevil1c2`: no such file or directory (ENOENT)
+│ Stacktrace:
+│  [1] _spawn_primitive(::String, ::Cmd, ::Array{Any,1}) at ./process.jl:401
+│  [2] setup_stdios(::getfield(Base, Symbol("##526#527")){Cmd}, ::Array{Any,1}) at ./process.jl:414
+│  [3] _spawn at ./process.jl:413 [inlined]
+│  [4] #run#536(::Bool, ::typeof(run), ::Cmd) at ./process.jl:727
+│  [5] run(::Cmd) at ./process.jl:726
+│  [6] top-level scope at /root/.julia/packages/DevIL/J5xvy/deps/build.jl:25
+│  [7] include at ./boot.jl:328 [inlined]
+│  [8] include_relative(::Module, ::String) at ./loading.jl:1094
+│  [9] include(::Module, ::String) at ./Base.jl:31
+│  [10] include(::String) at ./client.jl:431
+│  [11] top-level scope at none:5
+│ in expression starting at /root/.julia/packages/DevIL/J5xvy/deps/build.jl:24
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:647
+   Testing DevIL
+[ Info: No changes
+    Status `/tmp/jl_lJ39rn/Manifest.toml`
+  [01638602] DevIL v0.5.0
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+   Testing DevIL tests passed 

@@ -1,0 +1,69 @@
+ Resolving package versions...
+ Installed PushVectors ─ v0.2.0
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [36b54c61] + PushVectors v0.2.0
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [36b54c61] + PushVectors v0.2.0
+   Testing PushVectors
+ Resolving package versions...
+ Installed Parsers ──────── v0.3.10
+ Installed JSON ─────────── v0.21.0
+ Installed BenchmarkTools ─ v0.4.3
+[ Info: No changes
+    Status `/tmp/jl_IUxpVL/Manifest.toml`
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [682c06a0] JSON v0.21.0
+  [69de0a69] Parsers v0.3.10
+  [36b54c61] PushVectors v0.2.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Test Summary:                | Pass  Total
+implementation sanity checks |   20     20
+Test Summary: | Pass  Total
+append!       | 2000   2000
+┌ Info: benchmarks
+│   T_PushVector = 6.0244e-5
+└   T_Vector = 9.2596e-5
+┌ Info: benchmarks
+│   A_PushVector = 0.000172447
+└   A_Vector = 0.000122142
+relative benchmarking: Test Failed at /root/.julia/packages/PushVectors/t2Ite/test/runtests.jl:100
+  Expression: A_PushVector ≤ A_Vector * 1.1
+   Evaluated: 0.000172447 ≤ 0.0001343562
+Stacktrace:
+ [1] top-level scope at /root/.julia/packages/PushVectors/t2Ite/test/runtests.jl:100
+ [2] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+ [3] top-level scope at /root/.julia/packages/PushVectors/t2Ite/test/runtests.jl:72
+Test Summary:         | Pass  Fail  Total
+relative benchmarking |    1     1      2
+ERROR: LoadError: Some tests did not pass: 1 passed, 1 failed, 0 errored, 0 broken.
+in expression starting at /root/.julia/packages/PushVectors/t2Ite/test/runtests.jl:71
+ERROR: Package PushVectors errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1288
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

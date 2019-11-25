@@ -1,0 +1,793 @@
+ Resolving package versions...
+ Installed ScikitLearnBase ─ v0.5.0
+ Installed DecisionTree ──── v0.9.1
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [7806a523] + DecisionTree v0.9.1
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [7806a523] + DecisionTree v0.9.1
+  [6e75b9c4] + ScikitLearnBase v0.5.0
+  [2a0f44e3] + Base64 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+   Testing DecisionTree
+    Status `/tmp/jl_C9MboZ/Manifest.toml`
+  [7806a523] DecisionTree v0.9.1
+  [6e75b9c4] ScikitLearnBase v0.5.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+Julia version: 1.2.0
+TEST: classification/random.jl 
+
+Feature 1, Threshold 0.43238112189724165
+L-> Feature 5, Threshold 0.48845173204189063
+    L-> Feature 3, Threshold 0.4016309185953214
+        L-> 0 : 79/90
+        R-> -1 : 121/141
+    R-> Feature 3, Threshold 0.6491270596195745
+        L-> -1 : 124/131
+        R-> -1 : 49/69
+R-> Feature 3, Threshold 0.3225911070133347
+    L-> Feature 5, Threshold 0.3214949325746119
+        L-> 0 : 48/76
+        R-> 0 : 116/121
+    R-> Feature 5, Threshold 0.47684569375938257
+        L-> 0 : 150/171
+        R-> -1 : 140/201
+
+##### nfoldCV Classification Tree #####
+
+Fold 1
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 0    5    0  0
+ 0  151   19  0
+ 0   29  122  0
+ 0    0    7  0
+Accuracy: 0.8198198198198198
+Kappa:    0.6500324044069992
+
+Fold 2
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 0   11    0  0
+ 0  148    6  0
+ 0   29  131  0
+ 0    0    8  0
+Accuracy: 0.8378378378378378
+Kappa:    0.6938556616783288
+
+Fold 3
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 0    4    0  0
+ 0  135   10  0
+ 0   30  139  0
+ 0    0   15  0
+Accuracy: 0.8228228228228228
+Kappa:    0.6651155655553282
+
+Mean Accuracy: 0.8268268268268267
+
+Fold 1
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 0    5    0  0
+ 0  151   19  0
+ 0   29  122  0
+ 0    0    7  0
+Accuracy: 0.8198198198198198
+Kappa:    0.6500324044069992
+
+Fold 2
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 0   11    0  0
+ 0  148    6  0
+ 0   29  131  0
+ 0    0    8  0
+Accuracy: 0.8378378378378378
+Kappa:    0.6938556616783288
+
+Fold 3
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 0    4    0  0
+ 0  135   10  0
+ 0   30  139  0
+ 0    0   15  0
+Accuracy: 0.8228228228228228
+Kappa:    0.6651155655553282
+
+Mean Accuracy: 0.8268268268268267
+
+Fold 1
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 0    5    0  0
+ 0  142   11  0
+ 0   34  129  0
+ 0    0   12  0
+Accuracy: 0.8138138138138138
+Kappa:    0.6465936323176994
+
+Fold 2
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 0    6    0  0
+ 0  141   12  0
+ 0   27  135  0
+ 0    0   12  0
+Accuracy: 0.8288288288288288
+Kappa:    0.6755883710198429
+
+Fold 3
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 0    9    0  0
+ 0  151   12  0
+ 0   27  128  0
+ 0    0    6  0
+Accuracy: 0.8378378378378378
+Kappa:    0.6887742739451002
+
+Mean Accuracy: 0.8268268268268267
+
+##### nfoldCV Classification Forest #####
+
+Fold 1
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 4    1    0  0
+ 0  169    1  0
+ 0    0  151  0
+ 0    0    0  7
+Accuracy: 0.993993993993994
+Kappa:    0.9887057387057387
+
+Fold 2
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 10    1    0  0
+  1  151    2  0
+  0    2  158  0
+  0    0    0  8
+Accuracy: 0.9819819819819819
+Kappa:    0.9674529223952564
+
+Fold 3
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 4    0    0   0
+ 0  145    0   0
+ 0    1  168   0
+ 0    0    2  13
+Accuracy: 0.990990990990991
+Kappa:    0.9835631313962291
+
+Mean Accuracy: 0.988988988988989
+
+Fold 1
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 4    1    0  0
+ 0  169    1  0
+ 0    0  151  0
+ 0    0    0  7
+Accuracy: 0.993993993993994
+Kappa:    0.9887057387057387
+
+Fold 2
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 10    1    0  0
+  1  151    2  0
+  0    2  158  0
+  0    0    0  8
+Accuracy: 0.9819819819819819
+Kappa:    0.9674529223952564
+
+Fold 3
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 4    0    0   0
+ 0  145    0   0
+ 0    1  168   0
+ 0    0    2  13
+Accuracy: 0.990990990990991
+Kappa:    0.9835631313962291
+
+Mean Accuracy: 0.988988988988989
+
+Fold 1
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 5    0    0  0
+ 1  151    1  0
+ 0    1  162  0
+ 0    0    4  8
+Accuracy: 0.978978978978979
+Kappa:    0.9613343064724812
+
+Fold 2
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 6    0    0   0
+ 0  152    1   0
+ 0    1  161   0
+ 0    0    2  10
+Accuracy: 0.987987987987988
+Kappa:    0.9780762393837646
+
+Fold 3
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 9    0    0  0
+ 0  161    2  0
+ 0    1  154  0
+ 0    0    1  5
+Accuracy: 0.987987987987988
+Kappa:    0.9778136815630362
+
+Mean Accuracy: 0.984984984984985
+
+##### nfoldCV Adaboosted Stumps #####
+
+Fold 1
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 0    5    0  0
+ 0  147   23  0
+ 0   16  135  0
+ 0    0    7  0
+Accuracy: 0.8468468468468469
+Kappa:    0.7042010659421047
+
+Fold 2
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 0   11    0  0
+ 0  149    5  0
+ 0   26  131  3
+ 0    0    8  0
+Accuracy: 0.8408408408408409
+Kappa:    0.7017792872712527
+
+Fold 3
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 0    4    0  0
+ 0  129   16  0
+ 0   12  157  0
+ 0    0   15  0
+Accuracy: 0.8588588588588588
+Kappa:    0.7305825242718446
+
+Mean Accuracy: 0.8488488488488488
+
+Fold 1
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 0    5    0  0
+ 0  147   23  0
+ 0   16  135  0
+ 0    0    7  0
+Accuracy: 0.8468468468468469
+Kappa:    0.7042010659421047
+
+Fold 2
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 0   11    0  0
+ 0  149    5  0
+ 0   26  131  3
+ 0    0    8  0
+Accuracy: 0.8408408408408409
+Kappa:    0.7017792872712527
+
+Fold 3
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 0    4    0  0
+ 0  129   16  0
+ 0   12  157  0
+ 0    0   15  0
+Accuracy: 0.8588588588588588
+Kappa:    0.7305825242718446
+
+Mean Accuracy: 0.8488488488488488
+
+Fold 1
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 0    5    0  0
+ 0  139   14  0
+ 0   18  145  0
+ 0    0   12  0
+Accuracy: 0.8528528528528528
+Kappa:    0.7197836166924265
+
+Fold 2
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 0    6    0  0
+ 0  145    8  0
+ 0   25  137  0
+ 0    0   12  0
+Accuracy: 0.8468468468468469
+Kappa:    0.709826234045825
+
+Fold 3
+Classes:  [-2, -1, 0, 1]
+Matrix:   4×4 Array{Int64,2}:
+ 0    9    0  0
+ 0  156    7  0
+ 0   20  135  0
+ 0    0    6  0
+Accuracy: 0.8738738738738738
+Kappa:    0.7580025608194622
+
+Mean Accuracy: 0.8578578578578578
+==================================================
+TEST: classification/low_precision.jl 
+
+
+##### nfoldCV Classification Tree #####
+
+Fold 1
+Classes:  Int32[-4, -3, -2, -1, 0, 1, 2, 3, 4]
+Matrix:   9×9 Array{Int64,2}:
+ 3   0   0   0   0   0   0   0  0
+ 0  12   0   0   0   0   0   0  0
+ 0   0  36   0   0   0   0   0  0
+ 0   0   0  79   0   0   0   0  0
+ 0   0   0   0  98   0   0   0  0
+ 0   0   0   0   0  70   0   0  0
+ 0   0   0   0   0   0  23   0  0
+ 0   0   0   0   0   0   0  10  0
+ 0   0   0   0   0   0   0   0  2
+Accuracy: 1.0
+Kappa:    1.0
+
+Fold 2
+Classes:  Int32[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4]
+Matrix:   10×10 Array{Int64,2}:
+ 2  0  0   0   0   0   0   0   0  0
+ 0  2  0   0   0   0   0   0   0  0
+ 0  0  9   0   0   0   0   0   0  0
+ 0  0  0  33   0   0   0   0   0  0
+ 0  0  0   0  70   0   0   0   0  0
+ 0  0  0   0   0  95   0   0   0  0
+ 0  0  0   0   0   0  70   0   0  0
+ 0  0  0   0   0   0   0  39   0  0
+ 0  0  0   0   0   0   0   0  12  0
+ 0  0  0   0   0   0   0   0   0  1
+Accuracy: 1.0
+Kappa:    1.0
+
+Fold 3
+Classes:  Int32[-4, -3, -2, -1, 0, 1, 2, 3, 4]
+Matrix:   9×9 Array{Int64,2}:
+ 4   0   0   0   0   0   0  0  0
+ 0  11   0   0   0   0   0  0  0
+ 0   0  37   0   0   0   0  0  0
+ 0   0   0  80   0   0   0  0  0
+ 0   0   0   0  87   0   0  0  0
+ 0   0   0   0   0  69   0  0  0
+ 0   0   0   0   0   0  37  0  0
+ 0   0   0   0   0   0   0  6  0
+ 0   0   0   0   0   0   0  0  2
+Accuracy: 1.0
+Kappa:    1.0
+
+Mean Accuracy: 1.0
+
+##### nfoldCV Classification Forest #####
+
+Fold 1
+Classes:  Int32[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4]
+Matrix:   10×10 Array{Int64,2}:
+ 0  0  1   0   0   0   0   0  0  0
+ 0  1  1   0   0   0   0   0  0  0
+ 0  0  7   5   0   0   0   0  0  0
+ 0  0  0  32   6   1   0   0  0  0
+ 0  0  0   0  70   6   0   0  0  0
+ 0  0  0   0   0  83   2   0  0  0
+ 0  0  0   0   1   6  64   2  0  0
+ 0  0  0   0   0   0   2  34  0  0
+ 0  0  0   0   0   0   0   5  3  0
+ 0  0  0   0   0   0   0   0  1  0
+Accuracy: 0.8828828828828829
+Kappa:    0.8538355917705848
+
+Fold 2
+Classes:  Int32[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4]
+Matrix:   10×10 Array{Int64,2}:
+ 0  1   0   0   0   0   0   0  0  0
+ 0  2   1   0   0   0   0   0  0  0
+ 0  1  10   0   0   0   0   0  0  0
+ 0  0   1  24   1   1   0   0  0  0
+ 0  0   0   1  70   4   0   0  0  0
+ 0  0   0   0   2  96   1   0  0  0
+ 0  0   0   0   0   6  65   2  0  0
+ 0  0   0   0   0   0   1  32  0  0
+ 0  0   0   0   0   0   0   2  7  0
+ 0  0   0   0   0   0   0   0  2  0
+Accuracy: 0.918918918918919
+Kappa:    0.8976457730925982
+
+Fold 3
+Classes:  Int32[-4, -3, -2, -1, 0, 1, 2, 3, 4]
+Matrix:   9×9 Array{Int64,2}:
+ 1  2   0   1   0   0   0  0  0
+ 0  7   2   0   0   0   0  0  0
+ 0  0  28  12   0   0   0  0  0
+ 0  0   0  74   4   0   0  0  0
+ 0  0   0   1  93   1   0  0  0
+ 0  0   0   0   6  55   2  0  0
+ 0  0   0   0   1   5  24  0  0
+ 0  0   0   0   0   0   3  9  0
+ 0  0   0   0   0   0   1  1  0
+Accuracy: 0.8738738738738738
+Kappa:    0.8410627635033012
+
+Mean Accuracy: 0.8918918918918918
+
+##### nfoldCV Adaboosted Stumps #####
+
+Fold 1
+Classes:  Int32[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4]
+Matrix:   10×10 Array{Int64,2}:
+ 0  0  0  0   2   0  0  0  0  0
+ 0  0  0  0   3   0  0  0  0  0
+ 0  0  0  0  10   4  0  0  0  0
+ 0  2  0  0  14  30  0  0  0  0
+ 0  1  0  0   6  67  0  0  0  0
+ 0  5  0  0   0  84  0  0  0  0
+ 0  1  0  0   0  66  0  1  0  0
+ 0  0  0  0   0  17  0  9  0  0
+ 0  0  0  0   0   2  0  8  0  0
+ 0  0  0  0   0   1  0  0  0  0
+Accuracy: 0.2972972972972973
+Kappa:    0.0688653880623768
+
+Fold 2
+Classes:  Int32[-4, -3, -2, -1, 0, 1, 2, 3, 4]
+Matrix:   9×9 Array{Int64,2}:
+ 0  0   0   3   0   0  0  0  0
+ 0  0   0  11   0   0  0  0  0
+ 0  0   8  19   3   1  0  0  0
+ 0  0  16  25  29   9  0  0  0
+ 0  0   1   6  43  48  0  0  0
+ 0  0   0   0  39  30  0  0  0
+ 0  0   0   0  12  21  0  0  0
+ 0  0   0   0   2   6  0  0  0
+ 0  0   0   0   0   1  0  0  0
+Accuracy: 0.3183183183183183
+Kappa:    0.1055378061767838
+
+Fold 3
+Classes:  Int32[-4, -3, -2, -1, 0, 1, 2, 3, 4]
+Matrix:   9×9 Array{Int64,2}:
+ 0  0  0   3   0   0  0  0  0
+ 0  0  0   7   0   0  0  0  0
+ 0  0  0  17   9   3  0  0  0
+ 0  0  0   8  63   4  0  0  0
+ 0  0  0   1  80  12  0  0  0
+ 0  0  0   0  61  11  0  0  0
+ 0  0  0   0  23  10  7  0  0
+ 0  0  0   0   4   1  6  0  0
+ 0  0  0   0   0   0  3  0  0
+Accuracy: 0.3183183183183183
+Kappa:    0.08126207810202121
+
+Mean Accuracy: 0.3113113113113113
+==================================================
+TEST: classification/heterogeneous.jl 
+
+==================================================
+TEST: classification/digits.jl 
+
+==================================================
+TEST: classification/iris.jl 
+
+Feature 3, Threshold 2.45
+L-> Iris-setosa : 50/50
+R-> Feature 4, Threshold 1.75
+    L-> Feature 3, Threshold 4.95
+        L-> Feature 4, Threshold 1.65
+            L-> Iris-versicolor : 47/47
+            R-> Iris-virginica : 1/1
+        R-> Feature 4, Threshold 1.55
+            L-> Iris-virginica : 3/3
+            R-> Feature 3, Threshold 5.449999999999999
+                L-> Iris-versicolor : 2/2
+                R-> Iris-virginica : 1/1
+    R-> Feature 3, Threshold 4.85
+        L-> Feature 1, Threshold 5.95
+            L-> Iris-versicolor : 1/1
+            R-> Iris-virginica : 2/2
+        R-> Iris-virginica : 43/43
+
+##### nfoldCV Classification Tree #####
+
+Fold 1
+Classes:  ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]
+Matrix:   3×3 Array{Int64,2}:
+ 17   0   0
+  0  15   0
+  0   0  18
+Accuracy: 1.0
+Kappa:    1.0
+
+Fold 2
+Classes:  ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]
+Matrix:   3×3 Array{Int64,2}:
+ 17   0   0
+  0  17   0
+  0   0  16
+Accuracy: 1.0
+Kappa:    1.0
+
+Fold 3
+Classes:  ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]
+Matrix:   3×3 Array{Int64,2}:
+ 16   0   0
+  0  18   0
+  0   0  16
+Accuracy: 1.0
+Kappa:    1.0
+
+Mean Accuracy: 1.0
+
+##### nfoldCV Classification Forest #####
+
+Fold 1
+Classes:  ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]
+Matrix:   3×3 Array{Int64,2}:
+ 20   0   0
+  0  11   0
+  0   0  19
+Accuracy: 1.0
+Kappa:    1.0
+
+Fold 2
+Classes:  ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]
+Matrix:   3×3 Array{Int64,2}:
+ 12   0   0
+  0  23   2
+  0   1  12
+Accuracy: 0.94
+Kappa:    0.9047013977128334
+
+Fold 3
+Classes:  ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]
+Matrix:   3×3 Array{Int64,2}:
+ 18   0   0
+  0  14   0
+  0   1  17
+Accuracy: 0.98
+Kappa:    0.9698795180722891
+
+Mean Accuracy: 0.9733333333333333
+
+##### nfoldCV Classification Adaboosted Stumps #####
+
+Fold 1
+Classes:  ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]
+Matrix:   3×3 Array{Int64,2}:
+ 15   0   0
+  0  18   0
+  0   3  14
+Accuracy: 0.94
+Kappa:    0.9095840867992766
+
+Fold 2
+Classes:  ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]
+Matrix:   3×3 Array{Int64,2}:
+ 19   0   0
+  0  18   0
+  0   1  12
+Accuracy: 0.98
+Kappa:    0.9695307739183424
+
+Fold 3
+Classes:  ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]
+Matrix:   3×3 Array{Int64,2}:
+ 16   0   0
+  0  12   2
+  0   0  20
+Accuracy: 0.96
+Kappa:    0.9388753056234719
+
+Mean Accuracy: 0.96
+==================================================
+TEST: classification/adult.jl 
+
+==================================================
+TEST: classification/scikitlearn.jl 
+
+==================================================
+TEST: regression/random.jl 
+
+
+##### nfoldCV Classification Tree #####
+
+Fold 1
+Mean Squared Error:     4.67352967811284
+Correlation Coeff:      0.8147290401798616
+Coeff of Determination: 0.6623172680793121
+
+Fold 2
+Mean Squared Error:     4.342179891353847
+Correlation Coeff:      0.8373910448239521
+Coeff of Determination: 0.7003052798355491
+
+Fold 3
+Mean Squared Error:     4.003285553163639
+Correlation Coeff:      0.8270058046714887
+Coeff of Determination: 0.6817681645607626
+
+Mean Coeff of Determination: 0.6814635708252079
+
+Fold 1
+Mean Squared Error:     4.67352967811284
+Correlation Coeff:      0.8147290401798616
+Coeff of Determination: 0.6623172680793121
+
+Fold 2
+Mean Squared Error:     4.342179891353847
+Correlation Coeff:      0.8373910448239521
+Coeff of Determination: 0.7003052798355491
+
+Fold 3
+Mean Squared Error:     4.003285553163639
+Correlation Coeff:      0.8270058046714887
+Coeff of Determination: 0.6817681645607626
+
+Mean Coeff of Determination: 0.6814635708252079
+
+Fold 1
+Mean Squared Error:     4.074335497973641
+Correlation Coeff:      0.8391963844797984
+Coeff of Determination: 0.7037000555223341
+
+Fold 2
+Mean Squared Error:     4.402381737207544
+Correlation Coeff:      0.8207869300719152
+Coeff of Determination: 0.6701005379155469
+
+Fold 3
+Mean Squared Error:     4.555284426323749
+Correlation Coeff:      0.8212077773023579
+Coeff of Determination: 0.672545376126066
+
+Mean Coeff of Determination: 0.6821153231879823
+
+##### nfoldCV Regression Forest #####
+
+Fold 1
+Mean Squared Error:     1.0898592531967288
+Correlation Coeff:      0.968989128137689
+Coeff of Determination: 0.9212529553942791
+
+Fold 2
+Mean Squared Error:     0.9631419380263889
+Correlation Coeff:      0.9747145338520044
+Coeff of Determination: 0.93352450593532
+
+Fold 3
+Mean Squared Error:     1.0533384060967153
+Correlation Coeff:      0.9697636723819906
+Coeff of Determination: 0.9162673234623749
+
+Mean Coeff of Determination: 0.9236815949306579
+
+Fold 1
+Mean Squared Error:     1.0898592531967288
+Correlation Coeff:      0.968989128137689
+Coeff of Determination: 0.9212529553942791
+
+Fold 2
+Mean Squared Error:     0.9631419380263889
+Correlation Coeff:      0.9747145338520044
+Coeff of Determination: 0.93352450593532
+
+Fold 3
+Mean Squared Error:     1.0533384060967153
+Correlation Coeff:      0.9697636723819906
+Coeff of Determination: 0.9162673234623749
+
+Mean Coeff of Determination: 0.9236815949306579
+
+Fold 1
+Mean Squared Error:     0.9378692828067325
+Correlation Coeff:      0.9721097186364827
+Coeff of Determination: 0.9317948616256194
+
+Fold 2
+Mean Squared Error:     0.9500757797209668
+Correlation Coeff:      0.9705235128520393
+Coeff of Determination: 0.9288045636705224
+
+Fold 3
+Mean Squared Error:     1.107949315333958
+Correlation Coeff:      0.973754142148885
+Coeff of Determination: 0.9203555492105996
+
+Mean Coeff of Determination: 0.9269849915022471
+==================================================
+TEST: regression/low_precision.jl 
+
+
+##### nfoldCV Regression Tree #####
+
+Fold 1
+Mean Squared Error:     0.9002446380717434
+Correlation Coeff:      0.9671265264579381
+Coeff of Determination: 0.935022213413093
+
+Fold 2
+Mean Squared Error:     0.8600949629501164
+Correlation Coeff:      0.9675026105307813
+Coeff of Determination: 0.935337447188353
+
+Fold 3
+Mean Squared Error:     0.7427796321330984
+Correlation Coeff:      0.9727679622659688
+Coeff of Determination: 0.9461875493861901
+
+Mean Coeff of Determination: 0.9388490699958787
+
+##### nfoldCV Regression Forest #####
+
+Fold 1
+Mean Squared Error:     1.2274348325856186
+Correlation Coeff:      0.9704260879283352
+Coeff of Determination: 0.9140860432926056
+
+Fold 2
+Mean Squared Error:     1.010177816120529
+Correlation Coeff:      0.9709054128303982
+Coeff of Determination: 0.9278989317966039
+
+Fold 3
+Mean Squared Error:     1.01890639749946
+Correlation Coeff:      0.9658631947543498
+Coeff of Determination: 0.9193339316722111
+
+Mean Coeff of Determination: 0.9204396355871403
+==================================================
+TEST: regression/digits.jl 
+
+==================================================
+TEST: regression/scikitlearn.jl 
+
+==================================================
+Test Summary: | Pass  Total
+Test Suites   |  135    135
+   Testing DecisionTree tests passed 

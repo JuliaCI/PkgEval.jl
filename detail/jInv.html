@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="jInv">jInv</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#jInv">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 16 hours ago and took 3 minutes, 34 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/jInv/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed KrylovMethods ─ v0.6.0
+ Installed ParSpMatVec ─── v0.1.1
+ Installed jInv ────────── v1.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [3dacf901] + jInv v1.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [9a2cd570] + KrylovMethods v0.6.0
+  [ccf9b6e2] + ParSpMatVec v0.1.1
+  [3dacf901] + jInv v1.0.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building ParSpMatVec → `~&#x2F;.julia&#x2F;packages&#x2F;ParSpMatVec&#x2F;Rtbqp&#x2F;deps&#x2F;build.log`
+   Testing jInv
+    Status `&#x2F;tmp&#x2F;tmpgG5Qpd&#x2F;Manifest.toml`
+  [9a2cd570] KrylovMethods v0.6.0
+  [ccf9b6e2] ParSpMatVec v0.1.1
+  [3dacf901] jInv v1.0.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ParSpMatVec&#x2F;Rtbqp&#x2F;deps&#x2F;builds&#x2F;ParSpMatVec
+3-dimensional regular mesh of size [3, 4, 5]
+Number of cells:   60
+Number of faces:   [80, 75, 72] = 227
+Number of edges:   [90, 96, 100] = 286
+Number of nodes:   120
+Coordinate origin: [1.2, 0.0, 0.0]
+Domain size:       [1.2, 2.4, 0.0, 1.1, 0.0, 2.3]
+Cell size:         [0.4, 0.275, 0.46]
+2-dimensional regular mesh of size [3, 4]
+Number of cells:   12
+Number of faces:   [16, 15] = 31
+Number of edges:   [15, 16] = 31
+Number of nodes:   20
+Coordinate origin: [1.2, 0.0]
+Domain size:       [1.2, 2.4, 0.0, 1.1]
+Cell size:         [0.4, 0.275]
+3-dimensional tensor mesh of size [4, 5, 6]
+Number of cells:   120
+Number of faces:   [150, 144, 140] = 434
+Number of edges:   [168, 175, 180] = 523
+Number of nodes:   210
+Coordinate origin: [0.0, 0.0, 0.0]
+Domain size:       1.830267428806426m x 2.917144389749637m x 3.083814723596986m
+Minimum cell size: 0.09376435218055112m x 0.17588249239516096m x 0.19554885488464957m
+Maximum cell size: 0.772333996814869m x 0.8410233572194166m x 0.8942062617149966m
+	test cell-centered axes...passed
+	test nodal axes...passed
+	test cell-centered grid...passed
+	test nodal grid...passed
+	test face grid...passed
+	test edge grid...passed
+	test volume...passed
+	test area...passed
+	test length...passed
+	test counting...passed
+	test nodal gradient matrix...passed
+	test divergence matrix...passed
+	test curl matrix...passed
+	test face average matrix...passed
+	test edge average matrix...passed
+	testing differential operators for TensorMesh3D...passed!
+	testing differential operators for RegularMesh...passed!
+	testing differential operators for TensorMesh3D...passed!
+   test getInterpolationMatrix (RegularMesh) ...  dim=2 dim=3 passed
+   test getInterpolationMatrix (TensorMesh) ... passed
+	testing nodal averaging for TensorMesh3D...passed!
+	testing nodal averaging for RegularMesh...passed!
+	testing nodal averaging for TensorMesh3D...passed!
+	testing nodal averaging for RegularMesh...passed!
+	testing boundary nodes for TensorMesh3D...passed!
+
+	testing boundary nodes for RegularMesh...passed!
+
+	testing boundary nodes for RegularMesh...passed!
+
+	test jInv.Mesh.getEdgeMassMatrix on RegularMesh
+	test jInv.Mesh.getNodalMassMatrix on RegularMesh
+	test jInv.Mesh.getFaceMassMatrix on RegularMesh
+	test jInv.Mesh.getEdgeMassMatrix on TensorMesh3D
+	test jInv.Mesh.getNodalMassMatrix on TensorMesh3D
+	test jInv.Mesh.getFaceMassMatrix on TensorMesh3D
+	testing forward operators for RegularMesh...passed!
+	testing forward operators for RegularMesh...passed!
+	testing forward operators for RegularMesh...passed!
+	testing forward operators for RegularMesh...passed!
+	testing 2D elasticity operators for RegularMesh...passed!
+	testing 3D elasticity operators for RegularMesh...passed!
+WARNING: could not import Base.Test into Main
+        h	       E0	       E1	       O1	       O2	  OK?
+1.000e-01	8.004e-02	1.061e-16	0.000e+00	0.000e+00	    1
+1.000e-02	8.004e-03	7.640e-17	1.000e+00	1.426e-01	    1
+1.000e-03	8.004e-04	1.015e-16	1.000e+00	-1.233e-01	    1
+1.000e-04	8.004e-05	6.149e-17	1.000e+00	2.176e-01	    1
+1.000e-05	8.004e-06	8.390e-17	1.000e+00	-1.350e-01	    1
+1.000e-06	8.004e-07	1.031e-16	1.000e+00	-8.941e-02	    1
+1.000e-07	8.004e-08	6.436e-17	1.000e+00	2.046e-01	    1
+1.000e-08	8.004e-09	1.157e-16	1.000e+00	-2.549e-01	    1
+1.000e-09	8.004e-10	1.207e-16	1.000e+00	-1.818e-02	    1
+1.000e-10	8.004e-11	9.773e-17	1.000e+00	9.163e-02	    1
+        h	       E0	       E1	       O1	       O2	  OK?
+1.000e-01	2.766e-01	1.687e-02	0.000e+00	0.000e+00	    0
+1.000e-02	2.614e-02	1.687e-04	1.025e+00	2.000e+00	    1
+1.000e-03	2.599e-03	1.687e-06	1.003e+00	2.000e+00	    1
+1.000e-04	2.598e-04	1.687e-08	1.000e+00	2.000e+00	    1
+1.000e-05	2.598e-05	1.687e-10	1.000e+00	2.000e+00	    1
+1.000e-06	2.598e-06	1.687e-12	1.000e+00	2.000e+00	    1
+1.000e-07	2.598e-07	1.675e-14	1.000e+00	2.003e+00	    1
+1.000e-08	2.598e-08	1.163e-16	1.000e+00	2.158e+00	    1
+1.000e-09	2.598e-09	0.000e+00	1.000e+00	Inf	    1
+1.000e-10	2.598e-10	1.163e-16	1.000e+00	-Inf	    1
+        h	       E0	       E1	       O1	       O2	  OK?
+1.000e-01	5.785e-02	2.761e-03	0.000e+00	0.000e+00	    0
+1.000e-02	5.844e-03	2.761e-05	9.956e-01	2.000e+00	    1
+1.000e-03	5.850e-04	2.761e-07	9.995e-01	2.000e+00	    1
+1.000e-04	5.851e-05	2.761e-09	1.000e+00	2.000e+00	    1
+1.000e-05	5.851e-06	2.761e-11	1.000e+00	2.000e+00	    1
+1.000e-06	5.851e-07	2.760e-13	1.000e+00	2.000e+00	    1
+1.000e-07	5.851e-08	2.771e-15	1.000e+00	1.998e+00	    1
+1.000e-08	5.851e-09	1.320e-16	1.000e+00	1.322e+00	    1
+1.000e-09	5.851e-10	1.188e-16	1.000e+00	4.572e-02	    1
+1.000e-10	5.851e-11	1.124e-16	1.000e+00	2.407e-02	    1
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	1.49e+02	0.00e+00	1.00e+00	1.00e+00	  0
+   .1	5.23e+00	5.21e+00			7.02e-02
+  2.0	5.23e+00	5.21e+00	1.00e+00	7.02e-02	  1
+   .1	3.78e+00	5.93e+00			6.53e-02
+  3.0	3.78e+00	5.93e+00	1.00e+00	6.53e-02	  0
+   .1	3.77e+00	5.89e+00			6.50e-02
+  4.0	3.77e+00	5.89e+00	1.00e+00	6.50e-02	  0
+   .1	3.77e+00	5.89e+00			6.50e-02
+  5.0	3.77e+00	5.89e+00	1.00e+00	6.50e-02	  0
+   .1	3.77e+00	5.89e+00			6.50e-02
+projGN iterated maxIter=5 times but reached only stepNorm of 0.0003788075810895464 instead 0.0001.
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	1.49e+02	0.00e+00	1.00e+00	1.00e+00	  0
+   .1	5.23e+00	5.21e+00			7.02e-02
+  2.0	5.23e+00	5.21e+00	1.00e+00	7.02e-02	  1
+   .1	3.78e+00	5.93e+00			6.53e-02
+  3.0	3.78e+00	5.93e+00	1.00e+00	6.53e-02	  0
+   .1	3.77e+00	5.89e+00			6.50e-02
+  4.0	3.77e+00	5.89e+00	1.00e+00	6.50e-02	  0
+   .1	3.77e+00	5.89e+00			6.50e-02
+  5.0	3.77e+00	5.89e+00	1.00e+00	6.50e-02	  0
+   .1	3.77e+00	5.89e+00			6.50e-02
+projGN iterated maxIter=5 times but reached only stepNorm of 0.0003788075810895464 instead 0.0001.
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.45e+01	0.00e+00	1.00e+00	1.00e+00	  0
+   .1	1.46e+00	3.25e+00			1.92e-01
+  2.0	1.46e+00	3.25e+00	1.00e+00	1.92e-01	  0
+   .1	1.40e+00	3.28e+00			1.91e-01
+  3.0	1.40e+00	3.28e+00	1.00e+00	1.91e-01	  0
+   .1	1.39e+00	3.29e+00			1.91e-01
+  4.0	1.39e+00	3.29e+00	1.00e+00	1.91e-01	  0
+   .1	1.39e+00	3.29e+00			1.91e-01
+  5.0	1.39e+00	3.29e+00	1.00e+00	1.91e-01	  0
+   .1	1.39e+00	3.29e+00			1.91e-01
+projGN reached desired accuracy at iteration 5.
+projGN reached desired accuracy at iteration 5.
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.45e+01	0.00e+00	1.00e+00	1.00e+00	  0
+   .1	1.46e+00	3.26e+00			1.93e-01
+  2.0	1.46e+00	3.26e+00	1.00e+00	1.93e-01	  0
+   .1	1.42e+00	3.27e+00			1.91e-01
+  3.0	1.42e+00	3.27e+00	1.00e+00	1.91e-01	  0
+   .1	1.43e+00	3.26e+00			1.91e-01
+  4.0	1.43e+00	3.26e+00	1.00e+00	1.91e-01	  0
+   .1	1.43e+00	3.26e+00			1.91e-01
+  5.0	1.43e+00	3.26e+00	1.00e+00	1.91e-01	  0
+   .1	1.43e+00	3.26e+00			1.91e-01
+projGN iterated maxIter=5 times but reached only stepNorm of 0.00026774632646620056 instead 0.0001.
+projGN iterated maxIter=5 times but reached only stepNorm of 0.00026774632646620056 instead 0.0001.
+Starting projGNCG minimization with alpha 1 of 3.0
+alpha = 100.0
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.45e+01	0.00e+00	1.00e+02	1.00e+00	  0
+   .1	2.20e+01	1.20e+00			9.48e-01
+  2.0	2.20e+01	1.20e+00	1.00e+02	9.48e-01	  0
+   .1	2.20e+01	1.20e+00			9.48e-01
+projGN iterated maxIter=2 times but reached only stepNorm of 0.0021903075462530036 instead 0.0001.
+[24.5131, 22.0271, 22.0288]
+Starting projGNCG minimization with alpha 2 of 3.0
+alpha = 10.0
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.20e+01	0.00e+00	1.00e+01	1.00e+00	  0
+   .1	9.94e+00	4.67e+00			6.63e-01
+  2.0	9.94e+00	4.67e+00	1.00e+01	6.63e-01	  0
+   .1	9.94e+00	4.67e+00			6.63e-01
+projGN iterated maxIter=2 times but reached only stepNorm of 0.0026500830805215314 instead 0.0001.
+[22.0288, 9.94053, 9.94102]
+iteratedTikhonov exiting after reaching desired misfit
+Starting projGNCG minimization with alpha 1 of 3.0
+alpha = 100.0
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.45e+01	0.00e+00	1.00e+02	1.00e+00	  0
+   .1	2.20e+01	1.20e+00			9.48e-01
+  2.0	2.20e+01	1.20e+00	1.00e+02	9.48e-01	  0
+   .1	2.20e+01	1.20e+00			9.48e-01
+projGN iterated maxIter=2 times but reached only stepNorm of 0.0021903075462530036 instead 0.0001.
+[24.5131, 22.0271, 22.0288]
+Starting projGNCG minimization with alpha 2 of 3.0
+alpha = 10.0
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.20e+01	0.00e+00	1.00e+01	1.00e+00	  0
+   .1	9.94e+00	4.67e+00			6.63e-01
+  2.0	9.94e+00	4.67e+00	1.00e+01	6.63e-01	  0
+   .1	9.94e+00	4.67e+00			6.63e-01
+projGN iterated maxIter=2 times but reached only stepNorm of 0.0026500830805215314 instead 0.0001.
+[22.0288, 9.94053, 9.94102]
+iteratedTikhonov exiting after reaching desired misfit
+i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.45e+01	6.27e-01	1.00e+00	1.00e+00	  0
+   .1	4.82e+00	1.39e+01			7.46e-01
+  2.0	4.82e+00	1.39e+01	1.00e+00	7.46e-01	  3
+   .1	1.18e+01	7.78e+00			7.77e-01
+   .2	6.12e+00	2.68e+00			3.50e-01
+  3.0	6.12e+00	2.68e+00	1.00e+00	3.50e-01	  0
+   .1	5.15e+00	1.75e+01			9.02e-01
+   .2	4.27e+00	4.61e+00			3.53e-01
+   .3	4.78e+00	2.00e+00			2.70e-01
+  4.0	4.78e+00	2.00e+00	1.00e+00	2.70e-01	  0
+   .1	7.22e+00	2.11e+01			1.13e+00
+   .2	4.54e+00	4.91e+00			3.76e-01
+   .3	4.26e+00	1.45e+00			2.27e-01
+  5.0	4.26e+00	1.45e+00	1.00e+00	2.27e-01	  0
+   .1	3.89e+00	1.69e+01			8.26e-01
+   .2	2.95e+00	4.98e+00			3.15e-01
+   .3	3.15e+00	1.57e+00			1.88e-01
+  6.0	3.15e+00	1.57e+00	1.00e+00	1.88e-01	  0
+   .1	6.07e+00	1.74e+01			9.33e-01
+   .2	3.46e+00	4.27e+00			3.07e-01
+   .3	2.98e+00	1.33e+00			1.71e-01
+  7.0	2.98e+00	1.33e+00	1.00e+00	1.71e-01	  0
+   .1	3.78e+00	1.66e+01			8.10e-01
+   .2	2.43e+00	5.05e+00			2.98e-01
+   .3	2.28e+00	1.55e+00			1.52e-01
+  8.0	2.28e+00	1.55e+00	1.00e+00	1.52e-01	  0
+   .1	6.72e+00	2.07e+01			1.09e+00
+   .2	3.14e+00	5.24e+00			3.33e-01
+   .3	2.30e+00	1.50e+00			1.51e-01
+  9.0	2.30e+00	1.50e+00	1.00e+00	1.51e-01	  0
+   .1	3.92e+00	1.68e+01			8.26e-01
+   .2	2.17e+00	4.96e+00			2.84e-01
+   .3	1.81e+00	1.50e+00			1.31e-01
+ 10.0	1.81e+00	1.50e+00	1.00e+00	1.31e-01	  0
+   .1	5.80e+00	1.78e+01			9.39e-01
+   .2	2.64e+00	4.68e+00			2.91e-01
+   .3	1.88e+00	1.51e+00			1.35e-01
+   .4	1.75e+00	1.10e+00			1.13e-01
+ 11.0	1.75e+00	1.10e+00	1.00e+00	1.13e-01	  0
+   .1	1.19e+00	1.78e+00			1.18e-01
+   .2	1.40e+00	1.30e+00			1.08e-01
+ 12.0	1.40e+00	1.30e+00	1.00e+00	1.08e-01	  0
+   .1	2.41e+00	5.69e+00			3.22e-01
+   .2	1.61e+00	2.13e+00			1.49e-01
+   .3	1.41e+00	1.30e+00			1.08e-01
+   .4	1.38e+00	1.20e+00			1.03e-01
+ 13.0	1.38e+00	1.20e+00	1.00e+00	1.03e-01	  0
+   .1	1.08e+00	1.50e+00			1.03e-01
+ 14.0	1.08e+00	1.50e+00	1.00e+00	1.03e-01	  0
+   .1	2.76e+00	7.25e+00			3.98e-01
+   .2	1.51e+00	2.62e+00			1.64e-01
+   .3	1.16e+00	1.50e+00			1.06e-01
+   .4	1.09e+00	1.36e+00			9.71e-02
+ 15.0	1.09e+00	1.36e+00	1.00e+00	9.71e-02	  0
+   .1	1.02e+00	1.62e+00			1.05e-01
+   .2	1.04e+00	1.43e+00			9.82e-02
+   .3	1.06e+00	1.38e+00			9.70e-02
+ 16.0	1.06e+00	1.38e+00	1.00e+00	9.70e-02	  0
+   .1	1.14e+00	1.64e+00			1.10e-01
+   .2	1.07e+00	1.42e+00			9.93e-02
+   .3	1.06e+00	1.38e+00			9.70e-02
+   .4	1.06e+00	1.38e+00			9.68e-02
+ 17.0	1.06e+00	1.38e+00	1.00e+00	9.68e-02	  0
+   .1	1.00e+00	1.43e+00			9.67e-02
+ 18.0	1.00e+00	1.43e+00	1.00e+00	9.67e-02	  0
+   .1	1.17e+00	1.79e+00			1.18e-01
+   .2	1.05e+00	1.48e+00			1.01e-01
+   .3	1.02e+00	1.42e+00			9.69e-02
+   .4	1.01e+00	1.42e+00			9.64e-02
+ 19.0	1.01e+00	1.42e+00	1.00e+00	9.64e-02	  0
+   .1	9.82e-01	1.45e+00			9.68e-02
+   .2	9.93e-01	1.43e+00			9.64e-02
+   .3	9.99e-01	1.42e+00			9.64e-02
+ 20.0	9.99e-01	1.42e+00	1.00e+00	9.64e-02	  0
+   .1	1.01e+00	1.44e+00			9.72e-02
+   .2	1.00e+00	1.42e+00			9.65e-02
+   .3	1.00e+00	1.42e+00			9.64e-02
+projSD iterated maxIter=20 times but reached only stepNorm of 0.00918013798126982 instead 0.0001.
+projSD iterated maxIter=20 times but reached only stepNorm of 0.00918013798126982 instead 0.0001.
+---jInv.InverseSolve.InverseParam---
+inverse mesh type:    RegularMesh
+number of cells:      1024
+model function:       jInv.InverseSolve.fMod
+maxStep:              1.0
+pcgMaxIter:           10
+pcgTol:               0.1
+minUpdate:            0.0001
+maxIter:              10
+===  Example 2D DivSigGrad ====
+cg achieved desired tolerance at iteration 3. Residual norm is 6.67e-07.
+bcgstb achieved desired tolerance at iteration 1.5. Residual norm is 9.99e-07.
+===  Test for nonsymmetric matrices ====
+===  Example 2D DivSigGrad ====
+blockCG achieved desired tolerance at iteration 1. Residual norm is 6.34e-06.
+blockBiCGSTB achieved desired tolerance at iteration 0.5. Residual norm is 5.35e-06.
+===  Test for nonsymmetric matrices ====
+===  Test Julia wrapper with symmetric (real) matrix ====
+nrhs=1, issparse(rhs)=false : sym=0, sym=1, sym=2, 
+nrhs=1, issparse(rhs)=true : sym=0, sym=1, sym=2, 
+nrhs=3, issparse(rhs)=false : sym=0, sym=1, sym=2, 
+nrhs=3, issparse(rhs)=true : sym=0, sym=1, sym=2, 
+
+
+===  Test Julia wrapper with shifted (complex) Laplacian ====
+nrhs=1, issparse(rhs)=false : sym=0, sym=1, sym=2, 
+nrhs=1, issparse(rhs)=true : sym=0, sym=1, sym=2, 
+nrhs=3, issparse(rhs)=false : sym=0, sym=1, sym=2, 
+nrhs=3, issparse(rhs)=true : sym=0, sym=1, sym=2, 
+
+
+===  Test Julia Wrapper: nonsymmetric matrices ====
+===  End Test Julia Wrapper ====
+Test Summary: | Pass  Total
+jInv          |  282    282
+   Testing jInv tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 12 hours ago and took 2 minutes, 54 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/jInv/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed KrylovMethods ─ v0.6.0
+ Installed ParSpMatVec ─── v0.1.1
+ Installed jInv ────────── v1.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [3dacf901] + jInv v1.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [9a2cd570] + KrylovMethods v0.6.0
+  [ccf9b6e2] + ParSpMatVec v0.1.1
+  [3dacf901] + jInv v1.0.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building ParSpMatVec → `~&#x2F;.julia&#x2F;packages&#x2F;ParSpMatVec&#x2F;Rtbqp&#x2F;deps&#x2F;build.log`
+   Testing jInv
+    Status `&#x2F;tmp&#x2F;jl_xJ6cck&#x2F;Manifest.toml`
+  [9a2cd570] KrylovMethods v0.6.0
+  [ccf9b6e2] ParSpMatVec v0.1.1
+  [3dacf901] jInv v1.0.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ParSpMatVec&#x2F;Rtbqp&#x2F;deps&#x2F;builds&#x2F;ParSpMatVec
+3-dimensional regular mesh of size [3, 4, 5]
+Number of cells:   60
+Number of faces:   [80, 75, 72] = 227
+Number of edges:   [90, 96, 100] = 286
+Number of nodes:   120
+Coordinate origin: [1.2, 0.0, 0.0]
+Domain size:       [1.2, 2.4, 0.0, 1.1, 0.0, 2.3]
+Cell size:         [0.39999999999999997, 0.275, 0.45999999999999996]
+2-dimensional regular mesh of size [3, 4]
+Number of cells:   12
+Number of faces:   [16, 15] = 31
+Number of edges:   [15, 16] = 31
+Number of nodes:   20
+Coordinate origin: [1.2, 0.0]
+Domain size:       [1.2, 2.4, 0.0, 1.1]
+Cell size:         [0.39999999999999997, 0.275]
+3-dimensional tensor mesh of size [4, 5, 6]
+Number of cells:   120
+Number of faces:   [150, 144, 140] = 434
+Number of edges:   [168, 175, 180] = 523
+Number of nodes:   210
+Coordinate origin: [0.0, 0.0, 0.0]
+Domain size:       2.099260708987322m x 1.3421025864497766m x 1.7158029586750392m
+Minimum cell size: 0.03826859417786421m x 0.0800713135345481m x 0.08484228130294391m
+Maximum cell size: 0.993605607305381m x 0.48674992932539984m x 0.5791317966023029m
+	test cell-centered axes...passed
+	test nodal axes...passed
+	test cell-centered grid...passed
+	test nodal grid...passed
+	test face grid...passed
+	test edge grid...passed
+	test volume...passed
+	test area...passed
+	test length...passed
+	test counting...passed
+	test nodal gradient matrix...passed
+	test divergence matrix...passed
+	test curl matrix...passed
+	test face average matrix...passed
+	test edge average matrix...passed
+	testing differential operators for TensorMesh3D...passed!
+	testing differential operators for RegularMesh...passed!
+	testing differential operators for TensorMesh3D...passed!
+   test getInterpolationMatrix (RegularMesh) ...  dim=2 dim=3 passed
+   test getInterpolationMatrix (TensorMesh) ... passed
+	testing nodal averaging for TensorMesh3D...passed!
+	testing nodal averaging for RegularMesh...passed!
+	testing nodal averaging for TensorMesh3D...passed!
+	testing nodal averaging for RegularMesh...passed!
+	testing boundary nodes for TensorMesh3D...passed!
+
+	testing boundary nodes for RegularMesh...passed!
+
+	testing boundary nodes for RegularMesh...passed!
+
+	test getEdgeMassMatrix on RegularMesh
+	test getNodalMassMatrix on RegularMesh
+	test getFaceMassMatrix on RegularMesh
+	test getEdgeMassMatrix on TensorMesh3D
+	test getNodalMassMatrix on TensorMesh3D
+	test getFaceMassMatrix on TensorMesh3D
+	testing forward operators for RegularMesh...passed!
+	testing forward operators for RegularMesh...passed!
+	testing forward operators for RegularMesh...passed!
+	testing forward operators for RegularMesh...passed!
+	testing 2D elasticity operators for RegularMesh...passed!
+	testing 3D elasticity operators for RegularMesh...passed!
+WARNING: could not import Base.Test into Main
+        h	       E0	       E1	       O1	       O2	  OK?
+1.000e-01	9.314e-02	1.596e-16	0.000e+00	0.000e+00	    1
+1.000e-02	9.314e-03	6.281e-17	1.000e+00	4.049e-01	    1
+1.000e-03	9.314e-04	7.790e-17	1.000e+00	-9.345e-02	    1
+1.000e-04	9.314e-05	1.417e-16	1.000e+00	-2.599e-01	    1
+1.000e-05	9.314e-06	1.214e-16	1.000e+00	6.707e-02	    1
+1.000e-06	9.314e-07	9.454e-17	1.000e+00	1.087e-01	    1
+1.000e-07	9.314e-08	1.267e-16	1.000e+00	-1.273e-01	    1
+1.000e-08	9.314e-09	7.890e-17	1.000e+00	2.058e-01	    1
+1.000e-09	9.314e-10	1.061e-16	1.000e+00	-1.286e-01	    1
+1.000e-10	9.314e-11	1.079e-16	1.000e+00	-7.363e-03	    1
+        h	       E0	       E1	       O1	       O2	  OK?
+1.000e-01	1.217e+00	2.392e-01	0.000e+00	0.000e+00	    0
+1.000e-02	1.002e-01	2.392e-03	1.085e+00	2.000e+00	    1
+1.000e-03	9.806e-03	2.392e-05	1.009e+00	2.000e+00	    1
+1.000e-04	9.785e-04	2.392e-07	1.001e+00	2.000e+00	    1
+1.000e-05	9.782e-05	2.392e-09	1.000e+00	2.000e+00	    1
+1.000e-06	9.782e-06	2.392e-11	1.000e+00	2.000e+00	    1
+1.000e-07	9.782e-07	2.393e-13	1.000e+00	2.000e+00	    1
+1.000e-08	9.782e-08	2.310e-15	1.000e+00	2.015e+00	    1
+1.000e-09	9.782e-09	1.925e-16	1.000e+00	1.079e+00	    1
+1.000e-10	9.782e-10	1.925e-16	1.000e+00	0.000e+00	    1
+        h	       E0	       E1	       O1	       O2	  OK?
+1.000e-01	1.095e-01	9.930e-03	0.000e+00	0.000e+00	    0
+1.000e-02	1.022e-02	9.930e-05	1.030e+00	2.000e+00	    1
+1.000e-03	1.015e-03	9.930e-07	1.003e+00	2.000e+00	    1
+1.000e-04	1.014e-04	9.930e-09	1.000e+00	2.000e+00	    1
+1.000e-05	1.014e-05	9.930e-11	1.000e+00	2.000e+00	    1
+1.000e-06	1.014e-06	9.930e-13	1.000e+00	2.000e+00	    1
+1.000e-07	1.014e-07	9.931e-15	1.000e+00	2.000e+00	    1
+1.000e-08	1.014e-08	1.379e-16	1.000e+00	1.857e+00	    1
+1.000e-09	1.014e-09	8.037e-17	1.000e+00	2.345e-01	    1
+1.000e-10	1.014e-10	1.307e-16	1.000e+00	-2.112e-01	    1
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	1.54e+02	0.00e+00	1.00e+00	1.00e+00	  0
+   .1	5.98e+00	4.90e+00			7.07e-02
+  2.0	5.98e+00	4.90e+00	1.00e+00	7.07e-02	  1
+   .1	3.85e+00	5.88e+00			6.32e-02
+  3.0	3.85e+00	5.88e+00	1.00e+00	6.32e-02	  2
+   .1	3.87e+00	5.86e+00			6.32e-02
+  4.0	3.87e+00	5.86e+00	1.00e+00	6.32e-02	  2
+   .1	3.86e+00	5.87e+00			6.32e-02
+  5.0	3.86e+00	5.87e+00	1.00e+00	6.32e-02	  2
+   .1	3.86e+00	5.87e+00			6.32e-02
+projGN reached desired accuracy at iteration 5.
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	1.54e+02	0.00e+00	1.00e+00	1.00e+00	  0
+   .1	5.98e+00	4.90e+00			7.07e-02
+  2.0	5.98e+00	4.90e+00	1.00e+00	7.07e-02	  1
+   .1	3.85e+00	5.88e+00			6.32e-02
+  3.0	3.85e+00	5.88e+00	1.00e+00	6.32e-02	  2
+   .1	3.87e+00	5.86e+00			6.32e-02
+  4.0	3.87e+00	5.86e+00	1.00e+00	6.32e-02	  2
+   .1	3.86e+00	5.87e+00			6.32e-02
+  5.0	3.86e+00	5.87e+00	1.00e+00	6.32e-02	  2
+   .1	3.86e+00	5.87e+00			6.32e-02
+projGN reached desired accuracy at iteration 5.
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.68e+01	0.00e+00	1.00e+00	1.00e+00	  0
+   .1	1.74e+00	3.44e+00			1.93e-01
+  2.0	1.74e+00	3.44e+00	1.00e+00	1.93e-01	  0
+   .1	1.46e+00	3.60e+00			1.88e-01
+  3.0	1.46e+00	3.60e+00	1.00e+00	1.88e-01	  0
+   .1	1.47e+00	3.59e+00			1.88e-01
+  4.0	1.47e+00	3.59e+00	1.00e+00	1.88e-01	  0
+   .1	1.47e+00	3.59e+00			1.88e-01
+  5.0	1.47e+00	3.59e+00	1.00e+00	1.88e-01	  0
+   .1	1.47e+00	3.59e+00			1.88e-01
+projGN reached desired accuracy at iteration 5.
+projGN reached desired accuracy at iteration 5.
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.68e+01	0.00e+00	1.00e+00	1.00e+00	  0
+   .1	1.74e+00	3.53e+00			1.96e-01
+  2.0	1.74e+00	3.53e+00	1.00e+00	1.96e-01	  0
+   .1	1.46e+00	3.61e+00			1.89e-01
+  3.0	1.46e+00	3.61e+00	1.00e+00	1.89e-01	  0
+   .1	1.53e+00	3.53e+00			1.89e-01
+  4.0	1.53e+00	3.53e+00	1.00e+00	1.89e-01	  0
+   .1	1.53e+00	3.54e+00			1.89e-01
+  5.0	1.53e+00	3.54e+00	1.00e+00	1.89e-01	  0
+   .1	1.53e+00	3.53e+00			1.89e-01
+projGN iterated maxIter=5 times but reached only stepNorm of 0.0006050194863154168 instead 0.0001.
+projGN iterated maxIter=5 times but reached only stepNorm of 0.0006050194863154168 instead 0.0001.
+Starting projGNCG minimization with alpha 1 of 3.0
+alpha = 100.0
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.68e+01	0.00e+00	1.00e+02	1.00e+00	  0
+   .1	2.42e+01	1.27e+00			9.50e-01
+  2.0	2.42e+01	1.27e+00	1.00e+02	9.50e-01	  0
+   .1	2.42e+01	1.27e+00			9.50e-01
+projGN iterated maxIter=2 times but reached only stepNorm of 0.0005124554873007356 instead 0.0001.
+[26.846417930777072, 24.226371913416777, 24.226418001304037]
+Starting projGNCG minimization with alpha 2 of 3.0
+alpha = 10.0
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.42e+01	0.00e+00	1.00e+01	1.00e+00	  0
+   .1	1.09e+01	5.21e+00			6.65e-01
+  2.0	1.09e+01	5.21e+00	1.00e+01	6.65e-01	  0
+   .1	1.09e+01	5.21e+00			6.65e-01
+projGN iterated maxIter=2 times but reached only stepNorm of 0.0026716817518222663 instead 0.0001.
+[24.226418001304037, 10.887021213597908, 10.888876685122359]
+iteratedTikhonov exiting after reaching desired misfit
+Starting projGNCG minimization with alpha 1 of 3.0
+alpha = 100.0
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.68e+01	0.00e+00	1.00e+02	1.00e+00	  0
+   .1	2.42e+01	1.27e+00			9.50e-01
+  2.0	2.42e+01	1.27e+00	1.00e+02	9.50e-01	  0
+   .1	2.42e+01	1.27e+00			9.50e-01
+projGN iterated maxIter=2 times but reached only stepNorm of 0.0005124554873007356 instead 0.0001.
+[26.846417930777072, 24.226371913416777, 24.226418001304037]
+Starting projGNCG minimization with alpha 2 of 3.0
+alpha = 10.0
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.42e+01	0.00e+00	1.00e+01	1.00e+00	  0
+   .1	1.09e+01	5.21e+00			6.65e-01
+  2.0	1.09e+01	5.21e+00	1.00e+01	6.65e-01	  0
+   .1	1.09e+01	5.21e+00			6.65e-01
+projGN iterated maxIter=2 times but reached only stepNorm of 0.0026716817518222663 instead 0.0001.
+[24.226418001304037, 10.887021213597908, 10.888876685122359]
+iteratedTikhonov exiting after reaching desired misfit
+i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.68e+01	6.96e-01	1.00e+00	1.00e+00	  0
+   .1	1.00e+01	6.90e+00			6.14e-01
+  2.0	1.00e+01	6.90e+00	1.00e+00	6.14e-01	  1
+   .1	1.15e+01	1.90e+00			4.88e-01
+  3.0	1.15e+01	1.90e+00	1.00e+00	4.88e-01	  0
+   .1	6.56e+00	2.94e+00			3.45e-01
+  4.0	6.56e+00	2.94e+00	1.00e+00	3.45e-01	  1
+   .1	6.97e+00	2.35e+00			3.38e-01
+  5.0	6.97e+00	2.35e+00	1.00e+00	3.38e-01	  0
+   .1	4.32e+00	1.97e+00			2.28e-01
+  6.0	4.32e+00	1.97e+00	1.00e+00	2.28e-01	  1
+   .1	4.98e+00	2.64e+00			2.77e-01
+   .2	3.95e+00	1.21e+00			1.87e-01
+  7.0	3.95e+00	1.21e+00	1.00e+00	1.87e-01	  0
+   .1	2.54e+00	2.30e+00			1.75e-01
+  8.0	2.54e+00	2.30e+00	1.00e+00	1.75e-01	  1
+   .1	3.85e+00	3.88e+00			2.81e-01
+   .2	2.41e+00	1.26e+00			1.33e-01
+  9.0	2.41e+00	1.26e+00	1.00e+00	1.33e-01	  0
+   .1	1.93e+00	2.45e+00			1.59e-01
+   .2	2.03e+00	1.63e+00			1.33e-01
+ 10.0	2.03e+00	1.63e+00	1.00e+00	1.33e-01	  1
+   .1	3.39e+00	3.27e+00			2.42e-01
+   .2	2.02e+00	1.35e+00			1.23e-01
+ 11.0	2.02e+00	1.35e+00	1.00e+00	1.23e-01	  0
+   .1	1.72e+00	2.34e+00			1.47e-01
+   .2	1.74e+00	1.61e+00			1.21e-01
+ 12.0	1.74e+00	1.61e+00	1.00e+00	1.21e-01	  1
+   .1	3.17e+00	3.30e+00			2.35e-01
+   .2	1.78e+00	1.43e+00			1.17e-01
+ 13.0	1.78e+00	1.43e+00	1.00e+00	1.17e-01	  0
+   .1	1.57e+00	2.29e+00			1.40e-01
+   .2	1.55e+00	1.62e+00			1.15e-01
+ 14.0	1.55e+00	1.62e+00	1.00e+00	1.15e-01	  1
+   .1	3.04e+00	3.36e+00			2.32e-01
+   .2	1.63e+00	1.50e+00			1.14e-01
+ 15.0	1.63e+00	1.50e+00	1.00e+00	1.14e-01	  0
+   .1	1.47e+00	2.28e+00			1.36e-01
+   .2	1.43e+00	1.64e+00			1.11e-01
+ 16.0	1.43e+00	1.64e+00	1.00e+00	1.11e-01	  1
+   .1	2.96e+00	3.41e+00			2.31e-01
+   .2	1.53e+00	1.56e+00			1.12e-01
+   .3	1.31e+00	1.34e+00			9.63e-02
+ 17.0	1.31e+00	1.34e+00	1.00e+00	9.63e-02	  0
+   .1	1.11e+00	1.49e+00			9.44e-02
+ 18.0	1.11e+00	1.49e+00	1.00e+00	9.44e-02	  0
+   .1	2.25e+00	2.92e+00			1.88e-01
+   .2	1.36e+00	1.73e+00			1.12e-01
+   .3	1.15e+00	1.49e+00			9.58e-02
+   .4	1.11e+00	1.46e+00			9.32e-02
+ 19.0	1.11e+00	1.46e+00	1.00e+00	9.32e-02	  0
+   .1	1.09e+00	1.63e+00			9.88e-02
+   .2	1.08e+00	1.51e+00			9.41e-02
+   .3	1.09e+00	1.47e+00			9.32e-02
+ 20.0	1.09e+00	1.47e+00	1.00e+00	9.32e-02	  0
+   .1	1.25e+00	1.67e+00			1.06e-01
+   .2	1.13e+00	1.50e+00			9.55e-02
+   .3	1.10e+00	1.47e+00			9.33e-02
+   .4	1.09e+00	1.47e+00			9.30e-02
+projSD iterated maxIter=20 times but reached only stepNorm of 0.032596375416288126 instead 0.0001.
+projSD iterated maxIter=20 times but reached only stepNorm of 0.032596375416288126 instead 0.0001.
+---jInv.InverseSolve.InverseParam---
+inverse mesh type:    RegularMesh
+number of cells:      1024
+model function:       fMod
+maxStep:              1.0
+pcgMaxIter:           10
+pcgTol:               0.1
+minUpdate:            0.0001
+maxIter:              10
+===  Example 2D DivSigGrad ====
+cg achieved desired tolerance at iteration 3. Residual norm is 4.50e-06.
+bcgstb achieved desired tolerance at iteration 2. Residual norm is 9.51e-06.
+===  Test for nonsymmetric matrices ====
+===  Example 2D DivSigGrad ====
+blockCG achieved desired tolerance at iteration 1. Residual norm is 5.63e-06.
+blockBiCGSTB achieved desired tolerance at iteration 0.5. Residual norm is 4.46e-06.
+===  Test for nonsymmetric matrices ====
+===  Test Julia wrapper with symmetric (real) matrix ====
+nrhs=1, issparse(rhs)=false : sym=0, sym=1, sym=2, 
+nrhs=1, issparse(rhs)=true : sym=0, sym=1, sym=2, 
+nrhs=3, issparse(rhs)=false : sym=0, sym=1, sym=2, 
+nrhs=3, issparse(rhs)=true : sym=0, sym=1, sym=2, 
+
+
+===  Test Julia wrapper with shifted (complex) Laplacian ====
+nrhs=1, issparse(rhs)=false : sym=0, sym=1, sym=2, 
+nrhs=1, issparse(rhs)=true : sym=0, sym=1, sym=2, 
+nrhs=3, issparse(rhs)=false : sym=0, sym=1, sym=2, 
+nrhs=3, issparse(rhs)=true : sym=0, sym=1, sym=2, 
+
+
+===  Test Julia Wrapper: nonsymmetric matrices ====
+===  End Test Julia Wrapper ====
+Test Summary: | Pass  Total
+jInv          |  282    282
+   Testing jInv tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 13 hours ago and took 3 minutes, 22 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/jInv/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed KrylovMethods ─ v0.6.0
+ Installed ParSpMatVec ─── v0.1.1
+ Installed jInv ────────── v1.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [3dacf901] + jInv v1.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [9a2cd570] + KrylovMethods v0.6.0
+  [ccf9b6e2] + ParSpMatVec v0.1.1
+  [3dacf901] + jInv v1.0.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building ParSpMatVec → `~&#x2F;.julia&#x2F;packages&#x2F;ParSpMatVec&#x2F;Rtbqp&#x2F;deps&#x2F;build.log`
+   Testing jInv
+Status `&#x2F;tmp&#x2F;jl_93EjlF&#x2F;Manifest.toml`
+  [9a2cd570] KrylovMethods v0.6.0
+  [ccf9b6e2] ParSpMatVec v0.1.1
+  [3dacf901] jInv v1.0.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ParSpMatVec&#x2F;Rtbqp&#x2F;deps&#x2F;builds&#x2F;ParSpMatVec
+3-dimensional regular mesh of size [3, 4, 5]
+Number of cells:   60
+Number of faces:   [80, 75, 72] = 227
+Number of edges:   [90, 96, 100] = 286
+Number of nodes:   120
+Coordinate origin: [1.2, 0.0, 0.0]
+Domain size:       [1.2, 2.4, 0.0, 1.1, 0.0, 2.3]
+Cell size:         [0.39999999999999997, 0.275, 0.45999999999999996]
+2-dimensional regular mesh of size [3, 4]
+Number of cells:   12
+Number of faces:   [16, 15] = 31
+Number of edges:   [15, 16] = 31
+Number of nodes:   20
+Coordinate origin: [1.2, 0.0]
+Domain size:       [1.2, 2.4, 0.0, 1.1]
+Cell size:         [0.39999999999999997, 0.275]
+3-dimensional tensor mesh of size [4, 5, 6]
+Number of cells:   120
+Number of faces:   [150, 144, 140] = 434
+Number of edges:   [168, 175, 180] = 523
+Number of nodes:   210
+Coordinate origin: [0.0, 0.0, 0.0]
+Domain size:       3.4226372959636704m x 3.316624595697951m x 3.145336156981638m
+Minimum cell size: 0.7288668496666391m x 0.04925524533703429m x 0.09264406087200383m
+Maximum cell size: 0.9181108272366512m x 0.8722914405150242m x 0.9845607222516406m
+	test cell-centered axes...passed
+	test nodal axes...passed
+	test cell-centered grid...passed
+	test nodal grid...passed
+	test face grid...passed
+	test edge grid...passed
+	test volume...passed
+	test area...passed
+	test length...passed
+	test counting...passed
+	test nodal gradient matrix...passed
+	test divergence matrix...passed
+	test curl matrix...passed
+	test face average matrix...passed
+	test edge average matrix...passed
+	testing differential operators for TensorMesh3D...passed!
+	testing differential operators for RegularMesh...passed!
+	testing differential operators for TensorMesh3D...passed!
+   test getInterpolationMatrix (RegularMesh) ...  dim=2 dim=3 passed
+   test getInterpolationMatrix (TensorMesh) ... passed
+	testing nodal averaging for TensorMesh3D...passed!
+	testing nodal averaging for RegularMesh...passed!
+	testing nodal averaging for TensorMesh3D...passed!
+	testing nodal averaging for RegularMesh...passed!
+	testing boundary nodes for TensorMesh3D...passed!
+
+	testing boundary nodes for RegularMesh...passed!
+
+	testing boundary nodes for RegularMesh...passed!
+
+	test getEdgeMassMatrix on RegularMesh
+	test getNodalMassMatrix on RegularMesh
+	test getFaceMassMatrix on RegularMesh
+	test getEdgeMassMatrix on TensorMesh3D
+	test getNodalMassMatrix on TensorMesh3D
+	test getFaceMassMatrix on TensorMesh3D
+	testing forward operators for RegularMesh...passed!
+	testing forward operators for RegularMesh...passed!
+	testing forward operators for RegularMesh...passed!
+	testing forward operators for RegularMesh...passed!
+	testing 2D elasticity operators for RegularMesh...passed!
+	testing 3D elasticity operators for RegularMesh...passed!
+WARNING: could not import Base.Test into Main
+        h	       E0	       E1	       O1	       O2	  OK?
+1.000e-01	5.277e-02	1.063e-16	0.000e+00	0.000e+00	    1
+1.000e-02	5.277e-03	1.038e-16	1.000e+00	1.009e-02	    1
+1.000e-03	5.277e-04	1.229e-16	1.000e+00	-7.335e-02	    1
+1.000e-04	5.277e-05	1.349e-16	1.000e+00	-4.040e-02	    1
+1.000e-05	5.277e-06	1.116e-16	1.000e+00	8.250e-02	    1
+1.000e-06	5.277e-07	1.111e-16	1.000e+00	1.733e-03	    1
+1.000e-07	5.277e-08	8.212e-17	1.000e+00	1.314e-01	    1
+1.000e-08	5.277e-09	9.566e-17	1.000e+00	-6.625e-02	    1
+1.000e-09	5.277e-10	1.020e-16	1.000e+00	-2.804e-02	    1
+1.000e-10	5.277e-11	1.061e-16	1.000e+00	-1.678e-02	    1
+        h	       E0	       E1	       O1	       O2	  OK?
+1.000e-01	3.560e-01	3.900e-02	0.000e+00	0.000e+00	    0
+1.000e-02	3.910e-02	3.900e-04	9.592e-01	2.000e+00	    1
+1.000e-03	3.946e-03	3.900e-06	9.961e-01	2.000e+00	    1
+1.000e-04	3.949e-04	3.900e-08	9.996e-01	2.000e+00	    1
+1.000e-05	3.949e-05	3.900e-10	1.000e+00	2.000e+00	    1
+1.000e-06	3.949e-06	3.899e-12	1.000e+00	2.000e+00	    1
+1.000e-07	3.949e-07	3.908e-14	1.000e+00	1.999e+00	    1
+1.000e-08	3.949e-08	1.994e-16	1.000e+00	2.292e+00	    1
+1.000e-09	3.949e-09	0.000e+00	1.000e+00	Inf	    1
+1.000e-10	3.949e-10	1.994e-16	1.000e+00	-Inf	    1
+        h	       E0	       E1	       O1	       O2	  OK?
+1.000e-01	3.090e-02	1.425e-03	0.000e+00	0.000e+00	    0
+1.000e-02	3.127e-03	1.425e-05	9.948e-01	2.000e+00	    1
+1.000e-03	3.131e-04	1.425e-07	9.994e-01	2.000e+00	    1
+1.000e-04	3.132e-05	1.425e-09	9.999e-01	2.000e+00	    1
+1.000e-05	3.132e-06	1.425e-11	1.000e+00	2.000e+00	    1
+1.000e-06	3.132e-07	1.425e-13	1.000e+00	2.000e+00	    1
+1.000e-07	3.132e-08	1.441e-15	1.000e+00	1.995e+00	    1
+1.000e-08	3.132e-09	1.632e-16	1.000e+00	9.460e-01	    1
+1.000e-09	3.132e-10	1.074e-16	1.000e+00	1.816e-01	    1
+1.000e-10	3.132e-11	1.544e-16	1.000e+00	-1.576e-01	    1
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	1.58e+02	0.00e+00	1.00e+00	1.00e+00	  0
+   .1	5.09e+00	5.51e+00			6.69e-02
+  2.0	5.09e+00	5.51e+00	1.00e+00	6.69e-02	  1
+   .1	3.98e+00	6.02e+00			6.31e-02
+  3.0	3.98e+00	6.02e+00	1.00e+00	6.31e-02	  1
+   .1	3.97e+00	6.00e+00			6.29e-02
+  4.0	3.97e+00	6.00e+00	1.00e+00	6.29e-02	  2
+   .1	3.97e+00	6.00e+00			6.29e-02
+  5.0	3.97e+00	6.00e+00	1.00e+00	6.29e-02	  2
+   .1	3.97e+00	6.00e+00			6.29e-02
+projGN iterated maxIter=5 times but reached only stepNorm of 0.0004673164754156467 instead 0.0001.
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	1.58e+02	0.00e+00	1.00e+00	1.00e+00	  0
+   .1	5.09e+00	5.51e+00			6.69e-02
+  2.0	5.09e+00	5.51e+00	1.00e+00	6.69e-02	  1
+   .1	3.98e+00	6.02e+00			6.31e-02
+  3.0	3.98e+00	6.02e+00	1.00e+00	6.31e-02	  1
+   .1	3.97e+00	6.00e+00			6.29e-02
+  4.0	3.97e+00	6.00e+00	1.00e+00	6.29e-02	  2
+   .1	3.97e+00	6.00e+00			6.29e-02
+  5.0	3.97e+00	6.00e+00	1.00e+00	6.29e-02	  2
+   .1	3.97e+00	6.00e+00			6.29e-02
+projGN iterated maxIter=5 times but reached only stepNorm of 0.0004673164754156467 instead 0.0001.
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.70e+01	0.00e+00	1.00e+00	1.00e+00	  0
+   .1	1.51e+00	3.37e+00			1.81e-01
+  2.0	1.51e+00	3.37e+00	1.00e+00	1.81e-01	  0
+   .1	1.37e+00	3.44e+00			1.78e-01
+  3.0	1.37e+00	3.44e+00	1.00e+00	1.78e-01	  0
+   .1	1.38e+00	3.44e+00			1.78e-01
+  4.0	1.38e+00	3.44e+00	1.00e+00	1.78e-01	  0
+   .1	1.38e+00	3.44e+00			1.78e-01
+  5.0	1.38e+00	3.44e+00	1.00e+00	1.78e-01	  0
+   .1	1.38e+00	3.44e+00			1.78e-01
+projGN reached desired accuracy at iteration 5.
+projGN reached desired accuracy at iteration 5.
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.70e+01	0.00e+00	1.00e+00	1.00e+00	  0
+   .1	1.51e+00	3.44e+00			1.83e-01
+  2.0	1.51e+00	3.44e+00	1.00e+00	1.83e-01	  0
+   .1	1.39e+00	3.44e+00			1.79e-01
+  3.0	1.39e+00	3.44e+00	1.00e+00	1.79e-01	  0
+   .1	1.41e+00	3.41e+00			1.79e-01
+  4.0	1.41e+00	3.41e+00	1.00e+00	1.79e-01	  0
+   .1	1.41e+00	3.41e+00			1.79e-01
+  5.0	1.41e+00	3.41e+00	1.00e+00	1.79e-01	  0
+   .1	1.41e+00	3.41e+00			1.79e-01
+projGN iterated maxIter=5 times but reached only stepNorm of 0.0005629184704263324 instead 0.0001.
+projGN iterated maxIter=5 times but reached only stepNorm of 0.0005629184704263324 instead 0.0001.
+Starting projGNCG minimization with alpha 1 of 3.0
+alpha = 100.0
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.70e+01	0.00e+00	1.00e+02	1.00e+00	  0
+   .1	2.42e+01	1.36e+00			9.47e-01
+  2.0	2.42e+01	1.36e+00	1.00e+02	9.47e-01	  0
+   .1	2.42e+01	1.36e+00			9.47e-01
+projGN iterated maxIter=2 times but reached only stepNorm of 0.00044254651267220876 instead 0.0001.
+[26.989121423474025, 24.188451435346984, 24.188462397136576]
+Starting projGNCG minimization with alpha 2 of 3.0
+alpha = 10.0
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.42e+01	0.00e+00	1.00e+01	1.00e+00	  0
+   .1	1.04e+01	5.32e+00			6.49e-01
+  2.0	1.04e+01	5.32e+00	1.00e+01	6.49e-01	  0
+   .1	1.04e+01	5.32e+00			6.49e-01
+projGN iterated maxIter=2 times but reached only stepNorm of 0.002076652061117623 instead 0.0001.
+[24.188462397136576, 10.383008487864572, 10.385004666054659]
+iteratedTikhonov exiting after reaching desired misfit
+Starting projGNCG minimization with alpha 1 of 3.0
+alpha = 100.0
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.70e+01	0.00e+00	1.00e+02	1.00e+00	  0
+   .1	2.42e+01	1.36e+00			9.47e-01
+  2.0	2.42e+01	1.36e+00	1.00e+02	9.47e-01	  0
+   .1	2.42e+01	1.36e+00			9.47e-01
+projGN iterated maxIter=2 times but reached only stepNorm of 0.00044254651267220876 instead 0.0001.
+[26.989121423474025, 24.188451435346984, 24.188462397136576]
+Starting projGNCG minimization with alpha 2 of 3.0
+alpha = 10.0
+
+ i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.42e+01	0.00e+00	1.00e+01	1.00e+00	  0
+   .1	1.04e+01	5.32e+00			6.49e-01
+  2.0	1.04e+01	5.32e+00	1.00e+01	6.49e-01	  0
+   .1	1.04e+01	5.32e+00			6.49e-01
+projGN iterated maxIter=2 times but reached only stepNorm of 0.002076652061117623 instead 0.0001.
+[24.188462397136576, 10.383008487864572, 10.385004666054659]
+iteratedTikhonov exiting after reaching desired misfit
+i.LS	       F	       R	alpha[1]	   Jc&#x2F;J0	 #Active
+  1.0	2.70e+01	7.15e-01	1.00e+00	1.00e+00	  0
+   .1	6.01e+00	1.43e+01			7.34e-01
+  2.0	6.01e+00	1.43e+01	1.00e+00	7.34e-01	  1
+   .1	1.40e+01	6.35e+00			7.35e-01
+   .2	7.55e+00	2.35e+00			3.57e-01
+  3.0	7.55e+00	2.35e+00	1.00e+00	3.57e-01	  0
+   .1	4.17e+00	1.21e+01			5.89e-01
+   .2	4.24e+00	3.75e+00			2.89e-01
+  4.0	4.24e+00	3.75e+00	1.00e+00	2.89e-01	  0
+   .1	6.04e+00	7.95e+00			5.05e-01
+   .2	3.77e+00	1.21e+00			1.80e-01
+  5.0	3.77e+00	1.21e+00	1.00e+00	1.80e-01	  0
+   .1	3.17e+00	8.42e+00			4.18e-01
+   .2	2.57e+00	2.56e+00			1.85e-01
+   .3	2.85e+00	1.17e+00			1.45e-01
+  6.0	2.85e+00	1.17e+00	1.00e+00	1.45e-01	  0
+   .1	2.39e+00	3.94e+00			2.29e-01
+   .2	2.22e+00	1.50e+00			1.34e-01
+  7.0	2.22e+00	1.50e+00	1.00e+00	1.34e-01	  0
+   .1	2.69e+00	6.42e+00			3.29e-01
+   .2	1.80e+00	1.95e+00			1.36e-01
+   .3	1.78e+00	1.10e+00			1.04e-01
+  8.0	1.78e+00	1.10e+00	1.00e+00	1.04e-01	  0
+   .1	1.23e+00	1.49e+00			9.80e-02
+  9.0	1.23e+00	1.49e+00	1.00e+00	9.80e-02	  0
+   .1	2.20e+00	5.49e+00			2.78e-01
+   .2	1.37e+00	2.17e+00			1.28e-01
+   .3	1.11e+00	1.34e+00			8.83e-02
+ 10.0	1.11e+00	1.34e+00	1.00e+00	8.83e-02	  0
+   .1	2.26e+00	4.58e+00			2.47e-01
+   .2	1.29e+00	1.94e+00			1.17e-01
+   .3	1.10e+00	1.38e+00			8.97e-02
+   .4	1.08e+00	1.30e+00			8.58e-02
+ 11.0	1.08e+00	1.30e+00	1.00e+00	8.58e-02	  0
+   .1	1.02e+00	1.45e+00			8.91e-02
+   .2	1.03e+00	1.35e+00			8.60e-02
+   .3	1.05e+00	1.32e+00			8.55e-02
+ 12.0	1.05e+00	1.32e+00	1.00e+00	8.55e-02	  0
+   .1	1.06e+00	1.50e+00			9.22e-02
+   .2	1.04e+00	1.36e+00			8.65e-02
+   .3	1.04e+00	1.33e+00			8.54e-02
+ 13.0	1.04e+00	1.33e+00	1.00e+00	8.54e-02	  0
+   .1	1.08e+00	1.63e+00			9.76e-02
+   .2	1.03e+00	1.40e+00			8.75e-02
+   .3	1.03e+00	1.34e+00			8.54e-02
+   .4	1.03e+00	1.33e+00			8.52e-02
+ 14.0	1.03e+00	1.33e+00	1.00e+00	8.52e-02	  0
+   .1	9.91e-01	1.37e+00			8.52e-02
+   .2	1.01e+00	1.35e+00			8.51e-02
+ 15.0	1.01e+00	1.35e+00	1.00e+00	8.51e-02	  0
+   .1	1.01e+00	1.47e+00			8.94e-02
+   .2	9.98e-01	1.38e+00			8.58e-02
+   .3	1.00e+00	1.36e+00			8.51e-02
+   .4	1.00e+00	1.35e+00			8.50e-02
+ 16.0	1.00e+00	1.35e+00	1.00e+00	8.50e-02	  0
+   .1	9.81e-01	1.37e+00			8.50e-02
+   .2	9.92e-01	1.36e+00			8.49e-02
+ 17.0	9.92e-01	1.36e+00	1.00e+00	8.49e-02	  0
+   .1	9.86e-01	1.41e+00			8.65e-02
+   .2	9.85e-01	1.38e+00			8.52e-02
+   .3	9.88e-01	1.37e+00			8.49e-02
+   .4	9.90e-01	1.36e+00			8.49e-02
+ 18.0	9.90e-01	1.36e+00	1.00e+00	8.49e-02	  0
+   .1	9.76e-01	1.38e+00			8.49e-02
+   .2	9.83e-01	1.37e+00			8.49e-02
+ 19.0	9.83e-01	1.37e+00	1.00e+00	8.49e-02	  0
+   .1	9.77e-01	1.39e+00			8.55e-02
+   .2	9.78e-01	1.38e+00			8.50e-02
+   .3	9.80e-01	1.37e+00			8.49e-02
+   .4	9.81e-01	1.37e+00			8.49e-02
+ 20.0	9.81e-01	1.37e+00	1.00e+00	8.49e-02	  0
+   .1	9.74e-01	1.38e+00			8.49e-02
+   .2	9.78e-01	1.37e+00			8.49e-02
+projSD iterated maxIter=20 times but reached only stepNorm of 0.003334195846250332 instead 0.0001.
+projSD iterated maxIter=20 times but reached only stepNorm of 0.003334195846250332 instead 0.0001.
+---jInv.InverseSolve.InverseParam---
+inverse mesh type:    RegularMesh
+number of cells:      1024
+model function:       fMod
+maxStep:              1.0
+pcgMaxIter:           10
+pcgTol:               0.1
+minUpdate:            0.0001
+maxIter:              10
+===  Example 2D DivSigGrad ====
+cg achieved desired tolerance at iteration 3. Residual norm is 1.42e-06.
+bcgstb achieved desired tolerance at iteration 1.5. Residual norm is 2.32e-06.
+===  Test for nonsymmetric matrices ====
+===  Example 2D DivSigGrad ====
+blockCG achieved desired tolerance at iteration 1. Residual norm is 9.36e-06.
+blockBiCGSTB achieved desired tolerance at iteration 0.5. Residual norm is 7.31e-06.
+===  Test for nonsymmetric matrices ====
+===  Test Julia wrapper with symmetric (real) matrix ====
+nrhs=1, issparse(rhs)=false : sym=0, sym=1, sym=2, 
+nrhs=1, issparse(rhs)=true : sym=0, sym=1, sym=2, 
+nrhs=3, issparse(rhs)=false : sym=0, sym=1, sym=2, 
+nrhs=3, issparse(rhs)=true : sym=0, sym=1, sym=2, 
+
+
+===  Test Julia wrapper with shifted (complex) Laplacian ====
+nrhs=1, issparse(rhs)=false : sym=0, sym=1, sym=2, 
+nrhs=1, issparse(rhs)=true : sym=0, sym=1, sym=2, 
+nrhs=3, issparse(rhs)=false : sym=0, sym=1, sym=2, 
+nrhs=3, issparse(rhs)=true : sym=0, sym=1, sym=2, 
+
+
+===  Test Julia Wrapper: nonsymmetric matrices ====
+===  End Test Julia Wrapper ====
+Test Summary: | Pass  Total
+jInv          |  282    282
+   Testing jInv tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

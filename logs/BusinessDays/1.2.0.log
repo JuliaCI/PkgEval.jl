@@ -1,0 +1,94 @@
+ Resolving package versions...
+ Installed BusinessDays ─ v0.9.6
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [4f18b42c] + BusinessDays v0.9.6
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [4f18b42c] + BusinessDays v0.9.6
+  [ade2ca70] + Dates 
+  [de0858da] + Printf 
+  [4ec0a83e] + Unicode 
+   Testing BusinessDays
+ Resolving package versions...
+    Status `/tmp/jl_LYYRqA/Manifest.toml`
+  [4f18b42c] BusinessDays v0.9.6
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+##########################
+ Using cache: false
+##########################
+Timing composite calendar bdays calculation
+  0.000044 seconds (30 allocations: 576 bytes)
+Timing single bdays calculation
+  0.013367 seconds (5 allocations: 176 bytes)
+Timing 100 bdays calculations
+  0.859323 seconds (100 allocations: 1.563 KiB)
+Timing cache creation
+  0.010172 seconds (10 allocations: 269.703 KiB)
+Timing vectorized functions (vector length 7306)
+  6.887046 seconds (6 allocations: 57.359 KiB)
+  6.887820 seconds (24.00 k allocations: 1.343 MiB)
+  6.445571 seconds (1.37 k allocations: 129.753 KiB)
+  0.001246 seconds (5 allocations: 7.469 KiB)
+  0.001499 seconds (5 allocations: 7.469 KiB)
+  0.001263 seconds (5 allocations: 7.469 KiB)
+##########################
+ Using cache: true
+##########################
+Timing composite calendar bdays calculation
+  0.000023 seconds (11 allocations: 272 bytes)
+Timing single bdays calculation
+  0.000010 seconds (9 allocations: 240 bytes)
+Timing 100 bdays calculations
+  0.000069 seconds (500 allocations: 7.813 KiB)
+a million...
+  0.740699 seconds (5.00 M allocations: 76.294 MiB, 0.50% gc time)
+Timing vectorized functions (vector length 7306)
+  0.006350 seconds (29.23 k allocations: 513.984 KiB)
+  0.006130 seconds (29.23 k allocations: 513.984 KiB)
+  0.006440 seconds (29.23 k allocations: 513.984 KiB)
+  0.001365 seconds (5 allocations: 7.469 KiB)
+  0.001315 seconds (5 allocations: 7.469 KiB)
+  0.001207 seconds (5 allocations: 7.469 KiB)
+Perftests
+  0.004284 seconds (550 allocations: 34.743 KiB)
+  0.000003 seconds (9 allocations: 240 bytes)
+  0.000541 seconds (5.00 k allocations: 78.125 KiB)
+  0.008737 seconds (8.00 k allocations: 125.000 KiB)
+  0.008248 seconds (8.00 k allocations: 125.000 KiB)
+type
+  0.000661 seconds (5.00 k allocations: 78.125 KiB)
+  0.000516 seconds (4.00 k allocations: 70.594 KiB)
+  0.000643 seconds (7.01 k allocations: 125.406 KiB)
+sym
+  0.008437 seconds (8.00 k allocations: 125.000 KiB)
+  0.000608 seconds (4.00 k allocations: 70.594 KiB)
+  0.008369 seconds (7.01 k allocations: 125.406 KiB)
+str
+  0.008195 seconds (8.00 k allocations: 125.000 KiB)
+  0.000580 seconds (4.00 k allocations: 70.594 KiB)
+  0.008267 seconds (7.01 k allocations: 125.406 KiB)
+initcache type
+  0.009149 seconds (10 allocations: 305.344 KiB)
+initcache sym
+  0.029384 seconds (12 allocations: 305.375 KiB)
+initcache str
+  0.017762 seconds (12 allocations: 305.375 KiB)
+WeekendsOnly no cache
+  0.000008 seconds
+WeekendsOnly cache enabled
+  0.000008 seconds
+Returns false: false
+Returns true: true
+a million with GenericHolidayCalendar...
+  0.268664 seconds (5.00 M allocations: 76.294 MiB, 4.57% gc time)
+   Testing BusinessDays tests passed 

@@ -1,0 +1,108 @@
+ Resolving package versions...
+ Installed IPNets ─ v0.6.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [66763231] + IPNets v0.6.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [66763231] + IPNets v0.6.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+   Testing IPNets
+Status `/tmp/jl_O6vsJp/Manifest.toml`
+  [66763231] IPNets v0.6.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+WARNING: could not import Base.contains into IPNets
+WARNING: could not import Base.start into IPNets
+WARNING: could not import Base.next into IPNets
+WARNING: could not import Base.done into IPNets
+IPv4: Error During Test at /root/.julia/packages/IPNets/KT92T/test/runtests.jl:39
+  Test threw exception
+  Expression: contains(n4, ip42) == true
+  UndefVarError: contains not defined
+  Stacktrace:
+   [1] top-level scope at /root/.julia/packages/IPNets/KT92T/test/runtests.jl:39
+   [2] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [3] top-level scope at /root/.julia/packages/IPNets/KT92T/test/runtests.jl:26
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/IPNets/KT92T/test/runtests.jl:6
+  
+IPv4: Error During Test at /root/.julia/packages/IPNets/KT92T/test/runtests.jl:50
+  Test threw exception
+  Expression: [x for x = n5] == [#= /root/.julia/packages/IPNets/KT92T/test/runtests.jl:50 =# @ip_str("1.2.3.4"), #= /root/.julia/packages/IPNets/KT92T/test/runtests.jl:50 =# @ip_str("1.2.3.5"), #= /root/.julia/packages/IPNets/KT92T/test/runtests.jl:50 =# @ip_str("1.2.3.6"), #= /root/.julia/packages/IPNets/KT92T/test/runtests.jl:50 =# @ip_str("1.2.3.7")]
+  MethodError: no method matching iterate(::IPv4Net)
+  Closest candidates are:
+    iterate(!Matched::Core.SimpleVector) at essentials.jl:602
+    iterate(!Matched::Core.SimpleVector, !Matched::Any) at essentials.jl:602
+    iterate(!Matched::ExponentialBackOff) at error.jl:253
+    ...
+  Stacktrace:
+   [1] iterate at ./generator.jl:44 [inlined]
+   [2] collect(::Base.Generator{IPv4Net,var"#3#5"}) at ./array.jl:636
+   [3] top-level scope at /root/.julia/packages/IPNets/KT92T/test/runtests.jl:50
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/IPNets/KT92T/test/runtests.jl:26
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/IPNets/KT92T/test/runtests.jl:6
+  
+IPv6: Error During Test at /root/.julia/packages/IPNets/KT92T/test/runtests.jl:82
+  Test threw exception
+  Expression: contains(o4, ip62) == true
+  UndefVarError: contains not defined
+  Stacktrace:
+   [1] top-level scope at /root/.julia/packages/IPNets/KT92T/test/runtests.jl:82
+   [2] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [3] top-level scope at /root/.julia/packages/IPNets/KT92T/test/runtests.jl:69
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/IPNets/KT92T/test/runtests.jl:6
+  
+IPv6: Error During Test at /root/.julia/packages/IPNets/KT92T/test/runtests.jl:88
+  Test threw exception
+  Expression: [x for x = o5] == [#= /root/.julia/packages/IPNets/KT92T/test/runtests.jl:88 =# @ip_str("2001:1::4"), #= /root/.julia/packages/IPNets/KT92T/test/runtests.jl:88 =# @ip_str("2001:1::5"), #= /root/.julia/packages/IPNets/KT92T/test/runtests.jl:88 =# @ip_str("2001:1::6"), #= /root/.julia/packages/IPNets/KT92T/test/runtests.jl:88 =# @ip_str("2001:1::7")]
+  MethodError: no method matching iterate(::IPv6Net)
+  Closest candidates are:
+    iterate(!Matched::Core.SimpleVector) at essentials.jl:602
+    iterate(!Matched::Core.SimpleVector, !Matched::Any) at essentials.jl:602
+    iterate(!Matched::ExponentialBackOff) at error.jl:253
+    ...
+  Stacktrace:
+   [1] iterate at ./generator.jl:44 [inlined]
+   [2] collect(::Base.Generator{IPv6Net,var"#4#6"}) at ./array.jl:636
+   [3] top-level scope at /root/.julia/packages/IPNets/KT92T/test/runtests.jl:88
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [5] top-level scope at /root/.julia/packages/IPNets/KT92T/test/runtests.jl:69
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/IPNets/KT92T/test/runtests.jl:6
+  
+Test Summary: | Pass  Error  Total
+IPNets        |   65      4     69
+  IPv4        |   36      2     38
+  IPv6        |   29      2     31
+ERROR: LoadError: Some tests did not pass: 65 passed, 0 failed, 4 errored, 0 broken.
+in expression starting at /root/.julia/packages/IPNets/KT92T/test/runtests.jl:5
+ERROR: Package IPNets errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

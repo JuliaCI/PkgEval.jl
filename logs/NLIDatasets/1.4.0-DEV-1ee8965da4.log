@@ -1,0 +1,787 @@
+ Resolving package versions...
+ Installed IniFile ──────── v0.5.0
+ Installed Reexport ─────── v0.2.0
+ Installed NLIDatasets ──── v0.2.0
+ Installed MbedTLS ──────── v0.7.0
+ Installed DataDeps ─────── v0.7.1
+ Installed BinaryProvider ─ v0.5.8
+ Installed HTTP ─────────── v0.8.8
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [400165cc] + NLIDatasets v0.2.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [124859b0] + DataDeps v0.7.1
+  [cd3eb016] + HTTP v0.8.8
+  [83e8ac13] + IniFile v0.5.0
+  [739be429] + MbedTLS v0.7.0
+  [400165cc] + NLIDatasets v0.2.0
+  [189a3867] + Reexport v0.2.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building MbedTLS → `~/.julia/packages/MbedTLS/a1JFn/deps/build.log`
+   Testing NLIDatasets
+ Resolving package versions...
+Status `/tmp/jl_UdjgHK/Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [124859b0] DataDeps v0.7.1
+  [cd3eb016] HTTP v0.8.8
+  [83e8ac13] IniFile v0.5.0
+  [739be429] MbedTLS v0.7.0
+  [400165cc] NLIDatasets v0.2.0
+  [189a3867] Reexport v0.2.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+SNLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:7
+  Test threw exception
+  Expression: isfile(SNLI.train_tsv())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] snli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/snli.jl:28 [inlined]
+   [10] train_tsv() at /root/.julia/packages/NLIDatasets/D0tQz/src/snli.jl:30
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:7
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:6
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+SNLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:8
+  Test threw exception
+  Expression: isfile(SNLI.train_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] snli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/snli.jl:28 [inlined]
+   [10] train_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/snli.jl:31
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:8
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:6
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+SNLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:9
+  Test threw exception
+  Expression: isfile(SNLI.dev_tsv())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] snli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/snli.jl:28 [inlined]
+   [10] dev_tsv() at /root/.julia/packages/NLIDatasets/D0tQz/src/snli.jl:32
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:9
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:6
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+SNLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:10
+  Test threw exception
+  Expression: isfile(SNLI.dev_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] snli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/snli.jl:28 [inlined]
+   [10] dev_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/snli.jl:33
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:10
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:6
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+SNLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:11
+  Test threw exception
+  Expression: isfile(SNLI.test_tsv())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] snli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/snli.jl:28 [inlined]
+   [10] test_tsv() at /root/.julia/packages/NLIDatasets/D0tQz/src/snli.jl:34
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:11
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:6
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+SNLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:12
+  Test threw exception
+  Expression: isfile(SNLI.test_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] snli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/snli.jl:28 [inlined]
+   [10] test_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/snli.jl:35
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:12
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:6
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+MultiNLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:17
+  Test threw exception
+  Expression: isfile(MultiNLI.train_tsv())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] multinli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/multinli.jl:24 [inlined]
+   [10] train_tsv() at /root/.julia/packages/NLIDatasets/D0tQz/src/multinli.jl:26
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:17
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:16
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+MultiNLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:18
+  Test threw exception
+  Expression: isfile(MultiNLI.train_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] multinli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/multinli.jl:24 [inlined]
+   [10] train_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/multinli.jl:27
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:18
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:16
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+MultiNLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:19
+  Test threw exception
+  Expression: isfile(MultiNLI.dev_matched_tsv())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] multinli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/multinli.jl:24 [inlined]
+   [10] dev_matched_tsv() at /root/.julia/packages/NLIDatasets/D0tQz/src/multinli.jl:28
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:19
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:16
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+MultiNLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:20
+  Test threw exception
+  Expression: isfile(MultiNLI.dev_matched_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] multinli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/multinli.jl:24 [inlined]
+   [10] dev_matched_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/multinli.jl:29
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:20
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:16
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+MultiNLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:21
+  Test threw exception
+  Expression: isfile(MultiNLI.dev_mismatched_tsv())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] multinli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/multinli.jl:24 [inlined]
+   [10] dev_mismatched_tsv() at /root/.julia/packages/NLIDatasets/D0tQz/src/multinli.jl:30
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:21
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:16
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+MultiNLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:22
+  Test threw exception
+  Expression: isfile(MultiNLI.dev_mismatched_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] multinli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/multinli.jl:24 [inlined]
+   [10] dev_mismatched_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/multinli.jl:31
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:22
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:16
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+XNLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:27
+  Test threw exception
+  Expression: isfile(XNLI.dev_tsv())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] xnlifile at /root/.julia/packages/NLIDatasets/D0tQz/src/xnli.jl:20 [inlined]
+   [10] dev_tsv() at /root/.julia/packages/NLIDatasets/D0tQz/src/xnli.jl:22
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:27
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:26
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+XNLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:28
+  Test threw exception
+  Expression: isfile(XNLI.dev_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] xnlifile at /root/.julia/packages/NLIDatasets/D0tQz/src/xnli.jl:20 [inlined]
+   [10] dev_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/xnli.jl:23
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:28
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:26
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+XNLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:29
+  Test threw exception
+  Expression: isfile(XNLI.test_tsv())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] xnlifile at /root/.julia/packages/NLIDatasets/D0tQz/src/xnli.jl:20 [inlined]
+   [10] test_tsv() at /root/.julia/packages/NLIDatasets/D0tQz/src/xnli.jl:24
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:29
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:26
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+XNLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:30
+  Test threw exception
+  Expression: isfile(XNLI.test_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] xnlifile at /root/.julia/packages/NLIDatasets/D0tQz/src/xnli.jl:20 [inlined]
+   [10] test_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/xnli.jl:25
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:30
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:26
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+SciTail: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:35
+  Test threw exception
+  Expression: isfile(SciTail.train_tsv())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] scitail_base at /root/.julia/packages/NLIDatasets/D0tQz/src/scitail.jl:23 [inlined]
+   [10] scitail_tsv(::String) at /root/.julia/packages/NLIDatasets/D0tQz/src/scitail.jl:25
+   [11] train_tsv() at /root/.julia/packages/NLIDatasets/D0tQz/src/scitail.jl:27
+   [12] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:35
+   [13] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [14] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:34
+   [15] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [16] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+SciTail: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:36
+  Test threw exception
+  Expression: isfile(SciTail.train_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] scitail_base at /root/.julia/packages/NLIDatasets/D0tQz/src/scitail.jl:23 [inlined]
+   [10] scitail_jsonl(::String) at /root/.julia/packages/NLIDatasets/D0tQz/src/scitail.jl:24
+   [11] train_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/scitail.jl:28
+   [12] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:36
+   [13] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [14] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:34
+   [15] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [16] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+SciTail: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:37
+  Test threw exception
+  Expression: isfile(SciTail.dev_tsv())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] scitail_base at /root/.julia/packages/NLIDatasets/D0tQz/src/scitail.jl:23 [inlined]
+   [10] scitail_tsv(::String) at /root/.julia/packages/NLIDatasets/D0tQz/src/scitail.jl:25
+   [11] dev_tsv() at /root/.julia/packages/NLIDatasets/D0tQz/src/scitail.jl:29
+   [12] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:37
+   [13] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [14] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:34
+   [15] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [16] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+SciTail: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:38
+  Test threw exception
+  Expression: isfile(SciTail.dev_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] scitail_base at /root/.julia/packages/NLIDatasets/D0tQz/src/scitail.jl:23 [inlined]
+   [10] scitail_jsonl(::String) at /root/.julia/packages/NLIDatasets/D0tQz/src/scitail.jl:24
+   [11] dev_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/scitail.jl:30
+   [12] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:38
+   [13] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [14] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:34
+   [15] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [16] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+SciTail: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:39
+  Test threw exception
+  Expression: isfile(SciTail.test_tsv())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] scitail_base at /root/.julia/packages/NLIDatasets/D0tQz/src/scitail.jl:23 [inlined]
+   [10] scitail_tsv(::String) at /root/.julia/packages/NLIDatasets/D0tQz/src/scitail.jl:25
+   [11] test_tsv() at /root/.julia/packages/NLIDatasets/D0tQz/src/scitail.jl:31
+   [12] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:39
+   [13] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [14] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:34
+   [15] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [16] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+SciTail: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:40
+  Test threw exception
+  Expression: isfile(SciTail.test_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] scitail_base at /root/.julia/packages/NLIDatasets/D0tQz/src/scitail.jl:23 [inlined]
+   [10] scitail_jsonl(::String) at /root/.julia/packages/NLIDatasets/D0tQz/src/scitail.jl:24
+   [11] test_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/scitail.jl:32
+   [12] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:40
+   [13] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [14] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:34
+   [15] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [16] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+HANS: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:45
+  Test threw exception
+  Expression: isfile(HANS.test_tsv())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] hansfile at /root/.julia/packages/NLIDatasets/D0tQz/src/hans.jl:25 [inlined]
+   [10] test_tsv() at /root/.julia/packages/NLIDatasets/D0tQz/src/hans.jl:28
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:45
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:44
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+Breaking_NLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:50
+  Test threw exception
+  Expression: isfile(BreakingNLI.test_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),NLIDatasets.BreakingNLI.var"#1#2"}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),NLIDatasets.BreakingNLI.var"#1#2"}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),NLIDatasets.BreakingNLI.var"#1#2"}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] test_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/breaking_nli.jl:25
+   [10] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:50
+   [11] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [12] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:49
+   [13] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [14] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+ANLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:55
+  Test threw exception
+  Expression: isfile(ANLI.R1_train_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] anli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/anli.jl:24 [inlined]
+   [10] R1_train_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/anli.jl:26
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:55
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:54
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+ANLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:56
+  Test threw exception
+  Expression: isfile(ANLI.R1_dev_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] anli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/anli.jl:24 [inlined]
+   [10] R1_dev_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/anli.jl:27
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:56
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:54
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+ANLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:57
+  Test threw exception
+  Expression: isfile(ANLI.R1_test_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] anli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/anli.jl:24 [inlined]
+   [10] R1_test_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/anli.jl:28
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:57
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:54
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+ANLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:58
+  Test threw exception
+  Expression: isfile(ANLI.R2_train_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] anli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/anli.jl:24 [inlined]
+   [10] R2_train_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/anli.jl:29
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:58
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:54
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+ANLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:59
+  Test threw exception
+  Expression: isfile(ANLI.R2_dev_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] anli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/anli.jl:24 [inlined]
+   [10] R2_dev_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/anli.jl:30
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:59
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:54
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+ANLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:60
+  Test threw exception
+  Expression: isfile(ANLI.R2_test_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] anli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/anli.jl:24 [inlined]
+   [10] R2_test_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/anli.jl:31
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:60
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:54
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+ANLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:61
+  Test threw exception
+  Expression: isfile(ANLI.R3_train_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] anli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/anli.jl:24 [inlined]
+   [10] R3_train_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/anli.jl:32
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:61
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:54
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+ANLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:62
+  Test threw exception
+  Expression: isfile(ANLI.R3_dev_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] anli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/anli.jl:24 [inlined]
+   [10] R3_dev_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/anli.jl:33
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:62
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:54
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+ANLI: Error During Test at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:63
+  Test threw exception
+  Expression: isfile(ANLI.R3_test_jsonl())
+  DataDeps.DisabledError("DataDeps download disabled, as we appear to be in a CI environment, and the environment variable `DATADEPS_ALWAYS_ACCEPT` is not set.\nIf this is indeed running in a headless CI environment, then set the `DATADEPS_ALWAYS_ACCEPT` environment variable to `true` to bypass the accept download prompt (if you do wish to always accept.)\nIf not, then either unset the `CI` environment variable from true, or set `DATADEPS_ALWAYS_ACCEPT` to `false` for the normal prompt behaviour.")
+  Stacktrace:
+   [1] ensure_download_permitted at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:26 [inlined]
+   [2] download(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String; remotepath::String, i_accept_the_terms_of_use::Nothing, skip_checksum::Bool) at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70
+   [3] download at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:70 [inlined]
+   [4] handle_missing at /root/.julia/packages/DataDeps/ai3FE/src/resolution_automatic.jl:10 [inlined]
+   [5] _resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:83
+   [6] resolve(::DataDeps.DataDep{String,String,typeof(NLIDatasets.getzip),typeof(DataDeps.unpack)}, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:29
+   [7] resolve(::String, ::String, ::String) at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:54
+   [8] resolve at /root/.julia/packages/DataDeps/ai3FE/src/resolution.jl:73 [inlined]
+   [9] anli_file at /root/.julia/packages/NLIDatasets/D0tQz/src/anli.jl:24 [inlined]
+   [10] R3_test_jsonl() at /root/.julia/packages/NLIDatasets/D0tQz/src/anli.jl:34
+   [11] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:63
+   [12] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [13] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:54
+   [14] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [15] top-level scope at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:5
+  
+Test Summary:  | Error  Total
+NLIDatasets.jl |    33     33
+  SNLI         |     6      6
+  MultiNLI     |     6      6
+  XNLI         |     4      4
+  SciTail      |     6      6
+  HANS         |     1      1
+  Breaking_NLI |     1      1
+  ANLI         |     9      9
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 33 errored, 0 broken.
+in expression starting at /root/.julia/packages/NLIDatasets/D0tQz/test/runtests.jl:3
+ERROR: Package NLIDatasets errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

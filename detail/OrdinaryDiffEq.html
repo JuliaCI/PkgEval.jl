@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="OrdinaryDiffEq">OrdinaryDiffEq</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#OrdinaryDiffEq">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 16 hours ago and took 17 minutes, 37 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/OrdinaryDiffEq/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Requires ──────────────────── v0.5.2
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed DiffEqDiffTools ───────────── v1.4.0
+ Installed Inflate ───────────────────── v0.1.1
+ Installed CommonSubexpressions ──────── v0.2.0
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed DocStringExtensions ───────── v0.8.1
+ Installed OrdinaryDiffEq ────────────── v5.23.0
+ Installed DiffRules ─────────────────── v0.1.0
+ Installed RecursiveArrayTools ───────── v1.0.2
+ Installed ArrayInterface ────────────── v1.2.1
+ Installed FunctionWrappers ──────────── v1.0.0
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed DataStructures ────────────── v0.17.6
+ Installed MacroTools ────────────────── v0.5.2
+ Installed Adapt ─────────────────────── v1.0.0
+ Installed Reexport ──────────────────── v0.2.0
+ Installed VertexSafeGraphs ──────────── v0.1.0
+ Installed SpecialFunctions ──────────── v0.8.0
+ Installed TreeViews ─────────────────── v0.3.0
+ Installed BinDeps ───────────────────── v0.8.10
+ Installed URIParser ─────────────────── v0.4.0
+ Installed DiffEqBase ────────────────── v6.6.0
+ Installed Roots ─────────────────────── v0.8.3
+ Installed StaticArrays ──────────────── v0.12.1
+ Installed IterativeSolvers ──────────── v0.8.1
+ Installed DiffResults ───────────────── v0.0.4
+ Installed ArnoldiMethod ─────────────── v0.0.4
+ Installed SimpleTraits ──────────────── v0.9.1
+ Installed GenericSVD ────────────────── v0.2.2
+ Installed TableTraits ───────────────── v1.0.0
+ Installed OrderedCollections ────────── v1.1.0
+ Installed ExponentialUtilities ──────── v1.5.1
+ Installed MuladdMacro ───────────────── v0.2.1
+ Installed Parameters ────────────────── v0.12.0
+ Installed SparseDiffTools ───────────── v0.10.3
+ Installed RecursiveFactorization ────── v0.1.0
+ Installed Compat ────────────────────── v2.2.0
+ Installed ForwardDiff ───────────────── v0.10.6
+ Installed LightGraphs ───────────────── v1.3.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [1dea7af3] + OrdinaryDiffEq v5.23.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [79e6a3ab] + Adapt v1.0.0
+  [ec485272] + ArnoldiMethod v0.0.4
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [864edb3b] + DataStructures v0.17.6
+  [2b5f629d] + DiffEqBase v6.6.0
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [ffbed154] + DocStringExtensions v0.8.1
+  [d4d017d3] + ExponentialUtilities v1.5.1
+  [f6369f11] + ForwardDiff v0.10.6
+  [069b7b12] + FunctionWrappers v1.0.0
+  [01680d73] + GenericSVD v0.2.2
+  [d25df0c9] + Inflate v0.1.1
+  [42fd0dbc] + IterativeSolvers v0.8.1
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [093fc24a] + LightGraphs v1.3.0
+  [1914dd2f] + MacroTools v0.5.2
+  [46d2c3a1] + MuladdMacro v0.2.1
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [1dea7af3] + OrdinaryDiffEq v5.23.0
+  [d96e819e] + Parameters v0.12.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [731186ca] + RecursiveArrayTools v1.0.2
+  [f2c3362d] + RecursiveFactorization v0.1.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [f2b01f46] + Roots v0.8.3
+  [699a6c99] + SimpleTraits v0.9.1
+  [47a9eef4] + SparseDiffTools v0.10.3
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [3783bdb8] + TableTraits v1.0.0
+  [a2a6695c] + TreeViews v0.3.0
+  [30578b45] + URIParser v0.4.0
+  [19fa3120] + VertexSafeGraphs v0.1.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing OrdinaryDiffEq
+ Resolving package versions...
+ Installed SafeTestsets ──────────── v0.0.1
+ Installed DiffEqCallbacks ───────── v2.9.0
+ Installed Calculus ──────────────── v0.5.1
+ Installed DiffEqProblemLibrary ──── v4.5.1
+ Installed DiffEqSensitivity ─────── v4.3.0
+ Installed DelayDiffEq ───────────── v5.18.0
+ Installed DiffEqOperators ───────── v4.4.0
+ Installed DiffEqDevTools ────────── v2.15.1
+ Installed InvertedIndices ───────── v1.0.0
+ Installed Unitful ───────────────── v0.17.0
+ Installed Arpack ────────────────── v0.3.1
+ Installed Parsers ───────────────── v0.3.10
+ Installed StaticPolynomials ─────── v1.3.3
+ Installed GLM ───────────────────── v1.3.4
+ Installed BandedMatrices ────────── v0.14.1
+ Installed ModelingToolkit ───────── v0.9.1
+ Installed DiffEqNoiseProcess ────── v3.4.0
+ Installed NameResolution ────────── v0.1.3
+ Installed BlockBandedMatrices ───── v0.6.0
+ Installed DataValueInterfaces ───── v1.0.0
+ Installed JuliaVariables ────────── v0.1.3
+ Installed JSON ──────────────────── v0.21.0
+ Installed DataAPI ───────────────── v1.1.0
+ Installed NLsolve ───────────────── v4.2.0
+ Installed PDMats ────────────────── v0.9.10
+ Installed ProgressMeter ─────────── v0.9.0
+ Installed DynamicPolynomials ────── v0.1.4
+ Installed PoissonRandom ─────────── v0.4.0
+ Installed Distances ─────────────── v0.8.2
+ Installed Latexify ──────────────── v0.12.2
+ Installed Distributions ─────────── v0.21.8
+ Installed GeneralizedGenerated ──── v0.1.4
+ Installed LazyArrays ────────────── v0.14.8
+ Installed MultivariatePolynomials ─ v0.3.2
+ Installed MatrixFactorizations ──── v0.2.1
+ Installed ResettableStacks ──────── v0.6.0
+ Installed DiffEqBiological ──────── v4.0.2
+ Installed PrettyPrint ───────────── v0.1.0
+ Installed DataFrames ────────────── v0.19.4
+ Installed HomotopyContinuation ──── v0.7.0
+ Installed LineSearches ──────────── v7.0.1
+ Installed NNlib ─────────────────── v0.6.0
+ Installed Tracker ───────────────── v0.2.5
+ Installed SortingAlgorithms ─────── v0.3.1
+ Installed ArrayLayouts ──────────── v0.1.5
+ Installed CanonicalTraits ───────── v0.1.0
+ Installed StatsBase ─────────────── v0.32.0
+ Installed TimerOutputs ──────────── v0.5.3
+ Installed FillArrays ────────────── v0.8.2
+ Installed StatsModels ───────────── v0.6.7
+ Installed PooledArrays ──────────── v0.5.2
+ Installed Missings ──────────────── v0.4.3
+ Installed RandomNumbers ─────────── v1.3.0
+ Installed NLSolversBase ─────────── v7.5.0
+ Installed LegibleLambdas ────────── v0.2.0
+ Installed DiffEqJump ────────────── v6.3.0
+ Installed BlockArrays ───────────── v0.10.2
+ Installed LaTeXStrings ──────────── v1.0.3
+ Installed Rmath ─────────────────── v0.5.1
+ Installed CategoricalArrays ─────── v0.7.3
+ Installed SymEngine ─────────────── v0.7.0
+ Installed ProjectiveVectors ─────── v0.2.2
+ Installed QuadGK ────────────────── v2.1.1
+ Installed ShiftedArrays ─────────── v1.0.0
+ Installed FixedPolynomials ──────── v0.4.0
+ Installed MLStyle ───────────────── v0.3.1
+ Installed Tables ────────────────── v0.2.11
+ Installed StatsFuns ─────────────── v0.9.0
+  Building Arpack ───→ `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+  Building Rmath ────→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+  Building SymEngine → `~&#x2F;.julia&#x2F;packages&#x2F;SymEngine&#x2F;zSUGO&#x2F;deps&#x2F;build.log`
+    Status `&#x2F;tmp&#x2F;tmpEwyG2V&#x2F;Manifest.toml`
+  [79e6a3ab] Adapt v1.0.0
+  [ec485272] ArnoldiMethod v0.0.4
+  [7d9fca2a] Arpack v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [4c555306] ArrayLayouts v0.1.5
+  [aae01518] BandedMatrices v0.14.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [8e7c35d0] BlockArrays v0.10.2
+  [ffab5731] BlockBandedMatrices v0.6.0
+  [49dc2e85] Calculus v0.5.1
+  [a603d957] CanonicalTraits v0.1.0
+  [324d7699] CategoricalArrays v0.7.3
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [bcd4f6db] DelayDiffEq v5.18.0
+  [2b5f629d] DiffEqBase v6.6.0
+  [eb300fae] DiffEqBiological v4.0.2
+  [459566f4] DiffEqCallbacks v2.9.0
+  [f3b72e0c] DiffEqDevTools v2.15.1
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [c894b116] DiffEqJump v6.3.0
+  [77a26b50] DiffEqNoiseProcess v3.4.0
+  [9fdde737] DiffEqOperators v4.4.0
+  [a077e3f3] DiffEqProblemLibrary v4.5.1
+  [41bf760c] DiffEqSensitivity v4.3.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [31c24e10] Distributions v0.21.8
+  [ffbed154] DocStringExtensions v0.8.1
+  [7c1d4256] DynamicPolynomials v0.1.4
+  [d4d017d3] ExponentialUtilities v1.5.1
+  [1a297f60] FillArrays v0.8.2
+  [3dd14ad9] FixedPolynomials v0.4.0
+  [f6369f11] ForwardDiff v0.10.6
+  [069b7b12] FunctionWrappers v1.0.0
+  [38e38edf] GLM v1.3.4
+  [6b9d7cbe] GeneralizedGenerated v0.1.4
+  [01680d73] GenericSVD v0.2.2
+  [f213a82b] HomotopyContinuation v0.7.0
+  [d25df0c9] Inflate v0.1.1
+  [41ab1584] InvertedIndices v1.0.0
+  [42fd0dbc] IterativeSolvers v0.8.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [682c06a0] JSON v0.21.0
+  [b14d175d] JuliaVariables v0.1.3
+  [b964fa9f] LaTeXStrings v1.0.3
+  [23fbe1c1] Latexify v0.12.2
+  [5078a376] LazyArrays v0.14.8
+  [f1f30506] LegibleLambdas v0.2.0
+  [093fc24a] LightGraphs v1.3.0
+  [d3d80556] LineSearches v7.0.1
+  [d8e11817] MLStyle v0.3.1
+  [1914dd2f] MacroTools v0.5.2
+  [a3b82374] MatrixFactorizations v0.2.1
+  [e1d29d7a] Missings v0.4.3
+  [961ee093] ModelingToolkit v0.9.1
+  [46d2c3a1] MuladdMacro v0.2.1
+  [102ac46a] MultivariatePolynomials v0.3.2
+  [d41bc354] NLSolversBase v7.5.0
+  [2774e3e8] NLsolve v4.2.0
+  [872c559c] NNlib v0.6.0
+  [77ba4419] NaNMath v0.3.3
+  [71a1bf82] NameResolution v0.1.3
+  [bac558e1] OrderedCollections v1.1.0
+  [1dea7af3] OrdinaryDiffEq v5.23.0
+  [90014a1f] PDMats v0.9.10
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [e409e4f3] PoissonRandom v0.4.0
+  [2dfb63ee] PooledArrays v0.5.2
+  [8162dcfd] PrettyPrint v0.1.0
+  [92933f4c] ProgressMeter v0.9.0
+  [01f381cc] ProjectiveVectors v0.2.2
+  [1fd47b50] QuadGK v2.1.1
+  [e6cf234a] RandomNumbers v1.3.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [f2c3362d] RecursiveFactorization v0.1.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [ae5879a3] ResettableStacks v0.6.0
+  [79098fc4] Rmath v0.5.1
+  [f2b01f46] Roots v0.8.3
+  [1bc83da4] SafeTestsets v0.0.1
+  [1277b4bf] ShiftedArrays v1.0.0
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [47a9eef4] SparseDiffTools v0.10.3
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [62e018b1] StaticPolynomials v1.3.3
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [3eaba693] StatsModels v0.6.7
+  [123dc426] SymEngine v0.7.0
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [a759f4b9] TimerOutputs v0.5.3
+  [9f7883ad] Tracker v0.2.5
+  [a2a6695c] TreeViews v0.3.0
+  [30578b45] URIParser v0.4.0
+  [1986cc42] Unitful v0.17.0
+  [19fa3120] VertexSafeGraphs v0.1.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+┌ Warning: Replacing docs for `DiffEqOperators.PeriodicBC :: Union{}` in module `DiffEqOperators`
+└ @ Base.Docs docs&#x2F;Docs.jl:223
+┌ Warning: Replacing docs for `DiffEqOperators.RobinBC :: Union{}` in module `DiffEqOperators`
+└ @ Base.Docs docs&#x2F;Docs.jl:223
+Test Summary:            | Pass  Total
+Discrete Algorithm Tests |   12     12
+774.807234 seconds (169.87 M allocations: 8.535 GiB, 1.11% gc time)
+Test Summary: | Pass  Total
+Tstops Tests  |   23     23
+ 14.175925 seconds (10.17 M allocations: 522.015 MiB, 3.44% gc time)
+Test Summary:   | Pass  Total
+Backwards Tests |    3      3
+ 21.550371 seconds (19.41 M allocations: 921.581 MiB, 5.29% gc time)
+Test Summary: | Pass  Total
+Initdt Tests  |    3      3
+111.686341 seconds (16.09 M allocations: 844.647 MiB, 1.00% gc time)
+Linear Tests: Error During Test at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;SafeTestsets&#x2F;A83XK&#x2F;src&#x2F;SafeTestsets.jl:25
+  Got exception outside of a @test
+  LoadError: UndefVarError: eachrow not defined
+  Stacktrace:
+   [1] (::getfield(SparseDiffTools, Symbol(&quot;##11#12&quot;)){4})(::Int64) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;SparseDiffTools&#x2F;rmIp6&#x2F;src&#x2F;differentiation&#x2F;compute_jacobian_ad.jl:62
+   [2] iterate at .&#x2F;generator.jl:47 [inlined]
+   [3] _collect(::UnitRange{Int64}, ::Base.Generator{UnitRange{Int64},getfield(SparseDiffTools, Symbol(&quot;##11#12&quot;)){4}}, ::Base.EltypeUnknown, ::Base.HasShape{1}) at .&#x2F;array.jl:632
+   [4] collect_similar at .&#x2F;array.jl:561 [inlined]
+   [5] map at .&#x2F;abstractarray.jl:1987 [inlined]
+   [6] generate_chunked_partials(::Array{Float64,2}, ::UnitRange{Int64}, ::Val{4}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;SparseDiffTools&#x2F;rmIp6&#x2F;src&#x2F;differentiation&#x2F;compute_jacobian_ad.jl:62
+   [7] #ForwardColorJacCache#10(::Array{Float64,2}, ::UnitRange{Int64}, ::Nothing, ::Type, ::Function, ::Array{Float64,2}, ::Nothing) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;SparseDiffTools&#x2F;rmIp6&#x2F;src&#x2F;differentiation&#x2F;compute_jacobian_ad.jl:33
+   [8] Type at .&#x2F;none:0 [inlined] (repeats 2 times)
+   [9] #forwarddiff_color_jacobian#13(::Array{Float64,2}, ::UnitRange{Int64}, ::Nothing, ::Nothing, ::Function, ::DiffEqDiffTools.UDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Float64,DiffEqBase.NullParameters}, ::Array{Float64,2}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;SparseDiffTools&#x2F;rmIp6&#x2F;src&#x2F;differentiation&#x2F;compute_jacobian_ad.jl:76
+   [10] (::getfield(SparseDiffTools, Symbol(&quot;#kw##forwarddiff_color_jacobian&quot;)))(::NamedTuple{(:colorvec, :sparsity, :jac_prototype),Tuple{UnitRange{Int64},Nothing,Nothing}}, ::typeof(SparseDiffTools.forwarddiff_color_jacobian), ::Function, ::Array{Float64,2}) at .&#x2F;none:0
+   [11] jacobian_autodiff(::Function, ::Array{Float64,2}, ::Function) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;OrdinaryDiffEq&#x2F;ROQW3&#x2F;src&#x2F;derivative_wrappers.jl:53
+   [12] jacobian(::Function, ::Array{Float64,2}, ::OrdinaryDiffEq.ODEIntegrator{OrdinaryDiffEq.Rosenbrock23{0,true,DiffEqBase.DefaultLinSolve,DataType},false,Array{Float64,2},Float64,DiffEqBase.NullParameters,Float64,Float64,Float64,Array{Array{Float64,2},1},DiffEqBase.ODESolution{Float64,3,Array{Array{Float64,2},1},Nothing,Nothing,Array{Float64,1},Array{Array{Array{Float64,2},1},1},DiffEqBase.ODEProblem{Array{Float64,2},Tuple{Float64,Float64},false,DiffEqBase.NullParameters,DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}},DiffEqBase.StandardODEProblem},OrdinaryDiffEq.Rosenbrock23{0,true,DiffEqBase.DefaultLinSolve,DataType},OrdinaryDiffEq.InterpolationData{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Array{Array{Float64,2},1},Array{Float64,1},Array{Array{Array{Float64,2},1},1},OrdinaryDiffEq.Rosenbrock23ConstantCache{Float64,DiffEqDiffTools.TimeDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Array{Float64,2},DiffEqBase.NullParameters},DiffEqDiffTools.UDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Float64,DiffEqBase.NullParameters},Array{Float64,2},LinearAlgebra.LU{Float64,Array{Float64,2}},DiffEqBase.DefaultLinSolve}},DiffEqBase.DEStats},DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},OrdinaryDiffEq.Rosenbrock23ConstantCache{Float64,DiffEqDiffTools.TimeDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Array{Float64,2},DiffEqBase.NullParameters},DiffEqDiffTools.UDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Float64,DiffEqBase.NullParameters},Array{Float64,2},LinearAlgebra.LU{Float64,Array{Float64,2}},DiffEqBase.DefaultLinSolve},OrdinaryDiffEq.DEOptions{Float64,Float64,Float64,Float64,typeof(DiffEqBase.ODE_DEFAULT_NORM),typeof(LinearAlgebra.opnorm),DiffEqBase.CallbackSet{Tuple{},Tuple{}},typeof(DiffEqBase.ODE_DEFAULT_ISOUTOFDOMAIN),typeof(DiffEqBase.ODE_DEFAULT_PROG_MESSAGE),typeof(DiffEqBase.ODE_DEFAULT_UNSTABLE_CHECK),DataStructures.BinaryHeap{Float64,DataStructures.LessThan},DataStructures.BinaryHeap{Float64,DataStructures.LessThan},Nothing,Nothing,Int64,Array{Float64,1},Array{Float64,1},Array{Float64,1}},Array{Float64,2},Float64,Nothing}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;OrdinaryDiffEq&#x2F;ROQW3&#x2F;src&#x2F;derivative_wrappers.jl:79
+   [13] calc_J at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;OrdinaryDiffEq&#x2F;ROQW3&#x2F;src&#x2F;derivative_utils.jl:59 [inlined]
+   [14] calc_W(::OrdinaryDiffEq.ODEIntegrator{OrdinaryDiffEq.Rosenbrock23{0,true,DiffEqBase.DefaultLinSolve,DataType},false,Array{Float64,2},Float64,DiffEqBase.NullParameters,Float64,Float64,Float64,Array{Array{Float64,2},1},DiffEqBase.ODESolution{Float64,3,Array{Array{Float64,2},1},Nothing,Nothing,Array{Float64,1},Array{Array{Array{Float64,2},1},1},DiffEqBase.ODEProblem{Array{Float64,2},Tuple{Float64,Float64},false,DiffEqBase.NullParameters,DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}},DiffEqBase.StandardODEProblem},OrdinaryDiffEq.Rosenbrock23{0,true,DiffEqBase.DefaultLinSolve,DataType},OrdinaryDiffEq.InterpolationData{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Array{Array{Float64,2},1},Array{Float64,1},Array{Array{Array{Float64,2},1},1},OrdinaryDiffEq.Rosenbrock23ConstantCache{Float64,DiffEqDiffTools.TimeDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Array{Float64,2},DiffEqBase.NullParameters},DiffEqDiffTools.UDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Float64,DiffEqBase.NullParameters},Array{Float64,2},LinearAlgebra.LU{Float64,Array{Float64,2}},DiffEqBase.DefaultLinSolve}},DiffEqBase.DEStats},DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},OrdinaryDiffEq.Rosenbrock23ConstantCache{Float64,DiffEqDiffTools.TimeDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Array{Float64,2},DiffEqBase.NullParameters},DiffEqDiffTools.UDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Float64,DiffEqBase.NullParameters},Array{Float64,2},LinearAlgebra.LU{Float64,Array{Float64,2}},DiffEqBase.DefaultLinSolve},OrdinaryDiffEq.DEOptions{Float64,Float64,Float64,Float64,typeof(DiffEqBase.ODE_DEFAULT_NORM),typeof(LinearAlgebra.opnorm),DiffEqBase.CallbackSet{Tuple{},Tuple{}},typeof(DiffEqBase.ODE_DEFAULT_ISOUTOFDOMAIN),typeof(DiffEqBase.ODE_DEFAULT_PROG_MESSAGE),typeof(DiffEqBase.ODE_DEFAULT_UNSTABLE_CHECK),DataStructures.BinaryHeap{Float64,DataStructures.LessThan},DataStructures.BinaryHeap{Float64,DataStructures.LessThan},Nothing,Nothing,Int64,Array{Float64,1},Array{Float64,1},Array{Float64,1}},Array{Float64,2},Float64,Nothing}, ::OrdinaryDiffEq.Rosenbrock23ConstantCache{Float64,DiffEqDiffTools.TimeDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Array{Float64,2},DiffEqBase.NullParameters},DiffEqDiffTools.UDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Float64,DiffEqBase.NullParameters},Array{Float64,2},LinearAlgebra.LU{Float64,Array{Float64,2}},DiffEqBase.DefaultLinSolve}, ::Float64, ::Bool, ::Bool) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;OrdinaryDiffEq&#x2F;ROQW3&#x2F;src&#x2F;derivative_utils.jl:434
+   [15] calc_W at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;OrdinaryDiffEq&#x2F;ROQW3&#x2F;src&#x2F;derivative_utils.jl:416 [inlined]
+   [16] perform_step!(::OrdinaryDiffEq.ODEIntegrator{OrdinaryDiffEq.Rosenbrock23{0,true,DiffEqBase.DefaultLinSolve,DataType},false,Array{Float64,2},Float64,DiffEqBase.NullParameters,Float64,Float64,Float64,Array{Array{Float64,2},1},DiffEqBase.ODESolution{Float64,3,Array{Array{Float64,2},1},Nothing,Nothing,Array{Float64,1},Array{Array{Array{Float64,2},1},1},DiffEqBase.ODEProblem{Array{Float64,2},Tuple{Float64,Float64},false,DiffEqBase.NullParameters,DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}},DiffEqBase.StandardODEProblem},OrdinaryDiffEq.Rosenbrock23{0,true,DiffEqBase.DefaultLinSolve,DataType},OrdinaryDiffEq.InterpolationData{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Array{Array{Float64,2},1},Array{Float64,1},Array{Array{Array{Float64,2},1},1},OrdinaryDiffEq.Rosenbrock23ConstantCache{Float64,DiffEqDiffTools.TimeDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Array{Float64,2},DiffEqBase.NullParameters},DiffEqDiffTools.UDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Float64,DiffEqBase.NullParameters},Array{Float64,2},LinearAlgebra.LU{Float64,Array{Float64,2}},DiffEqBase.DefaultLinSolve}},DiffEqBase.DEStats},DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},OrdinaryDiffEq.Rosenbrock23ConstantCache{Float64,DiffEqDiffTools.TimeDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Array{Float64,2},DiffEqBase.NullParameters},DiffEqDiffTools.UDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Float64,DiffEqBase.NullParameters},Array{Float64,2},LinearAlgebra.LU{Float64,Array{Float64,2}},DiffEqBase.DefaultLinSolve},OrdinaryDiffEq.DEOptions{Float64,Float64,Float64,Float64,typeof(DiffEqBase.ODE_DEFAULT_NORM),typeof(LinearAlgebra.opnorm),DiffEqBase.CallbackSet{Tuple{},Tuple{}},typeof(DiffEqBase.ODE_DEFAULT_ISOUTOFDOMAIN),typeof(DiffEqBase.ODE_DEFAULT_PROG_MESSAGE),typeof(DiffEqBase.ODE_DEFAULT_UNSTABLE_CHECK),DataStructures.BinaryHeap{Float64,DataStructures.LessThan},DataStructures.BinaryHeap{Float64,DataStructures.LessThan},Nothing,Nothing,Int64,Array{Float64,1},Array{Float64,1},Array{Float64,1}},Array{Float64,2},Float64,Nothing}, ::OrdinaryDiffEq.Rosenbrock23ConstantCache{Float64,DiffEqDiffTools.TimeDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Array{Float64,2},DiffEqBase.NullParameters},DiffEqDiffTools.UDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Float64,DiffEqBase.NullParameters},Array{Float64,2},LinearAlgebra.LU{Float64,Array{Float64,2}},DiffEqBase.DefaultLinSolve}, ::Bool) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;OrdinaryDiffEq&#x2F;ROQW3&#x2F;src&#x2F;perform_step&#x2F;rosenbrock_perform_step.jl:163
+   [17] perform_step! at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;OrdinaryDiffEq&#x2F;ROQW3&#x2F;src&#x2F;perform_step&#x2F;rosenbrock_perform_step.jl:150 [inlined]
+   [18] solve!(::OrdinaryDiffEq.ODEIntegrator{OrdinaryDiffEq.Rosenbrock23{0,true,DiffEqBase.DefaultLinSolve,DataType},false,Array{Float64,2},Float64,DiffEqBase.NullParameters,Float64,Float64,Float64,Array{Array{Float64,2},1},DiffEqBase.ODESolution{Float64,3,Array{Array{Float64,2},1},Nothing,Nothing,Array{Float64,1},Array{Array{Array{Float64,2},1},1},DiffEqBase.ODEProblem{Array{Float64,2},Tuple{Float64,Float64},false,DiffEqBase.NullParameters,DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}},DiffEqBase.StandardODEProblem},OrdinaryDiffEq.Rosenbrock23{0,true,DiffEqBase.DefaultLinSolve,DataType},OrdinaryDiffEq.InterpolationData{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Array{Array{Float64,2},1},Array{Float64,1},Array{Array{Array{Float64,2},1},1},OrdinaryDiffEq.Rosenbrock23ConstantCache{Float64,DiffEqDiffTools.TimeDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Array{Float64,2},DiffEqBase.NullParameters},DiffEqDiffTools.UDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Float64,DiffEqBase.NullParameters},Array{Float64,2},LinearAlgebra.LU{Float64,Array{Float64,2}},DiffEqBase.DefaultLinSolve}},DiffEqBase.DEStats},DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},OrdinaryDiffEq.Rosenbrock23ConstantCache{Float64,DiffEqDiffTools.TimeDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Array{Float64,2},DiffEqBase.NullParameters},DiffEqDiffTools.UDerivativeWrapper{DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Float64,DiffEqBase.NullParameters},Array{Float64,2},LinearAlgebra.LU{Float64,Array{Float64,2}},DiffEqBase.DefaultLinSolve},OrdinaryDiffEq.DEOptions{Float64,Float64,Float64,Float64,typeof(DiffEqBase.ODE_DEFAULT_NORM),typeof(LinearAlgebra.opnorm),DiffEqBase.CallbackSet{Tuple{},Tuple{}},typeof(DiffEqBase.ODE_DEFAULT_ISOUTOFDOMAIN),typeof(DiffEqBase.ODE_DEFAULT_PROG_MESSAGE),typeof(DiffEqBase.ODE_DEFAULT_UNSTABLE_CHECK),DataStructures.BinaryHeap{Float64,DataStructures.LessThan},DataStructures.BinaryHeap{Float64,DataStructures.LessThan},Nothing,Nothing,Int64,Array{Float64,1},Array{Float64,1},Array{Float64,1}},Array{Float64,2},Float64,Nothing}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;OrdinaryDiffEq&#x2F;ROQW3&#x2F;src&#x2F;solve.jl:372
+   [19] #__solve#328 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;OrdinaryDiffEq&#x2F;ROQW3&#x2F;src&#x2F;solve.jl:5 [inlined]
+   [20] __solve at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;OrdinaryDiffEq&#x2F;ROQW3&#x2F;src&#x2F;solve.jl:4 [inlined]
+   [21] #solve_call#433(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::DiffEqBase.ODEProblem{Array{Float64,2},Tuple{Float64,Float64},false,DiffEqBase.NullParameters,DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}},DiffEqBase.StandardODEProblem}, ::OrdinaryDiffEq.Rosenbrock23{0,true,DiffEqBase.DefaultLinSolve,DataType}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBase&#x2F;IDJcQ&#x2F;src&#x2F;solve.jl:38
+   [22] solve_call at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBase&#x2F;IDJcQ&#x2F;src&#x2F;solve.jl:37 [inlined]
+   [23] #solve#434 at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBase&#x2F;IDJcQ&#x2F;src&#x2F;solve.jl:57 [inlined]
+   [24] solve(::DiffEqBase.ODEProblem{Array{Float64,2},Tuple{Float64,Float64},false,DiffEqBase.NullParameters,DiffEqBase.ODEFunction{false,typeof(Main.##365.rhs_oop),LinearAlgebra.UniformScaling{Bool},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing},Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}},DiffEqBase.StandardODEProblem}, ::OrdinaryDiffEq.Rosenbrock23{0,true,DiffEqBase.DefaultLinSolve,DataType}) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffEqBase&#x2F;IDJcQ&#x2F;src&#x2F;solve.jl:45
+   [25] (::getfield(Main.##365, Symbol(&quot;##2#4&quot;)))() at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:606
+   [26] redirect_stderr(::getfield(Main.##365, Symbol(&quot;##2#4&quot;)), ::IOStream) at .&#x2F;stream.jl:983
+   [27] #1 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:605 [inlined]
+   [28] #open#296(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::getfield(Main.##365, Symbol(&quot;##1#3&quot;)), ::String, ::Vararg{String,N} where N) at .&#x2F;iostream.jl:369
+   [29] open(::Function, ::String, ::String) at .&#x2F;iostream.jl:367
+   [30] top-level scope at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:604
+   [31] include at .&#x2F;boot.jl:317 [inlined]
+   [32] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [33] include at .&#x2F;sysimg.jl:29 [inlined]
+   [34] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;SafeTestsets&#x2F;A83XK&#x2F;src&#x2F;SafeTestsets.jl:23
+   [35] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;OrdinaryDiffEq&#x2F;ROQW3&#x2F;test&#x2F;runtests.jl:16 [inlined]
+   [36] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Test&#x2F;src&#x2F;Test.jl:1083 [inlined]
+   [37] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;OrdinaryDiffEq&#x2F;ROQW3&#x2F;test&#x2F;runtests.jl:16
+   [38] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [39] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;SafeTestsets&#x2F;A83XK&#x2F;src&#x2F;SafeTestsets.jl:23
+   [40] top-level scope at util.jl:156
+   [41] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;OrdinaryDiffEq&#x2F;ROQW3&#x2F;test&#x2F;runtests.jl:16
+   [42] top-level scope at util.jl:156
+   [43] include at .&#x2F;boot.jl:317 [inlined]
+   [44] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+   [45] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+   [46] include(::String) at .&#x2F;client.jl:392
+   [47] top-level scope at none:0
+   [48] eval(::Module, ::Any) at .&#x2F;boot.jl:319
+   [49] exec_options(::Base.JLOptions) at .&#x2F;client.jl:243
+  in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;OrdinaryDiffEq&#x2F;ROQW3&#x2F;test&#x2F;interface&#x2F;ode_twodimlinear_tests.jl:23
+Test Summary: | Error  Total
+Linear Tests  |     1      1
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;OrdinaryDiffEq&#x2F;ROQW3&#x2F;test&#x2F;runtests.jl:10
+ERROR: Package OrdinaryDiffEq errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1357
+ [3] #test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:278
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:263 [inlined]
+ [6] #test#43 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [8] #test#42 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [10] #test#41 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258 [inlined]
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258
+ [12] top-level scope at none:0
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>interrupted</strong>: test duration exceeded the time limit.
+      Last evaluation was 1 day, 16 hours ago and took 45 minutes, 10 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/OrdinaryDiffEq/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed URIParser ─────────────────── v0.4.0
+ Installed Adapt ─────────────────────── v1.0.0
+ Installed Inflate ───────────────────── v0.1.1
+ Installed TableTraits ───────────────── v1.0.0
+ Installed CommonSubexpressions ──────── v0.2.0
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed DiffEqBase ────────────────── v6.6.0
+ Installed OrdinaryDiffEq ────────────── v5.23.0
+ Installed GenericSVD ────────────────── v0.2.2
+ Installed Requires ──────────────────── v0.5.2
+ Installed Reexport ──────────────────── v0.2.0
+ Installed DocStringExtensions ───────── v0.8.1
+ Installed ExponentialUtilities ──────── v1.5.1
+ Installed ForwardDiff ───────────────── v0.10.6
+ Installed Compat ────────────────────── v2.2.0
+ Installed VertexSafeGraphs ──────────── v0.1.0
+ Installed FunctionWrappers ──────────── v1.0.0
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed OrderedCollections ────────── v1.1.0
+ Installed DataStructures ────────────── v0.17.6
+ Installed TreeViews ─────────────────── v0.3.0
+ Installed IterativeSolvers ──────────── v0.8.1
+ Installed Roots ─────────────────────── v0.8.3
+ Installed RecursiveFactorization ────── v0.1.0
+ Installed LightGraphs ───────────────── v1.3.0
+ Installed DiffEqDiffTools ───────────── v1.4.0
+ Installed DiffRules ─────────────────── v0.1.0
+ Installed ArrayInterface ────────────── v1.2.1
+ Installed SparseDiffTools ───────────── v0.10.3
+ Installed RecursiveArrayTools ───────── v1.0.2
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed StaticArrays ──────────────── v0.12.1
+ Installed MuladdMacro ───────────────── v0.2.1
+ Installed SimpleTraits ──────────────── v0.9.1
+ Installed DiffResults ───────────────── v0.0.4
+ Installed Parameters ────────────────── v0.12.0
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed MacroTools ────────────────── v0.5.2
+ Installed ArnoldiMethod ─────────────── v0.0.4
+ Installed BinDeps ───────────────────── v0.8.10
+ Installed SpecialFunctions ──────────── v0.8.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [1dea7af3] + OrdinaryDiffEq v5.23.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [79e6a3ab] + Adapt v1.0.0
+  [ec485272] + ArnoldiMethod v0.0.4
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [864edb3b] + DataStructures v0.17.6
+  [2b5f629d] + DiffEqBase v6.6.0
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [ffbed154] + DocStringExtensions v0.8.1
+  [d4d017d3] + ExponentialUtilities v1.5.1
+  [f6369f11] + ForwardDiff v0.10.6
+  [069b7b12] + FunctionWrappers v1.0.0
+  [01680d73] + GenericSVD v0.2.2
+  [d25df0c9] + Inflate v0.1.1
+  [42fd0dbc] + IterativeSolvers v0.8.1
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [093fc24a] + LightGraphs v1.3.0
+  [1914dd2f] + MacroTools v0.5.2
+  [46d2c3a1] + MuladdMacro v0.2.1
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [1dea7af3] + OrdinaryDiffEq v5.23.0
+  [d96e819e] + Parameters v0.12.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [731186ca] + RecursiveArrayTools v1.0.2
+  [f2c3362d] + RecursiveFactorization v0.1.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [f2b01f46] + Roots v0.8.3
+  [699a6c99] + SimpleTraits v0.9.1
+  [47a9eef4] + SparseDiffTools v0.10.3
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [3783bdb8] + TableTraits v1.0.0
+  [a2a6695c] + TreeViews v0.3.0
+  [30578b45] + URIParser v0.4.0
+  [19fa3120] + VertexSafeGraphs v0.1.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing OrdinaryDiffEq
+ Resolving package versions...
+ Installed Calculus ──────────────── v0.5.1
+ Installed DiffEqProblemLibrary ──── v4.5.1
+ Installed DiffEqCallbacks ───────── v2.9.0
+ Installed DelayDiffEq ───────────── v5.18.0
+ Installed DiffEqOperators ───────── v4.4.0
+ Installed SafeTestsets ──────────── v0.0.1
+ Installed DiffEqDevTools ────────── v2.15.1
+ Installed DiffEqSensitivity ─────── v4.3.0
+ Installed ModelingToolkit ───────── v0.9.1
+ Installed DataAPI ───────────────── v1.1.0
+ Installed Unitful ───────────────── v0.17.0
+ Installed FixedPolynomials ──────── v0.4.0
+ Installed Missings ──────────────── v0.4.3
+ Installed LineSearches ──────────── v7.0.1
+ Installed BlockBandedMatrices ───── v0.6.0
+ Installed DataFrames ────────────── v0.19.4
+ Installed PDMats ────────────────── v0.9.10
+ Installed BlockArrays ───────────── v0.10.2
+ Installed StatsFuns ─────────────── v0.9.0
+ Installed Tracker ───────────────── v0.2.5
+ Installed DynamicPolynomials ────── v0.1.4
+ Installed HomotopyContinuation ──── v0.7.0
+ Installed StatsBase ─────────────── v0.32.0
+ Installed LegibleLambdas ────────── v0.2.0
+ Installed ArrayLayouts ──────────── v0.1.5
+ Installed NLSolversBase ─────────── v7.5.0
+ Installed ResettableStacks ──────── v0.6.0
+ Installed DataValueInterfaces ───── v1.0.0
+ Installed PooledArrays ──────────── v0.5.2
+ Installed InvertedIndices ───────── v1.0.0
+ Installed MultivariatePolynomials ─ v0.3.2
+ Installed StaticPolynomials ─────── v1.3.3
+ Installed SymEngine ─────────────── v0.7.0
+ Installed TimerOutputs ──────────── v0.5.3
+ Installed Rmath ─────────────────── v0.5.1
+ Installed Tables ────────────────── v0.2.11
+ Installed CanonicalTraits ───────── v0.1.0
+ Installed NNlib ─────────────────── v0.6.0
+ Installed GLM ───────────────────── v1.3.4
+ Installed GeneralizedGenerated ──── v0.1.4
+ Installed JuliaVariables ────────── v0.1.3
+ Installed ProjectiveVectors ─────── v0.2.2
+ Installed MLStyle ───────────────── v0.3.1
+ Installed ShiftedArrays ─────────── v1.0.0
+ Installed RandomNumbers ─────────── v1.3.0
+ Installed Parsers ───────────────── v0.3.10
+ Installed DiffEqJump ────────────── v6.3.0
+ Installed Distributions ─────────── v0.21.8
+ Installed FillArrays ────────────── v0.8.2
+ Installed JSON ──────────────────── v0.21.0
+ Installed BandedMatrices ────────── v0.14.1
+ Installed StatsModels ───────────── v0.6.7
+ Installed Latexify ──────────────── v0.12.2
+ Installed DiffEqBiological ──────── v4.0.2
+ Installed LaTeXStrings ──────────── v1.0.3
+ Installed PoissonRandom ─────────── v0.4.0
+ Installed CategoricalArrays ─────── v0.7.3
+ Installed QuadGK ────────────────── v2.1.1
+ Installed DiffEqNoiseProcess ────── v3.4.0
+ Installed NameResolution ────────── v0.1.3
+ Installed PrettyPrint ───────────── v0.1.0
+ Installed SortingAlgorithms ─────── v0.3.1
+ Installed MatrixFactorizations ──── v0.2.1
+ Installed ProgressMeter ─────────── v0.9.0
+ Installed LazyArrays ────────────── v0.14.8
+ Installed NLsolve ───────────────── v4.2.0
+ Installed Distances ─────────────── v0.8.2
+ Installed Arpack ────────────────── v0.3.1
+  Building SymEngine → `~&#x2F;.julia&#x2F;packages&#x2F;SymEngine&#x2F;zSUGO&#x2F;deps&#x2F;build.log`
+  Building Rmath ────→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+  Building Arpack ───→ `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+    Status `&#x2F;tmp&#x2F;jl_hpgy4F&#x2F;Manifest.toml`
+  [79e6a3ab] Adapt v1.0.0
+  [ec485272] ArnoldiMethod v0.0.4
+  [7d9fca2a] Arpack v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [4c555306] ArrayLayouts v0.1.5
+  [aae01518] BandedMatrices v0.14.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [8e7c35d0] BlockArrays v0.10.2
+  [ffab5731] BlockBandedMatrices v0.6.0
+  [49dc2e85] Calculus v0.5.1
+  [a603d957] CanonicalTraits v0.1.0
+  [324d7699] CategoricalArrays v0.7.3
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [bcd4f6db] DelayDiffEq v5.18.0
+  [2b5f629d] DiffEqBase v6.6.0
+  [eb300fae] DiffEqBiological v4.0.2
+  [459566f4] DiffEqCallbacks v2.9.0
+  [f3b72e0c] DiffEqDevTools v2.15.1
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [c894b116] DiffEqJump v6.3.0
+  [77a26b50] DiffEqNoiseProcess v3.4.0
+  [9fdde737] DiffEqOperators v4.4.0
+  [a077e3f3] DiffEqProblemLibrary v4.5.1
+  [41bf760c] DiffEqSensitivity v4.3.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [31c24e10] Distributions v0.21.8
+  [ffbed154] DocStringExtensions v0.8.1
+  [7c1d4256] DynamicPolynomials v0.1.4
+  [d4d017d3] ExponentialUtilities v1.5.1
+  [1a297f60] FillArrays v0.8.2
+  [3dd14ad9] FixedPolynomials v0.4.0
+  [f6369f11] ForwardDiff v0.10.6
+  [069b7b12] FunctionWrappers v1.0.0
+  [38e38edf] GLM v1.3.4
+  [6b9d7cbe] GeneralizedGenerated v0.1.4
+  [01680d73] GenericSVD v0.2.2
+  [f213a82b] HomotopyContinuation v0.7.0
+  [d25df0c9] Inflate v0.1.1
+  [41ab1584] InvertedIndices v1.0.0
+  [42fd0dbc] IterativeSolvers v0.8.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [682c06a0] JSON v0.21.0
+  [b14d175d] JuliaVariables v0.1.3
+  [b964fa9f] LaTeXStrings v1.0.3
+  [23fbe1c1] Latexify v0.12.2
+  [5078a376] LazyArrays v0.14.8
+  [f1f30506] LegibleLambdas v0.2.0
+  [093fc24a] LightGraphs v1.3.0
+  [d3d80556] LineSearches v7.0.1
+  [d8e11817] MLStyle v0.3.1
+  [1914dd2f] MacroTools v0.5.2
+  [a3b82374] MatrixFactorizations v0.2.1
+  [e1d29d7a] Missings v0.4.3
+  [961ee093] ModelingToolkit v0.9.1
+  [46d2c3a1] MuladdMacro v0.2.1
+  [102ac46a] MultivariatePolynomials v0.3.2
+  [d41bc354] NLSolversBase v7.5.0
+  [2774e3e8] NLsolve v4.2.0
+  [872c559c] NNlib v0.6.0
+  [77ba4419] NaNMath v0.3.3
+  [71a1bf82] NameResolution v0.1.3
+  [bac558e1] OrderedCollections v1.1.0
+  [1dea7af3] OrdinaryDiffEq v5.23.0
+  [90014a1f] PDMats v0.9.10
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [e409e4f3] PoissonRandom v0.4.0
+  [2dfb63ee] PooledArrays v0.5.2
+  [8162dcfd] PrettyPrint v0.1.0
+  [92933f4c] ProgressMeter v0.9.0
+  [01f381cc] ProjectiveVectors v0.2.2
+  [1fd47b50] QuadGK v2.1.1
+  [e6cf234a] RandomNumbers v1.3.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [f2c3362d] RecursiveFactorization v0.1.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [ae5879a3] ResettableStacks v0.6.0
+  [79098fc4] Rmath v0.5.1
+  [f2b01f46] Roots v0.8.3
+  [1bc83da4] SafeTestsets v0.0.1
+  [1277b4bf] ShiftedArrays v1.0.0
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [47a9eef4] SparseDiffTools v0.10.3
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [62e018b1] StaticPolynomials v1.3.3
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [3eaba693] StatsModels v0.6.7
+  [123dc426] SymEngine v0.7.0
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [a759f4b9] TimerOutputs v0.5.3
+  [9f7883ad] Tracker v0.2.5
+  [a2a6695c] TreeViews v0.3.0
+  [30578b45] URIParser v0.4.0
+  [1986cc42] Unitful v0.17.0
+  [19fa3120] VertexSafeGraphs v0.1.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+┌ Warning: Replacing docs for `DiffEqOperators.PeriodicBC :: Union{}` in module `DiffEqOperators`
+└ @ Base.Docs docs&#x2F;Docs.jl:223
+┌ Warning: Replacing docs for `DiffEqOperators.RobinBC :: Union{}` in module `DiffEqOperators`
+└ @ Base.Docs docs&#x2F;Docs.jl:223
+Test Summary:            | Pass  Total
+Discrete Algorithm Tests |   12     12
+608.986897 seconds (176.66 M allocations: 9.057 GiB, 1.36% gc time)
+Test Summary: | Pass  Total
+Tstops Tests  |   23     23
+ 12.378378 seconds (9.69 M allocations: 500.495 MiB, 3.96% gc time)
+Test Summary:   | Pass  Total
+Backwards Tests |    3      3
+ 16.165969 seconds (19.76 M allocations: 900.232 MiB, 7.60% gc time)
+Test Summary: | Pass  Total
+Initdt Tests  |    3      3
+ 76.699810 seconds (14.57 M allocations: 762.267 MiB, 1.32% gc time)
+Test Summary: | Pass  Total
+Linear Tests  |    3      3
+ 58.740506 seconds (163.77 M allocations: 6.684 GiB, 22.11% gc time)
+Test Summary:     | Pass  Total
+Mass Matrix Tests |   62     62
+554.074032 seconds (500.50 M allocations: 32.548 GiB, 7.60% gc time)
+Test Summary:               | Pass  Total
+Differentiation Trait Tests |    5      5
+ 25.182449 seconds (23.12 M allocations: 1.077 GiB, 9.70% gc time)
+┌ Warning: Instability detected. Aborting
+└ @ DiffEqBase ~&#x2F;.julia&#x2F;packages&#x2F;DiffEqBase&#x2F;IDJcQ&#x2F;src&#x2F;integrator_interface.jl:176
+Test Summary: | Pass  Total
+Inf Tests     |    1      1
+  3.678029 seconds (2.13 M allocations: 108.823 MiB, 6.35% gc time)
+Test Summary:  | Pass  Total
+Jacobian Tests |   13     13
+129.124839 seconds (99.03 M allocations: 4.659 GiB, 9.61% gc time)
+Test Summary: | Pass  Total
+saveat Tests  |   30     30
+ 53.646286 seconds (51.52 M allocations: 2.420 GiB, 8.43% gc time)
+Test Summary:   | Pass  Total
+save_idxs Tests |    4      4
+ 21.466829 seconds (18.37 M allocations: 863.631 MiB, 8.07% gc time)
+Test Summary:         |
+Scalar Handling Tests | No tests
+  2.976977 seconds (2.38 M allocations: 123.367 MiB, 9.61% gc time)
+┌ Warning: `a::StaticArray + b::Number` is deprecated, use `a .+ b` instead.
+│   caller = _broadcast_getindex_evalf at broadcast.jl:625 [inlined]
+└ @ Core .&#x2F;broadcast.jl:625
+Test Summary:      | Pass  Total
+Static Array Tests |    1      1
+ 74.122259 seconds (70.72 M allocations: 3.386 GiB, 11.26% gc time)
+Test Summary:    | Pass  Broken  Total
+Data Array Tests |   10       4     14
+117.716133 seconds (105.99 M allocations: 4.705 GiB, 11.74% gc time)
+Test Summary:   | Pass  Total
+u_modifed Tests |    1      1
+  4.195957 seconds (3.28 M allocations: 171.811 MiB, 8.47% gc time)
+  4.958514 seconds (3.88 M allocations: 199.974 MiB, 14.94% gc time)
+  0.027337 seconds (22.52 k allocations: 1.136 MiB)
+Test Summary:             | Pass  Total
+Composite Algorithm Tests |    3      3
+ 40.705072 seconds (41.38 M allocations: 1.866 GiB, 11.42% gc time)
+Test Summary: | Pass  Broken  Total
+Complex Tests |   39       8     47
+184.698461 seconds (165.83 M allocations: 7.866 GiB, 11.84% gc time)
+Test Summary:      | Pass  Total
+Ndim Complex Tests |    1      1
+ 19.554354 seconds (20.73 M allocations: 924.864 MiB, 16.04% gc time)
+Test Summary:     | Pass  Total
+Number Type Tests |    5      5
+ 16.356637 seconds (13.21 M allocations: 685.459 MiB, 11.76% gc time)
+Test Summary:             | Pass  Total
+Stiffness Detection Tests |   50     50
+281.804223 seconds (227.58 M allocations: 10.290 GiB, 11.50% gc time)
+Test Summary:                 | Pass  Total
+Composite Interpolation Tests |    1      1
+ 13.568583 seconds (9.50 M allocations: 444.091 MiB, 14.12% gc time)
+Test Summary: | Pass  Total
+Export tests  |    1      1
+  0.170209 seconds (116.94 k allocations: 5.833 MiB, 34.55% gc time)
+OrdinaryDiffEq.ImplicitEuler
+OrdinaryDiffEq.Rosenbrock23
+OrdinaryDiffEq.Rodas5
+Test Summary:              | Pass  Total
+Derivative Utilities Tests |   34     34
+ 75.142963 seconds (61.27 M allocations: 2.925 GiB, 12.36% gc time)
+Test Summary: | Pass  Total
+DEStats Tests |   17     17
+ 61.501716 seconds (40.37 M allocations: 1.921 GiB, 8.42% gc time)
+Stopped.
+Stopped.
+Stopped.
+Stopped.
+Stopped.
+Stopped.
+Test Summary: | Pass  Total
+AD Tests      |    2      2
+123.573671 seconds (112.76 M allocations: 5.256 GiB, 17.67% gc time)
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>interrupted</strong>: test duration exceeded the time limit.
+      Last evaluation was 1 day, 15 hours ago and took 45 minutes, 9 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/OrdinaryDiffEq/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed DiffEqDiffTools ───────────── v1.4.0
+ Installed GenericSVD ────────────────── v0.2.2
+ Installed ArrayInterface ────────────── v1.2.1
+ Installed RecursiveFactorization ────── v0.1.0
+ Installed DiffResults ───────────────── v0.0.4
+ Installed BinDeps ───────────────────── v0.8.10
+ Installed OrdinaryDiffEq ────────────── v5.23.0
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed Inflate ───────────────────── v0.1.1
+ Installed TreeViews ─────────────────── v0.3.0
+ Installed Reexport ──────────────────── v0.2.0
+ Installed ExponentialUtilities ──────── v1.5.1
+ Installed Parameters ────────────────── v0.12.0
+ Installed ForwardDiff ───────────────── v0.10.6
+ Installed DiffEqBase ────────────────── v6.6.0
+ Installed VertexSafeGraphs ──────────── v0.1.0
+ Installed FunctionWrappers ──────────── v1.0.0
+ Installed DiffRules ─────────────────── v0.1.0
+ Installed MuladdMacro ───────────────── v0.2.1
+ Installed DataStructures ────────────── v0.17.6
+ Installed URIParser ─────────────────── v0.4.0
+ Installed Requires ──────────────────── v0.5.2
+ Installed SimpleTraits ──────────────── v0.9.1
+ Installed StaticArrays ──────────────── v0.12.1
+ Installed RecursiveArrayTools ───────── v1.0.2
+ Installed IterativeSolvers ──────────── v0.8.1
+ Installed Roots ─────────────────────── v0.8.3
+ Installed TableTraits ───────────────── v1.0.0
+ Installed CommonSubexpressions ──────── v0.2.0
+ Installed NaNMath ───────────────────── v0.3.3
+ Installed DocStringExtensions ───────── v0.8.1
+ Installed ArnoldiMethod ─────────────── v0.0.4
+ Installed MacroTools ────────────────── v0.5.2
+ Installed LightGraphs ───────────────── v1.3.0
+ Installed OrderedCollections ────────── v1.1.0
+ Installed Adapt ─────────────────────── v1.0.0
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed SparseDiffTools ───────────── v0.10.3
+ Installed Compat ────────────────────── v2.2.0
+ Installed SpecialFunctions ──────────── v0.8.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [1dea7af3] + OrdinaryDiffEq v5.23.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [79e6a3ab] + Adapt v1.0.0
+  [ec485272] + ArnoldiMethod v0.0.4
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [864edb3b] + DataStructures v0.17.6
+  [2b5f629d] + DiffEqBase v6.6.0
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [ffbed154] + DocStringExtensions v0.8.1
+  [d4d017d3] + ExponentialUtilities v1.5.1
+  [f6369f11] + ForwardDiff v0.10.6
+  [069b7b12] + FunctionWrappers v1.0.0
+  [01680d73] + GenericSVD v0.2.2
+  [d25df0c9] + Inflate v0.1.1
+  [42fd0dbc] + IterativeSolvers v0.8.1
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [093fc24a] + LightGraphs v1.3.0
+  [1914dd2f] + MacroTools v0.5.2
+  [46d2c3a1] + MuladdMacro v0.2.1
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [1dea7af3] + OrdinaryDiffEq v5.23.0
+  [d96e819e] + Parameters v0.12.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [731186ca] + RecursiveArrayTools v1.0.2
+  [f2c3362d] + RecursiveFactorization v0.1.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [f2b01f46] + Roots v0.8.3
+  [699a6c99] + SimpleTraits v0.9.1
+  [47a9eef4] + SparseDiffTools v0.10.3
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [3783bdb8] + TableTraits v1.0.0
+  [a2a6695c] + TreeViews v0.3.0
+  [30578b45] + URIParser v0.4.0
+  [19fa3120] + VertexSafeGraphs v0.1.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing OrdinaryDiffEq
+ Resolving package versions...
+ Installed SafeTestsets ──────────── v0.0.1
+ Installed Calculus ──────────────── v0.5.1
+ Installed DiffEqCallbacks ───────── v2.9.0
+ Installed DelayDiffEq ───────────── v5.18.0
+ Installed DiffEqSensitivity ─────── v4.3.0
+ Installed DiffEqProblemLibrary ──── v4.5.1
+ Installed DiffEqOperators ───────── v4.4.0
+ Installed DiffEqDevTools ────────── v2.15.1
+ Installed ModelingToolkit ───────── v0.9.1
+ Installed Unitful ───────────────── v0.17.0
+ Installed FillArrays ────────────── v0.8.2
+ Installed StaticPolynomials ─────── v1.3.3
+ Installed Missings ──────────────── v0.4.3
+ Installed Distances ─────────────── v0.8.2
+ Installed ProjectiveVectors ─────── v0.2.2
+ Installed ArrayLayouts ──────────── v0.1.5
+ Installed StatsModels ───────────── v0.6.7
+ Installed LineSearches ──────────── v7.0.1
+ Installed SortingAlgorithms ─────── v0.3.1
+ Installed Rmath ─────────────────── v0.5.1
+ Installed Tables ────────────────── v0.2.11
+ Installed HomotopyContinuation ──── v0.7.0
+ Installed GLM ───────────────────── v1.3.4
+ Installed NLSolversBase ─────────── v7.5.0
+ Installed DataAPI ───────────────── v1.1.0
+ Installed NameResolution ────────── v0.1.3
+ Installed JSON ──────────────────── v0.21.0
+ Installed Distributions ─────────── v0.21.8
+ Installed Arpack ────────────────── v0.3.1
+ Installed LazyArrays ────────────── v0.14.8
+ Installed NNlib ─────────────────── v0.6.0
+ Installed CategoricalArrays ─────── v0.7.3
+ Installed DiffEqJump ────────────── v6.3.0
+ Installed QuadGK ────────────────── v2.1.1
+ Installed InvertedIndices ───────── v1.0.0
+ Installed DiffEqBiological ──────── v4.0.2
+ Installed SymEngine ─────────────── v0.7.0
+ Installed ProgressMeter ─────────── v0.9.0
+ Installed BlockArrays ───────────── v0.10.2
+ Installed Parsers ───────────────── v0.3.10
+ Installed ShiftedArrays ─────────── v1.0.0
+ Installed CanonicalTraits ───────── v0.1.0
+ Installed StatsFuns ─────────────── v0.9.0
+ Installed ResettableStacks ──────── v0.6.0
+ Installed DynamicPolynomials ────── v0.1.4
+ Installed MatrixFactorizations ──── v0.2.1
+ Installed PooledArrays ──────────── v0.5.2
+ Installed DataValueInterfaces ───── v1.0.0
+ Installed JuliaVariables ────────── v0.1.3
+ Installed NLsolve ───────────────── v4.2.0
+ Installed Tracker ───────────────── v0.2.5
+ Installed LaTeXStrings ──────────── v1.0.3
+ Installed LegibleLambdas ────────── v0.2.0
+ Installed PDMats ────────────────── v0.9.10
+ Installed TimerOutputs ──────────── v0.5.3
+ Installed GeneralizedGenerated ──── v0.1.4
+ Installed BlockBandedMatrices ───── v0.6.0
+ Installed FixedPolynomials ──────── v0.4.0
+ Installed StatsBase ─────────────── v0.32.0
+ Installed BandedMatrices ────────── v0.14.1
+ Installed PoissonRandom ─────────── v0.4.0
+ Installed RandomNumbers ─────────── v1.3.0
+ Installed PrettyPrint ───────────── v0.1.0
+ Installed Latexify ──────────────── v0.12.2
+ Installed DiffEqNoiseProcess ────── v3.4.0
+ Installed MLStyle ───────────────── v0.3.1
+ Installed DataFrames ────────────── v0.19.4
+ Installed MultivariatePolynomials ─ v0.3.2
+  Building Rmath ────→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+  Building Arpack ───→ `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+  Building SymEngine → `~&#x2F;.julia&#x2F;packages&#x2F;SymEngine&#x2F;zSUGO&#x2F;deps&#x2F;build.log`
+Status `&#x2F;tmp&#x2F;jl_tSEcwI&#x2F;Manifest.toml`
+  [79e6a3ab] Adapt v1.0.0
+  [ec485272] ArnoldiMethod v0.0.4
+  [7d9fca2a] Arpack v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [4c555306] ArrayLayouts v0.1.5
+  [aae01518] BandedMatrices v0.14.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [8e7c35d0] BlockArrays v0.10.2
+  [ffab5731] BlockBandedMatrices v0.6.0
+  [49dc2e85] Calculus v0.5.1
+  [a603d957] CanonicalTraits v0.1.0
+  [324d7699] CategoricalArrays v0.7.3
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [a93c6f00] DataFrames v0.19.4
+  [864edb3b] DataStructures v0.17.6
+  [e2d170a0] DataValueInterfaces v1.0.0
+  [bcd4f6db] DelayDiffEq v5.18.0
+  [2b5f629d] DiffEqBase v6.6.0
+  [eb300fae] DiffEqBiological v4.0.2
+  [459566f4] DiffEqCallbacks v2.9.0
+  [f3b72e0c] DiffEqDevTools v2.15.1
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [c894b116] DiffEqJump v6.3.0
+  [77a26b50] DiffEqNoiseProcess v3.4.0
+  [9fdde737] DiffEqOperators v4.4.0
+  [a077e3f3] DiffEqProblemLibrary v4.5.1
+  [41bf760c] DiffEqSensitivity v4.3.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [31c24e10] Distributions v0.21.8
+  [ffbed154] DocStringExtensions v0.8.1
+  [7c1d4256] DynamicPolynomials v0.1.4
+  [d4d017d3] ExponentialUtilities v1.5.1
+  [1a297f60] FillArrays v0.8.2
+  [3dd14ad9] FixedPolynomials v0.4.0
+  [f6369f11] ForwardDiff v0.10.6
+  [069b7b12] FunctionWrappers v1.0.0
+  [38e38edf] GLM v1.3.4
+  [6b9d7cbe] GeneralizedGenerated v0.1.4
+  [01680d73] GenericSVD v0.2.2
+  [f213a82b] HomotopyContinuation v0.7.0
+  [d25df0c9] Inflate v0.1.1
+  [41ab1584] InvertedIndices v1.0.0
+  [42fd0dbc] IterativeSolvers v0.8.1
+  [82899510] IteratorInterfaceExtensions v1.0.0
+  [682c06a0] JSON v0.21.0
+  [b14d175d] JuliaVariables v0.1.3
+  [b964fa9f] LaTeXStrings v1.0.3
+  [23fbe1c1] Latexify v0.12.2
+  [5078a376] LazyArrays v0.14.8
+  [f1f30506] LegibleLambdas v0.2.0
+  [093fc24a] LightGraphs v1.3.0
+  [d3d80556] LineSearches v7.0.1
+  [d8e11817] MLStyle v0.3.1
+  [1914dd2f] MacroTools v0.5.2
+  [a3b82374] MatrixFactorizations v0.2.1
+  [e1d29d7a] Missings v0.4.3
+  [961ee093] ModelingToolkit v0.9.1
+  [46d2c3a1] MuladdMacro v0.2.1
+  [102ac46a] MultivariatePolynomials v0.3.2
+  [d41bc354] NLSolversBase v7.5.0
+  [2774e3e8] NLsolve v4.2.0
+  [872c559c] NNlib v0.6.0
+  [77ba4419] NaNMath v0.3.3
+  [71a1bf82] NameResolution v0.1.3
+  [bac558e1] OrderedCollections v1.1.0
+  [1dea7af3] OrdinaryDiffEq v5.23.0
+  [90014a1f] PDMats v0.9.10
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [e409e4f3] PoissonRandom v0.4.0
+  [2dfb63ee] PooledArrays v0.5.2
+  [8162dcfd] PrettyPrint v0.1.0
+  [92933f4c] ProgressMeter v0.9.0
+  [01f381cc] ProjectiveVectors v0.2.2
+  [1fd47b50] QuadGK v2.1.1
+  [e6cf234a] RandomNumbers v1.3.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [f2c3362d] RecursiveFactorization v0.1.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [ae5879a3] ResettableStacks v0.6.0
+  [79098fc4] Rmath v0.5.1
+  [f2b01f46] Roots v0.8.3
+  [1bc83da4] SafeTestsets v0.0.1
+  [1277b4bf] ShiftedArrays v1.0.0
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [47a9eef4] SparseDiffTools v0.10.3
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [62e018b1] StaticPolynomials v1.3.3
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [3eaba693] StatsModels v0.6.7
+  [123dc426] SymEngine v0.7.0
+  [3783bdb8] TableTraits v1.0.0
+  [bd369af6] Tables v0.2.11
+  [a759f4b9] TimerOutputs v0.5.3
+  [9f7883ad] Tracker v0.2.5
+  [a2a6695c] TreeViews v0.3.0
+  [30578b45] URIParser v0.4.0
+  [1986cc42] Unitful v0.17.0
+  [19fa3120] VertexSafeGraphs v0.1.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+┌ Warning: Replacing docs for `DiffEqOperators.PeriodicBC :: Union{}` in module `DiffEqOperators`
+└ @ Base.Docs docs&#x2F;Docs.jl:223
+┌ Warning: Replacing docs for `DiffEqOperators.RobinBC :: Union{}` in module `DiffEqOperators`
+└ @ Base.Docs docs&#x2F;Docs.jl:223
+Test Summary:            | Pass  Total
+Discrete Algorithm Tests |   12     12
+548.376175 seconds (166.27 M allocations: 8.223 GiB, 1.00% gc time)
+Test Summary: | Pass  Total
+Tstops Tests  |   23     23
+ 13.394540 seconds (9.82 M allocations: 504.817 MiB, 2.94% gc time)
+Test Summary:   | Pass  Total
+Backwards Tests |    3      3
+ 16.988103 seconds (19.76 M allocations: 893.128 MiB, 7.50% gc time)
+Test Summary: | Pass  Total
+Initdt Tests  |    3      3
+ 75.190045 seconds (13.92 M allocations: 723.508 MiB, 0.75% gc time)
+Test Summary: | Pass  Total
+Linear Tests  |    3      3
+ 52.748225 seconds (50.78 M allocations: 3.858 GiB, 8.21% gc time)
+Test Summary:     | Pass  Total
+Mass Matrix Tests |   62     62
+727.865341 seconds (481.72 M allocations: 31.496 GiB, 4.11% gc time)
+Test Summary:               | Pass  Total
+Differentiation Trait Tests |    5      5
+ 27.664213 seconds (21.85 M allocations: 1.014 GiB, 3.56% gc time)
+┌ Warning: Instability detected. Aborting
+└ @ DiffEqBase ~&#x2F;.julia&#x2F;packages&#x2F;DiffEqBase&#x2F;IDJcQ&#x2F;src&#x2F;integrator_interface.jl:176
+Test Summary: | Pass  Total
+Inf Tests     |    1      1
+  4.172984 seconds (2.10 M allocations: 105.189 MiB, 3.47% gc time)
+Test Summary:  | Pass  Total
+Jacobian Tests |   13     13
+156.889280 seconds (94.77 M allocations: 4.424 GiB, 4.92% gc time)
+Test Summary: | Pass  Total
+saveat Tests  |   30     30
+ 69.199170 seconds (49.72 M allocations: 2.308 GiB, 4.09% gc time)
+Test Summary:   | Pass  Total
+save_idxs Tests |    4      4
+ 24.986652 seconds (17.20 M allocations: 807.427 MiB, 3.24% gc time)
+Test Summary:         |
+Scalar Handling Tests | No tests
+  3.028391 seconds (2.23 M allocations: 115.147 MiB, 3.04% gc time)
+┌ Warning: `a::StaticArray + b::Number` is deprecated, use `a .+ b` instead.
+│   caller = _broadcast_getindex_evalf at broadcast.jl:630 [inlined]
+└ @ Core .&#x2F;broadcast.jl:630
+Test Summary:      | Pass  Total
+Static Array Tests |    1      1
+ 81.371321 seconds (66.44 M allocations: 3.164 GiB, 5.24% gc time)
+Test Summary:    | Pass  Broken  Total
+Data Array Tests |   10       4     14
+117.236128 seconds (103.68 M allocations: 4.575 GiB, 4.46% gc time)
+Test Summary:   | Pass  Total
+u_modifed Tests |    1      1
+  4.917653 seconds (3.12 M allocations: 162.969 MiB, 2.77% gc time)
+  5.750907 seconds (3.68 M allocations: 188.148 MiB, 2.71% gc time)
+  0.049333 seconds (23.84 k allocations: 1.195 MiB)
+Test Summary:             | Pass  Total
+Composite Algorithm Tests |    3      3
+ 45.840202 seconds (41.07 M allocations: 1.824 GiB, 5.44% gc time)
+Test Summary: | Pass  Broken  Total
+Complex Tests |   39       8     47
+171.305220 seconds (158.59 M allocations: 7.450 GiB, 3.47% gc time)
+Test Summary:      | Pass  Total
+Ndim Complex Tests |    1      1
+ 16.217885 seconds (22.44 M allocations: 994.502 MiB, 4.49% gc time)
+Test Summary:     | Pass  Total
+Number Type Tests |    5      5
+ 15.206674 seconds (12.63 M allocations: 650.416 MiB, 4.37% gc time)
+Test Summary:             | Pass  Total
+Stiffness Detection Tests |   50     50
+253.678915 seconds (214.43 M allocations: 9.662 GiB, 2.98% gc time)
+Test Summary:                 | Pass  Total
+Composite Interpolation Tests |    1      1
+ 13.861503 seconds (9.62 M allocations: 443.565 MiB, 3.59% gc time)
+Test Summary: | Pass  Total
+Export tests  |    1      1
+  0.198167 seconds (45.64 k allocations: 2.175 MiB)
+OrdinaryDiffEq.ImplicitEuler
+OrdinaryDiffEq.Rosenbrock23
+OrdinaryDiffEq.Rodas5
+Test Summary:              | Pass  Total
+Derivative Utilities Tests |   34     34
+ 84.942060 seconds (58.93 M allocations: 2.803 GiB, 3.08% gc time)
+Test Summary: | Pass  Total
+DEStats Tests |   17     17
+ 56.754732 seconds (34.67 M allocations: 1.680 GiB, 3.03% gc time)
+Stopped.
+Stopped.
+Stopped.
+Stopped.
+Stopped.
+Stopped.
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

@@ -1,0 +1,124 @@
+ Resolving package versions...
+ Installed Requires ─────────── v0.5.2
+ Installed MPIClusterManagers ─ v0.1.0
+ Installed MPI ──────────────── v0.10.1
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [e7922434] + MPIClusterManagers v0.1.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [da04e1cc] + MPI v0.10.1
+  [e7922434] + MPIClusterManagers v0.1.0
+  [ae029012] + Requires v0.5.2
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  Building MPI → `~/.julia/packages/MPI/9zBr2/deps/build.log`
+┌ Error: Error building `MPI`: 
+│ [ Info: Using MPI library 
+│ ERROR: LoadError: ccall: could not find function MPI_Get_version in library 
+│ Stacktrace:
+│  [1] Get_version() at /root/.julia/packages/MPI/9zBr2/deps/build.jl:65
+│  [2] top-level scope at none:0
+│  [3] include at ./boot.jl:317 [inlined]
+│  [4] include_relative(::Module, ::String) at ./loading.jl:1044
+│  [5] include(::Module, ::String) at ./sysimg.jl:29
+│  [6] include(::String) at ./client.jl:392
+│  [7] top-level scope at none:0
+│ in expression starting at /root/.julia/packages/MPI/9zBr2/deps/build.jl:71
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1096
+   Testing MPIClusterManagers
+ Resolving package versions...
+    Status `/tmp/tmpcOaKW9/Manifest.toml`
+  [da04e1cc] MPI v0.10.1
+  [e7922434] MPIClusterManagers v0.1.0
+  [ae029012] Requires v0.5.2
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Precompiling project...
+Precompiling MPIClusterManagers
+ERROR: LoadError: could not open file /root/.julia/packages/MPI/9zBr2/deps/deps.jl
+Stacktrace:
+ [1] include at ./boot.jl:317 [inlined]
+ [2] include_relative(::Module, ::String) at ./loading.jl:1044
+ [3] include at ./sysimg.jl:29 [inlined]
+ [4] include(::String) at /root/.julia/packages/MPI/9zBr2/src/MPI.jl:1
+ [5] top-level scope at none:0
+ [6] include at ./boot.jl:317 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1044
+ [8] include(::Module, ::String) at ./sysimg.jl:29
+ [9] top-level scope at none:2
+ [10] eval at ./boot.jl:319 [inlined]
+ [11] eval(::Expr) at ./client.jl:393
+ [12] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/MPI/9zBr2/src/MPI.jl:40
+ERROR: LoadError: Failed to precompile MPI [da04e1cc-30fd-572f-bb4f-1f8673147195] to /root/.julia/compiled/v1.0/MPI/nO0XF.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1203
+ [3] _require(::Base.PkgId) at ./loading.jl:960
+ [4] require(::Base.PkgId) at ./loading.jl:858
+ [5] require(::Module, ::Symbol) at ./loading.jl:853
+ [6] include at ./boot.jl:317 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1044
+ [8] include(::Module, ::String) at ./sysimg.jl:29
+ [9] top-level scope at none:2
+ [10] eval at ./boot.jl:319 [inlined]
+ [11] eval(::Expr) at ./client.jl:393
+ [12] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/MPIClusterManagers/HhXvP/src/MPIClusterManagers.jl:6
+ERROR: LoadError: Failed to precompile MPIClusterManagers [e7922434-ae4b-11e9-05c5-9780451d2c66] to /root/.julia/compiled/v1.0/MPIClusterManagers/Dr2Un.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1203
+ [3] precompile(::Pkg.Types.Context) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:519
+ [4] do_precompile!(::Dict{Symbol,Any}, ::Array{String,1}, ::Dict{Symbol,Any}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/REPLMode.jl:662
+ [5] #invokelatest#1(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Any, ::Any, ::Vararg{Any,N} where N) at ./essentials.jl:697
+ [6] invokelatest(::Any, ::Any, ::Vararg{Any,N} where N) at ./essentials.jl:696
+ [7] do_cmd!(::Pkg.REPLMode.PkgCommand, ::Pkg.REPLMode.MiniREPL) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/REPLMode.jl:603
+ [8] #do_cmd#33(::Bool, ::Function, ::Pkg.REPLMode.MiniREPL, ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/REPLMode.jl:577
+ [9] (::getfield(Pkg.REPLMode, Symbol("#kw##do_cmd")))(::NamedTuple{(:do_rethrow,),Tuple{Bool}}, ::typeof(Pkg.REPLMode.do_cmd), ::Pkg.REPLMode.MiniREPL, ::String) at ./none:0
+ [10] top-level scope at none:0
+ [11] include at ./boot.jl:317 [inlined]
+ [12] include_relative(::Module, ::String) at ./loading.jl:1044
+ [13] include(::Module, ::String) at ./sysimg.jl:29
+ [14] include(::String) at ./client.jl:392
+ [15] top-level scope at none:0
+in expression starting at /root/.julia/packages/MPIClusterManagers/HhXvP/test/runtests.jl:2
+ERROR: Package MPIClusterManagers errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

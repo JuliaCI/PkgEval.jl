@@ -1,0 +1,82 @@
+ Resolving package versions...
+ Installed TERMIOS ─ v0.1.1
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [10233e3b] + TERMIOS v0.1.1
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [10233e3b] + TERMIOS v0.1.1
+   Testing TERMIOS
+ Resolving package versions...
+[ Info: No changes
+    Status `/tmp/jl_mkjMT0/Manifest.toml`
+  [10233e3b] TERMIOS v0.1.1
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+termios.jl stdout: Error During Test at /root/.julia/packages/TERMIOS/Vgos5/test/runtests.jl:13
+  Got exception outside of a @test
+  TERMIOSError: tcgetattr failed: Inappropriate ioctl for device
+  Stacktrace:
+   [1] tcgetattr(::RawFD, ::TERMIOS.termios) at /root/.julia/packages/TERMIOS/Vgos5/src/TERMIOS.jl:506
+   [2] tcgetattr(::Base.PipeEndpoint, ::TERMIOS.termios) at /root/.julia/packages/TERMIOS/Vgos5/src/TERMIOS.jl:508
+   [3] top-level scope at /root/.julia/packages/TERMIOS/Vgos5/test/runtests.jl:16
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+   [5] top-level scope at /root/.julia/packages/TERMIOS/Vgos5/test/runtests.jl:15
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+   [7] top-level scope at /root/.julia/packages/TERMIOS/Vgos5/test/runtests.jl:13
+   [8] include at ./boot.jl:328 [inlined]
+   [9] include_relative(::Module, ::String) at ./loading.jl:1094
+   [10] include(::Module, ::String) at ./Base.jl:31
+   [11] include(::String) at ./client.jl:431
+   [12] top-level scope at none:5
+   [13] eval(::Module, ::Any) at ./boot.jl:330
+   [14] exec_options(::Base.JLOptions) at ./client.jl:271
+   [15] _start() at ./client.jl:464
+  
+termios.jl stdin: Error During Test at /root/.julia/packages/TERMIOS/Vgos5/test/runtests.jl:54
+  Got exception outside of a @test
+  MethodError: no method matching tcgetattr(::IOStream, ::TERMIOS.termios)
+  Closest candidates are:
+    tcgetattr(!Matched::RawFD, ::TERMIOS.termios) at /root/.julia/packages/TERMIOS/Vgos5/src/TERMIOS.jl:505
+    tcgetattr(!Matched::Base.LibuvStream, ::Any) at /root/.julia/packages/TERMIOS/Vgos5/src/TERMIOS.jl:508
+    tcgetattr(!Matched::Int64, ::Any) at /root/.julia/packages/TERMIOS/Vgos5/src/TERMIOS.jl:509
+  Stacktrace:
+   [1] top-level scope at /root/.julia/packages/TERMIOS/Vgos5/test/runtests.jl:57
+   [2] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+   [3] top-level scope at /root/.julia/packages/TERMIOS/Vgos5/test/runtests.jl:56
+   [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+   [5] top-level scope at /root/.julia/packages/TERMIOS/Vgos5/test/runtests.jl:13
+   [6] include at ./boot.jl:328 [inlined]
+   [7] include_relative(::Module, ::String) at ./loading.jl:1094
+   [8] include(::Module, ::String) at ./Base.jl:31
+   [9] include(::String) at ./client.jl:431
+   [10] top-level scope at none:5
+   [11] eval(::Module, ::Any) at ./boot.jl:330
+   [12] exec_options(::Base.JLOptions) at ./client.jl:271
+   [13] _start() at ./client.jl:464
+  
+Test Summary:       | Error  Total
+All                 |     2      2
+  termios.jl stdout |     1      1
+  termios.jl stdin  |     1      1
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 2 errored, 0 broken.
+in expression starting at /root/.julia/packages/TERMIOS/Vgos5/test/runtests.jl:12
+ERROR: Package TERMIOS errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1288
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

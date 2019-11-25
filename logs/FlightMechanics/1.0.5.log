@@ -1,0 +1,91 @@
+ Resolving package versions...
+ Installed FlightMechanics ─ v0.1.0
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [d8b13f87] + FlightMechanics v0.1.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [d8b13f87] + FlightMechanics v0.1.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+   Testing FlightMechanics
+    Status `/tmp/tmpfEJDqd/Manifest.toml`
+  [d8b13f87] FlightMechanics v0.1.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+ERROR: LoadError: LoadError: LoadError: LoadError: ArgumentError: Package FlightMechanics does not have Dierckx in its dependencies:
+- If you have FlightMechanics checked out for development and have
+  added Dierckx as a dependency but haven't updated your primary
+  environment's manifest file, try `Pkg.resolve()`.
+- Otherwise you may need to report an issue with FlightMechanics
+Stacktrace:
+ [1] require(::Module, ::Symbol) at ./loading.jl:836
+ [2] include at ./boot.jl:317 [inlined]
+ [3] include_relative(::Module, ::String) at ./loading.jl:1044
+ [4] include at ./sysimg.jl:29 [inlined]
+ [5] include(::String) at /root/.julia/packages/FlightMechanics/xJOq1/src/simulator/aircrafts/Aircrafts.jl:1
+ [6] top-level scope at none:0
+ [7] include at ./boot.jl:317 [inlined]
+ [8] include_relative(::Module, ::String) at ./loading.jl:1044
+ [9] include at ./sysimg.jl:29 [inlined]
+ [10] include(::String) at /root/.julia/packages/FlightMechanics/xJOq1/src/simulator/Simulator.jl:1
+ [11] top-level scope at none:0
+ [12] include at ./boot.jl:317 [inlined]
+ [13] include_relative(::Module, ::String) at ./loading.jl:1044
+ [14] include at ./sysimg.jl:29 [inlined]
+ [15] include(::String) at /root/.julia/packages/FlightMechanics/xJOq1/src/FlightMechanics.jl:1
+ [16] top-level scope at none:0
+ [17] include at ./boot.jl:317 [inlined]
+ [18] include_relative(::Module, ::String) at ./loading.jl:1044
+ [19] include(::Module, ::String) at ./sysimg.jl:29
+ [20] top-level scope at none:2
+ [21] eval at ./boot.jl:319 [inlined]
+ [22] eval(::Expr) at ./client.jl:393
+ [23] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/FlightMechanics/xJOq1/src/simulator/aircrafts/C310/aerodynamics.jl:1
+in expression starting at /root/.julia/packages/FlightMechanics/xJOq1/src/simulator/aircrafts/Aircrafts.jl:2
+in expression starting at /root/.julia/packages/FlightMechanics/xJOq1/src/simulator/Simulator.jl:3
+in expression starting at /root/.julia/packages/FlightMechanics/xJOq1/src/FlightMechanics.jl:16
+ERROR: LoadError: Failed to precompile FlightMechanics [d8b13f87-1844-53e1-ad89-0742af8604bf] to /root/.julia/compiled/v1.0/FlightMechanics/q3ZnH.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1203
+ [3] _require(::Base.PkgId) at ./loading.jl:960
+ [4] require(::Base.PkgId) at ./loading.jl:858
+ [5] require(::Module, ::Symbol) at ./loading.jl:853
+ [6] include at ./boot.jl:317 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1044
+ [8] include(::Module, ::String) at ./sysimg.jl:29
+ [9] include(::String) at ./client.jl:392
+ [10] top-level scope at none:0
+in expression starting at /root/.julia/packages/FlightMechanics/xJOq1/test/runtests.jl:1
+ERROR: Package FlightMechanics errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

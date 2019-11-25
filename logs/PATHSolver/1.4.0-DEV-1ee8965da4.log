@@ -1,0 +1,167 @@
+ Resolving package versions...
+ Installed URIParser ──────────── v0.4.0
+ Installed PATHSolver ─────────── v0.5.2
+ Installed DiffResults ────────── v0.0.4
+ Installed DiffRules ──────────── v0.1.0
+ Installed BinDeps ────────────── v0.8.10
+ Installed StaticArrays ───────── v0.12.1
+ Installed SpecialFunctions ───── v0.8.0
+ Installed BinaryProvider ─────── v0.5.8
+ Installed NaNMath ────────────── v0.3.3
+ Installed Compat ─────────────── v2.2.0
+ Installed ForwardDiff ────────── v0.10.6
+ Installed CommonSubexpressions ─ v0.2.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [f5f7c340] + PATHSolver v0.5.2
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [f6369f11] + ForwardDiff v0.10.6
+  [77ba4419] + NaNMath v0.3.3
+  [f5f7c340] + PATHSolver v0.5.2
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~/.julia/packages/SpecialFunctions/ne2iw/deps/build.log`
+  Building PATHSolver ──────→ `~/.julia/packages/PATHSolver/lRj12/deps/build.log`
+┌ Error: Error building `PATHSolver`: 
+│   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+│                                  Dload  Upload   Total   Spent    Left  Speed
+│   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   123    0   123    0     0    554      0 --:--:-- --:--:-- --:--:--   554
+│ 100  191k    0  191k    0     0   218k      0 --:--:-- --:--:-- --:--:--  218k100  493k    0  493k    0     0   464k      0 --:--:--  0:00:01 --:--:-- 1639k
+│ if [ ! -d pathlib-4.7.03 ]; \
+│ then \
+│ 	wget https://github.com/ampl/pathlib/archive/4.7.03.tar.gz; \
+│ 	tar -zxvf 4.7.03.tar.gz; \
+│ 	rm -rf 4.7.03.tar.gz*; \
+│ fi;
+│ /bin/sh: 3: wget: not found
+│ tar (child): 4.7.03.tar.gz: Cannot open: No such file or directory
+│ tar (child): Error is not recoverable: exiting now
+│ tar: Child returned status 2
+│ tar: Error is not recoverable: exiting now
+│ gcc -I./pathlib-4.7.03/include -m64 -shared -fPIC -Wl,-soname,libpath47julia.so -o libpath47julia.so pathjulia.c ./pathlib-4.7.03/lib/linux64/libpath47.a -lm
+│ gcc: error: ./pathlib-4.7.03/lib/linux64/libpath47.a: No such file or directory
+│ Makefile:36: recipe for target 'linux64' failed
+│ make: *** [linux64] Error 1
+│ [ Info: Attempting to create directory /root/.julia/packages/PATHSolver/lRj12/deps/downloads
+│ [ Info: Downloading file https://github.com/chkwon/PathJulia/archive/0.1.2.tar.gz
+│ [ Info: Done downloading file https://github.com/chkwon/PathJulia/archive/0.1.2.tar.gz
+│ [ Info: Attempting to create directory /root/.julia/packages/PATHSolver/lRj12/deps/src
+│ [ Info: Attempting to create directory /root/.julia/packages/PATHSolver/lRj12/deps
+│ [ Info: Directory /root/.julia/packages/PATHSolver/lRj12/deps already exists
+│ [ Info: Attempting to create directory /root/.julia/packages/PATHSolver/lRj12/deps/usr/lib
+│ [ Info: Changing directory to /root/.julia/packages/PATHSolver/lRj12/deps/src/PathJulia-0.1.2/src
+│ ERROR: LoadError: failed process: Process(`make linux64`, ProcessExited(2)) [2]
+│ 
+│ Stacktrace:
+│  [1] pipeline_error at ./process.jl:525 [inlined]
+│  [2] run(::Cmd; wait::Bool) at ./process.jl:440
+│  [3] run(::Cmd) at ./process.jl:438
+│  [4] run(::BinDeps.SynchronousStepCollection) at /root/.julia/packages/BinDeps/ZEval/src/BinDeps.jl:521 (repeats 2 times)
+│  [5] satisfy!(::BinDeps.LibraryDependency, ::Array{DataType,1}) at /root/.julia/packages/BinDeps/ZEval/src/dependencies.jl:944
+│  [6] satisfy!(::BinDeps.LibraryDependency) at /root/.julia/packages/BinDeps/ZEval/src/dependencies.jl:922
+│  [7] top-level scope at /root/.julia/packages/BinDeps/ZEval/src/dependencies.jl:977
+│  [8] include(::String) at ./client.jl:439
+│  [9] top-level scope at none:5
+│ in expression starting at /root/.julia/packages/PATHSolver/lRj12/deps/build.jl:96
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:601
+   Testing PATHSolver
+Status `/tmp/jl_IJ4OCB/Manifest.toml`
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [f6369f11] ForwardDiff v0.10.6
+  [77ba4419] NaNMath v0.3.3
+  [f5f7c340] PATHSolver v0.5.2
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib/SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: PATHSolver not properly installed. Please re-build PATHSolver.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] top-level scope at /root/.julia/packages/PATHSolver/lRj12/src/PATHSolver.jl:15
+ [3] include(::Module, ::String) at ./Base.jl:377
+ [4] top-level scope at none:2
+ [5] eval at ./boot.jl:331 [inlined]
+ [6] eval(::Expr) at ./client.jl:449
+ [7] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/PATHSolver/lRj12/src/PATHSolver.jl:12
+ERROR: LoadError: Failed to precompile PATHSolver [f5f7c340-0bb3-5c69-969a-41884d311d1b] to /root/.julia/compiled/v1.4/PATHSolver/xyGrF_B9TNO.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1263
+ [3] _require(::Base.PkgId) at ./loading.jl:1022
+ [4] require(::Base.PkgId) at ./loading.jl:920
+ [5] require(::Module, ::Symbol) at ./loading.jl:915
+ [6] include(::String) at ./client.jl:439
+ [7] top-level scope at none:6
+in expression starting at /root/.julia/packages/PATHSolver/lRj12/test/runtests.jl:1
+ERROR: Package PATHSolver errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

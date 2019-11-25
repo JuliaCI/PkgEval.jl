@@ -1,0 +1,108 @@
+ Resolving package versions...
+ Installed FixedPointDecimals ─ v0.3.0
+ Installed CurrenciesBase ───── v0.1.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [a33ca353] + CurrenciesBase v0.1.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [a33ca353] + CurrenciesBase v0.1.0
+  [fb4d412d] + FixedPointDecimals v0.3.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+   Testing CurrenciesBase
+Status `/tmp/jl_kTwtx0/Manifest.toml`
+  [a33ca353] CurrenciesBase v0.1.0
+  [fb4d412d] FixedPointDecimals v0.3.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Test Summary: | Pass  Total
+Data          |   66     66
+Division: Error During Test at /root/.julia/packages/CurrenciesBase/FZoko/test/monetary.jl:24
+  Test threw exception
+  Expression: divrem(10USD, 3USD) == ((10USD) ÷ (3USD), (10USD) % (3USD))
+  MethodError: no method matching div(::FixedDecimal{Int64,2}, ::FixedDecimal{Int64,2}, ::RoundingMode{:ToZero})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:FixedDecimal at /root/.julia/packages/FixedPointDecimals/Z4Eui/src/FixedPointDecimals.jl:303
+    ...
+  Stacktrace:
+   [1] div(::FixedDecimal{Int64,2}, ::FixedDecimal{Int64,2}, ::RoundingMode{:ToZero}) at ./div.jl:235
+   [2] divrem(::FixedDecimal{Int64,2}, ::FixedDecimal{Int64,2}, ::RoundingMode{:ToZero}) at ./div.jl:117
+   [3] divrem(::FixedDecimal{Int64,2}, ::FixedDecimal{Int64,2}) at ./div.jl:116
+   [4] divrem(::CurrenciesBase.Currency{:USD,FixedDecimal{Int64,2}}, ::CurrenciesBase.Currency{:USD,FixedDecimal{Int64,2}}) at /root/.julia/packages/CurrenciesBase/FZoko/src/arithmetic.jl:49
+   [5] top-level scope at /root/.julia/packages/CurrenciesBase/FZoko/test/monetary.jl:24
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/CurrenciesBase/FZoko/test/monetary.jl:19
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/CurrenciesBase/FZoko/test/monetary.jl:6
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/CurrenciesBase/FZoko/test/monetary.jl:5
+  
+Division: Error During Test at /root/.julia/packages/CurrenciesBase/FZoko/test/monetary.jl:30
+  Test threw exception
+  Expression: fldmod(-10USD, 3USD) == (-4, 2USD)
+  MethodError: no method matching div(::FixedDecimal{Int64,2}, ::FixedDecimal{Int64,2}, ::RoundingMode{:Down})
+  Closest candidates are:
+    div(::Real, ::Real, ::RoundingMode) at div.jl:235
+    div(!Matched::Missing, ::Number, ::RoundingMode) at missing.jl:121
+    div(::T, ::T) where T<:FixedDecimal at /root/.julia/packages/FixedPointDecimals/Z4Eui/src/FixedPointDecimals.jl:303
+    ...
+  Stacktrace:
+   [1] div(::FixedDecimal{Int64,2}, ::FixedDecimal{Int64,2}, ::RoundingMode{:Down}) at ./div.jl:235
+   [2] divrem(::FixedDecimal{Int64,2}, ::FixedDecimal{Int64,2}, ::RoundingMode{:Down}) at ./div.jl:117
+   [3] fldmod(::FixedDecimal{Int64,2}, ::FixedDecimal{Int64,2}) at ./div.jl:173
+   [4] fldmod(::CurrenciesBase.Currency{:USD,FixedDecimal{Int64,2}}, ::CurrenciesBase.Currency{:USD,FixedDecimal{Int64,2}}) at /root/.julia/packages/CurrenciesBase/FZoko/src/arithmetic.jl:49
+   [5] top-level scope at /root/.julia/packages/CurrenciesBase/FZoko/test/monetary.jl:30
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/CurrenciesBase/FZoko/test/monetary.jl:19
+   [8] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [9] top-level scope at /root/.julia/packages/CurrenciesBase/FZoko/test/monetary.jl:6
+   [10] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [11] top-level scope at /root/.julia/packages/CurrenciesBase/FZoko/test/monetary.jl:5
+  
+Test Summary:           | Pass  Error  Total
+Monetary                |   99      2    101
+  Arithmetic            |   33      2     35
+    Division            |   16      2     18
+    Number-like         |    6             6
+  Type Safety           |    9             9
+  Comparison            |   15            15
+  Custom Representation |    6             6
+  Custom Precision      |   17            17
+  Constructors          |   19            19
+ERROR: LoadError: LoadError: Some tests did not pass: 99 passed, 0 failed, 2 errored, 0 broken.
+in expression starting at /root/.julia/packages/CurrenciesBase/FZoko/test/monetary.jl:2
+in expression starting at /root/.julia/packages/CurrenciesBase/FZoko/test/runtests.jl:15
+ERROR: Package CurrenciesBase errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

@@ -1,0 +1,2320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="Distributions">Distributions</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#Distributions">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 13 hours ago and took 19 minutes, 3 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Distributions/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed URIParser ────────── v0.4.0
+ Installed Missings ─────────── v0.4.3
+ Installed OrderedCollections ─ v1.1.0
+ Installed BinDeps ──────────── v0.8.10
+ Installed Arpack ───────────── v0.3.1
+ Installed SpecialFunctions ─── v0.8.0
+ Installed BinaryProvider ───── v0.5.8
+ Installed Distributions ────── v0.21.8
+ Installed SortingAlgorithms ── v0.3.1
+ Installed DataAPI ──────────── v1.1.0
+ Installed Rmath ────────────── v0.5.1
+ Installed QuadGK ───────────── v2.1.1
+ Installed PDMats ───────────── v0.9.10
+ Installed StatsFuns ────────── v0.9.0
+ Installed DataStructures ───── v0.17.6
+ Installed StatsBase ────────── v0.32.0
+ Installed Compat ───────────── v2.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [31c24e10] + Distributions v0.21.8
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [7d9fca2a] + Arpack v0.3.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [31c24e10] + Distributions v0.21.8
+  [e1d29d7a] + Missings v0.4.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [90014a1f] + PDMats v0.9.10
+  [1fd47b50] + QuadGK v2.1.1
+  [79098fc4] + Rmath v0.5.1
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [2913bbd2] + StatsBase v0.32.0
+  [4c63d2b9] + StatsFuns v0.9.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+  Building Arpack ──────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+  Building Rmath ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+   Testing Distributions
+ Resolving package versions...
+ Installed NaNMath ────────────── v0.3.3
+ Installed FiniteDifferences ──── v0.9.0
+ Installed Parsers ────────────── v0.3.10
+ Installed JSON ───────────────── v0.21.0
+ Installed Calculus ───────────── v0.5.1
+ Installed CommonSubexpressions ─ v0.2.0
+ Installed ForwardDiff ────────── v0.10.6
+ Installed StaticArrays ───────── v0.12.1
+ Installed DiffRules ──────────── v0.1.0
+ Installed DiffResults ────────── v0.0.4
+    Status `&#x2F;tmp&#x2F;tmpp4nBJE&#x2F;Manifest.toml`
+  [7d9fca2a] Arpack v0.3.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [31c24e10] Distributions v0.21.8
+  [26cc04aa] FiniteDifferences v0.9.0
+  [f6369f11] ForwardDiff v0.10.6
+  [682c06a0] JSON v0.21.0
+  [e1d29d7a] Missings v0.4.3
+  [77ba4419] NaNMath v0.3.3
+  [bac558e1] OrderedCollections v1.1.0
+  [90014a1f] PDMats v0.9.10
+  [69de0a69] Parsers v0.3.10
+  [1fd47b50] QuadGK v2.1.1
+  [79098fc4] Rmath v0.5.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Running tests:
+    [Discrete]
+    ------------
+    testing Truncated(BetaBinomial(10, 0.2, 0.25),3,5)
+    testing Truncated(BetaBinomial(10, 2, 2.5),3,5)
+    testing Truncated(BetaBinomial(10, 60, 40),3,5)
+    testing Truncated(Binomial(5, 0.4),3,5)
+    testing Truncated(Binomial(6, 0.8),3,5)
+    testing Truncated(Binomial(100, 0.1),3,5)
+    testing Truncated(Binomial(100, 0.9),3,5)
+    testing Truncated(Binomial(10, 0.0),3,5)
+    testing Truncated(Binomial(10, 1.0),3,5)
+    testing Truncated(DiscreteUniform(6),3,5)
+    testing Truncated(DiscreteUniform(7),3,5)
+    testing Truncated(DiscreteUniform(2, 8),3,5)
+    testing Truncated(Geometric(),3,5)
+    testing Truncated(Geometric(0.02),3,5)
+    testing Truncated(Geometric(0.1),3,5)
+    testing Truncated(Geometric(0.5),3,5)
+    testing Truncated(Geometric(0.9),3,5)
+    testing Truncated(NegativeBinomial(),3,5)
+    testing Truncated(NegativeBinomial(6),3,5)
+    testing Truncated(NegativeBinomial(1, 0.5),3,5)
+    testing Truncated(NegativeBinomial(5, 0.6),3,5)
+    testing Truncated(NegativeBinomial(0.5, 0.5),3,5)
+    testing Truncated(Poisson(),3,5)
+    testing Truncated(Poisson(0.5),3,5)
+    testing Truncated(Poisson(2.0),3,5)
+    testing Truncated(Poisson(10.0),3,5)
+    testing Truncated(Poisson(80.0),3,5)
+
+    [Continuous]
+    ------------
+    testing Truncated(BetaPrime(),3,5)
+    testing Truncated(BetaPrime(3.0),3,5)
+    testing Truncated(BetaPrime(3.0, 5.0),3,5)
+    testing Truncated(BetaPrime(5.0, 3.0),3,5)
+    testing Truncated(Cauchy(),3,5)
+    testing Truncated(Cauchy(2.0),3,5)
+    testing Truncated(Cauchy(0.0, 1.0),3,5)
+    testing Truncated(Cauchy(10.0, 1.0),3,5)
+    testing Truncated(Cauchy(2.0, 10.0),3,5)
+    testing Truncated(Chi(1),3,5)
+    testing Truncated(Chi(2),3,5)
+    testing Truncated(Chi(3),3,5)
+    testing Truncated(Chi(12),3,5)
+    testing Truncated(Chisq(1),3,5)
+    testing Truncated(Chisq(8),3,5)
+    testing Truncated(Chisq(20),3,5)
+    testing Truncated(Erlang(),3,5)
+    testing Truncated(Erlang(3),3,5)
+    testing Truncated(Erlang(3, 1.0),3,5)
+    testing Truncated(Erlang(5, 2.0),3,5)
+    testing Truncated(Exponential(),3,5)
+    testing Truncated(Exponential(2.0),3,5)
+    testing Truncated(Exponential(6.5),3,5)
+    testing Truncated(FDist(6.0, 8.0),3,5)
+    testing Truncated(FDist(8.0, 6.0),3,5)
+    testing Truncated(FDist(30, 40),3,5)
+    testing Truncated(Frechet(),3,5)
+    testing Truncated(Frechet(0.5),3,5)
+    testing Truncated(Frechet(3.0),3,5)
+    testing Truncated(Frechet(20.0),3,5)
+    testing Truncated(Frechet(60.0),3,5)
+    testing Truncated(Frechet(0.5, 2.0),3,5)
+    testing Truncated(Frechet(3.0, 2.0),3,5)
+    testing Truncated(Gamma(),3,5)
+    testing Truncated(Gamma(2.0),3,5)
+    testing Truncated(Gamma(1.0, 1.0),3,5)
+    testing Truncated(Gamma(3.0, 1.0),3,5)
+    testing Truncated(Gamma(3.0, 2.0),3,5)
+    testing Truncated(GeneralizedExtremeValue(1.0, 1.0, 1.0),3,5)
+    testing Truncated(GeneralizedExtremeValue(0.0, 1.0, 0.0),3,5)
+    testing Truncated(GeneralizedExtremeValue(0.0, 1.0, 1.1),3,5)
+    testing Truncated(GeneralizedExtremeValue(0.0, 1.0, 0.6),3,5)
+    testing Truncated(GeneralizedExtremeValue(0.0, 1.0, 0.3),3,5)
+    testing Truncated(GeneralizedExtremeValue(-1.0, 0.5, 0.6),3,5)
+    testing Truncated(GeneralizedPareto(),3,5)
+    testing Truncated(GeneralizedPareto(1.0, 1.0),3,5)
+    testing Truncated(GeneralizedPareto(0.1, 2.0),3,5)
+    testing Truncated(GeneralizedPareto(1.0, 1.0, 1.0),3,5)
+    testing Truncated(GeneralizedPareto(-1.5, 0.5, 2.0),3,5)
+    testing Truncated(Gumbel(),3,5)
+    testing Truncated(Gumbel(3.0),3,5)
+    testing Truncated(Gumbel(3.0, 5.0),3,5)
+    testing Truncated(Gumbel(5.0, 3.0),3,5)
+    testing Truncated(InverseGamma(),3,5)
+    testing Truncated(InverseGamma(2.0),3,5)
+    testing Truncated(InverseGamma(1.0, 1.0),3,5)
+    testing Truncated(InverseGamma(1.0, 2.0),3,5)
+    testing Truncated(InverseGamma(2.0, 1.0),3,5)
+    testing Truncated(InverseGamma(2.0, 3.0),3,5)
+    testing Truncated(InverseGaussian(),3,5)
+    testing Truncated(InverseGaussian(0.8),3,5)
+    testing Truncated(InverseGaussian(2.0),3,5)
+    testing Truncated(InverseGaussian(1.0, 1.0),3,5)
+    testing Truncated(InverseGaussian(2.0, 1.5),3,5)
+    testing Truncated(InverseGaussian(2.0, 7.0),3,5)
+    testing Truncated(Laplace(),3,5)
+    testing Truncated(Laplace(2.0),3,5)
+    testing Truncated(Laplace(0.0, 1.0),3,5)
+    testing Truncated(Laplace(5.0, 1.0),3,5)
+    testing Truncated(Laplace(5.0, 1.5),3,5)
+    testing Truncated(Levy(),3,5)
+    testing Truncated(Levy(2),3,5)
+    testing Truncated(Levy(2, 8),3,5)
+    testing Truncated(Levy(3.0, 3),3,5)
+    testing Truncated(Logistic(),3,5)
+    testing Truncated(Logistic(2.0),3,5)
+    testing Truncated(Logistic(0.0, 1.0),3,5)
+    testing Truncated(Logistic(5.0, 1.0),3,5)
+    testing Truncated(Logistic(2.0, 1.5),3,5)
+    testing Truncated(Logistic(5.0, 1.5),3,5)
+    testing Truncated(LogNormal(),3,5)
+    testing Truncated(LogNormal(1.0),3,5)
+    testing Truncated(LogNormal(0.0, 2.0),3,5)
+    testing Truncated(LogNormal(1.0, 2.0),3,5)
+    testing Truncated(LogNormal(3.0, 0.5),3,5)
+    testing Truncated(LogNormal(3.0, 1.0),3,5)
+    testing Truncated(LogNormal(3.0, 2.0),3,5)
+    testing Truncated(NoncentralChisq(2, 2),3,5)
+    testing Truncated(NoncentralChisq(2, 5),3,5)
+    testing Truncated(NoncentralF(2, 2, 2),3,5)
+    testing Truncated(NoncentralF(8, 10, 5),3,5)
+    testing Truncated(NoncentralT(2, 2),3,5)
+    testing Truncated(NoncentralT(10, 2),3,5)
+    testing Truncated(Normal(),3,5)
+    testing Truncated(Normal(2.0),3,5)
+    testing Truncated(Normal(-3.0, 2.0),3,5)
+    testing Truncated(Normal(1.0, 10.0),3,5)
+    testing Truncated(NormalCanon(),3,5)
+    testing Truncated(NormalCanon(0.0, 1.0),3,5)
+    testing Truncated(NormalCanon(-1.0, 2.5),3,5)
+    testing Truncated(NormalCanon(2.0, 0.8),3,5)
+    testing Truncated(Pareto(),3,5)
+    testing Truncated(Pareto(2.0),3,5)
+    testing Truncated(Pareto(2.0, 1.5),3,5)
+    testing Truncated(Pareto(3.0, 2.0),3,5)
+    testing Truncated(Rayleigh(),3,5)
+    testing Truncated(Rayleigh(3.0),3,5)
+    testing Truncated(Rayleigh(8.0),3,5)
+    testing Truncated(StudentizedRange(2.0, 2.0),3,5)
+    testing Truncated(StudentizedRange(5.0, 10.0),3,5)
+    testing Truncated(StudentizedRange(10.0, 5.0),3,5)
+    testing Truncated(SymTriangularDist(3.0, 2.0),3,5)
+    testing Truncated(SymTriangularDist(10.0, 8.0),3,5)
+    testing Truncated(TDist(1.2),3,5)
+    testing Truncated(TDist(5.0),3,5)
+    testing Truncated(TDist(28.0),3,5)
+    testing Truncated(TriangularDist(0, 5),3,5)
+    testing Truncated(TriangularDist(-4, 14, 3),3,5)
+    testing Truncated(TriangularDist(2, 2000, 500),3,5)
+    testing Truncated(TruncatedNormal(27, 3, 0, Inf),3,5)
+    testing Truncated(Uniform(3.0, 17.0),3,5)
+    testing Truncated(Weibull(),3,5)
+    testing Truncated(Weibull(0.5),3,5)
+    testing Truncated(Weibull(5.0),3,5)
+    testing Truncated(Weibull(20.0, 1.0),3,5)
+    testing Truncated(Weibull(1.0, 2.0),3,5)
+    testing Truncated(Weibull(5.0, 2.0),3,5)
+
+Test Summary: | Pass  Total
+Test truncate | 5112   5112
+Test Summary:    | Pass  Total
+Test truncnormal |   28     28
+Test Summary:              | Pass  Total
+Test truncated_exponential |    8      8
+Test Summary: | Pass  Total
+Test normal   |   29     29
+Test Summary: | Pass  Total
+Test mvnormal | 5138   5138
+Test Summary:    | Pass  Total
+Test mvlognormal | 1415   1415
+Test Summary: | Pass  Total
+Test types    |   30     30
+Test Summary: | Pass  Total
+Test utils    |   30     30
+    testing CategoricalDirectSampler
+    testing AliasTable
+    testing BinomialGeomSampler
+    testing BinomialTPESampler
+    testing BinomialPolySampler
+    testing BinomialAliasSampler
+    testing PoissonCountSampler
+    testing PoissonADSampler
+    testing PoissBinAliasSampler
+    testing ExponentialSampler
+    testing GammaGDSampler
+    testing GammaMTSampler
+    testing GammaGSSampler
+    testing GammaIPSampler
+Test Summary: | Pass  Total
+Test samplers |    2      2
+    testing DiscreteNonParametric{Int64,Float64,Base.OneTo{Int64},Array{Float64,1}}(support=Base.OneTo(2), p=[0.5, 0.5]) as Categorical
+    testing DiscreteNonParametric{Int64,Float64,Base.OneTo{Int64},Array{Float64,1}}(support=Base.OneTo(4), p=[0.1, 0.3, 0.2, 0.4]) as Categorical
+    testing DiscreteNonParametric{Int64,Float64,Base.OneTo{Int64},Array{Float64,1}}(support=Base.OneTo(3), p=[0.15, 0.25, 0.6]) as Categorical
+    testing DiscreteNonParametric{Int64,Float64,Base.OneTo{Int64},Array{Float64,1}}(support=Base.OneTo(4), p=[0.25, 0.25, 0.25, 0.25]) as Categorical
+Test Summary:    | Pass  Total
+Test categorical |  288    288
+    [Discrete]
+    ------------
+    testing Bernoulli()
+    testing Bernoulli(0.25)
+    testing Bernoulli(0.75)
+    testing Bernoulli(0.0)
+    testing Bernoulli(1.0)
+    testing BetaBinomial(2, 0.2, 0.25)
+    testing BetaBinomial(10, 0.2, 0.25)
+    testing BetaBinomial(10, 2, 2.5)
+    testing BetaBinomial(10, 60, 40)
+    testing Binomial()
+    testing Binomial(3)
+    testing Binomial(5, 0.4)
+    testing Binomial(6, 0.8)
+    testing Binomial(100, 0.1)
+    testing Binomial(100, 0.9)
+    testing Binomial(10, 0.0)
+    testing Binomial(10, 1.0)
+    testing DiscreteUniform()
+    testing DiscreteUniform(6)
+    testing DiscreteUniform(7)
+    testing DiscreteUniform(0, 4)
+    testing DiscreteUniform(2, 8)
+    testing Geometric()
+    testing Geometric(0.02)
+    testing Geometric(0.1)
+    testing Geometric(0.5)
+    testing Geometric(0.9)
+    testing Hypergeometric(2, 2, 2)
+    testing Hypergeometric(3, 2, 2)
+    testing Hypergeometric(3, 2, 0)
+    testing Hypergeometric(3, 2, 5)
+    testing Hypergeometric(4, 5, 6)
+    testing Hypergeometric(60, 80, 100)
+    testing NegativeBinomial()
+    testing NegativeBinomial(6)
+    testing NegativeBinomial(1, 0.5)
+    testing NegativeBinomial(5, 0.6)
+    testing NegativeBinomial(0.5, 0.5)
+    testing Poisson()
+    testing Poisson(0.0)
+    testing Poisson(0.5)
+    testing Poisson(2.0)
+    testing Poisson(10.0)
+    testing Poisson(80.0)
+    testing Skellam()
+    testing Skellam(2.0)
+    testing Skellam(2.0, 3.0)
+    testing Skellam(3.2, 1.8)
+    testing FisherNoncentralHypergeometric(8, 6, 10, 1)
+    testing FisherNoncentralHypergeometric(8, 6, 10, 10)
+    testing FisherNoncentralHypergeometric(8, 6, 10, 0.1)
+    testing FisherNoncentralHypergeometric(80, 60, 100, 1)
+    testing FisherNoncentralHypergeometric(80, 60, 100, 10)
+    testing FisherNoncentralHypergeometric(80, 60, 100, 0.1)
+    testing WalleniusNoncentralHypergeometric(8, 6, 10, 1)
+    testing WalleniusNoncentralHypergeometric(8, 6, 10, 10)
+    testing WalleniusNoncentralHypergeometric(8, 6, 10, 0.1)
+    testing WalleniusNoncentralHypergeometric(40, 30, 50, 1)
+    testing WalleniusNoncentralHypergeometric(40, 30, 50, 0.5)
+    testing WalleniusNoncentralHypergeometric(40, 30, 50, 2)
+
+    [Continuous]
+    ------------
+    testing Arcsine()
+    testing Arcsine(2.0)
+    testing Arcsine(1.0, 2.5)
+    testing Arcsine(-1.0, 1.0)
+    testing Beta(2.0, 2.0)
+    testing Beta(3.0, 4.0)
+    testing Beta(17.0, 13.0)
+    testing BetaPrime()
+    testing BetaPrime(3.0)
+    testing BetaPrime(3.0, 5.0)
+    testing BetaPrime(5.0, 3.0)
+    testing Cauchy()
+    testing Cauchy(2.0)
+    testing Cauchy(0.0, 1.0)
+    testing Cauchy(10.0, 1.0)
+    testing Cauchy(2.0, 10.0)
+    testing Chi(1)
+    testing Chi(2)
+    testing Chi(3)
+    testing Chi(12)
+    testing Chisq(1)
+    testing Chisq(8)
+    testing Chisq(20)
+    testing Cosine()
+    testing Cosine(1.5)
+    testing Cosine(2.0, 2.8)
+    testing Erlang()
+    testing Erlang(3)
+    testing Erlang(3, 1.0)
+    testing Erlang(5, 2.0)
+    testing Exponential()
+    testing Exponential(2.0)
+    testing Exponential(6.5)
+    testing FDist(6.0, 8.0)
+    testing FDist(8.0, 6.0)
+    testing FDist(30, 40)
+    testing Frechet()
+    testing Frechet(0.5)
+    testing Frechet(3.0)
+    testing Frechet(20.0)
+    testing Frechet(60.0)
+    testing Frechet(0.5, 2.0)
+    testing Frechet(3.0, 2.0)
+    testing Gamma()
+    testing Gamma(2.0)
+    testing Gamma(1.0, 1.0)
+    testing Gamma(3.0, 1.0)
+    testing Gamma(3.0, 2.0)
+    testing GeneralizedExtremeValue(1.0, 1.0, 1.0)
+    testing GeneralizedExtremeValue(0.0, 1.0, 0.0)
+    testing GeneralizedExtremeValue(0.0, 1.0, 1.1)
+    testing GeneralizedExtremeValue(0.0, 1.0, 0.6)
+    testing GeneralizedExtremeValue(0.0, 1.0, 0.3)
+    testing GeneralizedExtremeValue(1.0, 1.0, -1.0)
+    testing GeneralizedExtremeValue(-1.0, 0.5, 0.6)
+    testing GeneralizedPareto()
+    testing GeneralizedPareto(1.0, 1.0)
+    testing GeneralizedPareto(0.1, 2.0)
+    testing GeneralizedPareto(1.0, 1.0, 1.0)
+    testing GeneralizedPareto(-1.5, 0.5, 2.0)
+    testing Gumbel()
+    testing Gumbel(3.0)
+    testing Gumbel(3.0, 5.0)
+    testing Gumbel(5.0, 3.0)
+    testing InverseGamma()
+    testing InverseGamma(2.0)
+    testing InverseGamma(1.0, 1.0)
+    testing InverseGamma(1.0, 2.0)
+    testing InverseGamma(2.0, 1.0)
+    testing InverseGamma(2.0, 3.0)
+    testing InverseGaussian()
+    testing InverseGaussian(0.8)
+    testing InverseGaussian(2.0)
+    testing InverseGaussian(1.0, 1.0)
+    testing InverseGaussian(2.0, 1.5)
+    testing InverseGaussian(2.0, 7.0)
+    testing Laplace()
+    testing Laplace(2.0)
+    testing Laplace(0.0, 1.0)
+    testing Laplace(5.0, 1.0)
+    testing Laplace(5.0, 1.5)
+    testing Levy()
+    testing Levy(2)
+    testing Levy(2, 8)
+    testing Levy(3.0, 3)
+    testing Logistic()
+    testing Logistic(2.0)
+    testing Logistic(0.0, 1.0)
+    testing Logistic(5.0, 1.0)
+    testing Logistic(2.0, 1.5)
+    testing Logistic(5.0, 1.5)
+    testing LogNormal()
+    testing LogNormal(1.0)
+    testing LogNormal(0.0, 2.0)
+    testing LogNormal(1.0, 2.0)
+    testing LogNormal(3.0, 0.5)
+    testing LogNormal(3.0, 1.0)
+    testing LogNormal(3.0, 2.0)
+    testing NoncentralBeta(2, 2, 0)
+    testing NoncentralBeta(2, 6, 5)
+    testing NoncentralChisq(2, 2)
+    testing NoncentralChisq(2, 5)
+    testing NoncentralF(2, 2, 2)
+    testing NoncentralF(8, 10, 5)
+    testing NoncentralT(2, 2)
+    testing NoncentralT(10, 2)
+    testing Normal()
+    testing Normal(2.0)
+    testing Normal(-3.0, 2.0)
+    testing Normal(1.0, 10.0)
+    testing NormalInverseGaussian(1.7, 1.8, 1.2, 2.3)
+    testing NormalCanon()
+    testing NormalCanon(0.0, 1.0)
+    testing NormalCanon(-1.0, 2.5)
+    testing NormalCanon(2.0, 0.8)
+    testing Pareto()
+    testing Pareto(2.0)
+    testing Pareto(2.0, 1.5)
+    testing Pareto(3.0, 2.0)
+    testing Rayleigh()
+    testing Rayleigh(3.0)
+    testing Rayleigh(8.0)
+    testing StudentizedRange(2.0, 2.0)
+    testing StudentizedRange(5.0, 10.0)
+    testing StudentizedRange(10.0, 5.0)
+    testing SymTriangularDist()
+    testing SymTriangularDist(3.0)
+    testing SymTriangularDist(3.0, 0.5)
+    testing SymTriangularDist(3.0, 2.0)
+    testing SymTriangularDist(10.0, 8.0)
+    testing TDist(1.2)
+    testing TDist(5.0)
+    testing TDist(28.0)
+    testing TriangularDist(0, 5)
+    testing TriangularDist(-7, 2)
+    testing TriangularDist(-4, 14, 3)
+    testing TriangularDist(2, 2000, 500)
+    testing TriangularDist(1, 3, 2)
+    testing TruncatedNormal(0, 1, -2, 2)
+    testing TruncatedNormal(3, 10, 7, 8)
+    testing TruncatedNormal(27, 3, 0, Inf)
+    testing TruncatedNormal(-5, 1, -Inf, -10)
+    testing TruncatedNormal(1.8, 1.2, -Inf, 0)
+    testing Uniform()
+    testing Uniform(0.0, 2.0)
+    testing Uniform(3.0, 17.0)
+    testing Uniform(3.0, 3.1)
+    testing VonMises()
+    testing VonMises(4.0)
+    testing VonMises(1.1, 2.5)
+    testing Weibull()
+    testing Weibull(0.5)
+    testing Weibull(5.0)
+    testing Weibull(20.0, 1.0)
+    testing Weibull(1.0, 2.0)
+    testing Weibull(5.0, 2.0)
+
+Test Summary:    |    Pass    Total
+Test univariates | 2972787  2972787
+Test Summary:   |  Pass  Total
+Test continuous | 96189  96189
+Test Summary:  | Pass  Total
+Test edgecases |   12     12
+Test Summary: | Pass  Total
+Test fit      |  606    606
+Test Summary:    | Pass  Total
+Test multinomial |  958    958
+Test Summary: | Pass  Total
+Test binomial | 3410   3410
+   testing PoissonBinomial p=0.8, n=6
+   testing PoissonBinomial p=0.5, n=10
+   testing PoissonBinomial p=0.04, n=20
+   testing PoissonBinomial [10 × 0.1, 10 × 0.5, 10 × 0.9]
+   testing PoissonBinomial [1 × 0.99, 10 × 0.1, 100 × 0.05]
+   testing PoissonBinomial [5 × 0.01, 1 × 0.99, 3 × 0.999]
+   testing PoissonBinomial [10 × 0.0, 7 × 0.9, 10 × 0.5]
+Test Summary:        | Pass  Total
+Test poissonbinomial |  413    413
+Test Summary:  | Pass  Total
+Test dirichlet |  864    864
+Test Summary:             | Pass  Total
+Test dirichletmultinomial |   82     82
+Test Summary:    | Pass  Total
+Test logitnormal |  241    241
+Test Summary: | Pass  Total
+Test mvtdist  |   54     54
+Test Summary:   | Pass  Total
+Test kolmogorov |    9      9
+Test Summary:  | Pass  Total
+Test edgeworth | 1485   1485
+Test Summary: | Pass  Total
+Test wisharts |  156    156
+Test Summary:   | Pass  Total
+Test matrixbeta |   36     36
+Test Summary:    | Pass  Total
+Test matrixfdist |   39     39
+Test Summary:     | Pass  Total
+Test matrixnormal |   68     68
+Test Summary:    | Pass  Total
+Test matrixtdist |   58     58
+Test Summary:       |  Pass  Total
+Test vonmisesfisher | 20180  20180
+Test Summary:   | Pass  Total
+Test conversion |    3      3
+Test Summary:    | Pass  Total
+Test convolution |  289    289
+Test Summary: |  Pass  Total
+Test mixture  | 38134  38134
+Test Summary:   | Pass  Total
+Test gradlogpdf |   14     14
+Test Summary:    | Pass  Total
+Test noncentralt |    5      5
+Test Summary:      | Pass  Total
+Test locationscale |  308    308
+Test Summary:        | Pass  Total
+Test quantile_newton |    2      2
+Test Summary:   | Pass  Total
+Test semicircle |   28     28
+Test Summary: | Pass  Total
+Test qq       |    6      6
+Test Summary:             | Pass  Total
+Test pgeneralizedgaussian |  212    212
+Test Summary: | Pass  Total
+Test product  |   16     16
+Test Summary:              | Pass  Total
+Test discretenonparametric |  230    230
+Test Summary:    | Pass  Total
+Test functionals |    2      2
+Test Summary: | Pass  Total
+Test chernoff |  141    141
+Test Summary:          | Pass  Total
+Test univariate_bounds |  156    156
+Potentially stale exports: 
+57-element Array{Tuple{Method,Method},1}:
+ ((::Type{SizedArray{Tuple{S},T,1,M} where M where T})(x::Tuple{Vararg{T,L}}) where {S, T, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SizedArray.jl:79, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)          
+ ((::Type{Dual{T,V,N} where N where V})(value) where T in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:64, (::Type{T})(x::AbstractChar) where T&lt;:Union{AbstractChar, Number} in Base at char.jl:50)                                                                                                                                   
+ ((::Type{MArray{Tuple{S1,S2},T,2,L} where L})(x::Tuple{Vararg{T,L}} where T) where {S1, S2, T, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MMatrix.jl:41, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)        
+ ((::Type{MArray{Tuple{S},T,1,S} where T})(x::Tuple{Vararg{T,S}}) where {S, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MVector.jl:20, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                            
+ ((::Type{Dual{T,V,N} where N where V})(value) where T in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:64, (::Type{T})(x::Base.TwicePrecision) where T&lt;:Number in Base at twiceprecision.jl:243)                                                                                                                                      
+ ((::Type{MArray{S,T,N,L} where L})(x::Tuple) where {S, T, N} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MArray.jl:40, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                              
+ ((::Type{Dual{T,V,N}})(x) where {T, V, N} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:72, (::Type{T})(x::AbstractChar) where T&lt;:Union{AbstractChar, Number} in Base at char.jl:50)                                                                                                                                               
+ ((::Type{SArray{Tuple{S},T,1,S} where T})(x::Tuple{Vararg{T,S}}) where {S, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SVector.jl:19, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                            
+ ((::Type{SSC})(a::AbstractArray{T,1} where T) where SSC&lt;:SHermitianCompact in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:87, (::Type{SA})(a::StaticArray) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:5)                                                       
+ ((::Type{Dual})(args...) in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:68, (::Type{T})(z::Complex) where T&lt;:Real in Base at complex.jl:37)                                                                                                                                                                                         
+ ((::Type{SizedArray{S,T,N,M} where M where N})(x::Tuple) where {S, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SizedArray.jl:58, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                 
+ ((::Type{SArray{S,T,N,L} where L})(x::Tuple) where {S&lt;:Tuple, T, N} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SArray.jl:33, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                       
+ ((::Type{Scalar{T} where T})(a::AbstractArray) in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;Scalar.jl:10, (::Type{SA})(a::StaticArray) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:5)                                                                                              
+ (insupport(d::Product, x::AbstractArray) in Distributions at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Distributions&#x2F;OdJGZ&#x2F;src&#x2F;multivariate&#x2F;product.jl:36, insupport(d::Union{Type{D}, D}, X::AbstractArray{T,2} where T) where D&lt;:(Distribution{Multivariate,S} where S&lt;:ValueSupport) in Distributions at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Distributions&#x2F;OdJGZ&#x2F;src&#x2F;multivariates.jl:99) 
+ ((::Type{Scalar{T} where T})(a::AbstractArray{T,0} where T) in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;Scalar.jl:11, (::Type{SA})(a::StaticArray) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:5)                                                                                 
+ ((::Type{Dual})(args...) in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:68, (::Type{T})(x::AbstractChar) where T&lt;:Union{AbstractChar, Number} in Base at char.jl:50)                                                                                                                                                                
+ ((::Type{Dual{T,V,N}})(x) where {T, V, N} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:72, (::Type{T})(z::Complex) where T&lt;:Real in Base at complex.jl:37)                                                                                                                                                                        
+ ((::Type{MArray{Tuple{S1,S2},T,2,L} where L where T})(x::Tuple{Vararg{T,L}} where T) where {S1, S2, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MMatrix.jl:33, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)   
+ ((::Type{SArray{S,T,N,L}})(x::Tuple{Vararg{T,L}}) where {S, T, N, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SArray.jl:22, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                      
+ ((::Type{Dual{T,V,N}})(x) where {T, V, N} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:72, (::Type{T})(x::Base.TwicePrecision) where T&lt;:Number in Base at twiceprecision.jl:243)                                                                                                                                                  
+ ((::Type{MArray{Tuple{S},T,1,S} where T where S})(x::Tuple{Vararg{Any,S}}) where S in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MVector.jl:19, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                       
+ ((::Type{SArray{Tuple{S},T,1,S} where T})(x::T) where {S, T&lt;:Tuple} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SVector.jl:20, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                      
+ ((::Type{SArray{S,T,N,L} where L where N where T})(x::T) where {S&lt;:Tuple, T&lt;:Tuple} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SArray.jl:47, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                       
+ ((::Type{DiffResults.DiffResult})(value::Number, derivs::Tuple{Vararg{Number,N} where N}) in DiffResults at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffResults&#x2F;FsQMZ&#x2F;src&#x2F;DiffResults.jl:50, (::Type{DiffResults.DiffResult})(value::Number, derivs::Tuple{Vararg{StaticArray,N} where N}) in DiffResults at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffResults&#x2F;FsQMZ&#x2F;src&#x2F;DiffResults.jl:51)  
+ ((::Type{MArray{Tuple{S},T,1,S} where T})(x::Tuple{Vararg{Any,S}}) where S in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MVector.jl:21, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                               
+ ((::Type{SHermitianCompact{N,T,L}})(a::Tuple) where {N, T, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:63, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                  
+ ((::Type{Dual{T,V,N}})(x::Number) where {T, V, N} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:73, (::Type{T})(z::Complex) where T&lt;:Real in Base at complex.jl:37)                                                                                                                                                                
+ ((::Type{SArray{Tuple{S},T,1,S} where T where S})(x::Tuple{Vararg{Any,S}}) where S in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SVector.jl:18, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                       
+ ((::Type{Dual})(args...) in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:68, (::Type{T})(x::Base.TwicePrecision) where T&lt;:Number in Base at twiceprecision.jl:243)                                                                                                                                                                   
+ ((::Type{MArray{S,T,N,L}})(x::Tuple{Vararg{T,L}}) where {S, T, N, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MArray.jl:24, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                      
+ ((::Type{MArray{S,T,N,L}})(x::Tuple{Vararg{Any,L}}) where {S, T, N, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MArray.jl:29, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                    
+ ((::Type{SizedArray{S,T,N,M} where M where N where T})(x::Tuple{Vararg{T,L}}) where {S, T, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SizedArray.jl:59, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)         
+ ((::Type{MArray{S,T,N,L} where L where N})(x::Tuple) where {S, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MArray.jl:47, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                         
+ ((::Type{Dual{T,V,N} where N})(x) where {T, V} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:74, (::Type{T})(x::Base.TwicePrecision) where T&lt;:Number in Base at twiceprecision.jl:243)                                                                                                                                             
+ ((::Type{SizedArray{S,T,N,M} where M})(x::Tuple) where {S, T, N} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SizedArray.jl:57, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                      
+ ((::Type{FA})(x::Tuple{Vararg{Any,N}}) where {N, FA&lt;:FieldArray} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;FieldArray.jl:99, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                      
+ ((::Type{SArray{Tuple{S1,S2},T,2,L} where L})(x::Tuple{Vararg{Any,L}}) where {S1, S2, T, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SMatrix.jl:49, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)              
+ ((::Type{Dual})(args...) in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:68, (::Type{T})(x::T) where T&lt;:Number in Core at boot.jl:725)                                                                                                                                                                                               
+ ((::Type{SHermitianCompact{N,T,L} where L})(a::Tuple) where {N, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:76, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                             
+ ((::Type{MArray{S,T,N,L} where L where N where T})(x::T) where {S, T&lt;:Tuple} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MArray.jl:54, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                              
+ ((::Type{SizedArray{Tuple{S1,S2},T,2,M} where M where T})(x::Tuple{Vararg{T,L}}) where {S1, S2, T, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SizedArray.jl:83, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1) 
+ ((::Type{Scalar{T} where T})(x::Tuple{T}) where T in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;Scalar.jl:9, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                                          
+ ((::Type{Dual{T,V,N} where N where V})(value) where T in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:64, (::Type{T})(z::Complex) where T&lt;:Real in Base at complex.jl:37)                                                                                                                                                            
+ ((::Type{Dual{T,V,N} where N})(x) where {T, V} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:74, (::Type{T})(z::Complex) where T&lt;:Real in Base at complex.jl:37)                                                                                                                                                                   
+ ((::Type{SHermitianCompact{N,T,L} where L where T})(a::Tuple) where N in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:80, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                          
+ ((::Type{Dual{T,V,N} where N})(x) where {T, V} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:74, (::Type{T})(x::AbstractChar) where T&lt;:Union{AbstractChar, Number} in Base at char.jl:50)                                                                                                                                          
+ ((::Type{DiffResults.DiffResult})(value::Number, derivs::Tuple{Vararg{Number,N} where N}) in DiffResults at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffResults&#x2F;FsQMZ&#x2F;src&#x2F;DiffResults.jl:50, (::Type{DiffResults.DiffResult})(value::Number, derivs::Tuple{Vararg{AbstractArray,N} where N}) in DiffResults at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffResults&#x2F;FsQMZ&#x2F;src&#x2F;DiffResults.jl:53)
+ ((::Type{SArray{S,T,N,L} where L where N})(x::Tuple) where {S&lt;:Tuple, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SArray.jl:40, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                  
+ ((::Type{SArray{S,T,N,L}})(x::Tuple{Vararg{Any,L}}) where {S, T, N, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SArray.jl:27, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                    
+ ((::Type{SArray{Tuple{S1,S2},T,2,L} where L where T})(x::Tuple{Vararg{Any,L}}) where {S1, S2, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SMatrix.jl:33, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)         
+ ((::Type{Dual{T,V,N} where N})(x) where {T, V} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:74, (::Type{T})(x::T) where T&lt;:Number in Core at boot.jl:725)                                                                                                                                                                         
+ (StatsBase.TestStat(v) in StatsBase at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StatsBase&#x2F;DyWPR&#x2F;src&#x2F;statmodels.jl:414, (::Type{T})(x::Base.TwicePrecision) where T&lt;:Number in Base at twiceprecision.jl:243)                                                                                                                                                                  
+ ((::Type{SArray{Tuple{S1,S2},T,2,L} where T})(x::Tuple{Vararg{Any,L}}) where {S1, S2, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SMatrix.jl:41, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                 
+ (StatsBase.TestStat(v) in StatsBase at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StatsBase&#x2F;DyWPR&#x2F;src&#x2F;statmodels.jl:414, (::Type{T})(x::AbstractChar) where T&lt;:Union{AbstractChar, Number} in Base at char.jl:50)                                                                                                                                                               
+ ((::Type{SizedArray{S,T,N,M}})(x::Tuple{Vararg{Any,L}}) where {S, T, N, M, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SizedArray.jl:45, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                         
+ (StatsBase.TestStat(v) in StatsBase at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StatsBase&#x2F;DyWPR&#x2F;src&#x2F;statmodels.jl:414, (::Type{T})(z::Complex) where T&lt;:Real in Base at complex.jl:37)                                                                                                                                                                                        
+ ((::Type{SHermitianCompact{N,T,L} where L where T})(a::Tuple{Vararg{T,M}}) where {N, T, M} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:81, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)     
+   Testing Distributions tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 15 hours ago and took 17 minutes, 22 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Distributions/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed SortingAlgorithms ── v0.3.1
+ Installed Missings ─────────── v0.4.3
+ Installed DataAPI ──────────── v1.1.0
+ Installed PDMats ───────────── v0.9.10
+ Installed Compat ───────────── v2.2.0
+ Installed QuadGK ───────────── v2.1.1
+ Installed DataStructures ───── v0.17.6
+ Installed Distributions ────── v0.21.8
+ Installed URIParser ────────── v0.4.0
+ Installed Rmath ────────────── v0.5.1
+ Installed OrderedCollections ─ v1.1.0
+ Installed BinaryProvider ───── v0.5.8
+ Installed BinDeps ──────────── v0.8.10
+ Installed SpecialFunctions ─── v0.8.0
+ Installed StatsBase ────────── v0.32.0
+ Installed StatsFuns ────────── v0.9.0
+ Installed Arpack ───────────── v0.3.1
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [31c24e10] + Distributions v0.21.8
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [7d9fca2a] + Arpack v0.3.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [31c24e10] + Distributions v0.21.8
+  [e1d29d7a] + Missings v0.4.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [90014a1f] + PDMats v0.9.10
+  [1fd47b50] + QuadGK v2.1.1
+  [79098fc4] + Rmath v0.5.1
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [2913bbd2] + StatsBase v0.32.0
+  [4c63d2b9] + StatsFuns v0.9.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Rmath ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+  Building Arpack ──────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+   Testing Distributions
+ Resolving package versions...
+ Installed Calculus ───────────── v0.5.1
+ Installed DiffRules ──────────── v0.1.0
+ Installed JSON ───────────────── v0.21.0
+ Installed Parsers ────────────── v0.3.10
+ Installed FiniteDifferences ──── v0.9.0
+ Installed ForwardDiff ────────── v0.10.6
+ Installed CommonSubexpressions ─ v0.2.0
+ Installed DiffResults ────────── v0.0.4
+ Installed NaNMath ────────────── v0.3.3
+ Installed StaticArrays ───────── v0.12.1
+    Status `&#x2F;tmp&#x2F;jl_GROEET&#x2F;Manifest.toml`
+  [7d9fca2a] Arpack v0.3.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [31c24e10] Distributions v0.21.8
+  [26cc04aa] FiniteDifferences v0.9.0
+  [f6369f11] ForwardDiff v0.10.6
+  [682c06a0] JSON v0.21.0
+  [e1d29d7a] Missings v0.4.3
+  [77ba4419] NaNMath v0.3.3
+  [bac558e1] OrderedCollections v1.1.0
+  [90014a1f] PDMats v0.9.10
+  [69de0a69] Parsers v0.3.10
+  [1fd47b50] QuadGK v2.1.1
+  [79098fc4] Rmath v0.5.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Running tests:
+    [Discrete]
+    ------------
+    testing Truncated(BetaBinomial(10, 0.2, 0.25),3,5)
+    testing Truncated(BetaBinomial(10, 2, 2.5),3,5)
+    testing Truncated(BetaBinomial(10, 60, 40),3,5)
+    testing Truncated(Binomial(5, 0.4),3,5)
+    testing Truncated(Binomial(6, 0.8),3,5)
+    testing Truncated(Binomial(100, 0.1),3,5)
+    testing Truncated(Binomial(100, 0.9),3,5)
+    testing Truncated(Binomial(10, 0.0),3,5)
+    testing Truncated(Binomial(10, 1.0),3,5)
+    testing Truncated(DiscreteUniform(6),3,5)
+    testing Truncated(DiscreteUniform(7),3,5)
+    testing Truncated(DiscreteUniform(2, 8),3,5)
+    testing Truncated(Geometric(),3,5)
+    testing Truncated(Geometric(0.02),3,5)
+    testing Truncated(Geometric(0.1),3,5)
+    testing Truncated(Geometric(0.5),3,5)
+    testing Truncated(Geometric(0.9),3,5)
+    testing Truncated(NegativeBinomial(),3,5)
+    testing Truncated(NegativeBinomial(6),3,5)
+    testing Truncated(NegativeBinomial(1, 0.5),3,5)
+    testing Truncated(NegativeBinomial(5, 0.6),3,5)
+    testing Truncated(NegativeBinomial(0.5, 0.5),3,5)
+    testing Truncated(Poisson(),3,5)
+    testing Truncated(Poisson(0.5),3,5)
+    testing Truncated(Poisson(2.0),3,5)
+    testing Truncated(Poisson(10.0),3,5)
+    testing Truncated(Poisson(80.0),3,5)
+
+    [Continuous]
+    ------------
+    testing Truncated(BetaPrime(),3,5)
+    testing Truncated(BetaPrime(3.0),3,5)
+    testing Truncated(BetaPrime(3.0, 5.0),3,5)
+    testing Truncated(BetaPrime(5.0, 3.0),3,5)
+    testing Truncated(Cauchy(),3,5)
+    testing Truncated(Cauchy(2.0),3,5)
+    testing Truncated(Cauchy(0.0, 1.0),3,5)
+    testing Truncated(Cauchy(10.0, 1.0),3,5)
+    testing Truncated(Cauchy(2.0, 10.0),3,5)
+    testing Truncated(Chi(1),3,5)
+    testing Truncated(Chi(2),3,5)
+    testing Truncated(Chi(3),3,5)
+    testing Truncated(Chi(12),3,5)
+    testing Truncated(Chisq(1),3,5)
+    testing Truncated(Chisq(8),3,5)
+    testing Truncated(Chisq(20),3,5)
+    testing Truncated(Erlang(),3,5)
+    testing Truncated(Erlang(3),3,5)
+    testing Truncated(Erlang(3, 1.0),3,5)
+    testing Truncated(Erlang(5, 2.0),3,5)
+    testing Truncated(Exponential(),3,5)
+    testing Truncated(Exponential(2.0),3,5)
+    testing Truncated(Exponential(6.5),3,5)
+    testing Truncated(FDist(6.0, 8.0),3,5)
+    testing Truncated(FDist(8.0, 6.0),3,5)
+    testing Truncated(FDist(30, 40),3,5)
+    testing Truncated(Frechet(),3,5)
+    testing Truncated(Frechet(0.5),3,5)
+    testing Truncated(Frechet(3.0),3,5)
+    testing Truncated(Frechet(20.0),3,5)
+    testing Truncated(Frechet(60.0),3,5)
+    testing Truncated(Frechet(0.5, 2.0),3,5)
+    testing Truncated(Frechet(3.0, 2.0),3,5)
+    testing Truncated(Gamma(),3,5)
+    testing Truncated(Gamma(2.0),3,5)
+    testing Truncated(Gamma(1.0, 1.0),3,5)
+    testing Truncated(Gamma(3.0, 1.0),3,5)
+    testing Truncated(Gamma(3.0, 2.0),3,5)
+    testing Truncated(GeneralizedExtremeValue(1.0, 1.0, 1.0),3,5)
+    testing Truncated(GeneralizedExtremeValue(0.0, 1.0, 0.0),3,5)
+    testing Truncated(GeneralizedExtremeValue(0.0, 1.0, 1.1),3,5)
+    testing Truncated(GeneralizedExtremeValue(0.0, 1.0, 0.6),3,5)
+    testing Truncated(GeneralizedExtremeValue(0.0, 1.0, 0.3),3,5)
+    testing Truncated(GeneralizedExtremeValue(-1.0, 0.5, 0.6),3,5)
+    testing Truncated(GeneralizedPareto(),3,5)
+    testing Truncated(GeneralizedPareto(1.0, 1.0),3,5)
+    testing Truncated(GeneralizedPareto(0.1, 2.0),3,5)
+    testing Truncated(GeneralizedPareto(1.0, 1.0, 1.0),3,5)
+    testing Truncated(GeneralizedPareto(-1.5, 0.5, 2.0),3,5)
+    testing Truncated(Gumbel(),3,5)
+    testing Truncated(Gumbel(3.0),3,5)
+    testing Truncated(Gumbel(3.0, 5.0),3,5)
+    testing Truncated(Gumbel(5.0, 3.0),3,5)
+    testing Truncated(InverseGamma(),3,5)
+    testing Truncated(InverseGamma(2.0),3,5)
+    testing Truncated(InverseGamma(1.0, 1.0),3,5)
+    testing Truncated(InverseGamma(1.0, 2.0),3,5)
+    testing Truncated(InverseGamma(2.0, 1.0),3,5)
+    testing Truncated(InverseGamma(2.0, 3.0),3,5)
+    testing Truncated(InverseGaussian(),3,5)
+    testing Truncated(InverseGaussian(0.8),3,5)
+    testing Truncated(InverseGaussian(2.0),3,5)
+    testing Truncated(InverseGaussian(1.0, 1.0),3,5)
+    testing Truncated(InverseGaussian(2.0, 1.5),3,5)
+    testing Truncated(InverseGaussian(2.0, 7.0),3,5)
+    testing Truncated(Laplace(),3,5)
+    testing Truncated(Laplace(2.0),3,5)
+    testing Truncated(Laplace(0.0, 1.0),3,5)
+    testing Truncated(Laplace(5.0, 1.0),3,5)
+    testing Truncated(Laplace(5.0, 1.5),3,5)
+    testing Truncated(Levy(),3,5)
+    testing Truncated(Levy(2),3,5)
+    testing Truncated(Levy(2, 8),3,5)
+    testing Truncated(Levy(3.0, 3),3,5)
+    testing Truncated(Logistic(),3,5)
+    testing Truncated(Logistic(2.0),3,5)
+    testing Truncated(Logistic(0.0, 1.0),3,5)
+    testing Truncated(Logistic(5.0, 1.0),3,5)
+    testing Truncated(Logistic(2.0, 1.5),3,5)
+    testing Truncated(Logistic(5.0, 1.5),3,5)
+    testing Truncated(LogNormal(),3,5)
+    testing Truncated(LogNormal(1.0),3,5)
+    testing Truncated(LogNormal(0.0, 2.0),3,5)
+    testing Truncated(LogNormal(1.0, 2.0),3,5)
+    testing Truncated(LogNormal(3.0, 0.5),3,5)
+    testing Truncated(LogNormal(3.0, 1.0),3,5)
+    testing Truncated(LogNormal(3.0, 2.0),3,5)
+    testing Truncated(NoncentralChisq(2, 2),3,5)
+    testing Truncated(NoncentralChisq(2, 5),3,5)
+    testing Truncated(NoncentralF(2, 2, 2),3,5)
+    testing Truncated(NoncentralF(8, 10, 5),3,5)
+    testing Truncated(NoncentralT(2, 2),3,5)
+    testing Truncated(NoncentralT(10, 2),3,5)
+    testing Truncated(Normal(),3,5)
+    testing Truncated(Normal(2.0),3,5)
+    testing Truncated(Normal(-3.0, 2.0),3,5)
+    testing Truncated(Normal(1.0, 10.0),3,5)
+    testing Truncated(NormalCanon(),3,5)
+    testing Truncated(NormalCanon(0.0, 1.0),3,5)
+    testing Truncated(NormalCanon(-1.0, 2.5),3,5)
+    testing Truncated(NormalCanon(2.0, 0.8),3,5)
+    testing Truncated(Pareto(),3,5)
+    testing Truncated(Pareto(2.0),3,5)
+    testing Truncated(Pareto(2.0, 1.5),3,5)
+    testing Truncated(Pareto(3.0, 2.0),3,5)
+    testing Truncated(Rayleigh(),3,5)
+    testing Truncated(Rayleigh(3.0),3,5)
+    testing Truncated(Rayleigh(8.0),3,5)
+    testing Truncated(StudentizedRange(2.0, 2.0),3,5)
+    testing Truncated(StudentizedRange(5.0, 10.0),3,5)
+    testing Truncated(StudentizedRange(10.0, 5.0),3,5)
+    testing Truncated(SymTriangularDist(3.0, 2.0),3,5)
+    testing Truncated(SymTriangularDist(10.0, 8.0),3,5)
+    testing Truncated(TDist(1.2),3,5)
+    testing Truncated(TDist(5.0),3,5)
+    testing Truncated(TDist(28.0),3,5)
+    testing Truncated(TriangularDist(0, 5),3,5)
+    testing Truncated(TriangularDist(-4, 14, 3),3,5)
+    testing Truncated(TriangularDist(2, 2000, 500),3,5)
+    testing Truncated(TruncatedNormal(27, 3, 0, Inf),3,5)
+    testing Truncated(Uniform(3.0, 17.0),3,5)
+    testing Truncated(Weibull(),3,5)
+    testing Truncated(Weibull(0.5),3,5)
+    testing Truncated(Weibull(5.0),3,5)
+    testing Truncated(Weibull(20.0, 1.0),3,5)
+    testing Truncated(Weibull(1.0, 2.0),3,5)
+    testing Truncated(Weibull(5.0, 2.0),3,5)
+
+Test Summary: | Pass  Total
+Test truncate | 5112   5112
+Test Summary:    | Pass  Total
+Test truncnormal |   28     28
+Test Summary:              | Pass  Total
+Test truncated_exponential |    8      8
+Test Summary: | Pass  Total
+Test normal   |   29     29
+Test Summary: | Pass  Total
+Test mvnormal | 5138   5138
+Test Summary:    | Pass  Total
+Test mvlognormal | 1415   1415
+Test Summary: | Pass  Total
+Test types    |   30     30
+Test Summary: | Pass  Total
+Test utils    |   30     30
+    testing CategoricalDirectSampler
+    testing AliasTable
+    testing BinomialGeomSampler
+    testing BinomialTPESampler
+    testing BinomialPolySampler
+    testing BinomialAliasSampler
+    testing PoissonCountSampler
+    testing PoissonADSampler
+    testing PoissBinAliasSampler
+    testing ExponentialSampler
+    testing GammaGDSampler
+    testing GammaMTSampler
+    testing GammaGSSampler
+    testing GammaIPSampler
+Test Summary: | Pass  Total
+Test samplers |    2      2
+    testing DiscreteNonParametric{Int64,Float64,Base.OneTo{Int64},Array{Float64,1}}(support=Base.OneTo(2), p=[0.5, 0.5]) as Categorical
+    testing DiscreteNonParametric{Int64,Float64,Base.OneTo{Int64},Array{Float64,1}}(support=Base.OneTo(4), p=[0.1, 0.3, 0.2, 0.4]) as Categorical
+    testing DiscreteNonParametric{Int64,Float64,Base.OneTo{Int64},Array{Float64,1}}(support=Base.OneTo(3), p=[0.15, 0.25, 0.6]) as Categorical
+    testing DiscreteNonParametric{Int64,Float64,Base.OneTo{Int64},Array{Float64,1}}(support=Base.OneTo(4), p=[0.25, 0.25, 0.25, 0.25]) as Categorical
+Test Summary:    | Pass  Total
+Test categorical |  288    288
+    [Discrete]
+    ------------
+    testing Bernoulli()
+    testing Bernoulli(0.25)
+    testing Bernoulli(0.75)
+    testing Bernoulli(0.0)
+    testing Bernoulli(1.0)
+    testing BetaBinomial(2, 0.2, 0.25)
+    testing BetaBinomial(10, 0.2, 0.25)
+    testing BetaBinomial(10, 2, 2.5)
+    testing BetaBinomial(10, 60, 40)
+    testing Binomial()
+    testing Binomial(3)
+    testing Binomial(5, 0.4)
+    testing Binomial(6, 0.8)
+    testing Binomial(100, 0.1)
+    testing Binomial(100, 0.9)
+    testing Binomial(10, 0.0)
+    testing Binomial(10, 1.0)
+    testing DiscreteUniform()
+    testing DiscreteUniform(6)
+    testing DiscreteUniform(7)
+    testing DiscreteUniform(0, 4)
+    testing DiscreteUniform(2, 8)
+    testing Geometric()
+    testing Geometric(0.02)
+    testing Geometric(0.1)
+    testing Geometric(0.5)
+    testing Geometric(0.9)
+    testing Hypergeometric(2, 2, 2)
+    testing Hypergeometric(3, 2, 2)
+    testing Hypergeometric(3, 2, 0)
+    testing Hypergeometric(3, 2, 5)
+    testing Hypergeometric(4, 5, 6)
+    testing Hypergeometric(60, 80, 100)
+    testing NegativeBinomial()
+    testing NegativeBinomial(6)
+    testing NegativeBinomial(1, 0.5)
+    testing NegativeBinomial(5, 0.6)
+    testing NegativeBinomial(0.5, 0.5)
+    testing Poisson()
+    testing Poisson(0.0)
+    testing Poisson(0.5)
+    testing Poisson(2.0)
+    testing Poisson(10.0)
+    testing Poisson(80.0)
+    testing Skellam()
+    testing Skellam(2.0)
+    testing Skellam(2.0, 3.0)
+    testing Skellam(3.2, 1.8)
+    testing FisherNoncentralHypergeometric(8, 6, 10, 1)
+    testing FisherNoncentralHypergeometric(8, 6, 10, 10)
+    testing FisherNoncentralHypergeometric(8, 6, 10, 0.1)
+    testing FisherNoncentralHypergeometric(80, 60, 100, 1)
+    testing FisherNoncentralHypergeometric(80, 60, 100, 10)
+    testing FisherNoncentralHypergeometric(80, 60, 100, 0.1)
+    testing WalleniusNoncentralHypergeometric(8, 6, 10, 1)
+    testing WalleniusNoncentralHypergeometric(8, 6, 10, 10)
+    testing WalleniusNoncentralHypergeometric(8, 6, 10, 0.1)
+    testing WalleniusNoncentralHypergeometric(40, 30, 50, 1)
+    testing WalleniusNoncentralHypergeometric(40, 30, 50, 0.5)
+    testing WalleniusNoncentralHypergeometric(40, 30, 50, 2)
+
+    [Continuous]
+    ------------
+    testing Arcsine()
+    testing Arcsine(2.0)
+    testing Arcsine(1.0, 2.5)
+    testing Arcsine(-1.0, 1.0)
+    testing Beta(2.0, 2.0)
+    testing Beta(3.0, 4.0)
+    testing Beta(17.0, 13.0)
+    testing BetaPrime()
+    testing BetaPrime(3.0)
+    testing BetaPrime(3.0, 5.0)
+    testing BetaPrime(5.0, 3.0)
+    testing Cauchy()
+    testing Cauchy(2.0)
+    testing Cauchy(0.0, 1.0)
+    testing Cauchy(10.0, 1.0)
+    testing Cauchy(2.0, 10.0)
+    testing Chi(1)
+    testing Chi(2)
+    testing Chi(3)
+    testing Chi(12)
+    testing Chisq(1)
+    testing Chisq(8)
+    testing Chisq(20)
+    testing Cosine()
+    testing Cosine(1.5)
+    testing Cosine(2.0, 2.8)
+    testing Erlang()
+    testing Erlang(3)
+    testing Erlang(3, 1.0)
+    testing Erlang(5, 2.0)
+    testing Exponential()
+    testing Exponential(2.0)
+    testing Exponential(6.5)
+    testing FDist(6.0, 8.0)
+    testing FDist(8.0, 6.0)
+    testing FDist(30, 40)
+    testing Frechet()
+    testing Frechet(0.5)
+    testing Frechet(3.0)
+    testing Frechet(20.0)
+    testing Frechet(60.0)
+    testing Frechet(0.5, 2.0)
+    testing Frechet(3.0, 2.0)
+    testing Gamma()
+    testing Gamma(2.0)
+    testing Gamma(1.0, 1.0)
+    testing Gamma(3.0, 1.0)
+    testing Gamma(3.0, 2.0)
+    testing GeneralizedExtremeValue(1.0, 1.0, 1.0)
+    testing GeneralizedExtremeValue(0.0, 1.0, 0.0)
+    testing GeneralizedExtremeValue(0.0, 1.0, 1.1)
+    testing GeneralizedExtremeValue(0.0, 1.0, 0.6)
+    testing GeneralizedExtremeValue(0.0, 1.0, 0.3)
+    testing GeneralizedExtremeValue(1.0, 1.0, -1.0)
+    testing GeneralizedExtremeValue(-1.0, 0.5, 0.6)
+    testing GeneralizedPareto()
+    testing GeneralizedPareto(1.0, 1.0)
+    testing GeneralizedPareto(0.1, 2.0)
+    testing GeneralizedPareto(1.0, 1.0, 1.0)
+    testing GeneralizedPareto(-1.5, 0.5, 2.0)
+    testing Gumbel()
+    testing Gumbel(3.0)
+    testing Gumbel(3.0, 5.0)
+    testing Gumbel(5.0, 3.0)
+    testing InverseGamma()
+    testing InverseGamma(2.0)
+    testing InverseGamma(1.0, 1.0)
+    testing InverseGamma(1.0, 2.0)
+    testing InverseGamma(2.0, 1.0)
+    testing InverseGamma(2.0, 3.0)
+    testing InverseGaussian()
+    testing InverseGaussian(0.8)
+    testing InverseGaussian(2.0)
+    testing InverseGaussian(1.0, 1.0)
+    testing InverseGaussian(2.0, 1.5)
+    testing InverseGaussian(2.0, 7.0)
+    testing Laplace()
+    testing Laplace(2.0)
+    testing Laplace(0.0, 1.0)
+    testing Laplace(5.0, 1.0)
+    testing Laplace(5.0, 1.5)
+    testing Levy()
+    testing Levy(2)
+    testing Levy(2, 8)
+    testing Levy(3.0, 3)
+    testing Logistic()
+    testing Logistic(2.0)
+    testing Logistic(0.0, 1.0)
+    testing Logistic(5.0, 1.0)
+    testing Logistic(2.0, 1.5)
+    testing Logistic(5.0, 1.5)
+    testing LogNormal()
+    testing LogNormal(1.0)
+    testing LogNormal(0.0, 2.0)
+    testing LogNormal(1.0, 2.0)
+    testing LogNormal(3.0, 0.5)
+    testing LogNormal(3.0, 1.0)
+    testing LogNormal(3.0, 2.0)
+    testing NoncentralBeta(2, 2, 0)
+    testing NoncentralBeta(2, 6, 5)
+    testing NoncentralChisq(2, 2)
+    testing NoncentralChisq(2, 5)
+    testing NoncentralF(2, 2, 2)
+    testing NoncentralF(8, 10, 5)
+    testing NoncentralT(2, 2)
+    testing NoncentralT(10, 2)
+    testing Normal()
+    testing Normal(2.0)
+    testing Normal(-3.0, 2.0)
+    testing Normal(1.0, 10.0)
+    testing NormalInverseGaussian(1.7, 1.8, 1.2, 2.3)
+    testing NormalCanon()
+    testing NormalCanon(0.0, 1.0)
+    testing NormalCanon(-1.0, 2.5)
+    testing NormalCanon(2.0, 0.8)
+    testing Pareto()
+    testing Pareto(2.0)
+    testing Pareto(2.0, 1.5)
+    testing Pareto(3.0, 2.0)
+    testing Rayleigh()
+    testing Rayleigh(3.0)
+    testing Rayleigh(8.0)
+    testing StudentizedRange(2.0, 2.0)
+    testing StudentizedRange(5.0, 10.0)
+    testing StudentizedRange(10.0, 5.0)
+    testing SymTriangularDist()
+    testing SymTriangularDist(3.0)
+    testing SymTriangularDist(3.0, 0.5)
+    testing SymTriangularDist(3.0, 2.0)
+    testing SymTriangularDist(10.0, 8.0)
+    testing TDist(1.2)
+    testing TDist(5.0)
+    testing TDist(28.0)
+    testing TriangularDist(0, 5)
+    testing TriangularDist(-7, 2)
+    testing TriangularDist(-4, 14, 3)
+    testing TriangularDist(2, 2000, 500)
+    testing TriangularDist(1, 3, 2)
+    testing TruncatedNormal(0, 1, -2, 2)
+    testing TruncatedNormal(3, 10, 7, 8)
+    testing TruncatedNormal(27, 3, 0, Inf)
+    testing TruncatedNormal(-5, 1, -Inf, -10)
+    testing TruncatedNormal(1.8, 1.2, -Inf, 0)
+    testing Uniform()
+    testing Uniform(0.0, 2.0)
+    testing Uniform(3.0, 17.0)
+    testing Uniform(3.0, 3.1)
+    testing VonMises()
+    testing VonMises(4.0)
+    testing VonMises(1.1, 2.5)
+    testing Weibull()
+    testing Weibull(0.5)
+    testing Weibull(5.0)
+    testing Weibull(20.0, 1.0)
+    testing Weibull(1.0, 2.0)
+    testing Weibull(5.0, 2.0)
+
+Test Summary:    |    Pass    Total
+Test univariates | 2972759  2972759
+Test Summary:   |  Pass  Total
+Test continuous | 96189  96189
+Test Summary:  | Pass  Total
+Test edgecases |   12     12
+Test Summary: | Pass  Total
+Test fit      |  606    606
+Test Summary:    | Pass  Total
+Test multinomial |  958    958
+Test Summary: | Pass  Total
+Test binomial | 3410   3410
+   testing PoissonBinomial p=0.8, n=6
+   testing PoissonBinomial p=0.5, n=10
+   testing PoissonBinomial p=0.04, n=20
+   testing PoissonBinomial [10 × 0.1, 10 × 0.5, 10 × 0.9]
+   testing PoissonBinomial [1 × 0.99, 10 × 0.1, 100 × 0.05]
+   testing PoissonBinomial [5 × 0.01, 1 × 0.99, 3 × 0.999]
+   testing PoissonBinomial [10 × 0.0, 7 × 0.9, 10 × 0.5]
+Test Summary:        | Pass  Total
+Test poissonbinomial |  413    413
+Test Summary:  | Pass  Total
+Test dirichlet |  864    864
+Test Summary:             | Pass  Total
+Test dirichletmultinomial |   82     82
+Test Summary:    | Pass  Total
+Test logitnormal |  241    241
+Test Summary: | Pass  Total
+Test mvtdist  |   54     54
+Test Summary:   | Pass  Total
+Test kolmogorov |    9      9
+Test Summary:  | Pass  Total
+Test edgeworth | 1485   1485
+Test Summary: | Pass  Total
+Test wisharts |  156    156
+Test Summary:   | Pass  Total
+Test matrixbeta |   36     36
+Test Summary:    | Pass  Total
+Test matrixfdist |   39     39
+Test Summary:     | Pass  Total
+Test matrixnormal |   68     68
+Test Summary:    | Pass  Total
+Test matrixtdist |   58     58
+Test Summary:       |  Pass  Total
+Test vonmisesfisher | 20180  20180
+Test Summary:   | Pass  Total
+Test conversion |    3      3
+Test Summary:    | Pass  Total
+Test convolution |  289    289
+Test Summary: |  Pass  Total
+Test mixture  | 38134  38134
+Test Summary:   | Pass  Total
+Test gradlogpdf |   14     14
+Test Summary:    | Pass  Total
+Test noncentralt |    5      5
+Test Summary:      | Pass  Total
+Test locationscale |  308    308
+Test Summary:        | Pass  Total
+Test quantile_newton |    2      2
+Test Summary:   | Pass  Total
+Test semicircle |   28     28
+Test Summary: | Pass  Total
+Test qq       |    6      6
+Test Summary:             | Pass  Total
+Test pgeneralizedgaussian |  212    212
+Test Summary: | Pass  Total
+Test product  |   16     16
+Test Summary:              | Pass  Total
+Test discretenonparametric |  230    230
+Test Summary:    | Pass  Total
+Test functionals |    2      2
+Test Summary: | Pass  Total
+Test chernoff |  141    141
+Test Summary:          | Pass  Total
+Test univariate_bounds |  156    156
+Potentially stale exports: 
+61-element Array{Tuple{Method,Method},1}:
+ ((::Type{SArray{Tuple{S},T,1,S} where T})(x::Tuple{Vararg{T,S}}) where {S, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SVector.jl:19, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                              
+ ((::Type{Dual{T,V,N} where N})(x) where {T, V} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:74, (::Type{T})(x::AbstractChar) where T&lt;:Union{AbstractChar, Number} in Base at char.jl:50)                                                                                                                                            
+ (StatsBase.TestStat(v) in StatsBase at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StatsBase&#x2F;DyWPR&#x2F;src&#x2F;statmodels.jl:414, (::Type{T})(z::Complex) where T&lt;:Real in Base at complex.jl:37)                                                                                                                                                                                          
+ ((::Type{MArray{Tuple{S1,S2},T,2,L} where L where T where S2})(x::Tuple{Vararg{T,L}} where T) where {S1, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MMatrix.jl:21, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{SHermitianCompact{N,T,L} where L where T})(a::Tuple{Vararg{T,M}}) where {N, T, M} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:81, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)       
+ ((::Type{SArray{Tuple{S},T,1,S} where T where S})(x::Tuple{Vararg{Any,S}}) where S in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SVector.jl:18, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                         
+ ((::Type{SArray{S,T,N,L} where L where N})(x::Tuple) where {S&lt;:Tuple, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SArray.jl:40, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                    
+ ((::Type{Scalar{T} where T})(a::AbstractArray{T,0} where T) in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;Scalar.jl:11, (::Type{SA})(a::StaticArray) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:5)                                                                                   
+ ((::Type{SArray{S,T,N,L}})(x::Tuple{Vararg{T,L}}) where {S, T, N, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SArray.jl:22, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                        
+ (insupport(d::Product, x::AbstractArray) in Distributions at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Distributions&#x2F;OdJGZ&#x2F;src&#x2F;multivariate&#x2F;product.jl:36, insupport(d::Union{Type{D}, D}, X::AbstractArray{T,2} where T) where D&lt;:(Distribution{Multivariate,S} where S&lt;:ValueSupport) in Distributions at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Distributions&#x2F;OdJGZ&#x2F;src&#x2F;multivariates.jl:99)   
+ ((::Type{Dual{T,V,N}})(x) where {T, V, N} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:72, (::Type{T})(z::Complex) where T&lt;:Real in Base at complex.jl:37)                                                                                                                                                                          
+ ((::Type{DiffResults.DiffResult})(value::Number, derivs::Tuple{Vararg{Number,N} where N}) in DiffResults at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffResults&#x2F;FsQMZ&#x2F;src&#x2F;DiffResults.jl:50, (::Type{DiffResults.DiffResult})(value::Number, derivs::Tuple{Vararg{StaticArray,N} where N}) in DiffResults at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffResults&#x2F;FsQMZ&#x2F;src&#x2F;DiffResults.jl:51)    
+ ((::Type{Dual{T,V,N} where N where V})(value) where T in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:64, (::Type{T})(z::Complex) where T&lt;:Real in Base at complex.jl:37)                                                                                                                                                              
+ ((::Type{Dual})(args...) in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:68, (::Type{T})(x::T) where T&lt;:Number in Core at boot.jl:718)                                                                                                                                                                                                 
+ ((::Type{MArray{S,T,N,L}})(x::Tuple{Vararg{T,L}}) where {S, T, N, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MArray.jl:24, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                        
+ ((::Type{Dual})(args...) in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:68, (::Type{T})(z::Complex) where T&lt;:Real in Base at complex.jl:37)                                                                                                                                                                                           
+ ((::Type{SHermitianCompact{N,T,L}})(a::Tuple) where {N, T, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:63, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                    
+ ((::Type{Scalar{T} where T})(x::Tuple{T}) where T in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;Scalar.jl:9, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                                            
+ ((::Type{Dual{T,V,N} where N})(x) where {T, V} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:74, (::Type{T})(z::Complex) where T&lt;:Real in Base at complex.jl:37)                                                                                                                                                                     
+ ((::Type{MArray{S,T,N,L} where L where N})(x::Tuple) where {S, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MArray.jl:47, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                           
+ ((::Type{FA})(x::Tuple{Vararg{Any,N}}) where {N, FA&lt;:FieldArray} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;FieldArray.jl:99, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                        
+ ((::Type{SizedArray{S,T,N,M} where M where N where T})(x::Tuple{Vararg{T,L}}) where {S, T, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SizedArray.jl:59, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)           
+ ((::Type{Dual{T,V,N}})(x::Number) where {T, V, N} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:73, (::Type{T})(z::Complex) where T&lt;:Real in Base at complex.jl:37)                                                                                                                                                                  
+ ((::Type{SArray{Tuple{S1,S2},T,2,L} where L})(x::Tuple{Vararg{Any,L}}) where {S1, S2, T, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SMatrix.jl:49, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                
+ ((::Type{Dual{T,V,N} where N})(x) where {T, V} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:74, (::Type{T})(x::T) where T&lt;:Number in Core at boot.jl:718)                                                                                                                                                                           
+ ((::Type{MArray{S,T,N,L} where L where N where T})(x::T) where {S, T&lt;:Tuple} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MArray.jl:54, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                
+ ((::Type{Dual{T,V,N}})(x) where {T, V, N} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:72, (::Type{T})(x::Base.TwicePrecision) where T&lt;:Number in Base at twiceprecision.jl:243)                                                                                                                                                    
+ ((::Type{Dual{T,V,N}})(x) where {T, V, N} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:72, (::Type{T})(x::AbstractChar) where T&lt;:Union{AbstractChar, Number} in Base at char.jl:50)                                                                                                                                                 
+ ((::Type{SHermitianCompact{N,T,L} where L})(a::Tuple) where {N, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:76, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                               
+ ((::Type{MArray{Tuple{S},T,1,S} where T})(x::Tuple{Vararg{T,S}}) where {S, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MVector.jl:20, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                              
+ ((::Type{MArray{Tuple{S},T,1,S} where T})(x::Tuple{Vararg{Any,S}}) where S in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MVector.jl:21, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                 
+ ((::Type{Dual})(args...) in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:68, (::Type{T})(x::AbstractChar) where T&lt;:Union{AbstractChar, Number} in Base at char.jl:50)                                                                                                                                                                  
+ ((::Type{Dual})(args...) in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:68, (::Type{T})(x::Base.TwicePrecision) where T&lt;:Number in Base at twiceprecision.jl:243)                                                                                                                                                                     
+ ((::Type{SArray{S,T,N,L} where L})(x::Tuple) where {S&lt;:Tuple, T, N} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SArray.jl:33, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                         
+ ((::Type{SArray{Tuple{S1,S2},T,2,L} where T})(x::Tuple{Vararg{Any,L}}) where {S1, S2, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SMatrix.jl:41, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                   
+ ((::Type{SArray{Tuple{S1,S2},T,2,L} where L where T where S2})(x::Tuple{Vararg{Any,L}}) where {S1, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SMatrix.jl:20, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)      
+ ((::Type{DiffResults.DiffResult})(value::Number, derivs::Tuple{Vararg{Number,N} where N}) in DiffResults at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffResults&#x2F;FsQMZ&#x2F;src&#x2F;DiffResults.jl:50, (::Type{DiffResults.DiffResult})(value::Number, derivs::Tuple{Vararg{AbstractArray,N} where N}) in DiffResults at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffResults&#x2F;FsQMZ&#x2F;src&#x2F;DiffResults.jl:53)  
+ ((::Type{SArray{S,T,N,L} where L where N where T})(x::T) where {S&lt;:Tuple, T&lt;:Tuple} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SArray.jl:47, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                         
+ ((::Type{SHermitianCompact})(a::StaticArray{Tuple{N,N},T,2}) where {N, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:82, (::Type{SSC})(a::SSC) where SSC&lt;:SHermitianCompact in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:85)                                               
+ ((::Type{SizedArray{S,T,N,M} where M})(x::Tuple) where {S, T, N} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SizedArray.jl:57, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                        
+ ((::Type{MArray{Tuple{S1,S2},T,2,L} where L})(x::Tuple{Vararg{T,L}} where T) where {S1, S2, T, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MMatrix.jl:41, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)          
+ ((::Type{MArray{Tuple{S1,S2},T,2,L} where L where T})(x::Tuple{Vararg{T,L}} where T) where {S1, S2, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MMatrix.jl:33, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)     
+ ((::Type{Scalar{T} where T})(a::AbstractArray) in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;Scalar.jl:10, (::Type{SA})(a::StaticArray) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:5)                                                                                                
+ ((::Type{MArray{S,T,N,L}})(x::Tuple{Vararg{Any,L}}) where {S, T, N, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MArray.jl:29, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                      
+ ((::Type{MArray{Tuple{S},T,1,S} where T where S})(x::Tuple{Vararg{Any,S}}) where S in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MVector.jl:19, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                         
+ (StatsBase.TestStat(v) in StatsBase at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StatsBase&#x2F;DyWPR&#x2F;src&#x2F;statmodels.jl:414, (::Type{T})(x::Base.TwicePrecision) where T&lt;:Number in Base at twiceprecision.jl:243)                                                                                                                                                                    
+ ((::Type{SArray{S,T,N,L}})(x::Tuple{Vararg{Any,L}}) where {S, T, N, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SArray.jl:27, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                      
+ ((::Type{SizedArray{S,T,N,M}})(x::Tuple{Vararg{Any,L}}) where {S, T, N, M, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SizedArray.jl:45, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                           
+ ((::Type{SHermitianCompact})(a::StaticArray{Tuple{N,N},T,2}) where {N, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:82, (::Type{SSC})(a::SHermitianCompact) where SSC&lt;:SHermitianCompact in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:84)                                 
+ (StatsBase.TestStat(v) in StatsBase at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StatsBase&#x2F;DyWPR&#x2F;src&#x2F;statmodels.jl:414, (::Type{T})(x::AbstractChar) where T&lt;:Union{AbstractChar, Number} in Base at char.jl:50)                                                                                                                                                                 
+ ((::Type{SArray{Tuple{S1,S2},T,2,L} where L where T})(x::Tuple{Vararg{Any,L}}) where {S1, S2, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SMatrix.jl:33, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)           
+ ((::Type{Dual{T,V,N} where N where V})(value) where T in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:64, (::Type{T})(x::Base.TwicePrecision) where T&lt;:Number in Base at twiceprecision.jl:243)                                                                                                                                        
+ ((::Type{SArray{Tuple{S},T,1,S} where T})(x::T) where {S, T&lt;:Tuple} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SVector.jl:20, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                        
+ ((::Type{Dual{T,V,N} where N where V})(value) where T in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:64, (::Type{T})(x::AbstractChar) where T&lt;:Union{AbstractChar, Number} in Base at char.jl:50)                                                                                                                                     
+ ((::Type{Dual{T,V,N} where N})(x) where {T, V} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:74, (::Type{T})(x::Base.TwicePrecision) where T&lt;:Number in Base at twiceprecision.jl:243)                                                                                                                                               
+ ((::Type{SSC})(a::AbstractArray{T,1} where T) where SSC&lt;:SHermitianCompact in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:87, (::Type{SA})(a::StaticArray) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:5)                                                         
+ ((::Type{SHermitianCompact{N,T,L} where L where T})(a::Tuple) where N in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:80, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                            
+ ((::Type{SizedArray{S,T,N,M} where M where N})(x::Tuple) where {S, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SizedArray.jl:58, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                   
+ ((::Type{SizedArray{Tuple{S1,S2},T,2,M} where M where T})(x::Tuple{Vararg{T,L}}) where {S1, S2, T, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SizedArray.jl:83, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)   
+ ((::Type{SizedArray{Tuple{S},T,1,M} where M where T})(x::Tuple{Vararg{T,L}}) where {S, T, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SizedArray.jl:79, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)            
+ ((::Type{MArray{S,T,N,L} where L})(x::Tuple) where {S, T, N} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MArray.jl:40, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)                                                
+   Testing Distributions tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 15 hours ago and took 18 minutes, 15 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Distributions/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed SortingAlgorithms ── v0.3.1
+ Installed PDMats ───────────── v0.9.10
+ Installed URIParser ────────── v0.4.0
+ Installed DataAPI ──────────── v1.1.0
+ Installed BinaryProvider ───── v0.5.8
+ Installed Distributions ────── v0.21.8
+ Installed Missings ─────────── v0.4.3
+ Installed StatsFuns ────────── v0.9.0
+ Installed Arpack ───────────── v0.3.1
+ Installed SpecialFunctions ─── v0.8.0
+ Installed DataStructures ───── v0.17.6
+ Installed Compat ───────────── v2.2.0
+ Installed Rmath ────────────── v0.5.1
+ Installed StatsBase ────────── v0.32.0
+ Installed QuadGK ───────────── v2.1.1
+ Installed BinDeps ──────────── v0.8.10
+ Installed OrderedCollections ─ v1.1.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [31c24e10] + Distributions v0.21.8
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [7d9fca2a] + Arpack v0.3.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [31c24e10] + Distributions v0.21.8
+  [e1d29d7a] + Missings v0.4.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [90014a1f] + PDMats v0.9.10
+  [1fd47b50] + QuadGK v2.1.1
+  [79098fc4] + Rmath v0.5.1
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [2913bbd2] + StatsBase v0.32.0
+  [4c63d2b9] + StatsFuns v0.9.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+  Building Arpack ──────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+  Building Rmath ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+   Testing Distributions
+ Resolving package versions...
+ Installed DiffResults ────────── v0.0.4
+ Installed Calculus ───────────── v0.5.1
+ Installed Parsers ────────────── v0.3.10
+ Installed DiffRules ──────────── v0.1.0
+ Installed FiniteDifferences ──── v0.9.0
+ Installed JSON ───────────────── v0.21.0
+ Installed ForwardDiff ────────── v0.10.6
+ Installed StaticArrays ───────── v0.12.1
+ Installed NaNMath ────────────── v0.3.3
+ Installed CommonSubexpressions ─ v0.2.0
+Status `&#x2F;tmp&#x2F;jl_ekpFyx&#x2F;Manifest.toml`
+  [7d9fca2a] Arpack v0.3.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [31c24e10] Distributions v0.21.8
+  [26cc04aa] FiniteDifferences v0.9.0
+  [f6369f11] ForwardDiff v0.10.6
+  [682c06a0] JSON v0.21.0
+  [e1d29d7a] Missings v0.4.3
+  [77ba4419] NaNMath v0.3.3
+  [bac558e1] OrderedCollections v1.1.0
+  [90014a1f] PDMats v0.9.10
+  [69de0a69] Parsers v0.3.10
+  [1fd47b50] QuadGK v2.1.1
+  [79098fc4] Rmath v0.5.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Running tests:
+    [Discrete]
+    ------------
+    testing Truncated(BetaBinomial(10, 0.2, 0.25),3,5)
+    testing Truncated(BetaBinomial(10, 2, 2.5),3,5)
+    testing Truncated(BetaBinomial(10, 60, 40),3,5)
+    testing Truncated(Binomial(5, 0.4),3,5)
+    testing Truncated(Binomial(6, 0.8),3,5)
+    testing Truncated(Binomial(100, 0.1),3,5)
+    testing Truncated(Binomial(100, 0.9),3,5)
+    testing Truncated(Binomial(10, 0.0),3,5)
+    testing Truncated(Binomial(10, 1.0),3,5)
+    testing Truncated(DiscreteUniform(6),3,5)
+    testing Truncated(DiscreteUniform(7),3,5)
+    testing Truncated(DiscreteUniform(2, 8),3,5)
+    testing Truncated(Geometric(),3,5)
+    testing Truncated(Geometric(0.02),3,5)
+    testing Truncated(Geometric(0.1),3,5)
+    testing Truncated(Geometric(0.5),3,5)
+    testing Truncated(Geometric(0.9),3,5)
+    testing Truncated(NegativeBinomial(),3,5)
+    testing Truncated(NegativeBinomial(6),3,5)
+    testing Truncated(NegativeBinomial(1, 0.5),3,5)
+    testing Truncated(NegativeBinomial(5, 0.6),3,5)
+    testing Truncated(NegativeBinomial(0.5, 0.5),3,5)
+    testing Truncated(Poisson(),3,5)
+    testing Truncated(Poisson(0.5),3,5)
+    testing Truncated(Poisson(2.0),3,5)
+    testing Truncated(Poisson(10.0),3,5)
+    testing Truncated(Poisson(80.0),3,5)
+
+    [Continuous]
+    ------------
+    testing Truncated(BetaPrime(),3,5)
+    testing Truncated(BetaPrime(3.0),3,5)
+    testing Truncated(BetaPrime(3.0, 5.0),3,5)
+    testing Truncated(BetaPrime(5.0, 3.0),3,5)
+    testing Truncated(Cauchy(),3,5)
+    testing Truncated(Cauchy(2.0),3,5)
+    testing Truncated(Cauchy(0.0, 1.0),3,5)
+    testing Truncated(Cauchy(10.0, 1.0),3,5)
+    testing Truncated(Cauchy(2.0, 10.0),3,5)
+    testing Truncated(Chi(1),3,5)
+    testing Truncated(Chi(2),3,5)
+    testing Truncated(Chi(3),3,5)
+    testing Truncated(Chi(12),3,5)
+    testing Truncated(Chisq(1),3,5)
+    testing Truncated(Chisq(8),3,5)
+    testing Truncated(Chisq(20),3,5)
+    testing Truncated(Erlang(),3,5)
+    testing Truncated(Erlang(3),3,5)
+    testing Truncated(Erlang(3, 1.0),3,5)
+    testing Truncated(Erlang(5, 2.0),3,5)
+    testing Truncated(Exponential(),3,5)
+    testing Truncated(Exponential(2.0),3,5)
+    testing Truncated(Exponential(6.5),3,5)
+    testing Truncated(FDist(6.0, 8.0),3,5)
+    testing Truncated(FDist(8.0, 6.0),3,5)
+    testing Truncated(FDist(30, 40),3,5)
+    testing Truncated(Frechet(),3,5)
+    testing Truncated(Frechet(0.5),3,5)
+    testing Truncated(Frechet(3.0),3,5)
+    testing Truncated(Frechet(20.0),3,5)
+    testing Truncated(Frechet(60.0),3,5)
+    testing Truncated(Frechet(0.5, 2.0),3,5)
+    testing Truncated(Frechet(3.0, 2.0),3,5)
+    testing Truncated(Gamma(),3,5)
+    testing Truncated(Gamma(2.0),3,5)
+    testing Truncated(Gamma(1.0, 1.0),3,5)
+    testing Truncated(Gamma(3.0, 1.0),3,5)
+    testing Truncated(Gamma(3.0, 2.0),3,5)
+    testing Truncated(GeneralizedExtremeValue(1.0, 1.0, 1.0),3,5)
+    testing Truncated(GeneralizedExtremeValue(0.0, 1.0, 0.0),3,5)
+    testing Truncated(GeneralizedExtremeValue(0.0, 1.0, 1.1),3,5)
+    testing Truncated(GeneralizedExtremeValue(0.0, 1.0, 0.6),3,5)
+    testing Truncated(GeneralizedExtremeValue(0.0, 1.0, 0.3),3,5)
+    testing Truncated(GeneralizedExtremeValue(-1.0, 0.5, 0.6),3,5)
+    testing Truncated(GeneralizedPareto(),3,5)
+    testing Truncated(GeneralizedPareto(1.0, 1.0),3,5)
+    testing Truncated(GeneralizedPareto(0.1, 2.0),3,5)
+    testing Truncated(GeneralizedPareto(1.0, 1.0, 1.0),3,5)
+    testing Truncated(GeneralizedPareto(-1.5, 0.5, 2.0),3,5)
+    testing Truncated(Gumbel(),3,5)
+    testing Truncated(Gumbel(3.0),3,5)
+    testing Truncated(Gumbel(3.0, 5.0),3,5)
+    testing Truncated(Gumbel(5.0, 3.0),3,5)
+    testing Truncated(InverseGamma(),3,5)
+    testing Truncated(InverseGamma(2.0),3,5)
+    testing Truncated(InverseGamma(1.0, 1.0),3,5)
+    testing Truncated(InverseGamma(1.0, 2.0),3,5)
+    testing Truncated(InverseGamma(2.0, 1.0),3,5)
+    testing Truncated(InverseGamma(2.0, 3.0),3,5)
+    testing Truncated(InverseGaussian(),3,5)
+    testing Truncated(InverseGaussian(0.8),3,5)
+    testing Truncated(InverseGaussian(2.0),3,5)
+    testing Truncated(InverseGaussian(1.0, 1.0),3,5)
+    testing Truncated(InverseGaussian(2.0, 1.5),3,5)
+    testing Truncated(InverseGaussian(2.0, 7.0),3,5)
+    testing Truncated(Laplace(),3,5)
+    testing Truncated(Laplace(2.0),3,5)
+    testing Truncated(Laplace(0.0, 1.0),3,5)
+    testing Truncated(Laplace(5.0, 1.0),3,5)
+    testing Truncated(Laplace(5.0, 1.5),3,5)
+    testing Truncated(Levy(),3,5)
+    testing Truncated(Levy(2),3,5)
+    testing Truncated(Levy(2, 8),3,5)
+    testing Truncated(Levy(3.0, 3),3,5)
+    testing Truncated(Logistic(),3,5)
+    testing Truncated(Logistic(2.0),3,5)
+    testing Truncated(Logistic(0.0, 1.0),3,5)
+    testing Truncated(Logistic(5.0, 1.0),3,5)
+    testing Truncated(Logistic(2.0, 1.5),3,5)
+    testing Truncated(Logistic(5.0, 1.5),3,5)
+    testing Truncated(LogNormal(),3,5)
+    testing Truncated(LogNormal(1.0),3,5)
+    testing Truncated(LogNormal(0.0, 2.0),3,5)
+    testing Truncated(LogNormal(1.0, 2.0),3,5)
+    testing Truncated(LogNormal(3.0, 0.5),3,5)
+    testing Truncated(LogNormal(3.0, 1.0),3,5)
+    testing Truncated(LogNormal(3.0, 2.0),3,5)
+    testing Truncated(NoncentralChisq(2, 2),3,5)
+    testing Truncated(NoncentralChisq(2, 5),3,5)
+    testing Truncated(NoncentralF(2, 2, 2),3,5)
+    testing Truncated(NoncentralF(8, 10, 5),3,5)
+    testing Truncated(NoncentralT(2, 2),3,5)
+    testing Truncated(NoncentralT(10, 2),3,5)
+    testing Truncated(Normal(),3,5)
+    testing Truncated(Normal(2.0),3,5)
+    testing Truncated(Normal(-3.0, 2.0),3,5)
+    testing Truncated(Normal(1.0, 10.0),3,5)
+    testing Truncated(NormalCanon(),3,5)
+    testing Truncated(NormalCanon(0.0, 1.0),3,5)
+    testing Truncated(NormalCanon(-1.0, 2.5),3,5)
+    testing Truncated(NormalCanon(2.0, 0.8),3,5)
+    testing Truncated(Pareto(),3,5)
+    testing Truncated(Pareto(2.0),3,5)
+    testing Truncated(Pareto(2.0, 1.5),3,5)
+    testing Truncated(Pareto(3.0, 2.0),3,5)
+    testing Truncated(Rayleigh(),3,5)
+    testing Truncated(Rayleigh(3.0),3,5)
+    testing Truncated(Rayleigh(8.0),3,5)
+    testing Truncated(StudentizedRange(2.0, 2.0),3,5)
+    testing Truncated(StudentizedRange(5.0, 10.0),3,5)
+    testing Truncated(StudentizedRange(10.0, 5.0),3,5)
+    testing Truncated(SymTriangularDist(3.0, 2.0),3,5)
+    testing Truncated(SymTriangularDist(10.0, 8.0),3,5)
+    testing Truncated(TDist(1.2),3,5)
+    testing Truncated(TDist(5.0),3,5)
+    testing Truncated(TDist(28.0),3,5)
+    testing Truncated(TriangularDist(0, 5),3,5)
+    testing Truncated(TriangularDist(-4, 14, 3),3,5)
+    testing Truncated(TriangularDist(2, 2000, 500),3,5)
+    testing Truncated(TruncatedNormal(27, 3, 0, Inf),3,5)
+    testing Truncated(Uniform(3.0, 17.0),3,5)
+    testing Truncated(Weibull(),3,5)
+    testing Truncated(Weibull(0.5),3,5)
+    testing Truncated(Weibull(5.0),3,5)
+    testing Truncated(Weibull(20.0, 1.0),3,5)
+    testing Truncated(Weibull(1.0, 2.0),3,5)
+    testing Truncated(Weibull(5.0, 2.0),3,5)
+
+Test Summary: | Pass  Total
+Test truncate | 5112   5112
+Test Summary:    | Pass  Total
+Test truncnormal |   28     28
+Test Summary:              | Pass  Total
+Test truncated_exponential |    8      8
+Test Summary: | Pass  Total
+Test normal   |   29     29
+Test Summary: | Pass  Total
+Test mvnormal | 5138   5138
+Test Summary:    | Pass  Total
+Test mvlognormal | 1415   1415
+Test Summary: | Pass  Total
+Test types    |   30     30
+Test Summary: | Pass  Total
+Test utils    |   30     30
+    testing CategoricalDirectSampler
+    testing AliasTable
+    testing BinomialGeomSampler
+    testing BinomialTPESampler
+    testing BinomialPolySampler
+    testing BinomialAliasSampler
+    testing PoissonCountSampler
+    testing PoissonADSampler
+    testing PoissBinAliasSampler
+    testing ExponentialSampler
+    testing GammaGDSampler
+    testing GammaMTSampler
+    testing GammaGSSampler
+    testing GammaIPSampler
+Test Summary: | Pass  Total
+Test samplers |    2      2
+    testing DiscreteNonParametric{Int64,Float64,Base.OneTo{Int64},Array{Float64,1}}(support=Base.OneTo(2), p=[0.5, 0.5]) as Categorical
+    testing DiscreteNonParametric{Int64,Float64,Base.OneTo{Int64},Array{Float64,1}}(support=Base.OneTo(4), p=[0.1, 0.3, 0.2, 0.4]) as Categorical
+    testing DiscreteNonParametric{Int64,Float64,Base.OneTo{Int64},Array{Float64,1}}(support=Base.OneTo(3), p=[0.15, 0.25, 0.6]) as Categorical
+    testing DiscreteNonParametric{Int64,Float64,Base.OneTo{Int64},Array{Float64,1}}(support=Base.OneTo(4), p=[0.25, 0.25, 0.25, 0.25]) as Categorical
+Test Summary:    | Pass  Total
+Test categorical |  288    288
+    [Discrete]
+    ------------
+    testing Bernoulli()
+    testing Bernoulli(0.25)
+    testing Bernoulli(0.75)
+    testing Bernoulli(0.0)
+    testing Bernoulli(1.0)
+    testing BetaBinomial(2, 0.2, 0.25)
+    testing BetaBinomial(10, 0.2, 0.25)
+    testing BetaBinomial(10, 2, 2.5)
+    testing BetaBinomial(10, 60, 40)
+    testing Binomial()
+    testing Binomial(3)
+    testing Binomial(5, 0.4)
+    testing Binomial(6, 0.8)
+    testing Binomial(100, 0.1)
+    testing Binomial(100, 0.9)
+    testing Binomial(10, 0.0)
+    testing Binomial(10, 1.0)
+    testing DiscreteUniform()
+    testing DiscreteUniform(6)
+    testing DiscreteUniform(7)
+    testing DiscreteUniform(0, 4)
+    testing DiscreteUniform(2, 8)
+    testing Geometric()
+    testing Geometric(0.02)
+    testing Geometric(0.1)
+    testing Geometric(0.5)
+    testing Geometric(0.9)
+    testing Hypergeometric(2, 2, 2)
+    testing Hypergeometric(3, 2, 2)
+    testing Hypergeometric(3, 2, 0)
+    testing Hypergeometric(3, 2, 5)
+    testing Hypergeometric(4, 5, 6)
+    testing Hypergeometric(60, 80, 100)
+    testing NegativeBinomial()
+    testing NegativeBinomial(6)
+    testing NegativeBinomial(1, 0.5)
+    testing NegativeBinomial(5, 0.6)
+    testing NegativeBinomial(0.5, 0.5)
+    testing Poisson()
+    testing Poisson(0.0)
+    testing Poisson(0.5)
+    testing Poisson(2.0)
+    testing Poisson(10.0)
+    testing Poisson(80.0)
+    testing Skellam()
+    testing Skellam(2.0)
+    testing Skellam(2.0, 3.0)
+    testing Skellam(3.2, 1.8)
+    testing FisherNoncentralHypergeometric(8, 6, 10, 1)
+    testing FisherNoncentralHypergeometric(8, 6, 10, 10)
+    testing FisherNoncentralHypergeometric(8, 6, 10, 0.1)
+    testing FisherNoncentralHypergeometric(80, 60, 100, 1)
+    testing FisherNoncentralHypergeometric(80, 60, 100, 10)
+    testing FisherNoncentralHypergeometric(80, 60, 100, 0.1)
+    testing WalleniusNoncentralHypergeometric(8, 6, 10, 1)
+    testing WalleniusNoncentralHypergeometric(8, 6, 10, 10)
+    testing WalleniusNoncentralHypergeometric(8, 6, 10, 0.1)
+    testing WalleniusNoncentralHypergeometric(40, 30, 50, 1)
+    testing WalleniusNoncentralHypergeometric(40, 30, 50, 0.5)
+    testing WalleniusNoncentralHypergeometric(40, 30, 50, 2)
+
+    [Continuous]
+    ------------
+    testing Arcsine()
+    testing Arcsine(2.0)
+    testing Arcsine(1.0, 2.5)
+    testing Arcsine(-1.0, 1.0)
+    testing Beta(2.0, 2.0)
+    testing Beta(3.0, 4.0)
+    testing Beta(17.0, 13.0)
+    testing BetaPrime()
+    testing BetaPrime(3.0)
+    testing BetaPrime(3.0, 5.0)
+    testing BetaPrime(5.0, 3.0)
+    testing Cauchy()
+    testing Cauchy(2.0)
+    testing Cauchy(0.0, 1.0)
+    testing Cauchy(10.0, 1.0)
+    testing Cauchy(2.0, 10.0)
+    testing Chi(1)
+    testing Chi(2)
+    testing Chi(3)
+    testing Chi(12)
+    testing Chisq(1)
+    testing Chisq(8)
+    testing Chisq(20)
+    testing Cosine()
+    testing Cosine(1.5)
+    testing Cosine(2.0, 2.8)
+    testing Erlang()
+    testing Erlang(3)
+    testing Erlang(3, 1.0)
+    testing Erlang(5, 2.0)
+    testing Exponential()
+    testing Exponential(2.0)
+    testing Exponential(6.5)
+    testing FDist(6.0, 8.0)
+    testing FDist(8.0, 6.0)
+    testing FDist(30, 40)
+    testing Frechet()
+    testing Frechet(0.5)
+    testing Frechet(3.0)
+    testing Frechet(20.0)
+    testing Frechet(60.0)
+    testing Frechet(0.5, 2.0)
+    testing Frechet(3.0, 2.0)
+    testing Gamma()
+    testing Gamma(2.0)
+    testing Gamma(1.0, 1.0)
+    testing Gamma(3.0, 1.0)
+    testing Gamma(3.0, 2.0)
+    testing GeneralizedExtremeValue(1.0, 1.0, 1.0)
+    testing GeneralizedExtremeValue(0.0, 1.0, 0.0)
+    testing GeneralizedExtremeValue(0.0, 1.0, 1.1)
+    testing GeneralizedExtremeValue(0.0, 1.0, 0.6)
+    testing GeneralizedExtremeValue(0.0, 1.0, 0.3)
+    testing GeneralizedExtremeValue(1.0, 1.0, -1.0)
+    testing GeneralizedExtremeValue(-1.0, 0.5, 0.6)
+    testing GeneralizedPareto()
+    testing GeneralizedPareto(1.0, 1.0)
+    testing GeneralizedPareto(0.1, 2.0)
+    testing GeneralizedPareto(1.0, 1.0, 1.0)
+    testing GeneralizedPareto(-1.5, 0.5, 2.0)
+    testing Gumbel()
+    testing Gumbel(3.0)
+    testing Gumbel(3.0, 5.0)
+    testing Gumbel(5.0, 3.0)
+    testing InverseGamma()
+    testing InverseGamma(2.0)
+    testing InverseGamma(1.0, 1.0)
+    testing InverseGamma(1.0, 2.0)
+    testing InverseGamma(2.0, 1.0)
+    testing InverseGamma(2.0, 3.0)
+    testing InverseGaussian()
+    testing InverseGaussian(0.8)
+    testing InverseGaussian(2.0)
+    testing InverseGaussian(1.0, 1.0)
+    testing InverseGaussian(2.0, 1.5)
+    testing InverseGaussian(2.0, 7.0)
+    testing Laplace()
+    testing Laplace(2.0)
+    testing Laplace(0.0, 1.0)
+    testing Laplace(5.0, 1.0)
+    testing Laplace(5.0, 1.5)
+    testing Levy()
+    testing Levy(2)
+    testing Levy(2, 8)
+    testing Levy(3.0, 3)
+    testing Logistic()
+    testing Logistic(2.0)
+    testing Logistic(0.0, 1.0)
+    testing Logistic(5.0, 1.0)
+    testing Logistic(2.0, 1.5)
+    testing Logistic(5.0, 1.5)
+    testing LogNormal()
+    testing LogNormal(1.0)
+    testing LogNormal(0.0, 2.0)
+    testing LogNormal(1.0, 2.0)
+    testing LogNormal(3.0, 0.5)
+    testing LogNormal(3.0, 1.0)
+    testing LogNormal(3.0, 2.0)
+    testing NoncentralBeta(2, 2, 0)
+    testing NoncentralBeta(2, 6, 5)
+    testing NoncentralChisq(2, 2)
+    testing NoncentralChisq(2, 5)
+    testing NoncentralF(2, 2, 2)
+    testing NoncentralF(8, 10, 5)
+    testing NoncentralT(2, 2)
+    testing NoncentralT(10, 2)
+    testing Normal()
+    testing Normal(2.0)
+    testing Normal(-3.0, 2.0)
+    testing Normal(1.0, 10.0)
+    testing NormalInverseGaussian(1.7, 1.8, 1.2, 2.3)
+    testing NormalCanon()
+    testing NormalCanon(0.0, 1.0)
+    testing NormalCanon(-1.0, 2.5)
+    testing NormalCanon(2.0, 0.8)
+    testing Pareto()
+    testing Pareto(2.0)
+    testing Pareto(2.0, 1.5)
+    testing Pareto(3.0, 2.0)
+    testing Rayleigh()
+    testing Rayleigh(3.0)
+    testing Rayleigh(8.0)
+    testing StudentizedRange(2.0, 2.0)
+    testing StudentizedRange(5.0, 10.0)
+    testing StudentizedRange(10.0, 5.0)
+    testing SymTriangularDist()
+    testing SymTriangularDist(3.0)
+    testing SymTriangularDist(3.0, 0.5)
+    testing SymTriangularDist(3.0, 2.0)
+    testing SymTriangularDist(10.0, 8.0)
+    testing TDist(1.2)
+    testing TDist(5.0)
+    testing TDist(28.0)
+    testing TriangularDist(0, 5)
+    testing TriangularDist(-7, 2)
+    testing TriangularDist(-4, 14, 3)
+    testing TriangularDist(2, 2000, 500)
+    testing TriangularDist(1, 3, 2)
+    testing TruncatedNormal(0, 1, -2, 2)
+    testing TruncatedNormal(3, 10, 7, 8)
+    testing TruncatedNormal(27, 3, 0, Inf)
+    testing TruncatedNormal(-5, 1, -Inf, -10)
+    testing TruncatedNormal(1.8, 1.2, -Inf, 0)
+    testing Uniform()
+    testing Uniform(0.0, 2.0)
+    testing Uniform(3.0, 17.0)
+    testing Uniform(3.0, 3.1)
+    testing VonMises()
+    testing VonMises(4.0)
+    testing VonMises(1.1, 2.5)
+    testing Weibull()
+    testing Weibull(0.5)
+    testing Weibull(5.0)
+    testing Weibull(20.0, 1.0)
+    testing Weibull(1.0, 2.0)
+    testing Weibull(5.0, 2.0)
+
+Test Summary:    |    Pass    Total
+Test univariates | 2972839  2972839
+Test Summary:   |  Pass  Total
+Test continuous | 96189  96189
+Test Summary:  | Pass  Total
+Test edgecases |   12     12
+Test Summary: | Pass  Total
+Test fit      |  606    606
+Test Summary:    | Pass  Total
+Test multinomial |  958    958
+Test Summary: | Pass  Total
+Test binomial | 3410   3410
+   testing PoissonBinomial p=0.8, n=6
+   testing PoissonBinomial p=0.5, n=10
+   testing PoissonBinomial p=0.04, n=20
+   testing PoissonBinomial [10 × 0.1, 10 × 0.5, 10 × 0.9]
+   testing PoissonBinomial [1 × 0.99, 10 × 0.1, 100 × 0.05]
+   testing PoissonBinomial [5 × 0.01, 1 × 0.99, 3 × 0.999]
+   testing PoissonBinomial [10 × 0.0, 7 × 0.9, 10 × 0.5]
+Test Summary:        | Pass  Total
+Test poissonbinomial |  413    413
+Test Summary:  | Pass  Total
+Test dirichlet |  864    864
+Test Summary:             | Pass  Total
+Test dirichletmultinomial |   82     82
+Test Summary:    | Pass  Total
+Test logitnormal |  241    241
+Test Summary: | Pass  Total
+Test mvtdist  |   54     54
+Test Summary:   | Pass  Total
+Test kolmogorov |    9      9
+Test Summary:  | Pass  Total
+Test edgeworth | 1485   1485
+Test Summary: | Pass  Total
+Test wisharts |  156    156
+Test Summary:   | Pass  Total
+Test matrixbeta |   36     36
+Test Summary:    | Pass  Total
+Test matrixfdist |   39     39
+Test Summary:     | Pass  Total
+Test matrixnormal |   68     68
+Test Summary:    | Pass  Total
+Test matrixtdist |   58     58
+Test Summary:       |  Pass  Total
+Test vonmisesfisher | 20180  20180
+Test Summary:   | Pass  Total
+Test conversion |    3      3
+Test Summary:    | Pass  Total
+Test convolution |  289    289
+Test Summary: |  Pass  Total
+Test mixture  | 38134  38134
+Test Summary:   | Pass  Total
+Test gradlogpdf |   14     14
+Test Summary:    | Pass  Total
+Test noncentralt |    5      5
+Test Summary:      | Pass  Total
+Test locationscale |  308    308
+Test Summary:        | Pass  Total
+Test quantile_newton |    2      2
+Test Summary:   | Pass  Total
+Test semicircle |   28     28
+Test Summary: | Pass  Total
+Test qq       |    6      6
+Test Summary:             | Pass  Total
+Test pgeneralizedgaussian |  212    212
+Test Summary: | Pass  Total
+Test product  |   16     16
+Test Summary:              | Pass  Total
+Test discretenonparametric |  230    230
+Test Summary:    | Pass  Total
+Test functionals |    2      2
+Test Summary: | Pass  Total
+Test chernoff |  141    141
+Test Summary:          | Pass  Total
+Test univariate_bounds |  156    156
+Potentially stale exports: 
+61-element Array{Tuple{Method,Method},1}:
+ ((::Type{MArray{S,T,N,L} where L where N})(x::Tuple) where {S, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MArray.jl:47, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{Dual{T,V,N} where N where V})(value) where T in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:64, (::Type{T})(x::AbstractChar) where T&lt;:Union{AbstractChar, Number} in Base at char.jl:50)
+ ((::Type{SizedArray{S,T,N,M} where M where N})(x::Tuple) where {S, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SizedArray.jl:58, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{SHermitianCompact{N,T,L} where L where T})(a::Tuple) where N in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:80, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{Dual{T,V,N}})(x::Number) where {T, V, N} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:73, (::Type{T})(z::Complex) where T&lt;:Real in Base at complex.jl:37)
+ ((::Type{FA})(x::Tuple{Vararg{Any,N}}) where {N, FA&lt;:FieldArray} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;FieldArray.jl:99, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{Dual})(args...) in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:68, (::Type{T})(x::T) where T&lt;:Number in Core at boot.jl:714)
+ ((::Type{MArray{Tuple{S1,S2},T,2,L} where L where T})(x::Tuple{Vararg{T,L}} where T) where {S1, S2, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MMatrix.jl:33, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{Dual{T,V,N} where N where V})(value) where T in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:64, (::Type{T})(z::Complex) where T&lt;:Real in Base at complex.jl:37)
+ ((::Type{MArray{Tuple{S1,S2},T,2,L} where L})(x::Tuple{Vararg{T,L}} where T) where {S1, S2, T, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MMatrix.jl:41, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{MArray{Tuple{S},T,1,S} where T where S})(x::Tuple{Vararg{Any,S}}) where S in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MVector.jl:19, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{Dual{T,V,N}})(x) where {T, V, N} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:72, (::Type{T})(x::AbstractChar) where T&lt;:Union{AbstractChar, Number} in Base at char.jl:50)
+ ((::Type{SizedArray{S,T,N,M}})(x::Tuple{Vararg{Any,L}}) where {S, T, N, M, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SizedArray.jl:45, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{Dual})(args...) in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:68, (::Type{T})(z::Complex) where T&lt;:Real in Base at complex.jl:37)
+ ((::Type{Dual{T,V,N}})(x) where {T, V, N} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:72, (::Type{T})(z::Complex) where T&lt;:Real in Base at complex.jl:37)
+ ((::Type{SArray{Tuple{S},T,1,S} where T})(x::T) where {S, T&lt;:Tuple} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SVector.jl:20, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{SArray{Tuple{S1,S2},T,2,L} where T})(x::Tuple{Vararg{Any,L}}) where {S1, S2, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SMatrix.jl:41, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{SizedArray{Tuple{S},T,1,M} where M where T})(x::Tuple{Vararg{T,L}}) where {S, T, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SizedArray.jl:79, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{Dual})(args...) in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:68, (::Type{T})(x::AbstractChar) where T&lt;:Union{AbstractChar, Number} in Base at char.jl:50)
+ ((::Type{SArray{Tuple{S},T,1,S} where T where S})(x::Tuple{Vararg{Any,S}}) where S in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SVector.jl:18, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{Dual{T,V,N} where N})(x) where {T, V} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:74, (::Type{T})(x::AbstractChar) where T&lt;:Union{AbstractChar, Number} in Base at char.jl:50)
+ ((::Type{SHermitianCompact{N,T,L} where L where T})(a::Tuple{Vararg{T,M}}) where {N, T, M} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:81, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{SArray{S,T,N,L}})(x::Tuple{Vararg{T,L}}) where {S, T, N, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SArray.jl:22, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{Scalar{T} where T})(x::Tuple{T}) where T in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;Scalar.jl:9, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{SHermitianCompact{N,T,L} where L})(a::Tuple) where {N, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:76, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{MArray{S,T,N,L} where L})(x::Tuple) where {S, T, N} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MArray.jl:40, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{MArray{S,T,N,L}})(x::Tuple{Vararg{T,L}}) where {S, T, N, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MArray.jl:24, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{Dual{T,V,N} where N})(x) where {T, V} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:74, (::Type{T})(x::T) where T&lt;:Number in Core at boot.jl:714)
+ (StatsBase.TestStat(v) in StatsBase at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StatsBase&#x2F;DyWPR&#x2F;src&#x2F;statmodels.jl:414, (::Type{T})(x::AbstractChar) where T&lt;:Union{AbstractChar, Number} in Base at char.jl:50)
+ ((::Type{SSC})(a::AbstractArray{T,1} where T) where SSC&lt;:SHermitianCompact in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:87, (::Type{SA})(a::StaticArray) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:5)
+ ((::Type{SizedArray{Tuple{S1,S2},T,2,M} where M where T})(x::Tuple{Vararg{T,L}}) where {S1, S2, T, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SizedArray.jl:83, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ (StatsBase.TestStat(v) in StatsBase at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StatsBase&#x2F;DyWPR&#x2F;src&#x2F;statmodels.jl:414, (::Type{T})(x::Base.TwicePrecision) where T&lt;:Number in Base at twiceprecision.jl:243)
+ ((::Type{Dual{T,V,N}})(x) where {T, V, N} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:72, (::Type{T})(x::Base.TwicePrecision) where T&lt;:Number in Base at twiceprecision.jl:243)
+ ((::Type{SizedArray{S,T,N,M} where M})(x::Tuple) where {S, T, N} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SizedArray.jl:57, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{Dual{T,V,N} where N})(x) where {T, V} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:74, (::Type{T})(x::Base.TwicePrecision) where T&lt;:Number in Base at twiceprecision.jl:243)
+ ((::Type{SArray{Tuple{S1,S2},T,2,L} where L})(x::Tuple{Vararg{Any,L}}) where {S1, S2, T, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SMatrix.jl:49, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{Dual{T,V,N} where N})(x) where {T, V} in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:74, (::Type{T})(z::Complex) where T&lt;:Real in Base at complex.jl:37)
+ ((::Type{DiffResults.DiffResult})(value::Number, derivs::Tuple{Vararg{Number,N} where N}) in DiffResults at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffResults&#x2F;FsQMZ&#x2F;src&#x2F;DiffResults.jl:50, (::Type{DiffResults.DiffResult})(value::Number, derivs::Tuple{Vararg{AbstractArray,N} where N}) in DiffResults at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffResults&#x2F;FsQMZ&#x2F;src&#x2F;DiffResults.jl:53)
+ ((::Type{MArray{S,T,N,L} where L where N where T})(x::T) where {S, T&lt;:Tuple} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MArray.jl:54, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{MArray{Tuple{S},T,1,S} where T})(x::Tuple{Vararg{Any,S}}) where S in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MVector.jl:21, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{MArray{Tuple{S1,S2},T,2,L} where L where T where S2})(x::Tuple{Vararg{T,L}} where T) where {S1, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MMatrix.jl:21, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{Scalar{T} where T})(a::AbstractArray{T,0} where T) in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;Scalar.jl:11, (::Type{SA})(a::StaticArray) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:5)
+ ((::Type{SHermitianCompact{N,T,L}})(a::Tuple) where {N, T, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:63, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{Dual{T,V,N} where N where V})(value) where T in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:64, (::Type{T})(x::Base.TwicePrecision) where T&lt;:Number in Base at twiceprecision.jl:243)
+ ((::Type{SHermitianCompact})(a::StaticArray{Tuple{N,N},T,2}) where {N, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:82, (::Type{SSC})(a::SHermitianCompact) where SSC&lt;:SHermitianCompact in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:84)
+ ((::Type{SArray{S,T,N,L}})(x::Tuple{Vararg{Any,L}}) where {S, T, N, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SArray.jl:27, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{Scalar{T} where T})(a::AbstractArray) in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;Scalar.jl:10, (::Type{SA})(a::StaticArray) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:5)
+ ((::Type{MArray{Tuple{S},T,1,S} where T})(x::Tuple{Vararg{T,S}}) where {S, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MVector.jl:20, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ (StatsBase.TestStat(v) in StatsBase at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StatsBase&#x2F;DyWPR&#x2F;src&#x2F;statmodels.jl:414, (::Type{T})(z::Complex) where T&lt;:Real in Base at complex.jl:37)
+ ((::Type{SizedArray{S,T,N,M} where M where N where T})(x::Tuple{Vararg{T,L}}) where {S, T, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SizedArray.jl:59, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{SArray{Tuple{S1,S2},T,2,L} where L where T where S2})(x::Tuple{Vararg{Any,L}}) where {S1, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SMatrix.jl:20, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{SArray{Tuple{S},T,1,S} where T})(x::Tuple{Vararg{T,S}}) where {S, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SVector.jl:19, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{SHermitianCompact})(a::StaticArray{Tuple{N,N},T,2}) where {N, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:82, (::Type{SSC})(a::SSC) where SSC&lt;:SHermitianCompact in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SHermitianCompact.jl:85)
+ ((::Type{SArray{S,T,N,L} where L where N})(x::Tuple) where {S&lt;:Tuple, T} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SArray.jl:40, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{DiffResults.DiffResult})(value::Number, derivs::Tuple{Vararg{Number,N} where N}) in DiffResults at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffResults&#x2F;FsQMZ&#x2F;src&#x2F;DiffResults.jl:50, (::Type{DiffResults.DiffResult})(value::Number, derivs::Tuple{Vararg{StaticArray,N} where N}) in DiffResults at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;DiffResults&#x2F;FsQMZ&#x2F;src&#x2F;DiffResults.jl:51)
+ ((::Type{MArray{S,T,N,L}})(x::Tuple{Vararg{Any,L}}) where {S, T, N, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;MArray.jl:29, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{SArray{Tuple{S1,S2},T,2,L} where L where T})(x::Tuple{Vararg{Any,L}}) where {S1, S2, L} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SMatrix.jl:33, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{Dual})(args...) in ForwardDiff at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;ForwardDiff&#x2F;yPcDQ&#x2F;src&#x2F;dual.jl:68, (::Type{T})(x::Base.TwicePrecision) where T&lt;:Number in Base at twiceprecision.jl:243)
+ (insupport(d::Product, x::AbstractArray) in Distributions at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Distributions&#x2F;OdJGZ&#x2F;src&#x2F;multivariate&#x2F;product.jl:36, insupport(d::Union{Type{D}, D}, X::AbstractArray{T,2} where T) where D&lt;:(Distribution{Multivariate,S} where S&lt;:ValueSupport) in Distributions at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Distributions&#x2F;OdJGZ&#x2F;src&#x2F;multivariates.jl:99)
+ ((::Type{SArray{S,T,N,L} where L})(x::Tuple) where {S&lt;:Tuple, T, N} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SArray.jl:33, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+ ((::Type{SArray{S,T,N,L} where L where N where T})(x::T) where {S&lt;:Tuple, T&lt;:Tuple} in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;SArray.jl:47, (::Type{SA})(x::Tuple{Tuple{Tuple{#s162} where #s162&lt;:Tuple}}) where SA&lt;:StaticArray in StaticArrays at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;StaticArrays&#x2F;1g9bq&#x2F;src&#x2F;convert.jl:1)
+   Testing Distributions tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

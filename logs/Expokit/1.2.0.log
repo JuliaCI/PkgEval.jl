@@ -1,0 +1,106 @@
+ Resolving package versions...
+ Installed Expokit ─ v0.2.0
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [a1e7a1ef] + Expokit v0.2.0
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [a1e7a1ef] + Expokit v0.2.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [8dfed614] + Test 
+   Testing Expokit
+    Status `/tmp/jl_q6OQEB/Manifest.toml`
+  [a1e7a1ef] Expokit v0.2.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [8dfed614] Test  [`@stdlib/Test`]
+testing real n=100 (first expmv, then expm)
+residuum: 5.1770807133721784e-15
+time dif: -0.030390847
+
+testing complex n=100 (first expmv, then expm)
+residuum: 6.066724566783313e-16
+time dif: -0.33750620200000003
+
+testing real n=1000 (first expmv, then expm)
+residuum: 7.242974191700568e-11
+time dif: -4.365801029999999
+
+testing complex n=1000 (first expmv, then expm)
+residuum: 7.39855092496321e-15
+time dif: -3.764416852
+
+testing linear operator n=1000 (first expmv, then expm)
+┌ Warning: opnorm(LinearOp, Inf) is not defined, fall back to using `anorm = 1.0`.
+│ To suppress this warning, please specify the `anorm` keyword manually.
+└ @ Expokit ~/.julia/packages/Expokit/fQbKs/src/expmv.jl:8
+residuum: 1.0734463830244608e-14
+time dif: 1.488930589
+
+testing 2x2 cases
+residua: 2.482534153247273e-16, 0.0
+
+testing real n=1000 (first padm, then expm)
+residuum: 1.689823787545236e-16
+time dif: 0.45092420499999997
+
+testing complex n=100 (first padm, then expm)
+residuum: 1.4359794139682162e-16
+time dif: -1.7264091020000003
+
+testing real n=100 (first chbv, then expm)
+residuum: 2.7809365879844808e-12
+time dif: -0.024714217000000004
+
+testing complex n=100 (first chbv, then expm)
+residuum: 3.0112435459125e-12
+time dif: 0.168138024
+
+testing real n=1000 (first chbv, then expm)
+residuum: 4.4806877744796855e-12
+time dif: 12.789325802
+
+testing real n=100 (first phimv, then expm)
+residuum: 1.6690998525736566e-15
+time dif: 0.058258614999999986
+
+testing complex n=100 (first phimv, then expm)
+residuum: 2.3673467946318906e-15
+time dif: 0.020685505999999992
+
+testing real n=1000 (first phimv, then expm)
+residuum: 4.0200274782035115e-14
+time dif: -3.4106619769999997
+
+testing complex n=1000 (first phimv, then expm)
+residuum: 1.99233185703066e-14
+time dif: -8.234326844
+
+testing real n=1000 (first phimv, then expm), the linear operator version.
+┌ Warning: opnorm(LinearOp, Inf) is not defined, fall back to using `anorm = 1.0`.
+│ To suppress this warning, please specify the `anorm` keyword manually.
+└ @ Expokit ~/.julia/packages/Expokit/fQbKs/src/expmv.jl:8
+┌ Warning: opnorm(LinearOp, Inf) is not defined, fall back to using `anorm = 1.0`.
+│ To suppress this warning, please specify the `anorm` keyword manually.
+└ @ Expokit ~/.julia/packages/Expokit/fQbKs/src/expmv.jl:8
+residuum: 2.9511192729585126e-14
+time dif: -3.333382016
+
+   Testing Expokit tests passed 

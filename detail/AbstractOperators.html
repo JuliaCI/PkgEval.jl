@@ -1,0 +1,5023 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="AbstractOperators">AbstractOperators</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#AbstractOperators">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 12 hours ago and took 7 minutes, 47 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/AbstractOperators/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed ArrayInterface ────── v1.2.1
+ Installed VersionParsing ────── v1.1.3
+ Installed Requires ──────────── v0.5.2
+ Installed RecipesBase ───────── v0.7.0
+ Installed RecursiveArrayTools ─ v1.0.2
+ Installed FFTW ──────────────── v1.1.0
+ Installed BinaryProvider ────── v0.5.8
+ Installed AbstractOperators ─── v0.2.2
+ Installed Conda ─────────────── v1.3.0
+ Installed Reexport ──────────── v0.2.0
+ Installed Parsers ───────────── v0.3.10
+ Installed SpecialFunctions ──── v0.8.0
+ Installed JSON ──────────────── v0.21.0
+ Installed BinDeps ───────────── v0.8.10
+ Installed Polynomials ───────── v0.6.0
+ Installed DSP ───────────────── v0.6.1
+ Installed URIParser ─────────── v0.4.0
+ Installed AbstractFFTs ──────── v0.5.0
+ Installed StaticArrays ──────── v0.12.1
+ Installed Compat ────────────── v2.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [d9c5613a] + AbstractOperators v0.2.2
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [621f4979] + AbstractFFTs v0.5.0
+  [d9c5613a] + AbstractOperators v0.2.2
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [34da2185] + Compat v2.2.0
+  [8f4d0f93] + Conda v1.3.0
+  [717857b8] + DSP v0.6.1
+  [7a1cc6ca] + FFTW v1.1.0
+  [682c06a0] + JSON v0.21.0
+  [69de0a69] + Parsers v0.3.10
+  [f27b6e38] + Polynomials v0.6.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [731186ca] + RecursiveArrayTools v1.0.2
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [30578b45] + URIParser v0.4.0
+  [81def892] + VersionParsing v1.1.3
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Conda ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building FFTW ────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFTW&#x2F;loJ3F&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing AbstractOperators
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;tmpt3mRxF&#x2F;Manifest.toml`
+  [621f4979] AbstractFFTs v0.5.0
+  [d9c5613a] AbstractOperators v0.2.2
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [34da2185] Compat v2.2.0
+  [8f4d0f93] Conda v1.3.0
+  [717857b8] DSP v0.6.1
+  [7a1cc6ca] FFTW v1.1.0
+  [682c06a0] JSON v0.21.0
+  [69de0a69] Parsers v0.3.10
+  [f27b6e38] Polynomials v0.6.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [30578b45] URIParser v0.4.0
+  [81def892] VersionParsing v1.1.3
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+
+Testing linear operators
+
+★  ℝ^5 -&gt; ℝ^10 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+ℱc  ℝ^4 -&gt; ℝ^4 
+forward preallocated
+  0.000003 seconds (8 allocations: 352 bytes)
+adjoint preallocated
+  0.000006 seconds (13 allocations: 624 bytes)
+
+ℱc⁻¹  ℝ^4 -&gt; ℝ^4 
+forward preallocated
+  0.000005 seconds (13 allocations: 624 bytes)
+adjoint preallocated
+  0.000002 seconds (8 allocations: 352 bytes)
+
+ℱ  ℝ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds (1 allocation: 144 bytes)
+adjoint preallocated
+  0.000000 seconds (1 allocation: 144 bytes)
+
+ℱ  ℂ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ  ℝ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000003 seconds (1 allocation: 144 bytes)
+adjoint preallocated
+  0.000000 seconds (1 allocation: 144 bytes)
+
+ℱ  ℂ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ  ℝ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds (1 allocation: 144 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 144 bytes)
+
+ℱ  ℂ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ  ℝ^(4, 7) -&gt; ℂ^(4, 7) 
+forward preallocated
+  0.000001 seconds (1 allocation: 544 bytes)
+adjoint preallocated
+  0.000001 seconds (4 allocations: 640 bytes)
+
+ℱ  ℂ^(4, 7) -&gt; ℂ^(4, 7) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ  ℝ^(7, 4) -&gt; ℂ^(7, 4) 
+forward preallocated
+  0.000000 seconds (1 allocation: 544 bytes)
+adjoint preallocated
+  0.000000 seconds (4 allocations: 640 bytes)
+
+ℱ  ℂ^(4, 7) -&gt; ℂ^(4, 7) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ⁻¹  ℝ^5 -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds (1 allocation: 160 bytes)
+adjoint preallocated
+  0.000000 seconds (1 allocation: 160 bytes)
+
+ℱ⁻¹  ℂ^5 -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ⁻¹  ℝ^5 -&gt; ℂ^5 
+forward preallocated
+  0.000001 seconds (1 allocation: 160 bytes)
+adjoint preallocated
+  0.000000 seconds (1 allocation: 160 bytes)
+
+ℱ⁻¹  ℂ^5 -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ⁻¹  ℝ^(5, 6) -&gt; ℂ^(5, 6) 
+forward preallocated
+  0.000001 seconds (1 allocation: 576 bytes)
+adjoint preallocated
+  0.000001 seconds (6 allocations: 720 bytes)
+
+ℱ⁻¹  ℂ^(5, 6) -&gt; ℂ^(5, 6) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds (3 allocations: 112 bytes)
+
+ℱ⁻¹  ℝ^(6, 5) -&gt; ℂ^(6, 5) 
+forward preallocated
+  0.000001 seconds (1 allocation: 576 bytes)
+adjoint preallocated
+  0.000001 seconds (6 allocations: 720 bytes)
+
+ℱ⁻¹  ℂ^(6, 5) -&gt; ℂ^(6, 5) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds (3 allocations: 112 bytes)
+
+ℱ⁻¹  ℂ^(4, 19, 5) -&gt; ℂ^(4, 19, 5) 
+forward preallocated
+  0.000018 seconds
+adjoint preallocated
+  0.000010 seconds (3 allocations: 128 bytes)
+
+ℱ⁻¹  ℂ^(4, 18, 5) -&gt; ℂ^(4, 18, 5) 
+forward preallocated
+  0.000007 seconds
+adjoint preallocated
+  0.000006 seconds (3 allocations: 128 bytes)
+
+ℱ⁻¹  ℂ^(4, 18, 5) -&gt; ℂ^(4, 18, 5) 
+forward preallocated
+  0.000005 seconds
+adjoint preallocated
+  0.000006 seconds (3 allocations: 128 bytes)
+
+ℱ  ℝ^4 -&gt; ℂ^3 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ  ℝ^(4, 8, 5) -&gt; ℂ^(4, 5, 5) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000002 seconds (3 allocations: 112 bytes)
+
+ℱ⁻¹  ℂ^7 -&gt; ℝ^12 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000001 seconds (2 allocations: 96 bytes)
+
+ℱ⁻¹  ℂ^6 -&gt; ℝ^11 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds (2 allocations: 96 bytes)
+
+ℱ⁻¹  ℂ^(4, 10, 5) -&gt; ℝ^(4, 19, 5) 
+forward preallocated
+  0.000007 seconds
+adjoint preallocated
+  0.000010 seconds (8 allocations: 384 bytes)
+
+ℱ⁻¹  ℂ^(4, 10, 5) -&gt; ℝ^(4, 18, 5) 
+forward preallocated
+  0.000007 seconds
+adjoint preallocated
+  0.000007 seconds (8 allocations: 384 bytes)
+
+ℱ⁻¹  ℂ^(3, 18, 5) -&gt; ℝ^(5, 18, 5) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000005 seconds (8 allocations: 384 bytes)
+
+╲  ℝ^4 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+╲  ℝ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+╲  ℝ^4 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+╲  ℝ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+I  ℝ^4 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+IIR  ℝ^15 -&gt; ℝ^15 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+FIR  ℝ^(15, 2) -&gt; ℝ^(15, 2) 
+forward preallocated
+  0.000002 seconds
+adjoint preallocated
+  0.000001 seconds
+
+δx  ℝ^10 -&gt; ℝ^9 
+forward preallocated
+  0.000001 seconds (1 allocation: 32 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+δx  ℝ^(10, 5) -&gt; ℝ^(9, 5) 
+forward preallocated
+  0.000022 seconds (1 allocation: 64 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+δy  ℝ^(10, 5) -&gt; ℝ^(10, 4) 
+forward preallocated
+  0.000002 seconds (1 allocation: 64 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+δx  ℝ^(10, 5, 7) -&gt; ℝ^(9, 5, 7) 
+forward preallocated
+  0.000002 seconds (1 allocation: 80 bytes)
+adjoint preallocated
+  0.000019 seconds
+
+δy  ℝ^(10, 5, 7) -&gt; ℝ^(10, 4, 7) 
+forward preallocated
+  0.000002 seconds (1 allocation: 80 bytes)
+adjoint preallocated
+  0.000003 seconds
+
+δz  ℝ^(10, 5, 7) -&gt; ℝ^(10, 5, 6) 
+forward preallocated
+  0.000004 seconds (1 allocation: 80 bytes)
+adjoint preallocated
+  0.000004 seconds
+
+δx  ℝ^(5, 6, 2, 3) -&gt; ℝ^(4, 6, 2, 3) 
+forward preallocated
+  0.000003 seconds (1 allocation: 112 bytes)
+adjoint preallocated
+  0.000002 seconds
+
+δx4  ℝ^(5, 6, 2, 3) -&gt; ℝ^(5, 6, 2, 2) 
+forward preallocated
+  0.000002 seconds (1 allocation: 112 bytes)
+adjoint preallocated
+  0.000002 seconds
+
+↓  ℝ^5 -&gt; ℝ^3 
+forward preallocated
+  0.000001 seconds (1 allocation: 48 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+↓  ℝ^(5, 4) -&gt; ℝ^(3, 4) 
+forward preallocated
+  0.000001 seconds (1 allocation: 64 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+↓  ℝ^(5, 4) -&gt; ℝ^5 
+forward preallocated
+  0.000000 seconds (1 allocation: 48 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+↓  ℝ^(5, 4, 3) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000000 seconds (1 allocation: 64 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+▒  ℝ^4 -&gt; ℝ^5 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000000 seconds
+
+▒  ℂ^4 -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+▒  ℂ^4 -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+▒  ℝ^4 -&gt; ℂ^5 
+forward preallocated
+  0.000002 seconds (5 allocations: 144 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 144 bytes)
+
+▒  ℝ^(4, 3) -&gt; ℂ^(5, 3) 
+forward preallocated
+  0.000009 seconds (5 allocations: 144 bytes)
+adjoint preallocated
+  0.000002 seconds (4 allocations: 432 bytes)
+
+(⋅)b  ℝ^(5, 6) -&gt; ℝ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds (5 allocations: 160 bytes)
+
+(⋅)b  ℂ^(5, 6) -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds (5 allocations: 160 bytes)
+
+(⋅)b  ℝ^(5, 6) -&gt; ℝ^(5, 7) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+(⋅)b  ℂ^(5, 6) -&gt; ℂ^(5, 7) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+A  ℝ^4 -&gt; ℝ^5 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+※  ℝ^(10, 2) -&gt; ℝ^(10, 1) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+※  ℝ^(10, 3) -&gt; ℝ^(10, 2) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+※  ℝ^(10, 3) -&gt; ℝ^(10, 2) 
+forward preallocated
+  0.000002 seconds
+adjoint preallocated
+  0.000002 seconds
+
+Ʋ  ℝ^(10, 5) -&gt; ℝ^(50, 2) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+Ʋ  ℝ^(10, 5, 3) -&gt; ℝ^(150, 3) 
+forward preallocated
+  0.000002 seconds
+adjoint preallocated
+  0.000003 seconds
+
+◎  ℝ^5 -&gt; ℝ^11 
+┌ Warning: The default value of `padmode` will be changing from `:longest` to
+│ `:none` in a future release of DSP. In preparation for this change,
+│ leaving `padmode` unspecified is currently deprecated. To keep
+│ current behavior specify `padmode=:longest`. To avoid this warning,
+│ specify padmode = :none or padmode = :longest where appropriate.
+│   caller = mul!(::Array{Float64,1}, ::Xcorr{Float64,Array{Float64,1}}, ::Array{Float64,1}) at Xcorr.jl:28
+└ @ AbstractOperators ~&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;src&#x2F;linearoperators&#x2F;Xcorr.jl:28
+forward preallocated
+  0.000520 seconds (271 allocations: 21.688 KiB)
+adjoint preallocated
+  0.000037 seconds (131 allocations: 8.266 KiB)
+┌ Warning: The default value of `padmode` will be changing from `:longest` to
+│ `:none` in a future release of DSP. In preparation for this change,
+│ leaving `padmode` unspecified is currently deprecated. To keep
+│ current behavior specify `padmode=:longest`. To avoid this warning,
+│ specify padmode = :none or padmode = :longest where appropriate.
+│   caller = top-level scope at none:0
+└ @ Core none:0
+
+[I;0]  ℝ^3 -&gt; ℝ^8 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+[I;0]  ℝ^(3, 2) -&gt; ℝ^(8, 5) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+[I;0]  ℝ^(3, 2, 2) -&gt; ℝ^(8, 5, 3) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000000 seconds
+
+0  ℝ^(3, 4) -&gt; ℂ^(5, 2) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+Testing non linear operators
+
+σ  ℝ^4 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+J(σ)  ℝ^4 -&gt; ℝ^4 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+σ  ℝ^(4, 5) -&gt; ℝ^(4, 5) 
+forward preallocated
+  0.000001 seconds (11 allocations: 256 bytes)
+J(σ)  ℝ^(4, 5) -&gt; ℝ^(4, 5) 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (25 allocations: 736 bytes)
+
+σ  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000000 seconds
+J(σ)  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+σ  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+forward preallocated
+  0.000006 seconds (8 allocations: 288 bytes)
+J(σ)  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+adjoint jacobian mul! preallocated
+  0.000016 seconds (9 allocations: 304 bytes)
+
+σ  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+forward preallocated
+  0.000005 seconds (7 allocations: 192 bytes)
+J(σ)  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+adjoint jacobian mul! preallocated
+  0.000007 seconds (15 allocations: 1.484 KiB)
+
+e  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+forward preallocated
+  0.000003 seconds (3 allocations: 112 bytes)
+J(e)  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (9 allocations: 256 bytes)
+
+sin  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+forward preallocated
+  0.000004 seconds (3 allocations: 112 bytes)
+J(sin)  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+adjoint jacobian mul! preallocated
+  0.000008 seconds (9 allocations: 256 bytes)
+
+cos  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+forward preallocated
+  0.000003 seconds (3 allocations: 112 bytes)
+J(cos)  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+adjoint jacobian mul! preallocated
+  0.000006 seconds (15 allocations: 2.563 KiB)
+
+atan  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000000 seconds
+J(atan)  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+tanh  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000002 seconds
+J(tanh)  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+『  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000000 seconds
+J(『)  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+『  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000001 seconds
+J(『)  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+Testing linear operators calculus rules
+
+▒*▒  ℝ^4 -&gt; ℝ^3 
+forward preallocated
+  0.000003 seconds
+adjoint preallocated
+  0.000001 seconds
+
+Π  ℝ^4 -&gt; ℝ^2 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000002 seconds
+
+Π  ℝ^4 -&gt; ℝ^2 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+[▒,0;0,▒]  ℝ^7  ℝ^2 -&gt; ℝ^4  ℝ^5 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+DCAT  ℝ^7  ℝ^2  ℝ^5 -&gt; ℝ^4  ℝ^5  ℝ^5 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+[I,0;0,I]  ℝ^4  ℝ^7 -&gt; ℝ^4  ℝ^7 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000000 seconds
+
+[▒,▒]  ℝ^7  ℝ^5 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000001 seconds
+
+[▒,▒]  ℝ^5  ℝ^7 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000001 seconds
+
+HCAT  ℝ^7  ℝ^5  ℝ^6 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000001 seconds
+
+HCAT  ℝ^7 ... ℝ^6 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000002 seconds
+
+HCAT  ℝ^7 ... ℝ^6 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000002 seconds
+
+HCAT  ℝ^7 ... ℝ^6 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+HCAT  ℝ^5 ... ℝ^6 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+¶▒  ℝ^4 -&gt; ℝ^(2, 2, 2) 
+forward preallocated
+  0.000001 seconds (4 allocations: 128 bytes)
+adjoint preallocated
+  0.000001 seconds (5 allocations: 144 bytes)
+
+α▒  ℝ^4 -&gt; ℝ^8 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+α▒  ℝ^4 -&gt; ℝ^8 
+forward preallocated
+  0.000002 seconds
+adjoint preallocated
+  0.000001 seconds
+
+αℱ  ℝ^(8, 4) -&gt; ℂ^(8, 4) 
+forward preallocated
+  0.000002 seconds (4 allocations: 720 bytes)
+adjoint preallocated
+  0.000001 seconds (8 allocations: 832 bytes)
+
+▒+▒  ℝ^7 -&gt; ℝ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+Σ  ℝ^7 -&gt; ℝ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000001 seconds
+
+▒ᵃ  ℝ^5 -&gt; ℝ^7 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+[▒;▒]  ℝ^5 -&gt; ℝ^4  ℝ^7 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+[▒;ℱᵃ]  ℂ^5 -&gt; ℂ^4  ℝ^5 
+forward preallocated
+  0.000001 seconds (1 allocation: 160 bytes)
+adjoint preallocated
+  0.000000 seconds (1 allocation: 160 bytes)
+
+VCAT  ℝ^5 -&gt; ℝ^4  ℝ^7  ℝ^3 
+forward preallocated
+  0.000002 seconds
+adjoint preallocated
+  0.000001 seconds
+
+VCAT  ℝ^5 -&gt; ℝ^4 ... ℝ^3 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+VCAT  ℝ^5 -&gt; ℝ^4 ... ℝ^3 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+.▒  ℝ^4 -&gt; ℝ^(8, 10) 
+forward preallocated
+  0.000000 seconds (3 allocations: 80 bytes)
+adjoint preallocated
+  0.000005 seconds (10 allocations: 480 bytes)
+
+.I  ℝ^(8, 4) -&gt; ℝ^(8, 4, 5, 7) 
+forward preallocated
+  0.000004 seconds (3 allocations: 112 bytes)
+adjoint preallocated
+  0.000012 seconds (175 allocations: 7.656 KiB)
+
+.I  ℝ^1 -&gt; ℝ^(1, 5) 
+forward preallocated
+  0.000000 seconds (3 allocations: 80 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+.I  ℝ^(1, 5) -&gt; ℝ^(4, 5) 
+forward preallocated
+  0.000000 seconds (3 allocations: 96 bytes)
+adjoint preallocated
+  0.000002 seconds (24 allocations: 896 bytes)
+
+[I,.I]  ℝ^(4, 5)  ℝ^(1, 5) -&gt; ℝ^(4, 5) 
+forward preallocated
+  0.000001 seconds (7 allocations: 256 bytes)
+adjoint preallocated
+  0.000001 seconds (25 allocations: 912 bytes)
+
+.I  ℝ^2 -&gt; ℝ^(2, 5, 8) 
+forward preallocated
+  0.000000 seconds (3 allocations: 96 bytes)
+adjoint preallocated
+  0.000008 seconds (40 allocations: 2.500 KiB)
+
+.I  ℝ^1 -&gt; ℝ^(1, 5, 8) 
+forward preallocated
+  0.000000 seconds (3 allocations: 96 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+.αI  ℝ^1 -&gt; ℝ^(1, 5, 8) 
+forward preallocated
+  0.000000 seconds (3 allocations: 96 bytes)
+adjoint preallocated
+  0.000002 seconds (41 allocations: 736 bytes)
+▒+d  ℝ^6 -&gt; ℝ^5 
+▒-d  ℝ^6 -&gt; ℝ^5 
+▒+d  ℝ^6 -&gt; ℝ^5 
+▒+d-d  ℝ^6 -&gt; ℝ^5 
+
+▒*[▒,▒]  ℝ^4  ℝ^7 -&gt; ℝ^2 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+▒*[▒,▒]  ℝ^7  ℝ^4 -&gt; ℝ^2 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+[▒*[▒,▒],▒]  ℝ^4  ℝ^7  ℝ^10 -&gt; ℝ^2 
+forward preallocated
+  0.000001 seconds (2 allocations: 48 bytes)
+adjoint preallocated
+  0.000002 seconds (2 allocations: 48 bytes)
+
+[▒*[▒,▒],▒]  ℝ^10  ℝ^7  ℝ^4 -&gt; ℝ^2 
+forward preallocated
+  0.000001 seconds (2 allocations: 48 bytes)
+adjoint preallocated
+  0.000002 seconds (2 allocations: 48 bytes)
+
+[▒*[▒,▒],▒]  ℝ^4  ℝ^10  ℝ^7 -&gt; ℝ^2 
+forward preallocated
+  0.000001 seconds (2 allocations: 48 bytes)
+adjoint preallocated
+  0.000002 seconds (2 allocations: 48 bytes)
+
+[[▒,▒];[▒,▒]]  ℝ^4  ℝ^7 -&gt; ℝ^3  ℝ^5 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000003 seconds (13 allocations: 336 bytes)
+
+[[▒,ℱ];[▒,ℱ]]  ℂ^4  ℝ^5 -&gt; ℂ^5  ℂ^5 
+forward preallocated
+  0.000002 seconds (2 allocations: 320 bytes)
+adjoint preallocated
+  0.000007 seconds (23 allocations: 816 bytes)
+
+[[▒;▒],[▒;▒]]  ℝ^3  ℝ^5 -&gt; ℝ^4  ℝ^7 
+forward preallocated
+  0.000003 seconds (13 allocations: 336 bytes)
+adjoint preallocated
+  0.000001 seconds (2 allocations: 32 bytes)
+
+HCAT+HCAT  ℝ^7  ℝ^5  ℝ^3 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000009 seconds (21 allocations: 560 bytes)
+
+HCAT+HCAT  ℝ^3  ℝ^5  ℝ^7 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000006 seconds (21 allocations: 560 bytes)
+
+Σ  ℝ^5 -&gt; ℝ^4  ℝ^7 
+forward preallocated
+  0.000004 seconds (26 allocations: 672 bytes)
+adjoint preallocated
+  0.000001 seconds (3 allocations: 48 bytes)
+
+α[▒,0;0,▒]  ℝ^7  ℝ^5 -&gt; ℝ^4  ℝ^3 
+forward preallocated
+  0.000003 seconds (9 allocations: 224 bytes)
+adjoint preallocated
+  0.000003 seconds (9 allocations: 224 bytes)
+
+α[▒;▒]  ℝ^7 -&gt; ℝ^4  ℝ^3 
+forward preallocated
+  0.000002 seconds (9 allocations: 224 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+α[▒,▒]  ℝ^3  ℝ^7 -&gt; ℝ^4 
+forward preallocated
+  0.000002 seconds
+adjoint preallocated
+  0.000113 seconds (9 allocations: 224 bytes)
+
+[▒,0;0,HCAT]  ℝ^4 ... ℝ^5 -&gt; ℝ^2  ℝ^3 
+forward preallocated
+  0.000003 seconds (2 allocations: 48 bytes)
+adjoint preallocated
+  0.000002 seconds (2 allocations: 48 bytes)
+
+[[▒,▒],0;0,HCAT]  ℝ^4 ... ℝ^5 -&gt; ℝ^2  ℝ^3 
+forward preallocated
+  0.000002 seconds (4 allocations: 96 bytes)
+adjoint preallocated
+  0.000003 seconds (4 allocations: 96 bytes)
+
+α▒+▒  ℝ^7 -&gt; ℝ^5 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+α▒*▒  ℝ^4 -&gt; ℝ^3 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000002 seconds (1 allocation: 16 bytes)
+
+Testing  calculus non linear operators
+
+ασ  ℝ^3 -&gt; ℝ^3 
+forward preallocated
+  0.000000 seconds
+αJ(σ)  ℝ^3 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (2 allocations: 32 bytes)
+
+α『  ℝ^3 -&gt; ℝ^3 
+forward preallocated
+  0.000000 seconds
+αJ(『)  ℝ^3 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (2 allocations: 32 bytes)
+
+[▒,0;0,σ]  ℝ^4  ℝ^3 -&gt; ℝ^4  ℝ^3 
+forward preallocated
+  0.000001 seconds
+[▒,0;0,J(σ)]  ℝ^4  ℝ^3 -&gt; ℝ^4  ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (2 allocations: 32 bytes)
+
+[▒,σ]  ℝ^4  ℝ^3 -&gt; ℝ^3 
+forward preallocated
+  0.000000 seconds
+[▒,J(σ)]  ℝ^4  ℝ^3 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (2 allocations: 32 bytes)
+
+[sin,▒]  ℝ^3  ℝ^5 -&gt; ℝ^3 
+forward preallocated
+  0.000000 seconds
+[J(sin),▒]  ℝ^3  ℝ^5 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (2 allocations: 32 bytes)
+((5,), (3,))
+
+[sin,▒]  ℝ^5  ℝ^3 -&gt; ℝ^3 
+forward preallocated
+  0.000000 seconds
+[J(sin),▒]  ℝ^5  ℝ^3 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (2 allocations: 32 bytes)
+
+[▒;σ]  ℝ^3 -&gt; ℝ^4  ℝ^3 
+forward preallocated
+  0.000000 seconds
+[▒;J(σ)]  ℝ^3 -&gt; ℝ^4  ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (2 allocations: 32 bytes)
+
+HCAT  ℝ^3  ℝ^2  ℝ^7 -&gt; ℝ^4  ℝ^3 
+forward preallocated
+  0.000003 seconds (26 allocations: 672 bytes)
+HCAT  ℝ^3  ℝ^2  ℝ^7 -&gt; ℝ^4  ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (5 allocations: 80 bytes)
+
+[HCAT;HCAT]  ℝ^3  ℝ^6  ℝ^5 -&gt; ℝ^6  ℝ^7 
+forward preallocated
+  0.000001 seconds
+[HCAT;HCAT]  ℝ^3  ℝ^6  ℝ^5 -&gt; ℝ^6  ℝ^7 
+adjoint jacobian mul! preallocated
+  0.000010 seconds (23 allocations: 592 bytes)
+
+Π  ℝ^3 -&gt; ℝ^5 
+forward preallocated
+  0.000003 seconds
+Π  ℝ^3 -&gt; ℝ^5 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (2 allocations: 32 bytes)
+
+σ*[(⋅)b,I]  ℝ^(7, 5)  ℝ^7 -&gt; ℝ^7 
+forward preallocated
+  0.000000 seconds
+J(σ)*[(⋅)b,I]  ℝ^(7, 5)  ℝ^7 -&gt; ℝ^7 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (10 allocations: 240 bytes)
+
+¶σ  ℝ^4 -&gt; ℝ^(2, 2) 
+forward preallocated
+  0.000000 seconds (2 allocations: 80 bytes)
+¶J(σ)  ℝ^4 -&gt; ℝ^(2, 2) 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+.σ  ℝ^4 -&gt; ℝ^(4, 7) 
+forward preallocated
+  0.000000 seconds (3 allocations: 80 bytes)
+.J(σ)  ℝ^4 -&gt; ℝ^(4, 7) 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (15 allocations: 464 bytes)
+
+.σ  ℝ^1 -&gt; ℝ^(1, 7) 
+forward preallocated
+  0.000000 seconds (3 allocations: 80 bytes)
+.J(σ)  ℝ^1 -&gt; ℝ^(1, 7) 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (9 allocations: 224 bytes)
+
+▒+σ  ℝ^5 -&gt; ℝ^5 
+forward preallocated
+  0.000000 seconds
+▒+J(σ)  ℝ^5 -&gt; ℝ^5 
+adjoint jacobian mul! preallocated
+  0.000006 seconds (2 allocations: 32 bytes)
+
+e-d  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000000 seconds
+J(e)  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+sin+d*I+d  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000000 seconds
+J(sin)*I  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+Π  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000001 seconds
+Π  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000014 seconds (6 allocations: 96 bytes)
+
+I*sin  ℝ^10 -&gt; ℝ^1 
+forward preallocated
+  0.000000 seconds
+I*J(sin)  ℝ^10 -&gt; ℝ^1 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (2 allocations: 32 bytes)
+
+▒*▒  ℝ^4 -&gt; ℝ^1 
+forward preallocated
+  0.000000 seconds
+▒*▒  ℝ^4 -&gt; ℝ^1 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+▒*▒  ℝ^(7, 5) -&gt; ℝ^(5, 5) 
+forward preallocated
+  0.000001 seconds
+▒*▒  ℝ^(7, 5) -&gt; ℝ^(5, 5) 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (5 allocations: 176 bytes)
+
+sin*cos  ℝ^(3, 7) -&gt; ℝ^(7, 7) 
+forward preallocated
+  0.000002 seconds (6 allocations: 192 bytes)
+J(sin)*J(cos)  ℝ^(3, 7) -&gt; ℝ^(7, 7) 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (29 allocations: 1.297 KiB)
+
+[sin+d,▒]*[cos,▒]  ℝ^3  ℝ^5 -&gt; ℝ^1 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒]*[J(cos),▒]  ℝ^3  ℝ^5 -&gt; ℝ^1 
+adjoint jacobian mul! preallocated
+  0.000005 seconds (26 allocations: 768 bytes)
+
+[sin,▒]*[cos,▒]  ℝ^3  ℝ^5 -&gt; ℝ^1 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒]*[J(cos),▒]  ℝ^3  ℝ^5 -&gt; ℝ^1 
+adjoint jacobian mul! preallocated
+  0.000005 seconds (26 allocations: 768 bytes)
+
+[sin+d,▒]*[cos,▒]  ℝ^5  ℝ^3 -&gt; ℝ^1 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒]*[J(cos),▒]  ℝ^5  ℝ^3 -&gt; ℝ^1 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (26 allocations: 768 bytes)
+
+I*sin  ℝ^10 -&gt; ℝ^(10, 10) 
+forward preallocated
+  0.000002 seconds
+I*J(sin)  ℝ^10 -&gt; ℝ^(10, 10) 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (2 allocations: 32 bytes)
+
+▒*▒  ℝ^4 -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000001 seconds
+▒*▒  ℝ^4 -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+▒*▒  ℝ^(7, 5) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000002 seconds
+▒*▒  ℝ^(7, 5) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (5 allocations: 176 bytes)
+
+sin*cos  ℝ^(3, 7) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000002 seconds (6 allocations: 192 bytes)
+J(sin)*J(cos)  ℝ^(3, 7) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (29 allocations: 1.297 KiB)
+
+[sin+d,▒]*[cos,▒]  ℝ^3  ℝ^5 -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒]*[J(cos),▒]  ℝ^3  ℝ^5 -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000019 seconds (18 allocations: 608 bytes)
+
+[sin,▒]*[cos,▒]  ℝ^3  ℝ^5 -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒]*[J(cos),▒]  ℝ^3  ℝ^5 -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000005 seconds (18 allocations: 608 bytes)
+
+[sin+d,▒]*[cos,▒]  ℝ^5  ℝ^3 -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000002 seconds
+[J(sin),▒]*[J(cos),▒]  ℝ^5  ℝ^3 -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (18 allocations: 608 bytes)
+
+I*I  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000000 seconds
+I*I  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (5 allocations: 176 bytes)
+
+sin*cos  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000001 seconds (6 allocations: 192 bytes)
+J(sin)*J(cos)  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (29 allocations: 1.109 KiB)
+
+atan*sin*cos  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000001 seconds (9 allocations: 288 bytes)
+J(atan)*J(sin)*J(cos)  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (49 allocations: 1.641 KiB)
+
+▒*▒  ℝ^(2, 3) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000001 seconds
+▒*▒  ℝ^(2, 3) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (5 allocations: 176 bytes)
+
+[sin+d,▒]*[sin,▒]  ℝ^(5, 5)  ℝ^(3, 5) -&gt; ℝ^(5, 5) 
+forward preallocated
+  0.000004 seconds (18 allocations: 672 bytes)
+[J(sin),▒]*[J(sin),▒]  ℝ^(5, 5)  ℝ^(3, 5) -&gt; ℝ^(5, 5) 
+adjoint jacobian mul! preallocated
+  0.000009 seconds (32 allocations: 896 bytes)
+
+[sin,▒]*[sin,▒]  ℝ^(5, 5)  ℝ^(3, 5) -&gt; ℝ^(5, 5) 
+forward preallocated
+  0.000003 seconds (14 allocations: 512 bytes)
+[J(sin),▒]*[J(sin),▒]  ℝ^(5, 5)  ℝ^(3, 5) -&gt; ℝ^(5, 5) 
+adjoint jacobian mul! preallocated
+  0.000007 seconds (32 allocations: 896 bytes)
+
+[sin+d,▒]*[sin,▒]  ℝ^(3, 5)  ℝ^(5, 5) -&gt; ℝ^(5, 5) 
+forward preallocated
+  0.000004 seconds (18 allocations: 672 bytes)
+[J(sin),▒]*[J(sin),▒]  ℝ^(3, 5)  ℝ^(5, 5) -&gt; ℝ^(5, 5) 
+adjoint jacobian mul! preallocated
+  0.000005 seconds (32 allocations: 896 bytes)
+
+▒*▒*▒  ℝ^(7, 5) -&gt; ℝ^(5, 3) 
+forward preallocated
+  0.000002 seconds
+▒*▒*▒  ℝ^(7, 5) -&gt; ℝ^(5, 3) 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (10 allocations: 352 bytes)
+
+▒*▒*▒  ℝ^(7, 5) -&gt; ℝ^(9, 5) 
+forward preallocated
+  0.000003 seconds
+▒*▒*▒  ℝ^(7, 5) -&gt; ℝ^(9, 5) 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (10 allocations: 352 bytes)
+
+▒*▒*▒  ℝ^(7, 5) -&gt; ℝ^(9, 5) 
+forward preallocated
+  0.000002 seconds
+▒*▒*▒  ℝ^(7, 5) -&gt; ℝ^(9, 5) 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (10 allocations: 352 bytes)
+
+I.*I  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000000 seconds (4 allocations: 160 bytes)
+I.*I  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (13 allocations: 496 bytes)
+
+sin.*cos  ℝ^(3, 2) -&gt; ℝ^(3, 2) 
+forward preallocated
+  0.000001 seconds (10 allocations: 352 bytes)
+J(sin).*J(cos)  ℝ^(3, 2) -&gt; ℝ^(3, 2) 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (37 allocations: 1.359 KiB)
+
+[sin+d,▒].*[cos,▒]  ℝ^3  ℝ^5 -&gt; ℝ^3 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒].*[J(cos),▒]  ℝ^3  ℝ^5 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000007 seconds (18 allocations: 608 bytes)
+
+[sin,▒].*[cos,▒]  ℝ^3  ℝ^5 -&gt; ℝ^3 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒].*[J(cos),▒]  ℝ^3  ℝ^5 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (18 allocations: 608 bytes)
+
+[sin+d,▒].*[cos,▒]  ℝ^5  ℝ^3 -&gt; ℝ^3 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒].*[J(cos),▒]  ℝ^5  ℝ^3 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (18 allocations: 608 bytes)
+
+Testing L-BFGS routines
+LBFGS  ℝ^10 -&gt; ℝ^10 
+LBFGS  ℝ^10  ℝ^10 -&gt; ℝ^10  ℝ^10 
+  0.240938 seconds (254.11 k allocations: 12.297 MiB)
+  0.554281 seconds (418.24 k allocations: 19.453 MiB, 4.02% gc time)
+  0.248751 seconds (98.95 k allocations: 4.431 MiB)
+  0.321515 seconds (150.51 k allocations: 6.290 MiB, 6.32% gc time)
+  0.000018 seconds
+  0.000035 seconds (134 allocations: 2.500 KiB)
+  0.000010 seconds
+  0.000038 seconds (120 allocations: 2.156 KiB)
+  0.000013 seconds
+  0.000055 seconds (256 allocations: 4.719 KiB)
+  0.000004 seconds
+  0.000037 seconds (120 allocations: 2.156 KiB)
+  0.000007 seconds
+  0.000032 seconds (378 allocations: 6.938 KiB)
+  0.000005 seconds
+  0.000028 seconds (120 allocations: 2.156 KiB)
+  0.000016 seconds
+  0.000035 seconds (378 allocations: 6.938 KiB)
+
+Testing linear operators syntax
+Test Summary:     | Pass  Total
+AbstractOperators | 1256   1256
+   Testing AbstractOperators tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 14 hours ago and took 5 minutes, 55 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/AbstractOperators/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed URIParser ─────────── v0.4.0
+ Installed Requires ──────────── v0.5.2
+ Installed Reexport ──────────── v0.2.0
+ Installed Conda ─────────────── v1.3.0
+ Installed AbstractFFTs ──────── v0.5.0
+ Installed BinaryProvider ────── v0.5.8
+ Installed Polynomials ───────── v0.6.0
+ Installed AbstractOperators ─── v0.2.2
+ Installed RecipesBase ───────── v0.7.0
+ Installed ArrayInterface ────── v1.2.1
+ Installed Parsers ───────────── v0.3.10
+ Installed JSON ──────────────── v0.21.0
+ Installed RecursiveArrayTools ─ v1.0.2
+ Installed Compat ────────────── v2.2.0
+ Installed DSP ───────────────── v0.6.1
+ Installed FFTW ──────────────── v1.1.0
+ Installed StaticArrays ──────── v0.12.1
+ Installed BinDeps ───────────── v0.8.10
+ Installed SpecialFunctions ──── v0.8.0
+ Installed VersionParsing ────── v1.1.3
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [d9c5613a] + AbstractOperators v0.2.2
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [621f4979] + AbstractFFTs v0.5.0
+  [d9c5613a] + AbstractOperators v0.2.2
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [34da2185] + Compat v2.2.0
+  [8f4d0f93] + Conda v1.3.0
+  [717857b8] + DSP v0.6.1
+  [7a1cc6ca] + FFTW v1.1.0
+  [682c06a0] + JSON v0.21.0
+  [69de0a69] + Parsers v0.3.10
+  [f27b6e38] + Polynomials v0.6.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [731186ca] + RecursiveArrayTools v1.0.2
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [30578b45] + URIParser v0.4.0
+  [81def892] + VersionParsing v1.1.3
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Conda ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building FFTW ────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFTW&#x2F;loJ3F&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing AbstractOperators
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;jl_mSiEnj&#x2F;Manifest.toml`
+  [621f4979] AbstractFFTs v0.5.0
+  [d9c5613a] AbstractOperators v0.2.2
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [34da2185] Compat v2.2.0
+  [8f4d0f93] Conda v1.3.0
+  [717857b8] DSP v0.6.1
+  [7a1cc6ca] FFTW v1.1.0
+  [682c06a0] JSON v0.21.0
+  [69de0a69] Parsers v0.3.10
+  [f27b6e38] Polynomials v0.6.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [30578b45] URIParser v0.4.0
+  [81def892] VersionParsing v1.1.3
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+
+Testing linear operators
+
+★  ℝ^5 -&gt; ℝ^10 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+ℱc  ℝ^4 -&gt; ℝ^4 
+forward preallocated
+  0.000003 seconds (8 allocations: 352 bytes)
+adjoint preallocated
+  0.000009 seconds (13 allocations: 624 bytes)
+
+ℱc⁻¹  ℝ^4 -&gt; ℝ^4 
+forward preallocated
+  0.000011 seconds (13 allocations: 624 bytes)
+adjoint preallocated
+  0.000004 seconds (8 allocations: 352 bytes)
+
+ℱ  ℝ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds (1 allocation: 144 bytes)
+adjoint preallocated
+  0.000000 seconds (1 allocation: 144 bytes)
+
+ℱ  ℂ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ  ℝ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds (1 allocation: 144 bytes)
+adjoint preallocated
+  0.000000 seconds (1 allocation: 144 bytes)
+
+ℱ  ℂ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ  ℝ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds (1 allocation: 144 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 144 bytes)
+
+ℱ  ℂ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ  ℝ^(4, 7) -&gt; ℂ^(4, 7) 
+forward preallocated
+  0.000000 seconds (1 allocation: 544 bytes)
+adjoint preallocated
+  0.000001 seconds (4 allocations: 640 bytes)
+
+ℱ  ℂ^(4, 7) -&gt; ℂ^(4, 7) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ  ℝ^(7, 4) -&gt; ℂ^(7, 4) 
+forward preallocated
+  0.000000 seconds (1 allocation: 544 bytes)
+adjoint preallocated
+  0.000001 seconds (4 allocations: 640 bytes)
+
+ℱ  ℂ^(4, 7) -&gt; ℂ^(4, 7) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ⁻¹  ℝ^5 -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds (1 allocation: 160 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 160 bytes)
+
+ℱ⁻¹  ℂ^5 -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ⁻¹  ℝ^5 -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds (1 allocation: 160 bytes)
+adjoint preallocated
+  0.000000 seconds (1 allocation: 160 bytes)
+
+ℱ⁻¹  ℂ^5 -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ⁻¹  ℝ^(5, 6) -&gt; ℂ^(5, 6) 
+forward preallocated
+  0.000002 seconds (1 allocation: 576 bytes)
+adjoint preallocated
+  0.000001 seconds (6 allocations: 720 bytes)
+
+ℱ⁻¹  ℂ^(5, 6) -&gt; ℂ^(5, 6) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds (3 allocations: 112 bytes)
+
+ℱ⁻¹  ℝ^(6, 5) -&gt; ℂ^(6, 5) 
+forward preallocated
+  0.000001 seconds (1 allocation: 576 bytes)
+adjoint preallocated
+  0.000001 seconds (6 allocations: 720 bytes)
+
+ℱ⁻¹  ℂ^(6, 5) -&gt; ℂ^(6, 5) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds (3 allocations: 112 bytes)
+
+ℱ⁻¹  ℂ^(4, 19, 5) -&gt; ℂ^(4, 19, 5) 
+forward preallocated
+  0.000016 seconds
+adjoint preallocated
+  0.000010 seconds (3 allocations: 128 bytes)
+
+ℱ⁻¹  ℂ^(4, 18, 5) -&gt; ℂ^(4, 18, 5) 
+forward preallocated
+  0.000010 seconds
+adjoint preallocated
+  0.000006 seconds (3 allocations: 128 bytes)
+
+ℱ⁻¹  ℂ^(4, 18, 5) -&gt; ℂ^(4, 18, 5) 
+forward preallocated
+  0.000004 seconds
+adjoint preallocated
+  0.000005 seconds (3 allocations: 128 bytes)
+
+ℱ  ℝ^4 -&gt; ℂ^3 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ  ℝ^(4, 8, 5) -&gt; ℂ^(4, 5, 5) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000004 seconds (3 allocations: 112 bytes)
+
+ℱ⁻¹  ℂ^7 -&gt; ℝ^12 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds (2 allocations: 96 bytes)
+
+ℱ⁻¹  ℂ^6 -&gt; ℝ^11 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds (2 allocations: 96 bytes)
+
+ℱ⁻¹  ℂ^(4, 10, 5) -&gt; ℝ^(4, 19, 5) 
+forward preallocated
+  0.000008 seconds
+adjoint preallocated
+  0.000010 seconds (8 allocations: 384 bytes)
+
+ℱ⁻¹  ℂ^(4, 10, 5) -&gt; ℝ^(4, 18, 5) 
+forward preallocated
+  0.000007 seconds
+adjoint preallocated
+  0.000007 seconds (8 allocations: 384 bytes)
+
+ℱ⁻¹  ℂ^(3, 18, 5) -&gt; ℝ^(5, 18, 5) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000007 seconds (8 allocations: 384 bytes)
+
+╲  ℝ^4 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+╲  ℝ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+╲  ℝ^4 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+╲  ℝ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+I  ℝ^4 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+IIR  ℝ^15 -&gt; ℝ^15 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+FIR  ℝ^(15, 2) -&gt; ℝ^(15, 2) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+δx  ℝ^10 -&gt; ℝ^9 
+forward preallocated
+  0.000001 seconds (1 allocation: 32 bytes)
+adjoint preallocated
+  0.000001 seconds
+
+δx  ℝ^(10, 5) -&gt; ℝ^(9, 5) 
+forward preallocated
+  0.000001 seconds (1 allocation: 64 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+δy  ℝ^(10, 5) -&gt; ℝ^(10, 4) 
+forward preallocated
+  0.000001 seconds (1 allocation: 64 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+δx  ℝ^(10, 5, 7) -&gt; ℝ^(9, 5, 7) 
+forward preallocated
+  0.000003 seconds (1 allocation: 80 bytes)
+adjoint preallocated
+  0.000002 seconds
+
+δy  ℝ^(10, 5, 7) -&gt; ℝ^(10, 4, 7) 
+forward preallocated
+  0.000003 seconds (1 allocation: 80 bytes)
+adjoint preallocated
+  0.000002 seconds
+
+δz  ℝ^(10, 5, 7) -&gt; ℝ^(10, 5, 6) 
+forward preallocated
+  0.000003 seconds (1 allocation: 80 bytes)
+adjoint preallocated
+  0.000003 seconds
+
+δx  ℝ^(5, 6, 2, 3) -&gt; ℝ^(4, 6, 2, 3) 
+forward preallocated
+  0.000002 seconds (1 allocation: 112 bytes)
+adjoint preallocated
+  0.000002 seconds
+
+δx4  ℝ^(5, 6, 2, 3) -&gt; ℝ^(5, 6, 2, 2) 
+forward preallocated
+  0.000002 seconds (1 allocation: 112 bytes)
+adjoint preallocated
+  0.000002 seconds
+
+↓  ℝ^5 -&gt; ℝ^3 
+forward preallocated
+  0.000000 seconds (1 allocation: 48 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+↓  ℝ^(5, 4) -&gt; ℝ^(3, 4) 
+forward preallocated
+  0.000000 seconds (1 allocation: 64 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+↓  ℝ^(5, 4) -&gt; ℝ^5 
+forward preallocated
+  0.000000 seconds (1 allocation: 48 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+↓  ℝ^(5, 4, 3) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000000 seconds (1 allocation: 64 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+▒  ℝ^4 -&gt; ℝ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+▒  ℂ^4 -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+▒  ℂ^4 -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+▒  ℝ^4 -&gt; ℂ^5 
+forward preallocated
+  0.000001 seconds (2 allocations: 64 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 144 bytes)
+
+▒  ℝ^(4, 3) -&gt; ℂ^(5, 3) 
+forward preallocated
+  0.000001 seconds (2 allocations: 64 bytes)
+adjoint preallocated
+  0.000001 seconds (4 allocations: 368 bytes)
+
+(⋅)b  ℝ^(5, 6) -&gt; ℝ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds (5 allocations: 160 bytes)
+
+(⋅)b  ℂ^(5, 6) -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000001 seconds (5 allocations: 160 bytes)
+
+(⋅)b  ℝ^(5, 6) -&gt; ℝ^(5, 7) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+(⋅)b  ℂ^(5, 6) -&gt; ℂ^(5, 7) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+A  ℝ^4 -&gt; ℝ^5 
+forward preallocated
+  0.000002 seconds
+adjoint preallocated
+  0.000002 seconds (1 allocation: 16 bytes)
+
+※  ℝ^(10, 2) -&gt; ℝ^(10, 1) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+※  ℝ^(10, 3) -&gt; ℝ^(10, 2) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+※  ℝ^(10, 3) -&gt; ℝ^(10, 2) 
+forward preallocated
+  0.000002 seconds
+adjoint preallocated
+  0.000002 seconds
+
+Ʋ  ℝ^(10, 5) -&gt; ℝ^(50, 2) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+Ʋ  ℝ^(10, 5, 3) -&gt; ℝ^(150, 3) 
+forward preallocated
+  0.000002 seconds
+adjoint preallocated
+  0.000003 seconds
+
+◎  ℝ^5 -&gt; ℝ^11 
+┌ Warning: The default value of `padmode` will be changing from `:longest` to
+│ `:none` in a future release of DSP. In preparation for this change,
+│ leaving `padmode` unspecified is currently deprecated. To keep
+│ current behavior specify `padmode=:longest`. To avoid this warning,
+│ specify padmode = :none or padmode = :longest where appropriate.
+│   caller = mul!(::Array{Float64,1}, ::Xcorr{Float64,Array{Float64,1}}, ::Array{Float64,1}) at Xcorr.jl:28
+└ @ AbstractOperators ~&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;src&#x2F;linearoperators&#x2F;Xcorr.jl:28
+forward preallocated
+  0.000377 seconds (259 allocations: 21.141 KiB)
+adjoint preallocated
+  0.000038 seconds (134 allocations: 8.547 KiB)
+┌ Warning: The default value of `padmode` will be changing from `:longest` to
+│ `:none` in a future release of DSP. In preparation for this change,
+│ leaving `padmode` unspecified is currently deprecated. To keep
+│ current behavior specify `padmode=:longest`. To avoid this warning,
+│ specify padmode = :none or padmode = :longest where appropriate.
+│   caller = top-level scope at test_linear_operators.jl:932
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;test_linear_operators.jl:932
+
+[I;0]  ℝ^3 -&gt; ℝ^8 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+[I;0]  ℝ^(3, 2) -&gt; ℝ^(8, 5) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+[I;0]  ℝ^(3, 2, 2) -&gt; ℝ^(8, 5, 3) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000000 seconds
+
+0  ℝ^(3, 4) -&gt; ℂ^(5, 2) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+Testing non linear operators
+
+σ  ℝ^4 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+J(σ)  ℝ^4 -&gt; ℝ^4 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+σ  ℝ^(4, 5) -&gt; ℝ^(4, 5) 
+forward preallocated
+  0.000001 seconds (11 allocations: 256 bytes)
+J(σ)  ℝ^(4, 5) -&gt; ℝ^(4, 5) 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (25 allocations: 736 bytes)
+
+σ  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000000 seconds
+J(σ)  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+σ  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+forward preallocated
+  0.000005 seconds (8 allocations: 288 bytes)
+J(σ)  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+adjoint jacobian mul! preallocated
+  0.000013 seconds (9 allocations: 304 bytes)
+
+σ  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+forward preallocated
+  0.000005 seconds (7 allocations: 192 bytes)
+J(σ)  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+adjoint jacobian mul! preallocated
+  0.000012 seconds (15 allocations: 1.484 KiB)
+
+e  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+forward preallocated
+  0.000003 seconds (3 allocations: 112 bytes)
+J(e)  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (9 allocations: 256 bytes)
+
+sin  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+forward preallocated
+  0.000003 seconds (3 allocations: 112 bytes)
+J(sin)  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (9 allocations: 256 bytes)
+
+cos  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+forward preallocated
+  0.000003 seconds (3 allocations: 112 bytes)
+J(cos)  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+adjoint jacobian mul! preallocated
+  0.000013 seconds (15 allocations: 2.563 KiB)
+
+atan  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000000 seconds
+J(atan)  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+tanh  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000001 seconds
+J(tanh)  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+『  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000000 seconds
+J(『)  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+『  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000001 seconds
+J(『)  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+Testing linear operators calculus rules
+
+▒*▒  ℝ^4 -&gt; ℝ^3 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+Π  ℝ^4 -&gt; ℝ^2 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+Π  ℝ^4 -&gt; ℝ^2 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+[▒,0;0,▒]  ℝ^7  ℝ^2 -&gt; ℝ^4  ℝ^5 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+DCAT  ℝ^7  ℝ^2  ℝ^5 -&gt; ℝ^4  ℝ^5  ℝ^5 
+forward preallocated
+  0.000002 seconds
+adjoint preallocated
+  0.000002 seconds
+
+[I,0;0,I]  ℝ^4  ℝ^7 -&gt; ℝ^4  ℝ^7 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+[▒,▒]  ℝ^7  ℝ^5 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000020 seconds
+
+[▒,▒]  ℝ^5  ℝ^7 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000001 seconds
+
+HCAT  ℝ^7  ℝ^5  ℝ^6 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+HCAT  ℝ^7 ... ℝ^6 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+HCAT  ℝ^7 ... ℝ^6 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000002 seconds
+
+HCAT  ℝ^7 ... ℝ^6 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000002 seconds
+
+HCAT  ℝ^5 ... ℝ^6 -&gt; ℝ^4 
+forward preallocated
+  0.000026 seconds
+adjoint preallocated
+  0.000002 seconds
+
+¶▒  ℝ^4 -&gt; ℝ^(2, 2, 2) 
+forward preallocated
+  0.000001 seconds (4 allocations: 128 bytes)
+adjoint preallocated
+  0.000002 seconds (5 allocations: 144 bytes)
+
+α▒  ℝ^4 -&gt; ℝ^8 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+α▒  ℝ^4 -&gt; ℝ^8 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000002 seconds
+
+αℱ  ℝ^(8, 4) -&gt; ℂ^(8, 4) 
+forward preallocated
+  0.000001 seconds (4 allocations: 720 bytes)
+adjoint preallocated
+  0.000002 seconds (8 allocations: 832 bytes)
+
+▒+▒  ℝ^7 -&gt; ℝ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+Σ  ℝ^7 -&gt; ℝ^5 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+▒ᵃ  ℝ^5 -&gt; ℝ^7 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+[▒;▒]  ℝ^5 -&gt; ℝ^4  ℝ^7 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000000 seconds
+
+[▒;ℱᵃ]  ℂ^5 -&gt; ℂ^4  ℝ^5 
+forward preallocated
+  0.000001 seconds (1 allocation: 160 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 160 bytes)
+
+VCAT  ℝ^5 -&gt; ℝ^4  ℝ^7  ℝ^3 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+VCAT  ℝ^5 -&gt; ℝ^4 ... ℝ^3 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+VCAT  ℝ^5 -&gt; ℝ^4 ... ℝ^3 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+.▒  ℝ^4 -&gt; ℝ^(8, 10) 
+forward preallocated
+  0.000000 seconds (3 allocations: 80 bytes)
+adjoint preallocated
+  0.000002 seconds (10 allocations: 480 bytes)
+
+.I  ℝ^(8, 4) -&gt; ℝ^(8, 4, 5, 7) 
+forward preallocated
+  0.000004 seconds (3 allocations: 112 bytes)
+adjoint preallocated
+  0.000024 seconds (175 allocations: 7.656 KiB)
+
+.I  ℝ^1 -&gt; ℝ^(1, 5) 
+forward preallocated
+  0.000000 seconds (3 allocations: 80 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+.I  ℝ^(1, 5) -&gt; ℝ^(4, 5) 
+forward preallocated
+  0.000000 seconds (3 allocations: 96 bytes)
+adjoint preallocated
+  0.000001 seconds (24 allocations: 896 bytes)
+
+[I,.I]  ℝ^(4, 5)  ℝ^(1, 5) -&gt; ℝ^(4, 5) 
+forward preallocated
+  0.000001 seconds (7 allocations: 256 bytes)
+adjoint preallocated
+  0.000003 seconds (25 allocations: 912 bytes)
+
+.I  ℝ^2 -&gt; ℝ^(2, 5, 8) 
+forward preallocated
+  0.000000 seconds (3 allocations: 96 bytes)
+adjoint preallocated
+  0.000004 seconds (40 allocations: 2.500 KiB)
+
+.I  ℝ^1 -&gt; ℝ^(1, 5, 8) 
+forward preallocated
+  0.000000 seconds (3 allocations: 96 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+.αI  ℝ^1 -&gt; ℝ^(1, 5, 8) 
+forward preallocated
+  0.000000 seconds (3 allocations: 96 bytes)
+adjoint preallocated
+  0.000002 seconds (41 allocations: 736 bytes)
+▒+d  ℝ^6 -&gt; ℝ^5 
+▒-d  ℝ^6 -&gt; ℝ^5 
+▒+d  ℝ^6 -&gt; ℝ^5 
+▒+d-d  ℝ^6 -&gt; ℝ^5 
+
+▒*[▒,▒]  ℝ^4  ℝ^7 -&gt; ℝ^2 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+▒*[▒,▒]  ℝ^7  ℝ^4 -&gt; ℝ^2 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+[▒*[▒,▒],▒]  ℝ^4  ℝ^7  ℝ^10 -&gt; ℝ^2 
+forward preallocated
+  0.000001 seconds (2 allocations: 48 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 32 bytes)
+
+[▒*[▒,▒],▒]  ℝ^10  ℝ^7  ℝ^4 -&gt; ℝ^2 
+forward preallocated
+  0.000001 seconds (2 allocations: 48 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 32 bytes)
+
+[▒*[▒,▒],▒]  ℝ^4  ℝ^10  ℝ^7 -&gt; ℝ^2 
+forward preallocated
+  0.000001 seconds (2 allocations: 48 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 32 bytes)
+
+[[▒,▒];[▒,▒]]  ℝ^4  ℝ^7 -&gt; ℝ^3  ℝ^5 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000002 seconds (11 allocations: 272 bytes)
+
+[[▒,ℱ];[▒,ℱ]]  ℂ^4  ℝ^5 -&gt; ℂ^5  ℂ^5 
+forward preallocated
+  0.000001 seconds (2 allocations: 320 bytes)
+adjoint preallocated
+  0.000005 seconds (21 allocations: 752 bytes)
+
+[[▒;▒],[▒;▒]]  ℝ^3  ℝ^5 -&gt; ℝ^4  ℝ^7 
+forward preallocated
+  0.000001 seconds (11 allocations: 272 bytes)
+adjoint preallocated
+  0.000001 seconds (2 allocations: 32 bytes)
+
+HCAT+HCAT  ℝ^7  ℝ^5  ℝ^3 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds (15 allocations: 384 bytes)
+
+HCAT+HCAT  ℝ^3  ℝ^5  ℝ^7 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000002 seconds (15 allocations: 384 bytes)
+
+Σ  ℝ^5 -&gt; ℝ^4  ℝ^7 
+forward preallocated
+  0.000002 seconds (22 allocations: 544 bytes)
+adjoint preallocated
+  0.000001 seconds (3 allocations: 48 bytes)
+
+α[▒,0;0,▒]  ℝ^7  ℝ^5 -&gt; ℝ^4  ℝ^3 
+forward preallocated
+  0.000013 seconds (8 allocations: 192 bytes)
+adjoint preallocated
+  0.000002 seconds (8 allocations: 192 bytes)
+
+α[▒;▒]  ℝ^7 -&gt; ℝ^4  ℝ^3 
+forward preallocated
+  0.000001 seconds (8 allocations: 192 bytes)
+adjoint preallocated
+  0.000003 seconds (1 allocation: 16 bytes)
+
+α[▒,▒]  ℝ^3  ℝ^7 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds (8 allocations: 192 bytes)
+
+[▒,0;0,HCAT]  ℝ^4 ... ℝ^5 -&gt; ℝ^2  ℝ^3 
+forward preallocated
+  0.000001 seconds (2 allocations: 48 bytes)
+adjoint preallocated
+  0.000002 seconds (1 allocation: 32 bytes)
+
+[[▒,▒],0;0,HCAT]  ℝ^4 ... ℝ^5 -&gt; ℝ^2  ℝ^3 
+forward preallocated
+  0.000001 seconds (4 allocations: 96 bytes)
+adjoint preallocated
+  0.000001 seconds (2 allocations: 64 bytes)
+
+α▒+▒  ℝ^7 -&gt; ℝ^5 
+forward preallocated
+  0.000002 seconds
+adjoint preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+α▒*▒  ℝ^4 -&gt; ℝ^3 
+forward preallocated
+  0.000003 seconds
+adjoint preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+Testing  calculus non linear operators
+
+ασ  ℝ^3 -&gt; ℝ^3 
+forward preallocated
+  0.000000 seconds
+αJ(σ)  ℝ^3 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (2 allocations: 32 bytes)
+
+α『  ℝ^3 -&gt; ℝ^3 
+forward preallocated
+  0.000000 seconds
+αJ(『)  ℝ^3 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (2 allocations: 32 bytes)
+Internal error: encountered unexpected error in runtime:
+MethodError(f=typeof(Base.string)(), args=(Expr(:&lt;:, :t, :r),), world=0x0000000000000eec)
+rec_backtrace at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;stackwalk.c:94
+record_backtrace at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;task.c:219 [inlined]
+jl_throw at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;task.c:429
+jl_method_error_bare at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;gf.c:1606
+jl_method_error at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;gf.c:1624
+jl_lookup_generic_ at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;gf.c:2161 [inlined]
+jl_apply_generic at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;gf.c:2182
+limit_type_size at .&#x2F;compiler&#x2F;typelimits.jl:23
+jfptr_limit_type_size_4348.clone_1 at &#x2F;opt&#x2F;julia&#x2F;lib&#x2F;julia&#x2F;sys.so (unknown line)
+jl_apply_generic at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;gf.c:2191
+abstract_call_method at .&#x2F;compiler&#x2F;abstractinterpretation.jl:331
+abstract_call_gf_by_type at .&#x2F;compiler&#x2F;abstractinterpretation.jl:93
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:818
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:608
+abstract_eval_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:847
+abstract_eval at .&#x2F;compiler&#x2F;abstractinterpretation.jl:917
+typeinf_local at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1174
+typeinf_nocycle at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1230
+typeinf at .&#x2F;compiler&#x2F;typeinfer.jl:12
+typeinf_edge at .&#x2F;compiler&#x2F;typeinfer.jl:482
+abstract_call_method at .&#x2F;compiler&#x2F;abstractinterpretation.jl:376
+abstract_call_gf_by_type at .&#x2F;compiler&#x2F;abstractinterpretation.jl:93
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:818
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:608
+abstract_eval_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:847
+abstract_eval at .&#x2F;compiler&#x2F;abstractinterpretation.jl:917
+typeinf_local at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1174
+typeinf_nocycle at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1230
+typeinf at .&#x2F;compiler&#x2F;typeinfer.jl:12
+typeinf_edge at .&#x2F;compiler&#x2F;typeinfer.jl:482
+abstract_call_method at .&#x2F;compiler&#x2F;abstractinterpretation.jl:376
+abstract_call_gf_by_type at .&#x2F;compiler&#x2F;abstractinterpretation.jl:93
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:818
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:608
+abstract_eval_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:847
+abstract_eval at .&#x2F;compiler&#x2F;abstractinterpretation.jl:917
+typeinf_local at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1160
+typeinf_nocycle at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1230
+typeinf at .&#x2F;compiler&#x2F;typeinfer.jl:12
+typeinf_edge at .&#x2F;compiler&#x2F;typeinfer.jl:482
+abstract_call_method at .&#x2F;compiler&#x2F;abstractinterpretation.jl:376
+abstract_call_gf_by_type at .&#x2F;compiler&#x2F;abstractinterpretation.jl:93
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:818
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:608
+abstract_eval_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:847
+abstract_eval at .&#x2F;compiler&#x2F;abstractinterpretation.jl:917
+typeinf_local at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1160
+typeinf_nocycle at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1230
+typeinf at .&#x2F;compiler&#x2F;typeinfer.jl:12
+typeinf_edge at .&#x2F;compiler&#x2F;typeinfer.jl:482
+abstract_call_method at .&#x2F;compiler&#x2F;abstractinterpretation.jl:376
+abstract_call_gf_by_type at .&#x2F;compiler&#x2F;abstractinterpretation.jl:93
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:818
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:608
+abstract_eval_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:847
+abstract_eval at .&#x2F;compiler&#x2F;abstractinterpretation.jl:917
+typeinf_local at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1174
+typeinf_nocycle at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1230
+typeinf at .&#x2F;compiler&#x2F;typeinfer.jl:12
+typeinf_edge at .&#x2F;compiler&#x2F;typeinfer.jl:482
+abstract_call_method at .&#x2F;compiler&#x2F;abstractinterpretation.jl:376
+abstract_call_gf_by_type at .&#x2F;compiler&#x2F;abstractinterpretation.jl:93
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:818
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:608
+abstract_eval_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:847
+abstract_eval at .&#x2F;compiler&#x2F;abstractinterpretation.jl:917
+typeinf_local at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1174
+typeinf_nocycle at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1230
+typeinf at .&#x2F;compiler&#x2F;typeinfer.jl:12
+typeinf_edge at .&#x2F;compiler&#x2F;typeinfer.jl:482
+abstract_call_method at .&#x2F;compiler&#x2F;abstractinterpretation.jl:376
+abstract_call_gf_by_type at .&#x2F;compiler&#x2F;abstractinterpretation.jl:93
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:818
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:608
+abstract_eval_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:847
+abstract_eval at .&#x2F;compiler&#x2F;abstractinterpretation.jl:917
+typeinf_local at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1174
+typeinf_nocycle at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1230
+typeinf at .&#x2F;compiler&#x2F;typeinfer.jl:12
+typeinf_edge at .&#x2F;compiler&#x2F;typeinfer.jl:482
+abstract_call_method at .&#x2F;compiler&#x2F;abstractinterpretation.jl:376
+abstract_call_gf_by_type at .&#x2F;compiler&#x2F;abstractinterpretation.jl:93
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:818
+jfptr_abstract_call_591.clone_1 at &#x2F;opt&#x2F;julia&#x2F;lib&#x2F;julia&#x2F;sys.so (unknown line)
+jl_apply_generic at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;gf.c:2191
+abstract_apply at .&#x2F;compiler&#x2F;abstractinterpretation.jl:561
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:609
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:608
+abstract_eval_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:847
+abstract_eval at .&#x2F;compiler&#x2F;abstractinterpretation.jl:917
+typeinf_local at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1174
+typeinf_nocycle at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1230
+typeinf at .&#x2F;compiler&#x2F;typeinfer.jl:12
+typeinf_edge at .&#x2F;compiler&#x2F;typeinfer.jl:482
+abstract_call_method at .&#x2F;compiler&#x2F;abstractinterpretation.jl:376
+abstract_call_gf_by_type at .&#x2F;compiler&#x2F;abstractinterpretation.jl:93
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:818
+jfptr_abstract_call_591.clone_1 at &#x2F;opt&#x2F;julia&#x2F;lib&#x2F;julia&#x2F;sys.so (unknown line)
+jl_apply_generic at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;gf.c:2191
+abstract_apply at .&#x2F;compiler&#x2F;abstractinterpretation.jl:561
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:609
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:608
+abstract_eval_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:847
+abstract_eval at .&#x2F;compiler&#x2F;abstractinterpretation.jl:917
+typeinf_local at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1174
+typeinf_nocycle at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1230
+typeinf at .&#x2F;compiler&#x2F;typeinfer.jl:12
+typeinf_edge at .&#x2F;compiler&#x2F;typeinfer.jl:482
+abstract_call_method at .&#x2F;compiler&#x2F;abstractinterpretation.jl:376
+abstract_call_gf_by_type at .&#x2F;compiler&#x2F;abstractinterpretation.jl:93
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:818
+abstract_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:608
+abstract_eval_call at .&#x2F;compiler&#x2F;abstractinterpretation.jl:847
+abstract_eval at .&#x2F;compiler&#x2F;abstractinterpretation.jl:917
+typeinf_local at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1174
+typeinf_nocycle at .&#x2F;compiler&#x2F;abstractinterpretation.jl:1230
+typeinf at .&#x2F;compiler&#x2F;typeinfer.jl:12
+typeinf_ext at .&#x2F;compiler&#x2F;typeinfer.jl:568
+typeinf_ext at .&#x2F;compiler&#x2F;typeinfer.jl:599
+jfptr_typeinf_ext_1.clone_1 at &#x2F;opt&#x2F;julia&#x2F;lib&#x2F;julia&#x2F;sys.so (unknown line)
+jl_apply_generic at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;gf.c:2191
+jl_apply at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;julia.h:1614 [inlined]
+jl_type_infer at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;gf.c:207
+jl_compile_method_internal at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;gf.c:1773
+jl_apply_generic at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;gf.c:2196
+do_call at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:323
+eval_value at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:411
+eval_stmt_value at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:362 [inlined]
+eval_body at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:772
+jl_interpret_toplevel_thunk_callback at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:884
+Interpreter frame (ip: 0)
+Core.CodeInfo(code=Array{Any, (9,)}[
+  Expr(:call, :test_NLop, :op, :x, :r, :verb),
+  Expr(:call, Base.indexed_iterate, SSAValue(1), 1),
+  Expr(:call, Core.getfield, SSAValue(2), 1),
+  :y = SSAValue(3),
+  Core.SlotNumber(id=1) = Expr(:call, Core.getfield, SSAValue(2), 2),
+  Expr(:call, Base.indexed_iterate, SSAValue(1), 2, Core.SlotNumber(id=1)),
+  Expr(:call, Core.getfield, SSAValue(6), 1),
+  :grad = SSAValue(7),
+  Expr(:return, nothing)], codelocs=Array{Int32, (9,)}[1, 1, 1, 1, 1, 1, 1, 1, 1], ssavaluetypes=9, ssaflags=Array{UInt8, (0,)}[], method_for_inference_limit_heuristics=nothing, linetable=Array{Any, (1,)}[Core.LineInfoNode(method=Symbol(&quot;top-level scope&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;test_nonlinear_operators_calculus.jl&quot;), line=33, inlined_at=0)], slotnames=Array{Symbol, (1,)}[Symbol(&quot;#s76&quot;)], slotflags=Array{UInt8, (1,)}[0x18], slottypes=nothing, rettype=Any, parent=nothing, min_world=1, max_world=-1, inferred=false, inlineable=false, propagate_inbounds=false, pure=false)jl_interpret_toplevel_thunk at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:893
+jl_toplevel_eval_flex at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;toplevel.c:815
+jl_parse_eval_all at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;ast.c:873
+jl_load at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;toplevel.c:879
+include at .&#x2F;boot.jl:328 [inlined]
+include_relative at .&#x2F;loading.jl:1094
+include at .&#x2F;Base.jl:31
+jl_apply_generic at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;gf.c:2191
+include at .&#x2F;client.jl:431
+jl_apply_generic at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;gf.c:2191
+do_call at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:323
+eval_value at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:411
+eval_stmt_value at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:362 [inlined]
+eval_body at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:772
+eval_body at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:699
+eval_body at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:699
+eval_body at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:699
+eval_body at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:699
+jl_interpret_toplevel_thunk_callback at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:884
+Interpreter frame (ip: 292)
+Core.CodeInfo(code=Array{Any, (481,)}[
+  Expr(:call, Test.get_testset_depth),
+  Expr(:call, Test.:(==), SSAValue(1), 0),
+  Expr(:gotoifnot, SSAValue(2), 6),
+  Core.SlotNumber(id=20) = Test.DefaultTestSet,
+  goto 8,
+  Expr(:call, Test.get_testset),
+  Core.SlotNumber(id=20) = Expr(:call, Test.typeof, SSAValue(6)),
+  Core.SlotNumber(id=20),
+  Expr(:call, Test._check_testset, SSAValue(8), quote Expr(:call, :==, Expr(:call, :get_testset_depth), 0) end),
+  Expr(:call, Test.get_testset_depth),
+  Expr(:call, Test.:(==), SSAValue(10), 0),
+  Expr(:gotoifnot, SSAValue(11), 15),
+  Core.SlotNumber(id=21) = Test.DefaultTestSet,
+  goto 17,
+  Expr(:call, Test.get_testset),
+  Core.SlotNumber(id=21) = Expr(:call, Test.typeof, SSAValue(15)),
+  Core.SlotNumber(id=21),
+  SSAValue(17),
+  Expr(:call, Base.NamedTuple),
+  Expr(:call, Core.apply_type, Test.Dict, Test.Symbol, Test.Any),
+  Expr(:call, SSAValue(20)),
+  Expr(:call, Base.merge, SSAValue(19), SSAValue(21)),
+  Expr(:call, Base.isempty, SSAValue(22)),
+  Expr(:gotoifnot, SSAValue(23), 27),
+  Core.SlotNumber(id=22) = Expr(:call, SSAValue(18), &quot;AbstractOperators&quot;),
+  goto 29,
+  Expr(:call, Core.kwfunc, SSAValue(18)),
+  Core.SlotNumber(id=22) = Expr(:call, SSAValue(27), SSAValue(22), SSAValue(18), &quot;AbstractOperators&quot;),
+  Symbol(&quot;#35#ts&quot;) = Core.SlotNumber(id=22),
+  Expr(:gotoifnot, false, 32),
+  goto 30,
+  Expr(:call, Test.push_testset, Symbol(&quot;#35#ts&quot;)),
+  Expr(:call, Test.copy, Test.GLOBAL_RNG),
+  Symbol(&quot;#36#oldrng&quot;) = SSAValue(33),
+  Expr(:enter, 473),
+  Core.SlotNumber(id=23) = -1,
+  Expr(:enter, 457),
+  &lt;newvar #&lt;1&gt;&gt;,
+  &lt;newvar #&lt;2&gt;&gt;,
+  &lt;newvar #&lt;3&gt;&gt;,
+  &lt;newvar #&lt;4&gt;&gt;,
+  &lt;newvar #&lt;5&gt;&gt;,
+  &lt;newvar #&lt;6&gt;&gt;,
+  &lt;newvar #&lt;7&gt;&gt;,
+  &lt;newvar #&lt;8&gt;&gt;,
+  &lt;newvar #&lt;9&gt;&gt;,
+  &lt;newvar #&lt;10&gt;&gt;,
+  &lt;newvar #&lt;11&gt;&gt;,
+  &lt;newvar #&lt;12&gt;&gt;,
+  Expr(:call, Base.getproperty, Test.Random, :(:seed!)),
+  Expr(:call, Base.getproperty, Test.GLOBAL_RNG, :(:seed)),
+  Expr(:call, SSAValue(50), SSAValue(51)),
+  Expr(:call, Test.get_testset_depth),
+  Expr(:call, Test.:(==), SSAValue(53), 0),
+  Expr(:gotoifnot, SSAValue(54), 58),
+  Core.SlotNumber(id=24) = Test.DefaultTestSet,
+  goto 60,
+  Expr(:call, Test.get_testset),
+  Core.SlotNumber(id=24) = Expr(:call, Test.typeof, SSAValue(58)),
+  Core.SlotNumber(id=24),
+  Expr(:call, Test._check_testset, SSAValue(60), quote Expr(:call, :==, Expr(:call, :get_testset_depth), 0) end),
+  Expr(:call, Test.get_testset_depth),
+  Expr(:call, Test.:(==), SSAValue(62), 0),
+  Expr(:gotoifnot, SSAValue(63), 67),
+  Core.SlotNumber(id=25) = Test.DefaultTestSet,
+  goto 69,
+  Expr(:call, Test.get_testset),
+  Core.SlotNumber(id=25) = Expr(:call, Test.typeof, SSAValue(67)),
+  Core.SlotNumber(id=25),
+  SSAValue(69),
+  Expr(:call, Base.NamedTuple),
+  Expr(:call, Core.apply_type, Test.Dict, Test.Symbol, Test.Any),
+  Expr(:call, SSAValue(72)),
+  Expr(:call, Base.merge, SSAValue(71), SSAValue(73)),
+  Expr(:call, Base.isempty, SSAValue(74)),
+  Expr(:gotoifnot, SSAValue(75), 79),
+  Core.SlotNumber(id=26) = Expr(:call, SSAValue(70), &quot;Linear operators&quot;),
+  goto 81,
+  Expr(:call, Core.kwfunc, SSAValue(70)),
+  Core.SlotNumber(id=26) = Expr(:call, SSAValue(79), SSAValue(74), SSAValue(70), &quot;Linear operators&quot;),
+  Core.SlotNumber(id=1) = Core.SlotNumber(id=26),
+  Expr(:gotoifnot, false, 84),
+  goto 82,
+  Expr(:call, Test.push_testset, Core.SlotNumber(id=1)),
+  Core.SlotNumber(id=2) = Expr(:call, Test.copy, Test.GLOBAL_RNG),
+  Expr(:enter, 112),
+  Core.SlotNumber(id=27) = -1,
+  Expr(:enter, 95),
+  Expr(:call, Base.getproperty, Test.Random, :(:seed!)),
+  Expr(:call, Base.getproperty, Test.GLOBAL_RNG, :(:seed)),
+  Expr(:call, SSAValue(89), SSAValue(90)),
+  Expr(:call, :include, &quot;test_linear_operators.jl&quot;),
+  Expr(:leave, 1),
+  goto 110,
+  Expr(:leave, 1),
+  Core.SlotNumber(id=13) = Expr(:the_exception),
+  Expr(:call, Test.isa, Core.SlotNumber(id=13), Test.InterruptException),
+  Expr(:gotoifnot, SSAValue(97), 101),
+  Expr(:call, Test.rethrow),
+  goto 102,
+  false,
+  Core.SlotNumber(id=1),
+  Expr(:copyast, quote Expr(:tuple) end),
+  Core.SlotNumber(id=13),
+  Expr(:call, Base.getproperty, Test.Base, :(:catch_stack)),
+  Expr(:call, SSAValue(105)),
+  Expr(:call, Test.Error, :(:nontest_error), SSAValue(103), SSAValue(104), SSAValue(106), quote #= Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;):14 =# end),
+  Expr(:call, Test.record, SSAValue(102), SSAValue(107)),
+  Expr(:pop_exception, SSAValue(88)),
+  Expr(:leave, 1),
+  goto 114,
+  Expr(:leave, 1),
+  Core.SlotNumber(id=27) = 1,
+  Expr(:call, Test.copy!, Test.GLOBAL_RNG, Core.SlotNumber(id=2)),
+  Expr(:call, Core.:(===), Core.SlotNumber(id=27), 1),
+  Expr(:gotoifnot, SSAValue(115), 118),
+  Expr(:call, Base.rethrow),
+  Expr(:call, Test.pop_testset),
+  Expr(:call, Test.finish, Core.SlotNumber(id=1)),
+  Expr(:call, Test.get_testset_depth),
+  Expr(:call, Test.:(==), SSAValue(120), 0),
+  Expr(:gotoifnot, SSAValue(121), 125),
+  Core.SlotNumber(id=28) = Test.DefaultTestSet,
+  goto 127,
+  Expr(:call, Test.get_testset),
+  Core.SlotNumber(id=28) = Expr(:call, Test.typeof, SSAValue(125)),
+  Core.SlotNumber(id=28),
+  Expr(:call, Test._check_testset, SSAValue(127), quote Expr(:call, :==, Expr(:call, :get_testset_depth), 0) end),
+  Expr(:call, Test.get_testset_depth),
+  Expr(:call, Test.:(==), SSAValue(129), 0),
+  Expr(:gotoifnot, SSAValue(130), 134),
+  Core.SlotNumber(id=29) = Test.DefaultTestSet,
+  goto 136,
+  Expr(:call, Test.get_testset),
+  Core.SlotNumber(id=29) = Expr(:call, Test.typeof, SSAValue(134)),
+  Core.SlotNumber(id=29),
+  SSAValue(136),
+  Expr(:call, Base.NamedTuple),
+  Expr(:call, Core.apply_type, Test.Dict, Test.Symbol, Test.Any),
+  Expr(:call, SSAValue(139)),
+  Expr(:call, Base.merge, SSAValue(138), SSAValue(140)),
+  Expr(:call, Base.isempty, SSAValue(141)),
+  Expr(:gotoifnot, SSAValue(142), 146),
+  Core.SlotNumber(id=30) = Expr(:call, SSAValue(137), &quot;Non-Linear operators&quot;),
+  goto 148,
+  Expr(:call, Core.kwfunc, SSAValue(137)),
+  Core.SlotNumber(id=30) = Expr(:call, SSAValue(146), SSAValue(141), SSAValue(137), &quot;Non-Linear operators&quot;),
+  Core.SlotNumber(id=3) = Core.SlotNumber(id=30),
+  Expr(:gotoifnot, false, 151),
+  goto 149,
+  Expr(:call, Test.push_testset, Core.SlotNumber(id=3)),
+  Core.SlotNumber(id=4) = Expr(:call, Test.copy, Test.GLOBAL_RNG),
+  Expr(:enter, 179),
+  Core.SlotNumber(id=31) = -1,
+  Expr(:enter, 162),
+  Expr(:call, Base.getproperty, Test.Random, :(:seed!)),
+  Expr(:call, Base.getproperty, Test.GLOBAL_RNG, :(:seed)),
+  Expr(:call, SSAValue(156), SSAValue(157)),
+  Expr(:call, :include, &quot;test_nonlinear_operators.jl&quot;),
+  Expr(:leave, 1),
+  goto 177,
+  Expr(:leave, 1),
+  Core.SlotNumber(id=14) = Expr(:the_exception),
+  Expr(:call, Test.isa, Core.SlotNumber(id=14), Test.InterruptException),
+  Expr(:gotoifnot, SSAValue(164), 168),
+  Expr(:call, Test.rethrow),
+  goto 169,
+  false,
+  Core.SlotNumber(id=3),
+  Expr(:copyast, quote Expr(:tuple) end),
+  Core.SlotNumber(id=14),
+  Expr(:call, Base.getproperty, Test.Base, :(:catch_stack)),
+  Expr(:call, SSAValue(172)),
+  Expr(:call, Test.Error, :(:nontest_error), SSAValue(170), SSAValue(171), SSAValue(173), quote #= Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;):18 =# end),
+  Expr(:call, Test.record, SSAValue(169), SSAValue(174)),
+  Expr(:pop_exception, SSAValue(155)),
+  Expr(:leave, 1),
+  goto 181,
+  Expr(:leave, 1),
+  Core.SlotNumber(id=31) = 1,
+  Expr(:call, Test.copy!, Test.GLOBAL_RNG, Core.SlotNumber(id=4)),
+  Expr(:call, Core.:(===), Core.SlotNumber(id=31), 1),
+  Expr(:gotoifnot, SSAValue(182), 185),
+  Expr(:call, Base.rethrow),
+  Expr(:call, Test.pop_testset),
+  Expr(:call, Test.finish, Core.SlotNumber(id=3)),
+  Expr(:call, Test.get_testset_depth),
+  Expr(:call, Test.:(==), SSAValue(187), 0),
+  Expr(:gotoifnot, SSAValue(188), 192),
+  Core.SlotNumber(id=32) = Test.DefaultTestSet,
+  goto 194,
+  Expr(:call, Test.get_testset),
+  Core.SlotNumber(id=32) = Expr(:call, Test.typeof, SSAValue(192)),
+  Core.SlotNumber(id=32),
+  Expr(:call, Test._check_testset, SSAValue(194), quote Expr(:call, :==, Expr(:call, :get_testset_depth), 0) end),
+  Expr(:call, Test.get_testset_depth),
+  Expr(:call, Test.:(==), SSAValue(196), 0),
+  Expr(:gotoifnot, SSAValue(197), 201),
+  Core.SlotNumber(id=33) = Test.DefaultTestSet,
+  goto 203,
+  Expr(:call, Test.get_testset),
+  Core.SlotNumber(id=33) = Expr(:call, Test.typeof, SSAValue(201)),
+  Core.SlotNumber(id=33),
+  SSAValue(203),
+  Expr(:call, Base.NamedTuple),
+  Expr(:call, Core.apply_type, Test.Dict, Test.Symbol, Test.Any),
+  Expr(:call, SSAValue(206)),
+  Expr(:call, Base.merge, SSAValue(205), SSAValue(207)),
+  Expr(:call, Base.isempty, SSAValue(208)),
+  Expr(:gotoifnot, SSAValue(209), 213),
+  Core.SlotNumber(id=34) = Expr(:call, SSAValue(204), &quot;Linear Calculus rules&quot;),
+  goto 215,
+  Expr(:call, Core.kwfunc, SSAValue(204)),
+  Core.SlotNumber(id=34) = Expr(:call, SSAValue(213), SSAValue(208), SSAValue(204), &quot;Linear Calculus rules&quot;),
+  Core.SlotNumber(id=5) = Core.SlotNumber(id=34),
+  Expr(:gotoifnot, false, 218),
+  goto 216,
+  Expr(:call, Test.push_testset, Core.SlotNumber(id=5)),
+  Core.SlotNumber(id=6) = Expr(:call, Test.copy, Test.GLOBAL_RNG),
+  Expr(:enter, 246),
+  Core.SlotNumber(id=35) = -1,
+  Expr(:enter, 229),
+  Expr(:call, Base.getproperty, Test.Random, :(:seed!)),
+  Expr(:call, Base.getproperty, Test.GLOBAL_RNG, :(:seed)),
+  Expr(:call, SSAValue(223), SSAValue(224)),
+  Expr(:call, :include, &quot;test_linear_operators_calculus.jl&quot;),
+  Expr(:leave, 1),
+  goto 244,
+  Expr(:leave, 1),
+  Core.SlotNumber(id=15) = Expr(:the_exception),
+  Expr(:call, Test.isa, Core.SlotNumber(id=15), Test.InterruptException),
+  Expr(:gotoifnot, SSAValue(231), 235),
+  Expr(:call, Test.rethrow),
+  goto 236,
+  false,
+  Core.SlotNumber(id=5),
+  Expr(:copyast, quote Expr(:tuple) end),
+  Core.SlotNumber(id=15),
+  Expr(:call, Base.getproperty, Test.Base, :(:catch_stack)),
+  Expr(:call, SSAValue(239)),
+  Expr(:call, Test.Error, :(:nontest_error), SSAValue(237), SSAValue(238), SSAValue(240), quote #= Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;):22 =# end),
+  Expr(:call, Test.record, SSAValue(236), SSAValue(241)),
+  Expr(:pop_exception, SSAValue(222)),
+  Expr(:leave, 1),
+  goto 248,
+  Expr(:leave, 1),
+  Core.SlotNumber(id=35) = 1,
+  Expr(:call, Test.copy!, Test.GLOBAL_RNG, Core.SlotNumber(id=6)),
+  Expr(:call, Core.:(===), Core.SlotNumber(id=35), 1),
+  Expr(:gotoifnot, SSAValue(249), 252),
+  Expr(:call, Base.rethrow),
+  Expr(:call, Test.pop_testset),
+  Expr(:call, Test.finish, Core.SlotNumber(id=5)),
+  Expr(:call, Test.get_testset_depth),
+  Expr(:call, Test.:(==), SSAValue(254), 0),
+  Expr(:gotoifnot, SSAValue(255), 259),
+  Core.SlotNumber(id=36) = Test.DefaultTestSet,
+  goto 261,
+  Expr(:call, Test.get_testset),
+  Core.SlotNumber(id=36) = Expr(:call, Test.typeof, SSAValue(259)),
+  Core.SlotNumber(id=36),
+  Expr(:call, Test._check_testset, SSAValue(261), quote Expr(:call, :==, Expr(:call, :get_testset_depth), 0) end),
+  Expr(:call, Test.get_testset_depth),
+  Expr(:call, Test.:(==), SSAValue(263), 0),
+  Expr(:gotoifnot, SSAValue(264), 268),
+  Core.SlotNumber(id=37) = Test.DefaultTestSet,
+  goto 270,
+  Expr(:call, Test.get_testset),
+  Core.SlotNumber(id=37) = Expr(:call, Test.typeof, SSAValue(268)),
+  Core.SlotNumber(id=37),
+  SSAValue(270),
+  Expr(:call, Base.NamedTuple),
+  Expr(:call, Core.apply_type, Test.Dict, Test.Symbol, Test.Any),
+  Expr(:call, SSAValue(273)),
+  Expr(:call, Base.merge, SSAValue(272), SSAValue(274)),
+  Expr(:call, Base.isempty, SSAValue(275)),
+  Expr(:gotoifnot, SSAValue(276), 280),
+  Core.SlotNumber(id=38) = Expr(:call, SSAValue(271), &quot;Nonlinear Calculus rules&quot;),
+  goto 282,
+  Expr(:call, Core.kwfunc, SSAValue(271)),
+  Core.SlotNumber(id=38) = Expr(:call, SSAValue(280), SSAValue(275), SSAValue(271), &quot;Nonlinear Calculus rules&quot;),
+  Core.SlotNumber(id=7) = Core.SlotNumber(id=38),
+  Expr(:gotoifnot, false, 285),
+  goto 283,
+  Expr(:call, Test.push_testset, Core.SlotNumber(id=7)),
+  Core.SlotNumber(id=8) = Expr(:call, Test.copy, Test.GLOBAL_RNG),
+  Expr(:enter, 313),
+  Core.SlotNumber(id=39) = -1,
+  Expr(:enter, 296),
+  Expr(:call, Base.getproperty, Test.Random, :(:seed!)),
+  Expr(:call, Base.getproperty, Test.GLOBAL_RNG, :(:seed)),
+  Expr(:call, SSAValue(290), SSAValue(291)),
+  Expr(:call, :include, &quot;test_nonlinear_operators_calculus.jl&quot;),
+  Expr(:leave, 1),
+  goto 311,
+  Expr(:leave, 1),
+  Core.SlotNumber(id=16) = Expr(:the_exception),
+  Expr(:call, Test.isa, Core.SlotNumber(id=16), Test.InterruptException),
+  Expr(:gotoifnot, SSAValue(298), 302),
+  Expr(:call, Test.rethrow),
+  goto 303,
+  false,
+  Core.SlotNumber(id=7),
+  Expr(:copyast, quote Expr(:tuple) end),
+  Core.SlotNumber(id=16),
+  Expr(:call, Base.getproperty, Test.Base, :(:catch_stack)),
+  Expr(:call, SSAValue(306)),
+  Expr(:call, Test.Error, :(:nontest_error), SSAValue(304), SSAValue(305), SSAValue(307), quote #= Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;):26 =# end),
+  Expr(:call, Test.record, SSAValue(303), SSAValue(308)),
+  Expr(:pop_exception, SSAValue(289)),
+  Expr(:leave, 1),
+  goto 315,
+  Expr(:leave, 1),
+  Core.SlotNumber(id=39) = 1,
+  Expr(:call, Test.copy!, Test.GLOBAL_RNG, Core.SlotNumber(id=8)),
+  Expr(:call, Core.:(===), Core.SlotNumber(id=39), 1),
+  Expr(:gotoifnot, SSAValue(316), 319),
+  Expr(:call, Base.rethrow),
+  Expr(:call, Test.pop_testset),
+  Expr(:call, Test.finish, Core.SlotNumber(id=7)),
+  Expr(:call, Test.get_testset_depth),
+  Expr(:call, Test.:(==), SSAValue(321), 0),
+  Expr(:gotoifnot, SSAValue(322), 326),
+  Core.SlotNumber(id=40) = Test.DefaultTestSet,
+  goto 328,
+  Expr(:call, Test.get_testset),
+  Core.SlotNumber(id=40) = Expr(:call, Test.typeof, SSAValue(326)),
+  Core.SlotNumber(id=40),
+  Expr(:call, Test._check_testset, SSAValue(328), quote Expr(:call, :==, Expr(:call, :get_testset_depth), 0) end),
+  Expr(:call, Test.get_testset_depth),
+  Expr(:call, Test.:(==), SSAValue(330), 0),
+  Expr(:gotoifnot, SSAValue(331), 335),
+  Core.SlotNumber(id=41) = Test.DefaultTestSet,
+  goto 337,
+  Expr(:call, Test.get_testset),
+  Core.SlotNumber(id=41) = Expr(:call, Test.typeof, SSAValue(335)),
+  Core.SlotNumber(id=41),
+  SSAValue(337),
+  Expr(:call, Base.NamedTuple),
+  Expr(:call, Core.apply_type, Test.Dict, Test.Symbol, Test.Any),
+  Expr(:call, SSAValue(340)),
+  Expr(:call, Base.merge, SSAValue(339), SSAValue(341)),
+  Expr(:call, Base.isempty, SSAValue(342)),
+  Expr(:gotoifnot, SSAValue(343), 347),
+  Core.SlotNumber(id=42) = Expr(:call, SSAValue(338), &quot;L-BFGS&quot;),
+  goto 349,
+  Expr(:call, Core.kwfunc, SSAValue(338)),
+  Core.SlotNumber(id=42) = Expr(:call, SSAValue(347), SSAValue(342), SSAValue(338), &quot;L-BFGS&quot;),
+  Core.SlotNumber(id=9) = Core.SlotNumber(id=42),
+  Expr(:gotoifnot, false, 352),
+  goto 350,
+  Expr(:call, Test.push_testset, Core.SlotNumber(id=9)),
+  Core.SlotNumber(id=10) = Expr(:call, Test.copy, Test.GLOBAL_RNG),
+  Expr(:enter, 380),
+  Core.SlotNumber(id=43) = -1,
+  Expr(:enter, 363),
+  Expr(:call, Base.getproperty, Test.Random, :(:seed!)),
+  Expr(:call, Base.getproperty, Test.GLOBAL_RNG, :(:seed)),
+  Expr(:call, SSAValue(357), SSAValue(358)),
+  Expr(:call, :include, &quot;test_lbfgs.jl&quot;),
+  Expr(:leave, 1),
+  goto 378,
+  Expr(:leave, 1),
+  Core.SlotNumber(id=17) = Expr(:the_exception),
+  Expr(:call, Test.isa, Core.SlotNumber(id=17), Test.InterruptException),
+  Expr(:gotoifnot, SSAValue(365), 369),
+  Expr(:call, Test.rethrow),
+  goto 370,
+  false,
+  Core.SlotNumber(id=9),
+  Expr(:copyast, quote Expr(:tuple) end),
+  Core.SlotNumber(id=17),
+  Expr(:call, Base.getproperty, Test.Base, :(:catch_stack)),
+  Expr(:call, SSAValue(373)),
+  Expr(:call, Test.Error, :(:nontest_error), SSAValue(371), SSAValue(372), SSAValue(374), quote #= Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;):30 =# end),
+  Expr(:call, Test.record, SSAValue(370), SSAValue(375)),
+  Expr(:pop_exception, SSAValue(356)),
+  Expr(:leave, 1),
+  goto 382,
+  Expr(:leave, 1),
+  Core.SlotNumber(id=43) = 1,
+  Expr(:call, Test.copy!, Test.GLOBAL_RNG, Core.SlotNumber(id=10)),
+  Expr(:call, Core.:(===), Core.SlotNumber(id=43), 1),
+  Expr(:gotoifnot, SSAValue(383), 386),
+  Expr(:call, Base.rethrow),
+  Expr(:call, Test.pop_testset),
+  Expr(:call, Test.finish, Core.SlotNumber(id=9)),
+  Expr(:call, Test.get_testset_depth),
+  Expr(:call, Test.:(==), SSAValue(388), 0),
+  Expr(:gotoifnot, SSAValue(389), 393),
+  Core.SlotNumber(id=44) = Test.DefaultTestSet,
+  goto 395,
+  Expr(:call, Test.get_testset),
+  Core.SlotNumber(id=44) = Expr(:call, Test.typeof, SSAValue(393)),
+  Core.SlotNumber(id=44),
+  Expr(:call, Test._check_testset, SSAValue(395), quote Expr(:call, :==, Expr(:call, :get_testset_depth), 0) end),
+  Expr(:call, Test.get_testset_depth),
+  Expr(:call, Test.:(==), SSAValue(397), 0),
+  Expr(:gotoifnot, SSAValue(398), 402),
+  Core.SlotNumber(id=45) = Test.DefaultTestSet,
+  goto 404,
+  Expr(:call, Test.get_testset),
+  Core.SlotNumber(id=45) = Expr(:call, Test.typeof, SSAValue(402)),
+  Core.SlotNumber(id=45),
+  SSAValue(404),
+  Expr(:call, Base.NamedTuple),
+  Expr(:call, Core.apply_type, Test.Dict, Test.Symbol, Test.Any),
+  Expr(:call, SSAValue(407)),
+  Expr(:call, Base.merge, SSAValue(406), SSAValue(408)),
+  Expr(:call, Base.isempty, SSAValue(409)),
+  Expr(:gotoifnot, SSAValue(410), 414),
+  Core.SlotNumber(id=46) = Expr(:call, SSAValue(405), &quot;Syntax shorthands&quot;),
+  goto 416,
+  Expr(:call, Core.kwfunc, SSAValue(405)),
+  Core.SlotNumber(id=46) = Expr(:call, SSAValue(414), SSAValue(409), SSAValue(405), &quot;Syntax shorthands&quot;),
+  Core.SlotNumber(id=11) = Core.SlotNumber(id=46),
+  Expr(:gotoifnot, false, 419),
+  goto 417,
+  Expr(:call, Test.push_testset, Core.SlotNumber(id=11)),
+  Core.SlotNumber(id=12) = Expr(:call, Test.copy, Test.GLOBAL_RNG),
+  Expr(:enter, 447),
+  Core.SlotNumber(id=47) = -1,
+  Expr(:enter, 430),
+  Expr(:call, Base.getproperty, Test.Random, :(:seed!)),
+  Expr(:call, Base.getproperty, Test.GLOBAL_RNG, :(:seed)),
+  Expr(:call, SSAValue(424), SSAValue(425)),
+  Expr(:call, :include, &quot;test_syntax.jl&quot;),
+  Expr(:leave, 1),
+  goto 445,
+  Expr(:leave, 1),
+  Core.SlotNumber(id=18) = Expr(:the_exception),
+  Expr(:call, Test.isa, Core.SlotNumber(id=18), Test.InterruptException),
+  Expr(:gotoifnot, SSAValue(432), 436),
+  Expr(:call, Test.rethrow),
+  goto 437,
+  false,
+  Core.SlotNumber(id=11),
+  Expr(:copyast, quote Expr(:tuple) end),
+  Core.SlotNumber(id=18),
+  Expr(:call, Base.getproperty, Test.Base, :(:catch_stack)),
+  Expr(:call, SSAValue(440)),
+  Expr(:call, Test.Error, :(:nontest_error), SSAValue(438), SSAValue(439), SSAValue(441), quote #= Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;):34 =# end),
+  Expr(:call, Test.record, SSAValue(437), SSAValue(442)),
+  Expr(:pop_exception, SSAValue(423)),
+  Expr(:leave, 1),
+  goto 449,
+  Expr(:leave, 1),
+  Core.SlotNumber(id=47) = 1,
+  Expr(:call, Test.copy!, Test.GLOBAL_RNG, Core.SlotNumber(id=12)),
+  Expr(:call, Core.:(===), Core.SlotNumber(id=47), 1),
+  Expr(:gotoifnot, SSAValue(450), 453),
+  Expr(:call, Base.rethrow),
+  Expr(:call, Test.pop_testset),
+  Expr(:call, Test.finish, Core.SlotNumber(id=11)),
+  Expr(:leave, 1),
+  goto 471,
+  Expr(:leave, 1),
+  Core.SlotNumber(id=19) = Expr(:the_exception),
+  Expr(:call, Test.isa, Core.SlotNumber(id=19), Test.InterruptException),
+  Expr(:gotoifnot, SSAValue(459), 463),
+  Expr(:call, Test.rethrow),
+  goto 464,
+  false,
+  Expr(:copyast, quote Expr(:tuple) end),
+  Core.SlotNumber(id=19),
+  Expr(:call, Base.getproperty, Test.Base, :(:catch_stack)),
+  Expr(:call, SSAValue(466)),
+  Expr(:call, Test.Error, :(:nontest_error), SSAValue(464), SSAValue(465), SSAValue(467), quote #= Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;):12 =# end),
+  Expr(:call, Test.record, Symbol(&quot;#35#ts&quot;), SSAValue(468)),
+  Expr(:pop_exception, SSAValue(37)),
+  Expr(:leave, 1),
+  goto 475,
+  Expr(:leave, 1),
+  Core.SlotNumber(id=23) = 1,
+  Expr(:call, Test.copy!, Test.GLOBAL_RNG, Symbol(&quot;#36#oldrng&quot;)),
+  Expr(:call, Core.:(===), Core.SlotNumber(id=23), 1),
+  Expr(:gotoifnot, SSAValue(476), 479),
+  Expr(:call, Base.rethrow),
+  Expr(:call, Test.pop_testset),
+  Expr(:call, Test.finish, Symbol(&quot;#35#ts&quot;)),
+  Expr(:return, SSAValue(480))], codelocs=Array{Int32, (481,)}[2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 5, 6, 7, 7, 8, 8, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 13, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 15, 16, 17, 18, 19, 19, 19, 20, 20, 20, 22, 21, 21, 21, 21, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 25, 25, 25, 25, 26, 27, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 32, 33, 34, 35, 36, 36, 36, 37, 37, 37, 39, 38, 38, 38, 38, 40, 40, 40, 40, 40, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 42, 42, 42, 42, 43, 44, 47, 47, 47, 47, 47, 47, 47, 47, 47, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 49, 50, 51, 52, 53, 53, 53, 54, 54, 54, 56, 55, 55, 55, 55, 57, 57, 57, 57, 57, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 59, 59, 59, 59, 60, 61, 64, 64, 64, 64, 64, 64, 64, 64, 64, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 66, 67, 68, 69, 70, 70, 70, 71, 71, 71, 73, 72, 72, 72, 72, 74, 74, 74, 74, 74, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 76, 76, 76, 76, 77, 78, 81, 81, 81, 81, 81, 81, 81, 81, 81, 82, 82, 82, 82, 82, 82, 82, 82, 82, 82, 82, 82, 82, 82, 82, 82, 82, 82, 82, 82, 83, 84, 85, 86, 87, 87, 87, 88, 88, 88, 90, 89, 89, 89, 89, 91, 91, 91, 91, 91, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 92, 93, 93, 93, 93, 94, 95, 98, 98, 98, 98, 98, 98, 98, 98, 98, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 100, 101, 102, 103, 104, 104, 104, 105, 105, 105, 107, 106, 106, 106, 106, 108, 108, 108, 108, 108, 109, 109, 109, 109, 109, 109, 109, 109, 109, 109, 109, 109, 110, 110, 110, 110, 111, 112, 10, 10, 10, 10, 113, 113, 113, 113, 113, 114, 114, 114, 114, 114, 114, 114, 114, 114, 114, 114, 115, 115, 115, 115, 116, 117, 1], ssavaluetypes=481, ssaflags=Array{UInt8, (0,)}[], method_for_inference_limit_heuristics=nothing, linetable=Array{Any, (117,)}[
+  Core.LineInfoNode(method=Symbol(&quot;top-level scope&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=14, inlined_at=0),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1100, inlined_at=1),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1101, inlined_at=1),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1104, inlined_at=1),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1104, inlined_at=1),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1105, inlined_at=1),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1109, inlined_at=1),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1110, inlined_at=1),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1112, inlined_at=1),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1113, inlined_at=1),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=14, inlined_at=10),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=15, inlined_at=10),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1100, inlined_at=12),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1101, inlined_at=12),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1104, inlined_at=12),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1104, inlined_at=12),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1105, inlined_at=12),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1109, inlined_at=12),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1110, inlined_at=12),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1112, inlined_at=12),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1113, inlined_at=12),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=15, inlined_at=21),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1115, inlined_at=12),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1118, inlined_at=12),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1120, inlined_at=12),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1122, inlined_at=12),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1123, inlined_at=12),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=18, inlined_at=10),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=19, inlined_at=10),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1100, inlined_at=29),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1101, inlined_at=29),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1104, inlined_at=29),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1104, inlined_at=29),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1105, inlined_at=29),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1109, inlined_at=29),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1110, inlined_at=29),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1112, inlined_at=29),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1113, inlined_at=29),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=19, inlined_at=38),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1115, inlined_at=29),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1118, inlined_at=29),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1120, inlined_at=29),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1122, inlined_at=29),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1123, inlined_at=29),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=22, inlined_at=10),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=23, inlined_at=10),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1100, inlined_at=46),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1101, inlined_at=46),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1104, inlined_at=46),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1104, inlined_at=46),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1105, inlined_at=46),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1109, inlined_at=46),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1110, inlined_at=46),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1112, inlined_at=46),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1113, inlined_at=46),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=23, inlined_at=55),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1115, inlined_at=46),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1118, inlined_at=46),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1120, inlined_at=46),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1122, inlined_at=46),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1123, inlined_at=46),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=26, inlined_at=10),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=27, inlined_at=10),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1100, inlined_at=63),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1101, inlined_at=63),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1104, inlined_at=63),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1104, inlined_at=63),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1105, inlined_at=63),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1109, inlined_at=63),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1110, inlined_at=63),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1112, inlined_at=63),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1113, inlined_at=63),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=27, inlined_at=72),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1115, inlined_at=63),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1118, inlined_at=63),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1120, inlined_at=63),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1122, inlined_at=63),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1123, inlined_at=63),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=30, inlined_at=10),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=31, inlined_at=10),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1100, inlined_at=80),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1101, inlined_at=80),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1104, inlined_at=80),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1104, inlined_at=80),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1105, inlined_at=80),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1109, inlined_at=80),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1110, inlined_at=80),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1112, inlined_at=80),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1113, inlined_at=80),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=31, inlined_at=89),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1115, inlined_at=80),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1118, inlined_at=80),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1120, inlined_at=80),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1122, inlined_at=80),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1123, inlined_at=80),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=34, inlined_at=10),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=35, inlined_at=10),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1100, inlined_at=97),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1101, inlined_at=97),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1104, inlined_at=97),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1104, inlined_at=97),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1105, inlined_at=97),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1109, inlined_at=97),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1110, inlined_at=97),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1112, inlined_at=97),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1113, inlined_at=97),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;), line=35, inlined_at=106),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1115, inlined_at=97),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1118, inlined_at=97),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1120, inlined_at=97),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1122, inlined_at=97),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1123, inlined_at=97),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1115, inlined_at=1),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1118, inlined_at=1),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1120, inlined_at=1),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1122, inlined_at=1),
+  Core.LineInfoNode(method=Symbol(&quot;macro expansion&quot;), file=Symbol(&quot;&#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl&quot;), line=1123, inlined_at=1)], slotnames=Array{Symbol, (47,)}[
+  Symbol(&quot;#38#ts&quot;),
+  :oldrng,
+  :ts,
+  :oldrng,
+  :ts,
+  :oldrng,
+  :ts,
+  :oldrng,
+  :ts,
+  :oldrng,
+  :ts,
+  :oldrng,
+  :err,
+  :err,
+  :err,
+  :err,
+  :err,
+  :err,
+  :err,
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;),
+  Symbol(&quot;&quot;)], slotflags=Array{UInt8, (47,)}[0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], slottypes=nothing, rettype=Any, parent=nothing, min_world=1, max_world=-1, inferred=false, inlineable=false, propagate_inbounds=false, pure=false)jl_interpret_toplevel_thunk at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:893
+jl_toplevel_eval_flex at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;toplevel.c:815
+jl_parse_eval_all at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;ast.c:873
+jl_load at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;toplevel.c:879
+include at .&#x2F;boot.jl:328 [inlined]
+include_relative at .&#x2F;loading.jl:1094
+include at .&#x2F;Base.jl:31
+jl_apply_generic at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;gf.c:2191
+include at .&#x2F;client.jl:431
+jl_apply_generic at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;gf.c:2197
+do_call at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:323
+eval_value at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:411
+eval_stmt_value at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:362 [inlined]
+eval_body at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:772
+jl_interpret_toplevel_thunk_callback at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:884
+Interpreter frame (ip: 0)
+Core.CodeInfo(code=Array{Any, (2,)}[
+  Expr(:call, :include, &quot;&#x2F;root&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;runtests.jl&quot;),
+  Expr(:return, SSAValue(1))], codelocs=Array{Int32, (2,)}[1, 1], ssavaluetypes=2, ssaflags=Array{UInt8, (0,)}[], method_for_inference_limit_heuristics=nothing, linetable=Array{Any, (1,)}[Core.LineInfoNode(method=Symbol(&quot;top-level scope&quot;), file=:none, line=5, inlined_at=0)], slotnames=Array{Symbol, (0,)}[], slotflags=Array{UInt8, (0,)}[], slottypes=nothing, rettype=Any, parent=nothing, min_world=1, max_world=-1, inferred=false, inlineable=false, propagate_inbounds=false, pure=false)jl_interpret_toplevel_thunk at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;interpreter.c:893
+jl_toplevel_eval_flex at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;toplevel.c:815
+jl_toplevel_eval_flex at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;toplevel.c:764
+jl_toplevel_eval_in at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;toplevel.c:844
+eval at .&#x2F;boot.jl:330
+jl_apply_generic at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;gf.c:2191
+exec_options at .&#x2F;client.jl:271
+_start at .&#x2F;client.jl:464
+jl_apply_generic at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;src&#x2F;gf.c:2191
+jl_apply at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;ui&#x2F;..&#x2F;src&#x2F;julia.h:1614 [inlined]
+true_main at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;ui&#x2F;repl.c:96
+main at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;ui&#x2F;repl.c:217
+__libc_start_main at &#x2F;lib&#x2F;x86_64-linux-gnu&#x2F;libc.so.6 (unknown line)
+_start at &#x2F;opt&#x2F;julia&#x2F;bin&#x2F;julia (unknown line)
+
+[▒,0;0,σ]  ℝ^4  ℝ^3 -&gt; ℝ^4  ℝ^3 
+forward preallocated
+  0.000002 seconds (4 allocations: 160 bytes)
+[▒,0;0,J(σ)]  ℝ^4  ℝ^3 -&gt; ℝ^4  ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (6 allocations: 192 bytes)
+
+[▒,σ]  ℝ^4  ℝ^3 -&gt; ℝ^3 
+forward preallocated
+  0.000000 seconds
+[▒,J(σ)]  ℝ^4  ℝ^3 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (2 allocations: 32 bytes)
+
+[sin,▒]  ℝ^3  ℝ^5 -&gt; ℝ^3 
+forward preallocated
+  0.000000 seconds
+[J(sin),▒]  ℝ^3  ℝ^5 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (2 allocations: 32 bytes)
+((5,), (3,))
+
+[sin,▒]  ℝ^5  ℝ^3 -&gt; ℝ^3 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒]  ℝ^5  ℝ^3 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (2 allocations: 32 bytes)
+
+[▒;σ]  ℝ^3 -&gt; ℝ^4  ℝ^3 
+forward preallocated
+  0.000001 seconds
+[▒;J(σ)]  ℝ^3 -&gt; ℝ^4  ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (2 allocations: 32 bytes)
+
+HCAT  ℝ^3  ℝ^2  ℝ^7 -&gt; ℝ^4  ℝ^3 
+forward preallocated
+  0.000002 seconds (22 allocations: 544 bytes)
+HCAT  ℝ^3  ℝ^2  ℝ^7 -&gt; ℝ^4  ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (5 allocations: 80 bytes)
+
+[HCAT;HCAT]  ℝ^3  ℝ^6  ℝ^5 -&gt; ℝ^6  ℝ^7 
+forward preallocated
+  0.000002 seconds
+[HCAT;HCAT]  ℝ^3  ℝ^6  ℝ^5 -&gt; ℝ^6  ℝ^7 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (17 allocations: 416 bytes)
+
+Π  ℝ^3 -&gt; ℝ^5 
+forward preallocated
+  0.000002 seconds
+Π  ℝ^3 -&gt; ℝ^5 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (2 allocations: 32 bytes)
+
+σ*[(⋅)b,I]  ℝ^(7, 5)  ℝ^7 -&gt; ℝ^7 
+forward preallocated
+  0.000001 seconds
+J(σ)*[(⋅)b,I]  ℝ^(7, 5)  ℝ^7 -&gt; ℝ^7 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (10 allocations: 240 bytes)
+
+¶σ  ℝ^4 -&gt; ℝ^(2, 2) 
+forward preallocated
+  0.000001 seconds (2 allocations: 80 bytes)
+¶J(σ)  ℝ^4 -&gt; ℝ^(2, 2) 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+.σ  ℝ^4 -&gt; ℝ^(4, 7) 
+forward preallocated
+  0.000000 seconds (3 allocations: 80 bytes)
+.J(σ)  ℝ^4 -&gt; ℝ^(4, 7) 
+adjoint jacobian mul! preallocated
+  0.000008 seconds (15 allocations: 464 bytes)
+
+.σ  ℝ^1 -&gt; ℝ^(1, 7) 
+forward preallocated
+  0.000000 seconds (3 allocations: 80 bytes)
+.J(σ)  ℝ^1 -&gt; ℝ^(1, 7) 
+adjoint jacobian mul! preallocated
+  0.000005 seconds (9 allocations: 224 bytes)
+
+▒+σ  ℝ^5 -&gt; ℝ^5 
+forward preallocated
+  0.000000 seconds
+▒+J(σ)  ℝ^5 -&gt; ℝ^5 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (2 allocations: 32 bytes)
+
+e-d  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000000 seconds
+J(e)  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+sin+d*I+d  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000001 seconds
+J(sin)*I  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+Π  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000001 seconds
+Π  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (5 allocations: 80 bytes)
+
+I*sin  ℝ^10 -&gt; ℝ^1 
+forward preallocated
+  0.000000 seconds
+I*J(sin)  ℝ^10 -&gt; ℝ^1 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (2 allocations: 32 bytes)
+
+▒*▒  ℝ^4 -&gt; ℝ^1 
+forward preallocated
+  0.000000 seconds
+▒*▒  ℝ^4 -&gt; ℝ^1 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+▒*▒  ℝ^(7, 5) -&gt; ℝ^(5, 5) 
+forward preallocated
+  0.000002 seconds
+▒*▒  ℝ^(7, 5) -&gt; ℝ^(5, 5) 
+adjoint jacobian mul! preallocated
+  0.000013 seconds (5 allocations: 176 bytes)
+
+sin*cos  ℝ^(3, 7) -&gt; ℝ^(7, 7) 
+forward preallocated
+  0.000002 seconds (6 allocations: 192 bytes)
+J(sin)*J(cos)  ℝ^(3, 7) -&gt; ℝ^(7, 7) 
+adjoint jacobian mul! preallocated
+  0.000005 seconds (29 allocations: 1.297 KiB)
+
+[sin+d,▒]*[cos,▒]  ℝ^3  ℝ^5 -&gt; ℝ^1 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒]*[J(cos),▒]  ℝ^3  ℝ^5 -&gt; ℝ^1 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (24 allocations: 704 bytes)
+
+[sin,▒]*[cos,▒]  ℝ^3  ℝ^5 -&gt; ℝ^1 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒]*[J(cos),▒]  ℝ^3  ℝ^5 -&gt; ℝ^1 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (24 allocations: 704 bytes)
+
+[sin+d,▒]*[cos,▒]  ℝ^5  ℝ^3 -&gt; ℝ^1 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒]*[J(cos),▒]  ℝ^5  ℝ^3 -&gt; ℝ^1 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (24 allocations: 704 bytes)
+
+I*sin  ℝ^10 -&gt; ℝ^(10, 10) 
+forward preallocated
+  0.000001 seconds
+I*J(sin)  ℝ^10 -&gt; ℝ^(10, 10) 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (2 allocations: 32 bytes)
+
+▒*▒  ℝ^4 -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000001 seconds
+▒*▒  ℝ^4 -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+▒*▒  ℝ^(7, 5) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000002 seconds
+▒*▒  ℝ^(7, 5) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (5 allocations: 176 bytes)
+
+sin*cos  ℝ^(3, 7) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000002 seconds (6 allocations: 192 bytes)
+J(sin)*J(cos)  ℝ^(3, 7) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000006 seconds (29 allocations: 1.297 KiB)
+
+[sin+d,▒]*[cos,▒]  ℝ^3  ℝ^5 -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000002 seconds
+[J(sin),▒]*[J(cos),▒]  ℝ^3  ℝ^5 -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (16 allocations: 544 bytes)
+
+[sin,▒]*[cos,▒]  ℝ^3  ℝ^5 -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒]*[J(cos),▒]  ℝ^3  ℝ^5 -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000005 seconds (16 allocations: 544 bytes)
+
+[sin+d,▒]*[cos,▒]  ℝ^5  ℝ^3 -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒]*[J(cos),▒]  ℝ^5  ℝ^3 -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000008 seconds (16 allocations: 544 bytes)
+
+I*I  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000000 seconds
+I*I  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (5 allocations: 176 bytes)
+
+sin*cos  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000001 seconds (6 allocations: 192 bytes)
+J(sin)*J(cos)  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (29 allocations: 1.109 KiB)
+
+atan*sin*cos  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000001 seconds (9 allocations: 288 bytes)
+J(atan)*J(sin)*J(cos)  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (49 allocations: 1.641 KiB)
+
+▒*▒  ℝ^(2, 3) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000001 seconds
+▒*▒  ℝ^(2, 3) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (5 allocations: 176 bytes)
+
+[sin+d,▒]*[sin,▒]  ℝ^(5, 5)  ℝ^(3, 5) -&gt; ℝ^(5, 5) 
+forward preallocated
+  0.000003 seconds (18 allocations: 672 bytes)
+[J(sin),▒]*[J(sin),▒]  ℝ^(5, 5)  ℝ^(3, 5) -&gt; ℝ^(5, 5) 
+adjoint jacobian mul! preallocated
+  0.000005 seconds (30 allocations: 832 bytes)
+
+[sin,▒]*[sin,▒]  ℝ^(5, 5)  ℝ^(3, 5) -&gt; ℝ^(5, 5) 
+forward preallocated
+  0.000003 seconds (14 allocations: 512 bytes)
+[J(sin),▒]*[J(sin),▒]  ℝ^(5, 5)  ℝ^(3, 5) -&gt; ℝ^(5, 5) 
+adjoint jacobian mul! preallocated
+  0.000005 seconds (30 allocations: 832 bytes)
+
+[sin+d,▒]*[sin,▒]  ℝ^(3, 5)  ℝ^(5, 5) -&gt; ℝ^(5, 5) 
+forward preallocated
+  0.000013 seconds (18 allocations: 672 bytes)
+[J(sin),▒]*[J(sin),▒]  ℝ^(3, 5)  ℝ^(5, 5) -&gt; ℝ^(5, 5) 
+adjoint jacobian mul! preallocated
+  0.000006 seconds (30 allocations: 832 bytes)
+
+▒*▒*▒  ℝ^(7, 5) -&gt; ℝ^(5, 3) 
+forward preallocated
+  0.000003 seconds
+▒*▒*▒  ℝ^(7, 5) -&gt; ℝ^(5, 3) 
+adjoint jacobian mul! preallocated
+  0.000013 seconds (10 allocations: 352 bytes)
+
+▒*▒*▒  ℝ^(7, 5) -&gt; ℝ^(9, 5) 
+forward preallocated
+  0.000003 seconds
+▒*▒*▒  ℝ^(7, 5) -&gt; ℝ^(9, 5) 
+adjoint jacobian mul! preallocated
+  0.000012 seconds (10 allocations: 352 bytes)
+
+▒*▒*▒  ℝ^(7, 5) -&gt; ℝ^(9, 5) 
+forward preallocated
+  0.000004 seconds
+▒*▒*▒  ℝ^(7, 5) -&gt; ℝ^(9, 5) 
+adjoint jacobian mul! preallocated
+  0.000005 seconds (10 allocations: 352 bytes)
+
+I.*I  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000000 seconds (4 allocations: 160 bytes)
+I.*I  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (13 allocations: 496 bytes)
+
+sin.*cos  ℝ^(3, 2) -&gt; ℝ^(3, 2) 
+forward preallocated
+  0.000001 seconds (10 allocations: 352 bytes)
+J(sin).*J(cos)  ℝ^(3, 2) -&gt; ℝ^(3, 2) 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (37 allocations: 1.359 KiB)
+
+[sin+d,▒].*[cos,▒]  ℝ^3  ℝ^5 -&gt; ℝ^3 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒].*[J(cos),▒]  ℝ^3  ℝ^5 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (16 allocations: 544 bytes)
+
+[sin,▒].*[cos,▒]  ℝ^3  ℝ^5 -&gt; ℝ^3 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒].*[J(cos),▒]  ℝ^3  ℝ^5 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (16 allocations: 544 bytes)
+
+[sin+d,▒].*[cos,▒]  ℝ^5  ℝ^3 -&gt; ℝ^3 
+forward preallocated
+  0.000000 seconds
+[J(sin),▒].*[J(cos),▒]  ℝ^5  ℝ^3 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (16 allocations: 544 bytes)
+
+Testing L-BFGS routines
+LBFGS  ℝ^10 -&gt; ℝ^10 
+LBFGS  ℝ^10  ℝ^10 -&gt; ℝ^10  ℝ^10 
+  0.300335 seconds (251.71 k allocations: 12.244 MiB, 9.50% gc time)
+  0.491846 seconds (425.88 k allocations: 19.918 MiB, 5.57% gc time)
+  0.145101 seconds (83.00 k allocations: 3.701 MiB)
+  0.266988 seconds (123.44 k allocations: 5.170 MiB)
+  0.000008 seconds
+  0.000008 seconds (128 allocations: 2.313 KiB)
+  0.000004 seconds
+  0.000006 seconds (114 allocations: 1.969 KiB)
+  0.000002 seconds
+  0.000007 seconds (246 allocations: 4.406 KiB)
+  0.000002 seconds
+  0.000004 seconds (114 allocations: 1.969 KiB)
+  0.000003 seconds
+  0.000009 seconds (364 allocations: 6.500 KiB)
+  0.000003 seconds
+  0.000004 seconds (114 allocations: 1.969 KiB)
+  0.000002 seconds
+  0.000014 seconds (364 allocations: 6.500 KiB)
+
+Testing linear operators syntax
+Test Summary:     | Pass  Total
+AbstractOperators | 1256   1256
+   Testing AbstractOperators tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 13 hours ago and took 6 minutes, 35 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/AbstractOperators/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed RecipesBase ───────── v0.7.0
+ Installed VersionParsing ────── v1.1.3
+ Installed ArrayInterface ────── v1.2.1
+ Installed Reexport ──────────── v0.2.0
+ Installed AbstractFFTs ──────── v0.5.0
+ Installed BinDeps ───────────── v0.8.10
+ Installed DSP ───────────────── v0.6.1
+ Installed AbstractOperators ─── v0.2.2
+ Installed JSON ──────────────── v0.21.0
+ Installed URIParser ─────────── v0.4.0
+ Installed Requires ──────────── v0.5.2
+ Installed Parsers ───────────── v0.3.10
+ Installed RecursiveArrayTools ─ v1.0.2
+ Installed Conda ─────────────── v1.3.0
+ Installed Polynomials ───────── v0.6.0
+ Installed StaticArrays ──────── v0.12.1
+ Installed Compat ────────────── v2.2.0
+ Installed SpecialFunctions ──── v0.8.0
+ Installed FFTW ──────────────── v1.1.0
+ Installed BinaryProvider ────── v0.5.8
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [d9c5613a] + AbstractOperators v0.2.2
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [621f4979] + AbstractFFTs v0.5.0
+  [d9c5613a] + AbstractOperators v0.2.2
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [34da2185] + Compat v2.2.0
+  [8f4d0f93] + Conda v1.3.0
+  [717857b8] + DSP v0.6.1
+  [7a1cc6ca] + FFTW v1.1.0
+  [682c06a0] + JSON v0.21.0
+  [69de0a69] + Parsers v0.3.10
+  [f27b6e38] + Polynomials v0.6.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [731186ca] + RecursiveArrayTools v1.0.2
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [30578b45] + URIParser v0.4.0
+  [81def892] + VersionParsing v1.1.3
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Conda ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;Conda&#x2F;kLXeC&#x2F;deps&#x2F;build.log`
+  Building FFTW ────────────→ `~&#x2F;.julia&#x2F;packages&#x2F;FFTW&#x2F;loJ3F&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing AbstractOperators
+ Resolving package versions...
+Status `&#x2F;tmp&#x2F;jl_yLYZqW&#x2F;Manifest.toml`
+  [621f4979] AbstractFFTs v0.5.0
+  [d9c5613a] AbstractOperators v0.2.2
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [34da2185] Compat v2.2.0
+  [8f4d0f93] Conda v1.3.0
+  [717857b8] DSP v0.6.1
+  [7a1cc6ca] FFTW v1.1.0
+  [682c06a0] JSON v0.21.0
+  [69de0a69] Parsers v0.3.10
+  [f27b6e38] Polynomials v0.6.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [30578b45] URIParser v0.4.0
+  [81def892] VersionParsing v1.1.3
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+
+Testing linear operators
+
+★  ℝ^5 -&gt; ℝ^10 
+forward preallocated
+  0.000002 seconds
+adjoint preallocated
+  0.000001 seconds
+
+ℱc  ℝ^4 -&gt; ℝ^4 
+forward preallocated
+  0.000004 seconds (8 allocations: 352 bytes)
+adjoint preallocated
+  0.000008 seconds (13 allocations: 624 bytes)
+
+ℱc⁻¹  ℝ^4 -&gt; ℝ^4 
+forward preallocated
+  0.000007 seconds (13 allocations: 624 bytes)
+adjoint preallocated
+  0.000011 seconds (8 allocations: 352 bytes)
+
+ℱ  ℝ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds (1 allocation: 144 bytes)
+adjoint preallocated
+  0.000000 seconds (1 allocation: 144 bytes)
+
+ℱ  ℂ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ  ℝ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000014 seconds (1 allocation: 144 bytes)
+adjoint preallocated
+  0.000000 seconds (1 allocation: 144 bytes)
+
+ℱ  ℂ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ  ℝ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds (1 allocation: 144 bytes)
+adjoint preallocated
+  0.000000 seconds (1 allocation: 144 bytes)
+
+ℱ  ℂ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ  ℝ^(4, 7) -&gt; ℂ^(4, 7) 
+forward preallocated
+  0.000000 seconds (1 allocation: 544 bytes)
+adjoint preallocated
+  0.000000 seconds (1 allocation: 544 bytes)
+
+ℱ  ℂ^(4, 7) -&gt; ℂ^(4, 7) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ  ℝ^(7, 4) -&gt; ℂ^(7, 4) 
+forward preallocated
+  0.000000 seconds (1 allocation: 544 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 544 bytes)
+
+ℱ  ℂ^(4, 7) -&gt; ℂ^(4, 7) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ⁻¹  ℝ^5 -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds (1 allocation: 160 bytes)
+adjoint preallocated
+  0.000000 seconds (1 allocation: 160 bytes)
+
+ℱ⁻¹  ℂ^5 -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ⁻¹  ℝ^5 -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds (1 allocation: 160 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 160 bytes)
+
+ℱ⁻¹  ℂ^5 -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ⁻¹  ℝ^(5, 6) -&gt; ℂ^(5, 6) 
+forward preallocated
+  0.000001 seconds (1 allocation: 576 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 576 bytes)
+
+ℱ⁻¹  ℂ^(5, 6) -&gt; ℂ^(5, 6) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ⁻¹  ℝ^(6, 5) -&gt; ℂ^(6, 5) 
+forward preallocated
+  0.000001 seconds (1 allocation: 576 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 576 bytes)
+
+ℱ⁻¹  ℂ^(6, 5) -&gt; ℂ^(6, 5) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ⁻¹  ℂ^(4, 19, 5) -&gt; ℂ^(4, 19, 5) 
+forward preallocated
+  0.000010 seconds
+adjoint preallocated
+  0.000009 seconds (3 allocations: 128 bytes)
+
+ℱ⁻¹  ℂ^(4, 18, 5) -&gt; ℂ^(4, 18, 5) 
+forward preallocated
+  0.000008 seconds
+adjoint preallocated
+  0.000006 seconds (3 allocations: 128 bytes)
+
+ℱ⁻¹  ℂ^(4, 18, 5) -&gt; ℂ^(4, 18, 5) 
+forward preallocated
+  0.000004 seconds
+adjoint preallocated
+  0.000006 seconds (3 allocations: 128 bytes)
+
+ℱ  ℝ^4 -&gt; ℂ^3 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+ℱ  ℝ^(4, 8, 5) -&gt; ℂ^(4, 5, 5) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000002 seconds (3 allocations: 112 bytes)
+
+ℱ⁻¹  ℂ^7 -&gt; ℝ^12 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds (2 allocations: 96 bytes)
+
+ℱ⁻¹  ℂ^6 -&gt; ℝ^11 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds (2 allocations: 96 bytes)
+
+ℱ⁻¹  ℂ^(4, 10, 5) -&gt; ℝ^(4, 19, 5) 
+forward preallocated
+  0.000012 seconds
+adjoint preallocated
+  0.000010 seconds (8 allocations: 384 bytes)
+
+ℱ⁻¹  ℂ^(4, 10, 5) -&gt; ℝ^(4, 18, 5) 
+forward preallocated
+  0.000005 seconds
+adjoint preallocated
+  0.000014 seconds (8 allocations: 384 bytes)
+
+ℱ⁻¹  ℂ^(3, 18, 5) -&gt; ℝ^(5, 18, 5) 
+forward preallocated
+  0.000002 seconds
+adjoint preallocated
+  0.000010 seconds (8 allocations: 384 bytes)
+
+╲  ℝ^4 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+╲  ℝ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+╲  ℝ^4 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+╲  ℝ^4 -&gt; ℂ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+I  ℝ^4 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+IIR  ℝ^15 -&gt; ℝ^15 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+FIR  ℝ^(15, 2) -&gt; ℝ^(15, 2) 
+forward preallocated
+  0.000002 seconds
+adjoint preallocated
+  0.000001 seconds
+
+δx  ℝ^10 -&gt; ℝ^9 
+forward preallocated
+  0.000001 seconds (1 allocation: 32 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+δx  ℝ^(10, 5) -&gt; ℝ^(9, 5) 
+forward preallocated
+  0.000002 seconds (1 allocation: 64 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+δy  ℝ^(10, 5) -&gt; ℝ^(10, 4) 
+forward preallocated
+  0.000005 seconds (1 allocation: 64 bytes)
+adjoint preallocated
+  0.000001 seconds
+
+δx  ℝ^(10, 5, 7) -&gt; ℝ^(9, 5, 7) 
+forward preallocated
+  0.000003 seconds (1 allocation: 80 bytes)
+adjoint preallocated
+  0.000002 seconds
+
+δy  ℝ^(10, 5, 7) -&gt; ℝ^(10, 4, 7) 
+forward preallocated
+  0.000002 seconds (1 allocation: 80 bytes)
+adjoint preallocated
+  0.000001 seconds
+
+δz  ℝ^(10, 5, 7) -&gt; ℝ^(10, 5, 6) 
+forward preallocated
+  0.000002 seconds (1 allocation: 80 bytes)
+adjoint preallocated
+  0.000002 seconds
+
+δx  ℝ^(5, 6, 2, 3) -&gt; ℝ^(4, 6, 2, 3) 
+forward preallocated
+  0.000003 seconds (1 allocation: 112 bytes)
+adjoint preallocated
+  0.000001 seconds
+
+δx4  ℝ^(5, 6, 2, 3) -&gt; ℝ^(5, 6, 2, 2) 
+forward preallocated
+  0.000005 seconds (1 allocation: 112 bytes)
+adjoint preallocated
+  0.000001 seconds
+
+↓  ℝ^5 -&gt; ℝ^3 
+forward preallocated
+  0.000000 seconds (1 allocation: 48 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+↓  ℝ^(5, 4) -&gt; ℝ^(3, 4) 
+forward preallocated
+  0.000000 seconds (1 allocation: 64 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+↓  ℝ^(5, 4) -&gt; ℝ^5 
+forward preallocated
+  0.000000 seconds (1 allocation: 48 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+↓  ℝ^(5, 4, 3) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000000 seconds (1 allocation: 64 bytes)
+adjoint preallocated
+  0.000000 seconds
+
+▒  ℝ^4 -&gt; ℝ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000009 seconds
+
+▒  ℂ^4 -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+▒  ℂ^4 -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+▒  ℝ^4 -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds (2 allocations: 64 bytes)
+adjoint preallocated
+  0.000000 seconds (1 allocation: 144 bytes)
+
+▒  ℝ^(4, 3) -&gt; ℂ^(5, 3) 
+forward preallocated
+  0.000001 seconds (2 allocations: 64 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 272 bytes)
+
+(⋅)b  ℝ^(5, 6) -&gt; ℝ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+(⋅)b  ℂ^(5, 6) -&gt; ℂ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+(⋅)b  ℝ^(5, 6) -&gt; ℝ^(5, 7) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+(⋅)b  ℂ^(5, 6) -&gt; ℂ^(5, 7) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+A  ℝ^4 -&gt; ℝ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+※  ℝ^(10, 2) -&gt; ℝ^(10, 1) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+※  ℝ^(10, 3) -&gt; ℝ^(10, 2) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+※  ℝ^(10, 3) -&gt; ℝ^(10, 2) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000002 seconds
+
+Ʋ  ℝ^(10, 5) -&gt; ℝ^(50, 2) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000001 seconds
+
+Ʋ  ℝ^(10, 5, 3) -&gt; ℝ^(150, 3) 
+forward preallocated
+  0.000003 seconds
+adjoint preallocated
+  0.000003 seconds
+
+◎  ℝ^5 -&gt; ℝ^11 
+┌ Warning: The default value of `padmode` will be changing from `:longest` to
+│ `:none` in a future release of DSP. In preparation for this change,
+│ leaving `padmode` unspecified is currently deprecated. To keep
+│ current behavior specify `padmode=:longest`. To avoid this warning,
+│ specify padmode = :none or padmode = :longest where appropriate.
+│   caller = mul!(::Array{Float64,1}, ::Xcorr{Float64,Array{Float64,1}}, ::Array{Float64,1}) at Xcorr.jl:28
+└ @ AbstractOperators ~&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;src&#x2F;linearoperators&#x2F;Xcorr.jl:28
+forward preallocated
+  0.000378 seconds (211 allocations: 19.469 KiB)
+adjoint preallocated
+  0.000038 seconds (115 allocations: 7.594 KiB)
+┌ Warning: The default value of `padmode` will be changing from `:longest` to
+│ `:none` in a future release of DSP. In preparation for this change,
+│ leaving `padmode` unspecified is currently deprecated. To keep
+│ current behavior specify `padmode=:longest`. To avoid this warning,
+│ specify padmode = :none or padmode = :longest where appropriate.
+│   caller = top-level scope at test_linear_operators.jl:932
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;AbstractOperators&#x2F;xTEMf&#x2F;test&#x2F;test_linear_operators.jl:932
+
+[I;0]  ℝ^3 -&gt; ℝ^8 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+[I;0]  ℝ^(3, 2) -&gt; ℝ^(8, 5) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+[I;0]  ℝ^(3, 2, 2) -&gt; ℝ^(8, 5, 3) 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000000 seconds
+
+0  ℝ^(3, 4) -&gt; ℂ^(5, 2) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+Testing non linear operators
+
+σ  ℝ^4 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+J(σ)  ℝ^4 -&gt; ℝ^4 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+σ  ℝ^(4, 5) -&gt; ℝ^(4, 5) 
+forward preallocated
+  0.000001 seconds
+J(σ)  ℝ^(4, 5) -&gt; ℝ^(4, 5) 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+σ  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000000 seconds
+J(σ)  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+σ  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+forward preallocated
+  0.000005 seconds (8 allocations: 288 bytes)
+J(σ)  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+adjoint jacobian mul! preallocated
+  0.000014 seconds (9 allocations: 304 bytes)
+
+σ  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+forward preallocated
+  0.000007 seconds (7 allocations: 192 bytes)
+J(σ)  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+adjoint jacobian mul! preallocated
+  0.000010 seconds (15 allocations: 1.484 KiB)
+
+e  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+forward preallocated
+  0.000003 seconds (3 allocations: 112 bytes)
+J(e)  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (9 allocations: 256 bytes)
+
+sin  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+forward preallocated
+  0.000004 seconds (3 allocations: 112 bytes)
+J(sin)  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+adjoint jacobian mul! preallocated
+  0.000005 seconds (9 allocations: 256 bytes)
+
+cos  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+forward preallocated
+  0.000004 seconds (3 allocations: 112 bytes)
+J(cos)  ℝ^(4, 5, 6) -&gt; ℝ^(4, 5, 6) 
+adjoint jacobian mul! preallocated
+  0.000009 seconds (15 allocations: 2.562 KiB)
+
+atan  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000000 seconds
+J(atan)  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+tanh  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000001 seconds
+J(tanh)  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+『  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000000 seconds
+J(『)  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+『  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000001 seconds
+J(『)  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+Testing linear operators calculus rules
+
+▒*▒  ℝ^4 -&gt; ℝ^3 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+Π  ℝ^4 -&gt; ℝ^2 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+Π  ℝ^4 -&gt; ℝ^2 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000001 seconds
+
+[▒,0;0,▒]  ℝ^7  ℝ^2 -&gt; ℝ^4  ℝ^5 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+DCAT  ℝ^7  ℝ^2  ℝ^5 -&gt; ℝ^4  ℝ^5  ℝ^5 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+[I,0;0,I]  ℝ^4  ℝ^7 -&gt; ℝ^4  ℝ^7 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+[▒,▒]  ℝ^7  ℝ^5 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000002 seconds
+
+[▒,▒]  ℝ^5  ℝ^7 -&gt; ℝ^4 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000001 seconds
+
+HCAT  ℝ^7  ℝ^5  ℝ^6 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000002 seconds
+
+HCAT  ℝ^7 ... ℝ^6 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+HCAT  ℝ^7 ... ℝ^6 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000002 seconds
+
+HCAT  ℝ^7 ... ℝ^6 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+HCAT  ℝ^5 ... ℝ^6 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000002 seconds
+
+¶▒  ℝ^4 -&gt; ℝ^(2, 2, 2) 
+forward preallocated
+  0.000000 seconds (4 allocations: 128 bytes)
+adjoint preallocated
+  0.000001 seconds (5 allocations: 144 bytes)
+
+α▒  ℝ^4 -&gt; ℝ^8 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000002 seconds
+
+α▒  ℝ^4 -&gt; ℝ^8 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000001 seconds
+
+αℱ  ℝ^(8, 4) -&gt; ℂ^(8, 4) 
+forward preallocated
+  0.000001 seconds (1 allocation: 624 bytes)
+adjoint preallocated
+  0.000001 seconds (2 allocations: 640 bytes)
+
+▒+▒  ℝ^7 -&gt; ℝ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+Σ  ℝ^7 -&gt; ℝ^5 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000001 seconds
+
+▒ᵃ  ℝ^5 -&gt; ℝ^7 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+[▒;▒]  ℝ^5 -&gt; ℝ^4  ℝ^7 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000000 seconds
+
+[▒;ℱᵃ]  ℂ^5 -&gt; ℂ^4  ℝ^5 
+forward preallocated
+  0.000001 seconds (1 allocation: 160 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 160 bytes)
+
+VCAT  ℝ^5 -&gt; ℝ^4  ℝ^7  ℝ^3 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000000 seconds
+
+VCAT  ℝ^5 -&gt; ℝ^4 ... ℝ^3 
+forward preallocated
+  0.000002 seconds
+adjoint preallocated
+  0.000001 seconds
+
+VCAT  ℝ^5 -&gt; ℝ^4 ... ℝ^3 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+.▒  ℝ^4 -&gt; ℝ^(8, 10) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000002 seconds (10 allocations: 480 bytes)
+
+.I  ℝ^(8, 4) -&gt; ℝ^(8, 4, 5, 7) 
+forward preallocated
+  0.000005 seconds (3 allocations: 112 bytes)
+adjoint preallocated
+  0.000012 seconds (35 allocations: 2.188 KiB)
+
+.I  ℝ^1 -&gt; ℝ^(1, 5) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000000 seconds
+
+.I  ℝ^(1, 5) -&gt; ℝ^(4, 5) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000001 seconds (8 allocations: 256 bytes)
+
+[I,.I]  ℝ^(4, 5)  ℝ^(1, 5) -&gt; ℝ^(4, 5) 
+forward preallocated
+  0.000000 seconds
+adjoint preallocated
+  0.000002 seconds (9 allocations: 272 bytes)
+
+.I  ℝ^2 -&gt; ℝ^(2, 5, 8) 
+forward preallocated
+  0.000001 seconds (3 allocations: 96 bytes)
+adjoint preallocated
+  0.000004 seconds (40 allocations: 2.500 KiB)
+
+.I  ℝ^1 -&gt; ℝ^(1, 5, 8) 
+forward preallocated
+  0.000001 seconds (3 allocations: 96 bytes)
+adjoint preallocated
+  0.000001 seconds
+
+.αI  ℝ^1 -&gt; ℝ^(1, 5, 8) 
+forward preallocated
+  0.000000 seconds (3 allocations: 96 bytes)
+adjoint preallocated
+  0.000007 seconds (41 allocations: 736 bytes)
+▒+d  ℝ^6 -&gt; ℝ^5 
+▒-d  ℝ^6 -&gt; ℝ^5 
+▒+d  ℝ^6 -&gt; ℝ^5 
+▒+d-d  ℝ^6 -&gt; ℝ^5 
+
+▒*[▒,▒]  ℝ^4  ℝ^7 -&gt; ℝ^2 
+forward preallocated
+  0.000002 seconds
+adjoint preallocated
+  0.000001 seconds
+
+▒*[▒,▒]  ℝ^7  ℝ^4 -&gt; ℝ^2 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds
+
+[▒*[▒,▒],▒]  ℝ^4  ℝ^7  ℝ^10 -&gt; ℝ^2 
+forward preallocated
+  0.000001 seconds (2 allocations: 48 bytes)
+adjoint preallocated
+  0.000002 seconds (1 allocation: 32 bytes)
+
+[▒*[▒,▒],▒]  ℝ^10  ℝ^7  ℝ^4 -&gt; ℝ^2 
+forward preallocated
+  0.000002 seconds (2 allocations: 48 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 32 bytes)
+
+[▒*[▒,▒],▒]  ℝ^4  ℝ^10  ℝ^7 -&gt; ℝ^2 
+forward preallocated
+  0.000001 seconds (2 allocations: 48 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 32 bytes)
+
+[[▒,▒];[▒,▒]]  ℝ^4  ℝ^7 -&gt; ℝ^3  ℝ^5 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds (8 allocations: 224 bytes)
+
+[[▒,ℱ];[▒,ℱ]]  ℂ^4  ℝ^5 -&gt; ℂ^5  ℂ^5 
+forward preallocated
+  0.000002 seconds (2 allocations: 320 bytes)
+adjoint preallocated
+  0.000006 seconds (18 allocations: 704 bytes)
+
+[[▒;▒],[▒;▒]]  ℝ^3  ℝ^5 -&gt; ℝ^4  ℝ^7 
+forward preallocated
+  0.000001 seconds (8 allocations: 224 bytes)
+adjoint preallocated
+  0.000001 seconds (2 allocations: 32 bytes)
+
+HCAT+HCAT  ℝ^7  ℝ^5  ℝ^3 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds (12 allocations: 336 bytes)
+
+HCAT+HCAT  ℝ^3  ℝ^5  ℝ^7 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds (12 allocations: 336 bytes)
+
+Σ  ℝ^5 -&gt; ℝ^4  ℝ^7 
+forward preallocated
+  0.000004 seconds (16 allocations: 448 bytes)
+adjoint preallocated
+  0.000002 seconds (3 allocations: 48 bytes)
+
+α[▒,0;0,▒]  ℝ^7  ℝ^5 -&gt; ℝ^4  ℝ^3 
+forward preallocated
+  0.000004 seconds (6 allocations: 160 bytes)
+adjoint preallocated
+  0.000002 seconds (6 allocations: 160 bytes)
+
+α[▒;▒]  ℝ^7 -&gt; ℝ^4  ℝ^3 
+forward preallocated
+  0.000001 seconds (6 allocations: 160 bytes)
+adjoint preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+α[▒,▒]  ℝ^3  ℝ^7 -&gt; ℝ^4 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds (6 allocations: 160 bytes)
+
+[▒,0;0,HCAT]  ℝ^4 ... ℝ^5 -&gt; ℝ^2  ℝ^3 
+forward preallocated
+  0.000001 seconds (2 allocations: 48 bytes)
+adjoint preallocated
+  0.000002 seconds (1 allocation: 32 bytes)
+
+[[▒,▒],0;0,HCAT]  ℝ^4 ... ℝ^5 -&gt; ℝ^2  ℝ^3 
+forward preallocated
+  0.000001 seconds (4 allocations: 96 bytes)
+adjoint preallocated
+  0.000002 seconds (2 allocations: 64 bytes)
+
+α▒+▒  ℝ^7 -&gt; ℝ^5 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+α▒*▒  ℝ^4 -&gt; ℝ^3 
+forward preallocated
+  0.000001 seconds
+adjoint preallocated
+  0.000002 seconds (1 allocation: 16 bytes)
+
+Testing  calculus non linear operators
+
+ασ  ℝ^3 -&gt; ℝ^3 
+forward preallocated
+  0.000000 seconds
+αJ(σ)  ℝ^3 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (2 allocations: 32 bytes)
+
+α『  ℝ^3 -&gt; ℝ^3 
+forward preallocated
+  0.000000 seconds
+αJ(『)  ℝ^3 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (2 allocations: 32 bytes)
+
+[▒,0;0,σ]  ℝ^4  ℝ^3 -&gt; ℝ^4  ℝ^3 
+forward preallocated
+  0.000000 seconds
+[▒,0;0,J(σ)]  ℝ^4  ℝ^3 -&gt; ℝ^4  ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (2 allocations: 32 bytes)
+
+[▒,σ]  ℝ^4  ℝ^3 -&gt; ℝ^3 
+forward preallocated
+  0.000000 seconds
+[▒,J(σ)]  ℝ^4  ℝ^3 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (2 allocations: 32 bytes)
+
+[sin,▒]  ℝ^3  ℝ^5 -&gt; ℝ^3 
+forward preallocated
+  0.000000 seconds
+[J(sin),▒]  ℝ^3  ℝ^5 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (2 allocations: 32 bytes)
+((5,), (3,))
+
+[sin,▒]  ℝ^5  ℝ^3 -&gt; ℝ^3 
+forward preallocated
+  0.000000 seconds
+[J(sin),▒]  ℝ^5  ℝ^3 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (2 allocations: 32 bytes)
+
+[▒;σ]  ℝ^3 -&gt; ℝ^4  ℝ^3 
+forward preallocated
+  0.000000 seconds
+[▒;J(σ)]  ℝ^3 -&gt; ℝ^4  ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (2 allocations: 32 bytes)
+
+HCAT  ℝ^3  ℝ^2  ℝ^7 -&gt; ℝ^4  ℝ^3 
+forward preallocated
+  0.000001 seconds (16 allocations: 448 bytes)
+HCAT  ℝ^3  ℝ^2  ℝ^7 -&gt; ℝ^4  ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (5 allocations: 80 bytes)
+
+[HCAT;HCAT]  ℝ^3  ℝ^6  ℝ^5 -&gt; ℝ^6  ℝ^7 
+forward preallocated
+  0.000002 seconds
+[HCAT;HCAT]  ℝ^3  ℝ^6  ℝ^5 -&gt; ℝ^6  ℝ^7 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (14 allocations: 368 bytes)
+
+Π  ℝ^3 -&gt; ℝ^5 
+forward preallocated
+  0.000001 seconds
+Π  ℝ^3 -&gt; ℝ^5 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (2 allocations: 32 bytes)
+
+σ*[(⋅)b,I]  ℝ^(7, 5)  ℝ^7 -&gt; ℝ^7 
+forward preallocated
+  0.000001 seconds
+J(σ)*[(⋅)b,I]  ℝ^(7, 5)  ℝ^7 -&gt; ℝ^7 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (6 allocations: 96 bytes)
+
+¶σ  ℝ^4 -&gt; ℝ^(2, 2) 
+forward preallocated
+  0.000000 seconds (2 allocations: 80 bytes)
+¶J(σ)  ℝ^4 -&gt; ℝ^(2, 2) 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+.σ  ℝ^4 -&gt; ℝ^(4, 7) 
+forward preallocated
+  0.000000 seconds
+.J(σ)  ℝ^4 -&gt; ℝ^(4, 7) 
+adjoint jacobian mul! preallocated
+  0.000006 seconds (15 allocations: 464 bytes)
+
+.σ  ℝ^1 -&gt; ℝ^(1, 7) 
+forward preallocated
+  0.000000 seconds
+.J(σ)  ℝ^1 -&gt; ℝ^(1, 7) 
+adjoint jacobian mul! preallocated
+  0.000007 seconds (9 allocations: 224 bytes)
+
+▒+σ  ℝ^5 -&gt; ℝ^5 
+forward preallocated
+  0.000000 seconds
+▒+J(σ)  ℝ^5 -&gt; ℝ^5 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (2 allocations: 32 bytes)
+
+e-d  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000000 seconds
+J(e)  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+sin+d*I+d  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000000 seconds
+J(sin)*I  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+Π  ℝ^10 -&gt; ℝ^10 
+forward preallocated
+  0.000001 seconds
+Π  ℝ^10 -&gt; ℝ^10 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (5 allocations: 80 bytes)
+
+I*sin  ℝ^10 -&gt; ℝ^1 
+forward preallocated
+  0.000001 seconds
+I*J(sin)  ℝ^10 -&gt; ℝ^1 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (2 allocations: 32 bytes)
+
+▒*▒  ℝ^4 -&gt; ℝ^1 
+forward preallocated
+  0.000000 seconds
+▒*▒  ℝ^4 -&gt; ℝ^1 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+▒*▒  ℝ^(7, 5) -&gt; ℝ^(5, 5) 
+forward preallocated
+  0.000001 seconds
+▒*▒  ℝ^(7, 5) -&gt; ℝ^(5, 5) 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (1 allocation: 16 bytes)
+
+sin*cos  ℝ^(3, 7) -&gt; ℝ^(7, 7) 
+forward preallocated
+  0.000002 seconds
+J(sin)*J(cos)  ℝ^(3, 7) -&gt; ℝ^(7, 7) 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (5 allocations: 560 bytes)
+
+[sin+d,▒]*[cos,▒]  ℝ^3  ℝ^5 -&gt; ℝ^1 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒]*[J(cos),▒]  ℝ^3  ℝ^5 -&gt; ℝ^1 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (23 allocations: 704 bytes)
+
+[sin,▒]*[cos,▒]  ℝ^3  ℝ^5 -&gt; ℝ^1 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒]*[J(cos),▒]  ℝ^3  ℝ^5 -&gt; ℝ^1 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (23 allocations: 704 bytes)
+
+[sin+d,▒]*[cos,▒]  ℝ^5  ℝ^3 -&gt; ℝ^1 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒]*[J(cos),▒]  ℝ^5  ℝ^3 -&gt; ℝ^1 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (23 allocations: 704 bytes)
+
+I*sin  ℝ^10 -&gt; ℝ^(10, 10) 
+forward preallocated
+  0.000001 seconds
+I*J(sin)  ℝ^10 -&gt; ℝ^(10, 10) 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (2 allocations: 32 bytes)
+
+▒*▒  ℝ^4 -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000001 seconds
+▒*▒  ℝ^4 -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (1 allocation: 16 bytes)
+
+▒*▒  ℝ^(7, 5) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000002 seconds
+▒*▒  ℝ^(7, 5) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (1 allocation: 16 bytes)
+
+sin*cos  ℝ^(3, 7) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000008 seconds
+J(sin)*J(cos)  ℝ^(3, 7) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (5 allocations: 560 bytes)
+
+[sin+d,▒]*[cos,▒]  ℝ^3  ℝ^5 -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒]*[J(cos),▒]  ℝ^3  ℝ^5 -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (13 allocations: 496 bytes)
+
+[sin,▒]*[cos,▒]  ℝ^3  ℝ^5 -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒]*[J(cos),▒]  ℝ^3  ℝ^5 -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (13 allocations: 496 bytes)
+
+[sin+d,▒]*[cos,▒]  ℝ^5  ℝ^3 -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒]*[J(cos),▒]  ℝ^5  ℝ^3 -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000002 seconds (13 allocations: 496 bytes)
+
+I*I  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000002 seconds (1 allocation: 16 bytes)
+I*I  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (3 allocations: 48 bytes)
+
+sin*cos  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000002 seconds (1 allocation: 16 bytes)
+J(sin)*J(cos)  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (7 allocations: 400 bytes)
+
+atan*sin*cos  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000003 seconds (2 allocations: 32 bytes)
+J(atan)*J(sin)*J(cos)  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000005 seconds (11 allocations: 464 bytes)
+
+▒*▒  ℝ^(2, 3) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000002 seconds (1 allocation: 16 bytes)
+▒*▒  ℝ^(2, 3) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (3 allocations: 48 bytes)
+
+[sin+d,▒]*[sin,▒]  ℝ^(5, 5)  ℝ^(3, 5) -&gt; ℝ^(5, 5) 
+forward preallocated
+  0.000003 seconds
+[J(sin),▒]*[J(sin),▒]  ℝ^(5, 5)  ℝ^(3, 5) -&gt; ℝ^(5, 5) 
+adjoint jacobian mul! preallocated
+  0.000006 seconds (11 allocations: 336 bytes)
+
+[sin,▒]*[sin,▒]  ℝ^(5, 5)  ℝ^(3, 5) -&gt; ℝ^(5, 5) 
+forward preallocated
+  0.000003 seconds
+[J(sin),▒]*[J(sin),▒]  ℝ^(5, 5)  ℝ^(3, 5) -&gt; ℝ^(5, 5) 
+adjoint jacobian mul! preallocated
+  0.000005 seconds (11 allocations: 336 bytes)
+
+[sin+d,▒]*[sin,▒]  ℝ^(3, 5)  ℝ^(5, 5) -&gt; ℝ^(5, 5) 
+forward preallocated
+  0.000003 seconds
+[J(sin),▒]*[J(sin),▒]  ℝ^(3, 5)  ℝ^(5, 5) -&gt; ℝ^(5, 5) 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (11 allocations: 336 bytes)
+
+▒*▒*▒  ℝ^(7, 5) -&gt; ℝ^(5, 3) 
+forward preallocated
+  0.000002 seconds
+▒*▒*▒  ℝ^(7, 5) -&gt; ℝ^(5, 3) 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (2 allocations: 32 bytes)
+
+▒*▒*▒  ℝ^(7, 5) -&gt; ℝ^(9, 5) 
+forward preallocated
+  0.000003 seconds
+▒*▒*▒  ℝ^(7, 5) -&gt; ℝ^(9, 5) 
+adjoint jacobian mul! preallocated
+  0.000006 seconds (2 allocations: 32 bytes)
+
+▒*▒*▒  ℝ^(7, 5) -&gt; ℝ^(9, 5) 
+forward preallocated
+  0.000003 seconds
+▒*▒*▒  ℝ^(7, 5) -&gt; ℝ^(9, 5) 
+adjoint jacobian mul! preallocated
+  0.000005 seconds (2 allocations: 32 bytes)
+
+I.*I  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+forward preallocated
+  0.000000 seconds
+I.*I  ℝ^(3, 3) -&gt; ℝ^(3, 3) 
+adjoint jacobian mul! preallocated
+  0.000000 seconds (1 allocation: 16 bytes)
+
+sin.*cos  ℝ^(3, 2) -&gt; ℝ^(3, 2) 
+forward preallocated
+  0.000001 seconds
+J(sin).*J(cos)  ℝ^(3, 2) -&gt; ℝ^(3, 2) 
+adjoint jacobian mul! preallocated
+  0.000001 seconds (5 allocations: 304 bytes)
+
+[sin+d,▒].*[cos,▒]  ℝ^3  ℝ^5 -&gt; ℝ^3 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒].*[J(cos),▒]  ℝ^3  ℝ^5 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000003 seconds (13 allocations: 496 bytes)
+
+[sin,▒].*[cos,▒]  ℝ^3  ℝ^5 -&gt; ℝ^3 
+forward preallocated
+  0.000002 seconds
+[J(sin),▒].*[J(cos),▒]  ℝ^3  ℝ^5 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000004 seconds (13 allocations: 496 bytes)
+
+[sin+d,▒].*[cos,▒]  ℝ^5  ℝ^3 -&gt; ℝ^3 
+forward preallocated
+  0.000001 seconds
+[J(sin),▒].*[J(cos),▒]  ℝ^5  ℝ^3 -&gt; ℝ^3 
+adjoint jacobian mul! preallocated
+  0.000005 seconds (13 allocations: 496 bytes)
+
+Testing L-BFGS routines
+LBFGS  ℝ^10 -&gt; ℝ^10 
+LBFGS  ℝ^10  ℝ^10 -&gt; ℝ^10  ℝ^10 
+  0.311619 seconds (212.80 k allocations: 10.179 MiB, 14.78% gc time)
+  0.497813 seconds (483.26 k allocations: 21.813 MiB)
+  0.163180 seconds (75.57 k allocations: 3.256 MiB)
+  0.330648 seconds (190.85 k allocations: 7.461 MiB)
+  0.000009 seconds
+  0.000006 seconds (30 allocations: 800 bytes)
+  0.000003 seconds
+  0.000003 seconds (16 allocations: 448 bytes)
+  0.000001 seconds
+  0.000004 seconds (54 allocations: 1.406 KiB)
+  0.000001 seconds
+  0.000002 seconds (16 allocations: 448 bytes)
+  0.000002 seconds
+  0.000004 seconds (78 allocations: 2.031 KiB)
+  0.000001 seconds
+  0.000002 seconds (16 allocations: 448 bytes)
+  0.000001 seconds
+  0.000004 seconds (78 allocations: 2.031 KiB)
+
+Testing linear operators syntax
+Test Summary:     | Pass  Total
+AbstractOperators | 1256   1256
+   Testing AbstractOperators tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

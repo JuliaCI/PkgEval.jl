@@ -1,0 +1,403 @@
+ Resolving package versions...
+ Installed Parsers ──────────── v0.3.10
+ Installed OrderedCollections ─ v1.1.0
+ Installed BenchmarkTools ───── v0.4.3
+ Installed Arpack ───────────── v0.3.1
+ Installed BinaryProvider ───── v0.5.8
+ Installed JSON ─────────────── v0.21.0
+ Installed MathOptInterface ─── v0.9.7
+ Installed TimerOutputs ─────── v0.5.3
+ Installed ProxSDP ──────────── v1.2.0
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [65e78d25] + ProxSDP v1.2.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [7d9fca2a] + Arpack v0.3.1
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [b99e7846] + BinaryProvider v0.5.8
+  [682c06a0] + JSON v0.21.0
+  [b8f27783] + MathOptInterface v0.9.7
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [65e78d25] + ProxSDP v1.2.0
+  [a759f4b9] + TimerOutputs v0.5.3
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+  Building Arpack → `~/.julia/packages/Arpack/cu5By/deps/build.log`
+   Testing ProxSDP
+ Resolving package versions...
+    Status `/tmp/tmp6Nm6Gy/Manifest.toml`
+  [7d9fca2a] Arpack v0.3.1
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [b99e7846] BinaryProvider v0.5.8
+  [682c06a0] JSON v0.21.0
+  [b8f27783] MathOptInterface v0.9.7
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [65e78d25] ProxSDP v1.2.0
+  [a759f4b9] TimerOutputs v0.5.3
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Test Summary: | Pass  Total
+SolverName    |    1      1
+Test Summary:            | Pass  Total
+supports_default_copy_to |    2      2
+Test Summary: | Pass  Total
+Unit          |  262    262
+Test Summary:         | Pass  Total
+MOI Continuous Linear |  425    425
+Test Summary:        | Pass  Total
+MOI Continuous Conic |  610    610
+Test Summary: | Pass  Total
+Simple LP     |    3      3
+Test Summary:           | Pass  Total
+Simple LP with 2 1D SDP |    3      3
+Test Summary:     | Pass  Total
+LP in SDP EQ form |    3      3
+Test Summary:       | Pass  Total
+LP in SDP INEQ form |    4      4
+Test Summary: | Pass  Total
+SDP from MOI  |    6      6
+Test Summary:       | Pass  Total
+Double SDP from MOI |    7      7
+Test Summary:                | Pass  Total
+SDP with duplicates from MOI |    5      5
+Test Summary:      | Pass  Total
+SDP from Wikipedia |    3      3
+Test Summary: | Pass  Total
+MIMO Sizes    |   90     90
+Test Summary: | Pass  Total
+RANDSDP Sizes |   54     54
+---------------------------------------------------------------------------------------
+=======================================================================================
+                  ProxSDP : Proximal Semidefinite Programming Solver                   
+                         (c) Mario Souto and Joaquim D. Garcia, 2019                   
+                                                              v1.2.0                   
+---------------------------------------------------------------------------------------
+    Solver parameters:
+       tol_primal = 0.001 tol_dual = 0.001 tol_psd = 1.0e-6 
+       max_iter = 100000 max_beta = 100000.0 min_beta = 1.0e-5
+    Constraints:
+       125 linear equalities 
+    Cones:
+       1 psd cone of size 125x125
+---------------------------------------------------------------------------------------
+    Initializing Primal-Dual Hybrid Gradient method                                    
+---------------------------------------------------------------------------------------
+|  iter  | prim obj | rel. gap |  feasb.  | prim res | dual res | max rank |  time(s) |
+---------------------------------------------------------------------------------------
+|    100 |  111.376 |   0.9988 |   0.2692 |  20.0994 |   1.9963 |        2 |   0.8679 |
+|    200 |   49.042 |   0.7926 |   0.1168 |   8.8478 |   0.7893 |        2 |   1.0839 |
+|    300 |   51.781 |   0.2407 |   0.0172 |   1.3087 |   0.1173 |        4 |   1.6407 |
+|    400 |   49.999 |   0.0061 |   0.0021 |   0.1598 |   0.0145 |        4 |   2.1891 |
+|    500 |   48.923 |   0.0499 |   0.0004 |   0.0648 |   0.0030 |        8 |   3.4928 |
+|    600 |   48.155 |   0.0176 |   0.0001 |   0.0344 |   0.0008 |        8 |   9.8481 |
+|    700 |   47.163 |   0.0020 |   0.0008 |   0.0174 |   0.0009 |        8 |  21.8881 |
+|    712 |   47.094 |   0.0010 |   0.0007 |   0.0146 |   0.0008 |        8 |  24.3849 |
+---------------------------------------------------------------------------------------
+    Solver status:
+       Optimal solution found in 24.39 seconds
+       Primal objective = 47.09432
+       Dual objective = 47.00179
+       Duality gap (%) = 0.0 %
+---------------------------------------------------------------------------------------
+    Primal feasibility:
+       ||A(X) - b|| / (1 + ||b||) = 0.000657    [linear equalities] 
+       ||max(G(X) - h, 0)|| / (1 + ||h||) = 0.0    [linear inequalities]
+    Rank of p.s.d. variable is 6.
+=======================================================================================
+ ──────────────────────────────────────────────────────────────────────────────
+                                       Time                   Allocations      
+                               ──────────────────────   ───────────────────────
+       Tot / % measured:            25.9s / 94.0%           24.2MiB / 37.7%    
+
+ Section               ncalls     time   %tot     avg     alloc   %tot      avg
+ ──────────────────────────────────────────────────────────────────────────────
+ Main                       1    24.4s   100%   24.4s   7.61MiB  83.3%  7.61MiB
+   CP loop                  1    24.4s   100%   24.4s   4.61MiB  50.5%  4.61MiB
+     primal               712    24.1s  98.7%  33.8ms   4.31MiB  47.2%  6.20KiB
+       sdp proj           712    24.0s  98.4%  33.7ms   4.29MiB  46.9%  6.17KiB
+         eigs             712    23.9s  97.9%  33.5ms   4.18MiB  45.7%  6.01KiB
+           saupd          712    23.5s  96.2%  32.9ms   0.98MiB  10.7%  1.40KiB
+           seupd          712    117ms  0.48%   165μs   11.1KiB  0.12%    16.0B
+           update_arc     712   1.50ms  0.01%  2.10μs   73.5KiB  0.79%     106B
+         reshape1         712   71.2ms  0.29%   100μs     0.00B  0.00%    0.00B
+         reshape2         712   33.9ms  0.14%  47.7μs     0.00B  0.00%    0.00B
+         get min eig      712   1.10ms  0.00%  1.55μs     0.00B  0.00%    0.00B
+       linesearch -1      712   63.0ms  0.26%  88.5μs     0.00B  0.00%    0.00B
+     linesearch           712    214ms  0.88%   300μs    193KiB  2.06%     277B
+       linesearch 3     3.03k    122ms  0.50%  40.2μs     0.00B  0.00%    0.00B
+       linesearch 4     3.03k   65.7ms  0.27%  21.7μs     0.00B  0.00%    0.00B
+       linesearch 2     3.03k   4.16ms  0.02%  1.37μs     0.00B  0.00%    0.00B
+       linesearch 1     3.03k   4.12ms  0.02%  1.36μs     0.00B  0.00%    0.00B
+     residual             712   66.9ms  0.27%  94.0μs     0.00B  0.00%    0.00B
+     gap                  712   11.9ms  0.05%  16.7μs   33.4KiB  0.36%    48.0B
+   Init                     1   3.85ms  0.02%  3.85ms   2.75MiB  30.2%  2.75MiB
+     normscale alloc        1   2.63ms  0.01%  2.63ms   2.07MiB  22.7%  2.07MiB
+     normscale              1    304μs  0.00%   304μs     0.00B  0.00%    0.00B
+     equilibrate            1   4.54μs  0.00%  4.54μs     0.00B  0.00%    0.00B
+   init_arc                 1    126μs  0.00%   126μs    173KiB  1.85%   173KiB
+ pre-processing             1   2.42ms  0.01%  2.42ms   1.53MiB  16.7%  1.53MiB
+ ──────────────────────────────────────────────────────────────────────────────
+ ──────────────────────────────────────────────────────────────────────────
+                                   Time                   Allocations      
+                           ──────────────────────   ───────────────────────
+     Tot / % measured:          26.0s / 93.9%           24.8MiB / 36.9%    
+
+ Section           ncalls     time   %tot     avg     alloc   %tot      avg
+ ──────────────────────────────────────────────────────────────────────────
+ Main                   1    24.4s   100%   24.4s   7.61MiB  83.3%  7.61MiB
+ CP loop                1    24.4s   100%   24.4s   4.61MiB  50.5%  4.61MiB
+ primal               712    24.1s  98.7%  33.8ms   4.31MiB  47.2%  6.20KiB
+ sdp proj             712    24.0s  98.4%  33.7ms   4.29MiB  46.9%  6.17KiB
+ eigs                 712    23.9s  97.9%  33.5ms   4.18MiB  45.7%  6.01KiB
+ saupd                712    23.5s  96.2%  32.9ms   0.98MiB  10.7%  1.40KiB
+ linesearch           712    214ms  0.88%   300μs    193KiB  2.06%     277B
+ linesearch 3       3.03k    122ms  0.50%  40.2μs     0.00B  0.00%    0.00B
+ seupd                712    117ms  0.48%   165μs   11.1KiB  0.12%    16.0B
+ reshape1             712   71.2ms  0.29%   100μs     0.00B  0.00%    0.00B
+ residual             712   66.9ms  0.27%  94.0μs     0.00B  0.00%    0.00B
+ linesearch 4       3.03k   65.7ms  0.27%  21.7μs     0.00B  0.00%    0.00B
+ linesearch -1        712   63.0ms  0.26%  88.5μs     0.00B  0.00%    0.00B
+ reshape2             712   33.9ms  0.14%  47.7μs     0.00B  0.00%    0.00B
+ gap                  712   11.9ms  0.05%  16.7μs   33.4KiB  0.36%    48.0B
+ linesearch 2       3.03k   4.16ms  0.02%  1.37μs     0.00B  0.00%    0.00B
+ linesearch 1       3.03k   4.12ms  0.02%  1.36μs     0.00B  0.00%    0.00B
+ Init                   1   3.85ms  0.02%  3.85ms   2.75MiB  30.2%  2.75MiB
+ normscale alloc        1   2.63ms  0.01%  2.63ms   2.07MiB  22.7%  2.07MiB
+ pre-processing         1   2.42ms  0.01%  2.42ms   1.53MiB  16.7%  1.53MiB
+ update_arc           712   1.50ms  0.01%  2.10μs   73.5KiB  0.79%     106B
+ get min eig          712   1.10ms  0.00%  1.55μs     0.00B  0.00%    0.00B
+ normscale              1    304μs  0.00%   304μs     0.00B  0.00%    0.00B
+ init_arc               1    126μs  0.00%   126μs    173KiB  1.85%   173KiB
+ equilibrate            1   4.54μs  0.00%  4.54μs     0.00B  0.00%    0.00B
+ ──────────────────────────────────────────────────────────────────────────
+---------------------------------------------------------------------------------------
+=======================================================================================
+                  ProxSDP : Proximal Semidefinite Programming Solver                   
+                         (c) Mario Souto and Joaquim D. Garcia, 2019                   
+                                                              v1.2.0                   
+---------------------------------------------------------------------------------------
+    Solver parameters:
+       tol_primal = 0.001 tol_dual = 0.001 tol_psd = 1.0e-6 
+       max_iter = 100000 max_beta = 100000.0 min_beta = 1.0e-5
+    Constraints:
+       124 linear equalities 
+    Cones:
+       1 psd cone of size 124x124
+---------------------------------------------------------------------------------------
+    Initializing Primal-Dual Hybrid Gradient method                                    
+---------------------------------------------------------------------------------------
+|  iter  | prim obj | rel. gap |  feasb.  | prim res | dual res | max rank |  time(s) |
+---------------------------------------------------------------------------------------
+|    100 | -131.195 |   0.3693 |   0.8253 |  23.0088 |   3.0948 |        2 |   1.6872 |
+|    200 | -138.109 |   0.0252 |   0.1844 |  15.5171 |   2.0404 |        2 |   2.2376 |
+|    300 | -142.978 |   0.0884 |   0.0280 |   2.3664 |   0.3535 |        2 |   2.8276 |
+|    400 | -137.822 |   0.0526 |   0.0081 |   0.6931 |   0.1023 |        2 |   3.7390 |
+|    500 | -137.149 |   0.0260 |   0.0012 |   0.1029 |   0.0156 |        2 |   4.1909 |
+|    600 | -138.345 |   0.0032 |   0.0033 |   0.2845 |   0.0433 |        4 |   5.2233 |
+|    700 | -139.216 |   0.0119 |   0.0003 |   0.0659 |   0.0034 |        4 |   6.3926 |
+|    800 | -139.747 |   0.0092 |   0.0000 |   0.0312 |   0.0005 |        4 |   7.0785 |
+|    900 | -140.766 |   0.0035 |   0.0002 |   0.0486 |   0.0007 |        4 |   8.7472 |
+|   1000 | -141.427 |   0.0012 |   0.0002 |   0.0338 |   0.0005 |        4 |  10.8076 |
+|   1010 | -141.533 |   0.0008 |   0.0009 |   0.0686 |   0.0021 |        8 |  11.8652 |
+---------------------------------------------------------------------------------------
+    Solver status:
+       Optimal solution found in 11.87 seconds
+       Primal objective = -141.53257
+       Dual objective = -141.76737
+       Duality gap (%) = 0.0 %
+---------------------------------------------------------------------------------------
+    Primal feasibility:
+       ||A(X) - b|| / (1 + ||b||) = 0.000915    [linear equalities] 
+       ||max(G(X) - h, 0)|| / (1 + ||h||) = 0.0    [linear inequalities]
+    Rank of p.s.d. variable is 5.
+=======================================================================================
+ ──────────────────────────────────────────────────────────────────────────────
+                                       Time                   Allocations      
+                               ──────────────────────   ───────────────────────
+       Tot / % measured:            11.9s / 100%            7.75MiB / 99.2%    
+
+ Section               ncalls     time   %tot     avg     alloc   %tot      avg
+ ──────────────────────────────────────────────────────────────────────────────
+ Main                       1    11.9s   100%   11.9s   6.65MiB  86.5%  6.65MiB
+   CP loop                  1    11.9s   100%   11.9s   4.14MiB  53.9%  4.14MiB
+     primal             1.01k    11.5s  97.2%  11.4ms   3.72MiB  48.4%  3.78KiB
+       sdp proj         1.01k    11.5s  96.5%  11.3ms   3.69MiB  48.0%  3.74KiB
+         eigs           1.01k    11.3s  95.1%  11.2ms   3.53MiB  46.0%  3.58KiB
+           saupd        1.01k    10.8s  91.2%  10.7ms    447KiB  5.68%     453B
+           seupd        1.01k    159ms  1.34%   157μs   15.8KiB  0.20%    16.0B
+           update_arc   1.01k   1.83ms  0.02%  1.81μs   72.9KiB  0.93%    73.9B
+         reshape1       1.01k    103ms  0.87%   102μs     0.00B  0.00%    0.00B
+         reshape2       1.01k   50.7ms  0.43%  50.2μs     0.00B  0.00%    0.00B
+         get min eig    1.01k   1.62ms  0.01%  1.60μs     0.00B  0.00%    0.00B
+       linesearch -1    1.01k   52.2ms  0.44%  51.7μs     0.00B  0.00%    0.00B
+     linesearch         1.01k    177ms  1.49%   176μs    273KiB  3.47%     277B
+       linesearch 4     4.32k    105ms  0.88%  24.2μs     0.00B  0.00%    0.00B
+       linesearch 3     4.32k   34.9ms  0.29%  8.07μs     0.00B  0.00%    0.00B
+       linesearch 2     4.32k   5.68ms  0.05%  1.32μs     0.00B  0.00%    0.00B
+       linesearch 1     4.32k   5.52ms  0.05%  1.28μs     0.00B  0.00%    0.00B
+     residual           1.01k    114ms  0.96%   113μs     0.00B  0.00%    0.00B
+     gap                1.01k   18.2ms  0.15%  18.0μs   47.3KiB  0.60%    48.0B
+   Init                     1   4.15ms  0.03%  4.15ms   2.26MiB  29.4%  2.26MiB
+     normscale alloc        1   3.57ms  0.03%  3.57ms   1.82MiB  23.7%  1.82MiB
+     normscale              1    106μs  0.00%   106μs     0.00B  0.00%    0.00B
+     equilibrate            1   8.14μs  0.00%  8.14μs     0.00B  0.00%    0.00B
+   init_arc                 1    131μs  0.00%   131μs    171KiB  2.18%   171KiB
+ pre-processing             1   1.42ms  0.01%  1.42ms   1.04MiB  13.5%  1.04MiB
+ ──────────────────────────────────────────────────────────────────────────────
+ ──────────────────────────────────────────────────────────────────────────
+                                   Time                   Allocations      
+                           ──────────────────────   ───────────────────────
+     Tot / % measured:          11.9s / 100%            7.87MiB / 97.7%    
+
+ Section           ncalls     time   %tot     avg     alloc   %tot      avg
+ ──────────────────────────────────────────────────────────────────────────
+ Main                   1    11.9s   100%   11.9s   6.65MiB  86.5%  6.65MiB
+ CP loop                1    11.9s   100%   11.9s   4.14MiB  53.9%  4.14MiB
+ primal             1.01k    11.5s  97.2%  11.4ms   3.72MiB  48.4%  3.78KiB
+ sdp proj           1.01k    11.5s  96.5%  11.3ms   3.69MiB  48.0%  3.74KiB
+ eigs               1.01k    11.3s  95.1%  11.2ms   3.53MiB  46.0%  3.58KiB
+ saupd              1.01k    10.8s  91.2%  10.7ms    447KiB  5.68%     453B
+ linesearch         1.01k    177ms  1.49%   176μs    273KiB  3.47%     277B
+ seupd              1.01k    159ms  1.34%   157μs   15.8KiB  0.20%    16.0B
+ residual           1.01k    114ms  0.96%   113μs     0.00B  0.00%    0.00B
+ linesearch 4       4.32k    105ms  0.88%  24.2μs     0.00B  0.00%    0.00B
+ reshape1           1.01k    103ms  0.87%   102μs     0.00B  0.00%    0.00B
+ linesearch -1      1.01k   52.2ms  0.44%  51.7μs     0.00B  0.00%    0.00B
+ reshape2           1.01k   50.7ms  0.43%  50.2μs     0.00B  0.00%    0.00B
+ linesearch 3       4.32k   34.9ms  0.29%  8.07μs     0.00B  0.00%    0.00B
+ gap                1.01k   18.2ms  0.15%  18.0μs   47.3KiB  0.60%    48.0B
+ linesearch 2       4.32k   5.68ms  0.05%  1.32μs     0.00B  0.00%    0.00B
+ linesearch 1       4.32k   5.52ms  0.05%  1.28μs     0.00B  0.00%    0.00B
+ Init                   1   4.15ms  0.03%  4.15ms   2.26MiB  29.4%  2.26MiB
+ normscale alloc        1   3.57ms  0.03%  3.57ms   1.82MiB  23.7%  1.82MiB
+ update_arc         1.01k   1.83ms  0.02%  1.81μs   72.9KiB  0.93%    73.9B
+ get min eig        1.01k   1.62ms  0.01%  1.60μs     0.00B  0.00%    0.00B
+ pre-processing         1   1.42ms  0.01%  1.42ms   1.04MiB  13.5%  1.04MiB
+ init_arc               1    131μs  0.00%   131μs    171KiB  2.18%   171KiB
+ normscale              1    106μs  0.00%   106μs     0.00B  0.00%    0.00B
+ equilibrate            1   8.14μs  0.00%  8.14μs     0.00B  0.00%    0.00B
+ ──────────────────────────────────────────────────────────────────────────
+Test Summary: | Pass  Total
+SDPLIB Sizes  |    4      4
+Test Summary:       | Pass  Total
+Sensor Localization |    2      2
+Test Summary: | Pass  Total
+Full eig      |   15     15
+---------------------------------------------------------------------------------------
+=======================================================================================
+                  ProxSDP : Proximal Semidefinite Programming Solver                   
+                         (c) Mario Souto and Joaquim D. Garcia, 2019                   
+                                                              v1.2.0                   
+---------------------------------------------------------------------------------------
+    Solver parameters:
+       tol_primal = 0.0001 tol_dual = 0.0001 
+       max_iter = 100000 max_beta = 100000.0 min_beta = 1.0e-5
+    Constraints:
+       2 linear equalities 
+---------------------------------------------------------------------------------------
+    Initializing Primal-Dual Hybrid Gradient method                                    
+---------------------------------------------------------------------------------------
+|  iter  | prim obj | rel. gap |  feasb.  | prim res | dual res | max rank |  time(s) |
+---------------------------------------------------------------------------------------
+|      1 |    0.000 |   0.0000 |   0.0000 |   0.0000 |   0.0000 |        0 |   0.0005 |
+---------------------------------------------------------------------------------------
+    Solver status:
+       Optimal solution found in 0.0 seconds
+       Primal objective = 0.0
+       Dual objective = 0.0
+       Duality gap (%) = 0.0 %
+---------------------------------------------------------------------------------------
+    Primal feasibility:
+       ||A(X) - b|| / (1 + ||b||) = 0.0    [linear equalities] 
+       ||max(G(X) - h, 0)|| / (1 + ||h||) = 0.0    [linear inequalities]
+    Rank of p.s.d. variable is 0.
+=======================================================================================
+ ──────────────────────────────────────────────────────────────────────────────
+                                       Time                   Allocations      
+                               ──────────────────────   ───────────────────────
+       Tot / % measured:            983μs / 98.4%           46.2KiB / 95.6%    
+
+ Section               ncalls     time   %tot     avg     alloc   %tot      avg
+ ──────────────────────────────────────────────────────────────────────────────
+ Main                       1    905μs  93.6%   905μs   38.2KiB  86.5%  38.2KiB
+   Init                     1   79.5μs  8.21%  79.5μs   17.2KiB  38.9%  17.2KiB
+     normscale alloc        1   8.73μs  0.90%  8.73μs   2.16KiB  4.88%  2.16KiB
+     normscale              1   1.26μs  0.13%  1.26μs     0.00B  0.00%    0.00B
+     equilibrate            1    611ns  0.06%   611ns     0.00B  0.00%    0.00B
+   CP loop                  1   68.2μs  7.05%  68.2μs   11.9KiB  27.0%  11.9KiB
+     linesearch             1   9.54μs  0.99%  9.54μs   3.38KiB  7.64%  3.38KiB
+       linesearch 1         1    812ns  0.08%   812ns     0.00B  0.00%    0.00B
+       linesearch 2         1    802ns  0.08%   802ns     0.00B  0.00%    0.00B
+       linesearch 4         1    762ns  0.08%   762ns     0.00B  0.00%    0.00B
+       linesearch 3         1    350ns  0.04%   350ns     0.00B  0.00%    0.00B
+     primal                 1   4.95μs  0.51%  4.95μs      864B  1.91%     864B
+       linesearch -1        1   1.03μs  0.11%  1.03μs     0.00B  0.00%    0.00B
+     gap                    1   4.47μs  0.46%  4.47μs     48.0B  0.11%    48.0B
+     residual               1   3.47μs  0.36%  3.47μs     0.00B  0.00%    0.00B
+ pre-processing             1   62.4μs  6.45%  62.4μs   5.97KiB  13.5%  5.97KiB
+ ──────────────────────────────────────────────────────────────────────────────
+ ──────────────────────────────────────────────────────────────────────────
+                                   Time                   Allocations      
+                           ──────────────────────   ───────────────────────
+     Tot / % measured:         18.6ms / 5.21%            127KiB / 34.8%    
+
+ Section           ncalls     time   %tot     avg     alloc   %tot      avg
+ ──────────────────────────────────────────────────────────────────────────
+ Main                   1    905μs  93.6%   905μs   38.2KiB  86.5%  38.2KiB
+ Init                   1   79.5μs  8.21%  79.5μs   17.2KiB  38.9%  17.2KiB
+ CP loop                1   68.2μs  7.05%  68.2μs   11.9KiB  27.0%  11.9KiB
+ pre-processing         1   62.4μs  6.45%  62.4μs   5.97KiB  13.5%  5.97KiB
+ linesearch             1   9.54μs  0.99%  9.54μs   3.38KiB  7.64%  3.38KiB
+ normscale alloc        1   8.73μs  0.90%  8.73μs   2.16KiB  4.88%  2.16KiB
+ primal                 1   4.95μs  0.51%  4.95μs      864B  1.91%     864B
+ gap                    1   4.47μs  0.46%  4.47μs     48.0B  0.11%    48.0B
+ residual               1   3.47μs  0.36%  3.47μs     0.00B  0.00%    0.00B
+ normscale              1   1.26μs  0.13%  1.26μs     0.00B  0.00%    0.00B
+ linesearch -1          1   1.03μs  0.11%  1.03μs     0.00B  0.00%    0.00B
+ linesearch 1           1    812ns  0.08%   812ns     0.00B  0.00%    0.00B
+ linesearch 2           1    802ns  0.08%   802ns     0.00B  0.00%    0.00B
+ linesearch 4           1    762ns  0.08%   762ns     0.00B  0.00%    0.00B
+ equilibrate            1    611ns  0.06%   611ns     0.00B  0.00%    0.00B
+ linesearch 3           1    350ns  0.04%   350ns     0.00B  0.00%    0.00B
+ ──────────────────────────────────────────────────────────────────────────
+Test Summary: | Pass  Total
+Print         |   12     12
+Test Summary:        | Pass  Total
+Unsupported argument |    1      1
+Test Summary: | Pass  Total
+MOI status    |    4      4
+   Testing ProxSDP tests passed 

@@ -1,0 +1,98 @@
+ Resolving package versions...
+ Installed URIParser ────── v0.4.0
+ Installed FTPClient ────── v1.0.1
+ Installed HORIZONS ─────── v0.2.0
+ Installed LibCURL ──────── v0.5.2
+ Installed BinaryProvider ─ v0.5.8
+   Cloning [6a31a4e8-6e70-5a2d-b005-bc2d500d80a5] Expect from https://gitlab.com/wavexx/Expect.jl.git
+[?25l    Fetching: [>                                        ]  0.0 %[2K[?25h Installed Expect ───────── v0.3.1
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [5a3ac768] + HORIZONS v0.2.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [6a31a4e8] + Expect v0.3.1
+  [01fcc997] + FTPClient v1.0.1
+  [5a3ac768] + HORIZONS v0.2.0
+  [b27032c2] + LibCURL v0.5.2
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+  Building LibCURL → `~/.julia/packages/LibCURL/lWJxD/deps/build.log`
+  Building Expect ─→ `~/.julia/packages/Expect/ary8b/deps/build.log`
+   Testing HORIZONS
+ Resolving package versions...
+Status `/tmp/jl_ior0gD/Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [6a31a4e8] Expect v0.3.1
+  [01fcc997] FTPClient v1.0.1
+  [5a3ac768] HORIZONS v0.2.0
+  [b27032c2] LibCURL v0.5.2
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Test connection to HORIZONS machine using Expect.jl: Error During Test at /root/.julia/packages/HORIZONS/3MOkP/test/runtests.jl:8
+  Got exception outside of a @test
+  IOError: could not spawn `telnet ssd.jpl.nasa.gov 6775`: no such file or directory (ENOENT)
+  Stacktrace:
+   [1] _spawn_primitive(::String, ::Cmd, ::Array{Any,1}) at ./process.jl:99
+   [2] #546 at ./process.jl:112 [inlined]
+   [3] setup_stdios(::Base.var"#546#547"{Cmd}, ::Array{Any,1}) at ./process.jl:196
+   [4] _spawn at ./process.jl:111 [inlined]
+   [5] run(::Cmd, ::Tuple{RawFD,RawFD,RawFD}; wait::Bool) at ./process.jl:443
+   [6] _spawn(::Cmd, ::Base.EnvDict, ::Bool) at /root/.julia/packages/Expect/ary8b/src/Expect.jl:124
+   [7] ExpectProc(::Cmd, ::Int64; env::Base.EnvDict, encoding::String, pty::Bool) at /root/.julia/packages/Expect/ary8b/src/Expect.jl:55
+   [8] ExpectProc at /root/.julia/packages/Expect/ary8b/src/Expect.jl:51 [inlined]
+   [9] macro expansion at /root/.julia/packages/HORIZONS/3MOkP/test/runtests.jl:9 [inlined]
+   [10] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [11] top-level scope at /root/.julia/packages/HORIZONS/3MOkP/test/runtests.jl:9
+   [12] include(::String) at ./client.jl:439
+   [13] top-level scope at none:6
+   [14] eval(::Module, ::Any) at ./boot.jl:331
+   [15] exec_options(::Base.JLOptions) at ./client.jl:264
+   [16] _start() at ./client.jl:484
+  
+Test Summary:                                       | Error  Total
+Test connection to HORIZONS machine using Expect.jl |     1      1
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /root/.julia/packages/HORIZONS/3MOkP/test/runtests.jl:8
+ERROR: Package HORIZONS errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

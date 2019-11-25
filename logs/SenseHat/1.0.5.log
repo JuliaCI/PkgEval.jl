@@ -1,0 +1,88 @@
+ Resolving package versions...
+ Installed Reexport ────────── v0.2.0
+ Installed FixedPointNumbers ─ v0.6.1
+ Installed SenseHat ────────── v0.3.0
+ Installed ColorTypes ──────── v0.8.0
+ Installed Colors ──────────── v0.9.6
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [0dbe55a1] + SenseHat v0.3.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [3da002f7] + ColorTypes v0.8.0
+  [5ae59095] + Colors v0.9.6
+  [53c48c17] + FixedPointNumbers v0.6.1
+  [189a3867] + Reexport v0.2.0
+  [0dbe55a1] + SenseHat v0.3.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing SenseHat
+    Status `/tmp/tmp7Fj4Us/Manifest.toml`
+  [3da002f7] ColorTypes v0.8.0
+  [5ae59095] Colors v0.9.6
+  [53c48c17] FixedPointNumbers v0.6.1
+  [189a3867] Reexport v0.2.0
+  [0dbe55a1] SenseHat v0.3.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+┌ Warning: I2C: Sense Hat not found
+└ @ SenseHat.Sensors ~/.julia/packages/SenseHat/6Bwwg/src/sensors.jl:14
+ERROR: LoadError: LoadError: ArgumentError: Package Test not found in current path:
+- Run `import Pkg; Pkg.add("Test")` to install the Test package.
+
+Stacktrace:
+ [1] require(::Module, ::Symbol) at ./loading.jl:823
+ [2] include at ./boot.jl:317 [inlined]
+ [3] include_relative(::Module, ::String) at ./loading.jl:1044
+ [4] include(::Module, ::String) at ./sysimg.jl:29
+ [5] include(::String) at ./client.jl:392
+ [6] top-level scope at none:0
+ [7] include at ./boot.jl:317 [inlined]
+ [8] include_relative(::Module, ::String) at ./loading.jl:1044
+ [9] include(::Module, ::String) at ./sysimg.jl:29
+ [10] include(::String) at ./client.jl:392
+ [11] top-level scope at none:0
+in expression starting at /root/.julia/packages/SenseHat/6Bwwg/test/led.jl:2
+in expression starting at /root/.julia/packages/SenseHat/6Bwwg/test/runtests.jl:1
+ERROR: Package SenseHat errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

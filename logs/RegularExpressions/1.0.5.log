@@ -1,0 +1,434 @@
+ Resolving package versions...
+ Installed RegularExpressions ─ v0.0.2
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [27faeba3] + RegularExpressions v0.0.2
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [27faeba3] + RegularExpressions v0.0.2
+   Testing RegularExpressions
+ Resolving package versions...
+ Installed Parsers ───────────── v0.3.10
+ Installed JSON ──────────────── v0.21.0
+ Installed DocStringExtensions ─ v0.8.1
+ Installed Documenter ────────── v0.24.0
+    Status `/tmp/tmprt1xNI/Manifest.toml`
+  [ffbed154] DocStringExtensions v0.8.1
+  [e30172f5] Documenter v0.24.0
+  [682c06a0] JSON v0.21.0
+  [69de0a69] Parsers v0.3.10
+  [27faeba3] RegularExpressions v0.0.2
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+[ Info: SetupBuildDirectory: setting up build directory.
+[ Info: Doctest: running doctests.
+┌ Error: doctest failure in src/index.md:5-143
+│ 
+│ ```jldoctest
+│ julia> using RegularExpressions
+│ 
+│ julia> invalids = raw.((".", "/", " ", "-"));
+│ 
+│ julia> url_pattern = pattern(
+│             CONSTANTS.start,
+│             capture(
+│                 or(
+│                     kind(:group, "http", of(:maybe, "s")),
+│                     "ftp"
+│                 ),
+│                 name = "protocol"
+│             ),
+│             raw("://"),
+│             of(:maybe,
+│                 capture(
+│                     of(:some, one_of(not, short(:space))),
+│                     name = "username"
+│                 ),
+│                 of(:maybe,
+│                     raw(":"),
+│                     capture(
+│                         of(:none_or_some, one_of(not, short(:space))),
+│                         name = "password"
+│                     )
+│                 ),
+│                 raw("@")
+│             ),
+│             capture(
+│                 of(:none_or_some,
+│                     of(:some, one_of(not, invalids...)),
+│                     of(:none_or_some, raw("-"))
+│                 ),
+│                 of(:some, one_of(not, invalids...)),
+│                 name = "host"
+│             ),
+│             capture(
+│                 of(:none_or_some,
+│                     raw("."),
+│                     of(:none_or_some,
+│                         of(:some, one_of(not, invalids...)),
+│                         of(:none_or_some, raw("-"))
+│                     ),
+│                     of(:some, one_of(not, invalids...))
+│                 ),
+│                 name = "domain"
+│             ),
+│             raw("."), capture(
+│                 between(2, Inf, one_of(not, invalids...)),
+│                 name = "TLD"
+│             ),
+│             of(:maybe, raw(":"), capture(
+│                 between(2, 5, short(:digit)),
+│                 name = "port"
+│             )),
+│             of(:maybe, raw("/"), capture(
+│                 of(:none_or_some, one_of(not, short(:space))),
+│                 name = "resource"
+│             )),
+│             CONSTANTS.stop
+│         );
+│ 
+│ julia> goods = (
+│             "http://foo.com/blah_blah",
+│             "http://foo.com/blah_blah/",
+│             "http://foo.com/blah_blah_(wikipedia)",
+│             "http://foo.com/blah_blah_(wikipedia)_(again)",
+│             "http://www.example.com/wpstyle/?p=364",
+│             "https://www.example.com/foo/?bar=baz&inga=42&quux",
+│             "http://✪df.ws/123",
+│             "http://userid:password@example.com:8080",
+│             "http://userid:password@example.com:8080/",
+│             "http://userid@example.com",
+│             "http://userid@example.com/",
+│             "http://userid@example.com:8080",
+│             "http://userid@example.com:8080/",
+│             "http://userid:password@example.com",
+│             "http://userid:password@example.com/",
+│             "http://➡.ws/䨹",
+│             "http://⌘.ws",
+│             "http://⌘.ws/",
+│             "http://foo.com/blah_(wikipedia)#cite-1",
+│             "http://foo.com/blah_(wikipedia)_blah#cite-1",
+│             "http://foo.com/unicode_(✪)_in_parens",
+│             "http://foo.com/(something)?after=parens",
+│             "http://☺.damowmow.com/",
+│             "http://code.google.com/events/#&product=browser",
+│             "http://j.mp",
+│             "ftp://foo.bar/baz",
+│             "http://foo.bar/?q=Test%20URL-encoded%20stuff",
+│             "http://مثال.إختبار",
+│             "http://例子.测试",
+│             "http://-.~_!&'()*+,;=:%40:80%2f::::::@example.com",
+│             "http://1337.net",
+│             "http://a.b-c.de",
+│             "http://223.255.255.254"
+│         );
+│ 
+│ julia> bads = (
+│             "http://",
+│             "http://.",
+│             "http://..",
+│             "http://../",
+│             "http://?",
+│             "http://??",
+│             "http://??/",
+│             "http://#",
+│             "http://##",
+│             "http://##/",
+│             "http://foo.bar?q=Spaces should be encoded",
+│             "//",
+│             "//a",
+│             "///a",
+│             "///",
+│             "http:///a",
+│             "foo.com",
+│             "rdar://1234",
+│             "h://test",
+│             "http:// shouldfail.com",
+│             ":// should fail",
+│             "http://foo.bar/foo(bar)baz quux",
+│             "ftps://foo.bar/",
+│             "http://-error-.invalid/",
+│             "http://-a.b.co",
+│             "http://a.b-.co",
+│             "http://0.0.0.0",
+│             "http://3628126748",
+│             "http://.www.foo.bar/",
+│             "http://www.foo.bar./",
+│             "http://.www.foo.bar./"
+│         );
+│ 
+│ julia> all(occursin.(url_pattern, goods))
+│ true
+│ 
+│ julia> any(occursin.(url_pattern, bads))
+│ false
+│ ```
+│ 
+│ Subexpression:
+│ 
+│ all(occursin.(url_pattern, goods))
+│ 
+│ Evaluated output:
+│ 
+│ ERROR: MethodError: no method matching length(::Regex)
+│ Closest candidates are:
+│   length(!Matched::Core.SimpleVector) at essentials.jl:582
+│   length(!Matched::Base.MethodList) at reflection.jl:732
+│   length(!Matched::Core.MethodTable) at reflection.jl:806
+│   ...
+│ Stacktrace:
+│  [1] _similar_for(::UnitRange{Int64}, ::Type, ::Regex, ::Base.HasLength) at ./array.jl:532
+│  [2] _collect(::UnitRange{Int64}, ::Regex, ::Base.HasEltype, ::Base.HasLength) at ./array.jl:563
+│  [3] collect(::Regex) at ./array.jl:557
+│  [4] broadcastable(::Regex) at ./broadcast.jl:617
+│  [5] broadcasted(::Function, ::Regex, ::NTuple{33,String}) at ./broadcast.jl:1171
+│  [6] top-level scope at none:0
+│ 
+│ Expected output:
+│ 
+│ true
+│ 
+│   diff =
+│    Warning: Diff output requires color.
+│    trueERROR: MethodError: no method matching length(::Regex)
+│    Closest candidates are:
+│      length(!Matched::Core.SimpleVector) at essentials.jl:582
+│      length(!Matched::Base.MethodList) at reflection.jl:732
+│      length(!Matched::Core.MethodTable) at reflection.jl:806
+│      ...
+│    Stacktrace:
+│     [1] _similar_for(::UnitRange{Int64}, ::Type, ::Regex, ::Base.HasLength) at ./array.jl:532
+│     [2] _collect(::UnitRange{Int64}, ::Regex, ::Base.HasEltype, ::Base.HasLength) at ./array.jl:563
+│     [3] collect(::Regex) at ./array.jl:557
+│     [4] broadcastable(::Regex) at ./broadcast.jl:617
+│     [5] broadcasted(::Function, ::Regex, ::NTuple{33,String}) at ./broadcast.jl:1171
+│     [6] top-level scope at none:0
+└ @ Documenter.DocTests ~/.julia/packages/Documenter/STY11/src/DocTests.jl:364
+┌ Error: doctest failure in src/index.md:5-143
+│ 
+│ ```jldoctest
+│ julia> using RegularExpressions
+│ 
+│ julia> invalids = raw.((".", "/", " ", "-"));
+│ 
+│ julia> url_pattern = pattern(
+│             CONSTANTS.start,
+│             capture(
+│                 or(
+│                     kind(:group, "http", of(:maybe, "s")),
+│                     "ftp"
+│                 ),
+│                 name = "protocol"
+│             ),
+│             raw("://"),
+│             of(:maybe,
+│                 capture(
+│                     of(:some, one_of(not, short(:space))),
+│                     name = "username"
+│                 ),
+│                 of(:maybe,
+│                     raw(":"),
+│                     capture(
+│                         of(:none_or_some, one_of(not, short(:space))),
+│                         name = "password"
+│                     )
+│                 ),
+│                 raw("@")
+│             ),
+│             capture(
+│                 of(:none_or_some,
+│                     of(:some, one_of(not, invalids...)),
+│                     of(:none_or_some, raw("-"))
+│                 ),
+│                 of(:some, one_of(not, invalids...)),
+│                 name = "host"
+│             ),
+│             capture(
+│                 of(:none_or_some,
+│                     raw("."),
+│                     of(:none_or_some,
+│                         of(:some, one_of(not, invalids...)),
+│                         of(:none_or_some, raw("-"))
+│                     ),
+│                     of(:some, one_of(not, invalids...))
+│                 ),
+│                 name = "domain"
+│             ),
+│             raw("."), capture(
+│                 between(2, Inf, one_of(not, invalids...)),
+│                 name = "TLD"
+│             ),
+│             of(:maybe, raw(":"), capture(
+│                 between(2, 5, short(:digit)),
+│                 name = "port"
+│             )),
+│             of(:maybe, raw("/"), capture(
+│                 of(:none_or_some, one_of(not, short(:space))),
+│                 name = "resource"
+│             )),
+│             CONSTANTS.stop
+│         );
+│ 
+│ julia> goods = (
+│             "http://foo.com/blah_blah",
+│             "http://foo.com/blah_blah/",
+│             "http://foo.com/blah_blah_(wikipedia)",
+│             "http://foo.com/blah_blah_(wikipedia)_(again)",
+│             "http://www.example.com/wpstyle/?p=364",
+│             "https://www.example.com/foo/?bar=baz&inga=42&quux",
+│             "http://✪df.ws/123",
+│             "http://userid:password@example.com:8080",
+│             "http://userid:password@example.com:8080/",
+│             "http://userid@example.com",
+│             "http://userid@example.com/",
+│             "http://userid@example.com:8080",
+│             "http://userid@example.com:8080/",
+│             "http://userid:password@example.com",
+│             "http://userid:password@example.com/",
+│             "http://➡.ws/䨹",
+│             "http://⌘.ws",
+│             "http://⌘.ws/",
+│             "http://foo.com/blah_(wikipedia)#cite-1",
+│             "http://foo.com/blah_(wikipedia)_blah#cite-1",
+│             "http://foo.com/unicode_(✪)_in_parens",
+│             "http://foo.com/(something)?after=parens",
+│             "http://☺.damowmow.com/",
+│             "http://code.google.com/events/#&product=browser",
+│             "http://j.mp",
+│             "ftp://foo.bar/baz",
+│             "http://foo.bar/?q=Test%20URL-encoded%20stuff",
+│             "http://مثال.إختبار",
+│             "http://例子.测试",
+│             "http://-.~_!&'()*+,;=:%40:80%2f::::::@example.com",
+│             "http://1337.net",
+│             "http://a.b-c.de",
+│             "http://223.255.255.254"
+│         );
+│ 
+│ julia> bads = (
+│             "http://",
+│             "http://.",
+│             "http://..",
+│             "http://../",
+│             "http://?",
+│             "http://??",
+│             "http://??/",
+│             "http://#",
+│             "http://##",
+│             "http://##/",
+│             "http://foo.bar?q=Spaces should be encoded",
+│             "//",
+│             "//a",
+│             "///a",
+│             "///",
+│             "http:///a",
+│             "foo.com",
+│             "rdar://1234",
+│             "h://test",
+│             "http:// shouldfail.com",
+│             ":// should fail",
+│             "http://foo.bar/foo(bar)baz quux",
+│             "ftps://foo.bar/",
+│             "http://-error-.invalid/",
+│             "http://-a.b.co",
+│             "http://a.b-.co",
+│             "http://0.0.0.0",
+│             "http://3628126748",
+│             "http://.www.foo.bar/",
+│             "http://www.foo.bar./",
+│             "http://.www.foo.bar./"
+│         );
+│ 
+│ julia> all(occursin.(url_pattern, goods))
+│ true
+│ 
+│ julia> any(occursin.(url_pattern, bads))
+│ false
+│ ```
+│ 
+│ Subexpression:
+│ 
+│ any(occursin.(url_pattern, bads))
+│ 
+│ Evaluated output:
+│ 
+│ ERROR: MethodError: no method matching length(::Regex)
+│ Closest candidates are:
+│   length(!Matched::Core.SimpleVector) at essentials.jl:582
+│   length(!Matched::Base.MethodList) at reflection.jl:732
+│   length(!Matched::Core.MethodTable) at reflection.jl:806
+│   ...
+│ Stacktrace:
+│  [1] _similar_for(::UnitRange{Int64}, ::Type, ::Regex, ::Base.HasLength) at ./array.jl:532
+│  [2] _collect(::UnitRange{Int64}, ::Regex, ::Base.HasEltype, ::Base.HasLength) at ./array.jl:563
+│  [3] collect(::Regex) at ./array.jl:557
+│  [4] broadcastable(::Regex) at ./broadcast.jl:617
+│  [5] broadcasted(::Function, ::Regex, ::NTuple{31,String}) at ./broadcast.jl:1171
+│  [6] top-level scope at none:0
+│ 
+│ Expected output:
+│ 
+│ false
+│ 
+│   diff =
+│    Warning: Diff output requires color.
+│    falseERROR: MethodError: no method matching length(::Regex)
+│    Closest candidates are:
+│      length(!Matched::Core.SimpleVector) at essentials.jl:582
+│      length(!Matched::Base.MethodList) at reflection.jl:732
+│      length(!Matched::Core.MethodTable) at reflection.jl:806
+│      ...
+│    Stacktrace:
+│     [1] _similar_for(::UnitRange{Int64}, ::Type, ::Regex, ::Base.HasLength) at ./array.jl:532
+│     [2] _collect(::UnitRange{Int64}, ::Regex, ::Base.HasEltype, ::Base.HasLength) at ./array.jl:563
+│     [3] collect(::Regex) at ./array.jl:557
+│     [4] broadcastable(::Regex) at ./broadcast.jl:617
+│     [5] broadcasted(::Function, ::Regex, ::NTuple{31,String}) at ./broadcast.jl:1171
+│     [6] top-level scope at none:0
+└ @ Documenter.DocTests ~/.julia/packages/Documenter/STY11/src/DocTests.jl:364
+ERROR: LoadError: `makedocs` encountered a doctest error. Terminating build
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] runner(::Type{Documenter.Builder.Doctest}, ::Documenter.Documents.Document) at /root/.julia/packages/Documenter/STY11/src/Builder.jl:204
+ [3] dispatch(::Type{Documenter.Builder.DocumentPipeline}, ::Documenter.Documents.Document) at /root/.julia/packages/Documenter/STY11/src/Utilities/Selectors.jl:167
+ [4] #2 at /root/.julia/packages/Documenter/STY11/src/Documenter.jl:237 [inlined]
+ [5] cd(::getfield(Documenter, Symbol("##2#3")){Documenter.Documents.Document}, ::String) at ./file.jl:96
+ [6] #makedocs#1 at /root/.julia/packages/Documenter/STY11/src/Documenter.jl:236 [inlined]
+ [7] (::getfield(Documenter, Symbol("#kw##makedocs")))(::NamedTuple{(:sitename, :strict, :modules),Tuple{String,Bool,Array{Module,1}}}, ::typeof(makedocs)) at ./none:0
+ [8] top-level scope at none:0
+ [9] include at ./boot.jl:317 [inlined]
+ [10] include_relative(::Module, ::String) at ./loading.jl:1044
+ [11] include(::Module, ::String) at ./sysimg.jl:29
+ [12] include(::String) at ./client.jl:392
+ [13] top-level scope at none:0
+in expression starting at /root/.julia/packages/RegularExpressions/CAcNk/test/runtests.jl:4
+ERROR: Package RegularExpressions errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

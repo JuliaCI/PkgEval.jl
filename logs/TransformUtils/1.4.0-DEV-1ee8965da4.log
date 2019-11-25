@@ -1,0 +1,71 @@
+ Resolving package versions...
+ Installed TransformUtils ─ v0.2.2
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [9b8138ad] + TransformUtils v0.2.2
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [9b8138ad] + TransformUtils v0.2.2
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9abbd945] + Profile 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+   Testing TransformUtils
+Status `/tmp/jl_9D0CIj/Manifest.toml`
+  [9b8138ad] TransformUtils v0.2.2
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9abbd945] Profile  [`@stdlib/Profile`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Test Summary:                               |
+Constructors SO3, Quaternion, AngleAxis...  | No tests
+Test Summary:                           | Pass  Total
+Ensure basic quaternion operations hold |   10     10
+Test Summary:                                       | Pass  Total
+Comparison functions for SO3, Quaternion, AngleAxis |    5      5
+Test Summary:                                        | Pass  Total
+Trivial case quaterion -> SO3 -> Euler -> quaternion |    2      2
+┌ Warning: Need better coverage on convert function tests
+└ @ Main ~/.julia/packages/TransformUtils/x61q0/test/runtests.jl:67
+dAA = AngleAxis(0.7853981633974483, [1.0, 0.0, 0.0])
+dAA = so3([0.0 0.07846001716901829 0.07367748031170741; -0.07846001716901829 0.0 0.05257805809714457; -0.07367748031170741 -0.05257805809714457 0.0])
+dAA = so3([0.0 0.07461625839181436 0.2175690377967553; -0.07461625839181436 0.0 0.02504637693440312; -0.2175690377967553 -0.02504637693440312 0.0])
+dAA = so3([0.0 0.16334326303403682 0.010505346707122205; -0.16334326303403682 0.0 0.06025741236749854; -0.010505346707122205 -0.06025741236749854 0.0])
+dAA = Quaternion(0.9996981283644553, [0.014334256922569705, 0.001669564268530383, -0.019884511013261476])
+dAA = SO3([0.9667787129979345 -0.15586761450291997 0.20259369892281062; 0.2072623187842661 0.9418736899885244 -0.26441687412033715; -0.14960364736939594 0.2976226450668196 0.9428889170189684])
+Test Summary:                        | Pass  Total
+Compare SO3 and quaternion rotations |   24     24
+Test Summary:       | Pass  Total
+Basic SE3 mechanics |    4      4
+Compare operations on two different SE3 transforms
+xi = SE3(SO3([0.8392336869203342 0.15975186646601863 0.5197751051163626; -0.19287104758376353 0.9811746793073874 0.00984924819400608; -0.508416736292231 -0.10851538990700285 0.8542463534667778]), [-0.5257805809714456, 0.7367748031170741, -0.7846001716901828])
+xj = SE3(SO3([0.995028296062411 0.09939940027970953 0.006200746662207611; -0.09870174711713553 0.9925234823441179 -0.07179903976746763; -0.01329116816385328 0.07083005166974997 0.9973998439088011]), [-0.6025741236749854, 0.10505346707122204, -1.6334326303403681])
+Dx = SE3(SO3([0.8608554271987222 -0.1440209023181287 -0.48804294192005016; 0.06355626870335818 0.9820319985402516 -0.17769005192060008; 0.5048648672377708 0.12194725719962325 0.8545410067928145]), [0.48895365617525, -0.5399855058697068, -0.7712493844653152])
+Test Summary:         | Pass  Total
+SE3 ⊕ and ⊖ mechanics |    6      6
+TransformUtils.convert(Euler, q) = Euler(0.7853981633974484, 0.0, 1.5707963267948963, Quaternion(1.0, [0.0, 0.0, 0.0]))
+Test Summary:              | Pass  Total
+Previous discovered issues |    3      3
+Test Summary:      | Pass  Total
+test SO3 logmap... |  301    301
+Test Summary:                              | Pass  Total
+test in-place and efficient inverse SE3... |    1      1
+   Testing TransformUtils tests passed 

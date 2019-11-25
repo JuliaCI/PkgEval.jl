@@ -1,0 +1,215 @@
+ Resolving package versions...
+ Installed IniFile ──────── v0.5.0
+ Installed Parsers ──────── v0.3.10
+ Installed JuliaWebAPI ──── v0.6.0
+ Installed ZMQ ──────────── v1.0.0
+ Installed MbedTLS ──────── v0.6.8
+ Installed BinaryProvider ─ v0.5.8
+ Installed JSON ─────────── v0.21.0
+ Installed HTTP ─────────── v0.8.8
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [480116ec] + JuliaWebAPI v0.6.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [cd3eb016] + HTTP v0.8.8
+  [83e8ac13] + IniFile v0.5.0
+  [682c06a0] + JSON v0.21.0
+  [480116ec] + JuliaWebAPI v0.6.0
+  [739be429] + MbedTLS v0.6.8
+  [69de0a69] + Parsers v0.3.10
+  [c2297ded] + ZMQ v1.0.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [7b1f6079] + FileWatching 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+  Building MbedTLS → `~/.julia/packages/MbedTLS/X4xar/deps/build.log`
+  Building ZMQ ────→ `~/.julia/packages/ZMQ/ABGOx/deps/build.log`
+   Testing JuliaWebAPI
+    Status `/tmp/tmpY1eWOa/Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [cd3eb016] HTTP v0.8.8
+  [83e8ac13] IniFile v0.5.0
+  [682c06a0] JSON v0.21.0
+  [480116ec] JuliaWebAPI v0.6.0
+  [739be429] MbedTLS v0.6.8
+  [69de0a69] Parsers v0.3.10
+  [c2297ded] ZMQ v1.0.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [7b1f6079] FileWatching  [`@stdlib/FileWatching`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Running tests from test_asyncsrvr.jl
+============================================================
+testing httpresponse...
+testfn1: HTTP.Messages.Response:
+"""
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+{"data":11,"code":0}"""
+testfn1: HTTP.Messages.Response:
+"""
+HTTP/1.1 200 OK
+
+11"""
+testbinary: HTTP.Messages.Response:
+"""
+HTTP/1.1 200 OK
+Content-Type: application/octet-stream
+
+nz.��FHJ"""
+time for 100 calls to testfn1: 0.3067018985748291 secs @ 0.003067018985748291 per call
+time for 100 calls to testfn2: 0.035592079162597656 secs @ 0.00035592079162597654 per call
+time for 100 calls to testbinary: 0.06948089599609375 secs @ 0.0006948089599609374 per call
+testing array invocation...
+testing unknown method handling...
+testing server method exception handling...
+Finished test_asyncsrvr.jl
+============================================================
+Running tests from test_clntsrvr.jl
+============================================================
+spawining `/opt/julia/bin/julia /root/.julia/packages/JuliaWebAPI/9VrIU/test/srvr.jl --runsrvr`
+started server process, running client
+testing httpresponse...
+testfn1: HTTP.Messages.Response:
+"""
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+{"data":11,"code":0}"""
+testfn1: HTTP.Messages.Response:
+"""
+HTTP/1.1 200 OK
+
+11"""
+testbinary: HTTP.Messages.Response:
+"""
+HTTP/1.1 200 OK
+Content-Type: application/octet-stream
+
+�AH�����L"""
+time for 100 calls to testfn1: 0.38256001472473145 secs @ 0.0038256001472473143 per call
+time for 100 calls to testfn2: 0.0351259708404541 secs @ 0.000351259708404541 per call
+time for 100 calls to testbinary: 0.049273014068603516 secs @ 0.0004927301406860351 per call
+testing array invocation...
+testing unknown method handling...
+testing server method exception handling...
+stopping server process
+Finished test_clntsrvr.jl
+============================================================
+Running tests from test_remotecall.jl
+============================================================
+time for 100 calls with remotecall_fetch: 1.9565238952636719 secs @ 0.019565238952636718 per call
+stopped all workers
+Finished test_remotecall.jl
+============================================================
+Running tests from test_plugins.jl
+============================================================
+testing httpresponse...
+testfn1: HTTP.Messages.Response:
+"""
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+{"data":11,"code":0}"""
+testfn1: HTTP.Messages.Response:
+"""
+HTTP/1.1 200 OK
+
+11"""
+testbinary: HTTP.Messages.Response:
+"""
+HTTP/1.1 200 OK
+Content-Type: application/octet-stream
+
+��َ��H(y"""
+time for 100 calls to testfn1: 0.3467600345611572 secs @ 0.0034676003456115723 per call
+time for 100 calls to testfn2: 0.03134918212890625 secs @ 0.0003134918212890625 per call
+time for 100 calls to testbinary: 0.038414955139160156 secs @ 0.00038414955139160156 per call
+testing array invocation...
+testing unknown method handling...
+testing server method exception handling...
+Finished test_plugins.jl
+============================================================
+Running tests from test_plugins.jl
+============================================================
+testing httpresponse...
+testfn1: HTTP.Messages.Response:
+"""
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+{"data":11,"code":0}"""
+testfn1: HTTP.Messages.Response:
+"""
+HTTP/1.1 200 OK
+
+11"""
+testbinary: HTTP.Messages.Response:
+"""
+HTTP/1.1 200 OK
+Content-Type: application/octet-stream
+
+5BJ�?�5��5"""
+time for 100 calls to testfn1: 0.23605895042419434 secs @ 0.0023605895042419435 per call
+time for 100 calls to testfn2: 0.004788875579833984 secs @ 4.788875579833985e-5 per call
+time for 100 calls to testbinary: 0.0031599998474121094 secs @ 3.159999847412109e-5 per call
+testing array invocation...
+testing unknown method handling...
+testing server method exception handling...
+Finished test_plugins.jl
+============================================================
+Running tests from test_httprpc.jl
+============================================================
+starting httpserver in async mode...
+starting client...
+starting http rpc tests.
+testing file upload...
+testing preprocessor...
+finished http rpc tests.
+Finished test_httprpc.jl
+============================================================
+Running tests from test_create_responder.jl
+============================================================
+testing create_responder api...
+┌ Info: registering
+└   endpt = "testfn1"
+┌ Info: registering
+└   endpt = "testfn2"
+┌ Info: registering
+└   endpt = "testbinary"
+┌ Info: registering
+└   endpt = "testArray"
+┌ Info: registering
+└   endpt = "testFile"
+┌ Info: registering
+└   endpt = "testException"
+Finished test_create_responder.jl
+============================================================
+   Testing JuliaWebAPI tests passed 

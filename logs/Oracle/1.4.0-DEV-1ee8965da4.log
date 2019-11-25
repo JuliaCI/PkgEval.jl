@@ -1,0 +1,71 @@
+ Resolving package versions...
+ Installed DataAPI ── v1.1.0
+ Installed Missings ─ v0.4.3
+ Installed Oracle ─── v0.0.6
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [7240a794] + Oracle v0.0.6
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [9a962f9c] + DataAPI v1.1.0
+  [e1d29d7a] + Missings v0.4.3
+  [7240a794] + Oracle v0.0.6
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+  Building Oracle → `~/.julia/packages/Oracle/0ilfQ/deps/build.log`
+   Testing Oracle
+Status `/tmp/jl_4tFm1T/Manifest.toml`
+  [9a962f9c] DataAPI v1.1.0
+  [e1d29d7a] Missings v0.4.3
+  [7240a794] Oracle v0.0.6
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: LoadError: InitError: DPI-1047: Cannot locate a 64-bit Oracle Client library: "libclntsh.so: cannot open shared object file: No such file or directory". See https://oracle.github.io/odpi/doc/installation.html#linux for help
+Stacktrace:
+ [1] Oracle.Context() at /root/.julia/packages/Oracle/0ilfQ/src/context.jl:25
+ [2] __init__() at /root/.julia/packages/Oracle/0ilfQ/src/Oracle.jl:47
+ [3] _include_from_serialized(::String, ::Array{Any,1}) at ./loading.jl:690
+ [4] _require_from_serialized(::String) at ./loading.jl:741
+ [5] _require(::Base.PkgId) at ./loading.jl:1032
+ [6] require(::Base.PkgId) at ./loading.jl:920
+ [7] require(::Module, ::Symbol) at ./loading.jl:915
+ [8] include(::String) at ./client.jl:439
+ [9] top-level scope at /root/.julia/packages/Oracle/0ilfQ/test/runtests.jl:2
+ [10] include(::String) at ./client.jl:439
+ [11] top-level scope at none:6
+during initialization of module Oracle
+in expression starting at /root/.julia/packages/Oracle/0ilfQ/test/timestamps_tests.jl:2
+in expression starting at /root/.julia/packages/Oracle/0ilfQ/test/runtests.jl:2
+ERROR: Package Oracle errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

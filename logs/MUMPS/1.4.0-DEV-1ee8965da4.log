@@ -1,0 +1,96 @@
+ Resolving package versions...
+ Installed Requires ─ v0.5.2
+ Installed MUMPS ──── v1.0.0
+ Installed MPI ────── v0.10.1
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [55d2b088] + MUMPS v1.0.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [da04e1cc] + MPI v0.10.1
+  [55d2b088] + MUMPS v1.0.0
+  [ae029012] + Requires v0.5.2
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [8dfed614] + Test 
+  Building MPI ──→ `~/.julia/packages/MPI/9zBr2/deps/build.log`
+┌ Error: Error building `MPI`: 
+│ [ Info: Using MPI library 
+│ ERROR: LoadError: ccall: could not find function MPI_Get_version in library 
+│ Stacktrace:
+│  [1] Get_version() at /root/.julia/packages/MPI/9zBr2/deps/build.jl:65
+│  [2] top-level scope at /root/.julia/packages/MPI/9zBr2/deps/build.jl:71
+│  [3] include(::String) at ./client.jl:439
+│  [4] top-level scope at none:5
+│ in expression starting at /root/.julia/packages/MPI/9zBr2/deps/build.jl:71
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:601
+  Building MUMPS → `~/.julia/packages/MUMPS/PeP4P/deps/build.log`
+┌ Error: Error building `MUMPS`: 
+│ ERROR: LoadError: ArgumentError: Package Libdl not found in current path:
+│ - Run `import Pkg; Pkg.add("Libdl")` to install the Libdl package.
+│ 
+│ Stacktrace:
+│  [1] require(::Module, ::Symbol) at ./loading.jl:885
+│  [2] include(::String) at ./client.jl:439
+│  [3] top-level scope at none:5
+│ in expression starting at /root/.julia/packages/MUMPS/PeP4P/deps/build.jl:1
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:601
+   Testing MUMPS
+ Resolving package versions...
+Status `/tmp/jl_NLRAjE/Manifest.toml`
+  [da04e1cc] MPI v0.10.1
+  [55d2b088] MUMPS v1.0.0
+  [ae029012] Requires v0.5.2
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [8dfed614] Test  [`@stdlib/Test`]
+ERROR: LoadError: could not open file /root/.julia/packages/MPI/9zBr2/deps/deps.jl
+Stacktrace:
+ [1] include(::Module, ::String) at ./Base.jl:377
+ [2] include(::String) at /root/.julia/packages/MPI/9zBr2/src/MPI.jl:1
+ [3] top-level scope at /root/.julia/packages/MPI/9zBr2/src/MPI.jl:40
+ [4] include(::Module, ::String) at ./Base.jl:377
+ [5] top-level scope at none:2
+ [6] eval at ./boot.jl:331 [inlined]
+ [7] eval(::Expr) at ./client.jl:449
+ [8] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/MPI/9zBr2/src/MPI.jl:40
+ERROR: LoadError: Failed to precompile MPI [da04e1cc-30fd-572f-bb4f-1f8673147195] to /root/.julia/compiled/v1.4/MPI/nO0XF_E9Fcj.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1263
+ [3] _require(::Base.PkgId) at ./loading.jl:1022
+ [4] require(::Base.PkgId) at ./loading.jl:920
+ [5] require(::Module, ::Symbol) at ./loading.jl:915
+ [6] include(::String) at ./client.jl:439
+ [7] top-level scope at none:6
+in expression starting at /root/.julia/packages/MUMPS/PeP4P/test/runtests.jl:4
+ERROR: Package MUMPS errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

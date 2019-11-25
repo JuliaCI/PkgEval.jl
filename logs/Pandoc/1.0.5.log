@@ -1,0 +1,275 @@
+ Resolving package versions...
+ Installed Parsers ─ v0.3.10
+ Installed Pandoc ── v0.2.5
+ Installed JSON ──── v0.21.0
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [f853b5e0] + Pandoc v0.2.5
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [682c06a0] + JSON v0.21.0
+  [f853b5e0] + Pandoc v0.2.5
+  [69de0a69] + Parsers v0.3.10
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+   Testing Pandoc
+ Resolving package versions...
+    Status `/tmp/tmpD3GUxZ/Manifest.toml`
+  [682c06a0] JSON v0.21.0
+  [f853b5e0] Pandoc v0.2.5
+  [69de0a69] Parsers v0.3.10
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+
+test_pandoc: test conversions: Error During Test at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:181
+  Test threw exception
+  Expression: convert(Pandoc.Note, Markdown.Footnote("1", nothing)) == Pandoc.Note(Pandoc.Block[])
+  UndefVarError: isnothing not defined
+  Stacktrace:
+   [1] convert(::Type{Pandoc.Note}, ::Markdown.Footnote) at /root/.julia/packages/Pandoc/ipbrK/src/Pandoc.jl:753
+   [2] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:181 [inlined]
+   [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [4] top-level scope at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:15
+docbook: Error During Test at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:291
+  Test threw exception
+  Expression: typeof(Pandoc.parse_file(joinpath(#= /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:291 =# @__DIR__(), "data", "docbook-reader.docbook"))) == Pandoc.Document
+  IOError: could not spawn `pandoc -t json /root/.julia/packages/Pandoc/ipbrK/test/data/docbook-reader.docbook`: no such file or directory (ENOENT)
+  Stacktrace:
+   [1] _jl_spawn(::String, ::Array{String,1}, ::Cmd, ::Tuple{Base.DevNull,Base.PipeEndpoint,Base.PipeEndpoint}) at ./process.jl:367
+   [2] (::getfield(Base, Symbol("##495#496")){Cmd,Base.Process})(::Tuple{Base.DevNull,Base.PipeEndpoint,Base.PipeEndpoint}) at ./process.jl:509
+   [3] setup_stdio(::getfield(Base, Symbol("##495#496")){Cmd,Base.Process}, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:490
+   [4] #_spawn#494(::Nothing, ::Function, ::Cmd, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:508
+   [5] _spawn(::Cmd, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:504
+   [6] #open#504(::Bool, ::Bool, ::Function, ::Cmd, ::Base.DevNull) at ./process.jl:594
+   [7] open at ./process.jl:584 [inlined]
+   [8] open(::Cmd, ::String, ::Base.DevNull) at ./process.jl:565
+   [9] read(::Cmd) at ./process.jl:634
+   [10] read(::Cmd, ::Type{String}) at ./process.jl:645
+   [11] parse_file(::String) at /root/.julia/packages/Pandoc/ipbrK/src/Pandoc.jl:566
+   [12] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:291 [inlined]
+   [13] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [14] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:291 [inlined]
+   [15] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [16] top-level scope at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:290
+creole: Error During Test at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:295
+  Test threw exception
+  Expression: typeof(Pandoc.parse_file(joinpath(#= /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:295 =# @__DIR__(), "data", "creole-reader.txt"))) == Pandoc.Document
+  IOError: could not spawn `pandoc -t json /root/.julia/packages/Pandoc/ipbrK/test/data/creole-reader.txt`: no such file or directory (ENOENT)
+  Stacktrace:
+   [1] _jl_spawn(::String, ::Array{String,1}, ::Cmd, ::Tuple{Base.DevNull,Base.PipeEndpoint,Base.PipeEndpoint}) at ./process.jl:367
+   [2] (::getfield(Base, Symbol("##495#496")){Cmd,Base.Process})(::Tuple{Base.DevNull,Base.PipeEndpoint,Base.PipeEndpoint}) at ./process.jl:509
+   [3] setup_stdio(::getfield(Base, Symbol("##495#496")){Cmd,Base.Process}, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:490
+   [4] #_spawn#494(::Nothing, ::Function, ::Cmd, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:508
+   [5] _spawn(::Cmd, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:504
+   [6] #open#504(::Bool, ::Bool, ::Function, ::Cmd, ::Base.DevNull) at ./process.jl:594
+   [7] open at ./process.jl:584 [inlined]
+   [8] open(::Cmd, ::String, ::Base.DevNull) at ./process.jl:565
+   [9] read(::Cmd) at ./process.jl:634
+   [10] read(::Cmd, ::Type{String}) at ./process.jl:645
+   [11] parse_file(::String) at /root/.julia/packages/Pandoc/ipbrK/src/Pandoc.jl:566
+   [12] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:295 [inlined]
+   [13] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [14] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:295 [inlined]
+   [15] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [16] top-level scope at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:290
+markdown: Error During Test at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:299
+  Test threw exception
+  Expression: typeof(Pandoc.parse_file(joinpath(#= /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:299 =# @__DIR__(), "data", "markdown-reader-more.txt"))) == Pandoc.Document
+  IOError: could not spawn `pandoc -t json /root/.julia/packages/Pandoc/ipbrK/test/data/markdown-reader-more.txt`: no such file or directory (ENOENT)
+  Stacktrace:
+   [1] _jl_spawn(::String, ::Array{String,1}, ::Cmd, ::Tuple{Base.DevNull,Base.PipeEndpoint,Base.PipeEndpoint}) at ./process.jl:367
+   [2] (::getfield(Base, Symbol("##495#496")){Cmd,Base.Process})(::Tuple{Base.DevNull,Base.PipeEndpoint,Base.PipeEndpoint}) at ./process.jl:509
+   [3] setup_stdio(::getfield(Base, Symbol("##495#496")){Cmd,Base.Process}, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:490
+   [4] #_spawn#494(::Nothing, ::Function, ::Cmd, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:508
+   [5] _spawn(::Cmd, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:504
+   [6] #open#504(::Bool, ::Bool, ::Function, ::Cmd, ::Base.DevNull) at ./process.jl:594
+   [7] open at ./process.jl:584 [inlined]
+   [8] open(::Cmd, ::String, ::Base.DevNull) at ./process.jl:565
+   [9] read(::Cmd) at ./process.jl:634
+   [10] read(::Cmd, ::Type{String}) at ./process.jl:645
+   [11] parse_file(::String) at /root/.julia/packages/Pandoc/ipbrK/src/Pandoc.jl:566
+   [12] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:299 [inlined]
+   [13] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [14] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:299 [inlined]
+   [15] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [16] top-level scope at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:290
+markdown: Error During Test at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:300
+  Test threw exception
+  Expression: typeof(Pandoc.parse_file(joinpath(#= /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:300 =# @__DIR__(), "data", "writer.markdown"))) == Pandoc.Document
+  IOError: could not spawn `pandoc -t json /root/.julia/packages/Pandoc/ipbrK/test/data/writer.markdown`: no such file or directory (ENOENT)
+  Stacktrace:
+   [1] _jl_spawn(::String, ::Array{String,1}, ::Cmd, ::Tuple{Base.DevNull,Base.PipeEndpoint,Base.PipeEndpoint}) at ./process.jl:367
+   [2] (::getfield(Base, Symbol("##495#496")){Cmd,Base.Process})(::Tuple{Base.DevNull,Base.PipeEndpoint,Base.PipeEndpoint}) at ./process.jl:509
+   [3] setup_stdio(::getfield(Base, Symbol("##495#496")){Cmd,Base.Process}, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:490
+   [4] #_spawn#494(::Nothing, ::Function, ::Cmd, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:508
+   [5] _spawn(::Cmd, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:504
+   [6] #open#504(::Bool, ::Bool, ::Function, ::Cmd, ::Base.DevNull) at ./process.jl:594
+   [7] open at ./process.jl:584 [inlined]
+   [8] open(::Cmd, ::String, ::Base.DevNull) at ./process.jl:565
+   [9] read(::Cmd) at ./process.jl:634
+   [10] read(::Cmd, ::Type{String}) at ./process.jl:645
+   [11] parse_file(::String) at /root/.julia/packages/Pandoc/ipbrK/src/Pandoc.jl:566
+   [12] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:300 [inlined]
+   [13] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [14] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:299 [inlined]
+   [15] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [16] top-level scope at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:290
+wiki: Error During Test at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:304
+  Test threw exception
+  Expression: typeof(Pandoc.parse_file(joinpath(#= /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:304 =# @__DIR__(), "data", "mediawiki-reader.wiki"))) == Pandoc.Document
+  IOError: could not spawn `pandoc -t json /root/.julia/packages/Pandoc/ipbrK/test/data/mediawiki-reader.wiki`: no such file or directory (ENOENT)
+  Stacktrace:
+   [1] _jl_spawn(::String, ::Array{String,1}, ::Cmd, ::Tuple{Base.DevNull,Base.PipeEndpoint,Base.PipeEndpoint}) at ./process.jl:367
+   [2] (::getfield(Base, Symbol("##495#496")){Cmd,Base.Process})(::Tuple{Base.DevNull,Base.PipeEndpoint,Base.PipeEndpoint}) at ./process.jl:509
+   [3] setup_stdio(::getfield(Base, Symbol("##495#496")){Cmd,Base.Process}, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:490
+   [4] #_spawn#494(::Nothing, ::Function, ::Cmd, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:508
+   [5] _spawn(::Cmd, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:504
+   [6] #open#504(::Bool, ::Bool, ::Function, ::Cmd, ::Base.DevNull) at ./process.jl:594
+   [7] open at ./process.jl:584 [inlined]
+   [8] open(::Cmd, ::String, ::Base.DevNull) at ./process.jl:565
+   [9] read(::Cmd) at ./process.jl:634
+   [10] read(::Cmd, ::Type{String}) at ./process.jl:645
+   [11] parse_file(::String) at /root/.julia/packages/Pandoc/ipbrK/src/Pandoc.jl:566
+   [12] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:304 [inlined]
+   [13] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [14] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:304 [inlined]
+   [15] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [16] top-level scope at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:290
+ipynb: Error During Test at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:308
+  Test threw exception
+  Expression: typeof(Pandoc.parse_file(joinpath(#= /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:308 =# @__DIR__(), "data", "simple.ipynb"))) == Pandoc.Document
+  IOError: could not spawn `pandoc -t json /root/.julia/packages/Pandoc/ipbrK/test/data/simple.ipynb`: no such file or directory (ENOENT)
+  Stacktrace:
+   [1] _jl_spawn(::String, ::Array{String,1}, ::Cmd, ::Tuple{Base.DevNull,Base.PipeEndpoint,Base.PipeEndpoint}) at ./process.jl:367
+   [2] (::getfield(Base, Symbol("##495#496")){Cmd,Base.Process})(::Tuple{Base.DevNull,Base.PipeEndpoint,Base.PipeEndpoint}) at ./process.jl:509
+   [3] setup_stdio(::getfield(Base, Symbol("##495#496")){Cmd,Base.Process}, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:490
+   [4] #_spawn#494(::Nothing, ::Function, ::Cmd, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:508
+   [5] _spawn(::Cmd, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:504
+   [6] #open#504(::Bool, ::Bool, ::Function, ::Cmd, ::Base.DevNull) at ./process.jl:594
+   [7] open at ./process.jl:584 [inlined]
+   [8] open(::Cmd, ::String, ::Base.DevNull) at ./process.jl:565
+   [9] read(::Cmd) at ./process.jl:634
+   [10] read(::Cmd, ::Type{String}) at ./process.jl:645
+   [11] parse_file(::String) at /root/.julia/packages/Pandoc/ipbrK/src/Pandoc.jl:566
+   [12] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:308 [inlined]
+   [13] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [14] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:308 [inlined]
+   [15] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [16] top-level scope at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:290
+latex: Error During Test at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:312
+  Test threw exception
+  Expression: typeof(Pandoc.parse_file(joinpath(#= /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:312 =# @__DIR__(), "data", "latex-reader.latex"))) == Pandoc.Document
+  IOError: could not spawn `pandoc -t json /root/.julia/packages/Pandoc/ipbrK/test/data/latex-reader.latex`: no such file or directory (ENOENT)
+  Stacktrace:
+   [1] _jl_spawn(::String, ::Array{String,1}, ::Cmd, ::Tuple{Base.DevNull,Base.PipeEndpoint,Base.PipeEndpoint}) at ./process.jl:367
+   [2] (::getfield(Base, Symbol("##495#496")){Cmd,Base.Process})(::Tuple{Base.DevNull,Base.PipeEndpoint,Base.PipeEndpoint}) at ./process.jl:509
+   [3] setup_stdio(::getfield(Base, Symbol("##495#496")){Cmd,Base.Process}, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:490
+   [4] #_spawn#494(::Nothing, ::Function, ::Cmd, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:508
+   [5] _spawn(::Cmd, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:504
+   [6] #open#504(::Bool, ::Bool, ::Function, ::Cmd, ::Base.DevNull) at ./process.jl:594
+   [7] open at ./process.jl:584 [inlined]
+   [8] open(::Cmd, ::String, ::Base.DevNull) at ./process.jl:565
+   [9] read(::Cmd) at ./process.jl:634
+   [10] read(::Cmd, ::Type{String}) at ./process.jl:645
+   [11] parse_file(::String) at /root/.julia/packages/Pandoc/ipbrK/src/Pandoc.jl:566
+   [12] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:312 [inlined]
+   [13] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [14] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:312 [inlined]
+   [15] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [16] top-level scope at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:290
+man: Error During Test at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:316
+  Test threw exception
+  Expression: typeof(Pandoc.parse_file(joinpath(#= /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:316 =# @__DIR__(), "data", "man-reader.man"))) == Pandoc.Document
+  IOError: could not spawn `pandoc -t json /root/.julia/packages/Pandoc/ipbrK/test/data/man-reader.man`: no such file or directory (ENOENT)
+  Stacktrace:
+   [1] _jl_spawn(::String, ::Array{String,1}, ::Cmd, ::Tuple{Base.DevNull,Base.PipeEndpoint,Base.PipeEndpoint}) at ./process.jl:367
+   [2] (::getfield(Base, Symbol("##495#496")){Cmd,Base.Process})(::Tuple{Base.DevNull,Base.PipeEndpoint,Base.PipeEndpoint}) at ./process.jl:509
+   [3] setup_stdio(::getfield(Base, Symbol("##495#496")){Cmd,Base.Process}, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:490
+   [4] #_spawn#494(::Nothing, ::Function, ::Cmd, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:508
+   [5] _spawn(::Cmd, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:504
+   [6] #open#504(::Bool, ::Bool, ::Function, ::Cmd, ::Base.DevNull) at ./process.jl:594
+   [7] open at ./process.jl:584 [inlined]
+   [8] open(::Cmd, ::String, ::Base.DevNull) at ./process.jl:565
+   [9] read(::Cmd) at ./process.jl:634
+   [10] read(::Cmd, ::Type{String}) at ./process.jl:645
+   [11] parse_file(::String) at /root/.julia/packages/Pandoc/ipbrK/src/Pandoc.jl:566
+   [12] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:316 [inlined]
+   [13] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [14] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:316 [inlined]
+   [15] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [16] top-level scope at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:290
+tables: Error During Test at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:320
+  Test threw exception
+  Expression: typeof(Pandoc.parse_file(joinpath(#= /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:320 =# @__DIR__(), "data", "pipe-tables.txt"))) == Pandoc.Document
+  IOError: could not spawn `pandoc -t json /root/.julia/packages/Pandoc/ipbrK/test/data/pipe-tables.txt`: no such file or directory (ENOENT)
+  Stacktrace:
+   [1] _jl_spawn(::String, ::Array{String,1}, ::Cmd, ::Tuple{Base.DevNull,Base.PipeEndpoint,Base.PipeEndpoint}) at ./process.jl:367
+   [2] (::getfield(Base, Symbol("##495#496")){Cmd,Base.Process})(::Tuple{Base.DevNull,Base.PipeEndpoint,Base.PipeEndpoint}) at ./process.jl:509
+   [3] setup_stdio(::getfield(Base, Symbol("##495#496")){Cmd,Base.Process}, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:490
+   [4] #_spawn#494(::Nothing, ::Function, ::Cmd, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:508
+   [5] _spawn(::Cmd, ::Tuple{Base.DevNull,Pipe,Base.PipeEndpoint}) at ./process.jl:504
+   [6] #open#504(::Bool, ::Bool, ::Function, ::Cmd, ::Base.DevNull) at ./process.jl:594
+   [7] open at ./process.jl:584 [inlined]
+   [8] open(::Cmd, ::String, ::Base.DevNull) at ./process.jl:565
+   [9] read(::Cmd) at ./process.jl:634
+   [10] read(::Cmd, ::Type{String}) at ./process.jl:645
+   [11] parse_file(::String) at /root/.julia/packages/Pandoc/ipbrK/src/Pandoc.jl:566
+   [12] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:320 [inlined]
+   [13] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [14] macro expansion at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:320 [inlined]
+   [15] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [16] top-level scope at /root/.julia/packages/Pandoc/ipbrK/test/test_pandoc.jl:290
+
+Test Summary:         | Pass  Error  Total
+Begin tests           |   22     10     32
+  test version parser |    5             5
+  test conversions    |   17      1     18
+  test pandoc parser  |           9      9
+    docbook           |           1      1
+    creole            |           1      1
+    markdown          |           2      2
+    wiki              |           1      1
+    ipynb             |           1      1
+    latex             |           1      1
+    man               |           1      1
+    tables            |           1      1
+ERROR: LoadError: Some tests did not pass: 22 passed, 0 failed, 10 errored, 0 broken.
+in expression starting at /root/.julia/packages/Pandoc/ipbrK/test/runtests.jl:52
+ERROR: Package Pandoc errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

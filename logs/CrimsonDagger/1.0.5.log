@@ -1,0 +1,149 @@
+ Resolving package versions...
+ Installed Missings ─────────── v0.4.3
+ Installed DataAPI ──────────── v1.1.0
+ Installed CrimsonDagger ────── v0.1.0
+ Installed MemPool ──────────── v0.2.0
+ Installed SortingAlgorithms ── v0.3.1
+ Installed OrderedCollections ─ v1.1.0
+ Installed Dagger ───────────── v0.8.0
+ Installed StatsBase ────────── v0.32.0
+ Installed DataStructures ───── v0.17.6
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [a7d8db30] + CrimsonDagger v0.1.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [a7d8db30] + CrimsonDagger v0.1.0
+  [d58978e5] + Dagger v0.8.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [f9f48841] + MemPool v0.2.0
+  [e1d29d7a] + Missings v0.4.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [2913bbd2] + StatsBase v0.32.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [de0858da] + Printf 
+  [9abbd945] + Profile 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+   Testing CrimsonDagger
+ Resolving package versions...
+    Status `/tmp/tmpAOosEn/Manifest.toml`
+  [a7d8db30] CrimsonDagger v0.1.0
+  [d58978e5] Dagger v0.8.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [f9f48841] MemPool v0.2.0
+  [e1d29d7a] Missings v0.4.3
+  [bac558e1] OrderedCollections v1.1.0
+  [a2af1166] SortingAlgorithms v0.3.1
+  [2913bbd2] StatsBase v0.32.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9abbd945] Profile  [`@stdlib/Profile`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib/SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Test Summary: | Pass  Total
+UnitDomain    |    1      1
+Test Summary: | Pass  Total
+ArrayDomain   |   13     13
+Test Summary: | Pass  Total
+treereduce_nd |    2      2
+┌ Warning: Package Dagger does not have CrimsonDagger in its dependencies:
+│ - If you have Dagger checked out for development and have
+│   added CrimsonDagger as a dependency but haven't updated your primary
+│   environment's manifest file, try `Pkg.resolve()`.
+│ - Otherwise you may need to report an issue with Dagger
+└ Loading CrimsonDagger into Dagger from project dependency, future warnings for Dagger are suppressed.
+Test Summary:      | Pass  Total
+DArray constructor |    1      1
+Test Summary: | Pass  Total
+rand          |   19     19
+Test Summary:  | Pass  Total
+sum(ones(...)) |    1      1
+Test Summary:         | Pass  Total
+distributing an array |    2      2
+Test Summary: | Pass  Total
+transpose     |   16     16
+Test Summary:          | Pass  Total
+matrix-matrix multiply |    8      8
+Test Summary: | Pass  Total
+concat        |    4      4
+Test Summary: | Pass  Total
+scale         |    1      1
+Test Summary: | Pass  Total
+Getindex      |  118    118
+Test Summary: | Pass  Total
+cleanup       |    1      1
+Test Summary: | Pass  Total
+reducedim     |    4      4
+Test Summary: | Pass  Total
+setindex      |    2      2
+Test Summary: | Pass  Total
+sort          |    6      6
+Test Summary: | Pass  Total
+affinity      |    6      6
+Test Summary: | Pass  Total
+show_plan     |    1      1
+Test Summary: | Pass  Total
+sharedarray   |    2      2
+single worker: Error During Test at /root/.julia/packages/CrimsonDagger/slqsp/test/scheduler-options.jl:16
+  Test threw exception
+  Expression: collect(Context(), c; single=2) == 1
+  MethodError: no method matching collect(::Context, ::Thunk; single=2)
+  Closest candidates are:
+    collect(::Context, ::Any) at /root/.julia/packages/Dagger/sdZXi/src/compute.jl:8 got unsupported keyword argument "single"
+    collect(::Context, !Matched::Dagger.Chunk{X,Dagger.FileReader{T<:Array}}) where {X, T<:Array} at /root/.julia/packages/Dagger/sdZXi/src/file-io.jl:177 got unsupported keyword argument "single"
+    collect(::Context, !Matched::Dagger.Chunk{X,Dagger.FileReader{T<:BitArray}}) where {X, T<:BitArray} at /root/.julia/packages/Dagger/sdZXi/src/file-io.jl:187 got unsupported keyword argument "single"
+    ...
+  Stacktrace:
+   [1] macro expansion at /root/.julia/packages/CrimsonDagger/slqsp/test/scheduler-options.jl:16 [inlined]
+   [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [3] macro expansion at /root/.julia/packages/CrimsonDagger/slqsp/test/scheduler-options.jl:12 [inlined]
+   [4] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [5] top-level scope at /root/.julia/packages/CrimsonDagger/slqsp/test/scheduler-options.jl:11
+Test Summary:     | Error  Total
+Scheduler options |     1      1
+  single worker   |     1      1
+ERROR: LoadError: LoadError: Some tests did not pass: 0 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /root/.julia/packages/CrimsonDagger/slqsp/test/scheduler-options.jl:10
+in expression starting at /root/.julia/packages/CrimsonDagger/slqsp/test/runtests.jl:11
+ERROR: Package CrimsonDagger errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

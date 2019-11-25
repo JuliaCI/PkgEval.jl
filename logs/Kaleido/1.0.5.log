@@ -1,0 +1,94 @@
+ Resolving package versions...
+ Installed Requires ─────────── v0.5.2
+ Installed Tokenize ─────────── v0.5.6
+ Installed OrderedCollections ─ v1.1.0
+ Installed ConstructionBase ─── v1.0.0
+ Installed CSTParser ────────── v1.0.0
+ Installed Kaleido ──────────── v0.2.1
+ Installed Setfield ─────────── v0.5.2
+ Installed MacroTools ───────── v0.5.1
+ Installed Compat ───────────── v3.0.0
+ Installed DataStructures ───── v0.17.6
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [caafb194] + Kaleido v0.2.1
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [00ebfdb7] + CSTParser v1.0.0
+  [34da2185] + Compat v3.0.0
+  [187b0558] + ConstructionBase v1.0.0
+  [864edb3b] + DataStructures v0.17.6
+  [caafb194] + Kaleido v0.2.1
+  [1914dd2f] + MacroTools v0.5.1
+  [bac558e1] + OrderedCollections v1.1.0
+  [ae029012] + Requires v0.5.2
+  [efcf1570] + Setfield v0.5.2
+  [0796e94c] + Tokenize v0.5.6
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing Kaleido
+ Resolving package versions...
+ERROR: Unsatisfiable requirements detected for package SpecialFunctions [276daf66]:
+ SpecialFunctions [276daf66] log:
+ ├─possible versions are: [0.7.0-0.7.2, 0.8.0] or uninstalled
+ ├─restricted by compatibility requirements with Compat [34da2185] to versions: [0.7.1-0.7.2, 0.8.0] or uninstalled
+ │ └─Compat [34da2185] log:
+ │   ├─possible versions are: [1.0.0-1.0.1, 1.1.0, 1.2.0, 1.3.0, 1.4.0, 1.5.0-1.5.1, 2.0.0, 2.1.0, 2.2.0, 3.0.0] or uninstalled
+ │   └─restricted to versions 3.0.0 by an explicit requirement, leaving only versions 3.0.0
+ ├─restricted by compatibility requirements with BinDeps [9e28174c] to versions: uninstalled
+ │ └─BinDeps [9e28174c] log:
+ │   ├─possible versions are: [0.7.0, 0.8.9-0.8.10] or uninstalled
+ │   └─restricted by compatibility requirements with Compat [34da2185] to versions: uninstalled
+ │     └─Compat [34da2185] log: see above
+ └─restricted by compatibility requirements with ForwardDiff [f6369f11] to versions: [0.7.0-0.7.2, 0.8.0] — no versions left
+   └─ForwardDiff [f6369f11] log:
+     ├─possible versions are: [0.9.0, 0.10.0-0.10.6] or uninstalled
+     └─restricted by compatibility requirements with TransformVariables [84d833dd] to versions: [0.9.0, 0.10.0-0.10.6]
+       └─TransformVariables [84d833dd] log:
+         ├─possible versions are: [0.1.0-0.1.4, 0.2.0, 0.3.0-0.3.8] or uninstalled
+         └─restricted to versions * by an explicit requirement, leaving only versions [0.1.0-0.1.4, 0.2.0, 0.3.0-0.3.8]
+Stacktrace:
+ [1] #propagate_constraints!#61(::Bool, ::Function, ::Pkg.GraphType.Graph, ::Set{Int64}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/GraphType.jl:1007
+ [2] propagate_constraints! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/GraphType.jl:948 [inlined]
+ [3] #simplify_graph!#121(::Bool, ::Function, ::Pkg.GraphType.Graph, ::Set{Int64}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/GraphType.jl:1462
+ [4] simplify_graph! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/GraphType.jl:1462 [inlined] (repeats 2 times)
+ [5] resolve_versions!(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}, ::Nothing) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:373
+ [6] resolve_versions! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:316 [inlined]
+ [7] #add_or_develop#62(::Array{Base.UUID,1}, ::Symbol, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1201
+ [8] add_or_develop at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1184 [inlined]
+ [9] (::getfield(Pkg.Operations, Symbol("##39#43")){Bool,getfield(Pkg.Operations, Symbol("##67#69")){Pkg.Types.Context,getfield(Pkg.Operations, Symbol("##66#68")){Pkg.Types.Context,Array{Any,1},Cmd,Pkg.Types.PackageSpec},Pkg.Types.PackageSpec},Pkg.Types.Context,Pkg.Types.PackageSpec,Pkg.Types.Context,Array{Pkg.Types.PackageSpec,1}})(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:891
+ [10] mktempdir(::getfield(Pkg.Operations, Symbol("##39#43")){Bool,getfield(Pkg.Operations, Symbol("##67#69")){Pkg.Types.Context,getfield(Pkg.Operations, Symbol("##66#68")){Pkg.Types.Context,Array{Any,1},Cmd,Pkg.Types.PackageSpec},Pkg.Types.PackageSpec},Pkg.Types.Context,Pkg.Types.PackageSpec,Pkg.Types.Context,Array{Pkg.Types.PackageSpec,1}}, ::String) at ./file.jl:581
+ [11] mktempdir at ./file.jl:579 [inlined]
+ [12] #with_dependencies_loadable_at_toplevel#37(::Bool, ::Function, ::getfield(Pkg.Operations, Symbol("##67#69")){Pkg.Types.Context,getfield(Pkg.Operations, Symbol("##66#68")){Pkg.Types.Context,Array{Any,1},Cmd,Pkg.Types.PackageSpec},Pkg.Types.PackageSpec}, ::Pkg.Types.Context, ::Pkg.Types.PackageSpec) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:867
+ [13] #with_dependencies_loadable_at_toplevel at ./none:0 [inlined]
+ [14] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1347
+ [15] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [16] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [17] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [18] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [19] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [20] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [21] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [22] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [23] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [24] top-level scope at none:0

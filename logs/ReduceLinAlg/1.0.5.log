@@ -1,0 +1,109 @@
+ Resolving package versions...
+ Installed AbstractTensors ── v0.3.0
+ Installed DirectSum ──────── v0.4.2
+ Installed AbstractLattices ─ v0.1.2
+ Installed ReduceLinAlg ───── v0.1.0
+ Installed SyntaxTree ─────── v1.0.1
+ Installed ForceImport ────── v0.0.3
+ Installed StaticArrays ───── v0.12.1
+ Installed Reduce ─────────── v1.2.3
+ Installed Leibniz ────────── v0.0.3
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [bfcbc1eb] + ReduceLinAlg v0.1.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [398f06c4] + AbstractLattices v0.1.2
+  [a8e43f4a] + AbstractTensors v0.3.0
+  [22fd7b30] + DirectSum v0.4.2
+  [9dda63f9] + ForceImport v0.0.3
+  [edad4870] + Leibniz v0.0.3
+  [93e0c654] + Reduce v1.2.3
+  [bfcbc1eb] + ReduceLinAlg v0.1.0
+  [90137ffa] + StaticArrays v0.12.1
+  [a4af3ec5] + SyntaxTree v1.0.1
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  Building Reduce → `~/.julia/packages/Reduce/4dmwd/deps/build.log`
+   Testing ReduceLinAlg
+ Resolving package versions...
+    Status `/tmp/tmpG6DUob/Manifest.toml`
+  [398f06c4] AbstractLattices v0.1.2
+  [a8e43f4a] AbstractTensors v0.3.0
+  [22fd7b30] DirectSum v0.4.2
+  [9dda63f9] ForceImport v0.0.3
+  [edad4870] Leibniz v0.0.3
+  [93e0c654] Reduce v1.2.3
+  [bfcbc1eb] ReduceLinAlg v0.1.0
+  [90137ffa] StaticArrays v0.12.1
+  [a4af3ec5] SyntaxTree v1.0.1
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+/root/.julia/packages/Reduce/4dmwd/deps/usr/lib/reduce/cslbuild/csl/reduce: error while loading shared libraries: libXft.so.2: cannot open shared object file: No such file or directory
+/root/.julia/packages/Reduce/4dmwd/deps/usr/lib/reduce/cslbuild/csl/reduce: error while loading shared libraries: libXft.so.2: cannot open shared object file: No such file or directory
+ERROR: LoadError: InitError: IOError: write: broken pipe (EPIPE)
+Stacktrace:
+ [1] try_yieldto(::typeof(Base.ensure_rescheduled), ::Base.RefValue{Task}) at ./event.jl:196
+ [2] wait() at ./event.jl:255
+ [3] uv_write(::Base.PipeEndpoint, ::Ptr{UInt8}, ::UInt64) at ./stream.jl:782
+ [4] unsafe_write(::Base.PipeEndpoint, ::Ptr{UInt8}, ::UInt64) at ./stream.jl:830
+ [5] unsafe_write at ./io.jl:225 [inlined]
+ [6] macro expansion at ./gcutils.jl:87 [inlined]
+ [7] write at ./strings/io.jl:164 [inlined]
+ [8] clear at /root/.julia/packages/Reduce/4dmwd/src/Reduce.jl:76 [inlined]
+ [9] write(::Reduce.PSL, ::String) at /root/.julia/packages/Reduce/4dmwd/src/Reduce.jl:83
+ [10] #rcall#40(::Array{Symbol,1}, ::Array{Symbol,1}, ::Function, ::RExpr) at /root/.julia/packages/Reduce/4dmwd/src/rexpr.jl:464
+ [11] (::getfield(Reduce, Symbol("#kw##rcall")))(::NamedTuple{(:on, :off),Tuple{Array{Symbol,1},Array{Symbol,1}}}, ::typeof(rcall), ::RExpr) at ./none:0
+ [12] #rcall#41(::Array{Symbol,1}, ::Array{Symbol,1}, ::Function, ::String) at /root/.julia/packages/Reduce/4dmwd/src/rexpr.jl:498
+ [13] rcall at /root/.julia/packages/Reduce/4dmwd/src/rexpr.jl:498 [inlined]
+ [14] |> at ./operators.jl:813 [inlined]
+ [15] load_package at /root/.julia/packages/Reduce/4dmwd/src/Reduce.jl:283 [inlined]
+ [16] __init__() at /root/.julia/packages/ReduceLinAlg/cPkDZ/src/ReduceLinAlg.jl:130
+ [17] _include_from_serialized(::String, ::Array{Any,1}) at ./loading.jl:633
+ [18] _require_from_serialized(::String) at ./loading.jl:684
+ [19] _require(::Base.PkgId) at ./loading.jl:967
+ [20] require(::Base.PkgId) at ./loading.jl:858
+ [21] require(::Module, ::Symbol) at ./loading.jl:853
+ [22] include at ./boot.jl:317 [inlined]
+ [23] include_relative(::Module, ::String) at ./loading.jl:1044
+ [24] include(::Module, ::String) at ./sysimg.jl:29
+ [25] include(::String) at ./client.jl:392
+ [26] top-level scope at none:0
+during initialization of module ReduceLinAlg
+in expression starting at /root/.julia/packages/ReduceLinAlg/cPkDZ/test/runtests.jl:2
+ERROR: Package ReduceLinAlg errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

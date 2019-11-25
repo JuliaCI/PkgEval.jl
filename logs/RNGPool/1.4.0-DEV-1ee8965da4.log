@@ -1,0 +1,84 @@
+ Resolving package versions...
+ Installed RNGPool ─────── v1.0.1
+ Installed Requires ────── v0.5.2
+ Installed Random123 ───── v1.2.0
+ Installed RandomNumbers ─ v1.3.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [c7fc2d14] + RNGPool v1.0.1
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [c7fc2d14] + RNGPool v1.0.1
+  [74087812] + Random123 v1.2.0
+  [e6cf234a] + RandomNumbers v1.3.0
+  [ae029012] + Requires v0.5.2
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  Building Random123 → `~/.julia/packages/Random123/Y2Du3/deps/build.log`
+   Testing RNGPool
+Status `/tmp/jl_sbQeSe/Manifest.toml`
+  [c7fc2d14] RNGPool v1.0.1
+  [74087812] Random123 v1.2.0
+  [e6cf234a] RandomNumbers v1.3.0
+  [ae029012] Requires v0.5.2
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  2.173324 seconds (2.13 M allocations: 102.704 MiB, 1.83% gc time)
+Test Summary:       | Pass  Total
+Parallel generation |    1      1
+Small crush: Error During Test at /root/.julia/packages/RNGPool/GZv7Z/test/runtests.jl:8
+  Got exception outside of a @test
+  LoadError: ArgumentError: Package RNGTest not found in current path:
+  - Run `import Pkg; Pkg.add("RNGTest")` to install the RNGTest package.
+  
+  Stacktrace:
+   [1] require(::Module, ::Symbol) at ./loading.jl:885
+   [2] include(::String) at ./client.jl:439
+   [3] macro expansion at ./util.jl:162 [inlined]
+   [4] macro expansion at /root/.julia/packages/RNGPool/GZv7Z/test/runtests.jl:9 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [6] top-level scope at /root/.julia/packages/RNGPool/GZv7Z/test/runtests.jl:9
+   [7] include(::String) at ./client.jl:439
+   [8] top-level scope at none:6
+   [9] eval(::Module, ::Any) at ./boot.jl:331
+   [10] exec_options(::Base.JLOptions) at ./client.jl:264
+   [11] _start() at ./client.jl:484
+  in expression starting at /root/.julia/packages/RNGPool/GZv7Z/test/smallCrush.jl:1
+  
+Test Summary: | Error  Total
+Small crush   |     1      1
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /root/.julia/packages/RNGPool/GZv7Z/test/runtests.jl:8
+ERROR: Package RNGPool errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

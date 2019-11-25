@@ -1,0 +1,110 @@
+ Resolving package versions...
+ Installed Todo ───── v0.1.0
+ Installed CBinding ─ v0.6.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [d43a6710] + CBinding v0.6.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [d43a6710] + CBinding v0.6.0
+  [b28a226c] + Todo v0.1.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+   Testing CBinding
+Status `/tmp/jl_3BtfOJ/Manifest.toml`
+  [d43a6710] CBinding v0.6.0
+  [b28a226c] Todo v0.1.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Cfunction: Error During Test at /root/.julia/packages/CBinding/O21SV/test/cfunction.jl:3
+  Got exception outside of a @test
+  could not load symbol "jl_gc_total_bytes":
+  /opt/julia/bin/../lib/libjulia.so.1: undefined symbol: jl_gc_total_bytes
+  Stacktrace:
+   [1] #dlsym#1 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Libdl/src/Libdl.jl:56 [inlined]
+   [2] _dlsym(::Symbol, ::Clibrary) at /root/.julia/packages/CBinding/O21SV/src/cbindings.jl:6
+   [3] Cfunction{Int64,Tuple{},ConvT} where ConvT<:Cconvention(::Symbol, ::Clibrary) at /root/.julia/packages/CBinding/O21SV/src/cfunction.jl:17
+   [4] Cfunction{Int64,Tuple{},ConvT} where ConvT<:Cconvention(::Clibrary, ::Symbol) at /root/.julia/packages/CBinding/O21SV/src/cfunction.jl:14
+   [5] top-level scope at /root/.julia/packages/CBinding/O21SV/test/cfunction.jl:19
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/CBinding/O21SV/test/cfunction.jl:4
+   [8] include(::String) at ./client.jl:439
+   [9] macro expansion at /root/.julia/packages/CBinding/O21SV/test/runtests.jl:158 [inlined]
+   [10] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [11] top-level scope at /root/.julia/packages/CBinding/O21SV/test/runtests.jl:132
+   [12] include(::String) at ./client.jl:439
+   [13] top-level scope at none:6
+   [14] eval(::Module, ::Any) at ./boot.jl:331
+   [15] exec_options(::Base.JLOptions) at ./client.jl:264
+   [16] _start() at ./client.jl:484
+  
+@cextern + @cbindings: Error During Test at /root/.julia/packages/CBinding/O21SV/test/cextern.jl:3
+  Got exception outside of a @test
+  could not load symbol "jl_gc_total_bytes":
+  /opt/julia/bin/../lib/libjulia.so.1: undefined symbol: jl_gc_total_bytes
+  Stacktrace:
+   [1] #dlsym#1 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Libdl/src/Libdl.jl:56 [inlined]
+   [2] _dlsym(::Symbol, ::Clibrary) at /root/.julia/packages/CBinding/O21SV/src/cbindings.jl:6
+   [3] Cfunction{Int64,Tuple{},ConvT} where ConvT<:Cconvention(::Symbol, ::Clibrary) at /root/.julia/packages/CBinding/O21SV/src/cfunction.jl:17
+   [4] top-level scope at /root/.julia/packages/CBinding/O21SV/src/cbindings.jl:95
+   [5] top-level scope at /root/.julia/packages/CBinding/O21SV/test/cextern.jl:8
+   [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110
+   [7] top-level scope at /root/.julia/packages/CBinding/O21SV/test/cextern.jl:4
+   [8] include(::String) at ./client.jl:439
+   [9] macro expansion at /root/.julia/packages/CBinding/O21SV/test/runtests.jl:159 [inlined]
+   [10] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [11] top-level scope at /root/.julia/packages/CBinding/O21SV/test/runtests.jl:132
+   [12] include(::String) at ./client.jl:439
+   [13] top-level scope at none:6
+   [14] eval(::Module, ::Any) at ./boot.jl:331
+   [15] exec_options(::Base.JLOptions) at ./client.jl:264
+   [16] _start() at ./client.jl:484
+  
+Test Summary:           | Pass  Error  Total
+CBinding                | 3270      2   3272
+  Layout algorithms     | 2864          2864
+  @cstruct              |   81            81
+  @cunion               |   66            66
+  @carray               |   41            41
+  @cenum                |   34            34
+  @ctypedef             |   10            10
+  Caccessor + Cconst    |  161           161
+  Clibrary              |    5             5
+  Cglobal               |    2             2
+  Cfunction             |    5      1      6
+  @cextern + @cbindings |    1      1      2
+ERROR: LoadError: Some tests did not pass: 3270 passed, 0 failed, 2 errored, 0 broken.
+in expression starting at /root/.julia/packages/CBinding/O21SV/test/runtests.jl:131
+ERROR: Package CBinding errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

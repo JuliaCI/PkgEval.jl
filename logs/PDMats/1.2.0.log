@@ -1,0 +1,97 @@
+ Resolving package versions...
+ Installed PDMats ───────── v0.9.10
+ Installed Arpack ───────── v0.3.1
+ Installed BinaryProvider ─ v0.5.8
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [90014a1f] + PDMats v0.9.10
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [7d9fca2a] + Arpack v0.3.1
+  [b99e7846] + BinaryProvider v0.5.8
+  [90014a1f] + PDMats v0.9.10
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  Building Arpack → `~/.julia/packages/Arpack/cu5By/deps/build.log`
+   Testing PDMats
+    Status `/tmp/jl_A0701Y/Manifest.toml`
+  [7d9fca2a] Arpack v0.3.1
+  [b99e7846] BinaryProvider v0.5.8
+  [90014a1f] PDMats v0.9.10
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [4607b0f0] SuiteSparse  [`@stdlib/SuiteSparse`]
+  [8dfed614] Test  [`@stdlib/Test`]
+Running tests ...
+* pdmtypes 
+Testing PDMat{Float64,Array{Float64,2}} with dim = 3
+Testing PDiagMat{Float64,Array{Float64,1}} with dim = 3
+Testing ScalMat{Float64} with dim = 3
+Testing PDSparseMat{Float64,SparseMatrixCSC{Float64,Int64}} with dim = 3
+Testing PDMat{Float32,Array{Float32,2}} with dim = 3
+Testing PDiagMat{Float32,Array{Float32,1}} with dim = 3
+Testing ScalMat{Float32} with dim = 3
+Testing PDSparseMat{Float32,SparseMatrixCSC{Float32,Int64}} with dim = 3
+* addition 
+Testing addition with eltype = Float64
+Testing addition with eltype = Float32
+* generics 
+Testing scalar multiplication
+* kron 
+ERROR: LoadError: LoadError: PosDefException: matrix is not positive definite; Cholesky factorization failed.
+Stacktrace:
+ [1] checkpositivedefinite at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/LinearAlgebra/src/factorization.jl:11 [inlined]
+ [2] #cholesky!#111(::Bool, ::typeof(cholesky!), ::Hermitian{Float32,Array{Float32,2}}, ::Val{false}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/LinearAlgebra/src/cholesky.jl:153
+ [3] #cholesky! at ./none:0 [inlined]
+ [4] #cholesky!#112(::Bool, ::typeof(cholesky!), ::Array{Float32,2}, ::Val{false}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/LinearAlgebra/src/cholesky.jl:185
+ [5] #cholesky! at ./none:0 [inlined] (repeats 2 times)
+ [6] #cholesky#116 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/LinearAlgebra/src/cholesky.jl:275 [inlined]
+ [7] cholesky at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/LinearAlgebra/src/cholesky.jl:275 [inlined] (repeats 2 times)
+ [8] PDMat(::Array{Float32,2}) at /root/.julia/packages/PDMats/nKT0N/src/pdmat.jl:19
+ [9] top-level scope at /root/.julia/packages/PDMats/nKT0N/test/kron.jl:15
+ [10] include at ./boot.jl:328 [inlined]
+ [11] include_relative(::Module, ::String) at ./loading.jl:1094
+ [12] include(::Module, ::String) at ./Base.jl:31
+ [13] include(::String) at ./client.jl:431
+ [14] top-level scope at /root/.julia/packages/PDMats/nKT0N/test/runtests.jl:6
+ [15] include at ./boot.jl:328 [inlined]
+ [16] include_relative(::Module, ::String) at ./loading.jl:1094
+ [17] include(::Module, ::String) at ./Base.jl:31
+ [18] include(::String) at ./client.jl:431
+ [19] top-level scope at none:5
+in expression starting at /root/.julia/packages/PDMats/nKT0N/test/kron.jl:7
+in expression starting at /root/.julia/packages/PDMats/nKT0N/test/runtests.jl:4
+ERROR: Package PDMats errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1288
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

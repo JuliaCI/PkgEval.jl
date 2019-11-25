@@ -1,0 +1,84 @@
+ Resolving package versions...
+ Installed GmshTools ────── v0.2.2
+ Installed BinaryProvider ─ v0.5.8
+ Installed MLStyle ──────── v0.3.1
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [82e2f556] + GmshTools v0.2.2
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [82e2f556] + GmshTools v0.2.2
+  [d8e11817] + MLStyle v0.3.1
+  [8f399da3] + Libdl 
+  [ea8e919c] + SHA 
+  Building GmshTools → `~/.julia/packages/GmshTools/5zFz0/deps/build.log`
+┌ Error: Error building `GmshTools`: 
+│ ┌ Warning: Parsing command "cp $(lib_path)/* $(dir_path)". Special characters "#{}()[]<>|&*?~;" should now be quoted in commands
+│ │   caller = shell_parse(::String, ::Bool; special::String) at shell.jl:107
+│ └ @ Base ./shell.jl:107
+│ ┌ Warning: Could not extract the platform key of http://gmsh.info/bin/Linux/gmsh-4.2.2-Linux64-sdk.tgz; continuing...
+│ └ @ BinaryProvider ~/.julia/packages/BinaryProvider/kcGxO/src/Prefix.jl:185
+│ [ Info: Downloading http://gmsh.info/bin/Linux/gmsh-4.2.2-Linux64-sdk.tgz to /root/.julia/packages/GmshTools/5zFz0/deps/usr/downloads/gmsh-4.2.2-Linux64-sdk.tgz...
+│ [ Info: No hash cache found
+│ [ Info: Calculated hash ea6a6d36da41b9e777111e055c416ffe994d57c7e3debf174b98e4c09b3b33d7 for file /root/.julia/packages/GmshTools/5zFz0/deps/usr/downloads/gmsh-4.2.2-Linux64-sdk.tgz
+│ [ Info: Installing /root/.julia/packages/GmshTools/5zFz0/deps/usr/downloads/gmsh-4.2.2-Linux64-sdk.tgz into /root/.julia/packages/GmshTools/5zFz0/deps/usr
+│ ERROR: LoadError: LibraryProduct(nothing, ["libgmsh"], :libgmsh, "Prefix(/root/.julia/packages/GmshTools/5zFz0/deps/usr)") is not satisfied, cannot generate deps.jl!
+│ Stacktrace:
+│  [1] error(::String) at ./error.jl:33
+│  [2] write_deps_file(::String, ::Array{Product,1}; verbose::Bool) at /root/.julia/packages/BinaryProvider/kcGxO/src/Products.jl:414
+│  [3] write_deps_file(::String, ::Array{Product,1}) at /root/.julia/packages/BinaryProvider/kcGxO/src/Products.jl:395
+│  [4] top-level scope at /root/.julia/packages/GmshTools/5zFz0/deps/build.jl:59
+│  [5] include(::String) at ./client.jl:439
+│  [6] top-level scope at none:5
+│ in expression starting at /root/.julia/packages/GmshTools/5zFz0/deps/build.jl:21
+│ [18:45:57] #=#=#                                                                         [18:45:57] [18:45:57]                                                                            1.3%[18:45:57] ##                                                                         3.5%[18:45:57] ###                                                                        4.7%[18:45:58] ####                                                                       5.7%[18:45:58] ####                                                                       6.6%[18:45:58] #####                                                                      7.7%[18:45:58] ######                                                                     8.5%[18:45:58] ######                                                                     9.3%[18:45:58] #######                                                                   10.2%[18:45:58] ########                                                                  11.1%[18:45:58] ########                                                                  12.1%[18:45:58] #########                                                                 12.9%[18:45:59] #########                                                                 13.4%[18:45:59] ##########                                                                14.8%[18:45:59] ###########                                                               15.9%[18:45:59] ############                                                              16.9%[18:45:59] #############                                                             18.2%[18:45:59] ##############                                                            19.5%[18:45:59] ###############                                                           20.9%[18:45:59] ################                                                          22.6%[18:45:59] #################                                                         24.4%[18:45:59] ##################                                                        26.3%[18:46:00] ####################                                                      28.4%[18:46:00] #####################                                                     30.0%[18:46:00] ######################                                                    31.5%[18:46:00] #######################                                                   32.8%[18:46:00] ########################                                                  34.6%[18:46:00] ##########################                                                36.5%[18:46:00] ###########################                                               38.6%[18:46:00] #############################                                             40.5%[18:46:00] ##############################                                            42.4%[18:46:01] ###############################                                           44.4%[18:46:01] #################################                                         46.0%[18:46:01] ##################################                                        47.8%[18:46:01] ###################################                                       49.6%[18:46:01] #####################################                                     51.5%[18:46:01] ######################################                                    53.2%[18:46:01] #######################################                                   55.0%[18:46:01] ########################################                                  56.8%[18:46:01] ##########################################                                58.9%[18:46:01] ###########################################                               61.1%[18:46:02] #############################################                             63.1%[18:46:02] ##############################################                            65.2%[18:46:02] ################################################                          67.1%[18:46:02] #################################################                         68.9%[18:46:02] ###################################################                       71.0%[18:46:02] ####################################################                      72.6%[18:46:02] #####################################################                     74.3%[18:46:02] ######################################################                    75.5%[18:46:02] #######################################################                   76.6%[18:46:03] #######################################################                   77.3%[18:46:03] #######################################################                   77.5%[18:46:03] #######################################################                   77.7%[18:46:03] #######################################################                   77.8%[18:46:03] ########################################################                  78.7%[18:46:03] #########################################################                 80.4%[18:46:03] ###########################################################               82.0%[18:46:03] ###########################################################               82.1%[18:46:04] ###########################################################               82.6%[18:46:04] ###########################################################               83.0%[18:46:04] ############################################################              83.4%[18:46:04] ############################################################              83.9%[18:46:04] #############################################################             85.1%[18:46:04] #############################################################             85.7%[18:46:04] ##############################################################            86.2%[18:46:04] ##############################################################            86.8%[18:46:04] ##############################################################            87.3%[18:46:05] ###############################################################           87.8%[18:46:05] ###############################################################           88.3%[18:46:05] ###############################################################           88.8%[18:46:05] ################################################################          89.3%[18:46:05] ################################################################          89.9%[18:46:05] #################################################################         90.5%[18:46:05] #################################################################         90.9%[18:46:05] #################################################################         91.6%[18:46:05] ##################################################################        92.0%[18:46:06] ##################################################################        92.6%[18:46:06] ###################################################################       93.2%[18:46:06] ###################################################################       93.9%[18:46:06] ####################################################################      94.5%[18:46:06] ####################################################################      95.0%[18:46:06] ####################################################################      95.6%[18:46:06] #####################################################################     96.2%[18:46:06] #####################################################################     97.1%[18:46:06] ######################################################################    98.3%[18:46:07] #######################################################################   99.2%[18:46:10] #######################################################################  100.0%[18:46:13] #######################################################################  100.0%[18:46:40] #######################################################################  100.0%[18:46:40] ######################################################################## 100.0%
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/backwards_compatible_isolation.jl:601
+   Testing GmshTools
+ Resolving package versions...
+Status `/tmp/jl_oP59CT/Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [82e2f556] GmshTools v0.2.2
+  [d8e11817] MLStyle v0.3.1
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+ERROR: LoadError: libgmsh not installed properly, run Pkg.build("GmshTools"), restart Julia and try again
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] top-level scope at /root/.julia/packages/GmshTools/5zFz0/src/GmshTools.jl:7
+ [3] include(::Module, ::String) at ./Base.jl:377
+ [4] top-level scope at none:2
+ [5] eval at ./boot.jl:331 [inlined]
+ [6] eval(::Expr) at ./client.jl:449
+ [7] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/GmshTools/5zFz0/src/GmshTools.jl:6
+ERROR: LoadError: Failed to precompile GmshTools [82e2f556-b1bd-5f1a-9576-f93c0da5f0ee] to /root/.julia/compiled/v1.4/GmshTools/9rYp5_15Jqo.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1263
+ [3] _require(::Base.PkgId) at ./loading.jl:1022
+ [4] require(::Base.PkgId) at ./loading.jl:920
+ [5] require(::Module, ::Symbol) at ./loading.jl:915
+ [6] include(::String) at ./client.jl:439
+ [7] top-level scope at none:6
+in expression starting at /root/.julia/packages/GmshTools/5zFz0/test/runtests.jl:1
+ERROR: Package GmshTools errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="CategoricalArrays">CategoricalArrays</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#CategoricalArrays">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 14 hours ago and took 15 minutes, 21 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/CategoricalArrays/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Reexport ────────── v0.2.0
+ Installed Missings ────────── v0.4.3
+ Installed DataAPI ─────────── v1.1.0
+ Installed Parsers ─────────── v0.3.10
+ Installed Compat ──────────── v3.0.0
+ Installed JSON ────────────── v0.21.0
+ Installed CategoricalArrays ─ v0.7.3
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [324d7699] + CategoricalArrays v0.7.3
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [324d7699] + CategoricalArrays v0.7.3
+  [34da2185] + Compat v3.0.0
+  [9a962f9c] + DataAPI v1.1.0
+  [682c06a0] + JSON v0.21.0
+  [e1d29d7a] + Missings v0.4.3
+  [69de0a69] + Parsers v0.3.10
+  [189a3867] + Reexport v0.2.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing CategoricalArrays
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;tmpD7YXWI&#x2F;Manifest.toml`
+  [324d7699] CategoricalArrays v0.7.3
+  [34da2185] Compat v3.0.0
+  [9a962f9c] DataAPI v1.1.0
+  [682c06a0] JSON v0.21.0
+  [e1d29d7a] Missings v0.4.3
+  [69de0a69] Parsers v0.3.10
+  [189a3867] Reexport v0.2.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;runtests.jl:11
+WARNING: Compat.Statistics is deprecated, use Statistics instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;src&#x2F;extras.jl:1
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;01_typedef.jl:3
+┌ Warning: `eltype(x::CategoricalString)` is deprecated, use `eltype(String(x))` instead.
+│   caller = macro expansion at 01_typedef.jl:56 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;01_typedef.jl:56
+Test Summary: | Pass  Total
+01_typedef.jl |   99     99
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;02_buildorder.jl:3
+Test Summary:    | Pass  Total
+02_buildorder.jl |    6      6
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;03_buildfields.jl:3
+Test Summary:     | Pass  Total
+03_buildfields.jl |    6      6
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;04_constructors.jl:3
+Test Summary:      | Pass  Total
+04_constructors.jl |  121    121
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;05_convert.jl:3
+┌ Warning: `eltype(x::CategoricalString)` is deprecated, use `eltype(String(x))` instead.
+│   caller = macro expansion at 05_convert.jl:76 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;05_convert.jl:76
+Test Summary: | Pass  Total
+05_convert.jl |  124    124
+Test Summary: | Pass  Total
+05_copy.jl    |   14     14
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:3
+WARNING: Compat.Dates is deprecated, use Dates instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:4
+Test Summary: | Pass  Total
+06_show.jl    |   52     52
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_length.jl:3
+Test Summary: | Pass  Total
+06_length.jl  |    2      2
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;07_levels.jl:3
+Test Summary: | Pass  Total
+07_levels.jl  |  362    362
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_equality.jl:3
+Test Summary:  | Pass  Total
+08_equality.jl |  110    110
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:3
+WARNING: Compat.Unicode is deprecated, use Unicode instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:4
+┌ Warning: `isempty(x::CategoricalString)` is deprecated, use `isempty(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:32 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:32
+┌ Warning: `isempty(x::CategoricalString)` is deprecated, use `isempty(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:33 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:33
+┌ Warning: `eltype(x::CategoricalString)` is deprecated, use `eltype(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:35 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:35
+┌ Warning: `eltype(x::CategoricalString)` is deprecated, use `eltype(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:36 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:36
+┌ Warning: `length(x::CategoricalString)` is deprecated, use `length(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:38 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:38
+┌ Warning: `length(x::CategoricalString)` is deprecated, use `length(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:39 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:39
+┌ Warning: `sizeof(x::CategoricalString)` is deprecated, use `sizeof(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:41 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:41
+┌ Warning: `sizeof(x::CategoricalString)` is deprecated, use `sizeof(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:42 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:42
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = macro expansion at 08_string.jl:44 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:44
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = macro expansion at 08_string.jl:45 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:45
+┌ Warning: `prevind(x::CategoricalString, i::Int)` is deprecated, use `prevind(String(x), i)` instead.
+│   caller = macro expansion at 08_string.jl:47 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:47
+┌ Warning: `prevind(x::CategoricalString, i::Int)` is deprecated, use `prevind(String(x), i)` instead.
+│   caller = macro expansion at 08_string.jl:48 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:48
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:50 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:50
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:51 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:51
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:53 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:53
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:54 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:54
+┌ Warning: `collect(x::CategoricalString)` is deprecated, use `collect(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:56 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:56
+┌ Warning: `collect(x::CategoricalString)` is deprecated, use `collect(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:57 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:57
+┌ Warning: `getindex(x::CategoricalString, i::Int)` is deprecated, use `getindex(String(x), i)` instead.
+│   caller = macro expansion at 08_string.jl:59 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:59
+┌ Warning: `getindex(x::CategoricalString, i::Int)` is deprecated, use `getindex(String(x), i)` instead.
+│   caller = macro expansion at 08_string.jl:60 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:60
+┌ Warning: `getindex(x::CategoricalString, i::Int)` is deprecated, use `getindex(String(x), i)` instead.
+│   caller = macro expansion at 08_string.jl:61 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:61
+┌ Warning: `getindex(x::CategoricalString, i::Int)` is deprecated, use `getindex(String(x), i)` instead.
+│   caller = macro expansion at 08_string.jl:62 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:62
+┌ Warning: `codeunit(x::CategoricalString, i::Integer)` is deprecated, use `codeunit(String(x), i)` instead.
+│   caller = macro expansion at 08_string.jl:64 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:64
+┌ Warning: `codeunit(x::CategoricalString, i::Integer)` is deprecated, use `codeunit(String(x), i)` instead.
+│   caller = macro expansion at 08_string.jl:65 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:65
+┌ Warning: `codeunit(x::CategoricalString, i::Integer)` is deprecated, use `codeunit(String(x), i)` instead.
+│   caller = macro expansion at 08_string.jl:66 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:66
+┌ Warning: `codeunit(x::CategoricalString, i::Integer)` is deprecated, use `codeunit(String(x), i)` instead.
+│   caller = macro expansion at 08_string.jl:67 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:67
+┌ Warning: `ascii(x::CategoricalString)` is deprecated, use `ascii(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:69 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:69
+┌ Warning: `ascii(x::CategoricalString)` is deprecated, use `ascii(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:70 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:70
+┌ Warning: `normalize(x::CategoricalString, s::Symbol)` is deprecated, use `normalize(String(x), s)` instead.
+│   caller = macro expansion at 08_string.jl:74 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:74
+┌ Warning: `graphemes(x::CategoricalString)` is deprecated, use `graphemes(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:76 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:76
+┌ Warning: `graphemes(x::CategoricalString)` is deprecated, use `graphemes(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:77 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:77
+┌ Warning: `isvalid(x::CategoricalString)` is deprecated, use `isvalid(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:79 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:79
+┌ Warning: `isvalid(x::CategoricalString)` is deprecated, use `isvalid(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:80 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:80
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = macro expansion at 08_string.jl:81 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:81
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = macro expansion at 08_string.jl:82 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:82
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = macro expansion at 08_string.jl:83 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:83
+┌ Warning: `length(x::CategoricalString, i::Int, j::Int)` is deprecated, use `length(String(x), i, j)` instead.
+│   caller = macro expansion at 08_string.jl:85 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:85
+┌ Warning: `length(x::CategoricalString, i::Int, j::Int)` is deprecated, use `length(String(x), i, j)` instead.
+│   caller = macro expansion at 08_string.jl:86 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:86
+┌ Warning: `ncodeunits(x::CategoricalString)` is deprecated, use `ncodeunits(String(x))` instead.
+│   caller = nextind(::CategoricalArrays.CategoricalString{UInt32}, ::Int64, ::Int64) at basic.jl:519
+└ @ Base .&#x2F;strings&#x2F;basic.jl:519
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = nextind(::CategoricalArrays.CategoricalString{UInt32}, ::Int64, ::Int64) at basic.jl:523
+└ @ Base .&#x2F;strings&#x2F;basic.jl:523
+┌ Warning: `repeat(x::CategoricalString, i::Integer)` is deprecated, use `repeat(String(x), i)` instead.
+│   caller = ^ at basic.jl:674 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:674
+┌ Warning: `repeat(x::CategoricalString, i::Integer)` is deprecated, use `repeat(String(x), i)` instead.
+│   caller = ^ at basic.jl:674 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:674
+┌ Warning: `repeat(x::CategoricalString, i::Integer)` is deprecated, use `repeat(String(x), i)` instead.
+│   caller = macro expansion at 08_string.jl:112 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:112
+┌ Warning: `repeat(x::CategoricalString, i::Integer)` is deprecated, use `repeat(String(x), i)` instead.
+│   caller = macro expansion at 08_string.jl:113 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:113
+┌ Warning: `eachmatch(r::Regex, x::CategoricalString; overlap=false)` is deprecated, use `eachmatch(r, String(x), overlap=overlap)` instead.
+│   caller = macro expansion at 08_string.jl:115 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:115
+┌ Warning: `eachmatch(r::Regex, x::CategoricalString; overlap=false)` is deprecated, use `eachmatch(r, String(x), overlap=overlap)` instead.
+│   caller = macro expansion at 08_string.jl:116 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:116
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = match(::Regex, ::CategoricalArrays.CategoricalString{UInt32}) at deprecated.jl:54
+└ @ CategoricalArrays .&#x2F;deprecated.jl:54
+┌ Warning: `match(r::Regex, s::CategoricalString, idx::Integer=firstindex(s), add_opts::UInt32=UInt32(0); kwargs...)` is deprecated, use `match(r, String(s), idx, add_opts; kwargs...)` instead.
+│   caller = match(::Regex, ::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at deprecated.jl:54
+└ @ CategoricalArrays .&#x2F;deprecated.jl:54
+┌ Warning: `match(r::Regex, s::CategoricalString, idx::Integer=firstindex(s), add_opts::UInt32=UInt32(0); kwargs...)` is deprecated, use `match(r, String(s), idx, add_opts; kwargs...)` instead.
+│   caller = macro expansion at 08_string.jl:121 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:121
+┌ Warning: `eachmatch(r::Regex, x::CategoricalString; overlap=false)` is deprecated, use `eachmatch(r, String(x), overlap=overlap)` instead.
+│   caller = macro expansion at 08_string.jl:123 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:123
+┌ Warning: `eachmatch(r::Regex, x::CategoricalString; overlap=false)` is deprecated, use `eachmatch(r, String(x), overlap=overlap)` instead.
+│   caller = macro expansion at 08_string.jl:124 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:124
+┌ Warning: `eachmatch(r::Regex, x::CategoricalString; overlap=false)` is deprecated, use `eachmatch(r, String(x), overlap=overlap)` instead.
+│   caller = ip:0x0
+└ @ Core :-1
+┌ Warning: `lpad(x::CategoricalString, n::Integer, c::Union{AbstractChar, AbstractString}=&#39; &#39;)` is deprecated, use `lpad(String(x), n)` instead.
+│   caller = lpad(::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at deprecated.jl:54
+└ @ CategoricalArrays .&#x2F;deprecated.jl:54
+┌ Warning: `rpad(x::CategoricalString, n::Integer, c::Union{AbstractChar, AbstractString}=&#39; &#39;)` is deprecated, use `rpad(String(x), n)` instead.
+│   caller = rpad(::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at deprecated.jl:54
+└ @ CategoricalArrays .&#x2F;deprecated.jl:54
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = findfirst(::String, ::CategoricalArrays.CategoricalString{UInt32}) at search.jl:104
+└ @ Base .&#x2F;strings&#x2F;search.jl:104
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = _searchindex(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64) at search.jl:126
+└ @ Base .&#x2F;strings&#x2F;search.jl:126
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = _searchindex(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64) at search.jl:126
+└ @ Base .&#x2F;strings&#x2F;search.jl:126
+┌ Warning: `ncodeunits(x::CategoricalString)` is deprecated, use `ncodeunits(String(x))` instead.
+│   caller = findnext(::Base.Fix2{typeof(isequal),Char}, ::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at search.jl:109
+└ @ Base .&#x2F;strings&#x2F;search.jl:109
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = findnext(::Base.Fix2{typeof(isequal),Char}, ::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at search.jl:111
+└ @ Base .&#x2F;strings&#x2F;search.jl:111
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = Type at substring.jl:39 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:39
+┌ Warning: `ncodeunits(x::CategoricalString)` is deprecated, use `ncodeunits(String(x))` instead.
+│   caller = checkbounds at basic.jl:187 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:187
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = SubString{CategoricalArrays.CategoricalString{UInt32}}(::CategoricalArrays.CategoricalString{UInt32}, ::Int64, ::Int64) at substring.jl:31
+└ @ Base .&#x2F;strings&#x2F;substring.jl:31
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = SubString{CategoricalArrays.CategoricalString{UInt32}}(::CategoricalArrays.CategoricalString{UInt32}, ::Int64, ::Int64) at substring.jl:32
+└ @ Base .&#x2F;strings&#x2F;substring.jl:32
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = SubString{CategoricalArrays.CategoricalString{UInt32}}(::CategoricalArrays.CategoricalString{UInt32}, ::Int64, ::Int64) at substring.jl:34
+└ @ Base .&#x2F;strings&#x2F;substring.jl:34
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = isvalid at substring.jl:82 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:82
+┌ Warning: `iterate(x::CategoricalString, i::Int)` is deprecated, use `iterate(String(x), i)` instead.
+│   caller = findnext(::Base.Fix2{typeof(isequal),Char}, ::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at substring.jl:68
+└ @ Base .&#x2F;strings&#x2F;substring.jl:68
+┌ Warning: `iterate(x::CategoricalString, i::Int)` is deprecated, use `iterate(String(x), i)` instead.
+│   caller = iterate at substring.jl:68 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:68
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = _searchindex(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64) at search.jl:133
+└ @ Base .&#x2F;strings&#x2F;search.jl:133
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = Type at substring.jl:39 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:39
+┌ Warning: `ncodeunits(x::CategoricalString)` is deprecated, use `ncodeunits(String(x))` instead.
+│   caller = findnext(::Base.Fix2{typeof(==),Char}, ::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at search.jl:109
+└ @ Base .&#x2F;strings&#x2F;search.jl:109
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = findnext(::Base.Fix2{typeof(==),Char}, ::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at search.jl:111
+└ @ Base .&#x2F;strings&#x2F;search.jl:111
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = Type at substring.jl:39 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:39
+┌ Warning: `iterate(x::CategoricalString, i::Int)` is deprecated, use `iterate(String(x), i)` instead.
+│   caller = findnext(::Base.Fix2{typeof(==),Char}, ::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at substring.jl:68
+└ @ Base .&#x2F;strings&#x2F;substring.jl:68
+┌ Warning: `iterate(x::CategoricalString, i::Int)` is deprecated, use `iterate(String(x), i)` instead.
+│   caller = iterate at substring.jl:68 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:68
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = findlast(::String, ::CategoricalArrays.CategoricalString{UInt32}) at search.jl:273
+└ @ Base .&#x2F;strings&#x2F;search.jl:273
+┌ Warning: `ncodeunits(x::CategoricalString)` is deprecated, use `ncodeunits(String(x))` instead.
+│   caller = findprev(::Function, ::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at search.jl:281
+└ @ Base .&#x2F;strings&#x2F;search.jl:281
+┌ Warning: `reverse(x::CategoricalString)` is deprecated, use `reverse(String(x))` instead.
+│   caller = findprev(::Function, ::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at search.jl:287
+└ @ Base .&#x2F;strings&#x2F;search.jl:287
+┌ Warning: `ncodeunits(x::CategoricalString)` is deprecated, use `ncodeunits(String(x))` instead.
+│   caller = reverseind at basic.jl:644 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:644
+┌ Warning: `ncodeunits(x::CategoricalString)` is deprecated, use `ncodeunits(String(x))` instead.
+│   caller = thisind(::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at basic.jl:399
+└ @ Base .&#x2F;strings&#x2F;basic.jl:399
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = thisind(::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at basic.jl:402
+└ @ Base .&#x2F;strings&#x2F;basic.jl:402
+┌ Warning: `prevind(x::CategoricalString, i::Int)` is deprecated, use `prevind(String(x), i)` instead.
+│   caller = _rsearchindex(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64) at search.jl:303
+└ @ Base .&#x2F;strings&#x2F;search.jl:303
+┌ Warning: `getindex(x::CategoricalString, i::Int)` is deprecated, use `getindex(String(x), i)` instead.
+│   caller = getindex at substring.jl:76 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:76
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = _rsearchindex(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64) at search.jl:310
+└ @ Base .&#x2F;strings&#x2F;search.jl:310
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = last at basic.jl:537 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:537
+┌ Warning: `occursin(x::AbstractString, y::CategoricalString)` is deprecated, use `occursin(x, String(y))` instead.
+│   caller = macro expansion at 08_string.jl:145 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:145
+┌ Warning: `occursin(x::AbstractString, y::CategoricalString)` is deprecated, use `occursin(x, String(y))` instead.
+│   caller = macro expansion at 08_string.jl:146 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:146
+┌ Warning: `occursin(x::AbstractString, y::CategoricalString)` is deprecated, use `occursin(x, String(y))` instead.
+│   caller = macro expansion at 08_string.jl:147 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:147
+┌ Warning: `occursin(x::Regex, y::CategoricalString)` is deprecated, use `occursin(x, String(y))` instead.
+│   caller = macro expansion at 08_string.jl:149 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:149
+┌ Warning: `occursin(x::Regex, y::CategoricalString)` is deprecated, use `occursin(x, String(y))` instead.
+│   caller = macro expansion at 08_string.jl:150 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:150
+┌ Warning: `startswith(x::CategoricalString, y::AbstractString)` is deprecated, use `startswith(String(x), y)` instead.
+│   caller = macro expansion at 08_string.jl:152 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:152
+┌ Warning: `startswith(x::CategoricalString, y::AbstractString)` is deprecated, use `startswith(String(x), y)` instead.
+│   caller = macro expansion at 08_string.jl:153 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:153
+┌ Warning: `startswith(x::CategoricalString, y::AbstractString)` is deprecated, use `startswith(String(x), y)` instead.
+│   caller = macro expansion at 08_string.jl:154 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:154
+┌ Warning: `endswith(x::CategoricalString, y::AbstractString)` is deprecated, use `endswith(String(x), y)` instead.
+│   caller = macro expansion at 08_string.jl:156 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:156
+┌ Warning: `endswith(x::CategoricalString, y::AbstractString)` is deprecated, use `endswith(String(x), y)` instead.
+│   caller = macro expansion at 08_string.jl:157 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:157
+┌ Warning: `endswith(x::CategoricalString, y::AbstractString)` is deprecated, use `endswith(String(x), y)` instead.
+│   caller = macro expansion at 08_string.jl:158 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:158
+┌ Warning: `reverse(x::CategoricalString)` is deprecated, use `reverse(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:160 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:160
+┌ Warning: `reverse(x::CategoricalString)` is deprecated, use `reverse(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:161 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:161
+┌ Warning: `split(x::CategoricalString; kwargs...)` is deprecated, use `split(String(x); kwargs...)` instead.
+│   caller = macro expansion at 08_string.jl:167 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:167
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = _split(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64, ::Bool, ::Array{SubString{CategoricalArrays.CategoricalString{UInt32}},1}) at util.jl:322
+└ @ Base .&#x2F;strings&#x2F;util.jl:322
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = findfirst at search.jl:104 [inlined]
+└ @ Core .&#x2F;strings&#x2F;search.jl:104
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = _split(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64, ::Bool, ::Array{SubString{CategoricalArrays.CategoricalString{UInt32}},1}) at util.jl:325
+└ @ Base .&#x2F;strings&#x2F;util.jl:325
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = Type at substring.jl:39 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:39
+┌ Warning: `split(x::CategoricalString; kwargs...)` is deprecated, use `split(String(x); kwargs...)` instead.
+│   caller = macro expansion at 08_string.jl:169 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:169
+┌ Warning: `prevind(x::CategoricalString, i::Int)` is deprecated, use `prevind(String(x), i)` instead.
+│   caller = _split(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64, ::Bool, ::Array{SubString{CategoricalArrays.CategoricalString{UInt32}},1}) at util.jl:329
+└ @ Base .&#x2F;strings&#x2F;util.jl:329
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = _split(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64, ::Bool, ::Array{SubString{CategoricalArrays.CategoricalString{UInt32}},1}) at util.jl:336
+└ @ Base .&#x2F;strings&#x2F;util.jl:336
+┌ Warning: `iterate(x::CategoricalString, i::Int)` is deprecated, use `iterate(String(x), i)` instead.
+│   caller = cmp(::SubString{CategoricalArrays.CategoricalString{UInt32}}, ::String) at substring.jl:68
+└ @ Base .&#x2F;strings&#x2F;substring.jl:68
+┌ Warning: `iterate(x::CategoricalString, i::Int)` is deprecated, use `iterate(String(x), i)` instead.
+│   caller = iterate at substring.jl:68 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:68
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = _rsplit(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64, ::Bool, ::Array{SubString{CategoricalArrays.CategoricalString{UInt32}},1}) at util.jl:395
+└ @ Base .&#x2F;strings&#x2F;util.jl:395
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = findlast at search.jl:273 [inlined]
+└ @ Core .&#x2F;strings&#x2F;search.jl:273
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = isvalid at substring.jl:82 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:82
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = isvalid at substring.jl:82 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:82
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = isvalid at substring.jl:82 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:82
+┌ Warning: `getindex(x::CategoricalString, i::Int)` is deprecated, use `getindex(String(x), i)` instead.
+│   caller = getindex at substring.jl:76 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:76
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = _rsplit(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64, ::Bool, ::Array{SubString{CategoricalArrays.CategoricalString{UInt32}},1}) at util.jl:399
+└ @ Base .&#x2F;strings&#x2F;util.jl:399
+┌ Warning: `prevind(x::CategoricalString, i::Int)` is deprecated, use `prevind(String(x), i)` instead.
+│   caller = _rsplit(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64, ::Bool, ::Array{SubString{CategoricalArrays.CategoricalString{UInt32}},1}) at util.jl:400
+└ @ Base .&#x2F;strings&#x2F;util.jl:400
+┌ Warning: `strip(x::CategoricalString)` is deprecated, use `strip(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:175 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:175
+┌ Warning: `strip(x::CategoricalString)` is deprecated, use `strip(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:176 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:176
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = iterate at basic.jl:678 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:678
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = iterate at basic.jl:678 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:678
+┌ Warning: `prevind(x::CategoricalString, i::Int)` is deprecated, use `prevind(String(x), i)` instead.
+│   caller = zip_iterate(::Base.Iterators.Reverse{Base.EachStringIndex{CategoricalArrays.CategoricalString{UInt32}}}, ::Base.Iterators.Reverse{CategoricalArrays.CategoricalString{UInt32}}, ::Tuple{}, ::Tuple{}) at basic.jl:678
+└ @ Base.Iterators .&#x2F;strings&#x2F;basic.jl:678
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = iterate at basic.jl:677 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:677
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = iterate at basic.jl:677 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:677
+┌ Warning: `getindex(x::CategoricalString, i::Int)` is deprecated, use `getindex(String(x), i)` instead.
+│   caller = iterate at basic.jl:677 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:677
+┌ Warning: `prevind(x::CategoricalString, i::Int)` is deprecated, use `prevind(String(x), i)` instead.
+│   caller = zip_iterate(::Base.Iterators.Reverse{Base.EachStringIndex{CategoricalArrays.CategoricalString{UInt32}}}, ::Base.Iterators.Reverse{CategoricalArrays.CategoricalString{UInt32}}, ::Tuple{}, ::Tuple{}) at basic.jl:677
+└ @ Base.Iterators .&#x2F;strings&#x2F;basic.jl:677
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = iterate at basic.jl:678 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:678
+┌ Warning: `prevind(x::CategoricalString, i::Int)` is deprecated, use `prevind(String(x), i)` instead.
+│   caller = zip_iterate(::Base.Iterators.Reverse{Base.EachStringIndex{CategoricalArrays.CategoricalString{UInt32}}}, ::Base.Iterators.Reverse{CategoricalArrays.CategoricalString{UInt32}}, ::Tuple{Int64}, ::Tuple{Int64}) at basic.jl:678
+└ @ Base.Iterators .&#x2F;strings&#x2F;basic.jl:678
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = iterate at basic.jl:677 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:677
+┌ Warning: `getindex(x::CategoricalString, i::Int)` is deprecated, use `getindex(String(x), i)` instead.
+│   caller = iterate at basic.jl:677 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:677
+┌ Warning: `prevind(x::CategoricalString, i::Int)` is deprecated, use `prevind(String(x), i)` instead.
+│   caller = zip_iterate(::Base.Iterators.Reverse{Base.EachStringIndex{CategoricalArrays.CategoricalString{UInt32}}}, ::Base.Iterators.Reverse{CategoricalArrays.CategoricalString{UInt32}}, ::Tuple{Int64}, ::Tuple{Int64}) at basic.jl:677
+└ @ Base.Iterators .&#x2F;strings&#x2F;basic.jl:677
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = isvalid at substring.jl:82 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:82
+┌ Warning: `iterate(x::CategoricalString, i::Int)` is deprecated, use `iterate(String(x), i)` instead.
+│   caller = lstrip(::Base.Fix2{typeof(in),Char}, ::SubString{CategoricalArrays.CategoricalString{UInt32}}) at substring.jl:68
+└ @ Base .&#x2F;strings&#x2F;substring.jl:68
+┌ Warning: `iterate(x::CategoricalString, i::Int)` is deprecated, use `iterate(String(x), i)` instead.
+│   caller = zip_iterate(::Base.Iterators.Stateful{SubString{CategoricalArrays.CategoricalString{UInt32}},Union{Nothing, Tuple{Char,Int64}}}, ::Base.Iterators.Stateful{String,Union{Nothing, Tuple{Char,Int64}}}, ::Tuple{Nothing}, ::Tuple{Nothing}) at substring.jl:68
+└ @ Base.Iterators .&#x2F;strings&#x2F;substring.jl:68
+┌ Warning: `lstrip(x::CategoricalString)` is deprecated, use `lstrip(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:179 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:179
+┌ Warning: `lstrip(x::CategoricalString)` is deprecated, use `lstrip(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:180 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:180
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = lstrip(::Base.Fix2{typeof(in),Char}, ::CategoricalArrays.CategoricalString{UInt32}) at util.jl:160
+└ @ Base .&#x2F;strings&#x2F;util.jl:160
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = iterate at basic.jl:538 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:538
+┌ Warning: `ncodeunits(x::CategoricalString)` is deprecated, use `ncodeunits(String(x))` instead.
+│   caller = iterate at basic.jl:538 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:538
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = iterate at basic.jl:538 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:538
+┌ Warning: `iterate(x::CategoricalString)` is deprecated, use `iterate(String(x))` instead.
+│   caller = zip_iterate at iterators.jl:304 [inlined]
+└ @ Core .&#x2F;iterators.jl:304
+┌ Warning: `rstrip(x::CategoricalString)` is deprecated, use `rstrip(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:183 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:183
+┌ Warning: `rstrip(x::CategoricalString)` is deprecated, use `rstrip(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:184 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:184
+┌ Warning: `uppercase(x::CategoricalString)` is deprecated, use `uppercase(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:187 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:187
+┌ Warning: `uppercase(x::CategoricalString)` is deprecated, use `uppercase(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:188 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:188
+┌ Warning: `lowercase(x::CategoricalString)` is deprecated, use `lowercase(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:190 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:190
+┌ Warning: `lowercase(x::CategoricalString)` is deprecated, use `lowercase(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:191 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:191
+┌ Warning: `titlecase(x::CategoricalString)` is deprecated, use `titlecase(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:193 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:193
+┌ Warning: `titlecase(x::CategoricalString)` is deprecated, use `titlecase(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:194 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:194
+┌ Warning: `uppercasefirst(x::CategoricalString)` is deprecated, use `uppercasefirst(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:196 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:196
+┌ Warning: `uppercasefirst(x::CategoricalString)` is deprecated, use `uppercasefirst(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:197 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:197
+┌ Warning: `lowercasefirst(x::CategoricalString)` is deprecated, use `lowercasefirst(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:199 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:199
+┌ Warning: `lowercasefirst(x::CategoricalString)` is deprecated, use `lowercasefirst(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:200 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:200
+┌ Warning: `chop(x::CategoricalString; kwargs...)` is deprecated, use `chop(String(x); kwargs...)` instead.
+│   caller = macro expansion at 08_string.jl:208 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:208
+┌ Warning: `chomp(x::CategoricalString)` is deprecated, use `chomp(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:210 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:210
+┌ Warning: `chomp(x::CategoricalString)` is deprecated, use `chomp(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:211 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:211
+┌ Warning: `textwidth(x::CategoricalString)` is deprecated, use `textwidth(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:213 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:213
+┌ Warning: `textwidth(x::CategoricalString)` is deprecated, use `textwidth(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:214 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:214
+┌ Warning: `isascii(x::CategoricalString)` is deprecated, use `isascii(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:216 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:216
+┌ Warning: `isascii(x::CategoricalString)` is deprecated, use `isascii(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:217 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:217
+┌ Warning: `escape_string(x::CategoricalString)` is deprecated, use `escape_string(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:219 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:219
+┌ Warning: `escape_string(x::CategoricalString)` is deprecated, use `escape_string(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:220 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:220
+┌ Warning: `collect(x::CategoricalString)` is deprecated, use `collect(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:222 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:222
+┌ Warning: `collect(x::CategoricalString)` is deprecated, use `collect(String(x))` instead.
+│   caller = macro expansion at 08_string.jl:223 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:223
+Test Summary: | Pass  Total
+08_string.jl  |  150    150
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;09_hash.jl:3
+Test Summary: | Pass  Total
+09_hash.jl    |   54     54
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;10_isless.jl:3
+Test Summary: | Pass  Total
+10_isless.jl  |  429    429
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;11_array.jl:3
+Test Summary: | Pass  Total
+11_array.jl   | 9054   9054
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;12_missingarray.jl:3
+Test Summary:      |  Pass  Total
+12_missingarray.jl | 12672  12672
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;13_arraycommon.jl:3
+┌ Warning: adding new levels to ordered CategoricalArray destination will throw an error in the future
+│   caller = copy!(::CategoricalArrays.CategoricalArray{String,1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Union{}}, ::CategoricalArrays.CategoricalArray{String,1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Union{}}) at array.jl:426
+└ @ CategoricalArrays ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;src&#x2F;array.jl:426
+┌ Warning: adding new levels to ordered CategoricalArray destination will throw an error in the future
+│   caller = copyto!(::CategoricalArrays.CategoricalArray{String,1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Union{}}, ::CategoricalArrays.CategoricalArray{String,1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Union{}}) at array.jl:415
+└ @ CategoricalArrays ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;src&#x2F;array.jl:415
+┌ Warning: adding new levels to ordered CategoricalArray destination will throw an error in the future
+│   caller = copyto!(::CategoricalArrays.CategoricalArray{String,1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Union{}}, ::Int64, ::CategoricalArrays.CategoricalArray{String,1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Union{}}, ::Int64) at abstractarray.jl:754
+└ @ Base .&#x2F;abstractarray.jl:754
+┌ Warning: adding new levels to ordered CategoricalArray destination will throw an error in the future
+│   caller = copy!(::SubArray{CategoricalArrays.CategoricalString{UInt32},1,CategoricalArrays.CategoricalArray{String,1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Union{}},Tuple{UnitRange{Int64}},true}, ::CategoricalArrays.CategoricalArray{String,1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Union{}}) at array.jl:426
+└ @ CategoricalArrays ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;src&#x2F;array.jl:426
+┌ Warning: adding new levels to ordered CategoricalArray destination will throw an error in the future
+│   caller = copyto!(::SubArray{CategoricalArrays.CategoricalString{UInt32},1,CategoricalArrays.CategoricalArray{String,1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Union{}},Tuple{UnitRange{Int64}},true}, ::CategoricalArrays.CategoricalArray{String,1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Union{}}) at array.jl:415
+└ @ CategoricalArrays ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;src&#x2F;array.jl:415
+┌ Warning: adding new levels to ordered CategoricalArray destination will throw an error in the future
+│   caller = copy!(::CategoricalArrays.CategoricalArray{Union{Missing, String},1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Missing}, ::CategoricalArrays.CategoricalArray{Union{Missing, String},1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Missing}) at array.jl:426
+└ @ CategoricalArrays ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;src&#x2F;array.jl:426
+┌ Warning: adding new levels to ordered CategoricalArray destination will throw an error in the future
+│   caller = copyto!(::CategoricalArrays.CategoricalArray{Union{Missing, String},1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Missing}, ::CategoricalArrays.CategoricalArray{Union{Missing, String},1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Missing}) at array.jl:415
+└ @ CategoricalArrays ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;src&#x2F;array.jl:415
+┌ Warning: adding new levels to ordered CategoricalArray destination will throw an error in the future
+│   caller = copyto!(::CategoricalArrays.CategoricalArray{Union{Missing, String},1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Missing}, ::Int64, ::CategoricalArrays.CategoricalArray{Union{Missing, String},1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Missing}, ::Int64) at abstractarray.jl:754
+└ @ Base .&#x2F;abstractarray.jl:754
+Test Summary:     |  Pass  Total
+13_arraycommon.jl | 22817  22817
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;14_view.jl:3
+Test Summary: | Pass  Total
+14_view.jl    |  158    158
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;15_extras.jl:3
+Test Summary: | Pass  Total
+15_extras.jl  |   99     99
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;16_recode.jl:3
+Test Summary: | Pass  Total
+16_recode.jl  |  808    808
+   Testing CategoricalArrays tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 11 hours ago and took 5 minutes, 36 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/CategoricalArrays/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed DataAPI ─────────── v1.1.0
+ Installed Missings ────────── v0.4.3
+ Installed Reexport ────────── v0.2.0
+ Installed Parsers ─────────── v0.3.10
+ Installed Compat ──────────── v3.0.0
+ Installed JSON ────────────── v0.21.0
+ Installed CategoricalArrays ─ v0.7.3
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [324d7699] + CategoricalArrays v0.7.3
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [324d7699] + CategoricalArrays v0.7.3
+  [34da2185] + Compat v3.0.0
+  [9a962f9c] + DataAPI v1.1.0
+  [682c06a0] + JSON v0.21.0
+  [e1d29d7a] + Missings v0.4.3
+  [69de0a69] + Parsers v0.3.10
+  [189a3867] + Reexport v0.2.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing CategoricalArrays
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;jl_zCUerK&#x2F;Manifest.toml`
+  [324d7699] CategoricalArrays v0.7.3
+  [34da2185] Compat v3.0.0
+  [9a962f9c] DataAPI v1.1.0
+  [682c06a0] JSON v0.21.0
+  [e1d29d7a] Missings v0.4.3
+  [69de0a69] Parsers v0.3.10
+  [189a3867] Reexport v0.2.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;runtests.jl:11
+WARNING: Compat.Statistics is deprecated, use Statistics instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;src&#x2F;extras.jl:1
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;01_typedef.jl:3
+┌ Warning: `eltype(x::CategoricalString)` is deprecated, use `eltype(String(x))` instead.
+│   caller = top-level scope at 01_typedef.jl:56
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;01_typedef.jl:56
+Test Summary: | Pass  Total
+01_typedef.jl |   99     99
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;02_buildorder.jl:3
+Test Summary:    | Pass  Total
+02_buildorder.jl |    6      6
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;03_buildfields.jl:3
+Test Summary:     | Pass  Total
+03_buildfields.jl |    6      6
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;04_constructors.jl:3
+Test Summary:      | Pass  Total
+04_constructors.jl |  121    121
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;05_convert.jl:3
+┌ Warning: `eltype(x::CategoricalString)` is deprecated, use `eltype(String(x))` instead.
+│   caller = top-level scope at 05_convert.jl:76
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;05_convert.jl:76
+Test Summary: | Pass  Total
+05_convert.jl |  124    124
+Test Summary: | Pass  Total
+05_copy.jl    |   14     14
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:3
+WARNING: Compat.Dates is deprecated, use Dates instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:4
+Test Summary: | Pass  Total
+06_show.jl    |   52     52
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_length.jl:3
+Test Summary: | Pass  Total
+06_length.jl  |    2      2
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;07_levels.jl:3
+Test Summary: | Pass  Total
+07_levels.jl  |  362    362
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_equality.jl:3
+Test Summary:  | Pass  Total
+08_equality.jl |  110    110
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:3
+WARNING: Compat.Unicode is deprecated, use Unicode instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:4
+┌ Warning: `isempty(x::CategoricalString)` is deprecated, use `isempty(String(x))` instead.
+│   caller = eval_test(::Expr, ::Expr, ::LineNumberNode, ::Bool) at Test.jl:256
+└ @ Test &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:256
+┌ Warning: `eltype(x::CategoricalString)` is deprecated, use `eltype(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:35
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:35
+┌ Warning: `eltype(x::CategoricalString)` is deprecated, use `eltype(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:36
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:36
+┌ Warning: `length(x::CategoricalString)` is deprecated, use `length(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:38
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:38
+┌ Warning: `length(x::CategoricalString)` is deprecated, use `length(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:39
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:39
+┌ Warning: `sizeof(x::CategoricalString)` is deprecated, use `sizeof(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:41
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:41
+┌ Warning: `sizeof(x::CategoricalString)` is deprecated, use `sizeof(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:42
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:42
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = top-level scope at 08_string.jl:44
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:44
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = top-level scope at 08_string.jl:45
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:45
+┌ Warning: `prevind(x::CategoricalString, i::Int)` is deprecated, use `prevind(String(x), i)` instead.
+│   caller = top-level scope at 08_string.jl:47
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:47
+┌ Warning: `prevind(x::CategoricalString, i::Int)` is deprecated, use `prevind(String(x), i)` instead.
+│   caller = top-level scope at 08_string.jl:48
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:48
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:50
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:50
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:51
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:51
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:53
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:53
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:54
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:54
+┌ Warning: `collect(x::CategoricalString)` is deprecated, use `collect(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:56
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:56
+┌ Warning: `collect(x::CategoricalString)` is deprecated, use `collect(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:57
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:57
+┌ Warning: `getindex(x::CategoricalString, i::Int)` is deprecated, use `getindex(String(x), i)` instead.
+│   caller = top-level scope at 08_string.jl:59
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:59
+┌ Warning: `getindex(x::CategoricalString, i::Int)` is deprecated, use `getindex(String(x), i)` instead.
+│   caller = top-level scope at 08_string.jl:60
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:60
+┌ Warning: `getindex(x::CategoricalString, i::Int)` is deprecated, use `getindex(String(x), i)` instead.
+│   caller = top-level scope at 08_string.jl:61
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:61
+┌ Warning: `getindex(x::CategoricalString, i::Int)` is deprecated, use `getindex(String(x), i)` instead.
+│   caller = top-level scope at 08_string.jl:62
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:62
+┌ Warning: `codeunit(x::CategoricalString, i::Integer)` is deprecated, use `codeunit(String(x), i)` instead.
+│   caller = top-level scope at 08_string.jl:64
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:64
+┌ Warning: `codeunit(x::CategoricalString, i::Integer)` is deprecated, use `codeunit(String(x), i)` instead.
+│   caller = top-level scope at 08_string.jl:65
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:65
+┌ Warning: `codeunit(x::CategoricalString, i::Integer)` is deprecated, use `codeunit(String(x), i)` instead.
+│   caller = top-level scope at 08_string.jl:66
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:66
+┌ Warning: `codeunit(x::CategoricalString, i::Integer)` is deprecated, use `codeunit(String(x), i)` instead.
+│   caller = top-level scope at 08_string.jl:67
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:67
+┌ Warning: `ascii(x::CategoricalString)` is deprecated, use `ascii(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:69
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:69
+┌ Warning: `ascii(x::CategoricalString)` is deprecated, use `ascii(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:70
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:70
+┌ Warning: `normalize(x::CategoricalString, s::Symbol)` is deprecated, use `normalize(String(x), s)` instead.
+│   caller = top-level scope at 08_string.jl:74
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:74
+┌ Warning: `graphemes(x::CategoricalString)` is deprecated, use `graphemes(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:76
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:76
+┌ Warning: `graphemes(x::CategoricalString)` is deprecated, use `graphemes(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:77
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:77
+┌ Warning: `isvalid(x::CategoricalString)` is deprecated, use `isvalid(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:79
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:79
+┌ Warning: `isvalid(x::CategoricalString)` is deprecated, use `isvalid(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:80
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:80
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = top-level scope at 08_string.jl:81
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:81
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = top-level scope at 08_string.jl:82
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:82
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = top-level scope at 08_string.jl:83
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:83
+┌ Warning: `length(x::CategoricalString, i::Int, j::Int)` is deprecated, use `length(String(x), i, j)` instead.
+│   caller = top-level scope at 08_string.jl:85
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:85
+┌ Warning: `length(x::CategoricalString, i::Int, j::Int)` is deprecated, use `length(String(x), i, j)` instead.
+│   caller = top-level scope at 08_string.jl:86
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:86
+┌ Warning: `ncodeunits(x::CategoricalString)` is deprecated, use `ncodeunits(String(x))` instead.
+│   caller = nextind(::CategoricalArrays.CategoricalString{UInt32}, ::Int64, ::Int64) at basic.jl:520
+└ @ Base .&#x2F;strings&#x2F;basic.jl:520
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = nextind(::CategoricalArrays.CategoricalString{UInt32}, ::Int64, ::Int64) at basic.jl:524
+└ @ Base .&#x2F;strings&#x2F;basic.jl:524
+┌ Warning: `repeat(x::CategoricalString, i::Integer)` is deprecated, use `repeat(String(x), i)` instead.
+│   caller = ^ at basic.jl:674 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:674
+┌ Warning: `repeat(x::CategoricalString, i::Integer)` is deprecated, use `repeat(String(x), i)` instead.
+│   caller = ^ at basic.jl:674 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:674
+┌ Warning: `repeat(x::CategoricalString, i::Integer)` is deprecated, use `repeat(String(x), i)` instead.
+│   caller = top-level scope at 08_string.jl:112
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:112
+┌ Warning: `repeat(x::CategoricalString, i::Integer)` is deprecated, use `repeat(String(x), i)` instead.
+│   caller = top-level scope at 08_string.jl:113
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:113
+┌ Warning: `eachmatch(r::Regex, x::CategoricalString; overlap=false)` is deprecated, use `eachmatch(r, String(x), overlap=overlap)` instead.
+│   caller = top-level scope at 08_string.jl:115
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:115
+┌ Warning: `eachmatch(r::Regex, x::CategoricalString; overlap=false)` is deprecated, use `eachmatch(r, String(x), overlap=overlap)` instead.
+│   caller = top-level scope at 08_string.jl:116
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:116
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = match(::Regex, ::CategoricalArrays.CategoricalString{UInt32}) at deprecated.jl:66
+└ @ CategoricalArrays .&#x2F;deprecated.jl:66
+┌ Warning: `match(r::Regex, s::CategoricalString, idx::Integer=firstindex(s), add_opts::UInt32=UInt32(0); kwargs...)` is deprecated, use `match(r, String(s), idx, add_opts; kwargs...)` instead.
+│   caller = match(::Regex, ::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at deprecated.jl:66
+└ @ CategoricalArrays .&#x2F;deprecated.jl:66
+┌ Warning: `match(r::Regex, s::CategoricalString, idx::Integer=firstindex(s), add_opts::UInt32=UInt32(0); kwargs...)` is deprecated, use `match(r, String(s), idx, add_opts; kwargs...)` instead.
+│   caller = top-level scope at 08_string.jl:121
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:121
+┌ Warning: `eachmatch(r::Regex, x::CategoricalString; overlap=false)` is deprecated, use `eachmatch(r, String(x), overlap=overlap)` instead.
+│   caller = top-level scope at 08_string.jl:123
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:123
+┌ Warning: `eachmatch(r::Regex, x::CategoricalString; overlap=false)` is deprecated, use `eachmatch(r, String(x), overlap=overlap)` instead.
+│   caller = top-level scope at 08_string.jl:124
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:124
+┌ Warning: `eachmatch(r::Regex, x::CategoricalString; overlap=false)` is deprecated, use `eachmatch(r, String(x), overlap=overlap)` instead.
+│   caller = ip:0x0
+└ @ Core :-1
+┌ Warning: `lpad(x::CategoricalString, n::Integer, c::Union{AbstractChar, AbstractString}=&#39; &#39;)` is deprecated, use `lpad(String(x), n)` instead.
+│   caller = lpad(::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at deprecated.jl:66
+└ @ CategoricalArrays .&#x2F;deprecated.jl:66
+┌ Warning: `rpad(x::CategoricalString, n::Integer, c::Union{AbstractChar, AbstractString}=&#39; &#39;)` is deprecated, use `rpad(String(x), n)` instead.
+│   caller = rpad(::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at deprecated.jl:66
+└ @ CategoricalArrays .&#x2F;deprecated.jl:66
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = findfirst(::String, ::CategoricalArrays.CategoricalString{UInt32}) at search.jl:104
+└ @ Base .&#x2F;strings&#x2F;search.jl:104
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = _searchindex(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64) at search.jl:126
+└ @ Base .&#x2F;strings&#x2F;search.jl:126
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = _searchindex(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64) at search.jl:126
+└ @ Base .&#x2F;strings&#x2F;search.jl:126
+┌ Warning: `ncodeunits(x::CategoricalString)` is deprecated, use `ncodeunits(String(x))` instead.
+│   caller = findnext(::Base.Fix2{typeof(isequal),Char}, ::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at search.jl:109
+└ @ Base .&#x2F;strings&#x2F;search.jl:109
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = findnext(::Base.Fix2{typeof(isequal),Char}, ::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at search.jl:111
+└ @ Base .&#x2F;strings&#x2F;search.jl:111
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = Type at substring.jl:39 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:39
+┌ Warning: `ncodeunits(x::CategoricalString)` is deprecated, use `ncodeunits(String(x))` instead.
+│   caller = checkbounds at basic.jl:187 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:187
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = SubString{CategoricalArrays.CategoricalString{UInt32}}(::CategoricalArrays.CategoricalString{UInt32}, ::Int64, ::Int64) at substring.jl:31
+└ @ Base .&#x2F;strings&#x2F;substring.jl:31
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = SubString{CategoricalArrays.CategoricalString{UInt32}}(::CategoricalArrays.CategoricalString{UInt32}, ::Int64, ::Int64) at substring.jl:32
+└ @ Base .&#x2F;strings&#x2F;substring.jl:32
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = SubString{CategoricalArrays.CategoricalString{UInt32}}(::CategoricalArrays.CategoricalString{UInt32}, ::Int64, ::Int64) at substring.jl:34
+└ @ Base .&#x2F;strings&#x2F;substring.jl:34
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = isvalid at substring.jl:82 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:82
+┌ Warning: `iterate(x::CategoricalString, i::Int)` is deprecated, use `iterate(String(x), i)` instead.
+│   caller = findnext(::Base.Fix2{typeof(isequal),Char}, ::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at substring.jl:68
+└ @ Base .&#x2F;strings&#x2F;substring.jl:68
+┌ Warning: `iterate(x::CategoricalString, i::Int)` is deprecated, use `iterate(String(x), i)` instead.
+│   caller = iterate at substring.jl:68 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:68
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = _searchindex(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64) at search.jl:133
+└ @ Base .&#x2F;strings&#x2F;search.jl:133
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = Type at substring.jl:39 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:39
+┌ Warning: `ncodeunits(x::CategoricalString)` is deprecated, use `ncodeunits(String(x))` instead.
+│   caller = findnext(::Base.Fix2{typeof(==),Char}, ::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at search.jl:109
+└ @ Base .&#x2F;strings&#x2F;search.jl:109
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = findnext(::Base.Fix2{typeof(==),Char}, ::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at search.jl:111
+└ @ Base .&#x2F;strings&#x2F;search.jl:111
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = Type at substring.jl:39 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:39
+┌ Warning: `iterate(x::CategoricalString, i::Int)` is deprecated, use `iterate(String(x), i)` instead.
+│   caller = findnext(::Base.Fix2{typeof(==),Char}, ::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at substring.jl:68
+└ @ Base .&#x2F;strings&#x2F;substring.jl:68
+┌ Warning: `iterate(x::CategoricalString, i::Int)` is deprecated, use `iterate(String(x), i)` instead.
+│   caller = iterate at substring.jl:68 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:68
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = findlast(::String, ::CategoricalArrays.CategoricalString{UInt32}) at search.jl:273
+└ @ Base .&#x2F;strings&#x2F;search.jl:273
+┌ Warning: `ncodeunits(x::CategoricalString)` is deprecated, use `ncodeunits(String(x))` instead.
+│   caller = findprev(::Function, ::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at search.jl:281
+└ @ Base .&#x2F;strings&#x2F;search.jl:281
+┌ Warning: `reverse(x::CategoricalString)` is deprecated, use `reverse(String(x))` instead.
+│   caller = findprev(::Function, ::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at search.jl:287
+└ @ Base .&#x2F;strings&#x2F;search.jl:287
+┌ Warning: `ncodeunits(x::CategoricalString)` is deprecated, use `ncodeunits(String(x))` instead.
+│   caller = reverseind at basic.jl:644 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:644
+┌ Warning: `ncodeunits(x::CategoricalString)` is deprecated, use `ncodeunits(String(x))` instead.
+│   caller = thisind(::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at basic.jl:400
+└ @ Base .&#x2F;strings&#x2F;basic.jl:400
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = thisind(::CategoricalArrays.CategoricalString{UInt32}, ::Int64) at basic.jl:403
+└ @ Base .&#x2F;strings&#x2F;basic.jl:403
+┌ Warning: `prevind(x::CategoricalString, i::Int)` is deprecated, use `prevind(String(x), i)` instead.
+│   caller = _rsearchindex(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64) at search.jl:303
+└ @ Base .&#x2F;strings&#x2F;search.jl:303
+┌ Warning: `getindex(x::CategoricalString, i::Int)` is deprecated, use `getindex(String(x), i)` instead.
+│   caller = getindex at substring.jl:76 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:76
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = _rsearchindex(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64) at search.jl:310
+└ @ Base .&#x2F;strings&#x2F;search.jl:310
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = last at basic.jl:538 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:538
+┌ Warning: `occursin(x::AbstractString, y::CategoricalString)` is deprecated, use `occursin(x, String(y))` instead.
+│   caller = eval_test(::Expr, ::Expr, ::LineNumberNode, ::Bool) at Test.jl:256
+└ @ Test &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:256
+┌ Warning: `startswith(x::CategoricalString, y::AbstractString)` is deprecated, use `startswith(String(x), y)` instead.
+│   caller = eval_test(::Expr, ::Expr, ::LineNumberNode, ::Bool) at Test.jl:256
+└ @ Test &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:256
+┌ Warning: `endswith(x::CategoricalString, y::AbstractString)` is deprecated, use `endswith(String(x), y)` instead.
+│   caller = eval_test(::Expr, ::Expr, ::LineNumberNode, ::Bool) at Test.jl:256
+└ @ Test &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Test&#x2F;src&#x2F;Test.jl:256
+┌ Warning: `reverse(x::CategoricalString)` is deprecated, use `reverse(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:160
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:160
+┌ Warning: `reverse(x::CategoricalString)` is deprecated, use `reverse(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:161
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:161
+┌ Warning: `split(x::CategoricalString; kwargs...)` is deprecated, use `split(String(x); kwargs...)` instead.
+│   caller = top-level scope at 08_string.jl:167
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:167
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = _split(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64, ::Bool, ::Array{SubString{CategoricalArrays.CategoricalString{UInt32}},1}) at util.jl:328
+└ @ Base .&#x2F;strings&#x2F;util.jl:328
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = findfirst at search.jl:104 [inlined]
+└ @ Core .&#x2F;strings&#x2F;search.jl:104
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = _split(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64, ::Bool, ::Array{SubString{CategoricalArrays.CategoricalString{UInt32}},1}) at util.jl:331
+└ @ Base .&#x2F;strings&#x2F;util.jl:331
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = Type at substring.jl:39 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:39
+┌ Warning: `split(x::CategoricalString; kwargs...)` is deprecated, use `split(String(x); kwargs...)` instead.
+│   caller = top-level scope at 08_string.jl:169
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:169
+┌ Warning: `prevind(x::CategoricalString, i::Int)` is deprecated, use `prevind(String(x), i)` instead.
+│   caller = _split(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64, ::Bool, ::Array{SubString{CategoricalArrays.CategoricalString{UInt32}},1}) at util.jl:335
+└ @ Base .&#x2F;strings&#x2F;util.jl:335
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = _split(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64, ::Bool, ::Array{SubString{CategoricalArrays.CategoricalString{UInt32}},1}) at util.jl:342
+└ @ Base .&#x2F;strings&#x2F;util.jl:342
+┌ Warning: `iterate(x::CategoricalString, i::Int)` is deprecated, use `iterate(String(x), i)` instead.
+│   caller = cmp(::SubString{CategoricalArrays.CategoricalString{UInt32}}, ::String) at substring.jl:68
+└ @ Base .&#x2F;strings&#x2F;substring.jl:68
+┌ Warning: `iterate(x::CategoricalString, i::Int)` is deprecated, use `iterate(String(x), i)` instead.
+│   caller = iterate at substring.jl:68 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:68
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = _rsplit(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64, ::Bool, ::Array{SubString{CategoricalArrays.CategoricalString{UInt32}},1}) at util.jl:401
+└ @ Base .&#x2F;strings&#x2F;util.jl:401
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = findlast at search.jl:273 [inlined]
+└ @ Core .&#x2F;strings&#x2F;search.jl:273
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = isvalid at substring.jl:82 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:82
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = isvalid at substring.jl:82 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:82
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = isvalid at substring.jl:82 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:82
+┌ Warning: `getindex(x::CategoricalString, i::Int)` is deprecated, use `getindex(String(x), i)` instead.
+│   caller = getindex at substring.jl:76 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:76
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = _rsplit(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64, ::Bool, ::Array{SubString{CategoricalArrays.CategoricalString{UInt32}},1}) at util.jl:405
+└ @ Base .&#x2F;strings&#x2F;util.jl:405
+┌ Warning: `prevind(x::CategoricalString, i::Int)` is deprecated, use `prevind(String(x), i)` instead.
+│   caller = _rsplit(::CategoricalArrays.CategoricalString{UInt32}, ::String, ::Int64, ::Bool, ::Array{SubString{CategoricalArrays.CategoricalString{UInt32}},1}) at util.jl:406
+└ @ Base .&#x2F;strings&#x2F;util.jl:406
+┌ Warning: `strip(x::CategoricalString)` is deprecated, use `strip(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:175
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:175
+┌ Warning: `strip(x::CategoricalString)` is deprecated, use `strip(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:176
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:176
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = iterate at basic.jl:678 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:678
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = iterate at basic.jl:678 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:678
+┌ Warning: `prevind(x::CategoricalString, i::Int)` is deprecated, use `prevind(String(x), i)` instead.
+│   caller = iterate at basic.jl:678 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:678
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = iterate at basic.jl:677 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:677
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = iterate at basic.jl:677 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:677
+┌ Warning: `getindex(x::CategoricalString, i::Int)` is deprecated, use `getindex(String(x), i)` instead.
+│   caller = iterate at basic.jl:677 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:677
+┌ Warning: `prevind(x::CategoricalString, i::Int)` is deprecated, use `prevind(String(x), i)` instead.
+│   caller = iterate at basic.jl:677 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:677
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = iterate at basic.jl:678 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:678
+┌ Warning: `prevind(x::CategoricalString, i::Int)` is deprecated, use `prevind(String(x), i)` instead.
+│   caller = iterate at basic.jl:678 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:678
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = iterate at basic.jl:677 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:677
+┌ Warning: `getindex(x::CategoricalString, i::Int)` is deprecated, use `getindex(String(x), i)` instead.
+│   caller = iterate at basic.jl:677 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:677
+┌ Warning: `prevind(x::CategoricalString, i::Int)` is deprecated, use `prevind(String(x), i)` instead.
+│   caller = iterate at basic.jl:677 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:677
+┌ Warning: `isvalid(x::CategoricalString, i::Integer)` is deprecated, use `isvalid(String(x), i)` instead.
+│   caller = isvalid at substring.jl:82 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:82
+┌ Warning: `iterate(x::CategoricalString, i::Int)` is deprecated, use `iterate(String(x), i)` instead.
+│   caller = lstrip(::Base.Fix2{typeof(in),Char}, ::SubString{CategoricalArrays.CategoricalString{UInt32}}) at substring.jl:68
+└ @ Base .&#x2F;strings&#x2F;substring.jl:68
+┌ Warning: `iterate(x::CategoricalString, i::Int)` is deprecated, use `iterate(String(x), i)` instead.
+│   caller = iterate at substring.jl:68 [inlined]
+└ @ Core .&#x2F;strings&#x2F;substring.jl:68
+┌ Warning: `lstrip(x::CategoricalString)` is deprecated, use `lstrip(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:179
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:179
+┌ Warning: `lstrip(x::CategoricalString)` is deprecated, use `lstrip(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:180
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:180
+┌ Warning: `lastindex(x::CategoricalString)` is deprecated, use `lastindex(String(x))` instead.
+│   caller = lstrip(::Base.Fix2{typeof(in),Char}, ::CategoricalArrays.CategoricalString{UInt32}) at util.jl:160
+└ @ Base .&#x2F;strings&#x2F;util.jl:160
+┌ Warning: `firstindex(x::CategoricalString)` is deprecated, use `firstindex(String(x))` instead.
+│   caller = iterate at basic.jl:539 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:539
+┌ Warning: `ncodeunits(x::CategoricalString)` is deprecated, use `ncodeunits(String(x))` instead.
+│   caller = iterate at basic.jl:539 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:539
+┌ Warning: `nextind(x::CategoricalString, i::Int)` is deprecated, use `nextind(String(x), i)` instead.
+│   caller = iterate at basic.jl:539 [inlined]
+└ @ Core .&#x2F;strings&#x2F;basic.jl:539
+┌ Warning: `iterate(x::CategoricalString)` is deprecated, use `iterate(String(x))` instead.
+│   caller = _zip_iterate_some at iterators.jl:350 [inlined]
+└ @ Core .&#x2F;iterators.jl:350
+┌ Warning: `rstrip(x::CategoricalString)` is deprecated, use `rstrip(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:183
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:183
+┌ Warning: `rstrip(x::CategoricalString)` is deprecated, use `rstrip(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:184
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:184
+┌ Warning: `uppercase(x::CategoricalString)` is deprecated, use `uppercase(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:187
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:187
+┌ Warning: `uppercase(x::CategoricalString)` is deprecated, use `uppercase(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:188
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:188
+┌ Warning: `lowercase(x::CategoricalString)` is deprecated, use `lowercase(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:190
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:190
+┌ Warning: `lowercase(x::CategoricalString)` is deprecated, use `lowercase(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:191
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:191
+┌ Warning: `titlecase(x::CategoricalString)` is deprecated, use `titlecase(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:193
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:193
+┌ Warning: `titlecase(x::CategoricalString)` is deprecated, use `titlecase(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:194
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:194
+┌ Warning: `uppercasefirst(x::CategoricalString)` is deprecated, use `uppercasefirst(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:196
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:196
+┌ Warning: `uppercasefirst(x::CategoricalString)` is deprecated, use `uppercasefirst(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:197
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:197
+┌ Warning: `lowercasefirst(x::CategoricalString)` is deprecated, use `lowercasefirst(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:199
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:199
+┌ Warning: `lowercasefirst(x::CategoricalString)` is deprecated, use `lowercasefirst(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:200
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:200
+┌ Warning: `chop(x::CategoricalString; kwargs...)` is deprecated, use `chop(String(x); kwargs...)` instead.
+│   caller = top-level scope at 08_string.jl:206
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:206
+┌ Warning: `chop(x::CategoricalString; kwargs...)` is deprecated, use `chop(String(x); kwargs...)` instead.
+│   caller = top-level scope at 08_string.jl:208
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:208
+┌ Warning: `chomp(x::CategoricalString)` is deprecated, use `chomp(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:210
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:210
+┌ Warning: `chomp(x::CategoricalString)` is deprecated, use `chomp(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:211
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:211
+┌ Warning: `textwidth(x::CategoricalString)` is deprecated, use `textwidth(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:213
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:213
+┌ Warning: `textwidth(x::CategoricalString)` is deprecated, use `textwidth(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:214
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:214
+┌ Warning: `isascii(x::CategoricalString)` is deprecated, use `isascii(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:216
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:216
+┌ Warning: `isascii(x::CategoricalString)` is deprecated, use `isascii(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:217
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:217
+┌ Warning: `escape_string(x::CategoricalString)` is deprecated, use `escape_string(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:219
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:219
+┌ Warning: `escape_string(x::CategoricalString)` is deprecated, use `escape_string(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:220
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:220
+┌ Warning: `collect(x::CategoricalString)` is deprecated, use `collect(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:222
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:222
+┌ Warning: `collect(x::CategoricalString)` is deprecated, use `collect(String(x))` instead.
+│   caller = top-level scope at 08_string.jl:223
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;08_string.jl:223
+Test Summary: | Pass  Total
+08_string.jl  |  151    151
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;09_hash.jl:3
+Test Summary: | Pass  Total
+09_hash.jl    |   54     54
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;10_isless.jl:3
+Test Summary: | Pass  Total
+10_isless.jl  |  429    429
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;11_array.jl:3
+Test Summary: | Pass  Total
+11_array.jl   | 9054   9054
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;12_missingarray.jl:3
+Test Summary:      |  Pass  Total
+12_missingarray.jl | 12672  12672
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;13_arraycommon.jl:3
+┌ Warning: adding new levels to ordered CategoricalArray destination will throw an error in the future
+│   caller = copy! at array.jl:426 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;src&#x2F;array.jl:426
+┌ Warning: adding new levels to ordered CategoricalArray destination will throw an error in the future
+│   caller = copyto!(::CategoricalArrays.CategoricalArray{String,1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Union{}}, ::CategoricalArrays.CategoricalArray{String,1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Union{}}) at array.jl:415
+└ @ CategoricalArrays ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;src&#x2F;array.jl:415
+┌ Warning: adding new levels to ordered CategoricalArray destination will throw an error in the future
+│   caller = copyto!(::CategoricalArrays.CategoricalArray{String,1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Union{}}, ::Int64, ::CategoricalArrays.CategoricalArray{String,1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Union{}}, ::Int64) at abstractarray.jl:830
+└ @ Base .&#x2F;abstractarray.jl:830
+┌ Warning: adding new levels to ordered CategoricalArray destination will throw an error in the future
+│   caller = copy! at array.jl:426 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;src&#x2F;array.jl:426
+┌ Warning: adding new levels to ordered CategoricalArray destination will throw an error in the future
+│   caller = copyto!(::SubArray{CategoricalArrays.CategoricalString{UInt32},1,CategoricalArrays.CategoricalArray{String,1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Union{}},Tuple{UnitRange{Int64}},true}, ::CategoricalArrays.CategoricalArray{String,1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Union{}}) at array.jl:415
+└ @ CategoricalArrays ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;src&#x2F;array.jl:415
+┌ Warning: adding new levels to ordered CategoricalArray destination will throw an error in the future
+│   caller = copy! at array.jl:426 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;src&#x2F;array.jl:426
+┌ Warning: adding new levels to ordered CategoricalArray destination will throw an error in the future
+│   caller = copyto!(::CategoricalArrays.CategoricalArray{Union{Missing, String},1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Missing}, ::CategoricalArrays.CategoricalArray{Union{Missing, String},1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Missing}) at array.jl:415
+└ @ CategoricalArrays ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;src&#x2F;array.jl:415
+┌ Warning: adding new levels to ordered CategoricalArray destination will throw an error in the future
+│   caller = copyto!(::CategoricalArrays.CategoricalArray{Union{Missing, String},1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Missing}, ::Int64, ::CategoricalArrays.CategoricalArray{Union{Missing, String},1,UInt32,String,CategoricalArrays.CategoricalString{UInt32},Missing}, ::Int64) at abstractarray.jl:830
+└ @ Base .&#x2F;abstractarray.jl:830
+Test Summary:     |  Pass  Total
+13_arraycommon.jl | 22817  22817
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;14_view.jl:3
+Test Summary: | Pass  Total
+14_view.jl    |  158    158
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;15_extras.jl:3
+Test Summary: | Pass  Total
+15_extras.jl  |   99     99
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;16_recode.jl:3
+Test Summary: | Pass  Total
+16_recode.jl  |  808    808
+   Testing CategoricalArrays tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package has test failures.
+      Last evaluation was 1 day, 15 hours ago and took 1 minute, 10 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/CategoricalArrays/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed DataAPI ─────────── v1.1.0
+ Installed Reexport ────────── v0.2.0
+ Installed Missings ────────── v0.4.3
+ Installed Parsers ─────────── v0.3.10
+ Installed Compat ──────────── v3.0.0
+ Installed CategoricalArrays ─ v0.7.3
+ Installed JSON ────────────── v0.21.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [324d7699] + CategoricalArrays v0.7.3
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [324d7699] + CategoricalArrays v0.7.3
+  [34da2185] + Compat v3.0.0
+  [9a962f9c] + DataAPI v1.1.0
+  [682c06a0] + JSON v0.21.0
+  [e1d29d7a] + Missings v0.4.3
+  [69de0a69] + Parsers v0.3.10
+  [189a3867] + Reexport v0.2.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing CategoricalArrays
+ Resolving package versions...
+Status `&#x2F;tmp&#x2F;jl_1nN9i1&#x2F;Manifest.toml`
+  [324d7699] CategoricalArrays v0.7.3
+  [34da2185] Compat v3.0.0
+  [9a962f9c] DataAPI v1.1.0
+  [682c06a0] JSON v0.21.0
+  [e1d29d7a] Missings v0.4.3
+  [69de0a69] Parsers v0.3.10
+  [189a3867] Reexport v0.2.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [9fa8497b] Future  [`@stdlib&#x2F;Future`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;runtests.jl:11
+WARNING: Compat.Statistics is deprecated, use Statistics instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;src&#x2F;extras.jl:1
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;01_typedef.jl:3
+┌ Warning: `eltype(x::CategoricalString)` is deprecated, use `eltype(String(x))` instead.
+│   caller = macro expansion at 01_typedef.jl:56 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;01_typedef.jl:56
+Test Summary: | Pass  Total
+01_typedef.jl |   99     99
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;02_buildorder.jl:3
+Test Summary:    | Pass  Total
+02_buildorder.jl |    6      6
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;03_buildfields.jl:3
+Test Summary:     | Pass  Total
+03_buildfields.jl |    6      6
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;04_constructors.jl:3
+Test Summary:      | Pass  Total
+04_constructors.jl |  121    121
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;05_convert.jl:3
+┌ Warning: `eltype(x::CategoricalString)` is deprecated, use `eltype(String(x))` instead.
+│   caller = macro expansion at 05_convert.jl:76 [inlined]
+└ @ Core ~&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;05_convert.jl:76
+Test Summary: | Pass  Total
+05_convert.jl |  124    124
+Test Summary: | Pass  Total
+05_copy.jl    |   14     14
+WARNING: Compat.Test is deprecated, use Test instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:3
+WARNING: Compat.Dates is deprecated, use Dates instead.
+  likely near &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:4
+show() for CategoricalPool{Date} and its values: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:79
+  Expression: sprint(show, pool) == &quot;$(CategoricalPool){$(DateStr),UInt32}([1999-12-01,1991-08-01,1993-10-01])&quot;
+   Evaluated: &quot;CategoricalArrays.CategoricalPool{Dates.Date,UInt32}([Dates.Date(1999, 12, 1),Dates.Date(1991, 8, 1),Dates.Date(1993, 10, 1)])&quot; == &quot;CategoricalArrays.CategoricalPool{Dates.Date,UInt32}([1999-12-01,1991-08-01,1993-10-01])&quot;
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:79 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:66
+show() for CategoricalPool{Date} and its values: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:80
+  Expression: sprint(show, opool) == &quot;$(CategoricalPool){$(DateStr),UInt32}([1991-08-01,1993-10-01,1999-12-01]) with ordered levels&quot;
+   Evaluated: &quot;CategoricalArrays.CategoricalPool{Dates.Date,UInt32}([Dates.Date(1991, 8, 1),Dates.Date(1993, 10, 1),Dates.Date(1999, 12, 1)]) with ordered levels&quot; == &quot;CategoricalArrays.CategoricalPool{Dates.Date,UInt32}([1991-08-01,1993-10-01,1999-12-01]) with ordered levels&quot;
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:80 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:66
+show() for CategoricalPool{Date} and its values: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:82
+  Expression: sprint(show, nv1) == &quot;$(CategoricalValue){$(DateStr),UInt32} 1999-12-01&quot;
+   Evaluated: &quot;CategoricalArrays.CategoricalValue{Dates.Date,UInt32} Dates.Date(1999, 12, 1)&quot; == &quot;CategoricalArrays.CategoricalValue{Dates.Date,UInt32} 1999-12-01&quot;
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:82 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:66
+show() for CategoricalPool{Date} and its values: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:83
+  Expression: sprint(show, nv2) == &quot;$(CategoricalValue){$(DateStr),UInt32} 1991-08-01&quot;
+   Evaluated: &quot;CategoricalArrays.CategoricalValue{Dates.Date,UInt32} Dates.Date(1991, 8, 1)&quot; == &quot;CategoricalArrays.CategoricalValue{Dates.Date,UInt32} 1991-08-01&quot;
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:83 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:66
+show() for CategoricalPool{Date} and its values: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:84
+  Expression: sprint(show, nv3) == &quot;$(CategoricalValue){$(DateStr),UInt32} 1993-10-01&quot;
+   Evaluated: &quot;CategoricalArrays.CategoricalValue{Dates.Date,UInt32} Dates.Date(1993, 10, 1)&quot; == &quot;CategoricalArrays.CategoricalValue{Dates.Date,UInt32} 1993-10-01&quot;
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:84 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:66
+show() for CategoricalPool{Date} and its values: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:86
+  Expression: sprint(show, ov1) == &quot;$(CategoricalValue){$(DateStr),UInt32} 1999-12-01 (3&#x2F;3)&quot;
+   Evaluated: &quot;CategoricalArrays.CategoricalValue{Dates.Date,UInt32} Dates.Date(1999, 12, 1) (3&#x2F;3)&quot; == &quot;CategoricalArrays.CategoricalValue{Dates.Date,UInt32} 1999-12-01 (3&#x2F;3)&quot;
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:86 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:66
+show() for CategoricalPool{Date} and its values: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:87
+  Expression: sprint(show, ov2) == &quot;$(CategoricalValue){$(DateStr),UInt32} 1991-08-01 (1&#x2F;3)&quot;
+   Evaluated: &quot;CategoricalArrays.CategoricalValue{Dates.Date,UInt32} Dates.Date(1991, 8, 1) (1&#x2F;3)&quot; == &quot;CategoricalArrays.CategoricalValue{Dates.Date,UInt32} 1991-08-01 (1&#x2F;3)&quot;
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:87 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:66
+show() for CategoricalPool{Date} and its values: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:88
+  Expression: sprint(show, ov3) == &quot;$(CategoricalValue){$(DateStr),UInt32} 1993-10-01 (2&#x2F;3)&quot;
+   Evaluated: &quot;CategoricalArrays.CategoricalValue{Dates.Date,UInt32} Dates.Date(1993, 10, 1) (2&#x2F;3)&quot; == &quot;CategoricalArrays.CategoricalValue{Dates.Date,UInt32} 1993-10-01 (2&#x2F;3)&quot;
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:88 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:66
+show() for CategoricalPool{Date} and its values: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:91
+  Expression: sprint(show, nv1, context=:typeinfo =&gt; typeof(nv1)) == &quot;1999-12-01&quot;
+   Evaluated: &quot;Dates.Date(1999, 12, 1)&quot; == &quot;1999-12-01&quot;
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:91 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:66
+show() for CategoricalPool{Date} and its values: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:92
+  Expression: sprint(show, nv2, context=:typeinfo =&gt; typeof(nv2)) == &quot;1991-08-01&quot;
+   Evaluated: &quot;Dates.Date(1991, 8, 1)&quot; == &quot;1991-08-01&quot;
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:92 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:66
+show() for CategoricalPool{Date} and its values: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:93
+  Expression: sprint(show, nv3, context=:typeinfo =&gt; typeof(nv3)) == &quot;1993-10-01&quot;
+   Evaluated: &quot;Dates.Date(1993, 10, 1)&quot; == &quot;1993-10-01&quot;
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:93 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:66
+show() for CategoricalPool{Date} and its values: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:95
+  Expression: sprint(show, ov1, context=:typeinfo =&gt; typeof(ov1)) == &quot;1999-12-01&quot;
+   Evaluated: &quot;Dates.Date(1999, 12, 1)&quot; == &quot;1999-12-01&quot;
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:95 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:66
+show() for CategoricalPool{Date} and its values: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:96
+  Expression: sprint(show, ov2, context=:typeinfo =&gt; typeof(ov2)) == &quot;1991-08-01&quot;
+   Evaluated: &quot;Dates.Date(1991, 8, 1)&quot; == &quot;1991-08-01&quot;
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:96 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:66
+show() for CategoricalPool{Date} and its values: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:97
+  Expression: sprint(show, ov3, context=:typeinfo =&gt; typeof(ov3)) == &quot;1993-10-01&quot;
+   Evaluated: &quot;Dates.Date(1993, 10, 1)&quot; == &quot;1993-10-01&quot;
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:97 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:66
+show() for CategoricalPool{Date} and its values: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:112
+  Expression: repr(nv1) == repr(ov1) == &quot;1999-12-01&quot;
+   Evaluated: &quot;Dates.Date(1999, 12, 1)&quot; == &quot;Dates.Date(1999, 12, 1)&quot; == &quot;1999-12-01&quot;
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:112 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:66
+show() for CategoricalPool{Date} and its values: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:113
+  Expression: repr(nv2) == repr(ov2) == &quot;1991-08-01&quot;
+   Evaluated: &quot;Dates.Date(1991, 8, 1)&quot; == &quot;Dates.Date(1991, 8, 1)&quot; == &quot;1991-08-01&quot;
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:113 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:66
+show() for CategoricalPool{Date} and its values: Test Failed at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:114
+  Expression: repr(nv3) == repr(ov3) == &quot;1993-10-01&quot;
+   Evaluated: &quot;Dates.Date(1993, 10, 1)&quot; == &quot;Dates.Date(1993, 10, 1)&quot; == &quot;1993-10-01&quot;
+Stacktrace:
+ [1] macro expansion at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:114 [inlined]
+ [2] macro expansion at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Test&#x2F;src&#x2F;Test.jl:1110 [inlined]
+ [3] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;06_show.jl:66
+Test Summary:                                       | Pass  Fail  Total
+06_show.jl                                          |   35    17     52
+  show() for CategoricalPool{String} and its values |   23           23
+  show() for CategoricalPool{Date} and its values   |    6    17     23
+  JSON.lower                                        |    2            2
+  JSON.lower                                        |    2            2
+  JSON.lower                                        |    2            2
+Test Summary:                                       | Pass  Fail  Total
+06_show.jl                                          |   35    17     52
+  show() for CategoricalPool{String} and its values |   23           23
+  show() for CategoricalPool{Date} and its values   |    6    17     23
+  JSON.lower                                        |    2            2
+  JSON.lower                                        |    2            2
+  JSON.lower                                        |    2            2
+ERROR: LoadError: Some tests did not pass: 35 passed, 17 failed, 0 errored, 0 broken.
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;CategoricalArrays&#x2F;U3LvJ&#x2F;test&#x2F;runtests.jl:36
+caused by [exception 1]
+Some tests did not pass: 35 passed, 17 failed, 0 errored, 0 broken.
+ERROR: Package CategoricalArrays errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:274
+ [5] #test#56 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [6] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:268 [inlined]
+ [7] #test#55 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [8] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [10] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.4&#x2F;Pkg&#x2F;src&#x2F;API.jl:266
+ [11] top-level scope at none:10
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

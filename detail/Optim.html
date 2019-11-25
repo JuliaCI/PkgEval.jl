@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="Optim">Optim</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#Optim">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 16 hours ago and took 34 minutes, 22 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Optim/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Requires ─────────────── v0.5.2
+ Installed NaNMath ──────────────── v0.3.3
+ Installed DiffEqDiffTools ──────── v1.4.0
+ Installed ArrayInterface ───────── v1.2.1
+ Installed DiffRules ────────────── v0.1.0
+ Installed CommonSubexpressions ─── v0.2.0
+ Installed BinaryProvider ───────── v0.5.8
+ Installed Optim ────────────────── v0.19.4
+ Installed URIParser ────────────── v0.4.0
+ Installed PositiveFactorizations ─ v0.2.3
+ Installed DataAPI ──────────────── v1.1.0
+ Installed BinDeps ──────────────── v0.8.10
+ Installed SpecialFunctions ─────── v0.8.0
+ Installed DiffResults ──────────── v0.0.4
+ Installed DataStructures ───────── v0.17.6
+ Installed StaticArrays ─────────── v0.12.1
+ Installed LineSearches ─────────── v7.0.1
+ Installed Missings ─────────────── v0.4.3
+ Installed NLSolversBase ────────── v7.5.0
+ Installed StatsBase ────────────── v0.32.0
+ Installed SortingAlgorithms ────── v0.3.1
+ Installed FillArrays ───────────── v0.7.4
+ Installed OrderedCollections ───── v1.1.0
+ Installed Parameters ───────────── v0.12.0
+ Installed Calculus ─────────────── v0.5.1
+ Installed ForwardDiff ──────────── v0.10.6
+ Installed Compat ───────────────── v2.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [429524aa] + Optim v0.19.4
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [1a297f60] + FillArrays v0.7.4
+  [f6369f11] + ForwardDiff v0.10.6
+  [d3d80556] + LineSearches v7.0.1
+  [e1d29d7a] + Missings v0.4.3
+  [d41bc354] + NLSolversBase v7.5.0
+  [77ba4419] + NaNMath v0.3.3
+  [429524aa] + Optim v0.19.4
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [85a6dd25] + PositiveFactorizations v0.2.3
+  [ae029012] + Requires v0.5.2
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [2913bbd2] + StatsBase v0.32.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing Optim
+ Resolving package versions...
+ Installed Suppressor ────────── v0.1.1
+ Installed RecipesBase ───────── v0.7.0
+ Installed OptimTestProblems ─── v2.0.2
+ Installed RecursiveArrayTools ─ v1.0.2
+    Status `&#x2F;tmp&#x2F;tmpH125mn&#x2F;Manifest.toml`
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [1a297f60] FillArrays v0.7.4
+  [f6369f11] ForwardDiff v0.10.6
+  [d3d80556] LineSearches v7.0.1
+  [e1d29d7a] Missings v0.4.3
+  [d41bc354] NLSolversBase v7.5.0
+  [77ba4419] NaNMath v0.3.3
+  [429524aa] Optim v0.19.4
+  [cec144fc] OptimTestProblems v2.0.2
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [ae029012] Requires v0.5.2
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [fd094767] Suppressor v0.1.1
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+.&#x2F;special&#x2F;bigfloat&#x2F;initial_convergence.jl
+ 21.305565 seconds (21.34 M allocations: 1.054 GiB, 5.65% gc time)
+Test Summary: |
+special       | No tests
+.&#x2F;general&#x2F;api.jl
+ 23.275518 seconds (19.73 M allocations: 989.836 MiB, 4.83% gc time)
+.&#x2F;general&#x2F;callables.jl
+  0.375422 seconds (179.89 k allocations: 9.411 MiB)
+.&#x2F;general&#x2F;callbacks.jl
+  7.411462 seconds (4.50 M allocations: 234.333 MiB, 3.17% gc time)
+.&#x2F;general&#x2F;convergence.jl
+  0.809726 seconds (341.09 k allocations: 17.521 MiB, 1.81% gc time)
+.&#x2F;general&#x2F;default_solvers.jl
+  0.732117 seconds (459.95 k allocations: 24.423 MiB, 2.08% gc time)
+.&#x2F;general&#x2F;deprecate.jl
+  0.000230 seconds (97 allocations: 4.641 KiB)
+.&#x2F;general&#x2F;initial_convergence.jl
+  2.942100 seconds (3.18 M allocations: 161.188 MiB, 4.63% gc time)
+.&#x2F;general&#x2F;objective_types.jl
+  6.762834 seconds (4.96 M allocations: 253.400 MiB, 4.02% gc time)
+.&#x2F;general&#x2F;Optim.jl
+  0.866480 seconds (640.12 k allocations: 32.781 MiB, 2.18% gc time)
+.&#x2F;general&#x2F;optimize.jl
+  2.477934 seconds (2.59 M allocations: 137.717 MiB, 4.34% gc time)
+.&#x2F;general&#x2F;type_stability.jl
+ 18.949905 seconds (17.80 M allocations: 885.122 MiB, 4.60% gc time)
+.&#x2F;general&#x2F;counter.jl
+ 16.113099 seconds (13.47 M allocations: 682.435 MiB, 3.63% gc time)
+.&#x2F;general&#x2F;maximize.jl
+  1.588279 seconds (1.56 M allocations: 78.432 MiB, 3.52% gc time)
+Test Summary: | Pass  Total
+general       | 2279   2279
+.&#x2F;univariate&#x2F;optimize&#x2F;interface.jl
+  0.000241 seconds (105 allocations: 5.156 KiB)
+.&#x2F;univariate&#x2F;optimize&#x2F;optimize.jl
+  0.144167 seconds (2.23 k allocations: 154.219 KiB)
+.&#x2F;univariate&#x2F;solvers&#x2F;golden_section.jl
+  1.753248 seconds (1.53 M allocations: 81.205 MiB, 2.13% gc time)
+.&#x2F;univariate&#x2F;solvers&#x2F;brent.jl
+  1.739923 seconds (1.59 M allocations: 83.937 MiB, 2.78% gc time)
+.&#x2F;univariate&#x2F;dual.jl
+  2.004055 seconds (1.34 M allocations: 69.986 MiB, 1.83% gc time)
+Test Summary: | Pass  Total
+univariate    |   48     48
+.&#x2F;multivariate&#x2F;optimize&#x2F;interface.jl
+  4.605508 seconds (4.57 M allocations: 236.295 MiB, 3.39% gc time)
+.&#x2F;multivariate&#x2F;optimize&#x2F;optimize.jl
+  2.251699 seconds (1.69 M allocations: 90.990 MiB, 2.30% gc time)
+.&#x2F;multivariate&#x2F;optimize&#x2F;inplace.jl
+  0.747572 seconds (407.56 k allocations: 21.039 MiB, 1.59% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;constrained&#x2F;fminbox.jl
+ 19.436651 seconds (15.79 M allocations: 795.632 MiB, 3.96% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;constrained&#x2F;ipnewton&#x2F;constraints.jl
+ 44.692453 seconds (27.26 M allocations: 1.326 GiB, 2.76% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;constrained&#x2F;ipnewton&#x2F;counter.jl
+  0.761533 seconds (430.41 k allocations: 22.909 MiB, 2.37% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;constrained&#x2F;ipnewton&#x2F;ipnewton_unconstrained.jl
+ 10.905170 seconds (10.63 M allocations: 689.322 MiB, 7.81% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;constrained&#x2F;samin.jl
+================================================================================
+SAMIN results
+==&gt; Normal convergence &lt;==
+total number of objective function evaluations: 22401
+
+     Obj. value:      0.0000000000
+
+       parameter      search width
+        -2.80512           0.00000 
+         3.13131           0.00000 
+================================================================================
+
+  2.397683 seconds (2.24 M allocations: 111.755 MiB, 4.66% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;accelerated_gradient_descent.jl
+  4.704727 seconds (8.66 M allocations: 1.310 GiB, 8.70% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;bfgs.jl
+ 95.224051 seconds (25.92 M allocations: 2.227 GiB, 3.75% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;cg.jl
+ 10.301617 seconds (5.31 M allocations: 632.609 MiB, 4.23% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;gradient_descent.jl
+529.648502 seconds (158.14 M allocations: 16.268 GiB, 1.70% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;l_bfgs.jl
+  9.922423 seconds (23.63 M allocations: 2.010 GiB, 9.59% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;momentum_gradient_descent.jl
+284.635708 seconds (11.89 M allocations: 3.454 GiB, 1.54% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;ngmres.jl
+┌ Warning: Use caution. N-GMRES&#x2F;O-ACCEL has only been tested with Gradient Descent and L-BFGS preconditioning.
+└ @ Optim ~&#x2F;.julia&#x2F;packages&#x2F;Optim&#x2F;EhyUl&#x2F;src&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;ngmres.jl:210
+ 84.001737 seconds (57.96 M allocations: 5.054 GiB, 4.30% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;second_order&#x2F;newton.jl
+205.898394 seconds (57.47 M allocations: 10.865 GiB, 3.20% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;second_order&#x2F;newton_trust_region.jl
+125.500323 seconds (54.27 M allocations: 8.160 GiB, 4.52% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;second_order&#x2F;krylov_trust_region.jl
+  0.712183 seconds (220.04 k allocations: 47.897 MiB, 4.08% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;zeroth_order&#x2F;grid_search.jl
+  0.412870 seconds (369.92 k allocations: 19.049 MiB, 2.80% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;zeroth_order&#x2F;nelder_mead.jl
+  3.566143 seconds (3.55 M allocations: 187.647 MiB, 6.59% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;zeroth_order&#x2F;particle_swarm.jl
+  3.900431 seconds (2.67 M allocations: 125.210 MiB, 5.41% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;zeroth_order&#x2F;simulated_annealing.jl
+  0.571683 seconds (801.17 k allocations: 19.836 MiB, 5.01% gc time)
+.&#x2F;multivariate&#x2F;array.jl
+ 66.363873 seconds (47.64 M allocations: 2.257 GiB, 5.02% gc time)
+.&#x2F;multivariate&#x2F;extrapolate.jl
+ 14.298802 seconds (14.55 M allocations: 741.401 MiB, 8.16% gc time)
+.&#x2F;multivariate&#x2F;lsthrow.jl
+  4.177563 seconds (3.23 M allocations: 167.904 MiB, 4.25% gc time)
+.&#x2F;multivariate&#x2F;precon.jl
+  3.925808 seconds (3.31 M allocations: 292.459 MiB, 5.85% gc time)
+.&#x2F;multivariate&#x2F;manifolds.jl
+ 50.308012 seconds (36.30 M allocations: 1.750 GiB, 5.09% gc time)
+.&#x2F;multivariate&#x2F;complex.jl
+ 16.253230 seconds (12.60 M allocations: 631.334 MiB, 5.96% gc time)
+.&#x2F;multivariate&#x2F;fdtime.jl
+ 41.500990 seconds (30.12 M allocations: 7.448 GiB, 7.79% gc time)
+.&#x2F;multivariate&#x2F;arbitrary_precision.jl
+ 24.198879 seconds (26.09 M allocations: 1.249 GiB, 6.26% gc time)
+.&#x2F;multivariate&#x2F;successive_f_tol.jl
+  0.300572 seconds (188.66 k allocations: 10.203 MiB)
+.&#x2F;multivariate&#x2F;f_increase.jl
+  0.263585 seconds (62.58 k allocations: 3.337 MiB, 5.93% gc time)
+Test Summary: |   Pass  Broken   Total
+multivariate  | 211898       1  211899
+Literate examples
+WARNING: using NLSolversBase.gradient in module Main conflicts with an existing identifier.
+WARNING: using NLSolversBase.hessian in module Main conflicts with an existing identifier.
+Test Summary:     | Pass  Total
+Literate examples |   20     20
+ 16.278572 seconds (14.39 M allocations: 715.897 MiB, 7.97% gc time)
+Test Summary:           | Pass  Total
+show method for options |    1      1
+   Testing Optim tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 16 hours ago and took 32 minutes, 31 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Optim/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Missings ─────────────── v0.4.3
+ Installed URIParser ────────────── v0.4.0
+ Installed DataAPI ──────────────── v1.1.0
+ Installed LineSearches ─────────── v7.0.1
+ Installed CommonSubexpressions ─── v0.2.0
+ Installed BinaryProvider ───────── v0.5.8
+ Installed Optim ────────────────── v0.19.4
+ Installed StatsBase ────────────── v0.32.0
+ Installed Requires ─────────────── v0.5.2
+ Installed NLSolversBase ────────── v7.5.0
+ Installed OrderedCollections ───── v1.1.0
+ Installed Calculus ─────────────── v0.5.1
+ Installed DataStructures ───────── v0.17.6
+ Installed Compat ───────────────── v2.2.0
+ Installed FillArrays ───────────── v0.7.4
+ Installed ForwardDiff ──────────── v0.10.6
+ Installed DiffRules ────────────── v0.1.0
+ Installed DiffEqDiffTools ──────── v1.4.0
+ Installed ArrayInterface ───────── v1.2.1
+ Installed NaNMath ──────────────── v0.3.3
+ Installed DiffResults ──────────── v0.0.4
+ Installed Parameters ───────────── v0.12.0
+ Installed StaticArrays ─────────── v0.12.1
+ Installed SortingAlgorithms ────── v0.3.1
+ Installed PositiveFactorizations ─ v0.2.3
+ Installed BinDeps ──────────────── v0.8.10
+ Installed SpecialFunctions ─────── v0.8.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [429524aa] + Optim v0.19.4
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [1a297f60] + FillArrays v0.7.4
+  [f6369f11] + ForwardDiff v0.10.6
+  [d3d80556] + LineSearches v7.0.1
+  [e1d29d7a] + Missings v0.4.3
+  [d41bc354] + NLSolversBase v7.5.0
+  [77ba4419] + NaNMath v0.3.3
+  [429524aa] + Optim v0.19.4
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [85a6dd25] + PositiveFactorizations v0.2.3
+  [ae029012] + Requires v0.5.2
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [2913bbd2] + StatsBase v0.32.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing Optim
+ Resolving package versions...
+ Installed RecipesBase ───────── v0.7.0
+ Installed Suppressor ────────── v0.1.1
+ Installed RecursiveArrayTools ─ v1.0.2
+ Installed OptimTestProblems ─── v2.0.2
+    Status `&#x2F;tmp&#x2F;jl_psbz6G&#x2F;Manifest.toml`
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [1a297f60] FillArrays v0.7.4
+  [f6369f11] ForwardDiff v0.10.6
+  [d3d80556] LineSearches v7.0.1
+  [e1d29d7a] Missings v0.4.3
+  [d41bc354] NLSolversBase v7.5.0
+  [77ba4419] NaNMath v0.3.3
+  [429524aa] Optim v0.19.4
+  [cec144fc] OptimTestProblems v2.0.2
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [ae029012] Requires v0.5.2
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [fd094767] Suppressor v0.1.1
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+.&#x2F;special&#x2F;bigfloat&#x2F;initial_convergence.jl
+ 19.225912 seconds (21.41 M allocations: 1.055 GiB, 6.45% gc time)
+Test Summary: |
+special       | No tests
+.&#x2F;general&#x2F;api.jl
+ 22.887789 seconds (19.88 M allocations: 1007.355 MiB, 5.94% gc time)
+.&#x2F;general&#x2F;callables.jl
+  0.312595 seconds (190.15 k allocations: 10.310 MiB, 5.09% gc time)
+.&#x2F;general&#x2F;callbacks.jl
+  6.129655 seconds (4.40 M allocations: 230.873 MiB, 2.64% gc time)
+.&#x2F;general&#x2F;convergence.jl
+  0.507702 seconds (315.44 k allocations: 16.651 MiB, 3.78% gc time)
+.&#x2F;general&#x2F;default_solvers.jl
+  0.437524 seconds (283.16 k allocations: 15.152 MiB, 2.13% gc time)
+.&#x2F;general&#x2F;deprecate.jl
+  0.000177 seconds (96 allocations: 4.609 KiB)
+.&#x2F;general&#x2F;initial_convergence.jl
+  3.405380 seconds (3.04 M allocations: 154.598 MiB, 3.27% gc time)
+.&#x2F;general&#x2F;objective_types.jl
+  6.546950 seconds (4.57 M allocations: 241.428 MiB, 3.36% gc time)
+.&#x2F;general&#x2F;Optim.jl
+  0.718398 seconds (522.55 k allocations: 26.733 MiB, 2.12% gc time)
+.&#x2F;general&#x2F;optimize.jl
+  2.175972 seconds (2.52 M allocations: 132.923 MiB, 4.22% gc time)
+.&#x2F;general&#x2F;type_stability.jl
+ 18.137751 seconds (17.40 M allocations: 873.649 MiB, 5.28% gc time)
+.&#x2F;general&#x2F;counter.jl
+ 15.924931 seconds (14.60 M allocations: 737.833 MiB, 6.03% gc time)
+.&#x2F;general&#x2F;maximize.jl
+  1.239826 seconds (1.32 M allocations: 70.201 MiB, 4.17% gc time)
+Test Summary: | Pass  Total
+general       | 2279   2279
+.&#x2F;univariate&#x2F;optimize&#x2F;interface.jl
+  0.000213 seconds (104 allocations: 5.125 KiB)
+.&#x2F;univariate&#x2F;optimize&#x2F;optimize.jl
+  0.026615 seconds (2.20 k allocations: 155.906 KiB)
+.&#x2F;univariate&#x2F;solvers&#x2F;golden_section.jl
+  1.941132 seconds (1.45 M allocations: 77.212 MiB, 4.66% gc time)
+.&#x2F;univariate&#x2F;solvers&#x2F;brent.jl
+  1.799835 seconds (1.54 M allocations: 81.265 MiB, 3.94% gc time)
+.&#x2F;univariate&#x2F;dual.jl
+  2.036585 seconds (1.21 M allocations: 63.807 MiB, 2.93% gc time)
+Test Summary: | Pass  Total
+univariate    |   48     48
+.&#x2F;multivariate&#x2F;optimize&#x2F;interface.jl
+  3.810749 seconds (3.97 M allocations: 205.050 MiB, 5.58% gc time)
+.&#x2F;multivariate&#x2F;optimize&#x2F;optimize.jl
+  2.147771 seconds (1.68 M allocations: 89.066 MiB, 4.36% gc time)
+.&#x2F;multivariate&#x2F;optimize&#x2F;inplace.jl
+  0.618501 seconds (407.58 k allocations: 20.948 MiB, 3.04% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;constrained&#x2F;fminbox.jl
+ 21.325980 seconds (16.38 M allocations: 831.191 MiB, 5.56% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;constrained&#x2F;ipnewton&#x2F;constraints.jl
+ 46.956343 seconds (29.31 M allocations: 1.436 GiB, 3.27% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;constrained&#x2F;ipnewton&#x2F;counter.jl
+  0.882367 seconds (432.75 k allocations: 23.362 MiB, 3.93% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;constrained&#x2F;ipnewton&#x2F;ipnewton_unconstrained.jl
+ 10.243282 seconds (9.77 M allocations: 636.190 MiB, 10.15% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;constrained&#x2F;samin.jl
+================================================================================
+SAMIN results
+==&gt; Normal convergence &lt;==
+total number of objective function evaluations: 22601
+
+     Obj. value:      0.0000000000
+
+       parameter      search width
+         3.00000           0.00000 
+         2.00000           0.00000 
+================================================================================
+
+  2.658661 seconds (2.35 M allocations: 118.805 MiB, 5.02% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;accelerated_gradient_descent.jl
+  4.590026 seconds (6.00 M allocations: 1.232 GiB, 8.79% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;bfgs.jl
+ 74.937600 seconds (18.32 M allocations: 1.974 GiB, 4.15% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;cg.jl
+ 15.590851 seconds (5.06 M allocations: 625.263 MiB, 5.44% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;gradient_descent.jl
+267.370710 seconds (64.47 M allocations: 12.743 GiB, 2.76% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;l_bfgs.jl
+ 10.087085 seconds (6.43 M allocations: 1.357 GiB, 6.10% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;momentum_gradient_descent.jl
+194.559565 seconds (10.73 M allocations: 3.419 GiB, 2.06% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;ngmres.jl
+┌ Warning: Use caution. N-GMRES&#x2F;O-ACCEL has only been tested with Gradient Descent and L-BFGS preconditioning.
+└ @ Optim ~&#x2F;.julia&#x2F;packages&#x2F;Optim&#x2F;EhyUl&#x2F;src&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;ngmres.jl:210
+138.802991 seconds (33.82 M allocations: 4.195 GiB, 3.35% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;second_order&#x2F;newton.jl
+384.943584 seconds (43.81 M allocations: 10.364 GiB, 2.51% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;second_order&#x2F;newton_trust_region.jl
+243.246976 seconds (30.06 M allocations: 7.249 GiB, 3.38% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;second_order&#x2F;krylov_trust_region.jl
+  0.510765 seconds (193.07 k allocations: 47.511 MiB, 8.21% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;zeroth_order&#x2F;grid_search.jl
+  0.461379 seconds (364.93 k allocations: 18.886 MiB, 9.72% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;zeroth_order&#x2F;nelder_mead.jl
+  4.245451 seconds (4.83 M allocations: 248.966 MiB, 8.65% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;zeroth_order&#x2F;particle_swarm.jl
+  3.696754 seconds (3.08 M allocations: 146.992 MiB, 6.09% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;zeroth_order&#x2F;simulated_annealing.jl
+  0.610719 seconds (824.19 k allocations: 21.136 MiB, 7.59% gc time)
+.&#x2F;multivariate&#x2F;array.jl
+ 71.339006 seconds (50.54 M allocations: 2.386 GiB, 7.42% gc time)
+.&#x2F;multivariate&#x2F;extrapolate.jl
+ 18.848901 seconds (15.59 M allocations: 793.246 MiB, 10.11% gc time)
+.&#x2F;multivariate&#x2F;lsthrow.jl
+  4.140219 seconds (3.09 M allocations: 161.429 MiB, 4.48% gc time)
+.&#x2F;multivariate&#x2F;precon.jl
+  4.013979 seconds (3.55 M allocations: 306.833 MiB, 7.25% gc time)
+.&#x2F;multivariate&#x2F;manifolds.jl
+ 58.345852 seconds (42.72 M allocations: 2.057 GiB, 7.62% gc time)
+.&#x2F;multivariate&#x2F;complex.jl
+ 18.303169 seconds (14.07 M allocations: 705.479 MiB, 8.10% gc time)
+.&#x2F;multivariate&#x2F;fdtime.jl
+ 16.121846 seconds (22.37 M allocations: 7.150 GiB, 22.79% gc time)
+.&#x2F;multivariate&#x2F;arbitrary_precision.jl
+ 26.528298 seconds (24.68 M allocations: 1.185 GiB, 8.67% gc time)
+.&#x2F;multivariate&#x2F;successive_f_tol.jl
+  0.229906 seconds (173.28 k allocations: 9.527 MiB)
+.&#x2F;multivariate&#x2F;f_increase.jl
+  0.183422 seconds (81.65 k allocations: 4.361 MiB, 14.04% gc time)
+Test Summary: |   Pass  Broken   Total
+multivariate  | 211898       1  211899
+Literate examples
+WARNING: using NLSolversBase.hessian in module Main conflicts with an existing identifier.
+WARNING: using NLSolversBase.gradient in module Main conflicts with an existing identifier.
+Test Summary:     | Pass  Total
+Literate examples |   20     20
+ 17.320915 seconds (14.64 M allocations: 737.851 MiB, 8.22% gc time)
+Test Summary:           | Pass  Total
+show method for options |    1      1
+   Testing Optim tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 13 hours ago and took 22 minutes, 39 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Optim/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Missings ─────────────── v0.4.3
+ Installed DiffEqDiffTools ──────── v1.4.0
+ Installed ArrayInterface ───────── v1.2.1
+ Installed FillArrays ───────────── v0.7.4
+ Installed DiffResults ──────────── v0.0.4
+ Installed BinDeps ──────────────── v0.8.10
+ Installed ForwardDiff ──────────── v0.10.6
+ Installed Optim ────────────────── v0.19.4
+ Installed DiffRules ────────────── v0.1.0
+ Installed Parameters ───────────── v0.12.0
+ Installed DataAPI ──────────────── v1.1.0
+ Installed Calculus ─────────────── v0.5.1
+ Installed LineSearches ─────────── v7.0.1
+ Installed NLSolversBase ────────── v7.5.0
+ Installed SortingAlgorithms ────── v0.3.1
+ Installed DataStructures ───────── v0.17.6
+ Installed URIParser ────────────── v0.4.0
+ Installed Requires ─────────────── v0.5.2
+ Installed StaticArrays ─────────── v0.12.1
+ Installed PositiveFactorizations ─ v0.2.3
+ Installed NaNMath ──────────────── v0.3.3
+ Installed CommonSubexpressions ─── v0.2.0
+ Installed OrderedCollections ───── v1.1.0
+ Installed StatsBase ────────────── v0.32.0
+ Installed BinaryProvider ───────── v0.5.8
+ Installed SpecialFunctions ─────── v0.8.0
+ Installed Compat ───────────────── v2.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [429524aa] + Optim v0.19.4
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [1a297f60] + FillArrays v0.7.4
+  [f6369f11] + ForwardDiff v0.10.6
+  [d3d80556] + LineSearches v7.0.1
+  [e1d29d7a] + Missings v0.4.3
+  [d41bc354] + NLSolversBase v7.5.0
+  [77ba4419] + NaNMath v0.3.3
+  [429524aa] + Optim v0.19.4
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [85a6dd25] + PositiveFactorizations v0.2.3
+  [ae029012] + Requires v0.5.2
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [2913bbd2] + StatsBase v0.32.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing Optim
+ Resolving package versions...
+ Installed RecipesBase ───────── v0.7.0
+ Installed Suppressor ────────── v0.1.1
+ Installed RecursiveArrayTools ─ v1.0.2
+ Installed OptimTestProblems ─── v2.0.2
+Status `&#x2F;tmp&#x2F;jl_RJeNhW&#x2F;Manifest.toml`
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [1a297f60] FillArrays v0.7.4
+  [f6369f11] ForwardDiff v0.10.6
+  [d3d80556] LineSearches v7.0.1
+  [e1d29d7a] Missings v0.4.3
+  [d41bc354] NLSolversBase v7.5.0
+  [77ba4419] NaNMath v0.3.3
+  [429524aa] Optim v0.19.4
+  [cec144fc] OptimTestProblems v2.0.2
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [3cdcf5f2] RecipesBase v0.7.0
+  [731186ca] RecursiveArrayTools v1.0.2
+  [ae029012] Requires v0.5.2
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [fd094767] Suppressor v0.1.1
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+.&#x2F;special&#x2F;bigfloat&#x2F;initial_convergence.jl
+ 18.836571 seconds (20.49 M allocations: 1.001 GiB, 7.17% gc time)
+Test Summary: |
+special       | No tests
+.&#x2F;general&#x2F;api.jl
+ 19.308422 seconds (18.73 M allocations: 940.546 MiB, 3.77% gc time)
+.&#x2F;general&#x2F;callables.jl
+  0.220679 seconds (161.31 k allocations: 8.613 MiB)
+.&#x2F;general&#x2F;callbacks.jl
+  5.491682 seconds (4.07 M allocations: 214.401 MiB, 1.71% gc time)
+.&#x2F;general&#x2F;convergence.jl
+  0.415624 seconds (284.99 k allocations: 14.934 MiB)
+.&#x2F;general&#x2F;default_solvers.jl
+  0.581389 seconds (311.70 k allocations: 16.306 MiB)
+.&#x2F;general&#x2F;deprecate.jl
+  0.000183 seconds (86 allocations: 4.172 KiB)
+.&#x2F;general&#x2F;initial_convergence.jl
+  2.990654 seconds (2.82 M allocations: 142.762 MiB, 3.02% gc time)
+.&#x2F;general&#x2F;objective_types.jl
+  4.665126 seconds (4.40 M allocations: 230.720 MiB, 2.05% gc time)
+.&#x2F;general&#x2F;Optim.jl
+  0.829874 seconds (550.94 k allocations: 27.277 MiB, 3.35% gc time)
+.&#x2F;general&#x2F;optimize.jl
+  1.712090 seconds (1.63 M allocations: 83.431 MiB, 1.14% gc time)
+.&#x2F;general&#x2F;type_stability.jl
+ 18.935970 seconds (18.98 M allocations: 922.625 MiB, 2.92% gc time)
+.&#x2F;general&#x2F;counter.jl
+ 15.682245 seconds (13.58 M allocations: 668.585 MiB, 4.33% gc time)
+.&#x2F;general&#x2F;maximize.jl
+  1.029133 seconds (1.16 M allocations: 61.358 MiB, 1.84% gc time)
+Test Summary: | Pass  Total
+general       | 2279   2279
+.&#x2F;univariate&#x2F;optimize&#x2F;interface.jl
+  0.000174 seconds (94 allocations: 4.703 KiB)
+.&#x2F;univariate&#x2F;optimize&#x2F;optimize.jl
+  0.205932 seconds (135.50 k allocations: 7.035 MiB)
+.&#x2F;univariate&#x2F;solvers&#x2F;golden_section.jl
+  1.707389 seconds (1.37 M allocations: 72.672 MiB, 2.39% gc time)
+.&#x2F;univariate&#x2F;solvers&#x2F;brent.jl
+  1.721637 seconds (1.42 M allocations: 74.404 MiB, 2.23% gc time)
+.&#x2F;univariate&#x2F;dual.jl
+  1.715028 seconds (1.16 M allocations: 61.282 MiB, 0.97% gc time)
+Test Summary: | Pass  Total
+univariate    |   48     48
+.&#x2F;multivariate&#x2F;optimize&#x2F;interface.jl
+  3.514167 seconds (3.88 M allocations: 197.609 MiB, 3.36% gc time)
+.&#x2F;multivariate&#x2F;optimize&#x2F;optimize.jl
+  1.293082 seconds (821.01 k allocations: 42.309 MiB, 1.85% gc time)
+.&#x2F;multivariate&#x2F;optimize&#x2F;inplace.jl
+  0.604647 seconds (502.50 k allocations: 23.951 MiB)
+.&#x2F;multivariate&#x2F;solvers&#x2F;constrained&#x2F;fminbox.jl
+ 16.187010 seconds (15.68 M allocations: 790.303 MiB, 3.32% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;constrained&#x2F;ipnewton&#x2F;constraints.jl
+ 45.485585 seconds (32.39 M allocations: 1.551 GiB, 2.81% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;constrained&#x2F;ipnewton&#x2F;counter.jl
+  0.440230 seconds (412.37 k allocations: 22.484 MiB)
+.&#x2F;multivariate&#x2F;solvers&#x2F;constrained&#x2F;ipnewton&#x2F;ipnewton_unconstrained.jl
+  6.448504 seconds (8.76 M allocations: 582.267 MiB, 5.11% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;constrained&#x2F;samin.jl
+================================================================================
+SAMIN results
+==&gt; Normal convergence &lt;==
+total number of objective function evaluations: 22601
+
+     Obj. value:      0.0000000000
+
+       parameter      search width
+         3.00000           0.00000 
+         2.00000           0.00000 
+================================================================================
+
+  2.488891 seconds (2.95 M allocations: 148.416 MiB, 4.32% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;accelerated_gradient_descent.jl
+  4.432690 seconds (5.47 M allocations: 1.220 GiB, 6.67% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;bfgs.jl
+ 27.294795 seconds (16.93 M allocations: 1.919 GiB, 7.07% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;cg.jl
+  6.816630 seconds (4.72 M allocations: 610.941 MiB, 5.74% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;gradient_descent.jl
+134.115823 seconds (57.64 M allocations: 12.640 GiB, 3.06% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;l_bfgs.jl
+ 15.158613 seconds (6.11 M allocations: 1.353 GiB, 5.19% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;momentum_gradient_descent.jl
+217.712154 seconds (9.70 M allocations: 3.405 GiB, 1.88% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;ngmres.jl
+┌ Warning: Use caution. N-GMRES&#x2F;O-ACCEL has only been tested with Gradient Descent and L-BFGS preconditioning.
+└ @ Optim ~&#x2F;.julia&#x2F;packages&#x2F;Optim&#x2F;EhyUl&#x2F;src&#x2F;multivariate&#x2F;solvers&#x2F;first_order&#x2F;ngmres.jl:210
+ 45.084524 seconds (32.62 M allocations: 3.991 GiB, 5.57% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;second_order&#x2F;newton.jl
+210.089397 seconds (41.76 M allocations: 10.302 GiB, 2.68% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;second_order&#x2F;newton_trust_region.jl
+138.228482 seconds (28.34 M allocations: 7.215 GiB, 3.39% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;second_order&#x2F;krylov_trust_region.jl
+  0.735069 seconds (173.37 k allocations: 46.595 MiB, 12.68% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;zeroth_order&#x2F;grid_search.jl
+  0.338889 seconds (319.81 k allocations: 16.291 MiB)
+.&#x2F;multivariate&#x2F;solvers&#x2F;zeroth_order&#x2F;nelder_mead.jl
+  4.451797 seconds (4.51 M allocations: 232.466 MiB, 6.17% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;zeroth_order&#x2F;particle_swarm.jl
+  3.586811 seconds (2.90 M allocations: 136.623 MiB, 3.36% gc time)
+.&#x2F;multivariate&#x2F;solvers&#x2F;zeroth_order&#x2F;simulated_annealing.jl
+  0.502227 seconds (601.56 k allocations: 16.732 MiB)
+.&#x2F;multivariate&#x2F;array.jl
+ 65.544130 seconds (56.12 M allocations: 2.563 GiB, 3.99% gc time)
+.&#x2F;multivariate&#x2F;extrapolate.jl
+ 15.102165 seconds (15.86 M allocations: 797.215 MiB, 5.44% gc time)
+.&#x2F;multivariate&#x2F;lsthrow.jl
+  3.819184 seconds (3.05 M allocations: 159.275 MiB, 1.92% gc time)
+.&#x2F;multivariate&#x2F;precon.jl
+  3.300749 seconds (3.23 M allocations: 291.701 MiB, 5.30% gc time)
+.&#x2F;multivariate&#x2F;manifolds.jl
+ 50.171209 seconds (41.91 M allocations: 1.979 GiB, 2.93% gc time)
+.&#x2F;multivariate&#x2F;complex.jl
+ 15.109100 seconds (13.09 M allocations: 650.346 MiB, 3.68% gc time)
+.&#x2F;multivariate&#x2F;fdtime.jl
+ 24.526729 seconds (21.02 M allocations: 7.129 GiB, 20.53% gc time)
+.&#x2F;multivariate&#x2F;arbitrary_precision.jl
+ 22.187120 seconds (19.69 M allocations: 980.724 MiB, 3.79% gc time)
+.&#x2F;multivariate&#x2F;successive_f_tol.jl
+  0.226399 seconds (178.91 k allocations: 9.797 MiB)
+.&#x2F;multivariate&#x2F;f_increase.jl
+  0.161551 seconds (61.41 k allocations: 3.171 MiB)
+Test Summary: |   Pass  Broken   Total
+multivariate  | 211898       1  211899
+Literate examples
+WARNING: using NLSolversBase.gradient in module Main conflicts with an existing identifier.
+WARNING: using NLSolversBase.hessian in module Main conflicts with an existing identifier.
+Test Summary:     | Pass  Total
+Literate examples |   20     20
+ 14.270531 seconds (13.96 M allocations: 691.881 MiB, 3.25% gc time)
+Test Summary:           | Pass  Total
+show method for options |    1      1
+   Testing Optim tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

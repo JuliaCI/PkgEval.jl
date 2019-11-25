@@ -1,0 +1,100 @@
+ Resolving package versions...
+ Installed IniFile ──────────── v0.5.0
+ Installed JSON2 ────────────── v0.3.1
+ Installed Parsers ──────────── v0.3.10
+ Installed Trello ───────────── v0.1.0
+ Installed OrderedCollections ─ v1.1.0
+ Installed MbedTLS ──────────── v0.6.8
+ Installed BinaryProvider ───── v0.5.8
+ Installed HTTP ─────────────── v0.8.8
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [d200c542] + Trello v0.1.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [cd3eb016] + HTTP v0.8.8
+  [83e8ac13] + IniFile v0.5.0
+  [2535ab7d] + JSON2 v0.3.1
+  [739be429] + MbedTLS v0.6.8
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [d200c542] + Trello v0.1.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+  Building MbedTLS → `~/.julia/packages/MbedTLS/X4xar/deps/build.log`
+   Testing Trello
+ Resolving package versions...
+    Status `/tmp/tmp7bOYHm/Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [cd3eb016] HTTP v0.8.8
+  [83e8ac13] IniFile v0.5.0
+  [2535ab7d] JSON2 v0.3.1
+  [739be429] MbedTLS v0.6.8
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [d200c542] Trello v0.1.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Trello.jl: Error During Test at /root/.julia/packages/Trello/YtOsx/test/runtests.jl:5
+  Got exception outside of a @test
+  KeyError: key "TRELLO_API_KEY" not found
+  Stacktrace:
+   [1] (::getfield(Base, Symbol("##419#420")))(::String) at ./env.jl:76
+   [2] access_env at ./env.jl:45 [inlined]
+   [3] getindex at ./env.jl:76 [inlined]
+   [4] TrelloCred() at /root/.julia/packages/Trello/YtOsx/src/auth.jl:17
+   [5] macro expansion at /root/.julia/packages/Trello/YtOsx/test/runtests.jl:7 [inlined]
+   [6] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [7] top-level scope at /root/.julia/packages/Trello/YtOsx/test/runtests.jl:7
+   [8] include at ./boot.jl:317 [inlined]
+   [9] include_relative(::Module, ::String) at ./loading.jl:1044
+   [10] include(::Module, ::String) at ./sysimg.jl:29
+   [11] include(::String) at ./client.jl:392
+   [12] top-level scope at none:0
+   [13] eval(::Module, ::Any) at ./boot.jl:319
+   [14] exec_options(::Base.JLOptions) at ./client.jl:243
+   [15] _start() at ./client.jl:425
+Test Summary: | Error  Total
+Trello.jl     |     1      1
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /root/.julia/packages/Trello/YtOsx/test/runtests.jl:5
+ERROR: Package Trello errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

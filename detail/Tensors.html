@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="Tensors">Tensors</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#Tensors">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 13 hours ago and took 13 minutes, 51 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Tensors/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed NaNMath ────────────── v0.3.3
+ Installed SIMD ───────────────── v2.8.0
+ Installed CommonSubexpressions ─ v0.2.0
+ Installed BinDeps ────────────── v0.8.10
+ Installed SpecialFunctions ───── v0.8.0
+ Installed Tensors ────────────── v1.4.0
+ Installed StaticArrays ───────── v0.12.1
+ Installed BinaryProvider ─────── v0.5.8
+ Installed URIParser ──────────── v0.4.0
+ Installed DiffRules ──────────── v0.1.0
+ Installed DiffResults ────────── v0.0.4
+ Installed ForwardDiff ────────── v0.10.6
+ Installed Compat ─────────────── v2.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [48a634ad] + Tensors v1.4.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [f6369f11] + ForwardDiff v0.10.6
+  [77ba4419] + NaNMath v0.3.3
+  [fdea26ae] + SIMD v2.8.0
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [48a634ad] + Tensors v1.4.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing Tensors
+ Resolving package versions...
+ Installed TimerOutputs ─ v0.5.3
+    Status `&#x2F;tmp&#x2F;tmpyZZyCK&#x2F;Manifest.toml`
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [f6369f11] ForwardDiff v0.10.6
+  [77ba4419] NaNMath v0.3.3
+  [fdea26ae] SIMD v2.8.0
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [48a634ad] Tensors v1.4.0
+  [a759f4b9] TimerOutputs v0.5.3
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Test Summary: | Pass  Total
+constructors  |  351    351
+Test Summary: | Pass  Total
+diagm, one    |  508    508
+Test Summary: | Pass  Total
+base vectors  |   45     45
+Test Summary: | Pass  Total
+simple math   |  354    354
+Test Summary:           | Pass  Total
+construct from function |  540    540
+Test Summary:        | Pass  Total
+construct from Array |   84     84
+Test Summary: | Pass  Total
+indexing      | 2532   2532
+Test Summary:              | Pass  Total
+norm, trace, det, inv, eig |  234    234
+Test Summary:              | Pass  Total
+eigen(::FourthOrderTensor) |   44     44
+Test Summary:     | Pass  Total
+tensor identities |  297    297
+Test Summary:        | Pass  Total
+promotion&#x2F;conversion |  232    232
+Test Summary:                             | Pass  Total
+issues #100, #101: orders of eigenvectors |    8      8
+Test Summary: | Pass  Total
+exceptions    |    7      7
+T = Float32, dim = 1
+T = Float32, dim = 2
+T = Float32, dim = 3
+T = Float64, dim = 1
+T = Float64, dim = 2
+T = Float64, dim = 3
+T = F64, dim = 1
+T = F64, dim = 2
+T = F64, dim = 3
+Test Summary: | Pass  Total
+tensor ops    | 1077   1077
+Test Summary: | Pass  Total
+AD            |  401    401
+ ──────────────────────────────────────────────────────────────────────────────
+                                       Time                   Allocations      
+                               ──────────────────────   ───────────────────────
+       Tot &#x2F; % measured:             706s &#x2F; 91.2%           27.0GiB &#x2F; 99.0%    
+
+ Section               ncalls     time   %tot     avg     alloc   %tot      avg
+ ──────────────────────────────────────────────────────────────────────────────
+ tensor ops                 1     217s  33.7%    217s   9.56GiB  35.7%  9.56GiB
+   outer products (...      9    92.1s  14.3%   10.2s   3.38GiB  12.7%   385MiB
+   double contraction       9    38.3s  5.95%   4.25s   1.93GiB  7.21%   219MiB
+   transpose                9    35.3s  5.48%   3.92s   2.18GiB  8.14%   248MiB
+   symmetric&#x2F;skew-s...      9    33.1s  5.15%   3.68s   1.50GiB  5.61%   171MiB
+   tovoigt&#x2F;fromvoigt        9    12.7s  1.98%   1.41s    370MiB  1.35%  41.1MiB
+   dot products             9    2.18s  0.34%   243ms   92.0MiB  0.34%  10.2MiB
+   special                  9    1.55s  0.24%   172ms   53.8MiB  0.20%  5.98MiB
+   rotation                 3    883ms  0.14%   294ms   53.6MiB  0.20%  17.9MiB
+   cross product            9    277ms  0.04%  30.8ms   7.28MiB  0.03%   828KiB
+ AD                         1     113s  17.6%    113s   3.86GiB  14.4%  3.86GiB
+   vector calculus ...      1    45.3s  7.04%   45.3s   1.04GiB  3.87%  1.04GiB
+   dim 3                    1    42.1s  6.54%   42.1s   1.70GiB  6.36%  1.70GiB
+     hessian                2    20.0s  3.11%   10.0s    750MiB  2.74%   375MiB
+     2nd tensor grad        2    4.91s  0.76%   2.45s    325MiB  1.19%   162MiB
+     scalar grad            2    1.87s  0.29%   934ms    103MiB  0.38%  51.4MiB
+   dim 2                    1    12.9s  2.01%   12.9s    616MiB  2.25%   616MiB
+     hessian                2    5.26s  0.82%   2.63s    245MiB  0.89%   122MiB
+     2nd tensor grad        2    2.18s  0.34%   1.09s    106MiB  0.39%  53.2MiB
+     scalar grad            2    1.87s  0.29%   934ms   69.2MiB  0.25%  34.6MiB
+   dim 1                    1    10.8s  1.68%   10.8s    392MiB  1.43%   392MiB
+     hessian                2    4.91s  0.76%   2.46s    178MiB  0.65%  88.8MiB
+     2nd tensor grad        2    1.59s  0.25%   797ms   50.8MiB  0.19%  25.4MiB
+     scalar grad            2    1.30s  0.20%   651ms   34.2MiB  0.12%  17.1MiB
+   f: scalar -&gt; Abs...      1    2.06s  0.32%   2.06s    126MiB  0.46%   126MiB
+   f: scalar -&gt; scalar      1    207ms  0.03%   207ms   11.9MiB  0.04%  11.9MiB
+ constructors               1     105s  16.3%    105s   2.84GiB  10.6%  2.84GiB
+ simple math                1    42.0s  6.53%   42.0s   1.91GiB  7.15%  1.91GiB
+ construct from Array       1    40.9s  6.35%   40.9s   2.12GiB  7.92%  2.12GiB
+ norm, trace, det, ...      1    39.7s  6.17%   39.7s   1.82GiB  6.81%  1.82GiB
+ tensor identities          1    31.5s  4.90%   31.5s   1.49GiB  5.58%  1.49GiB
+ promotion&#x2F;conversion       1    16.7s  2.59%   16.7s   1.04GiB  3.88%  1.04GiB
+ indexing                   1    10.9s  1.69%   10.9s    566MiB  2.07%   566MiB
+ eigen(::FourthOrde...      1    10.8s  1.68%   10.8s    518MiB  1.89%   518MiB
+ construct from fun...      1    7.24s  1.12%   7.24s    681MiB  2.49%   681MiB
+ diagm, one                 1    5.14s  0.80%   5.14s    256MiB  0.94%   256MiB
+ base vectors               1    3.61s  0.56%   3.61s    125MiB  0.46%   125MiB
+ exceptions                 1    266ms  0.04%   266ms   16.8MiB  0.06%  16.8MiB
+ ──────────────────────────────────────────────────────────────────────────────
+   Testing Tensors tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 10 hours ago and took 8 minutes, 14 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Tensors/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed DiffResults ────────── v0.0.4
+ Installed DiffRules ──────────── v0.1.0
+ Installed Compat ─────────────── v2.2.0
+ Installed CommonSubexpressions ─ v0.2.0
+ Installed Tensors ────────────── v1.4.0
+ Installed BinaryProvider ─────── v0.5.8
+ Installed StaticArrays ───────── v0.12.1
+ Installed ForwardDiff ────────── v0.10.6
+ Installed URIParser ──────────── v0.4.0
+ Installed SpecialFunctions ───── v0.8.0
+ Installed BinDeps ────────────── v0.8.10
+ Installed SIMD ───────────────── v2.8.0
+ Installed NaNMath ────────────── v0.3.3
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [48a634ad] + Tensors v1.4.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [f6369f11] + ForwardDiff v0.10.6
+  [77ba4419] + NaNMath v0.3.3
+  [fdea26ae] + SIMD v2.8.0
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [48a634ad] + Tensors v1.4.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing Tensors
+ Resolving package versions...
+ Installed TimerOutputs ─ v0.5.3
+    Status `&#x2F;tmp&#x2F;jl_IgKoeM&#x2F;Manifest.toml`
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [f6369f11] ForwardDiff v0.10.6
+  [77ba4419] NaNMath v0.3.3
+  [fdea26ae] SIMD v2.8.0
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [48a634ad] Tensors v1.4.0
+  [a759f4b9] TimerOutputs v0.5.3
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Test Summary: | Pass  Total
+constructors  |  351    351
+Test Summary: | Pass  Total
+diagm, one    |  508    508
+Test Summary: | Pass  Total
+base vectors  |   45     45
+Test Summary: | Pass  Total
+simple math   |  354    354
+Test Summary:           | Pass  Total
+construct from function |  540    540
+Test Summary:        | Pass  Total
+construct from Array |   84     84
+Test Summary: | Pass  Total
+indexing      | 2532   2532
+Test Summary:              | Pass  Total
+norm, trace, det, inv, eig |  234    234
+Test Summary:              | Pass  Total
+eigen(::FourthOrderTensor) |   44     44
+Test Summary:     | Pass  Total
+tensor identities |  297    297
+Test Summary:        | Pass  Total
+promotion&#x2F;conversion |  232    232
+Test Summary:                             | Pass  Total
+issues #100, #101: orders of eigenvectors |    8      8
+Test Summary: | Pass  Total
+exceptions    |    7      7
+T = Float32, dim = 1
+T = Float32, dim = 2
+T = Float32, dim = 3
+T = Float64, dim = 1
+T = Float64, dim = 2
+T = Float64, dim = 3
+T = F64, dim = 1
+T = F64, dim = 2
+T = F64, dim = 3
+Test Summary: | Pass  Total
+tensor ops    | 1077   1077
+Test Summary: | Pass  Total
+AD            |  401    401
+ ──────────────────────────────────────────────────────────────────────────────
+                                       Time                   Allocations      
+                               ──────────────────────   ───────────────────────
+       Tot &#x2F; % measured:             418s &#x2F; 97.6%           25.5GiB &#x2F; 99.0%    
+
+ Section               ncalls     time   %tot     avg     alloc   %tot      avg
+ ──────────────────────────────────────────────────────────────────────────────
+ tensor ops                 1     138s  33.8%    138s   9.67GiB  38.3%  9.67GiB
+   outer products (...      9    50.7s  12.4%   5.63s   3.97GiB  15.7%   452MiB
+   double contraction       9    36.7s  9.00%   4.08s   2.02GiB  8.01%   230MiB
+   transpose                9    22.5s  5.52%   2.50s   1.86GiB  7.37%   212MiB
+   tovoigt&#x2F;fromvoigt        9    11.9s  2.91%   1.32s    483MiB  1.87%  53.7MiB
+   symmetric&#x2F;skew-s...      9    11.6s  2.84%   1.29s   1.14GiB  4.50%   129MiB
+   dot products             9    1.93s  0.47%   214ms   83.2MiB  0.32%  9.24MiB
+   special                  9    1.41s  0.35%   157ms   50.3MiB  0.19%  5.59MiB
+   rotation                 3    998ms  0.24%   333ms   59.6MiB  0.23%  19.9MiB
+   cross product            9    231ms  0.06%  25.7ms   6.15MiB  0.02%   699KiB
+ AD                         1    61.8s  15.1%   61.8s   3.39GiB  13.4%  3.39GiB
+   dim 3                    1    27.8s  6.80%   27.8s   1.47GiB  5.80%  1.47GiB
+     hessian                2    11.9s  2.92%   5.95s    616MiB  2.38%   308MiB
+     2nd tensor grad        2    4.59s  1.12%   2.29s    291MiB  1.12%   145MiB
+     scalar grad            2    2.09s  0.51%   1.04s    105MiB  0.41%  52.6MiB
+   vector calculus ...      1    12.6s  3.08%   12.6s    879MiB  3.40%   879MiB
+   dim 2                    1    11.7s  2.86%   11.7s    609MiB  2.36%   609MiB
+     hessian                2    5.01s  1.23%   2.51s    237MiB  0.92%   118MiB
+     2nd tensor grad        2    2.24s  0.55%   1.12s    109MiB  0.42%  54.6MiB
+     scalar grad            2    1.47s  0.36%   735ms   73.1MiB  0.28%  36.5MiB
+   dim 1                    1    8.17s  2.00%   8.17s    383MiB  1.48%   383MiB
+     hessian                2    3.41s  0.84%   1.71s    172MiB  0.67%  86.1MiB
+     2nd tensor grad        2    1.39s  0.34%   697ms   52.9MiB  0.20%  26.4MiB
+     scalar grad            2    1.03s  0.25%   516ms   39.6MiB  0.15%  19.8MiB
+   f: scalar -&gt; Abs...      1    1.45s  0.35%   1.45s   87.1MiB  0.34%  87.1MiB
+   f: scalar -&gt; scalar      1    151ms  0.04%   151ms   10.7MiB  0.04%  10.7MiB
+ constructors               1    49.4s  12.1%   49.4s   2.54GiB  10.1%  2.54GiB
+ simple math                1    37.8s  9.27%   37.8s   2.02GiB  8.01%  2.02GiB
+ norm, trace, det, ...      1    37.5s  9.20%   37.5s   2.02GiB  7.99%  2.02GiB
+ construct from Array       1    23.4s  5.73%   23.4s   1.81GiB  7.15%  1.81GiB
+ tensor identities          1    18.5s  4.53%   18.5s   1.22GiB  4.84%  1.22GiB
+ promotion&#x2F;conversion       1    10.3s  2.54%   10.3s    803MiB  3.11%   803MiB
+ eigen(::FourthOrde...      1    9.91s  2.43%   9.91s    522MiB  2.02%   522MiB
+ indexing                   1    9.27s  2.27%   9.27s    530MiB  2.05%   530MiB
+ diagm, one                 1    5.39s  1.32%   5.39s    259MiB  1.00%   259MiB
+ construct from fun...      1    3.78s  0.93%   3.78s    418MiB  1.62%   418MiB
+ base vectors               1    2.76s  0.68%   2.76s    113MiB  0.44%   113MiB
+ exceptions                 1   94.5ms  0.02%  94.5ms   5.21MiB  0.02%  5.21MiB
+ ──────────────────────────────────────────────────────────────────────────────
+   Testing Tensors tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 10 hours ago and took 8 minutes, 58 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Tensors/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed SIMD ───────────────── v2.8.0
+ Installed URIParser ──────────── v0.4.0
+ Installed DiffResults ────────── v0.0.4
+ Installed BinDeps ────────────── v0.8.10
+ Installed StaticArrays ───────── v0.12.1
+ Installed SpecialFunctions ───── v0.8.0
+ Installed BinaryProvider ─────── v0.5.8
+ Installed Tensors ────────────── v1.4.0
+ Installed NaNMath ────────────── v0.3.3
+ Installed DiffRules ──────────── v0.1.0
+ Installed ForwardDiff ────────── v0.10.6
+ Installed CommonSubexpressions ─ v0.2.0
+ Installed Compat ─────────────── v2.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [48a634ad] + Tensors v1.4.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [f6369f11] + ForwardDiff v0.10.6
+  [77ba4419] + NaNMath v0.3.3
+  [fdea26ae] + SIMD v2.8.0
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [48a634ad] + Tensors v1.4.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing Tensors
+ Resolving package versions...
+ Installed TimerOutputs ─ v0.5.3
+Status `&#x2F;tmp&#x2F;jl_oNahce&#x2F;Manifest.toml`
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [f6369f11] ForwardDiff v0.10.6
+  [77ba4419] NaNMath v0.3.3
+  [fdea26ae] SIMD v2.8.0
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [48a634ad] Tensors v1.4.0
+  [a759f4b9] TimerOutputs v0.5.3
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Test Summary: | Pass  Total
+constructors  |  351    351
+Test Summary: | Pass  Total
+diagm, one    |  508    508
+Test Summary: | Pass  Total
+base vectors  |   45     45
+Test Summary: | Pass  Total
+simple math   |  354    354
+Test Summary:           | Pass  Total
+construct from function |  540    540
+Test Summary:        | Pass  Total
+construct from Array |   84     84
+Test Summary: | Pass  Total
+indexing      | 2532   2532
+Test Summary:              | Pass  Total
+norm, trace, det, inv, eig |  234    234
+Test Summary:              | Pass  Total
+eigen(::FourthOrderTensor) |   44     44
+Test Summary:     | Pass  Total
+tensor identities |  297    297
+Test Summary:        | Pass  Total
+promotion&#x2F;conversion |  232    232
+Test Summary:                             | Pass  Total
+issues #100, #101: orders of eigenvectors |    8      8
+Test Summary: | Pass  Total
+exceptions    |    7      7
+T = Float32, dim = 1
+T = Float32, dim = 2
+T = Float32, dim = 3
+T = Float64, dim = 1
+T = Float64, dim = 2
+T = Float64, dim = 3
+T = F64, dim = 1
+T = F64, dim = 2
+T = F64, dim = 3
+Test Summary: | Pass  Total
+tensor ops    | 1077   1077
+Test Summary: | Pass  Total
+AD            |  401    401
+ ──────────────────────────────────────────────────────────────────────────────
+                                       Time                   Allocations      
+                               ──────────────────────   ───────────────────────
+       Tot &#x2F; % measured:             463s &#x2F; 95.1%           24.0GiB &#x2F; 97.6%    
+
+ Section               ncalls     time   %tot     avg     alloc   %tot      avg
+ ──────────────────────────────────────────────────────────────────────────────
+ tensor ops                 1     151s  34.3%    151s   8.91GiB  38.0%  8.91GiB
+   outer products (...      9    53.9s  12.2%   5.99s   3.90GiB  16.7%   444MiB
+   double contraction       9    45.5s  10.3%   5.06s   1.90GiB  8.09%   216MiB
+   transpose                9    20.4s  4.62%   2.26s   1.58GiB  6.73%   180MiB
+   tovoigt&#x2F;fromvoigt        9    14.6s  3.31%   1.62s    424MiB  1.77%  47.1MiB
+   symmetric&#x2F;skew-s...      9    11.2s  2.55%   1.25s   0.94GiB  3.99%   107MiB
+   dot products             9    2.44s  0.55%   271ms   81.5MiB  0.34%  9.05MiB
+   special                  9    1.48s  0.34%   164ms   50.2MiB  0.21%  5.58MiB
+   rotation                 3    1.02s  0.23%   339ms   44.0MiB  0.18%  14.7MiB
+   cross product            9    308ms  0.07%  34.2ms   5.28MiB  0.02%   600KiB
+ AD                         1    63.4s  14.4%   63.4s   2.85GiB  12.2%  2.85GiB
+   dim 3                    1    29.3s  6.66%   29.3s   1.32GiB  5.62%  1.32GiB
+     hessian                2    14.3s  3.24%   7.13s    597MiB  2.49%   299MiB
+     2nd tensor grad        2    4.53s  1.03%   2.26s    253MiB  1.05%   126MiB
+     scalar grad            2    1.94s  0.44%   970ms   82.2MiB  0.34%  41.1MiB
+   vector calculus ...      1    13.4s  3.04%   13.4s    652MiB  2.71%   652MiB
+   dim 2                    1    11.1s  2.51%   11.1s    498MiB  2.08%   498MiB
+     hessian                2    5.79s  1.31%   2.89s    217MiB  0.90%   108MiB
+     2nd tensor grad        2    1.79s  0.41%   897ms   83.7MiB  0.35%  41.9MiB
+     scalar grad            2    1.15s  0.26%   574ms   52.7MiB  0.22%  26.4MiB
+   dim 1                    1    7.75s  1.76%   7.75s    327MiB  1.36%   327MiB
+     hessian                2    3.56s  0.81%   1.78s    167MiB  0.69%  83.3MiB
+     2nd tensor grad        2    1.34s  0.30%   669ms   42.3MiB  0.18%  21.2MiB
+     scalar grad            2    998ms  0.23%   499ms   25.5MiB  0.11%  12.8MiB
+   f: scalar -&gt; Abs...      1    1.77s  0.40%   1.77s   85.8MiB  0.36%  85.8MiB
+   f: scalar -&gt; scalar      1    104ms  0.02%   104ms   5.27MiB  0.02%  5.27MiB
+ constructors               1    53.8s  12.2%   53.8s   2.38GiB  10.1%  2.38GiB
+ simple math                1    42.2s  9.58%   42.2s   1.99GiB  8.47%  1.99GiB
+ norm, trace, det, ...      1    37.9s  8.60%   37.9s   1.76GiB  7.50%  1.76GiB
+ construct from Array       1    26.6s  6.03%   26.6s   1.64GiB  6.98%  1.64GiB
+ tensor identities          1    19.0s  4.31%   19.0s   1.30GiB  5.55%  1.30GiB
+ eigen(::FourthOrde...      1    10.4s  2.36%   10.4s    513MiB  2.14%   513MiB
+ promotion&#x2F;conversion       1    10.3s  2.35%   10.3s    789MiB  3.29%   789MiB
+ construct from fun...      1    9.12s  2.07%   9.12s    684MiB  2.85%   684MiB
+ indexing                   1    8.86s  2.01%   8.86s    429MiB  1.79%   429MiB
+ base vectors               1    4.15s  0.94%   4.15s    116MiB  0.48%   116MiB
+ diagm, one                 1    3.82s  0.87%   3.82s    155MiB  0.64%   155MiB
+ exceptions                 1   74.0ms  0.02%  74.0ms    606KiB  0.00%   606KiB
+ ──────────────────────────────────────────────────────────────────────────────
+   Testing Tensors tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

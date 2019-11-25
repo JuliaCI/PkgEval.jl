@@ -1,0 +1,121 @@
+ Resolving package versions...
+ Installed Hyperspecialize ─ v0.2.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [1711496e] + Hyperspecialize v0.2.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [1711496e] + Hyperspecialize v0.2.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+   Testing Hyperspecialize
+ Resolving package versions...
+Status `/tmp/jl_SMP6d4/Manifest.toml`
+  [1711496e] Hyperspecialize v0.2.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+Test Summary:                 | Pass  Total
+Simple Concretization Pregame |    1      1
+Test Summary:              | Pass  Total
+Simple Concretization Gala |    1      1
+Test Summary:         | Pass  Total
+Simple Concretization |   31     31
+Test Summary:                    | Pass  Total
+Simple Concretization Afterparty |    2      2
+Test Summary:         | Pass  Total
+Module Concretization |    9      9
+Test Summary:                    | Pass  Total
+Module Concretization Afterparty |   14     14
+Test Summary:                    | Pass  Total
+Module Concretization Late Night |    1      1
+Simple Replicable: Test Failed at /root/.julia/packages/Hyperspecialize/GS9h2/test/simple_replicable.jl:48
+  Expression: f(Int8(1))
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/Hyperspecialize/GS9h2/test/simple_replicable.jl:48 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+ [3] top-level scope at /root/.julia/packages/Hyperspecialize/GS9h2/test/simple_replicable.jl:15
+Simple Replicable: Test Failed at /root/.julia/packages/Hyperspecialize/GS9h2/test/simple_replicable.jl:52
+  Expression: f(1.0)
+Stacktrace:
+ [1] macro expansion at /root/.julia/packages/Hyperspecialize/GS9h2/test/simple_replicable.jl:52 [inlined]
+ [2] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+ [3] top-level scope at /root/.julia/packages/Hyperspecialize/GS9h2/test/simple_replicable.jl:15
+Unreachable reached at 0x7f73aa899d87
+
+signal (4): Illegal instruction
+in expression starting at /root/.julia/packages/Hyperspecialize/GS9h2/test/simple_replicable.jl:12
+macro expansion at /root/.julia/packages/Hyperspecialize/GS9h2/test/simple_replicable.jl:60 [inlined]
+macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+top-level scope at /root/.julia/packages/Hyperspecialize/GS9h2/test/simple_replicable.jl:15
+jl_toplevel_eval_flex at /buildworker/worker/package_linux64/build/src/toplevel.c:808
+jl_eval_module_expr at /buildworker/worker/package_linux64/build/src/toplevel.c:181
+jl_toplevel_eval_flex at /buildworker/worker/package_linux64/build/src/toplevel.c:640
+jl_parse_eval_all at /buildworker/worker/package_linux64/build/src/ast.c:873
+jl_load at /buildworker/worker/package_linux64/build/src/toplevel.c:872
+include at ./client.jl:439
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2144 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2322
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1654 [inlined]
+do_call at /buildworker/worker/package_linux64/build/src/interpreter.c:328
+eval_value at /buildworker/worker/package_linux64/build/src/interpreter.c:417
+eval_stmt_value at /buildworker/worker/package_linux64/build/src/interpreter.c:368 [inlined]
+eval_body at /buildworker/worker/package_linux64/build/src/interpreter.c:778
+jl_interpret_toplevel_thunk_callback at /buildworker/worker/package_linux64/build/src/interpreter.c:888
+Lenter_interpreter_frame_start_val at /opt/julia/bin/../lib/libjulia.so.1 (unknown line)
+jl_interpret_toplevel_thunk at /buildworker/worker/package_linux64/build/src/interpreter.c:897
+jl_toplevel_eval_flex at /buildworker/worker/package_linux64/build/src/toplevel.c:814
+jl_parse_eval_all at /buildworker/worker/package_linux64/build/src/ast.c:873
+jl_load at /buildworker/worker/package_linux64/build/src/toplevel.c:872
+include at ./client.jl:439
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2158 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2322
+jl_apply at /buildworker/worker/package_linux64/build/src/julia.h:1654 [inlined]
+do_call at /buildworker/worker/package_linux64/build/src/interpreter.c:328
+eval_value at /buildworker/worker/package_linux64/build/src/interpreter.c:417
+eval_stmt_value at /buildworker/worker/package_linux64/build/src/interpreter.c:368 [inlined]
+eval_body at /buildworker/worker/package_linux64/build/src/interpreter.c:778
+jl_interpret_toplevel_thunk_callback at /buildworker/worker/package_linux64/build/src/interpreter.c:888
+Lenter_interpreter_frame_start_val at /opt/julia/bin/../lib/libjulia.so.1 (unknown line)
+jl_interpret_toplevel_thunk at /buildworker/worker/package_linux64/build/src/interpreter.c:897
+jl_toplevel_eval_flex at /buildworker/worker/package_linux64/build/src/toplevel.c:814
+jl_toplevel_eval_flex at /buildworker/worker/package_linux64/build/src/toplevel.c:764
+jl_toplevel_eval_in at /buildworker/worker/package_linux64/build/src/toplevel.c:843
+eval at ./boot.jl:331
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2144 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2322
+exec_options at ./client.jl:264
+_start at ./client.jl:484
+jfptr__start_2095.clone_1 at /opt/julia/lib/julia/sys.so (unknown line)
+_jl_invoke at /buildworker/worker/package_linux64/build/src/gf.c:2144 [inlined]
+jl_apply_generic at /buildworker/worker/package_linux64/build/src/gf.c:2322
+jl_apply at /buildworker/worker/package_linux64/build/ui/../src/julia.h:1654 [inlined]
+true_main at /buildworker/worker/package_linux64/build/ui/repl.c:96
+main at /buildworker/worker/package_linux64/build/ui/repl.c:217
+__libc_start_main at /lib/x86_64-linux-gnu/libc.so.6 (unknown line)
+_start at /opt/julia/bin/julia (unknown line)
+Allocations: 15782845 (Pool: 15778629; Big: 4216); GC: 16
+ERROR: Package Hyperspecialize errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

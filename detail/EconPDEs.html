@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="EconPDEs">EconPDEs</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#EconPDEs">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 10 hours ago and took 7 minutes, 46 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/EconPDEs/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Requires ───────────── v0.5.2
+ Installed NaNMath ────────────── v0.3.3
+ Installed ArrayInterface ─────── v1.2.1
+ Installed DiffEqDiffTools ────── v1.4.0
+ Installed DiffRules ──────────── v0.1.0
+ Installed CommonSubexpressions ─ v0.2.0
+ Installed BinaryProvider ─────── v0.5.8
+ Installed EconPDEs ───────────── v0.2.2
+ Installed URIParser ──────────── v0.4.0
+ Installed Reexport ───────────── v0.2.0
+ Installed MINPACK ────────────── v1.1.1
+ Installed BinDeps ────────────── v0.8.10
+ Installed NLsolve ────────────── v4.2.0
+ Installed Distances ──────────── v0.8.2
+ Installed SpecialFunctions ───── v0.8.0
+ Installed StaticArrays ───────── v0.12.1
+ Installed DiffResults ────────── v0.0.4
+ Installed NLSolversBase ──────── v7.5.0
+ Installed OrderedCollections ─── v1.1.0
+ Installed Parameters ─────────── v0.12.0
+ Installed Calculus ───────────── v0.5.1
+ Installed ForwardDiff ────────── v0.10.6
+ Installed LineSearches ───────── v7.0.1
+ Installed Compat ─────────────── v2.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [a3315474] + EconPDEs v0.2.2
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [b4f34e82] + Distances v0.8.2
+  [a3315474] + EconPDEs v0.2.2
+  [f6369f11] + ForwardDiff v0.10.6
+  [d3d80556] + LineSearches v7.0.1
+  [4854310b] + MINPACK v1.1.1
+  [d41bc354] + NLSolversBase v7.5.0
+  [2774e3e8] + NLsolve v4.2.0
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+  Building MINPACK ─────────→ `~&#x2F;.julia&#x2F;packages&#x2F;MINPACK&#x2F;8wsGn&#x2F;deps&#x2F;build.log`
+   Testing EconPDEs
+ Resolving package versions...
+ Installed Missings ────────── v0.4.3
+ Installed DataAPI ─────────── v1.1.0
+ Installed Rmath ───────────── v0.5.1
+ Installed PDMats ──────────── v0.9.10
+ Installed Arpack ──────────── v0.3.1
+ Installed StatsBase ───────── v0.32.0
+ Installed QuadGK ──────────── v2.1.1
+ Installed Distributions ───── v0.21.8
+ Installed SortingAlgorithms ─ v0.3.1
+ Installed StatsFuns ───────── v0.9.0
+ Installed DataStructures ──── v0.17.6
+  Building Arpack → `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+  Building Rmath ─→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+    Status `&#x2F;tmp&#x2F;tmpWhZvFl&#x2F;Manifest.toml`
+  [7d9fca2a] Arpack v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [31c24e10] Distributions v0.21.8
+  [a3315474] EconPDEs v0.2.2
+  [f6369f11] ForwardDiff v0.10.6
+  [d3d80556] LineSearches v7.0.1
+  [4854310b] MINPACK v1.1.1
+  [e1d29d7a] Missings v0.4.3
+  [d41bc354] NLSolversBase v7.5.0
+  [2774e3e8] NLsolve v4.2.0
+  [77ba4419] NaNMath v0.3.3
+  [bac558e1] OrderedCollections v1.1.0
+  [90014a1f] PDMats v0.9.10
+  [d96e819e] Parameters v0.12.0
+  [1fd47b50] QuadGK v2.1.1
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [79098fc4] Rmath v0.5.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Running tests:
+(iter, Δ, distance) = (1, 1.0, 0.025129053451773287)
+(iter, Δ, distance) = (2, 2.2338747672595334, 0.02011032060566046)
+(iter, Δ, distance) = (3, 11.165442765787045, 0.01025351307632478)
+(iter, Δ, distance) = (4, 175.19118144401918, 0.0008446896305121225)
+(iter, Δ, distance) = (5, 34025.75345841911, 3.5216481713193915e-7)
+(iter, Δ, distance) = (6, 2.6116136280287805e9, 8.164981516031043e-15)
+	[1m[32mPASSED[0m: Habit
+(iter, Δ, distance) = (1, 1.0, 0.03209014830344558)
+(iter, Δ, distance) = (2, 2.0381571314510643, 0.030857771581161077)
+(iter, Δ, distance) = (3, 8.478222666463708, 0.026309407613923506)
+(iter, Δ, distance) = (4, 79.55148585481797, 0.009905092871969345)
+(iter, Δ, distance) = (5, 3380.810247335403, 0.00013841243952426708)
+(iter, Δ, distance) = (6, 7.74201847116302e6, 8.564285936855658e-10)
+(iter, Δ, distance) = (1, 1.0, 0.032702350033711525)
+(iter, Δ, distance) = (2, 2.0193006229771835, 0.03205753236951287)
+(iter, Δ, distance) = (3, 8.239670481773272, 0.029588324177957655)
+(iter, Δ, distance) = (4, 71.41830719303657, 0.0170769747093014)
+(iter, Δ, distance) = (5, 1979.880452073331, 0.0007731580135385729)
+(iter, Δ, distance) = (6, 1.3993669729789463e6, 5.115020143755338e-8)
+(iter, Δ, distance) = (7, 1.353731413611123e12, 3.802771257973937e-14)
+(iter, Δ, distance) = (1, 1.0, 0.19254814332303982)
+(iter, Δ, distance) = (2, 2.038106595857852, 0.1851446645478474)
+(iter, Δ, distance) = (3, 8.478421819721474, 0.1577044492966769)
+(iter, Δ, distance) = (4, 79.6291833595368, 0.058935879923039364)
+(iter, Δ, distance) = (5, 3409.230920399158, 0.0008073894539624561)
+(iter, Δ, distance) = (6, 7.963483720763125e6, 4.7997059868685505e-9)
+(iter, Δ, distance) = (7, 8.573368839556878e13, 1.0719224231074357e-15)
+	[1m[32mPASSED[0m: BansalYaron
+(iter, Δ, distance) = (1, 1.0, 0.4356708204444414)
+(iter, Δ, distance) = (2, 2.025811918562808, 0.42469925081586296)
+(iter, Δ, distance) = (3, 8.312584860283167, 0.3845671882999335)
+(iter, Δ, distance) = (4, 73.44045295413272, 0.19974651889281428)
+(iter, Δ, distance) = (5, 2262.2903192780805, 0.006719024463934574)
+(iter, Δ, distance) = (6, 2.1521439294708194e6, 2.4539738556850586e-7)
+(iter, Δ, distance) = (7, 3.771269573330886e12, 2.279376074716525e-15)
+	[1m[32mPASSED[0m: Wachter
+(iter, Δ, distance) = (1, 1.0, 2.8279336795728236)
+(iter, Δ, distance) = (2, 2.2105116599792867, 2.1908741418581923)
+(iter, Δ, distance) = (3, 11.413125478840895, 1.1203475272440628)
+(iter, Δ, distance) = (4, 178.5497509036997, 0.10242852466670897)
+(iter, Δ, distance) = (5, 31247.197604909998, 3.593968669332173e-5)
+(iter, Δ, distance) = (6, 2.849756039735125e9, 1.5612894800321262e-13)
+	[1m[32mPASSED[0m: GarleanuPanageas
+(iter, Δ, NaN) = (1, 1.0, NaN)
+(iter, Δ, distance) = (2, 0.1, 0.3618873611668846)
+(iter, Δ, NaN) = (3, 1.3252017211181226, NaN)
+(iter, Δ, distance) = (4, 0.13252017211181227, 0.14203738592876916)
+(iter, Δ, distance) = (5, 0.6752782033171947, 0.14864074089442905)
+(iter, Δ, distance) = (6, 0.6452790143314271, 0.15001331754922317)
+(iter, Δ, distance) = (7, 0.6393749057804695, 0.1460938380717773)
+(iter, Δ, distance) = (8, 1.3130567591321187, 0.13001991553895498)
+(iter, Δ, distance) = (9, 5.901542106146865, 0.06822784953733015)
+(iter, Δ, distance) = (10, 89.97123742215817, 0.004366144111888864)
+(iter, Δ, distance) = (11, 22495.067106232666, 1.5411929498642873e-6)
+(iter, Δ, distance) = (12, 2.0392868742582042e9, 7.43411503654946e-15)
+(iter, Δ, NaN) = (1, 1.0, NaN)
+(iter, Δ, distance) = (2, 0.1, 0.3584249498014828)
+(iter, Δ, NaN) = (3, 1.3380032671689506, NaN)
+(iter, Δ, distance) = (4, 0.13380032671689507, 0.1302265928950259)
+(iter, Δ, distance) = (5, 0.7365220009339104, 0.11216510706075752)
+(iter, Δ, distance) = (6, 3.4204844371751078, 0.07979149328329853)
+(iter, Δ, distance) = (7, 38.46615595807691, 0.014753147303391619)
+(iter, Δ, distance) = (8, 3328.669563607065, 3.8882149266888805e-5)
+(iter, Δ, distance) = (9, 4.04161628487186e7, 8.309821946740536e-12)
+ 10.422124 seconds (486.82 k allocations: 100.547 MiB, 3.10% gc time)
+	[1m[32mPASSED[0m: DiTella
+	[1m[32mPASSED[0m: HoldingCost
+(iter, Δ, distance) = (1, 1.0, 0.3028857361702543)
+(iter, Δ, distance) = (2, 2.043147417172316, 0.29004705897134253)
+(iter, Δ, distance) = (3, 8.534342140883197, 0.24406458047188867)
+(iter, Δ, distance) = (4, 81.13789664792345, 0.08187969941018884)
+(iter, Δ, distance) = (5, 3869.6549886518405, 0.0007574843984262291)
+(iter, Δ, distance) = (6, 1.3385197126709998e7, 1.889720208506512e-9)
+(iter, Δ, distance) = (7, 3.433846918993131e14, 1.761033507896442e-14)
+	[1m[32mPASSED[0m: WangWangYang
+(iter, Δ, distance) = (1, 1.0, 0.0990400215291272)
+(iter, Δ, distance) = (2, 2.3171382822906255, 0.07261465082540997)
+(iter, Δ, distance) = (3, 12.641494395713512, 0.025295237287809753)
+(iter, Δ, NaN) = (4, 290.31795701667346, NaN)
+(iter, Δ, distance) = (5, 29.031795701667345, 0.006715754574261635)
+(iter, Δ, NaN) = (6, 218.69952305266628, NaN)
+(iter, Δ, NaN) = (7, 21.86995230526663, NaN)
+(iter, Δ, distance) = (8, 2.186995230526663, 0.006053696297727226)
+(iter, Δ, distance) = (9, 4.8523488794150325, 0.005266346732797562)
+(iter, Δ, NaN) = (10, 22.311213398584094, NaN)
+(iter, Δ, distance) = (11, 2.2311213398584093, 0.005048504965294091)
+(iter, Δ, distance) = (12, 4.654787371474354, 0.004648165190412497)
+(iter, Δ, distance) = (13, 20.22279002110168, 0.0031470045999162375)
+(iter, Δ, NaN) = (14, 238.95451219005645, NaN)
+(iter, Δ, distance) = (15, 23.895451219005643, 0.0019014484311923234)
+(iter, Δ, NaN) = (16, 79.09664408424733, NaN)
+(iter, Δ, distance) = (17, 7.909664408424733, 0.0015462835290555915)
+(iter, Δ, distance) = (18, 19.4528606145636, 0.0009648289749165297)
+(iter, Δ, NaN) = (19, 124.70453828945678, NaN)
+(iter, Δ, distance) = (20, 12.470453828945677, 0.0006944055539030758)
+(iter, Δ, NaN) = (21, 34.65368362017727, NaN)
+(iter, Δ, distance) = (22, 3.4653683620177267, 0.0006265928858493808)
+(iter, Δ, distance) = (23, 7.680811867639216, 0.0005045632398041919)
+(iter, Δ, distance) = (24, 38.15372737560453, 0.00022727993674615668)
+(iter, Δ, distance) = (25, 677.612588980675, 9.801224898156989e-6)
+(iter, Δ, distance) = (26, 251409.79493840487, 1.2249430667824948e-9)
+(iter, Δ, distance) = (27, 6.437194370545223e10, 6.097678453150503e-17)
+	[1m[32mPASSED[0m: AchdouHanLasryLionsMoll
+(iter, Δ, distance) = (1, 1.0, 0.1215298678376415)
+(iter, Δ, distance) = (2, 2.2952667993148084, 0.09070916010015201)
+(iter, Δ, distance) = (3, 12.300564594132435, 0.03196072762031741)
+(iter, Δ, distance) = (4, 279.28622811005687, 0.0007672340151664907)
+(iter, Δ, distance) = (5, 186147.9733855516, 4.7294241358612806e-8)
+(iter, Δ, distance) = (6, 9.663353706191064e10, 1.723296347444274e-13)
+	[1m[32mPASSED[0m: AchdouHanLasryLionsMoll Two Assets
+(iter, Δ, distance) = (1, 1.0, 0.0045502679085794905)
+(iter, Δ, distance) = (2, 3.0108050474367944, 0.0033020376058711088)
+(iter, Δ, distance) = (3, 16.595776573812355, 0.0011886554403845958)
+(iter, Δ, distance) = (4, 368.8192657588469, 4.493246384722203e-5)
+(iter, Δ, distance) = (5, 156109.4991820742, 5.731827207629322e-9)
+(iter, Δ, distance) = (6, 3.916033990065868e10, 9.717724783263202e-15)
+	[1m[32mPASSED[0m: BoltonChenWang
+   Testing EconPDEs tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 15 hours ago and took 6 minutes, 52 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/EconPDEs/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Adapt ──────────────── v1.0.0
+ Installed Inflate ────────────── v0.1.1
+ Installed CommonSubexpressions ─ v0.2.0
+ Installed LineSearches ───────── v7.0.1
+ Installed BlockBandedMatrices ── v0.6.0
+ Installed BinaryProvider ─────── v0.5.8
+ Installed BlockArrays ────────── v0.10.2
+ Installed EconPDEs ───────────── v0.3.0
+ Installed Reexport ───────────── v0.2.0
+ Installed Requires ───────────── v0.5.2
+ Installed URIParser ──────────── v0.4.0
+ Installed ArrayLayouts ───────── v0.1.5
+ Installed NLSolversBase ──────── v7.5.0
+ Installed ForwardDiff ────────── v0.10.6
+ Installed Compat ─────────────── v2.2.0
+ Installed VertexSafeGraphs ───── v0.1.0
+ Installed OrderedCollections ─── v1.1.0
+ Installed Calculus ───────────── v0.5.1
+ Installed DataStructures ─────── v0.17.6
+ Installed FillArrays ─────────── v0.8.2
+ Installed DiffRules ──────────── v0.1.0
+ Installed DiffEqDiffTools ────── v1.4.0
+ Installed BandedMatrices ─────── v0.14.1
+ Installed LightGraphs ────────── v1.3.0
+ Installed ArrayInterface ─────── v1.2.1
+ Installed SparseDiffTools ────── v0.10.3
+ Installed DiffResults ────────── v0.0.4
+ Installed SimpleTraits ───────── v0.9.1
+ Installed Parameters ─────────── v0.12.0
+ Installed NaNMath ────────────── v0.3.3
+ Installed StaticArrays ───────── v0.12.1
+ Installed NLsolve ────────────── v4.2.0
+ Installed MacroTools ─────────── v0.5.2
+ Installed Distances ──────────── v0.8.2
+ Installed ArnoldiMethod ──────── v0.0.4
+ Installed SpecialFunctions ───── v0.8.0
+ Installed MatrixFactorizations ─ v0.2.1
+ Installed BinDeps ────────────── v0.8.10
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [a3315474] + EconPDEs v0.3.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [79e6a3ab] + Adapt v1.0.0
+  [ec485272] + ArnoldiMethod v0.0.4
+  [4fba245c] + ArrayInterface v1.2.1
+  [4c555306] + ArrayLayouts v0.1.5
+  [aae01518] + BandedMatrices v0.14.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [8e7c35d0] + BlockArrays v0.10.2
+  [ffab5731] + BlockBandedMatrices v0.6.0
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [864edb3b] + DataStructures v0.17.6
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [b4f34e82] + Distances v0.8.2
+  [a3315474] + EconPDEs v0.3.0
+  [1a297f60] + FillArrays v0.8.2
+  [f6369f11] + ForwardDiff v0.10.6
+  [d25df0c9] + Inflate v0.1.1
+  [093fc24a] + LightGraphs v1.3.0
+  [d3d80556] + LineSearches v7.0.1
+  [1914dd2f] + MacroTools v0.5.2
+  [a3b82374] + MatrixFactorizations v0.2.1
+  [d41bc354] + NLSolversBase v7.5.0
+  [2774e3e8] + NLsolve v4.2.0
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [699a6c99] + SimpleTraits v0.9.1
+  [47a9eef4] + SparseDiffTools v0.10.3
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [30578b45] + URIParser v0.4.0
+  [19fa3120] + VertexSafeGraphs v0.1.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing EconPDEs
+ Resolving package versions...
+ Installed Missings ────────── v0.4.3
+ Installed DataAPI ─────────── v1.1.0
+ Installed QuadGK ──────────── v2.1.1
+ Installed StatsFuns ───────── v0.9.0
+ Installed Rmath ───────────── v0.5.1
+ Installed StatsBase ───────── v0.32.0
+ Installed Distributions ───── v0.21.8
+ Installed PDMats ──────────── v0.9.10
+ Installed SortingAlgorithms ─ v0.3.1
+ Installed Arpack ──────────── v0.3.1
+  Building Rmath ─→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+  Building Arpack → `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+    Status `&#x2F;tmp&#x2F;jl_ucNMzL&#x2F;Manifest.toml`
+  [79e6a3ab] Adapt v1.0.0
+  [ec485272] ArnoldiMethod v0.0.4
+  [7d9fca2a] Arpack v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [4c555306] ArrayLayouts v0.1.5
+  [aae01518] BandedMatrices v0.14.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [8e7c35d0] BlockArrays v0.10.2
+  [ffab5731] BlockBandedMatrices v0.6.0
+  [49dc2e85] Calculus v0.5.1
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [31c24e10] Distributions v0.21.8
+  [a3315474] EconPDEs v0.3.0
+  [1a297f60] FillArrays v0.8.2
+  [f6369f11] ForwardDiff v0.10.6
+  [d25df0c9] Inflate v0.1.1
+  [093fc24a] LightGraphs v1.3.0
+  [d3d80556] LineSearches v7.0.1
+  [1914dd2f] MacroTools v0.5.2
+  [a3b82374] MatrixFactorizations v0.2.1
+  [e1d29d7a] Missings v0.4.3
+  [d41bc354] NLSolversBase v7.5.0
+  [2774e3e8] NLsolve v4.2.0
+  [77ba4419] NaNMath v0.3.3
+  [bac558e1] OrderedCollections v1.1.0
+  [90014a1f] PDMats v0.9.10
+  [d96e819e] Parameters v0.12.0
+  [1fd47b50] QuadGK v2.1.1
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [79098fc4] Rmath v0.5.1
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [47a9eef4] SparseDiffTools v0.10.3
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [30578b45] URIParser v0.4.0
+  [19fa3120] VertexSafeGraphs v0.1.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Running tests:
+(iter, Δ, distance) = (1, 1.0, 0.025129053451773388)
+(iter, Δ, distance) = (2, 11.169373836297623, 0.012032013502802925)
+(iter, Δ, distance) = (3, 2332.741665306286, 7.688668604621793e-5)
+(iter, Δ, distance) = (4, 3.650512287477744e8, 3.02945921931553e-12)
+	[1m[32mPASSED[0m: CampbellCochrane
+(iter, Δ, distance) = (1, 1.0, 0.17786158179099495)
+(iter, Δ, distance) = (2, 10.129066931966467, 0.157773615854242)
+(iter, Δ, distance) = (3, 1141.8714446215045, 0.010336670617248352)
+(iter, Δ, distance) = (4, 1.7428937549584016e7, 4.742155149648789e-8)
+(iter, Δ, distance) = (5, 3.799057200226447e16, 3.6100435735287754e-14)
+	[1m[32mPASSED[0m: Wachter
+(iter, Δ, distance) = (1, 1.0, 0.03209014830344568)
+(iter, Δ, distance) = (2, 10.19078565725529, 0.026606306289517833)
+(iter, Δ, distance) = (3, 1229.1214703439985, 0.0010002525924699337)
+(iter, Δ, distance) = (4, 3.2694124017457046e7, 1.4656967563860591e-9)
+(iter, Δ, distance) = (5, 2.2311833716292435e17, 7.079063455743354e-15)
+	[1m[32mPASSED[0m: BansalYaron
+(iter, Δ, distance) = (1, 1.0, 0.6347390975001165)
+(iter, Δ, distance) = (2, 11.010774709800193, 0.3069226942800503)
+(iter, Δ, distance) = (3, 2277.110598963603, 0.0022953447645562273)
+(iter, Δ, distance) = (4, 3.044845075126176e8, 8.274212625153344e-11)
+	[1m[32mPASSED[0m: GarleanuPanageas
+(iter, Δ, distance) = (1, 1.0, 0.02916533135409747)
+(iter, Δ, distance) = (2, 48.54997316902592, 0.003962533179134777)
+(iter, Δ, distance) = (3, 35734.112263417366, 8.620973588011361e-7)
+(iter, Δ, distance) = (4, 1.6424781264569586e11, 1.8947411621052638e-15)
+(iter, Δ, distance) = (1, 1.0, 0.022428605108382835)
+(iter, Δ, distance) = (2, 63.132595534349676, 0.002681406479923729)
+(iter, Δ, distance) = (3, 52807.213874841495, 4.565112914440729e-7)
+(iter, Δ, distance) = (4, 3.1017328185422406e11, 1.3954109724591453e-12)
+	[1m[32mPASSED[0m: DiTella
+(iter, Δ, distance) = (1, 1.0, 0.03278277459426223)
+(iter, Δ, distance) = (2, 10.085270229947819, 0.02991714750443569)
+(iter, Δ, distance) = (3, 1105.1292260453056, 0.002541625316794278)
+(iter, Δ, distance) = (4, 1.3008335197400916e7, 1.926221902016092e-8)
+(iter, Δ, distance) = (5, 1.716433295273789e16, 3.240068054929948e-14)
+	[1m[32mPASSED[0m: Haddad
+	[1m[32mPASSED[0m: ArbitrageHoldingCosts
+(iter, Δ, distance) = (1, 1.0, 0.025129053451773388)
+(iter, Δ, distance) = (2, 11.169373836297623, 0.012032013502802925)
+(iter, Δ, distance) = (3, 2332.741665306286, 7.688668604621793e-5)
+(iter, Δ, distance) = (4, 3.650512287477744e8, 3.02945921931553e-12)
+(iter, Δ, distance) = (1, 1.0, 0.04295107481084078)
+(iter, Δ, distance) = (2, 10.202647193657636, 0.03540626352590569)
+(iter, Δ, distance) = (3, 1237.67553885706, 0.001143790024626437)
+(iter, Δ, distance) = (4, 3.8312509590781346e7, 1.0859313088074837e-9)
+(iter, Δ, distance) = (5, 4.0353810533801606e17, 4.918790491022731e-12)
+	[1m[32mPASSED[0m: WangWangYang
+(iter, Δ, distance) = (1, 1.0, 0.025629807705221084)
+(iter, Δ, distance) = (2, 10.431162624165385, 0.017607018701630603)
+(iter, Δ, distance) = (3, 1518.4211292652785, 0.00024674693581427866)
+(iter, Δ, distance) = (4, 1.0834934639288734e8, 4.7226653968402284e-11)
+	[1m[32mPASSED[0m: AchdouHanLasryLionsMoll_OneAsset
+(iter, Δ, distance) = (1, 1.0, 0.016830328605064535)
+(iter, Δ, distance) = (2, 10.457850463647146, 0.011326111307382359)
+(iter, Δ, distance) = (3, 1554.0113903973845, 0.00014917958851608134)
+(iter, Δ, distance) = (4, 1.1798467977865113e8, 2.532548420466388e-11)
+	[1m[32mPASSED[0m: AchdouHanLasryLionsMoll_TwoAssets
+(iter, Δ, distance) = (1, 1.0, 0.029540192892527163)
+(iter, Δ, distance) = (2, 17.247313457221487, 0.003534985058479483)
+(iter, Δ, distance) = (3, 14412.761524467398, 1.8182696836359293e-6)
+(iter, Δ, distance) = (4, 2.8020539031668575e10, 2.4623974064362503e-14)
+	[1m[32mPASSED[0m: BoltonChenWang
+   Testing EconPDEs tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 13 hours ago and took 7 minutes, 1 second.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/EconPDEs/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed ArrayInterface ─────── v1.2.1
+ Installed DiffEqDiffTools ────── v1.4.0
+ Installed ArrayLayouts ───────── v0.1.5
+ Installed FillArrays ─────────── v0.8.2
+ Installed Distances ──────────── v0.8.2
+ Installed DiffResults ────────── v0.0.4
+ Installed BinDeps ────────────── v0.8.10
+ Installed EconPDEs ───────────── v0.3.0
+ Installed Reexport ───────────── v0.2.0
+ Installed VertexSafeGraphs ───── v0.1.0
+ Installed Inflate ────────────── v0.1.1
+ Installed Calculus ───────────── v0.5.1
+ Installed LineSearches ───────── v7.0.1
+ Installed NLSolversBase ──────── v7.5.0
+ Installed Parameters ─────────── v0.12.0
+ Installed ForwardDiff ────────── v0.10.6
+ Installed DiffRules ──────────── v0.1.0
+ Installed SimpleTraits ───────── v0.9.1
+ Installed URIParser ──────────── v0.4.0
+ Installed Requires ───────────── v0.5.2
+ Installed BlockArrays ────────── v0.10.2
+ Installed NLsolve ────────────── v4.2.0
+ Installed StaticArrays ───────── v0.12.1
+ Installed DataStructures ─────── v0.17.6
+ Installed MatrixFactorizations ─ v0.2.1
+ Installed NaNMath ────────────── v0.3.3
+ Installed CommonSubexpressions ─ v0.2.0
+ Installed ArnoldiMethod ──────── v0.0.4
+ Installed BlockBandedMatrices ── v0.6.0
+ Installed MacroTools ─────────── v0.5.2
+ Installed BandedMatrices ─────── v0.14.1
+ Installed LightGraphs ────────── v1.3.0
+ Installed OrderedCollections ─── v1.1.0
+ Installed SparseDiffTools ────── v0.10.3
+ Installed SpecialFunctions ───── v0.8.0
+ Installed BinaryProvider ─────── v0.5.8
+ Installed Compat ─────────────── v2.2.0
+ Installed Adapt ──────────────── v1.0.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [a3315474] + EconPDEs v0.3.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [79e6a3ab] + Adapt v1.0.0
+  [ec485272] + ArnoldiMethod v0.0.4
+  [4fba245c] + ArrayInterface v1.2.1
+  [4c555306] + ArrayLayouts v0.1.5
+  [aae01518] + BandedMatrices v0.14.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [8e7c35d0] + BlockArrays v0.10.2
+  [ffab5731] + BlockBandedMatrices v0.6.0
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [864edb3b] + DataStructures v0.17.6
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [b4f34e82] + Distances v0.8.2
+  [a3315474] + EconPDEs v0.3.0
+  [1a297f60] + FillArrays v0.8.2
+  [f6369f11] + ForwardDiff v0.10.6
+  [d25df0c9] + Inflate v0.1.1
+  [093fc24a] + LightGraphs v1.3.0
+  [d3d80556] + LineSearches v7.0.1
+  [1914dd2f] + MacroTools v0.5.2
+  [a3b82374] + MatrixFactorizations v0.2.1
+  [d41bc354] + NLSolversBase v7.5.0
+  [2774e3e8] + NLsolve v4.2.0
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [699a6c99] + SimpleTraits v0.9.1
+  [47a9eef4] + SparseDiffTools v0.10.3
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [30578b45] + URIParser v0.4.0
+  [19fa3120] + VertexSafeGraphs v0.1.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing EconPDEs
+ Resolving package versions...
+ Installed SortingAlgorithms ─ v0.3.1
+ Installed Rmath ───────────── v0.5.1
+ Installed DataAPI ─────────── v1.1.0
+ Installed Arpack ──────────── v0.3.1
+ Installed StatsFuns ───────── v0.9.0
+ Installed QuadGK ──────────── v2.1.1
+ Installed Missings ────────── v0.4.3
+ Installed PDMats ──────────── v0.9.10
+ Installed StatsBase ───────── v0.32.0
+ Installed Distributions ───── v0.21.8
+  Building Rmath ─→ `~&#x2F;.julia&#x2F;packages&#x2F;Rmath&#x2F;4wt82&#x2F;deps&#x2F;build.log`
+  Building Arpack → `~&#x2F;.julia&#x2F;packages&#x2F;Arpack&#x2F;cu5By&#x2F;deps&#x2F;build.log`
+Status `&#x2F;tmp&#x2F;jl_G0SRVb&#x2F;Manifest.toml`
+  [79e6a3ab] Adapt v1.0.0
+  [ec485272] ArnoldiMethod v0.0.4
+  [7d9fca2a] Arpack v0.3.1
+  [4fba245c] ArrayInterface v1.2.1
+  [4c555306] ArrayLayouts v0.1.5
+  [aae01518] BandedMatrices v0.14.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [8e7c35d0] BlockArrays v0.10.2
+  [ffab5731] BlockBandedMatrices v0.6.0
+  [49dc2e85] Calculus v0.5.1
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [b4f34e82] Distances v0.8.2
+  [31c24e10] Distributions v0.21.8
+  [a3315474] EconPDEs v0.3.0
+  [1a297f60] FillArrays v0.8.2
+  [f6369f11] ForwardDiff v0.10.6
+  [d25df0c9] Inflate v0.1.1
+  [093fc24a] LightGraphs v1.3.0
+  [d3d80556] LineSearches v7.0.1
+  [1914dd2f] MacroTools v0.5.2
+  [a3b82374] MatrixFactorizations v0.2.1
+  [e1d29d7a] Missings v0.4.3
+  [d41bc354] NLSolversBase v7.5.0
+  [2774e3e8] NLsolve v4.2.0
+  [77ba4419] NaNMath v0.3.3
+  [bac558e1] OrderedCollections v1.1.0
+  [90014a1f] PDMats v0.9.10
+  [d96e819e] Parameters v0.12.0
+  [1fd47b50] QuadGK v2.1.1
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [79098fc4] Rmath v0.5.1
+  [699a6c99] SimpleTraits v0.9.1
+  [a2af1166] SortingAlgorithms v0.3.1
+  [47a9eef4] SparseDiffTools v0.10.3
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [4c63d2b9] StatsFuns v0.9.0
+  [30578b45] URIParser v0.4.0
+  [19fa3120] VertexSafeGraphs v0.1.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Running tests:
+(iter, Δ, distance) = (1, 1.0, 0.025129053451773388)
+(iter, Δ, distance) = (2, 11.169373836297623, 0.012032013502802925)
+(iter, Δ, distance) = (3, 2332.741665306286, 7.688668604621793e-5)
+(iter, Δ, distance) = (4, 3.650512287477744e8, 3.02945921931553e-12)
+	[1m[32mPASSED[0m: CampbellCochrane
+(iter, Δ, distance) = (1, 1.0, 0.17786158179099495)
+(iter, Δ, distance) = (2, 10.129066931966467, 0.157773615854242)
+(iter, Δ, distance) = (3, 1141.8714446215045, 0.010336670617248352)
+(iter, Δ, distance) = (4, 1.7428937549584016e7, 4.742155149648789e-8)
+(iter, Δ, distance) = (5, 3.799057200226447e16, 3.6100435735287754e-14)
+	[1m[32mPASSED[0m: Wachter
+(iter, Δ, distance) = (1, 1.0, 0.03209014830344568)
+(iter, Δ, distance) = (2, 10.19078565725529, 0.026606306289517833)
+(iter, Δ, distance) = (3, 1229.1214703439985, 0.0010002525924699337)
+(iter, Δ, distance) = (4, 3.2694124017457046e7, 1.4656967563860591e-9)
+(iter, Δ, distance) = (5, 2.2311833716292435e17, 7.079063455743354e-15)
+	[1m[32mPASSED[0m: BansalYaron
+(iter, Δ, distance) = (1, 1.0, 0.6347390975001165)
+(iter, Δ, distance) = (2, 11.010774709800193, 0.3069226942800503)
+(iter, Δ, distance) = (3, 2277.110598963603, 0.0022953447645562273)
+(iter, Δ, distance) = (4, 3.044845075126176e8, 8.274212625153344e-11)
+	[1m[32mPASSED[0m: GarleanuPanageas
+(iter, Δ, distance) = (1, 1.0, 0.02916533135409747)
+(iter, Δ, distance) = (2, 48.54997316902592, 0.003962533179134777)
+(iter, Δ, distance) = (3, 35734.112263417366, 8.620973588011361e-7)
+(iter, Δ, distance) = (4, 1.6424781264569586e11, 1.8947411621052638e-15)
+(iter, Δ, distance) = (1, 1.0, 0.022428605108382835)
+(iter, Δ, distance) = (2, 63.132595534349676, 0.002681406479923729)
+(iter, Δ, distance) = (3, 52807.213874841495, 4.565112914440729e-7)
+(iter, Δ, distance) = (4, 3.1017328185422406e11, 1.3954109724591453e-12)
+	[1m[32mPASSED[0m: DiTella
+(iter, Δ, distance) = (1, 1.0, 0.03278277459426223)
+(iter, Δ, distance) = (2, 10.085270229947819, 0.02991714750443569)
+(iter, Δ, distance) = (3, 1105.1292260453056, 0.002541625316794278)
+(iter, Δ, distance) = (4, 1.3008335197400916e7, 1.926221902016092e-8)
+(iter, Δ, distance) = (5, 1.716433295273789e16, 3.240068054929948e-14)
+	[1m[32mPASSED[0m: Haddad
+	[1m[32mPASSED[0m: ArbitrageHoldingCosts
+(iter, Δ, distance) = (1, 1.0, 0.025129053451773388)
+(iter, Δ, distance) = (2, 11.169373836297623, 0.012032013502802925)
+(iter, Δ, distance) = (3, 2332.741665306286, 7.688668604621793e-5)
+(iter, Δ, distance) = (4, 3.650512287477744e8, 3.02945921931553e-12)
+(iter, Δ, distance) = (1, 1.0, 0.04295107481084078)
+(iter, Δ, distance) = (2, 10.202647193657636, 0.03540626352590569)
+(iter, Δ, distance) = (3, 1237.67553885706, 0.001143790024626437)
+(iter, Δ, distance) = (4, 3.8312509590781346e7, 1.0859313088074837e-9)
+(iter, Δ, distance) = (5, 4.0353810533801606e17, 4.918790491022731e-12)
+	[1m[32mPASSED[0m: WangWangYang
+(iter, Δ, distance) = (1, 1.0, 0.025629807705221084)
+(iter, Δ, distance) = (2, 10.431162624165385, 0.017607018701630603)
+(iter, Δ, distance) = (3, 1518.4211292652785, 0.00024674693581427866)
+(iter, Δ, distance) = (4, 1.0834934639288734e8, 4.7226653968402284e-11)
+	[1m[32mPASSED[0m: AchdouHanLasryLionsMoll_OneAsset
+(iter, Δ, distance) = (1, 1.0, 0.016830328605064535)
+(iter, Δ, distance) = (2, 10.457850463647146, 0.011326111307382359)
+(iter, Δ, distance) = (3, 1554.0113903973845, 0.00014917958851608134)
+(iter, Δ, distance) = (4, 1.1798467977865113e8, 2.532548420466388e-11)
+	[1m[32mPASSED[0m: AchdouHanLasryLionsMoll_TwoAssets
+(iter, Δ, distance) = (1, 1.0, 0.029540192892527163)
+(iter, Δ, distance) = (2, 17.247313457221487, 0.003534985058479483)
+(iter, Δ, distance) = (3, 14412.761524467398, 1.8182696836359293e-6)
+(iter, Δ, distance) = (4, 2.8020539031668575e10, 2.4623974064362503e-14)
+	[1m[32mPASSED[0m: BoltonChenWang
+   Testing EconPDEs tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

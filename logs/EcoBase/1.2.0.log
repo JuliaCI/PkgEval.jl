@@ -1,0 +1,65 @@
+ Resolving package versions...
+ Installed EcoBase ───── v0.0.7
+ Installed RecipesBase ─ v0.7.0
+ Installed Compat ────── v2.2.0
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [a58aae7d] + EcoBase v0.0.7
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [34da2185] + Compat v2.2.0
+  [a58aae7d] + EcoBase v0.0.7
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing EcoBase
+ Resolving package versions...
+ERROR: Unsatisfiable requirements detected for package Diversity [d3d5718d]:
+ Diversity [d3d5718d] log:
+ ├─possible versions are: 0.4.4-0.4.6 or uninstalled
+ └─restricted to versions 0.5.0-* by an explicit requirement — no versions left
+Stacktrace:
+ [1] check_constraints(::Pkg.GraphType.Graph) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/GraphType.jl:937
+ [2] Pkg.GraphType.Graph(::Dict{Base.UUID,Set{VersionNumber}}, ::Dict{Base.UUID,Dict{Pkg.Types.VersionRange,Dict{String,Base.UUID}}}, ::Dict{Base.UUID,Dict{Pkg.Types.VersionRange,Dict{String,Pkg.Types.VersionSpec}}}, ::Dict{Base.UUID,String}, ::Dict{Base.UUID,Pkg.Types.VersionSpec}, ::Dict{Base.UUID,Pkg.Types.Fixed}, ::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/GraphType.jl:364
+ [3] deps_graph(::Pkg.Types.Context, ::Dict{Base.UUID,String}, ::Dict{Base.UUID,Pkg.Types.VersionSpec}, ::Dict{Base.UUID,Pkg.Types.Fixed}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:431
+ [4] _resolve_versions!(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}, ::Nothing) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:146
+ [5] _resolve_versions! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:93 [inlined]
+ [6] #_add_or_develop#26(::Array{Base.UUID,1}, ::Symbol, ::typeof(Pkg.Operations._add_or_develop), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:348
+ [7] _add_or_develop at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:333 [inlined]
+ [8] (::getfield(Pkg.Operations, Symbol("##30#36")){Bool,getfield(Pkg.Operations, Symbol("##41#43")){Pkg.Types.Context,Pkg.Types.PackageSpec,getfield(Pkg.Operations, Symbol("##40#42")){Pkg.Types.Context,Pkg.Types.PackageSpec,Array{String,1},Cmd}},Pkg.Types.Context,Pkg.Types.PackageSpec,Pkg.Types.Context,Set{Base.UUID},Set{Base.UUID},Array{Pkg.Types.PackageSpec,1}})(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:537
+ [9] #mktempdir#15(::String, ::typeof(mktempdir), ::getfield(Pkg.Operations, Symbol("##30#36")){Bool,getfield(Pkg.Operations, Symbol("##41#43")){Pkg.Types.Context,Pkg.Types.PackageSpec,getfield(Pkg.Operations, Symbol("##40#42")){Pkg.Types.Context,Pkg.Types.PackageSpec,Array{String,1},Cmd}},Pkg.Types.Context,Pkg.Types.PackageSpec,Pkg.Types.Context,Set{Base.UUID},Set{Base.UUID},Array{Pkg.Types.PackageSpec,1}}, ::String) at ./file.jl:584
+ [10] mktempdir at ./file.jl:582 [inlined] (repeats 2 times)
+ [11] #with_dependencies_loadable_at_toplevel#27(::Bool, ::typeof(Pkg.Operations.with_dependencies_loadable_at_toplevel), ::getfield(Pkg.Operations, Symbol("##41#43")){Pkg.Types.Context,Pkg.Types.PackageSpec,getfield(Pkg.Operations, Symbol("##40#42")){Pkg.Types.Context,Pkg.Types.PackageSpec,Array{String,1},Cmd}}, ::Pkg.Types.Context, ::Pkg.Types.PackageSpec) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:516
+ [12] #with_dependencies_loadable_at_toplevel at ./none:0 [inlined]
+ [13] backwards_compatibility_for_test(::Pkg.Types.Context, ::Pkg.Types.PackageSpec, ::String, ::Array{String,1}, ::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:606
+ [14] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1263
+ [15] #test at ./none:0 [inlined]
+ [16] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [17] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [18] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [19] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [20] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [21] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [22] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [23] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [24] top-level scope at none:10

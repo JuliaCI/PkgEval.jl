@@ -1,0 +1,147 @@
+ Resolving package versions...
+ Installed PrettyPrint ──────── v0.1.0
+ Installed JuliaVariables ───── v0.2.0
+ Installed OrderedCollections ─ v1.1.0
+ Installed NameResolution ───── v0.1.3
+ Installed DataStructures ───── v0.17.6
+ Installed MLStyle ──────────── v0.3.1
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [b14d175d] + JuliaVariables v0.2.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [864edb3b] + DataStructures v0.17.6
+  [b14d175d] + JuliaVariables v0.2.0
+  [d8e11817] + MLStyle v0.3.1
+  [71a1bf82] + NameResolution v0.1.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [8162dcfd] + PrettyPrint v0.1.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+   Testing JuliaVariables
+ Resolving package versions...
+Status `/tmp/jl_gvGl86/Manifest.toml`
+  [864edb3b] DataStructures v0.17.6
+  [b14d175d] JuliaVariables v0.2.0
+  [d8e11817] MLStyle v0.3.1
+  [71a1bf82] NameResolution v0.1.3
+  [bac558e1] OrderedCollections v1.1.0
+  [8162dcfd] PrettyPrint v0.1.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+$(Expr(:scoped, (bounds = Var[], freevars = Var[], bound_inits = Symbol[]), :(function (@global f)(x)
+      $(Expr(:scoped, (bounds = Var[@local x], freevars = Var[], bound_inits = [:x]), quote
+    let y = (@global +)(@local x, 1)
+        $(Expr(:scoped, (bounds = Var[@local y], freevars = Var[], bound_inits = [:y]), quote
+    @local y
+end))
+    end
+end))
+  end)))
+$(Expr(:scoped, (bounds = Var[], freevars = Var[], bound_inits = Symbol[]), :(function (@global f)(x)
+      $(Expr(:scoped, (bounds = Var[@local y, @local x], freevars = Var[], bound_inits = [:x]), quote
+    @local y = (@global +)(@local x, 1)
+    @global z->begin
+            (@global +)(@global z, @local y)
+        end
+end))
+  end)))
+$(Expr(:scoped, (bounds = Var[], freevars = Var[], bound_inits = Symbol[]), :(function (@global f)(x)
+      $(Expr(:scoped, (bounds = Var[@local y, @local x], freevars = Var[], bound_inits = [:x]), quote
+    @local y = (@global +)(@local x, 1)
+    let y = (@global +)(@local y, 1)
+        $(Expr(:scoped, (bounds = Var[@local y], freevars = Var[], bound_inits = [:y]), quote
+    for z = (@global :)(1, 10)
+        $(Expr(:scoped, (bounds = Var[@local z], freevars = Var[], bound_inits = [:z]), quote
+    (@global +)(@local x, @local y, @local z)
+end))
+    end
+end))
+    end
+end))
+  end)))
+$(Expr(:scoped, (bounds = Var[], freevars = Var[], bound_inits = Symbol[]), :(function (@global f)(x)
+      $(Expr(:scoped, (bounds = Var[@local y, @local x], freevars = Var[], bound_inits = [:x]), quote
+    $(Expr(:meta, @global inline))
+    @local y = (@global +)(@local x, 1)
+    let y = (@global +)(@local y, 1)
+        $(Expr(:scoped, (bounds = Var[@local y, @local z], freevars = Var[], bound_inits = [:y]), quote
+    ((@global +)(@local x, @local y, @local z) for @local z = (@global :)(1, 10))
+end))
+    end
+end))
+  end)))
+$(Expr(:scoped, (bounds = Var[], freevars = Var[], bound_inits = Symbol[]), quote
+    @global a->begin
+            (@global +)(@global a, @global z)
+        end
+end))
+$(Expr(:scoped, (bounds = Var[@local z, @shared q], freevars = Var[], bound_inits = Symbol[]), quote
+    @shared q = @global a
+    function (@local z)(x, k=1)
+        $(Expr(:scoped, (bounds = Var[@local k, @local x], freevars = Var[@shared q], bound_inits = [:k, :x]), quote
+    (x = @local x, k = @local k, q = @shared q)
+end))
+    end
+end))
+$(Expr(:scoped, (bounds = Var[], freevars = Var[], bound_inits = Symbol[]), :(function (x,)
+      $(Expr(:scoped, (bounds = Var[mut @local z, @local x], freevars = Var[], bound_inits = [:x]), quote
+    mut @local z = (@global +)(@local x, 1)
+    @global y->begin
+            mut @local z += 1
+            mut @local z
+        end
+end))
+  end)))
+$(Expr(:scoped, (bounds = Var[], freevars = Var[], bound_inits = Symbol[]), :(function (x,)
+      $(Expr(:scoped, (bounds = Var[mut @shared z, @local x], freevars = Var[], bound_inits = [:x]), quote
+    $(Expr(:meta, @global inline))
+    mut @shared z = (@global +)(@local x, 1)
+    function (y,)
+        $(Expr(:scoped, (bounds = Var[@local y], freevars = Var[mut @shared z], bound_inits = [:y]), quote
+    $(Expr(:meta, @global inline))
+    mut @shared z += 1
+    mut @shared z
+end))
+    end
+end))
+  end)))
+Test Summary:     | Pass  Total
+JuliaVariables.jl |    6      6
+Test Summary:                | Pass  Total
+uninitialized bound variable |    1      1
+Test Summary:  | Pass  Total
+inplace binary |    1      1
+Test Summary:  | Pass  Total
+type variables |    3      3
+Test Summary:                      | Pass  Total
+default argument is free variables |    1      1
+Test Summary: | Pass  Total
+global mark   |    1      1
+Test Summary: | Pass  Total
+while         |    3      3
+Test Summary: | Pass  Total
+let           |    5      5
+Test Summary: | Pass  Total
+namedtuple    |    2      2
+Test Summary: | Pass  Total
+broadcast     |    3      3
+Test Summary:    | Pass  Total
+broadcast fusion |    3      3
+Test Summary:  | Pass  Total
+simplification |    1      1
+Test Summary: | Pass  Total
+no effect     |    4      4
+   Testing JuliaVariables tests passed 

@@ -1,0 +1,303 @@
+ Resolving package versions...
+ Installed DataAPI ───────────── v1.1.0
+ Installed Missings ──────────── v0.4.3
+ Installed PolynomialBases ───── v0.4.1
+ Installed Conda ─────────────── v1.3.0
+ Installed AbstractFFTs ──────── v0.4.1
+ Installed Polynomials ───────── v0.6.0
+ Installed BinaryProvider ────── v0.5.8
+ Installed StatsBase ─────────── v0.32.0
+ Installed Reexport ──────────── v0.2.0
+ Installed RecipesBase ───────── v0.7.0
+ Installed URIParser ─────────── v0.4.0
+ Installed ArgCheck ──────────── v1.0.1
+ Installed OrderedCollections ── v1.1.0
+ Installed Requires ──────────── v0.5.2
+ Installed Compat ────────────── v2.2.0
+ Installed DataStructures ────── v0.17.6
+ Installed Parsers ───────────── v0.3.10
+ Installed JSON ──────────────── v0.21.0
+ Installed ToeplitzMatrices ──── v0.6.0
+ Installed FastGaussQuadrature ─ v0.4.0
+ Installed SortingAlgorithms ─── v0.3.1
+ Installed Parameters ────────── v0.12.0
+ Installed FFTW ──────────────── v1.0.1
+ Installed DSP ───────────────── v0.6.0
+ Installed VersionParsing ────── v1.1.3
+ Installed BinDeps ───────────── v0.8.10
+ Installed SpecialFunctions ──── v0.8.0
+ Installed FastTransforms ────── v0.7.0
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [c74db56a] + PolynomialBases v0.4.1
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [621f4979] + AbstractFFTs v0.4.1
+  [dce04be8] + ArgCheck v1.0.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [34da2185] + Compat v2.2.0
+  [8f4d0f93] + Conda v1.3.0
+  [717857b8] + DSP v0.6.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [7a1cc6ca] + FFTW v1.0.1
+  [442a2c76] + FastGaussQuadrature v0.4.0
+  [057dd010] + FastTransforms v0.7.0
+  [682c06a0] + JSON v0.21.0
+  [e1d29d7a] + Missings v0.4.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [69de0a69] + Parsers v0.3.10
+  [c74db56a] + PolynomialBases v0.4.1
+  [f27b6e38] + Polynomials v0.6.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v0.5.2
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [2913bbd2] + StatsBase v0.32.0
+  [c751599d] + ToeplitzMatrices v0.6.0
+  [30578b45] + URIParser v0.4.0
+  [81def892] + VersionParsing v1.1.3
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Conda ───────────→ `~/.julia/packages/Conda/kLXeC/deps/build.log`
+  Building FFTW ────────────→ `~/.julia/packages/FFTW/MJ7kl/deps/build.log`
+  Building SpecialFunctions → `~/.julia/packages/SpecialFunctions/ne2iw/deps/build.log`
+  Building FastTransforms ──→ `~/.julia/packages/FastTransforms/M6SJL/deps/build.log`
+┌ Error: Error building `FastTransforms`: 
+│ + '[' -d FastTransforms ']'
+│ + git clone -b v0.2.9 https://github.com/MikaelSlevinsky/FastTransforms.git FastTransforms
+│ Cloning into 'FastTransforms'...
+│ Note: checking out '20834eb11fa267a6739edda79f3efc39bfacbb2c'.
+│ 
+│ You are in 'detached HEAD' state. You can look around, make experimental
+│ changes and commit them, and you can discard any commits you make in this
+│ state without impacting any branches by performing another checkout.
+│ 
+│ If you want to create a new branch to retain commits you create, you may
+│ do so (now or later) by using -b with the checkout command again. Example:
+│ 
+│   git checkout -b <new-branch-name>
+│ 
+│ + cd FastTransforms
+│ + make lib CC=gcc
+│ gcc -std=gnu99 -Ofast -march=native -mtune=native -mno-vzeroupper -I./src -shared -lm -fPIC src/transforms.c src/rotations.c src/permute.c src/tdc.c src/drivers.c src/fftw.c  -lm -lquadmath -fopenmp -lfftw3 -lfftw3_threads -lmpfr -lgmp -lblas -o libfasttransforms.so
+│ In file included from src/transforms.c:3:0:
+│ src/fasttransforms.h:8:10: fatal error: cblas.h: No such file or directory
+│  #include <cblas.h>
+│           ^~~~~~~~~
+│ compilation terminated.
+│ In file included from src/rotations.c:3:0:
+│ src/fasttransforms.h:8:10: fatal error: cblas.h: No such file or directory
+│  #include <cblas.h>
+│           ^~~~~~~~~
+│ compilation terminated.
+│ In file included from src/tdc.c:1:0:
+│ src/fasttransforms.h:8:10: fatal error: cblas.h: No such file or directory
+│  #include <cblas.h>
+│           ^~~~~~~~~
+│ compilation terminated.
+│ In file included from src/drivers.c:3:0:
+│ src/fasttransforms.h:8:10: fatal error: cblas.h: No such file or directory
+│  #include <cblas.h>
+│           ^~~~~~~~~
+│ compilation terminated.
+│ In file included from src/fftw.c:3:0:
+│ src/fasttransforms.h:8:10: fatal error: cblas.h: No such file or directory
+│  #include <cblas.h>
+│           ^~~~~~~~~
+│ compilation terminated.
+│ Makefile:13: recipe for target 'lib' failed
+│ make: *** [lib] Error 1
+│ ERROR: LoadError: FastTransforms could not be properly installed.
+│  Please check that you have all dependencies installed. Sample installation of dependencies:
+│ On Linux
+│ 	sudo apt-get install gcc-8 libblas-dev libopenblas-base libfftw3-dev libmpfr-dev
+│ 
+│ Stacktrace:
+│  [1] error(::String) at ./error.jl:33
+│  [2] print_error() at /root/.julia/packages/FastTransforms/M6SJL/deps/build.jl:12
+│  [3] top-level scope at /root/.julia/packages/FastTransforms/M6SJL/deps/build.jl:51
+│  [4] include at ./boot.jl:328 [inlined]
+│  [5] include_relative(::Module, ::String) at ./loading.jl:1094
+│  [6] include(::Module, ::String) at ./Base.jl:31
+│  [7] include(::String) at ./client.jl:431
+│  [8] top-level scope at none:5
+│ in expression starting at /root/.julia/packages/FastTransforms/M6SJL/deps/build.jl:28
+│ caused by [exception 1]
+│ failed process: Process(`bash -c '    set -e
+│     set -x
+│     if [ -d "FastTransforms" ]; then
+│         cd FastTransforms
+│         git fetch
+│         git checkout v0.2.9
+│         cd ..
+│     else
+│         git clone -b v0.2.9 https://github.com/MikaelSlevinsky/FastTransforms.git FastTransforms
+│     fi
+│     cd FastTransforms
+│     make lib CC=gcc 
+│     cd ..
+│     mv -f FastTransforms/libfasttransforms.so libfasttransforms.so
+│ '`, ProcessExited(2)) [2]
+│ 
+│ Stacktrace:
+│  [1] pipeline_error at ./process.jl:813 [inlined]
+│  [2] #run#536(::Bool, ::typeof(run), ::Cmd) at ./process.jl:728
+│  [3] run(::Cmd) at ./process.jl:726
+│  [4] top-level scope at /root/.julia/packages/FastTransforms/M6SJL/deps/build.jl:49
+│  [5] include at ./boot.jl:328 [inlined]
+│  [6] include_relative(::Module, ::String) at ./loading.jl:1094
+│  [7] include(::Module, ::String) at ./Base.jl:31
+│  [8] include(::String) at ./client.jl:431
+│  [9] top-level scope at none:5
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:647
+   Testing PolynomialBases
+ Resolving package versions...
+ Installed MacroTools ─── v0.5.2
+ Installed PyCall ─────── v1.91.2
+ Installed StaticArrays ─ v0.12.1
+ Installed SymEngine ──── v0.7.0
+ Installed SymPy ──────── v1.0.7
+  Building SymEngine → `~/.julia/packages/SymEngine/zSUGO/deps/build.log`
+  Building PyCall ───→ `~/.julia/packages/PyCall/ttONZ/deps/build.log`
+    Status `/tmp/jl_VpI3sD/Manifest.toml`
+  [621f4979] AbstractFFTs v0.4.1
+  [dce04be8] ArgCheck v1.0.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [34da2185] Compat v2.2.0
+  [8f4d0f93] Conda v1.3.0
+  [717857b8] DSP v0.6.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [7a1cc6ca] FFTW v1.0.1
+  [442a2c76] FastGaussQuadrature v0.4.0
+  [057dd010] FastTransforms v0.7.0
+  [682c06a0] JSON v0.21.0
+  [1914dd2f] MacroTools v0.5.2
+  [e1d29d7a] Missings v0.4.3
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [69de0a69] Parsers v0.3.10
+  [c74db56a] PolynomialBases v0.4.1
+  [f27b6e38] Polynomials v0.6.0
+  [438e738f] PyCall v1.91.2
+  [3cdcf5f2] RecipesBase v0.7.0
+  [189a3867] Reexport v0.2.0
+  [ae029012] Requires v0.5.2
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [123dc426] SymEngine v0.7.0
+  [24249f21] SymPy v1.0.7
+  [c751599d] ToeplitzMatrices v0.6.0
+  [30578b45] URIParser v0.4.0
+  [81def892] VersionParsing v1.1.3
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib/SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: LoadError: FastTransforms is not properly installed. Please run Pkg.build("FastTransforms") and restart Julia.
+Stacktrace:
+ [1] error(::String, ::String) at ./error.jl:42
+ [2] top-level scope at /root/.julia/packages/FastTransforms/M6SJL/src/libfasttransforms.jl:4
+ [3] include at ./boot.jl:328 [inlined]
+ [4] include_relative(::Module, ::String) at ./loading.jl:1094
+ [5] include at ./Base.jl:31 [inlined]
+ [6] include(::String) at /root/.julia/packages/FastTransforms/M6SJL/src/FastTransforms.jl:1
+ [7] top-level scope at /root/.julia/packages/FastTransforms/M6SJL/src/FastTransforms.jl:46
+ [8] include at ./boot.jl:328 [inlined]
+ [9] include_relative(::Module, ::String) at ./loading.jl:1094
+ [10] include(::Module, ::String) at ./Base.jl:31
+ [11] top-level scope at none:2
+ [12] eval at ./boot.jl:330 [inlined]
+ [13] eval(::Expr) at ./client.jl:432
+ [14] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/FastTransforms/M6SJL/src/libfasttransforms.jl:3
+in expression starting at /root/.julia/packages/FastTransforms/M6SJL/src/FastTransforms.jl:46
+ERROR: LoadError: Failed to precompile FastTransforms [057dd010-8810-581a-b7be-e3fc3b93f78c] to /root/.julia/compiled/v1.2/FastTransforms/5Lm8s.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1253
+ [3] _require(::Base.PkgId) at ./loading.jl:1013
+ [4] require(::Base.PkgId) at ./loading.jl:911
+ [5] require(::Module, ::Symbol) at ./loading.jl:906
+ [6] include at ./boot.jl:328 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1094
+ [8] include(::Module, ::String) at ./Base.jl:31
+ [9] top-level scope at none:2
+ [10] eval at ./boot.jl:330 [inlined]
+ [11] eval(::Expr) at ./client.jl:432
+ [12] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/PolynomialBases/vfjiD/src/PolynomialBases.jl:9
+ERROR: LoadError: Failed to precompile PolynomialBases [c74db56a-226d-5e98-8bb0-a6049094aeea] to /root/.julia/compiled/v1.2/PolynomialBases/hjmFu.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1253
+ [3] _require(::Base.PkgId) at ./loading.jl:1013
+ [4] require(::Base.PkgId) at ./loading.jl:911
+ [5] require(::Module, ::Symbol) at ./loading.jl:906
+ [6] include at ./boot.jl:328 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1094
+ [8] include(::Module, ::String) at ./Base.jl:31
+ [9] include(::String) at ./client.jl:431
+ [10] top-level scope at none:5
+in expression starting at /root/.julia/packages/PolynomialBases/vfjiD/test/runtests.jl:2
+ERROR: Package PolynomialBases errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1288
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

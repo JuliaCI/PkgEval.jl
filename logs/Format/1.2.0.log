@@ -1,0 +1,51 @@
+ Resolving package versions...
+ Installed Format ─ v1.0.1
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [1fa38f19] + Format v1.0.1
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [1fa38f19] + Format v1.0.1
+  [de0858da] + Printf 
+  [4ec0a83e] + Unicode 
+   Testing Format
+ Resolving package versions...
+    Status `/tmp/jl_38Ke1q/Manifest.toml`
+  [1fa38f19] Format v1.0.1
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+test cformat equality...
+...Done
+ 17.501145 seconds (8.48 M allocations: 473.220 MiB, 3.28% gc time)
+
+Test speed
+integer @sprintf speed
+  0.163904 seconds (848.25 k allocations: 51.512 MiB, 4.80% gc time)
+integer sprintf speed
+ 26.378098 seconds (8.82 M allocations: 513.864 MiB, 0.63% gc time)
+integer sprintf speed, bypass repeated lookup
+  0.176483 seconds (1.42 M allocations: 59.061 MiB, 3.14% gc time)
+
+float64 @sprintf speed
+  0.220428 seconds (901.53 k allocations: 54.245 MiB, 9.69% gc time)
+float64 sprintf speed
+ 28.200360 seconds (8.65 M allocations: 512.294 MiB, 0.69% gc time)
+float64 sprintf speed, bypass repeated lookup
+  0.201752 seconds (1.45 M allocations: 60.640 MiB, 4.76% gc time)
+Test Summary: |   Pass   Total
+cformat       | 100067  100067
+Test Summary: | Pass  Total
+fmtspec       |  171    171
+
+Test Summary: | Pass  Total
+formatexpr    |   37     37
+Test Summary: | Pass  Total
+fmt           |   25     25
+   Testing Format tests passed 

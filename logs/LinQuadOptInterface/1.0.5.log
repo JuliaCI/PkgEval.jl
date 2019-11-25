@@ -1,0 +1,131 @@
+ Resolving package versions...
+ Installed LinQuadOptInterface ─ v0.6.0
+ Installed Compat ────────────── v2.2.0
+ Installed MathOptInterface ──── v0.8.4
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [f8899e07] + LinQuadOptInterface v0.6.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [34da2185] + Compat v2.2.0
+  [f8899e07] + LinQuadOptInterface v0.6.0
+  [b8f27783] + MathOptInterface v0.8.4
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing LinQuadOptInterface
+    Status `/tmp/tmpiDZXrc/Manifest.toml`
+  [34da2185] Compat v2.2.0
+  [f8899e07] LinQuadOptInterface v0.6.0
+  [b8f27783] MathOptInterface v0.8.4
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib/SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+partial_start: Error During Test at /root/.julia/packages/MathOptInterface/C3lip/src/Test/config.jl:52
+  Got exception outside of a @test
+  MathOptInterface.UnsupportedAttribute{MathOptInterface.VariablePrimalStart}: Attribute MathOptInterface.VariablePrimalStart() is not supported by the model.
+  Stacktrace:
+   [1] set(::LinQuadOptInterface.MockLinQuadOptimizer, ::MathOptInterface.VariablePrimalStart, ::Array{MathOptInterface.VariableIndex,1}, ::Array{Float64,1}) at /root/.julia/packages/LinQuadOptInterface/ZMx9f/src/variables.jl:211
+   [2] set(::LinQuadOptInterface.MockLinQuadOptimizer, ::MathOptInterface.VariablePrimalStart, ::MathOptInterface.VariableIndex, ::Float64) at /root/.julia/packages/LinQuadOptInterface/ZMx9f/src/variables.jl:218
+   [3] partial_start_test(::LinQuadOptInterface.MockLinQuadOptimizer, ::MathOptInterface.Test.TestConfig) at /root/.julia/packages/MathOptInterface/C3lip/src/Test/contlinear.jl:1638
+   [4] macro expansion at /root/.julia/packages/MathOptInterface/C3lip/src/Test/config.jl:53 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [6] contlineartest(::LinQuadOptInterface.MockLinQuadOptimizer, ::MathOptInterface.Test.TestConfig, ::Array{String,1}) at /root/.julia/packages/MathOptInterface/C3lip/src/Test/config.jl:53
+   [7] contlineartest(::LinQuadOptInterface.MockLinQuadOptimizer, ::MathOptInterface.Test.TestConfig) at /root/.julia/packages/MathOptInterface/C3lip/src/Test/config.jl:48
+   [8] macro expansion at /root/.julia/packages/LinQuadOptInterface/ZMx9f/test/runtests.jl:44 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] macro expansion at /root/.julia/packages/LinQuadOptInterface/ZMx9f/test/runtests.jl:43 [inlined]
+   [11] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [12] top-level scope at /root/.julia/packages/LinQuadOptInterface/ZMx9f/test/runtests.jl:21
+   [13] include at ./boot.jl:317 [inlined]
+   [14] include_relative(::Module, ::String) at ./loading.jl:1044
+   [15] include(::Module, ::String) at ./sysimg.jl:29
+   [16] include(::String) at ./client.jl:392
+   [17] top-level scope at none:0
+   [18] eval(::Module, ::Any) at ./boot.jl:319
+   [19] exec_options(::Base.JLOptions) at ./client.jl:243
+   [20] _start() at ./client.jl:425
+Test Summary:          | Pass  Error  Total
+LinQuadOptInterface    | 1507      1   1508
+  Printing             |    1             1
+  Unit Tests           |  362           362
+  Linear tests         |  569      1    570
+    linear8a           |    6             6
+    linear14           |    7             7
+    linear6            |    6             6
+    linear4            |    6             6
+    linear3            |   15            15
+    linear9            |    7             7
+    linear8c           |    6             6
+    linear1            |   43            43
+    linear2            |   10            10
+    partial_start      |    1      1      2
+    linear12           |    6             6
+    linear7            |    6             6
+    linear8b           |    6             6
+    linear10b          |    6             6
+    linear10           |    7             7
+    linear15           |    5             5
+    linear5            |    9             9
+    linear13           |    5             5
+    linear11           |    9             9
+  Quadratic tests      |  176           176
+  Linear Conic tests   |  190           190
+  Integer Linear tests |   87            87
+  ModelLike tests      |  122           122
+ERROR: LoadError: Some tests did not pass: 1507 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /root/.julia/packages/LinQuadOptInterface/ZMx9f/test/runtests.jl:20
+ERROR: Package LinQuadOptInterface errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

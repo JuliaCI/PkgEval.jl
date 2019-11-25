@@ -1,0 +1,90 @@
+ Resolving package versions...
+ Installed MCAnalyzer ───────── v0.1.0
+ Installed OrderedCollections ─ v1.1.0
+ Installed CEnum ────────────── v0.2.0
+ Installed DataStructures ───── v0.17.6
+ Installed LLVM ─────────────── v1.3.2
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [a81df072] + MCAnalyzer v0.1.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [fa961155] + CEnum v0.2.0
+  [864edb3b] + DataStructures v0.17.6
+  [929cbde3] + LLVM v1.3.2
+  [a81df072] + MCAnalyzer v0.1.0
+  [bac558e1] + OrderedCollections v1.1.0
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+   Testing MCAnalyzer
+ Resolving package versions...
+    Status `/tmp/tmpo64jlI/Manifest.toml`
+  [fa961155] CEnum v0.2.0
+  [864edb3b] DataStructures v0.17.6
+  [929cbde3] LLVM v1.3.2
+  [a81df072] MCAnalyzer v0.1.0
+  [bac558e1] OrderedCollections v1.1.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: IOError: could not spawn `iaca -arch SKL /tmp/tmpF7iD5D/a.out`: no such file or directory (ENOENT)
+Stacktrace:
+ [1] _jl_spawn(::String, ::Array{String,1}, ::Cmd, ::Tuple{RawFD,RawFD,RawFD}) at ./process.jl:367
+ [2] #495 at ./process.jl:509 [inlined]
+ [3] setup_stdio(::getfield(Base, Symbol("##495#496")){Cmd,Base.Process}, ::Tuple{RawFD,RawFD,RawFD}) at ./process.jl:490
+ [4] #_spawn#494(::Nothing, ::Function, ::Cmd, ::Tuple{RawFD,RawFD,RawFD}) at ./process.jl:508
+ [5] _spawn at ./process.jl:504 [inlined]
+ [6] #run#505(::Bool, ::Function, ::Cmd) at ./process.jl:662
+ [7] run at ./process.jl:661 [inlined]
+ [8] iaca(::Symbol, ::String, ::String) at /root/.julia/packages/MCAnalyzer/xwHnW/src/MCAnalyzer.jl:22
+ [9] #invokelatest#1 at ./essentials.jl:697 [inlined]
+ [10] invokelatest at ./essentials.jl:696 [inlined]
+ [11] (::getfield(MCAnalyzer, Symbol("##11#13")){typeof(mysum),DataType,Symbol,typeof(MCAnalyzer.jloptimize!)})(::String) at /root/.julia/packages/MCAnalyzer/xwHnW/src/MCAnalyzer.jl:91
+ [12] mktempdir(::getfield(MCAnalyzer, Symbol("##11#13")){typeof(mysum),DataType,Symbol,typeof(MCAnalyzer.jloptimize!)}, ::String) at ./file.jl:581
+ [13] mktempdir at ./file.jl:579 [inlined]
+ [14] analyze at /root/.julia/packages/MCAnalyzer/xwHnW/src/MCAnalyzer.jl:82 [inlined] (repeats 3 times)
+ [15] #4 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:606 [inlined]
+ [16] redirect_stderr(::getfield(Main, Symbol("##4#6")), ::IOStream) at ./stream.jl:983
+ [17] #3 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:605 [inlined]
+ [18] #open#296(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::getfield(Main, Symbol("##3#5")), ::String, ::Vararg{String,N} where N) at ./iostream.jl:369
+ [19] open(::Function, ::String, ::String) at ./iostream.jl:367
+ [20] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:604
+ [21] include at ./boot.jl:317 [inlined]
+ [22] include_relative(::Module, ::String) at ./loading.jl:1044
+ [23] include(::Module, ::String) at ./sysimg.jl:29
+ [24] include(::String) at ./client.jl:392
+ [25] top-level scope at none:0
+in expression starting at /root/.julia/packages/MCAnalyzer/xwHnW/test/runtests.jl:31
+ERROR: Package MCAnalyzer errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

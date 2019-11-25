@@ -1,0 +1,86 @@
+ Resolving package versions...
+ Installed Requires ───── v0.5.2
+ Installed TimerOutputs ─ v0.5.3
+ Installed NNlib ──────── v0.6.0
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [872c559c] + NNlib v0.6.0
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [872c559c] + NNlib v0.6.0
+  [ae029012] + Requires v0.5.2
+  [a759f4b9] + TimerOutputs v0.5.3
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+   Testing NNlib
+ Resolving package versions...
+    Status `/tmp/jl_uC0H6Z/Manifest.toml`
+  [872c559c] NNlib v0.6.0
+  [ae029012] Requires v0.5.2
+  [a759f4b9] TimerOutputs v0.5.3
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Test Summary:        | Pass  Total
+Activation Functions |  255    255
+Test Summary: | Pass  Total
+ConvDims      |   57     57
+[ Info: Skipping Convolutional fuzzing tests, set NNLIB_TEST_FUZZING=true to run them
+depthwiseconv_direct: Test Failed at /root/.julia/packages/NNlib/mxWRT/test/conv.jl:497
+  Expression: ddims(conv(x, w, cdims)) == y_pad
+   Evaluated: [1.0, 4.0, 7.0, 10.0, NaN, 10.0] == [1.0, 4.0, 7.0, 10.0, 13.0, 10.0]
+Stacktrace:
+ [1] top-level scope at /root/.julia/packages/NNlib/mxWRT/test/conv.jl:497
+ [2] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+ [3] top-level scope at /root/.julia/packages/NNlib/mxWRT/test/conv.jl:480
+ [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+ [5] top-level scope at /root/.julia/packages/NNlib/mxWRT/test/conv.jl:449
+ [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+ [7] top-level scope at /root/.julia/packages/NNlib/mxWRT/test/conv.jl:446
+∇depthwiseconv_filter_direct/∇depthwiseconv_data_direct: Test Failed at /root/.julia/packages/NNlib/mxWRT/test/conv.jl:516
+  Expression: ddims(∇conv_data(dy, w, cdims)) == dx
+   Evaluated: [8.0, 18.0, 27.0, 36.0, NaN] == [8.0, 18.0, 27.0, 36.0, 13.0]
+Stacktrace:
+ [1] top-level scope at /root/.julia/packages/NNlib/mxWRT/test/conv.jl:516
+ [2] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+ [3] top-level scope at /root/.julia/packages/NNlib/mxWRT/test/conv.jl:513
+ [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+ [5] top-level scope at /root/.julia/packages/NNlib/mxWRT/test/conv.jl:449
+ [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+ [7] top-level scope at /root/.julia/packages/NNlib/mxWRT/test/conv.jl:446
+∇depthwiseconv_filter_direct/∇depthwiseconv_data_direct: Test Failed at /root/.julia/packages/NNlib/mxWRT/test/conv.jl:547
+  Expression: ddims(∇conv_data(dy, w, cdims)) == dx_flip
+   Evaluated: [5.0, 18.0, 27.0, 36.0, NaN] == [5.0, 18.0, 27.0, 36.0, 28.0]
+Stacktrace:
+ [1] top-level scope at /root/.julia/packages/NNlib/mxWRT/test/conv.jl:547
+ [2] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+ [3] top-level scope at /root/.julia/packages/NNlib/mxWRT/test/conv.jl:513
+ [4] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+ [5] top-level scope at /root/.julia/packages/NNlib/mxWRT/test/conv.jl:449
+ [6] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+ [7] top-level scope at /root/.julia/packages/NNlib/mxWRT/test/conv.jl:446
+[ Info: Skipping Depthwise Convolutional fuzzing tests, set NNLIB_TEST_FUZZING=true to run them
+   Testing NNlib tests passed 

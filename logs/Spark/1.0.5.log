@@ -1,0 +1,113 @@
+ Resolving package versions...
+ Installed WinReg ───────────── v0.3.1
+ Installed OrderedCollections ─ v1.1.0
+ Installed JavaCall ─────────── v0.7.2
+ Installed DataStructures ───── v0.17.6
+ Installed Spark ────────────── v0.4.0
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [e3819d11] + Spark v0.4.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [864edb3b] + DataStructures v0.17.6
+  [494afd89] + JavaCall v0.7.2
+  [bac558e1] + OrderedCollections v1.1.0
+  [e3819d11] + Spark v0.4.0
+  [1b915085] + WinReg v0.3.1
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+  Building Spark → `~/.julia/packages/Spark/kFCaM/deps/build.log`
+┌ Error: Error building `Spark`: 
+│ ERROR: LoadError: Cannot find maven. Is it installed?
+│ Stacktrace:
+│  [1] error(::String) at ./error.jl:33
+│  [2] top-level scope at /root/.julia/packages/Spark/kFCaM/deps/build.jl:7
+│  [3] include at ./boot.jl:317 [inlined]
+│  [4] include_relative(::Module, ::String) at ./loading.jl:1044
+│  [5] include(::Module, ::String) at ./sysimg.jl:29
+│  [6] include(::String) at ./client.jl:392
+│  [7] top-level scope at none:0
+│ in expression starting at /root/.julia/packages/Spark/kFCaM/deps/build.jl:4
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1096
+   Testing Spark
+    Status `/tmp/tmpwjoARH/Manifest.toml`
+  [864edb3b] DataStructures v0.17.6
+  [494afd89] JavaCall v0.7.2
+  [bac558e1] OrderedCollections v1.1.0
+  [e3819d11] Spark v0.4.0
+  [1b915085] WinReg v0.3.1
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: LoadError: InitError: JavaCall.JavaCallError("Cannot find java library libjvm.so\nSearch Path:\n   /root/.julia/packages/Spark/kFCaM/test")
+Stacktrace:
+ [1] findjvm() at /root/.julia/packages/JavaCall/Iz2MQ/src/jvm.jl:111
+ [2] __init__() at /root/.julia/packages/JavaCall/Iz2MQ/src/JavaCall.jl:32
+ [3] _include_from_serialized(::String, ::Array{Any,1}) at ./loading.jl:633
+ [4] _require_from_serialized(::String) at ./loading.jl:684
+ [5] _require(::Base.PkgId) at ./loading.jl:967
+ [6] require(::Base.PkgId) at ./loading.jl:858
+ [7] require(::Module, ::Symbol) at ./loading.jl:853
+ [8] include at ./boot.jl:317 [inlined]
+ [9] include_relative(::Module, ::String) at ./loading.jl:1044
+ [10] include at ./sysimg.jl:29 [inlined]
+ [11] include(::String) at /root/.julia/packages/Spark/kFCaM/src/Spark.jl:1
+ [12] top-level scope at none:0
+ [13] include at ./boot.jl:317 [inlined]
+ [14] include_relative(::Module, ::String) at ./loading.jl:1044
+ [15] include(::Module, ::String) at ./sysimg.jl:29
+ [16] top-level scope at none:2
+ [17] eval at ./boot.jl:319 [inlined]
+ [18] eval(::Expr) at ./client.jl:393
+ [19] top-level scope at ./none:3
+during initialization of module JavaCall
+in expression starting at /root/.julia/packages/Spark/kFCaM/src/core.jl:2
+in expression starting at /root/.julia/packages/Spark/kFCaM/src/Spark.jl:48
+ERROR: LoadError: Failed to precompile Spark [e3819d11-95af-5eea-9727-70c091663a01] to /root/.julia/compiled/v1.0/Spark/zpJEw.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1203
+ [3] _require(::Base.PkgId) at ./loading.jl:960
+ [4] require(::Base.PkgId) at ./loading.jl:858
+ [5] require(::Module, ::Symbol) at ./loading.jl:853
+ [6] include at ./boot.jl:317 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1044
+ [8] include(::Module, ::String) at ./sysimg.jl:29
+ [9] include(::String) at ./client.jl:392
+ [10] top-level scope at none:0
+in expression starting at /root/.julia/packages/Spark/kFCaM/test/runtests.jl:1
+ERROR: Package Spark errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

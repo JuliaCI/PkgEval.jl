@@ -1,0 +1,57 @@
+ Resolving package versions...
+ Installed FixedPointNumbers ─ v0.6.1
+ Installed ColorTypes ──────── v0.8.0
+ Installed SurfaceTopology ─── v0.1.0
+ Installed IterTools ───────── v1.3.0
+ Installed StaticArrays ────── v0.12.1
+ Installed GeometryTypes ───── v0.7.6
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [1db0cb78] + SurfaceTopology v0.1.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [3da002f7] + ColorTypes v0.8.0
+  [53c48c17] + FixedPointNumbers v0.6.1
+  [4d00f742] + GeometryTypes v0.7.6
+  [c8e1da08] + IterTools v1.3.0
+  [90137ffa] + StaticArrays v0.12.1
+  [1db0cb78] + SurfaceTopology v0.1.0
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+   Testing SurfaceTopology
+Status `/tmp/jl_sy2YtO/Manifest.toml`
+  [3da002f7] ColorTypes v0.8.0
+  [53c48c17] FixedPointNumbers v0.6.1
+  [4d00f742] GeometryTypes v0.7.6
+  [c8e1da08] IterTools v1.3.0
+  [90137ffa] StaticArrays v0.12.1
+  [1db0cb78] SurfaceTopology v0.1.0
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+ERROR: LoadError: ArgumentError: Package Test not found in current path:
+- Run `import Pkg; Pkg.add("Test")` to install the Test package.
+
+Stacktrace:
+ [1] require(::Module, ::Symbol) at ./loading.jl:885
+ [2] include(::String) at ./client.jl:439
+ [3] top-level scope at none:6
+in expression starting at /root/.julia/packages/SurfaceTopology/eyJKg/test/runtests.jl:1
+ERROR: Package SurfaceTopology errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

@@ -1,0 +1,64 @@
+ Resolving package versions...
+ Installed InitialValues ─ v0.2.0
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [22cec73e] + InitialValues v0.2.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [22cec73e] + InitialValues v0.2.0
+   Testing InitialValues
+ Resolving package versions...
+    Status `/tmp/tmpgYkd65/Manifest.toml`
+  [22cec73e] InitialValues v0.2.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+test_aqua.jl: Error During Test at /root/.julia/packages/InitialValues/6KV71/test/runtests.jl:4
+  Got exception outside of a @test
+  LoadError: ArgumentError: Package Aqua not found in current path:
+  - Run `import Pkg; Pkg.add("Aqua")` to install the Aqua package.
+  
+  Stacktrace:
+   [1] require(::Module, ::Symbol) at ./loading.jl:823
+   [2] include at ./boot.jl:317 [inlined]
+   [3] include_relative(::Module, ::String) at ./loading.jl:1044
+   [4] include at ./sysimg.jl:29 [inlined]
+   [5] include(::String) at /root/.julia/packages/InitialValues/6KV71/test/runtests.jl:1
+   [6] macro expansion at /root/.julia/packages/InitialValues/6KV71/test/runtests.jl:6 [inlined]
+   [7] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1156 [inlined]
+   [8] top-level scope at ./none:0
+   [9] include at ./boot.jl:317 [inlined]
+   [10] include_relative(::Module, ::String) at ./loading.jl:1044
+   [11] include(::Module, ::String) at ./sysimg.jl:29
+   [12] include(::String) at ./client.jl:392
+   [13] top-level scope at none:0
+   [14] eval(::Module, ::Any) at ./boot.jl:319
+   [15] exec_options(::Base.JLOptions) at ./client.jl:243
+   [16] _start() at ./client.jl:425
+  in expression starting at /root/.julia/packages/InitialValues/6KV71/test/test_aqua.jl:3
+Test Summary: | Error  Total
+test_aqua.jl  |     1      1
+Test Summary: | Error  Total
+test_aqua.jl  |     1      1
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /root/.julia/packages/InitialValues/6KV71/test/runtests.jl:4
+ERROR: Package InitialValues errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

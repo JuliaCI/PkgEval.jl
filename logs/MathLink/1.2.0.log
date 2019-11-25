@@ -1,0 +1,87 @@
+ Resolving package versions...
+ Installed MathLink ─ v0.1.0
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [18c93696] + MathLink v0.1.0
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [18c93696] + MathLink v0.1.0
+  [8f399da3] + Libdl 
+  [de0858da] + Printf 
+  [4ec0a83e] + Unicode 
+  Building MathLink → `~/.julia/packages/MathLink/wuZ2O/deps/build.log`
+┌ Error: Error building `MathLink`: 
+│ ERROR: LoadError: MethodError: no method matching isexecutable(::Nothing)
+│ Closest candidates are:
+│   isexecutable(!Matched::String) at sysinfo.jl:438
+│   isexecutable(!Matched::AbstractString) at sysinfo.jl:447
+│ Stacktrace:
+│  [1] (::getfield(Main, Symbol("##3#4")))() at /root/.julia/packages/MathLink/wuZ2O/deps/build.jl:37
+│  [2] #461 at ./env.jl:81 [inlined]
+│  [3] access_env at ./env.jl:43 [inlined]
+│  [4] get at ./env.jl:81 [inlined]
+│  [5] find_lib_ker() at /root/.julia/packages/MathLink/wuZ2O/deps/build.jl:35
+│  [6] top-level scope at /root/.julia/packages/MathLink/wuZ2O/deps/build.jl:84
+│  [7] include at ./boot.jl:328 [inlined]
+│  [8] include_relative(::Module, ::String) at ./loading.jl:1094
+│  [9] include(::Module, ::String) at ./Base.jl:31
+│  [10] include(::String) at ./client.jl:431
+│  [11] top-level scope at none:5
+│ in expression starting at /root/.julia/packages/MathLink/wuZ2O/deps/build.jl:84
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:647
+   Testing MathLink
+ Resolving package versions...
+    Status `/tmp/jl_sH4I7b/Manifest.toml`
+  [18c93696] MathLink v0.1.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+ERROR: LoadError: could not open file /root/.julia/packages/MathLink/wuZ2O/deps/deps.jl
+Stacktrace:
+ [1] include at ./boot.jl:328 [inlined]
+ [2] include_relative(::Module, ::String) at ./loading.jl:1094
+ [3] include at ./Base.jl:31 [inlined]
+ [4] include(::String) at /root/.julia/packages/MathLink/wuZ2O/src/MathLink.jl:1
+ [5] top-level scope at /root/.julia/packages/MathLink/wuZ2O/src/MathLink.jl:7
+ [6] include at ./boot.jl:328 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1094
+ [8] include(::Module, ::String) at ./Base.jl:31
+ [9] top-level scope at none:2
+ [10] eval at ./boot.jl:330 [inlined]
+ [11] eval(::Expr) at ./client.jl:432
+ [12] top-level scope at ./none:3
+in expression starting at /root/.julia/packages/MathLink/wuZ2O/src/MathLink.jl:7
+ERROR: LoadError: Failed to precompile MathLink [18c93696-a329-5786-9845-8443133fa0b4] to /root/.julia/compiled/v1.2/MathLink/7Mc5Z.ji.
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at ./loading.jl:1253
+ [3] _require(::Base.PkgId) at ./loading.jl:1013
+ [4] require(::Base.PkgId) at ./loading.jl:911
+ [5] require(::Module, ::Symbol) at ./loading.jl:906
+ [6] include at ./boot.jl:328 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1094
+ [8] include(::Module, ::String) at ./Base.jl:31
+ [9] include(::String) at ./client.jl:431
+ [10] top-level scope at none:5
+in expression starting at /root/.julia/packages/MathLink/wuZ2O/test/runtests.jl:1
+ERROR: Package MathLink errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1288
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

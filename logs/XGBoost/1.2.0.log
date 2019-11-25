@@ -1,0 +1,100 @@
+ Resolving package versions...
+ Installed BinaryProvider ─ v0.5.8
+ Installed XGBoost ──────── v0.4.2
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [009559a3] + XGBoost v0.4.2
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [009559a3] + XGBoost v0.4.2
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+  Building XGBoost → `~/.julia/packages/XGBoost/LXjD0/deps/build.log`
+   Testing XGBoost
+ Resolving package versions...
+    Status `/tmp/jl_8sODMS/Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [009559a3] XGBoost v0.4.2
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+[00:23:05] 6513x126 matrix with 143286 entries loaded from ../data/agaricus.txt.train
+[00:23:06] 6513x126 matrix with 143286 entries loaded from ../data/agaricus.txt.train
+[00:23:06] 1611x126 matrix with 35442 entries loaded from ../data/agaricus.txt.test
+[00:23:10] 6513x126 matrix with 143286 entries loaded from ../data/agaricus.txt.train
+[00:23:10] 1611x126 matrix with 35442 entries loaded from ../data/agaricus.txt.test
+[1]	cv-test-error:0.046522+0.002437	cv-train-error:0.046522+0.001219
+[2]	cv-test-error:0.022263+0.000704	cv-train-error:0.022263+0.000352
+[3]	cv-test-error:0.010287+0.004705	cv-train-error:0.009520+0.004733
+[4]	cv-test-error:0.015200+0.000461	cv-train-error:0.015200+0.000231
+[5]	cv-test-error:0.005834+0.003135	cv-train-error:0.004760+0.003541
+[00:23:43] 6513x126 matrix with 143286 entries loaded from ../data/agaricus.txt.train
+[00:23:43] 1611x126 matrix with 35442 entries loaded from ../data/agaricus.txt.test
+training xgboost with dense matrix
+[1]	train-error:0.046522
+[2]	train-error:0.022263
+training xgboost with sparse matrix
+[1]	train-error:0.046522
+[2]	train-error:0.022263
+training xgboost with DMatrix[1]	train-error:0.000614
+[2]	train-error:0.000000
+[00:24:10] 6513x126 matrix with 143286 entries loaded from ../data/agaricus.txt.train
+[1]	train-error:0.046522
+[2]	train-error:0.022263
+test-error=0.48168839230291743
+sum(abs, pred2-pred)=0.0
+[1]	eval-logloss:0.226686	eval-error:0.042831	train-logloss:0.233376	train-error:0.046522
+[2]	eval-logloss:0.137874	eval-error:0.021726	train-logloss:0.136658	train-error:0.022263
+[00:24:24] 6513x126 matrix with 820638 entries loaded from dtrain.buffer
+[00:24:24] 1611x126 matrix with 202986 entries loaded from dtest.buffer
+test-error=0.48168839230291743
+Array{XGBoost.FeatureImportance}((4,))
+  1: XGBoost.FeatureImportance
+    fname: String "odor=none"
+    gain: Float64 0.676154705362776
+    cover: Float64 0.4978745908048046
+    freq: Float64 0.4
+  2: XGBoost.FeatureImportance
+    fname: String "stalk-root=club"
+    gain: Float64 0.17135374958155838
+    cover: Float64 0.19205434069649802
+    freq: Float64 0.2
+  3: XGBoost.FeatureImportance
+    fname: String "stalk-root=rooted"
+    gain: Float64 0.1231723640042142
+    cover: Float64 0.16387502494525175
+    freq: Float64 0.2
+  4: XGBoost.FeatureImportance
+    fname: String "spore-print-color=green"
+    gain: Float64 0.02931918105145136
+    cover: Float64 0.14619604355344562
+    freq: Float64 0.2
+Test Summary: | Pass  Total
+XGBoost       |   10     10
+   Testing XGBoost tests passed 

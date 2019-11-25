@@ -1,0 +1,69 @@
+ Resolving package versions...
+ Installed IniFile ──────── v0.5.0
+ Installed Parsers ──────── v0.3.10
+ Installed MbedTLS ──────── v0.7.0
+ Installed BinaryProvider ─ v0.5.8
+ Installed HTTP ─────────── v0.8.8
+ Installed JSON ─────────── v0.21.0
+ Installed Merly ────────── v0.2.1
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [5b70daea] + Merly v0.2.1
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [cd3eb016] + HTTP v0.8.8
+  [83e8ac13] + IniFile v0.5.0
+  [682c06a0] + JSON v0.21.0
+  [739be429] + MbedTLS v0.7.0
+  [5b70daea] + Merly v0.2.1
+  [69de0a69] + Parsers v0.3.10
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+  Building MbedTLS → `~/.julia/packages/MbedTLS/a1JFn/deps/build.log`
+   Testing Merly
+ Resolving package versions...
+  Updating `/tmp/jl_7SVGz8/Project.toml`
+  [5b70daea] + Merly v0.2.1
+  Updating `/tmp/jl_7SVGz8/Manifest.toml`
+ [no changes]
+[ Info: Running Sandbox
+    Status `/tmp/jl_7SVGz8/Project.toml`
+  [5b70daea] Merly v0.2.1
+  [8dfed614] Test 
+ERROR: LoadError: ArgumentError: Package HTTP not found in current path:
+- Run `import Pkg; Pkg.add("HTTP")` to install the HTTP package.
+
+Stacktrace:
+ [1] require(::Module, ::Symbol) at ./loading.jl:876
+ [2] include at ./boot.jl:328 [inlined]
+ [3] include_relative(::Module, ::String) at ./loading.jl:1094
+ [4] include(::Module, ::String) at ./Base.jl:31
+ [5] include(::String) at ./client.jl:431
+ [6] top-level scope at none:5
+in expression starting at /root/.julia/packages/Merly/f4RAG/test/runtests.jl:3
+ERROR: Package Merly errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1288
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

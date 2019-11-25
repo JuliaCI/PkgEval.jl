@@ -1,0 +1,146 @@
+ Resolving package versions...
+ Installed Parsers ──────────── v0.3.10
+ Installed OrderedCollections ─ v1.1.0
+ Installed BenchmarkTools ───── v0.4.3
+ Installed GLPK ─────────────── v0.12.0
+ Installed BinaryProvider ───── v0.5.8
+ Installed JSON ─────────────── v0.21.0
+ Installed MathOptInterface ─── v0.9.7
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [60bf3e95] + GLPK v0.12.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [b99e7846] + BinaryProvider v0.5.8
+  [60bf3e95] + GLPK v0.12.0
+  [682c06a0] + JSON v0.21.0
+  [b8f27783] + MathOptInterface v0.9.7
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [de0858da] + Printf 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [4ec0a83e] + Unicode 
+  Building GLPK → `~/.julia/packages/GLPK/J1b5G/deps/build.log`
+   Testing GLPK
+ Resolving package versions...
+    Status `/tmp/tmpr8oEal/Manifest.toml`
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [b99e7846] BinaryProvider v0.5.8
+  [60bf3e95] GLPK v0.12.0
+  [682c06a0] JSON v0.21.0
+  [b8f27783] MathOptInterface v0.9.7
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Test Summary: | Pass  Total
+C API         |  163    163
+indicator4: Test Failed at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/intlinear.jl:625
+  Expression: MOI.supports_constraint(model, MOI.VectorAffineFunction{Float64}, MOI.IndicatorSet{MOI.ACTIVATE_ON_ONE, MOI.LessThan{Float64}})
+Stacktrace:
+ [1] indicator4_test(::MathOptInterface.Bridges.LazyBridgeOptimizer{GLPK.Optimizer}, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/intlinear.jl:625
+ [2] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/config.jl:48 [inlined]
+ [3] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+ [4] intlineartest(::MathOptInterface.Bridges.LazyBridgeOptimizer{GLPK.Optimizer}, ::MathOptInterface.Test.TestConfig{Float64}, ::Array{String,1}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/config.jl:48
+indicator4: Error During Test at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/config.jl:47
+  Got exception outside of a @test
+  MathOptInterface.UnsupportedConstraint{MathOptInterface.VectorAffineFunction{Float64},MathOptInterface.IndicatorSet{ACTIVATE_ON_ONE::ActivationCondition = 1,MathOptInterface.LessThan{Float64}}}: `MathOptInterface.VectorAffineFunction{Float64}`-in-`MathOptInterface.IndicatorSet{ACTIVATE_ON_ONE::ActivationCondition = 1,MathOptInterface.LessThan{Float64}}` constraint is not supported by the model.
+  Stacktrace:
+   [1] bridge_type(::MathOptInterface.Bridges.LazyBridgeOptimizer{GLPK.Optimizer}, ::Type{MathOptInterface.VectorAffineFunction{Float64}}, ::Type{MathOptInterface.IndicatorSet{ACTIVATE_ON_ONE::ActivationCondition = 1,MathOptInterface.LessThan{Float64}}}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Bridges/lazy_bridge_optimizer.jl:439
+   [2] concrete_bridge_type(::MathOptInterface.Bridges.LazyBridgeOptimizer{GLPK.Optimizer}, ::Type{MathOptInterface.VectorAffineFunction{Float64}}, ::Type{MathOptInterface.IndicatorSet{ACTIVATE_ON_ONE::ActivationCondition = 1,MathOptInterface.LessThan{Float64}}}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Bridges/Constraint/bridge.jl:120
+   [3] add_constraint(::MathOptInterface.Bridges.LazyBridgeOptimizer{GLPK.Optimizer}, ::MathOptInterface.VectorAffineFunction{Float64}, ::MathOptInterface.IndicatorSet{ACTIVATE_ON_ONE::ActivationCondition = 1,MathOptInterface.LessThan{Float64}}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Bridges/bridge_optimizer.jl:1038
+   [4] indicator4_test(::MathOptInterface.Bridges.LazyBridgeOptimizer{GLPK.Optimizer}, ::MathOptInterface.Test.TestConfig{Float64}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/intlinear.jl:639
+   [5] macro expansion at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/config.jl:48 [inlined]
+   [6] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [7] intlineartest(::MathOptInterface.Bridges.LazyBridgeOptimizer{GLPK.Optimizer}, ::MathOptInterface.Test.TestConfig{Float64}, ::Array{String,1}) at /root/.julia/packages/MathOptInterface/A2UPd/src/Test/config.jl:48
+   [8] macro expansion at /root/.julia/packages/GLPK/J1b5G/test/MOI_wrapper.jl:63 [inlined]
+   [9] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [10] top-level scope at /root/.julia/packages/GLPK/J1b5G/test/MOI_wrapper.jl:63
+   [11] include at ./boot.jl:317 [inlined]
+   [12] include_relative(::Module, ::String) at ./loading.jl:1044
+   [13] include(::Module, ::String) at ./sysimg.jl:29
+   [14] include(::String) at ./client.jl:392
+   [15] macro expansion at /root/.julia/packages/GLPK/J1b5G/test/runtests.jl:21 [inlined]
+   [16] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [17] top-level scope at /root/.julia/packages/GLPK/J1b5G/test/runtests.jl:21
+   [18] include at ./boot.jl:317 [inlined]
+   [19] include_relative(::Module, ::String) at ./loading.jl:1044
+   [20] include(::Module, ::String) at ./sysimg.jl:29
+   [21] include(::String) at ./client.jl:392
+   [22] top-level scope at none:0
+   [23] eval(::Module, ::Any) at ./boot.jl:319
+   [24] exec_options(::Base.JLOptions) at ./client.jl:243
+   [25] _start() at ./client.jl:425
+Test Summary:             | Pass  Fail  Error  Broken  Total
+MathOptInterface          | 1880     1      1       1   1883
+  Unit Tests              |  782                         782
+  Linear tests            |  511                         511
+  Linear Conic tests      |  135                         135
+  Integer Linear tests    |   81     1      1             83
+    int3                  |   27                          27
+    int1                  |   29                          29
+    indicator4            |    6     1      1              8
+    knapsack              |   19                          19
+  ModelLike tests         |  246                    1    247
+  Parameter setting       |    4                           4
+  Issue #79               |    2                           2
+  Issue #70               |    6                           6
+  Infeasible bounds       |    1                           1
+  RawParameter            |   15                          15
+  TimeLimitSec issue #110 |    4                           4
+  RelativeGap             |    2                           2
+  Extra name tests        |   15                          15
+  Issue #102              |    2                           2
+  Issue #116              |    3                           3
+  Default parameters      |    4                           4
+  Duplicate names         |   20                          20
+  Duals with equal bounds |    2                           2
+  PR #121                 |    3                           3
+  Non-ascii names         |    2                           2
+  All Callbacks           |   40                          40
+ERROR: LoadError: Some tests did not pass: 1880 passed, 1 failed, 1 errored, 1 broken.
+in expression starting at /root/.julia/packages/GLPK/J1b5G/test/runtests.jl:20
+ERROR: Package GLPK errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

@@ -1,0 +1,109 @@
+ Resolving package versions...
+ Installed GR ─ v0.42.0
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [28b8d3ca] + GR v0.42.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [28b8d3ca] + GR v0.42.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building GR → `~/.julia/packages/GR/f1Iqi/deps/build.log`
+   Testing GR
+    Status `/tmp/tmpua6KwT/Manifest.toml`
+  [28b8d3ca] GR v0.42.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+[ Info: Testing plot: Simple line plot
+[ Info: Testing plot: Scatter plot
+[ Info: Testing plot: Colored scatter plot
+[ Info: Testing plot: Stem plot
+[ Info: Testing plot: Histogram plot
+[ Info: Testing plot: Multi-line plot
+[ Info: Testing plot: Overlay plot
+[ Info: Testing plot: 3-d line plot
+[ Info: Testing plot: Polar plot
+[ Info: Testing plot: 3-d point plot
+[ Info: Testing plot: Colored 3-d point plot
+[ Info: Testing plot: Hexbin plot
+[ Info: Testing plot: Contour plot
+[ Info: Testing plot: Contour plot of matrix
+[ Info: Testing plot: Filled contour plot
+[ Info: Testing plot: Filled contour plot of matrix
+[ Info: Testing plot: Filled contour plot on a triangular mesh
+[ Info: Testing plot: Surface plot
+ERROR: LoadError: GR3 error (gr3.c, l. 160): init failed
+Stacktrace:
+ [1] _check_error() at /root/.julia/packages/GR/f1Iqi/src/gr3.jl:73
+ [2] clear at /root/.julia/packages/GR/f1Iqi/src/gr3.jl:245 [inlined]
+ [3] plot_data(::Bool) at /root/.julia/packages/GR/f1Iqi/src/jlgr.jl:1315
+ [4] plot_data at /root/.julia/packages/GR/f1Iqi/src/jlgr.jl:1068 [inlined]
+ [5] #surface#53(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Array{Float64,1}, ::Vararg{Array{Float64,1},N} where N) at /root/.julia/packages/GR/f1Iqi/src/jlgr.jl:2155
+ [6] surface at /root/.julia/packages/GR/f1Iqi/src/jlgr.jl:2151 [inlined]
+ [7] #surface#20 at /root/.julia/packages/GR/f1Iqi/src/GR.jl:3255 [inlined]
+ [8] surface(::Array{Float64,1}, ::Array{Float64,1}, ::Array{Float64,1}) at /root/.julia/packages/GR/f1Iqi/src/GR.jl:3255
+ [9] top-level scope at /root/.julia/packages/GR/f1Iqi/test/runtests.jl:126
+ [10] eval at ./boot.jl:319 [inlined]
+ [11] eval(::Expr) at ./client.jl:393
+ [12] iterate at ./generator.jl:47 [inlined]
+ [13] _collect(::Array{Expr,1}, ::Base.Generator{Array{Expr,1},typeof(eval)}, ::Base.EltypeUnknown, ::Base.HasShape{1}) at ./array.jl:632
+ [14] collect_similar at ./array.jl:561 [inlined]
+ [15] map at ./abstractarray.jl:1987 [inlined]
+ [16] basic_tests() at /root/.julia/packages/GR/f1Iqi/test/runtests.jl:227
+ [17] top-level scope at util.jl:156
+ [18] include at ./boot.jl:317 [inlined]
+ [19] include_relative(::Module, ::String) at ./loading.jl:1044
+ [20] include(::Module, ::String) at ./sysimg.jl:29
+ [21] include(::String) at ./client.jl:392
+ [22] top-level scope at none:0
+in expression starting at /root/.julia/packages/GR/f1Iqi/test/runtests.jl:234
+ERROR: Package GR errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

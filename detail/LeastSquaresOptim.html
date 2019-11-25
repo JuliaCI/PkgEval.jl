@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="LeastSquaresOptim">LeastSquaresOptim</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#LeastSquaresOptim">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 15 hours ago and took 6 minutes, 4 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/LeastSquaresOptim/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed NaNMath ──────────────── v0.3.3
+ Installed Requires ─────────────── v0.5.2
+ Installed DiffEqDiffTools ──────── v1.4.0
+ Installed ArrayInterface ───────── v1.2.1
+ Installed DiffRules ────────────── v0.1.0
+ Installed CommonSubexpressions ─── v0.2.0
+ Installed LeastSquaresOptim ────── v0.7.4
+ Installed BinaryProvider ───────── v0.5.8
+ Installed DataAPI ──────────────── v1.1.0
+ Installed URIParser ────────────── v0.4.0
+ Installed PositiveFactorizations ─ v0.2.3
+ Installed BinDeps ──────────────── v0.8.10
+ Installed DiffResults ──────────── v0.0.4
+ Installed SpecialFunctions ─────── v0.8.0
+ Installed DataStructures ───────── v0.17.6
+ Installed StaticArrays ─────────── v0.12.1
+ Installed SortingAlgorithms ────── v0.3.1
+ Installed LineSearches ─────────── v7.0.1
+ Installed Missings ─────────────── v0.4.3
+ Installed FillArrays ───────────── v0.7.4
+ Installed OrderedCollections ───── v1.1.0
+ Installed StatsBase ────────────── v0.32.0
+ Installed NLSolversBase ────────── v7.5.0
+ Installed Parameters ───────────── v0.12.0
+ Installed Optim ────────────────── v0.19.4
+ Installed ForwardDiff ──────────── v0.10.6
+ Installed Calculus ─────────────── v0.5.1
+ Installed Compat ───────────────── v2.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [0fc2ff8b] + LeastSquaresOptim v0.7.4
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [1a297f60] + FillArrays v0.7.4
+  [f6369f11] + ForwardDiff v0.10.6
+  [0fc2ff8b] + LeastSquaresOptim v0.7.4
+  [d3d80556] + LineSearches v7.0.1
+  [e1d29d7a] + Missings v0.4.3
+  [d41bc354] + NLSolversBase v7.5.0
+  [77ba4419] + NaNMath v0.3.3
+  [429524aa] + Optim v0.19.4
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [85a6dd25] + PositiveFactorizations v0.2.3
+  [ae029012] + Requires v0.5.2
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [2913bbd2] + StatsBase v0.32.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing LeastSquaresOptim
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;tmpkDY4eL&#x2F;Manifest.toml`
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [1a297f60] FillArrays v0.7.4
+  [f6369f11] ForwardDiff v0.10.6
+  [0fc2ff8b] LeastSquaresOptim v0.7.4
+  [d3d80556] LineSearches v7.0.1
+  [e1d29d7a] Missings v0.4.3
+  [d41bc354] NLSolversBase v7.5.0
+  [77ba4419] NaNMath v0.3.3
+  [429524aa] Optim v0.19.4
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [ae029012] Requires v0.5.2
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Running tests:
+dense    qr dl                     rosenbrock    27    28      14   0.000000e+00
+dense    qr dl                powell_singular    13    14      13   3.574918e-14
+dense    qr dl            powell_badly_scaled    69    70      49   0.000000e+00
+dense    qr dl                           wood    27    28      14   1.580002e-27
+dense    qr dl                 helical_valley    12    13       9   8.431032e-45
+dense    qr dl                         watson    29    30      22   6.829075e-30
+dense    qr dl                         watson    27    28      22   1.332499e-27
+dense    qr dl                      chebyquad     8     9       5   2.299560e-32
+dense    qr dl                      chebyquad    10    11       7   3.976109e-32
+dense    qr dl                      chebyquad    10    11       6   1.295011e-31
+dense    qr dl                      chebyquad    15    16       8   3.493185e-32
+dense    qr dl            brown_almost_linear     6     7       6   1.343529e-29
+dense    qr dl            brown_almost_linear     5     6       5   5.821362e-27
+dense    qr dl            brown_almost_linear     5     6       5   6.132496e-26
+dense    qr dl        discrete_boundary_value     3     4       3   2.982190e-31
+dense    qr dl     discrete_integral_equation     4     5       4   0.000000e+00
+dense    qr dl     discrete_integral_equation     4     5       4   3.466674e-33
+dense    qr dl                  trigonometric    13    14       8   2.116366e-29
+dense    qr dl           variably_dimensioned    13    14      13   0.000000e+00
+dense    qr dl            broyden_tridiagonal     5     6       5   5.423419e-31
+dense    qr dl                 broyden_banded     6     7       6   7.280015e-31
+dense    qr lm                     rosenbrock    35    36      27   5.450962e-23
+dense    qr lm                powell_singular    14    15      14   5.555797e-14
+dense    qr lm            powell_badly_scaled    75    76      75   6.738512e-22
+dense    qr lm                           wood    96    97      95   1.419888e-23
+dense    qr lm                 helical_valley    13    14      13   4.733873e-25
+dense    qr lm                         watson    50    51      50   6.594920e-24
+dense    qr lm                         watson    49    50      49   9.427301e-13
+dense    qr lm                      chebyquad     7     8       7   6.749973e-27
+dense    qr lm                      chebyquad     8     9       8   5.942471e-25
+dense    qr lm                      chebyquad     8     9       8   9.617582e-28
+dense    qr lm                      chebyquad     9    10       9   3.280046e-25
+dense    qr lm            brown_almost_linear    11    12      11   4.665050e-22
+dense    qr lm            brown_almost_linear    15    16      15   2.208048e-24
+dense    qr lm            brown_almost_linear    16    17      16   3.525202e-26
+dense    qr lm        discrete_boundary_value    10    11      10   1.386946e-21
+dense    qr lm     discrete_integral_equation     5     6       5   2.234656e-22
+dense    qr lm     discrete_integral_equation     5     6       5   1.151354e-22
+dense    qr lm                  trigonometric    24    25      21   2.795056e-05
+dense    qr lm           variably_dimensioned    17    18      17   1.071752e-24
+dense    qr lm            broyden_tridiagonal     7     8       7   2.474135e-24
+dense    qr lm                 broyden_banded     7     8       7   2.142535e-26
+dense  lsmr dl                     rosenbrock    27    28      14   0.000000e+00
+dense  lsmr dl                powell_singular    13    14      13   3.574918e-14
+dense  lsmr dl            powell_badly_scaled    69    70      49   0.000000e+00
+dense  lsmr dl                           wood    27    28      14   3.563186e-28
+dense  lsmr dl                 helical_valley    12    13       9   8.818672e-45
+dense  lsmr dl                         watson   545   546     540   6.493475e-11
+dense  lsmr dl                         watson    47    48      33   8.269424e-10
+dense  lsmr dl                      chebyquad     8     9       5   2.299560e-32
+dense  lsmr dl                      chebyquad    10    11       7   5.224879e-29
+dense  lsmr dl                      chebyquad    10    11       6   1.521770e-31
+dense  lsmr dl                      chebyquad    15    16       8   1.701298e-32
+dense  lsmr dl            brown_almost_linear     6     7       6   4.782469e-30
+dense  lsmr dl            brown_almost_linear    13    14       5   1.891048e-28
+dense  lsmr dl            brown_almost_linear    15    16       6   7.644407e-27
+dense  lsmr dl        discrete_boundary_value     3     4       3   2.864836e-31
+dense  lsmr dl     discrete_integral_equation     4     5       4   0.000000e+00
+dense  lsmr dl     discrete_integral_equation     4     5       4   1.410744e-32
+dense  lsmr dl                  trigonometric    13    14       8   2.514494e-29
+dense  lsmr dl           variably_dimensioned    14    15      14   4.164157e-24
+dense  lsmr dl            broyden_tridiagonal     5     6       5   4.437343e-31
+dense  lsmr dl                 broyden_banded     6     7       6   1.161413e-29
+dense  lsmr lm                     rosenbrock    28    29      23   6.969912e-23
+dense  lsmr lm                powell_singular    15    16      15   2.090257e-13
+dense  lsmr lm            powell_badly_scaled    75    76      75   5.252656e-23
+dense  lsmr lm                           wood    97    98      96   8.377716e-23
+dense  lsmr lm                 helical_valley    13    14      13   1.065539e-21
+dense  lsmr lm                         watson    49    50      49   1.322178e-22
+dense  lsmr lm                         watson    39    40      36   8.248491e-10
+dense  lsmr lm                      chebyquad    10    11      10   5.763780e-19
+dense  lsmr lm                      chebyquad     9    10       9   5.977855e-21
+dense  lsmr lm                      chebyquad    15    16      15   7.072814e-17
+dense  lsmr lm                      chebyquad    14    15      14   9.777951e-18
+dense  lsmr lm            brown_almost_linear    12    13      12   2.626464e-26
+dense  lsmr lm            brown_almost_linear    15    16      15   3.969591e-22
+dense  lsmr lm            brown_almost_linear    16    17      16   7.281462e-26
+dense  lsmr lm        discrete_boundary_value    11    12      11   1.300969e-20
+dense  lsmr lm     discrete_integral_equation     5     6       5   2.234656e-22
+dense  lsmr lm     discrete_integral_equation    11    12      11   2.479900e-18
+dense  lsmr lm                  trigonometric    25    26      23   2.795056e-05
+dense  lsmr lm           variably_dimensioned    27    28      27   2.012733e-17
+dense  lsmr lm            broyden_tridiagonal    16    17      16   7.102855e-16
+dense  lsmr lm                 broyden_banded    11    12      11   2.411868e-16
+sparse lsmr dl                     rosenbrock    27    28      14   0.000000e+00
+sparse lsmr dl                powell_singular    13    14      13   3.574918e-14
+sparse lsmr dl            powell_badly_scaled    69    70      49   9.860761e-32
+sparse lsmr dl                           wood    27    28      14   2.924702e-28
+sparse lsmr dl                 helical_valley    12    13       9   4.468557e-45
+sparse lsmr dl                         watson   567   568     562   6.180480e-11
+sparse lsmr dl                         watson    47    48      35   8.168457e-10
+sparse lsmr dl                      chebyquad     8     9       5   4.333342e-32
+sparse lsmr dl                      chebyquad    10    11       7   6.413347e-32
+sparse lsmr dl                      chebyquad    10    11       6   1.237518e-31
+sparse lsmr dl                      chebyquad    15    16       8   7.719086e-32
+sparse lsmr dl            brown_almost_linear     6     7       6   1.343529e-29
+sparse lsmr dl            brown_almost_linear    13    14       5   2.287697e-29
+sparse lsmr dl            brown_almost_linear    15    16       6   1.663116e-26
+sparse lsmr dl        discrete_boundary_value     3     4       3   2.706428e-31
+sparse lsmr dl     discrete_integral_equation     4     5       4   0.000000e+00
+sparse lsmr dl     discrete_integral_equation     4     5       4   1.410744e-32
+sparse lsmr dl                  trigonometric    13    14       8   2.964391e-29
+sparse lsmr dl           variably_dimensioned    14    15      14   4.141565e-24
+sparse lsmr dl            broyden_tridiagonal     5     6       5   5.423419e-31
+sparse lsmr dl                 broyden_banded     6     7       6   1.363635e-29
+sparse lsmr lm                     rosenbrock    28    29      23   6.969912e-23
+sparse lsmr lm                powell_singular    15    16      15   2.090257e-13
+sparse lsmr lm            powell_badly_scaled    75    76      75   5.252958e-23
+sparse lsmr lm                           wood    97    98      96   8.379014e-23
+sparse lsmr lm                 helical_valley    13    14      13   1.065539e-21
+sparse lsmr lm                         watson    49    50      49   1.263452e-22
+sparse lsmr lm                         watson    39    40      36   8.226986e-10
+sparse lsmr lm                      chebyquad    10    11      10   5.763781e-19
+sparse lsmr lm                      chebyquad     9    10       9   5.973261e-21
+sparse lsmr lm                      chebyquad    16    17      16   9.140305e-18
+sparse lsmr lm                      chebyquad    15    16      15   5.836115e-18
+sparse lsmr lm            brown_almost_linear    12    13      12   1.275403e-25
+sparse lsmr lm            brown_almost_linear    15    16      15   1.316114e-23
+sparse lsmr lm            brown_almost_linear    16    17      16   1.395620e-22
+sparse lsmr lm        discrete_boundary_value    11    12      11   1.300968e-20
+sparse lsmr lm     discrete_integral_equation     5     6       5   2.234656e-22
+sparse lsmr lm     discrete_integral_equation    11    12      11   2.479900e-18
+sparse lsmr lm                  trigonometric    25    26      23   2.795056e-05
+sparse lsmr lm           variably_dimensioned    27    28      27   5.194087e-18
+sparse lsmr lm            broyden_tridiagonal    16    17      16   7.102855e-16
+sparse lsmr lm                 broyden_banded    11    12      11   2.411868e-16
+dense  chol dl                     rosenbrock    27    28      14   0.000000e+00
+dense  chol dl                powell_singular    13    14      13   3.574918e-14
+dense  chol dl            powell_badly_scaled    69    70      49   0.000000e+00
+dense  chol dl                           wood    27    28      14   3.563186e-28
+dense  chol dl                 helical_valley    12    13       9   8.426891e-45
+dense  chol dl                         watson    29    30      22   4.462594e-30
+dense  chol dl                      chebyquad     8     9       5   5.327893e-32
+dense  chol dl                      chebyquad    10    11       7   1.002554e-31
+dense  chol dl                      chebyquad    10    11       6   1.386475e-31
+dense  chol dl                      chebyquad    15    16       8   4.003467e-32
+dense  chol dl            brown_almost_linear     6     7       6   4.782469e-30
+dense  chol dl        discrete_boundary_value     3     4       3   2.893725e-31
+dense  chol dl     discrete_integral_equation     4     5       4   0.000000e+00
+dense  chol dl     discrete_integral_equation     4     5       4   3.466674e-33
+dense  chol dl                  trigonometric    13    14       8   1.331203e-29
+dense  chol dl           variably_dimensioned    13    14      13   0.000000e+00
+dense  chol dl            broyden_tridiagonal     5     6       5   5.423419e-31
+dense  chol dl                 broyden_banded     6     7       6   7.280015e-31
+dense  chol lm                     rosenbrock     1     2       1   0.000000e+00
+dense  chol lm                powell_singular     1     2       1   3.574815e-14
+dense  chol lm            powell_badly_scaled     1     2       1   0.000000e+00
+dense  chol lm                           wood     1     2       1   3.563186e-28
+dense  chol lm                 helical_valley     1     2       1   4.170748e-47
+dense  chol lm                         watson     1     2       1   4.462594e-30
+dense  chol lm                      chebyquad     1     2       1   5.327893e-32
+dense  chol lm                      chebyquad     1     2       1   4.530215e-32
+dense  chol lm                      chebyquad     1     2       1   1.117651e-31
+dense  chol lm                      chebyquad     1     2       1   2.664352e-32
+dense  chol lm            brown_almost_linear     1     2       1   4.782469e-30
+dense  chol lm        discrete_boundary_value     1     2       1   2.728576e-31
+dense  chol lm     discrete_integral_equation     1     2       1   0.000000e+00
+dense  chol lm     discrete_integral_equation     1     2       1   0.000000e+00
+dense  chol lm                  trigonometric     1     2       1   1.331203e-29
+dense  chol lm           variably_dimensioned     1     2       1   0.000000e+00
+dense  chol lm            broyden_tridiagonal     1     2       1   5.423419e-31
+dense  chol lm                 broyden_banded     1     2       1   7.280015e-31
+forwarddiff fact dl                     rosenbrock    27    28      14   0.000000e+00
+forwarddiff fact dl                powell_singular    13    14      13   3.575524e-14
+forwarddiff fact dl            powell_badly_scaled    69    70      49   0.000000e+00
+forwarddiff fact dl                           wood    27    28      14   9.964792e-28
+forwarddiff fact dl                 helical_valley    12    13       9   6.652232e-45
+forwarddiff fact dl                         watson    29    30      22   4.441590e-29
+forwarddiff fact dl                         watson    19    20      19   5.022146e-29
+forwarddiff fact dl                      chebyquad     8     9       5   2.559176e-31
+forwarddiff fact dl                      chebyquad    10    11       7   1.053069e-31
+forwarddiff fact dl                      chebyquad    10    11       6   9.110042e-32
+forwarddiff fact dl                      chebyquad    15    16       8   1.779348e-31
+forwarddiff fact dl            brown_almost_linear     6     7       6   5.369185e-29
+forwarddiff fact dl            brown_almost_linear     5     6       5   9.511210e-27
+forwarddiff fact dl            brown_almost_linear     5     6       5   2.817851e-26
+forwarddiff fact dl        discrete_boundary_value     3     4       3   3.654189e-31
+forwarddiff fact dl     discrete_integral_equation     4     5       4   3.081488e-33
+forwarddiff fact dl     discrete_integral_equation     4     5       4   4.092601e-33
+forwarddiff fact dl                  trigonometric    13    14       8   3.855558e-29
+forwarddiff fact dl           variably_dimensioned    13    14      13   0.000000e+00
+forwarddiff fact dl            broyden_tridiagonal     5     6       5   7.395571e-31
+forwarddiff fact dl                 broyden_banded     6     7       6   2.012212e-30
+forwarddiff fact lm                     rosenbrock     1     2       1   0.000000e+00
+forwarddiff fact lm                powell_singular     1     2       1   3.575421e-14
+forwarddiff fact lm            powell_badly_scaled     1     2       1   0.000000e+00
+forwarddiff fact lm                           wood     1     2       1   9.964792e-28
+forwarddiff fact lm                 helical_valley     1     2       1   3.010121e-47
+forwarddiff fact lm                         watson     1     2       1   1.435334e-29
+forwarddiff fact lm                         watson     1     2       1   5.022146e-29
+forwarddiff fact lm                      chebyquad     1     2       1   3.297962e-32
+forwarddiff fact lm                      chebyquad     1     2       1   1.053069e-31
+forwarddiff fact lm                      chebyquad     1     2       1   9.110042e-32
+forwarddiff fact lm                      chebyquad     1     2       1   8.213081e-32
+forwarddiff fact lm            brown_almost_linear     1     2       1   1.996804e-29
+forwarddiff fact lm            brown_almost_linear     1     2       1   6.525667e-27
+forwarddiff fact lm            brown_almost_linear     1     2       1   2.817851e-26
+forwarddiff fact lm        discrete_boundary_value     1     2       1   3.365901e-31
+forwarddiff fact lm     discrete_integral_equation     1     2       1   7.703720e-34
+forwarddiff fact lm     discrete_integral_equation     1     2       1   0.000000e+00
+forwarddiff fact lm                  trigonometric     1     2       1   1.485277e-29
+forwarddiff fact lm           variably_dimensioned     1     2       1   0.000000e+00
+forwarddiff fact lm            broyden_tridiagonal     1     2       1   4.437343e-31
+forwarddiff fact lm                 broyden_banded     1     2       1   7.280015e-31
+     0     7.311203e+07              Inf
+     1     7.061087e+05     3.612440e+07
+     2     2.730246e+05     1.881931e+06
+     3     2.154056e+04     6.964977e+05
+     4     3.307375e+03     1.163914e+05
+     5     2.079960e+02     3.389049e+04
+     6     4.441790e+00     6.071391e+03
+     7     7.723022e-03     9.000967e+02
+     8     7.723022e-03     4.001176e+01
+     9     7.723022e-03     4.001176e+01
+    10     7.723022e-03     4.001176e+01
+    11     7.723022e-03     4.001176e+01
+    12     7.723022e-03     4.001176e+01
+    13     7.723022e-03     4.001176e+01
+    14     7.723022e-03     4.001176e+01
+    15     7.723022e-03     4.001176e+01
+    16     7.723022e-03     4.001176e+01
+    17     7.723022e-03     4.001176e+01
+    18     7.723022e-03     4.001176e+01
+    19     1.585670e-03     4.001176e+01
+    20     1.585670e-03     1.499508e+01
+    21     1.585670e-03     1.499508e+01
+    22     6.345231e-04     1.499508e+01
+    23     5.785965e-04     8.823605e+00
+    24     3.051748e-06     9.438166e+00
+    25     1.454057e-11     7.395256e-01
+    26     1.438719e-21     1.423006e-03
+    27     1.580002e-27     1.583582e-08
+     0     1.580002e-27              Inf
+     1     1.224830e-28     2.057956e-11
+	[1m[32mPASSED[0m: nonlinearsolvers.jl
+Results of Optimization Algorithm
+ * Algorithm: Dogleg
+ * Minimizer: [1.8207952602219444,1.8326643281093078,1.6253516841981288,2.3440042476533964,1.2472538969604525,1.6324440129187403]
+ * Sum of squares at Minimum: 10.928956
+ * Iterations: 9
+ * Convergence: true
+ * |x - x&#39;| &lt; 1.0e-08: false
+ * |f(x) - f(x&#39;)| &#x2F; |f(x)| &lt; 1.0e-08: true
+ * |g(x)| &lt; 1.0e-08: false
+ * Function Calls: 10
+ * Gradient Calls: 9
+ * Multiplication Calls: 36
+  qr dl                         factor     9    10       9   1.092896e+01
+iter dl                         factor    33    34       9   1.103324e+01
+  qr lm                         factor     8     9       8   1.092896e+01
+iter lm                         factor    11    12       4   1.098622e+01
+	[1m[32mPASSED[0m: nonlinearleastsquares.jl
+strd dl 27 &#x2F; 33
+strd lm 30 &#x2F; 33
+	[1m[32mPASSED[0m: nonlinearfitting.jl
+	[1m[32mPASSED[0m: bounds.jl
+   Testing LeastSquaresOptim tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 15 hours ago and took 4 minutes, 11 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/LeastSquaresOptim/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed DataAPI ──────────────── v1.1.0
+ Installed URIParser ────────────── v0.4.0
+ Installed Missings ─────────────── v0.4.3
+ Installed LineSearches ─────────── v7.0.1
+ Installed CommonSubexpressions ─── v0.2.0
+ Installed BinaryProvider ───────── v0.5.8
+ Installed StatsBase ────────────── v0.32.0
+ Installed LeastSquaresOptim ────── v0.7.4
+ Installed Requires ─────────────── v0.5.2
+ Installed Calculus ─────────────── v0.5.1
+ Installed FillArrays ───────────── v0.7.4
+ Installed Compat ───────────────── v2.2.0
+ Installed OrderedCollections ───── v1.1.0
+ Installed ForwardDiff ──────────── v0.10.6
+ Installed NLSolversBase ────────── v7.5.0
+ Installed DiffEqDiffTools ──────── v1.4.0
+ Installed DataStructures ───────── v0.17.6
+ Installed ArrayInterface ───────── v1.2.1
+ Installed NaNMath ──────────────── v0.3.3
+ Installed DiffResults ──────────── v0.0.4
+ Installed DiffRules ────────────── v0.1.0
+ Installed StaticArrays ─────────── v0.12.1
+ Installed Parameters ───────────── v0.12.0
+ Installed PositiveFactorizations ─ v0.2.3
+ Installed SortingAlgorithms ────── v0.3.1
+ Installed BinDeps ──────────────── v0.8.10
+ Installed SpecialFunctions ─────── v0.8.0
+ Installed Optim ────────────────── v0.19.4
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [0fc2ff8b] + LeastSquaresOptim v0.7.4
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [1a297f60] + FillArrays v0.7.4
+  [f6369f11] + ForwardDiff v0.10.6
+  [0fc2ff8b] + LeastSquaresOptim v0.7.4
+  [d3d80556] + LineSearches v7.0.1
+  [e1d29d7a] + Missings v0.4.3
+  [d41bc354] + NLSolversBase v7.5.0
+  [77ba4419] + NaNMath v0.3.3
+  [429524aa] + Optim v0.19.4
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [85a6dd25] + PositiveFactorizations v0.2.3
+  [ae029012] + Requires v0.5.2
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [2913bbd2] + StatsBase v0.32.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing LeastSquaresOptim
+ Resolving package versions...
+    Status `&#x2F;tmp&#x2F;jl_aQKtFq&#x2F;Manifest.toml`
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [1a297f60] FillArrays v0.7.4
+  [f6369f11] ForwardDiff v0.10.6
+  [0fc2ff8b] LeastSquaresOptim v0.7.4
+  [d3d80556] LineSearches v7.0.1
+  [e1d29d7a] Missings v0.4.3
+  [d41bc354] NLSolversBase v7.5.0
+  [77ba4419] NaNMath v0.3.3
+  [429524aa] Optim v0.19.4
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [ae029012] Requires v0.5.2
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Running tests:
+dense    qr dl                     rosenbrock    27    28      14   0.000000e+00
+dense    qr dl                powell_singular    13    14      13   3.574918e-14
+dense    qr dl            powell_badly_scaled    69    70      49   0.000000e+00
+dense    qr dl                           wood    27    28      14   1.580002e-27
+dense    qr dl                 helical_valley    12    13       9   8.431032e-45
+dense    qr dl                         watson    29    30      22   6.829075e-30
+dense    qr dl                         watson    27    28      22   1.332499e-27
+dense    qr dl                      chebyquad     8     9       5   2.299560e-32
+dense    qr dl                      chebyquad    10    11       7   3.976109e-32
+dense    qr dl                      chebyquad    10    11       6   1.295011e-31
+dense    qr dl                      chebyquad    15    16       8   3.493185e-32
+dense    qr dl            brown_almost_linear     6     7       6   1.343529e-29
+dense    qr dl            brown_almost_linear     5     6       5   5.821362e-27
+dense    qr dl            brown_almost_linear     5     6       5   6.132496e-26
+dense    qr dl        discrete_boundary_value     3     4       3   2.982190e-31
+dense    qr dl     discrete_integral_equation     4     5       4   0.000000e+00
+dense    qr dl     discrete_integral_equation     4     5       4   3.466674e-33
+dense    qr dl                  trigonometric    13    14       8   2.116366e-29
+dense    qr dl           variably_dimensioned    13    14      13   0.000000e+00
+dense    qr dl            broyden_tridiagonal     5     6       5   5.423419e-31
+dense    qr dl                 broyden_banded     6     7       6   7.280015e-31
+dense    qr lm                     rosenbrock    35    36      27   5.450962e-23
+dense    qr lm                powell_singular    14    15      14   5.555797e-14
+dense    qr lm            powell_badly_scaled    75    76      75   6.738512e-22
+dense    qr lm                           wood    96    97      95   1.419888e-23
+dense    qr lm                 helical_valley    13    14      13   4.733873e-25
+dense    qr lm                         watson    50    51      50   6.594920e-24
+dense    qr lm                         watson    49    50      49   9.427301e-13
+dense    qr lm                      chebyquad     7     8       7   6.749973e-27
+dense    qr lm                      chebyquad     8     9       8   5.942471e-25
+dense    qr lm                      chebyquad     8     9       8   9.617582e-28
+dense    qr lm                      chebyquad     9    10       9   3.280046e-25
+dense    qr lm            brown_almost_linear    11    12      11   4.665050e-22
+dense    qr lm            brown_almost_linear    15    16      15   2.208048e-24
+dense    qr lm            brown_almost_linear    16    17      16   3.525202e-26
+dense    qr lm        discrete_boundary_value    10    11      10   1.386946e-21
+dense    qr lm     discrete_integral_equation     5     6       5   2.234656e-22
+dense    qr lm     discrete_integral_equation     5     6       5   1.151354e-22
+dense    qr lm                  trigonometric    24    25      21   2.795056e-05
+dense    qr lm           variably_dimensioned    17    18      17   1.071752e-24
+dense    qr lm            broyden_tridiagonal     7     8       7   2.474135e-24
+dense    qr lm                 broyden_banded     7     8       7   2.142535e-26
+dense  lsmr dl                     rosenbrock    27    28      14   0.000000e+00
+dense  lsmr dl                powell_singular    13    14      13   3.574918e-14
+dense  lsmr dl            powell_badly_scaled    69    70      49   0.000000e+00
+dense  lsmr dl                           wood    27    28      14   3.563186e-28
+dense  lsmr dl                 helical_valley    12    13       9   8.818672e-45
+dense  lsmr dl                         watson   545   546     540   6.493475e-11
+dense  lsmr dl                         watson    47    48      33   8.269424e-10
+dense  lsmr dl                      chebyquad     8     9       5   2.299560e-32
+dense  lsmr dl                      chebyquad    10    11       7   5.224879e-29
+dense  lsmr dl                      chebyquad    10    11       6   1.521770e-31
+dense  lsmr dl                      chebyquad    15    16       8   1.701298e-32
+dense  lsmr dl            brown_almost_linear     6     7       6   4.782469e-30
+dense  lsmr dl            brown_almost_linear    13    14       5   1.891048e-28
+dense  lsmr dl            brown_almost_linear    15    16       6   7.644407e-27
+dense  lsmr dl        discrete_boundary_value     3     4       3   2.864836e-31
+dense  lsmr dl     discrete_integral_equation     4     5       4   0.000000e+00
+dense  lsmr dl     discrete_integral_equation     4     5       4   1.410744e-32
+dense  lsmr dl                  trigonometric    13    14       8   2.514494e-29
+dense  lsmr dl           variably_dimensioned    14    15      14   4.164157e-24
+dense  lsmr dl            broyden_tridiagonal     5     6       5   4.437343e-31
+dense  lsmr dl                 broyden_banded     6     7       6   1.161413e-29
+dense  lsmr lm                     rosenbrock    28    29      23   6.969912e-23
+dense  lsmr lm                powell_singular    15    16      15   2.090257e-13
+dense  lsmr lm            powell_badly_scaled    75    76      75   5.252656e-23
+dense  lsmr lm                           wood    97    98      96   8.377716e-23
+dense  lsmr lm                 helical_valley    13    14      13   1.065539e-21
+dense  lsmr lm                         watson    49    50      49   1.322178e-22
+dense  lsmr lm                         watson    39    40      36   8.248491e-10
+dense  lsmr lm                      chebyquad    10    11      10   5.763780e-19
+dense  lsmr lm                      chebyquad     9    10       9   5.977855e-21
+dense  lsmr lm                      chebyquad    15    16      15   7.072814e-17
+dense  lsmr lm                      chebyquad    14    15      14   9.777951e-18
+dense  lsmr lm            brown_almost_linear    12    13      12   2.626464e-26
+dense  lsmr lm            brown_almost_linear    15    16      15   3.969591e-22
+dense  lsmr lm            brown_almost_linear    16    17      16   7.281462e-26
+dense  lsmr lm        discrete_boundary_value    11    12      11   1.300969e-20
+dense  lsmr lm     discrete_integral_equation     5     6       5   2.234656e-22
+dense  lsmr lm     discrete_integral_equation    11    12      11   2.479900e-18
+dense  lsmr lm                  trigonometric    25    26      23   2.795056e-05
+dense  lsmr lm           variably_dimensioned    27    28      27   2.012733e-17
+dense  lsmr lm            broyden_tridiagonal    16    17      16   7.102855e-16
+dense  lsmr lm                 broyden_banded    11    12      11   2.411868e-16
+sparse lsmr dl                     rosenbrock    27    28      14   0.000000e+00
+sparse lsmr dl                powell_singular    13    14      13   3.574918e-14
+sparse lsmr dl            powell_badly_scaled    69    70      49   9.860761e-32
+sparse lsmr dl                           wood    27    28      14   2.924702e-28
+sparse lsmr dl                 helical_valley    12    13       9   4.468557e-45
+sparse lsmr dl                         watson   567   568     562   6.180480e-11
+sparse lsmr dl                         watson    47    48      35   8.168457e-10
+sparse lsmr dl                      chebyquad     8     9       5   4.333342e-32
+sparse lsmr dl                      chebyquad    10    11       7   6.413347e-32
+sparse lsmr dl                      chebyquad    10    11       6   1.237518e-31
+sparse lsmr dl                      chebyquad    15    16       8   7.719086e-32
+sparse lsmr dl            brown_almost_linear     6     7       6   1.343529e-29
+sparse lsmr dl            brown_almost_linear    13    14       5   2.287697e-29
+sparse lsmr dl            brown_almost_linear    15    16       6   1.663116e-26
+sparse lsmr dl        discrete_boundary_value     3     4       3   2.706428e-31
+sparse lsmr dl     discrete_integral_equation     4     5       4   0.000000e+00
+sparse lsmr dl     discrete_integral_equation     4     5       4   1.410744e-32
+sparse lsmr dl                  trigonometric    13    14       8   2.964391e-29
+sparse lsmr dl           variably_dimensioned    14    15      14   4.141565e-24
+sparse lsmr dl            broyden_tridiagonal     5     6       5   5.423419e-31
+sparse lsmr dl                 broyden_banded     6     7       6   1.363635e-29
+sparse lsmr lm                     rosenbrock    28    29      23   6.969912e-23
+sparse lsmr lm                powell_singular    15    16      15   2.090257e-13
+sparse lsmr lm            powell_badly_scaled    75    76      75   5.252958e-23
+sparse lsmr lm                           wood    97    98      96   8.379014e-23
+sparse lsmr lm                 helical_valley    13    14      13   1.065539e-21
+sparse lsmr lm                         watson    49    50      49   1.263452e-22
+sparse lsmr lm                         watson    39    40      36   8.226986e-10
+sparse lsmr lm                      chebyquad    10    11      10   5.763781e-19
+sparse lsmr lm                      chebyquad     9    10       9   5.973261e-21
+sparse lsmr lm                      chebyquad    16    17      16   9.140305e-18
+sparse lsmr lm                      chebyquad    15    16      15   5.836115e-18
+sparse lsmr lm            brown_almost_linear    12    13      12   1.275403e-25
+sparse lsmr lm            brown_almost_linear    15    16      15   1.316114e-23
+sparse lsmr lm            brown_almost_linear    16    17      16   1.395620e-22
+sparse lsmr lm        discrete_boundary_value    11    12      11   1.300968e-20
+sparse lsmr lm     discrete_integral_equation     5     6       5   2.234656e-22
+sparse lsmr lm     discrete_integral_equation    11    12      11   2.479900e-18
+sparse lsmr lm                  trigonometric    25    26      23   2.795056e-05
+sparse lsmr lm           variably_dimensioned    27    28      27   5.194087e-18
+sparse lsmr lm            broyden_tridiagonal    16    17      16   7.102855e-16
+sparse lsmr lm                 broyden_banded    11    12      11   2.411868e-16
+dense  chol dl                     rosenbrock    27    28      14   0.000000e+00
+dense  chol dl                powell_singular    13    14      13   3.574918e-14
+dense  chol dl            powell_badly_scaled    69    70      49   0.000000e+00
+dense  chol dl                           wood    27    28      14   3.563186e-28
+dense  chol dl                 helical_valley    12    13       9   8.426891e-45
+dense  chol dl                         watson    29    30      22   4.462594e-30
+dense  chol dl                      chebyquad     8     9       5   5.327893e-32
+dense  chol dl                      chebyquad    10    11       7   1.002554e-31
+dense  chol dl                      chebyquad    10    11       6   1.386475e-31
+dense  chol dl                      chebyquad    15    16       8   4.003467e-32
+dense  chol dl            brown_almost_linear     6     7       6   4.782469e-30
+dense  chol dl        discrete_boundary_value     3     4       3   2.893725e-31
+dense  chol dl     discrete_integral_equation     4     5       4   0.000000e+00
+dense  chol dl     discrete_integral_equation     4     5       4   3.466674e-33
+dense  chol dl                  trigonometric    13    14       8   1.331203e-29
+dense  chol dl           variably_dimensioned    13    14      13   0.000000e+00
+dense  chol dl            broyden_tridiagonal     5     6       5   5.423419e-31
+dense  chol dl                 broyden_banded     6     7       6   7.280015e-31
+dense  chol lm                     rosenbrock     1     2       1   0.000000e+00
+dense  chol lm                powell_singular     1     2       1   3.574815e-14
+dense  chol lm            powell_badly_scaled     1     2       1   0.000000e+00
+dense  chol lm                           wood     1     2       1   3.563186e-28
+dense  chol lm                 helical_valley     1     2       1   4.170748e-47
+dense  chol lm                         watson     1     2       1   4.462594e-30
+dense  chol lm                      chebyquad     1     2       1   5.327893e-32
+dense  chol lm                      chebyquad     1     2       1   4.530215e-32
+dense  chol lm                      chebyquad     1     2       1   1.117651e-31
+dense  chol lm                      chebyquad     1     2       1   2.664352e-32
+dense  chol lm            brown_almost_linear     1     2       1   4.782469e-30
+dense  chol lm        discrete_boundary_value     1     2       1   2.728576e-31
+dense  chol lm     discrete_integral_equation     1     2       1   0.000000e+00
+dense  chol lm     discrete_integral_equation     1     2       1   0.000000e+00
+dense  chol lm                  trigonometric     1     2       1   1.331203e-29
+dense  chol lm           variably_dimensioned     1     2       1   0.000000e+00
+dense  chol lm            broyden_tridiagonal     1     2       1   5.423419e-31
+dense  chol lm                 broyden_banded     1     2       1   7.280015e-31
+forwarddiff fact dl                     rosenbrock    27    28      14   0.000000e+00
+forwarddiff fact dl                powell_singular    13    14      13   3.575524e-14
+forwarddiff fact dl            powell_badly_scaled    69    70      49   0.000000e+00
+forwarddiff fact dl                           wood    27    28      14   9.964792e-28
+forwarddiff fact dl                 helical_valley    12    13       9   6.652232e-45
+forwarddiff fact dl                         watson    29    30      22   4.441590e-29
+forwarddiff fact dl                         watson    19    20      19   5.022146e-29
+forwarddiff fact dl                      chebyquad     8     9       5   2.559176e-31
+forwarddiff fact dl                      chebyquad    10    11       7   1.053069e-31
+forwarddiff fact dl                      chebyquad    10    11       6   9.110042e-32
+forwarddiff fact dl                      chebyquad    15    16       8   1.779348e-31
+forwarddiff fact dl            brown_almost_linear     6     7       6   5.369185e-29
+forwarddiff fact dl            brown_almost_linear     5     6       5   9.511210e-27
+forwarddiff fact dl            brown_almost_linear     5     6       5   2.817851e-26
+forwarddiff fact dl        discrete_boundary_value     3     4       3   3.654189e-31
+forwarddiff fact dl     discrete_integral_equation     4     5       4   3.081488e-33
+forwarddiff fact dl     discrete_integral_equation     4     5       4   4.092601e-33
+forwarddiff fact dl                  trigonometric    13    14       8   3.855558e-29
+forwarddiff fact dl           variably_dimensioned    13    14      13   0.000000e+00
+forwarddiff fact dl            broyden_tridiagonal     5     6       5   7.395571e-31
+forwarddiff fact dl                 broyden_banded     6     7       6   2.012212e-30
+forwarddiff fact lm                     rosenbrock     1     2       1   0.000000e+00
+forwarddiff fact lm                powell_singular     1     2       1   3.575421e-14
+forwarddiff fact lm            powell_badly_scaled     1     2       1   0.000000e+00
+forwarddiff fact lm                           wood     1     2       1   9.964792e-28
+forwarddiff fact lm                 helical_valley     1     2       1   3.010121e-47
+forwarddiff fact lm                         watson     1     2       1   1.435334e-29
+forwarddiff fact lm                         watson     1     2       1   5.022146e-29
+forwarddiff fact lm                      chebyquad     1     2       1   3.297962e-32
+forwarddiff fact lm                      chebyquad     1     2       1   1.053069e-31
+forwarddiff fact lm                      chebyquad     1     2       1   9.110042e-32
+forwarddiff fact lm                      chebyquad     1     2       1   8.213081e-32
+forwarddiff fact lm            brown_almost_linear     1     2       1   1.996804e-29
+forwarddiff fact lm            brown_almost_linear     1     2       1   6.525667e-27
+forwarddiff fact lm            brown_almost_linear     1     2       1   2.817851e-26
+forwarddiff fact lm        discrete_boundary_value     1     2       1   3.365901e-31
+forwarddiff fact lm     discrete_integral_equation     1     2       1   7.703720e-34
+forwarddiff fact lm     discrete_integral_equation     1     2       1   0.000000e+00
+forwarddiff fact lm                  trigonometric     1     2       1   1.485277e-29
+forwarddiff fact lm           variably_dimensioned     1     2       1   0.000000e+00
+forwarddiff fact lm            broyden_tridiagonal     1     2       1   4.437343e-31
+forwarddiff fact lm                 broyden_banded     1     2       1   7.280015e-31
+     0     7.311203e+07              Inf
+     1     7.061087e+05     3.612440e+07
+     2     2.730246e+05     1.881931e+06
+     3     2.154056e+04     6.964977e+05
+     4     3.307375e+03     1.163914e+05
+     5     2.079960e+02     3.389049e+04
+     6     4.441790e+00     6.071391e+03
+     7     7.723022e-03     9.000967e+02
+     8     7.723022e-03     4.001176e+01
+     9     7.723022e-03     4.001176e+01
+    10     7.723022e-03     4.001176e+01
+    11     7.723022e-03     4.001176e+01
+    12     7.723022e-03     4.001176e+01
+    13     7.723022e-03     4.001176e+01
+    14     7.723022e-03     4.001176e+01
+    15     7.723022e-03     4.001176e+01
+    16     7.723022e-03     4.001176e+01
+    17     7.723022e-03     4.001176e+01
+    18     7.723022e-03     4.001176e+01
+    19     1.585670e-03     4.001176e+01
+    20     1.585670e-03     1.499508e+01
+    21     1.585670e-03     1.499508e+01
+    22     6.345231e-04     1.499508e+01
+    23     5.785965e-04     8.823605e+00
+    24     3.051748e-06     9.438166e+00
+    25     1.454057e-11     7.395256e-01
+    26     1.438719e-21     1.423006e-03
+    27     1.580002e-27     1.583582e-08
+     0     1.580002e-27              Inf
+     1     1.224830e-28     2.057956e-11
+	[1m[32mPASSED[0m: nonlinearsolvers.jl
+Results of Optimization Algorithm
+ * Algorithm: Dogleg
+ * Minimizer: [1.8207952602219444,1.8326643281093078,1.6253516841981288,2.3440042476533964,1.2472538969604525,1.6324440129187403]
+ * Sum of squares at Minimum: 10.928956
+ * Iterations: 9
+ * Convergence: true
+ * |x - x&#39;| &lt; 1.0e-08: false
+ * |f(x) - f(x&#39;)| &#x2F; |f(x)| &lt; 1.0e-08: true
+ * |g(x)| &lt; 1.0e-08: false
+ * Function Calls: 10
+ * Gradient Calls: 9
+ * Multiplication Calls: 36
+  qr dl                         factor     9    10       9   1.092896e+01
+iter dl                         factor    33    34       9   1.103324e+01
+  qr lm                         factor     8     9       8   1.092896e+01
+iter lm                         factor    11    12       4   1.098622e+01
+	[1m[32mPASSED[0m: nonlinearleastsquares.jl
+strd dl 27 &#x2F; 33
+strd lm 30 &#x2F; 33
+	[1m[32mPASSED[0m: nonlinearfitting.jl
+	[1m[32mPASSED[0m: bounds.jl
+   Testing LeastSquaresOptim tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 12 hours ago and took 5 minutes, 31 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/LeastSquaresOptim/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Missings ─────────────── v0.4.3
+ Installed DiffEqDiffTools ──────── v1.4.0
+ Installed ArrayInterface ───────── v1.2.1
+ Installed FillArrays ───────────── v0.7.4
+ Installed DiffResults ──────────── v0.0.4
+ Installed LeastSquaresOptim ────── v0.7.4
+ Installed BinDeps ──────────────── v0.8.10
+ Installed Optim ────────────────── v0.19.4
+ Installed SortingAlgorithms ────── v0.3.1
+ Installed DataAPI ──────────────── v1.1.0
+ Installed NLSolversBase ────────── v7.5.0
+ Installed Parameters ───────────── v0.12.0
+ Installed LineSearches ─────────── v7.0.1
+ Installed Calculus ─────────────── v0.5.1
+ Installed ForwardDiff ──────────── v0.10.6
+ Installed DataStructures ───────── v0.17.6
+ Installed DiffRules ────────────── v0.1.0
+ Installed URIParser ────────────── v0.4.0
+ Installed Requires ─────────────── v0.5.2
+ Installed NaNMath ──────────────── v0.3.3
+ Installed PositiveFactorizations ─ v0.2.3
+ Installed StaticArrays ─────────── v0.12.1
+ Installed StatsBase ────────────── v0.32.0
+ Installed OrderedCollections ───── v1.1.0
+ Installed CommonSubexpressions ─── v0.2.0
+ Installed BinaryProvider ───────── v0.5.8
+ Installed SpecialFunctions ─────── v0.8.0
+ Installed Compat ───────────────── v2.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [0fc2ff8b] + LeastSquaresOptim v0.7.4
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [4fba245c] + ArrayInterface v1.2.1
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [9a962f9c] + DataAPI v1.1.0
+  [864edb3b] + DataStructures v0.17.6
+  [01453d9d] + DiffEqDiffTools v1.4.0
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [1a297f60] + FillArrays v0.7.4
+  [f6369f11] + ForwardDiff v0.10.6
+  [0fc2ff8b] + LeastSquaresOptim v0.7.4
+  [d3d80556] + LineSearches v7.0.1
+  [e1d29d7a] + Missings v0.4.3
+  [d41bc354] + NLSolversBase v7.5.0
+  [77ba4419] + NaNMath v0.3.3
+  [429524aa] + Optim v0.19.4
+  [bac558e1] + OrderedCollections v1.1.0
+  [d96e819e] + Parameters v0.12.0
+  [85a6dd25] + PositiveFactorizations v0.2.3
+  [ae029012] + Requires v0.5.2
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [2913bbd2] + StatsBase v0.32.0
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing LeastSquaresOptim
+ Resolving package versions...
+Status `&#x2F;tmp&#x2F;jl_ZRZi1T&#x2F;Manifest.toml`
+  [4fba245c] ArrayInterface v1.2.1
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [9a962f9c] DataAPI v1.1.0
+  [864edb3b] DataStructures v0.17.6
+  [01453d9d] DiffEqDiffTools v1.4.0
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [1a297f60] FillArrays v0.7.4
+  [f6369f11] ForwardDiff v0.10.6
+  [0fc2ff8b] LeastSquaresOptim v0.7.4
+  [d3d80556] LineSearches v7.0.1
+  [e1d29d7a] Missings v0.4.3
+  [d41bc354] NLSolversBase v7.5.0
+  [77ba4419] NaNMath v0.3.3
+  [429524aa] Optim v0.19.4
+  [bac558e1] OrderedCollections v1.1.0
+  [d96e819e] Parameters v0.12.0
+  [85a6dd25] PositiveFactorizations v0.2.3
+  [ae029012] Requires v0.5.2
+  [a2af1166] SortingAlgorithms v0.3.1
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [2913bbd2] StatsBase v0.32.0
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [4607b0f0] SuiteSparse  [`@stdlib&#x2F;SuiteSparse`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Running tests:
+dense    qr dl                     rosenbrock    27    28      14   0.000000e+00
+dense    qr dl                powell_singular    13    14      13   3.574918e-14
+dense    qr dl            powell_badly_scaled    69    70      49   0.000000e+00
+dense    qr dl                           wood    27    28      14   1.580002e-27
+dense    qr dl                 helical_valley    12    13       9   8.431032e-45
+dense    qr dl                         watson    29    30      22   9.147993e-29
+dense    qr dl                         watson    27    28      22   3.713670e-27
+dense    qr dl                      chebyquad     8     9       5   2.299560e-32
+dense    qr dl                      chebyquad    10    11       7   1.060773e-31
+dense    qr dl                      chebyquad    10    11       6   1.295011e-31
+dense    qr dl                      chebyquad    15    16       8   3.493185e-32
+dense    qr dl            brown_almost_linear     6     7       6   1.343529e-29
+dense    qr dl            brown_almost_linear     5     6       5   5.821362e-27
+dense    qr dl            brown_almost_linear     5     6       5   6.132496e-26
+dense    qr dl        discrete_boundary_value     3     4       3   2.982190e-31
+dense    qr dl     discrete_integral_equation     4     5       4   0.000000e+00
+dense    qr dl     discrete_integral_equation     4     5       4   3.466674e-33
+dense    qr dl                  trigonometric    13    14       8   1.835334e-29
+dense    qr dl           variably_dimensioned    13    14      13   0.000000e+00
+dense    qr dl            broyden_tridiagonal     5     6       5   5.423419e-31
+dense    qr dl                 broyden_banded     6     7       6   7.280015e-31
+dense    qr lm                     rosenbrock    35    36      27   5.450962e-23
+dense    qr lm                powell_singular    14    15      14   5.555797e-14
+dense    qr lm            powell_badly_scaled    75    76      75   6.738512e-22
+dense    qr lm                           wood    96    97      95   1.419888e-23
+dense    qr lm                 helical_valley    13    14      13   4.733873e-25
+dense    qr lm                         watson    50    51      50   6.594919e-24
+dense    qr lm                         watson    49    50      49   9.427301e-13
+dense    qr lm                      chebyquad     7     8       7   6.749973e-27
+dense    qr lm                      chebyquad     8     9       8   5.942471e-25
+dense    qr lm                      chebyquad     8     9       8   9.617582e-28
+dense    qr lm                      chebyquad     9    10       9   3.279618e-25
+dense    qr lm            brown_almost_linear    11    12      11   4.665050e-22
+dense    qr lm            brown_almost_linear    15    16      15   2.208048e-24
+dense    qr lm            brown_almost_linear    16    17      16   3.525202e-26
+dense    qr lm        discrete_boundary_value    10    11      10   1.386946e-21
+dense    qr lm     discrete_integral_equation     5     6       5   2.234656e-22
+dense    qr lm     discrete_integral_equation     5     6       5   1.151354e-22
+dense    qr lm                  trigonometric    24    25      21   2.795056e-05
+dense    qr lm           variably_dimensioned    17    18      17   1.071752e-24
+dense    qr lm            broyden_tridiagonal     7     8       7   2.474135e-24
+dense    qr lm                 broyden_banded     7     8       7   2.142535e-26
+dense  lsmr dl                     rosenbrock    27    28      14   0.000000e+00
+dense  lsmr dl                powell_singular    13    14      13   3.574918e-14
+dense  lsmr dl            powell_badly_scaled    69    70      49   4.930381e-32
+dense  lsmr dl                           wood    27    28      14   1.090600e-28
+dense  lsmr dl                 helical_valley    12    13       9   8.335134e-45
+dense  lsmr dl                         watson   529   530     524   6.427360e-11
+dense  lsmr dl                         watson    49    50      35   8.156346e-10
+dense  lsmr dl                      chebyquad     8     9       5   2.036864e-32
+dense  lsmr dl                      chebyquad    10    11       7   7.314388e-32
+dense  lsmr dl                      chebyquad    10    11       6   2.071868e-31
+dense  lsmr dl                      chebyquad    15    16       8   9.857106e-32
+dense  lsmr dl            brown_almost_linear     6     7       6   1.343529e-29
+dense  lsmr dl            brown_almost_linear    13    14       5   1.730071e-26
+dense  lsmr dl            brown_almost_linear    15    16       6   8.086810e-28
+dense  lsmr dl        discrete_boundary_value     3     4       3   2.712544e-31
+dense  lsmr dl     discrete_integral_equation     4     5       4   0.000000e+00
+dense  lsmr dl     discrete_integral_equation     4     5       4   1.410744e-32
+dense  lsmr dl                  trigonometric    13    14       8   3.871581e-29
+dense  lsmr dl           variably_dimensioned    14    15      14   4.194981e-24
+dense  lsmr dl            broyden_tridiagonal     5     6       5   5.423419e-31
+dense  lsmr dl                 broyden_banded     6     7       6   1.363635e-29
+dense  lsmr lm                     rosenbrock    28    29      23   6.969912e-23
+dense  lsmr lm                powell_singular    15    16      15   2.090257e-13
+dense  lsmr lm            powell_badly_scaled    75    76      75   5.252643e-23
+dense  lsmr lm                           wood    97    98      96   8.377726e-23
+dense  lsmr lm                 helical_valley    13    14      13   1.065539e-21
+dense  lsmr lm                         watson    49    50      49   1.275738e-22
+dense  lsmr lm                         watson    39    40      36   8.245026e-10
+dense  lsmr lm                      chebyquad    10    11      10   5.763780e-19
+dense  lsmr lm                      chebyquad     9    10       9   2.919292e-21
+dense  lsmr lm                      chebyquad    17    18      17   6.307877e-17
+dense  lsmr lm                      chebyquad    15    16      15   1.974416e-17
+dense  lsmr lm            brown_almost_linear    12    13      12   2.675196e-26
+dense  lsmr lm            brown_almost_linear    16    17      16   1.060044e-25
+dense  lsmr lm            brown_almost_linear    16    17      16   4.704746e-22
+dense  lsmr lm        discrete_boundary_value    11    12      11   1.300969e-20
+dense  lsmr lm     discrete_integral_equation     5     6       5   2.234656e-22
+dense  lsmr lm     discrete_integral_equation    11    12      11   2.479900e-18
+dense  lsmr lm                  trigonometric    25    26      23   2.795056e-05
+dense  lsmr lm           variably_dimensioned    25    26      25   6.551729e-18
+dense  lsmr lm            broyden_tridiagonal    16    17      16   7.102855e-16
+dense  lsmr lm                 broyden_banded    11    12      11   2.411868e-16
+sparse lsmr dl                     rosenbrock    27    28      14   0.000000e+00
+sparse lsmr dl                powell_singular    13    14      13   3.574918e-14
+sparse lsmr dl            powell_badly_scaled    69    70      49   9.860761e-32
+sparse lsmr dl                           wood    27    28      14   2.924702e-28
+sparse lsmr dl                 helical_valley    12    13       9   4.468557e-45
+sparse lsmr dl                         watson   567   568     562   6.180480e-11
+sparse lsmr dl                         watson    47    48      35   8.168457e-10
+sparse lsmr dl                      chebyquad     8     9       5   4.333342e-32
+sparse lsmr dl                      chebyquad    10    11       7   6.413347e-32
+sparse lsmr dl                      chebyquad    10    11       6   1.237518e-31
+sparse lsmr dl                      chebyquad    15    16       8   7.719086e-32
+sparse lsmr dl            brown_almost_linear     6     7       6   1.343529e-29
+sparse lsmr dl            brown_almost_linear    13    14       5   2.287697e-29
+sparse lsmr dl            brown_almost_linear    15    16       6   1.663116e-26
+sparse lsmr dl        discrete_boundary_value     3     4       3   2.706428e-31
+sparse lsmr dl     discrete_integral_equation     4     5       4   0.000000e+00
+sparse lsmr dl     discrete_integral_equation     4     5       4   1.410744e-32
+sparse lsmr dl                  trigonometric    13    14       8   2.964391e-29
+sparse lsmr dl           variably_dimensioned    14    15      14   4.141565e-24
+sparse lsmr dl            broyden_tridiagonal     5     6       5   5.423419e-31
+sparse lsmr dl                 broyden_banded     6     7       6   1.363635e-29
+sparse lsmr lm                     rosenbrock    28    29      23   6.969912e-23
+sparse lsmr lm                powell_singular    15    16      15   2.090257e-13
+sparse lsmr lm            powell_badly_scaled    75    76      75   5.252958e-23
+sparse lsmr lm                           wood    97    98      96   8.379014e-23
+sparse lsmr lm                 helical_valley    13    14      13   1.065539e-21
+sparse lsmr lm                         watson    49    50      49   1.263452e-22
+sparse lsmr lm                         watson    39    40      36   8.226986e-10
+sparse lsmr lm                      chebyquad    10    11      10   5.763781e-19
+sparse lsmr lm                      chebyquad     9    10       9   5.973261e-21
+sparse lsmr lm                      chebyquad    16    17      16   9.140305e-18
+sparse lsmr lm                      chebyquad    15    16      15   5.836115e-18
+sparse lsmr lm            brown_almost_linear    12    13      12   1.275403e-25
+sparse lsmr lm            brown_almost_linear    15    16      15   1.316114e-23
+sparse lsmr lm            brown_almost_linear    16    17      16   1.395620e-22
+sparse lsmr lm        discrete_boundary_value    11    12      11   1.300968e-20
+sparse lsmr lm     discrete_integral_equation     5     6       5   2.234656e-22
+sparse lsmr lm     discrete_integral_equation    11    12      11   2.479900e-18
+sparse lsmr lm                  trigonometric    25    26      23   2.795056e-05
+sparse lsmr lm           variably_dimensioned    27    28      27   5.194087e-18
+sparse lsmr lm            broyden_tridiagonal    16    17      16   7.102855e-16
+sparse lsmr lm                 broyden_banded    11    12      11   2.411868e-16
+dense  chol dl                     rosenbrock    27    28      14   0.000000e+00
+dense  chol dl                powell_singular    13    14      13   3.574918e-14
+dense  chol dl            powell_badly_scaled    69    70      49   0.000000e+00
+dense  chol dl                           wood    27    28      14   3.563186e-28
+dense  chol dl                 helical_valley    12    13       9   8.429362e-45
+dense  chol dl                         watson    29    30      22   1.793635e-29
+dense  chol dl                      chebyquad     8     9       5   5.327893e-32
+dense  chol dl                      chebyquad    10    11       7   1.002554e-31
+dense  chol dl                      chebyquad    10    11       6   1.566196e-31
+dense  chol dl                      chebyquad    15    16       8   3.597521e-32
+dense  chol dl            brown_almost_linear     6     7       6   4.782469e-30
+dense  chol dl        discrete_boundary_value     3     4       3   2.893725e-31
+dense  chol dl     discrete_integral_equation     4     5       4   0.000000e+00
+dense  chol dl     discrete_integral_equation     4     5       4   3.466674e-33
+dense  chol dl                  trigonometric    13    14       8   1.331203e-29
+dense  chol dl           variably_dimensioned    13    14      13   0.000000e+00
+dense  chol dl            broyden_tridiagonal     5     6       5   5.423419e-31
+dense  chol dl                 broyden_banded     6     7       6   7.280015e-31
+dense  chol lm                     rosenbrock     1     2       1   0.000000e+00
+dense  chol lm                powell_singular     1     2       1   3.574815e-14
+dense  chol lm            powell_badly_scaled     1     2       1   0.000000e+00
+dense  chol lm                           wood     1     2       1   3.563186e-28
+dense  chol lm                 helical_valley     1     2       1   3.989029e-47
+dense  chol lm                         watson     1     2       1   1.793635e-29
+dense  chol lm                      chebyquad     1     2       1   5.327893e-32
+dense  chol lm                      chebyquad     1     2       1   4.530215e-32
+dense  chol lm                      chebyquad     1     2       1   3.192352e-32
+dense  chol lm                      chebyquad     1     2       1   2.130486e-32
+dense  chol lm            brown_almost_linear     1     2       1   4.782469e-30
+dense  chol lm        discrete_boundary_value     1     2       1   2.728576e-31
+dense  chol lm     discrete_integral_equation     1     2       1   0.000000e+00
+dense  chol lm     discrete_integral_equation     1     2       1   0.000000e+00
+dense  chol lm                  trigonometric     1     2       1   1.331203e-29
+dense  chol lm           variably_dimensioned     1     2       1   0.000000e+00
+dense  chol lm            broyden_tridiagonal     1     2       1   5.423419e-31
+dense  chol lm                 broyden_banded     1     2       1   7.280015e-31
+forwarddiff fact dl                     rosenbrock    27    28      14   0.000000e+00
+forwarddiff fact dl                powell_singular    13    14      13   3.575524e-14
+forwarddiff fact dl            powell_badly_scaled    69    70      49   0.000000e+00
+forwarddiff fact dl                           wood    27    28      14   9.964792e-28
+forwarddiff fact dl                 helical_valley    12    13       9   7.078278e-45
+forwarddiff fact dl                         watson    29    30      22   2.324297e-30
+forwarddiff fact dl                         watson    27    28      22   5.959784e-28
+forwarddiff fact dl                      chebyquad     8     9       5   2.559176e-31
+forwarddiff fact dl                      chebyquad    10    11       7   1.053069e-31
+forwarddiff fact dl                      chebyquad    10    11       6   9.110042e-32
+forwarddiff fact dl                      chebyquad    15    16       8   1.779348e-31
+forwarddiff fact dl            brown_almost_linear     6     7       6   5.369185e-29
+forwarddiff fact dl            brown_almost_linear     5     6       5   9.511210e-27
+forwarddiff fact dl            brown_almost_linear     5     6       5   2.817851e-26
+forwarddiff fact dl        discrete_boundary_value     3     4       3   3.654189e-31
+forwarddiff fact dl     discrete_integral_equation     4     5       4   3.081488e-33
+forwarddiff fact dl     discrete_integral_equation     4     5       4   4.092601e-33
+forwarddiff fact dl                  trigonometric    13    14       8   2.470121e-29
+forwarddiff fact dl           variably_dimensioned    13    14      13   0.000000e+00
+forwarddiff fact dl            broyden_tridiagonal     5     6       5   7.395571e-31
+forwarddiff fact dl                 broyden_banded     6     7       6   2.012212e-30
+forwarddiff fact lm                     rosenbrock     1     2       1   0.000000e+00
+forwarddiff fact lm                powell_singular     1     2       1   3.575421e-14
+forwarddiff fact lm            powell_badly_scaled     1     2       1   0.000000e+00
+forwarddiff fact lm                           wood     1     2       1   9.964792e-28
+forwarddiff fact lm                 helical_valley     1     2       1   3.202906e-47
+forwarddiff fact lm                         watson     1     2       1   2.324297e-30
+forwarddiff fact lm                         watson     1     2       1   5.959784e-28
+forwarddiff fact lm                      chebyquad     1     2       1   3.297962e-32
+forwarddiff fact lm                      chebyquad     1     2       1   1.053069e-31
+forwarddiff fact lm                      chebyquad     1     2       1   9.110042e-32
+forwarddiff fact lm                      chebyquad     1     2       1   8.213081e-32
+forwarddiff fact lm            brown_almost_linear     1     2       1   1.996804e-29
+forwarddiff fact lm            brown_almost_linear     1     2       1   6.525667e-27
+forwarddiff fact lm            brown_almost_linear     1     2       1   2.817851e-26
+forwarddiff fact lm        discrete_boundary_value     1     2       1   3.365901e-31
+forwarddiff fact lm     discrete_integral_equation     1     2       1   7.703720e-34
+forwarddiff fact lm     discrete_integral_equation     1     2       1   0.000000e+00
+forwarddiff fact lm                  trigonometric     1     2       1   1.130290e-29
+forwarddiff fact lm           variably_dimensioned     1     2       1   0.000000e+00
+forwarddiff fact lm            broyden_tridiagonal     1     2       1   4.437343e-31
+forwarddiff fact lm                 broyden_banded     1     2       1   7.280015e-31
+     0     7.311203e+07              Inf
+     1     7.061087e+05     3.612440e+07
+     2     2.730246e+05     1.881931e+06
+     3     2.154056e+04     6.964977e+05
+     4     3.307375e+03     1.163914e+05
+     5     2.079960e+02     3.389049e+04
+     6     4.441790e+00     6.071391e+03
+     7     7.723022e-03     9.000967e+02
+     8     7.723022e-03     4.001176e+01
+     9     7.723022e-03     4.001176e+01
+    10     7.723022e-03     4.001176e+01
+    11     7.723022e-03     4.001176e+01
+    12     7.723022e-03     4.001176e+01
+    13     7.723022e-03     4.001176e+01
+    14     7.723022e-03     4.001176e+01
+    15     7.723022e-03     4.001176e+01
+    16     7.723022e-03     4.001176e+01
+    17     7.723022e-03     4.001176e+01
+    18     7.723022e-03     4.001176e+01
+    19     1.585670e-03     4.001176e+01
+    20     1.585670e-03     1.499508e+01
+    21     1.585670e-03     1.499508e+01
+    22     6.345231e-04     1.499508e+01
+    23     5.785965e-04     8.823605e+00
+    24     3.051748e-06     9.438166e+00
+    25     1.454057e-11     7.395256e-01
+    26     1.438719e-21     1.423006e-03
+    27     1.580002e-27     1.583582e-08
+     0     1.580002e-27              Inf
+     1     1.224830e-28     2.057956e-11
+	[1m[32mPASSED[0m: nonlinearsolvers.jl
+Results of Optimization Algorithm
+ * Algorithm: Dogleg
+ * Minimizer: [1.8207952602219444,1.8326643281093078,1.6253516841981288,2.3440042476533964,1.2472538969604525,1.6324440129187403]
+ * Sum of squares at Minimum: 10.928956
+ * Iterations: 9
+ * Convergence: true
+ * |x - x&#39;| &lt; 1.0e-08: false
+ * |f(x) - f(x&#39;)| &#x2F; |f(x)| &lt; 1.0e-08: true
+ * |g(x)| &lt; 1.0e-08: false
+ * Function Calls: 10
+ * Gradient Calls: 9
+ * Multiplication Calls: 36
+  qr dl                         factor     9    10       9   1.092896e+01
+iter dl                         factor    33    34       9   1.103324e+01
+  qr lm                         factor     8     9       8   1.092896e+01
+iter lm                         factor    11    12       4   1.098622e+01
+	[1m[32mPASSED[0m: nonlinearleastsquares.jl
+strd dl 27 &#x2F; 33
+strd lm 29 &#x2F; 33
+	[1m[32mPASSED[0m: nonlinearfitting.jl
+	[1m[32mPASSED[0m: bounds.jl
+   Testing LeastSquaresOptim tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="GasModels">GasModels</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#GasModels">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 10 hours ago and took 32 minutes, 30 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/GasModels/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed NaNMath ────────────── v0.3.3
+ Installed DiffRules ──────────── v0.1.0
+ Installed Mocking ────────────── v0.7.0
+ Installed CommonSubexpressions ─ v0.2.0
+ Installed BinaryProvider ─────── v0.5.8
+ Installed Memento ────────────── v0.12.1
+ Installed GasModels ──────────── v0.5.0
+ Installed JuMP ───────────────── v0.20.1
+ Installed Syslogs ────────────── v0.3.0
+ Installed Parsers ────────────── v0.3.10
+ Installed BinDeps ────────────── v0.8.10
+ Installed SpecialFunctions ───── v0.8.0
+ Installed JSON ───────────────── v0.21.0
+ Installed DataStructures ─────── v0.17.6
+ Installed MathOptInterface ───── v0.9.7
+ Installed StaticArrays ───────── v0.12.1
+ Installed DiffResults ────────── v0.0.4
+ Installed URIParser ──────────── v0.4.0
+ Installed OrderedCollections ─── v1.1.0
+ Installed InfrastructureModels ─ v0.3.2
+ Installed BenchmarkTools ─────── v0.4.3
+ Installed Calculus ───────────── v0.5.1
+ Installed ForwardDiff ────────── v0.10.6
+ Installed TimeZones ──────────── v0.10.3
+ Installed EzXML ──────────────── v0.9.4
+ Installed Compat ─────────────── v2.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [5e113713] + GasModels v0.5.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [864edb3b] + DataStructures v0.17.6
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [8f5d6c58] + EzXML v0.9.4
+  [f6369f11] + ForwardDiff v0.10.6
+  [5e113713] + GasModels v0.5.0
+  [2030c09a] + InfrastructureModels v0.3.2
+  [682c06a0] + JSON v0.21.0
+  [4076af6c] + JuMP v0.20.1
+  [b8f27783] + MathOptInterface v0.9.7
+  [f28f55f0] + Memento v0.12.1
+  [78c3b35d] + Mocking v0.7.0
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [cea106d9] + Syslogs v0.3.0
+  [f269a46b] + TimeZones v0.10.3
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+  Building EzXML ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;EzXML&#x2F;G0JeY&#x2F;deps&#x2F;build.log`
+  Building TimeZones ───────→ `~&#x2F;.julia&#x2F;packages&#x2F;TimeZones&#x2F;pjvlM&#x2F;deps&#x2F;build.log`
+   Testing GasModels
+ Resolving package versions...
+ Installed Ipopt ──────── v0.6.1
+ Installed Juniper ────── v0.5.2
+ Installed MathProgBase ─ v0.7.7
+ Installed Cbc ────────── v0.6.5
+  Building Ipopt → `~&#x2F;.julia&#x2F;packages&#x2F;Ipopt&#x2F;ruIXY&#x2F;deps&#x2F;build.log`
+  Building Cbc ──→ `~&#x2F;.julia&#x2F;packages&#x2F;Cbc&#x2F;5nCGI&#x2F;deps&#x2F;build.log`
+    Status `&#x2F;tmp&#x2F;tmpbWgvgt&#x2F;Manifest.toml`
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [9961bab8] Cbc v0.6.5
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [864edb3b] DataStructures v0.17.6
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [8f5d6c58] EzXML v0.9.4
+  [f6369f11] ForwardDiff v0.10.6
+  [5e113713] GasModels v0.5.0
+  [2030c09a] InfrastructureModels v0.3.2
+  [b6b21f68] Ipopt v0.6.1
+  [682c06a0] JSON v0.21.0
+  [4076af6c] JuMP v0.20.1
+  [2ddba703] Juniper v0.5.2
+  [b8f27783] MathOptInterface v0.9.7
+  [fdba3010] MathProgBase v0.7.7
+  [f28f55f0] Memento v0.12.1
+  [78c3b35d] Mocking v0.7.0
+  [77ba4419] NaNMath v0.3.3
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [cea106d9] Syslogs v0.3.0
+  [f269a46b] TimeZones v0.10.3
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Testing matlab gaslib 40 misocp ls
+[warn | InfrastructureModels]: Matlab parser skipping the following line:
+  end
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing matlab gaslib 40 misocp
+[warn | InfrastructureModels]: Matlab parser skipping the following line:
+  end
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[warn | InfrastructureModels]: Matlab parser skipping the following line:
+  end
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+[warn | InfrastructureModels]: Matlab parser skipping the following line:
+  end
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+[warn | GasModels]: adding junction 1102 to capture both sides of a compressor
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+Testing gaslib misocp ls gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib misocp ls priority gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: consumer_data 58x1
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;consumer_data&quot; in to &quot;consumer&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib mip ls gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib mip ls priority gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: consumer_data 58x1
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;consumer_data&quot; in to &quot;consumer&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib lp ls gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing gaslib lp ls priority gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: consumer_data 58x1
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;consumer_data&quot; in to &quot;consumer&quot;
+Testing gaslib nlp ls gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing gaslib nlp ls priority gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: consumer_data 58x1
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;consumer_data&quot; in to &quot;consumer&quot;
+Testing gaslib misocp nels gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: ne_pipe_data 39x1
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: pipe_data 39x1
+[info | GasModels]: extending matlab format with data: compressor_data 12x1
+[info | GasModels]: extending matlab format by appending matrix &quot;ne_pipe_data&quot; in to &quot;ne_pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;pipe_data&quot; in to &quot;pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;compressor_data&quot; in to &quot;compressor&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+┌ Warning: Cycle detected
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:374
+Testing gaslib mip nels gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: ne_pipe_data 39x1
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: pipe_data 39x1
+[info | GasModels]: extending matlab format with data: compressor_data 12x1
+[info | GasModels]: extending matlab format by appending matrix &quot;ne_pipe_data&quot; in to &quot;ne_pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;pipe_data&quot; in to &quot;pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;compressor_data&quot; in to &quot;compressor&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+┌ Warning: Cycle detected
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:374
+Testing gaslib lp nels gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: ne_pipe_data 39x1
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: pipe_data 39x1
+[info | GasModels]: extending matlab format with data: compressor_data 12x1
+[info | GasModels]: extending matlab format by appending matrix &quot;ne_pipe_data&quot; in to &quot;ne_pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;pipe_data&quot; in to &quot;pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;compressor_data&quot; in to &quot;compressor&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+┌ Warning: Cycle detected
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:374
+Testing gaslib nlp nels gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: ne_pipe_data 39x1
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: pipe_data 39x1
+[info | GasModels]: extending matlab format with data: compressor_data 12x1
+[info | GasModels]: extending matlab format by appending matrix &quot;ne_pipe_data&quot; in to &quot;ne_pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;pipe_data&quot; in to &quot;pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;compressor_data&quot; in to &quot;compressor&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib 40 misocp gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing gaslib 40 mip gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib 135 mip gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 164x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib 40 lp gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing gaslib 135 lp gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 164x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing gaslib 40 nlp gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing gaslib 135 nlp gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 164x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing A1 minlp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing A2 minlp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing A1 misocp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing A2 misocp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing A1 mip ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing A2 mip ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+┌ Warning: Cycle detected
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:374
+Testing A1 lp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing A2 lp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+┌ Warning: Cycle detected
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:374
+Testing A1 nlp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+┌ Warning: NLP couldn&#39;t be solved to optimality
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:389
+Testing A2 nlp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+┌ Warning: NLP couldn&#39;t be solved to optimality
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:389
+┌ Warning: Only almost solved
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;BnBTree.jl:89
+Test Summary: | Pass  Total
+GasModels     |  539    539
+   Testing GasModels tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 14 hours ago and took 32 minutes, 59 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/GasModels/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed URIParser ──────────── v0.4.0
+ Installed Compat ─────────────── v2.2.0
+ Installed CommonSubexpressions ─ v0.2.0
+ Installed BinaryProvider ─────── v0.5.8
+ Installed InfrastructureModels ─ v0.3.2
+ Installed Memento ────────────── v0.12.1
+ Installed GasModels ──────────── v0.5.0
+ Installed JuMP ───────────────── v0.20.1
+ Installed DiffRules ──────────── v0.1.0
+ Installed OrderedCollections ─── v1.1.0
+ Installed Parsers ────────────── v0.3.10
+ Installed ForwardDiff ────────── v0.10.6
+ Installed DataStructures ─────── v0.17.6
+ Installed TimeZones ──────────── v0.10.3
+ Installed JSON ───────────────── v0.21.0
+ Installed Calculus ───────────── v0.5.1
+ Installed NaNMath ────────────── v0.3.3
+ Installed DiffResults ────────── v0.0.4
+ Installed Mocking ────────────── v0.7.0
+ Installed StaticArrays ───────── v0.12.1
+ Installed EzXML ──────────────── v0.9.4
+ Installed BenchmarkTools ─────── v0.4.3
+ Installed SpecialFunctions ───── v0.8.0
+ Installed MathOptInterface ───── v0.9.7
+ Installed BinDeps ────────────── v0.8.10
+ Installed Syslogs ────────────── v0.3.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [5e113713] + GasModels v0.5.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [864edb3b] + DataStructures v0.17.6
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [8f5d6c58] + EzXML v0.9.4
+  [f6369f11] + ForwardDiff v0.10.6
+  [5e113713] + GasModels v0.5.0
+  [2030c09a] + InfrastructureModels v0.3.2
+  [682c06a0] + JSON v0.21.0
+  [4076af6c] + JuMP v0.20.1
+  [b8f27783] + MathOptInterface v0.9.7
+  [f28f55f0] + Memento v0.12.1
+  [78c3b35d] + Mocking v0.7.0
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [cea106d9] + Syslogs v0.3.0
+  [f269a46b] + TimeZones v0.10.3
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building EzXML ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;EzXML&#x2F;G0JeY&#x2F;deps&#x2F;build.log`
+┌ Error: Error building `EzXML`: 
+│ [ Info: Downloading https:&#x2F;&#x2F;github.com&#x2F;bicycle1885&#x2F;ZlibBuilder&#x2F;releases&#x2F;download&#x2F;v1.0.4&#x2F;Zlib.v1.2.11.x86_64-linux-gnu.tar.gz to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;EzXML&#x2F;G0JeY&#x2F;deps&#x2F;usr&#x2F;downloads&#x2F;Zlib.v1.2.11.x86_64-linux-gnu.tar.gz...
+│ ERROR: LoadError: LoadError: Could not download https:&#x2F;&#x2F;github.com&#x2F;bicycle1885&#x2F;ZlibBuilder&#x2F;releases&#x2F;download&#x2F;v1.0.4&#x2F;Zlib.v1.2.11.x86_64-linux-gnu.tar.gz to &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;EzXML&#x2F;G0JeY&#x2F;deps&#x2F;usr&#x2F;downloads&#x2F;Zlib.v1.2.11.x86_64-linux-gnu.tar.gz:
+│ ErrorException(&quot;&quot;)
+│ Stacktrace:
+│  [1] error(::String) at .&#x2F;error.jl:33
+│  [2] #download#89(::Bool, ::typeof(BinaryProvider.download), ::String, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinaryProvider&#x2F;kcGxO&#x2F;src&#x2F;PlatformEngines.jl:502
+│  [3] #download at .&#x2F;none:0 [inlined]
+│  [4] #download_verify#90(::Bool, ::Bool, ::Bool, ::typeof(download_verify), ::String, ::String, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinaryProvider&#x2F;kcGxO&#x2F;src&#x2F;PlatformEngines.jl:571
+│  [5] #download_verify at .&#x2F;tuple.jl:0 [inlined]
+│  [6] #install#129(::Prefix, ::String, ::Bool, ::Bool, ::Bool, ::typeof(install), ::String, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinaryProvider&#x2F;kcGxO&#x2F;src&#x2F;Prefix.jl:314
+│  [7] (::getfield(BinaryProvider, Symbol(&quot;#kw##install&quot;)))(::NamedTuple{(:prefix, :force, :verbose),Tuple{Prefix,Bool,Bool}}, ::typeof(install), ::String, ::String) at .&#x2F;tuple.jl:0
+│  [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;EzXML&#x2F;G0JeY&#x2F;deps&#x2F;build_Zlib.v1.2.11.jl:44
+│  [9] include at .&#x2F;boot.jl:328 [inlined]
+│  [10] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+│  [11] include(::Module, ::String) at .&#x2F;Base.jl:31
+│  [12] include(::String) at .&#x2F;client.jl:431
+│  [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;EzXML&#x2F;G0JeY&#x2F;deps&#x2F;build.jl:1
+│  [14] include at .&#x2F;boot.jl:328 [inlined]
+│  [15] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+│  [16] include(::Module, ::String) at .&#x2F;Base.jl:31
+│  [17] include(::String) at .&#x2F;client.jl:431
+│  [18] top-level scope at none:5
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;EzXML&#x2F;G0JeY&#x2F;deps&#x2F;build_Zlib.v1.2.11.jl:42
+│ in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;EzXML&#x2F;G0JeY&#x2F;deps&#x2F;build.jl:1
+│ caused by [exception 1]
+│ 
+│ Stacktrace:
+│  [1] error() at .&#x2F;error.jl:42
+│  [2] #download#89(::Bool, ::typeof(BinaryProvider.download), ::String, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinaryProvider&#x2F;kcGxO&#x2F;src&#x2F;PlatformEngines.jl:496
+│  [3] #download at .&#x2F;none:0 [inlined]
+│  [4] #download_verify#90(::Bool, ::Bool, ::Bool, ::typeof(download_verify), ::String, ::String, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinaryProvider&#x2F;kcGxO&#x2F;src&#x2F;PlatformEngines.jl:571
+│  [5] #download_verify at .&#x2F;tuple.jl:0 [inlined]
+│  [6] #install#129(::Prefix, ::String, ::Bool, ::Bool, ::Bool, ::typeof(install), ::String, ::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;BinaryProvider&#x2F;kcGxO&#x2F;src&#x2F;Prefix.jl:314
+│  [7] (::getfield(BinaryProvider, Symbol(&quot;#kw##install&quot;)))(::NamedTuple{(:prefix, :force, :verbose),Tuple{Prefix,Bool,Bool}}, ::typeof(install), ::String, ::String) at .&#x2F;tuple.jl:0
+│  [8] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;EzXML&#x2F;G0JeY&#x2F;deps&#x2F;build_Zlib.v1.2.11.jl:44
+│  [9] include at .&#x2F;boot.jl:328 [inlined]
+│  [10] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+│  [11] include(::Module, ::String) at .&#x2F;Base.jl:31
+│  [12] include(::String) at .&#x2F;client.jl:431
+│  [13] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;EzXML&#x2F;G0JeY&#x2F;deps&#x2F;build.jl:1
+│  [14] include at .&#x2F;boot.jl:328 [inlined]
+│  [15] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+│  [16] include(::Module, ::String) at .&#x2F;Base.jl:31
+│  [17] include(::String) at .&#x2F;client.jl:431
+│  [18] top-level scope at none:5
+│ [20:22:50] #=#=#                                                                         [20:22:51] ##O#- #                                                                       [20:22:52] ##O=#  #                                                                      [20:22:53] #=#=-#  #                                                                     [20:22:54] -#O#- #   #                                                                   [20:22:55] -=#=#   #   #                                                                 [20:22:56] -=O#- #  #    #                                                               [20:22:57] -=O=#  #   #   #                                                              [20:22:58] -=O=-#  #    #   #                                                            [20:22:59] -=O=- #   #   #     #                                                         [20:23:00] -=O=-   #   #   #     #                                                       [20:23:01] -=O=-    #    #    #    #                                                     [20:23:02] -=O=-      #   #     #    #                                                   [20:23:03] -=O=-        #   #     #     #                                                [20:23:04] -=O=-         #     #    #     #                                              [20:23:05] -=O=-           #     #    #     #                                            [20:23:06] -=O=-              #    #     #     #                                         [20:23:07] -=O=-                #    #     #     #                                       [20:23:08] -=O=-                  #     #     #     #                                    [20:23:09] -=O=-                    #     #     #     #                                  [20:23:10] -=O=-                      #     #     #      #                               [20:23:11] -=O=-                         #     #     #     #                             [20:23:12] -=O=-                           #     #     #     #                           [20:23:13] -=O=-                              #     #     #     #                        [20:23:14] -=O=-                                #     #     #     #                      [20:23:15] -=O=-                                  #      #    #     #                    [20:23:16] -=O=-                                     #     #     #    #                  [20:23:17] -=O=-                                       #     #     #    #                [20:23:18] -=O=-                                          #     #    #    #              [20:23:19] -=O=-                                            #     #    #    #            [20:23:20] -=O=-                                              #     #    #    #          [20:23:21] -=O=-                                                 #    #    #   #         [20:23:22] -=O=-                                                   #    #    #   #       [20:23:23] -=O=-                                                     #    #   #   #      [20:23:24] -=O=-                                                       #    #   #  #     [20:23:25] -=O=-                                                         #    #  #  #    [20:23:26] -=O=-                                                           #   #   # #   [20:23:27] -=O=-                                                             #   #  # #  [20:23:28] -=O=-                                                              #   #  # # [20:23:29] -=O=-                                                                #  #  ## [20:23:30] -=O=-                                                                 #  # # #[20:23:31] -=O=-                                                                   # # ##[20:23:32] -=O=-                                                                    # # #[20:23:33] -=O=-                                                                     # ##[20:23:34] -=O=-                                                                      ###[20:23:35] -=O=-                                                                      ###[20:23:36] -=O=-                                                                       ##[20:23:37] -=O=-                                                                      # #[20:23:38] -=O=-                                                                     # ##[20:23:39] -=O=-                                                                    # # #[20:23:40] -=O=-                                                                   #  ###[20:23:41] -=O=-                                                                  #  # ##[20:23:42] -=O=-                                                                 #  # # #[20:23:43] -=O=-                                                               #   # # # [20:23:44] -=O=-                                                              #  #  # #  [20:23:45] -=O=-                                                            #   #  #  #  [20:23:46] -=O=-                                                          #   #   #  #   [20:23:47] -=O=-                                                        #    #   #  #    [20:23:48] -=O=-                                                      #    #   #   #     [20:23:49] -=O=-                                                    #    #    #  #       [20:23:50] -=O=-                                                  #    #    #   #        [20:23:51] -=O=-                                                #    #    #   #          [20:23:52] -=O=-                                             #     #    #    #           [20:23:53] -=O=-                                           #     #    #    #             [20:23:54] -=O=-                                         #    #     #    #               [20:23:55] -=O=-                                      #     #     #    #                 [20:23:56] -=O=-                                    #     #     #    #                   [20:23:57] -=O=-                                 #     #     #     #                     [20:23:58] -=O=-                               #     #     #     #                       [20:23:59] -=O=-                            #     #      #    #                          [20:24:00] -=O=-                          #     #     #     #                            [20:24:01] -=O=-                        #     #     #     #                              [20:24:02] -=O=-                     #     #     #     #                                 [20:24:03] -=O=-                   #     #     #     #                                   [20:24:04] -=O=-                 #    #     #     #                                      [20:24:05] -=O=-               #    #     #     #                                        [20:24:06] -=O=-            #     #     #     #                                          [20:24:07] -=O=-          #     #    #     #                                             [20:24:08] -=O=-         #    #    #     #                                               [20:24:09] -=O=-       #   #     #    #                                                  [20:24:10] -=O=-     #    #    #    #                                                    [20:24:11] -=O=-   #    #   #     #                                                      [20:24:12] -=O=-  #   #   #     #                                                        [20:24:13] -=O=- #  #    #    #                                                          [20:24:14] -=O=#   #   #   #                                                             [20:24:15] -=O#- #   #    #                                                              [20:24:16] -=#=-#  #    #                                                                [20:24:17] -#O=#  #   #                                                                  [20:24:18] -#O#- #  #                                                                    [20:24:19] #=#=#   #                                                                     [20:24:20] ##O#- #                                                                       [20:24:21] #=#=-#                                                                        [20:24:22] ##O=#                                                                         [20:24:23] ##O#-                                                                         [20:24:24] #=#=-                                                                         [20:24:25] ##O=-                                                                         [20:24:26] ##O=-                                                                         [20:24:27] ##O=-                                                                         [20:24:28] #=#=-                                                                         [20:24:29] ##O#-                                                                         [20:24:30] #=#=#                                                                         [20:24:31] ##O#- #                                                                       [20:24:32] ##O=#  #                                                                      [20:24:33] #=#=-#  #                                                                     [20:24:34] -#O#- #   #                                                                   [20:24:35] -=#=#   #   #                                                                 [20:24:36] -=O#- #  #    #                                                               [20:24:37] -=O=#  #   #   #                                                              [20:24:38] -=O=-#  #    #   #                                                            [20:24:39] -=O=- #   #   #     #                                                         [20:24:40] -=O=-   #   #   #     #                                                       [20:24:41] -=O=-    #    #    #    #                                                     [20:24:42] -=O=-      #   #     #    #                                                   [20:24:43] -=O=-        #   #     #     #                                                [20:24:44] -=O=-         #     #    #     #                                              [20:24:45] -=O=-           #     #    #     #                                            [20:24:46] -=O=-              #    #     #     #                                         [20:24:47] -=O=-                #    #     #     #                                       [20:24:48] -=O=-                  #     #     #     #                                    [20:24:49] -=O=-                    #     #     #     #                                  [20:24:50] -=O=-                      #     #     #      #                               [20:24:51] -=O=-                         #     #     #     #                             [20:24:52] -=O=-                           #     #     #     #                           [20:24:53] -=O=-                              #     #     #     #                        [20:24:54] -=O=-                                #     #     #     #                      [20:24:55] -=O=-                                  #      #    #     #                    [20:24:56] -=O=-                                     #     #     #    #                  [20:24:57] -=O=-                                       #     #     #    #                [20:24:58] -=O=-                                          #     #    #    #              [20:24:59] -=O=-                                            #     #    #    #            [20:25:00] 
+│ [20:25:00] curl: (7) Failed to connect to github.com port 443: Connection timed out
+└ @ Pkg.Operations &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;backwards_compatible_isolation.jl:647
+  Building TimeZones ───────→ `~&#x2F;.julia&#x2F;packages&#x2F;TimeZones&#x2F;pjvlM&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing GasModels
+ Resolving package versions...
+ Installed Cbc ────────── v0.6.5
+ Installed MathProgBase ─ v0.7.7
+ Installed Juniper ────── v0.5.2
+ Installed Ipopt ──────── v0.6.1
+  Building Ipopt → `~&#x2F;.julia&#x2F;packages&#x2F;Ipopt&#x2F;ruIXY&#x2F;deps&#x2F;build.log`
+  Building Cbc ──→ `~&#x2F;.julia&#x2F;packages&#x2F;Cbc&#x2F;5nCGI&#x2F;deps&#x2F;build.log`
+    Status `&#x2F;tmp&#x2F;jl_b2iIwQ&#x2F;Manifest.toml`
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [9961bab8] Cbc v0.6.5
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [864edb3b] DataStructures v0.17.6
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [8f5d6c58] EzXML v0.9.4
+  [f6369f11] ForwardDiff v0.10.6
+  [5e113713] GasModels v0.5.0
+  [2030c09a] InfrastructureModels v0.3.2
+  [b6b21f68] Ipopt v0.6.1
+  [682c06a0] JSON v0.21.0
+  [4076af6c] JuMP v0.20.1
+  [2ddba703] Juniper v0.5.2
+  [b8f27783] MathOptInterface v0.9.7
+  [fdba3010] MathProgBase v0.7.7
+  [f28f55f0] Memento v0.12.1
+  [78c3b35d] Mocking v0.7.0
+  [77ba4419] NaNMath v0.3.3
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [cea106d9] Syslogs v0.3.0
+  [f269a46b] TimeZones v0.10.3
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Testing matlab gaslib 40 misocp ls
+[warn | InfrastructureModels]: Matlab parser skipping the following line:
+  end
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing matlab gaslib 40 misocp
+[warn | InfrastructureModels]: Matlab parser skipping the following line:
+  end
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[warn | InfrastructureModels]: Matlab parser skipping the following line:
+  end
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+[warn | InfrastructureModels]: Matlab parser skipping the following line:
+  end
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+[warn | GasModels]: adding junction 1102 to capture both sides of a compressor
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+Testing gaslib misocp ls gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib misocp ls priority gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: consumer_data 58x1
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;consumer_data&quot; in to &quot;consumer&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib mip ls gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib mip ls priority gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: consumer_data 58x1
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;consumer_data&quot; in to &quot;consumer&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib lp ls gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing gaslib lp ls priority gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: consumer_data 58x1
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;consumer_data&quot; in to &quot;consumer&quot;
+Testing gaslib nlp ls gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing gaslib nlp ls priority gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: consumer_data 58x1
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;consumer_data&quot; in to &quot;consumer&quot;
+Testing gaslib misocp nels gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: ne_pipe_data 39x1
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: pipe_data 39x1
+[info | GasModels]: extending matlab format with data: compressor_data 12x1
+[info | GasModels]: extending matlab format by appending matrix &quot;ne_pipe_data&quot; in to &quot;ne_pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;pipe_data&quot; in to &quot;pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;compressor_data&quot; in to &quot;compressor&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+┌ Warning: Cycle detected
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:374
+Testing gaslib mip nels gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: ne_pipe_data 39x1
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: pipe_data 39x1
+[info | GasModels]: extending matlab format with data: compressor_data 12x1
+[info | GasModels]: extending matlab format by appending matrix &quot;ne_pipe_data&quot; in to &quot;ne_pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;pipe_data&quot; in to &quot;pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;compressor_data&quot; in to &quot;compressor&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+┌ Warning: Cycle detected
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:374
+Testing gaslib lp nels gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: ne_pipe_data 39x1
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: pipe_data 39x1
+[info | GasModels]: extending matlab format with data: compressor_data 12x1
+[info | GasModels]: extending matlab format by appending matrix &quot;ne_pipe_data&quot; in to &quot;ne_pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;pipe_data&quot; in to &quot;pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;compressor_data&quot; in to &quot;compressor&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+┌ Warning: Cycle detected
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:374
+Testing gaslib nlp nels gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: ne_pipe_data 39x1
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: pipe_data 39x1
+[info | GasModels]: extending matlab format with data: compressor_data 12x1
+[info | GasModels]: extending matlab format by appending matrix &quot;ne_pipe_data&quot; in to &quot;ne_pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;pipe_data&quot; in to &quot;pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;compressor_data&quot; in to &quot;compressor&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib 40 misocp gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing gaslib 40 mip gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib 135 mip gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 164x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib 40 lp gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing gaslib 135 lp gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 164x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing gaslib 40 nlp gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing gaslib 135 nlp gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 164x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing A1 minlp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing A2 minlp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing A1 misocp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing A2 misocp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing A1 mip ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing A2 mip ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+┌ Warning: Cycle detected
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:374
+Testing A1 lp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing A2 lp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+┌ Warning: Cycle detected
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:374
+Testing A1 nlp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+┌ Warning: NLP couldn&#39;t be solved to optimality
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:389
+Testing A2 nlp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+┌ Warning: NLP couldn&#39;t be solved to optimality
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:389
+┌ Warning: Only almost solved
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;BnBTree.jl:89
+Test Summary: | Pass  Total
+GasModels     |  539    539
+   Testing GasModels tests passed 
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 10 hours ago and took 31 minutes.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/GasModels/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Mocking ────────────── v0.7.0
+ Installed Calculus ───────────── v0.5.1
+ Installed DiffResults ────────── v0.0.4
+ Installed BinDeps ────────────── v0.8.10
+ Installed Syslogs ────────────── v0.3.0
+ Installed JSON ───────────────── v0.21.0
+ Installed ForwardDiff ────────── v0.10.6
+ Installed GasModels ──────────── v0.5.0
+ Installed Parsers ────────────── v0.3.10
+ Installed InfrastructureModels ─ v0.3.2
+ Installed BenchmarkTools ─────── v0.4.3
+ Installed EzXML ──────────────── v0.9.4
+ Installed URIParser ──────────── v0.4.0
+ Installed DiffRules ──────────── v0.1.0
+ Installed DataStructures ─────── v0.17.6
+ Installed StaticArrays ───────── v0.12.1
+ Installed CommonSubexpressions ─ v0.2.0
+ Installed TimeZones ──────────── v0.10.3
+ Installed NaNMath ────────────── v0.3.3
+ Installed Memento ────────────── v0.12.1
+ Installed OrderedCollections ─── v1.1.0
+ Installed BinaryProvider ─────── v0.5.8
+ Installed MathOptInterface ───── v0.9.7
+ Installed JuMP ───────────────── v0.20.1
+ Installed SpecialFunctions ───── v0.8.0
+ Installed Compat ─────────────── v2.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [5e113713] + GasModels v0.5.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [9e28174c] + BinDeps v0.8.10
+  [b99e7846] + BinaryProvider v0.5.8
+  [49dc2e85] + Calculus v0.5.1
+  [bbf7d656] + CommonSubexpressions v0.2.0
+  [34da2185] + Compat v2.2.0
+  [864edb3b] + DataStructures v0.17.6
+  [163ba53b] + DiffResults v0.0.4
+  [b552c78f] + DiffRules v0.1.0
+  [8f5d6c58] + EzXML v0.9.4
+  [f6369f11] + ForwardDiff v0.10.6
+  [5e113713] + GasModels v0.5.0
+  [2030c09a] + InfrastructureModels v0.3.2
+  [682c06a0] + JSON v0.21.0
+  [4076af6c] + JuMP v0.20.1
+  [b8f27783] + MathOptInterface v0.9.7
+  [f28f55f0] + Memento v0.12.1
+  [78c3b35d] + Mocking v0.7.0
+  [77ba4419] + NaNMath v0.3.3
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [276daf66] + SpecialFunctions v0.8.0
+  [90137ffa] + StaticArrays v0.12.1
+  [cea106d9] + Syslogs v0.3.0
+  [f269a46b] + TimeZones v0.10.3
+  [30578b45] + URIParser v0.4.0
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building EzXML ───────────→ `~&#x2F;.julia&#x2F;packages&#x2F;EzXML&#x2F;G0JeY&#x2F;deps&#x2F;build.log`
+  Building TimeZones ───────→ `~&#x2F;.julia&#x2F;packages&#x2F;TimeZones&#x2F;pjvlM&#x2F;deps&#x2F;build.log`
+  Building SpecialFunctions → `~&#x2F;.julia&#x2F;packages&#x2F;SpecialFunctions&#x2F;ne2iw&#x2F;deps&#x2F;build.log`
+   Testing GasModels
+ Resolving package versions...
+ Installed Cbc ────────── v0.6.5
+ Installed Ipopt ──────── v0.6.1
+ Installed MathProgBase ─ v0.7.7
+ Installed Juniper ────── v0.5.2
+  Building Ipopt → `~&#x2F;.julia&#x2F;packages&#x2F;Ipopt&#x2F;ruIXY&#x2F;deps&#x2F;build.log`
+  Building Cbc ──→ `~&#x2F;.julia&#x2F;packages&#x2F;Cbc&#x2F;5nCGI&#x2F;deps&#x2F;build.log`
+Status `&#x2F;tmp&#x2F;jl_f6l2BZ&#x2F;Manifest.toml`
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [9e28174c] BinDeps v0.8.10
+  [b99e7846] BinaryProvider v0.5.8
+  [49dc2e85] Calculus v0.5.1
+  [9961bab8] Cbc v0.6.5
+  [bbf7d656] CommonSubexpressions v0.2.0
+  [34da2185] Compat v2.2.0
+  [864edb3b] DataStructures v0.17.6
+  [163ba53b] DiffResults v0.0.4
+  [b552c78f] DiffRules v0.1.0
+  [8f5d6c58] EzXML v0.9.4
+  [f6369f11] ForwardDiff v0.10.6
+  [5e113713] GasModels v0.5.0
+  [2030c09a] InfrastructureModels v0.3.2
+  [b6b21f68] Ipopt v0.6.1
+  [682c06a0] JSON v0.21.0
+  [4076af6c] JuMP v0.20.1
+  [2ddba703] Juniper v0.5.2
+  [b8f27783] MathOptInterface v0.9.7
+  [fdba3010] MathProgBase v0.7.7
+  [f28f55f0] Memento v0.12.1
+  [78c3b35d] Mocking v0.7.0
+  [77ba4419] NaNMath v0.3.3
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [276daf66] SpecialFunctions v0.8.0
+  [90137ffa] StaticArrays v0.12.1
+  [cea106d9] Syslogs v0.3.0
+  [f269a46b] TimeZones v0.10.3
+  [30578b45] URIParser v0.4.0
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+Testing matlab gaslib 40 misocp ls
+[warn | InfrastructureModels]: Matlab parser skipping the following line:
+  end
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing matlab gaslib 40 misocp
+[warn | InfrastructureModels]: Matlab parser skipping the following line:
+  end
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[warn | InfrastructureModels]: Matlab parser skipping the following line:
+  end
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+[warn | InfrastructureModels]: Matlab parser skipping the following line:
+  end
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+[warn | GasModels]: adding junction 1102 to capture both sides of a compressor
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+Testing gaslib misocp ls gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib misocp ls priority gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: consumer_data 58x1
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;consumer_data&quot; in to &quot;consumer&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib mip ls gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib mip ls priority gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: consumer_data 58x1
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;consumer_data&quot; in to &quot;consumer&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib lp ls gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing gaslib lp ls priority gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: consumer_data 58x1
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;consumer_data&quot; in to &quot;consumer&quot;
+Testing gaslib nlp ls gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing gaslib nlp ls priority gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: consumer_data 58x1
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;consumer_data&quot; in to &quot;consumer&quot;
+Testing gaslib misocp nels gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: ne_pipe_data 39x1
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: pipe_data 39x1
+[info | GasModels]: extending matlab format with data: compressor_data 12x1
+[info | GasModels]: extending matlab format by appending matrix &quot;ne_pipe_data&quot; in to &quot;ne_pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;pipe_data&quot; in to &quot;pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;compressor_data&quot; in to &quot;compressor&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+┌ Warning: Cycle detected
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:374
+Testing gaslib mip nels gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: ne_pipe_data 39x1
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: pipe_data 39x1
+[info | GasModels]: extending matlab format with data: compressor_data 12x1
+[info | GasModels]: extending matlab format by appending matrix &quot;ne_pipe_data&quot; in to &quot;ne_pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;pipe_data&quot; in to &quot;pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;compressor_data&quot; in to &quot;compressor&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+┌ Warning: Cycle detected
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:374
+Testing gaslib lp nels gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: ne_pipe_data 39x1
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: pipe_data 39x1
+[info | GasModels]: extending matlab format with data: compressor_data 12x1
+[info | GasModels]: extending matlab format by appending matrix &quot;ne_pipe_data&quot; in to &quot;ne_pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;pipe_data&quot; in to &quot;pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;compressor_data&quot; in to &quot;compressor&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+┌ Warning: Cycle detected
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:374
+Testing gaslib nlp nels gaslib 40
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: ne_pipe_data 39x1
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format with data: pipe_data 39x1
+[info | GasModels]: extending matlab format with data: compressor_data 12x1
+[info | GasModels]: extending matlab format by appending matrix &quot;ne_pipe_data&quot; in to &quot;ne_pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;pipe_data&quot; in to &quot;pipe&quot;
+[info | GasModels]: extending matlab format by appending matrix &quot;compressor_data&quot; in to &quot;compressor&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib 40 misocp gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing gaslib 40 mip gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib 135 mip gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 164x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing gaslib 40 lp gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing gaslib 135 lp gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 164x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing gaslib 40 nlp gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 46x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing gaslib 135 nlp gf
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[info | GasModels]: extending matlab format with data: junction_data 164x2
+[info | GasModels]: extending matlab format by appending matrix &quot;junction_data&quot; in to &quot;junction&quot;
+Testing A1 minlp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing A2 minlp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing A1 misocp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing A2 misocp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing A1 mip ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing A2 mip ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+┌ Warning: Cycle detected
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:374
+Testing A1 lp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+Testing A2 lp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[ Info: no explicit NLP constraints or objective provided using @NLconstraint or @NLobjective macros
+┌ Warning: Cycle detected
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:374
+Testing A1 nlp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+┌ Warning: NLP couldn&#39;t be solved to optimality
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:389
+Testing A2 nlp ne
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+[warn | GasModels]: no case version found in .m file.  The file seems to be missing &quot;mgc.version = ...&quot;
+┌ Warning: NLP couldn&#39;t be solved to optimality
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;fpump.jl:389
+┌ Warning: Only almost solved
+└ @ Juniper ~&#x2F;.julia&#x2F;packages&#x2F;Juniper&#x2F;i4qvA&#x2F;src&#x2F;BnBTree.jl:89
+Test Summary: | Pass  Total
+GasModels     |  539    539
+   Testing GasModels tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

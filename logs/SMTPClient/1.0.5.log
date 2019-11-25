@@ -1,0 +1,94 @@
+ Resolving package versions...
+ Installed SMTPClient ───── v0.3.1
+ Installed LibCURL ──────── v0.5.2
+ Installed BinaryProvider ─ v0.5.8
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [c35d69d1] + SMTPClient v0.3.1
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [b99e7846] + BinaryProvider v0.5.8
+  [b27032c2] + LibCURL v0.5.2
+  [c35d69d1] + SMTPClient v0.3.1
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  Building LibCURL → `~/.julia/packages/LibCURL/lWJxD/deps/build.log`
+   Testing SMTPClient
+ Resolving package versions...
+    Status `/tmp/tmpQzB3fi/Manifest.toml`
+  [b99e7846] BinaryProvider v0.5.8
+  [b27032c2] LibCURL v0.5.2
+  [c35d69d1] SMTPClient v0.3.1
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+[ Info: testset: send...
+Send: Error During Test at /root/.julia/packages/SMTPClient/VShKI/test/send.jl:12
+  Got exception outside of a @test
+  IOError: could not spawn `python3.7 /root/.julia/packages/SMTPClient/VShKI/test/mock.py /tmp/juliaNiw6KJ`: no such file or directory (ENOENT)
+  Stacktrace:
+   [1] _jl_spawn(::String, ::Array{String,1}, ::Cmd, ::Tuple{Base.DevNull,Base.DevNull,Base.PipeEndpoint}) at ./process.jl:367
+   [2] (::getfield(Base, Symbol("##495#496")){Cmd,Base.Process})(::Tuple{Base.DevNull,Base.DevNull,Base.PipeEndpoint}) at ./process.jl:509
+   [3] setup_stdio(::getfield(Base, Symbol("##495#496")){Cmd,Base.Process}, ::Tuple{Base.DevNull,Base.DevNull,Base.PipeEndpoint}) at ./process.jl:490
+   [4] #_spawn#494(::Nothing, ::Function, ::Cmd, ::Tuple{Base.DevNull,Base.DevNull,Base.PipeEndpoint}) at ./process.jl:508
+   [5] (::getfield(Base, Symbol("#kw##_spawn")))(::NamedTuple{(:chain,),Tuple{Nothing}}, ::typeof(Base._spawn), ::Cmd, ::Tuple{Base.DevNull,Base.DevNull,Base.PipeEndpoint}) at ./none:0
+   [6] #_spawn#491(::Nothing, ::Function, ::Base.CmdRedirect, ::Tuple{Base.DevNull,Base.DevNull,Base.DevNull}) at ./process.jl:398
+   [7] _spawn at ./process.jl:398 [inlined]
+   [8] #run#505(::Bool, ::Function, ::Base.CmdRedirect) at ./process.jl:665
+   [9] (::getfield(Base, Symbol("#kw##run")))(::NamedTuple{(:wait,),Tuple{Bool}}, ::typeof(run), ::Base.CmdRedirect) at ./none:0
+   [10] macro expansion at /root/.julia/packages/SMTPClient/VShKI/test/send.jl:19 [inlined]
+   [11] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [12] top-level scope at /root/.julia/packages/SMTPClient/VShKI/test/send.jl:13
+   [13] include at ./boot.jl:317 [inlined]
+   [14] include_relative(::Module, ::String) at ./loading.jl:1044
+   [15] include(::Module, ::String) at ./sysimg.jl:29
+   [16] include(::String) at ./client.jl:392
+   [17] macro expansion at /root/.julia/packages/SMTPClient/VShKI/test/runtests.jl:8 [inlined]
+   [18] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Test/src/Test.jl:1083 [inlined]
+   [19] top-level scope at /root/.julia/packages/SMTPClient/VShKI/test/runtests.jl:6
+   [20] include at ./boot.jl:317 [inlined]
+   [21] include_relative(::Module, ::String) at ./loading.jl:1044
+   [22] include(::Module, ::String) at ./sysimg.jl:29
+   [23] include(::String) at ./client.jl:392
+   [24] top-level scope at none:0
+   [25] eval(::Module, ::Any) at ./boot.jl:319
+   [26] exec_options(::Base.JLOptions) at ./client.jl:243
+   [27] _start() at ./client.jl:425
+[ Info: testset: error...
+Test Summary: | Pass  Error  Total
+SMTPClient    |    2      1      3
+  Send        |           1      1
+  Errors      |    2             2
+ERROR: LoadError: Some tests did not pass: 2 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /root/.julia/packages/SMTPClient/VShKI/test/runtests.jl:5
+ERROR: Package SMTPClient errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/Operations.jl:1357
+ [3] #test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:278
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:263 [inlined]
+ [6] #test#43 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:260 [inlined]
+ [8] #test#42 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:259 [inlined]
+ [10] #test#41 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258 [inlined]
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/API.jl:258
+ [12] top-level scope at none:0

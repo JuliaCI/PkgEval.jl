@@ -1,0 +1,49 @@
+ Resolving package versions...
+ Installed Requires ─ v0.5.2
+ Installed ConjGrad ─ v0.1.0
+ Installed MPI ────── v0.10.1
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [c16e2fb6] + ConjGrad v0.1.0
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [c16e2fb6] + ConjGrad v0.1.0
+  [da04e1cc] + MPI v0.10.1
+  [ae029012] + Requires v0.5.2
+  [2a0f44e3] + Base64 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  Building MPI → `~/.julia/packages/MPI/9zBr2/deps/build.log`
+┌ Error: Error building `MPI`: 
+│ [ Info: Using MPI library 
+│ ERROR: LoadError: ccall: could not find function MPI_Get_version in library 
+│ Stacktrace:
+│  [1] Get_version() at /root/.julia/packages/MPI/9zBr2/deps/build.jl:65
+│  [2] top-level scope at /root/.julia/packages/MPI/9zBr2/deps/build.jl:71
+│  [3] include at ./boot.jl:328 [inlined]
+│  [4] include_relative(::Module, ::String) at ./loading.jl:1094
+│  [5] include(::Module, ::String) at ./Base.jl:31
+│  [6] include(::String) at ./client.jl:431
+│  [7] top-level scope at none:5
+│ in expression starting at /root/.julia/packages/MPI/9zBr2/deps/build.jl:71
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/backwards_compatible_isolation.jl:647
+ERROR: Package ConjGrad did not provide a `test/runtests.jl` file
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1254
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

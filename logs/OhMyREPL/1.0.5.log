@@ -1,0 +1,85 @@
+ Resolving package versions...
+ Installed Crayons ── v4.0.1
+ Installed Tokenize ─ v0.5.6
+ Installed OhMyREPL ─ v0.5.3
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [5fb14364] + OhMyREPL v0.5.3
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [a8cc5b0e] + Crayons v4.0.1
+  [5fb14364] + OhMyREPL v0.5.3
+  [0796e94c] + Tokenize v0.5.6
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [d6f4376e] + Markdown 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing OhMyREPL
+ Resolving package versions...
+ Installed TerminalRegressionTests ─ v0.1.1
+ Installed FixedPointNumbers ─────── v0.5.3
+ Installed VT100 ─────────────────── v0.3.2
+ Installed ColorTypes ────────────── v0.8.0
+    Status `/tmp/tmpQ57x8L/Manifest.toml`
+  [3da002f7] ColorTypes v0.8.0
+  [a8cc5b0e] Crayons v4.0.1
+  [53c48c17] FixedPointNumbers v0.5.3
+  [5fb14364] OhMyREPL v0.5.3
+  [98bfdc55] TerminalRegressionTests v0.1.1
+  [0796e94c] Tokenize v0.5.6
+  [7774df62] VT100 v0.3.2
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+┌ Warning: flicker test not run
+└ @ Main ~/.julia/packages/OhMyREPL/z9Xlq/test/runtests.jl:5
+function
+ 
+:
+foobar
+,
+ 
+foobar
+ 
+# foobar
+
+Original string: function :foobar, foobar # foobar
+Bluified string: [0mfunction[0m [0m:[0m[34mfoobar[0m,[0m [0m[34mfoobar[0m [0m# foobar[0m[0m
+
+Original string: (function :foobar, foobar )# foobar
+BracketMatched string: [0m[1;4m([0mfunction[0m [0m:[0mfoobar[0m,[0m [0mfoobar[0m [0m[1;4m)[0m# foobar[0m[0m
+
+Original string: function :foobar, foobar # foobar
+Highlighted string: [0m[91mfunction[0m [0m[35m:[0m[35mfoobar[0m[39m,[0m [0m[39mfoobar[0m [0m[90m# foobar[0m[39m[0m
+
+Original string: (function :foobar, foobar @foobar())# foobar
+Highlighted string: [0m[38;5;178;1;4m([0m[91mfunction[0m [0m[35m:[0m[35mfoobar[0m[39m,[0m [0m[39mfoobar[0m [0m[36m@[0m[36mfoobar[0m[38;5;161m([0m[38;5;161m)[0m[38;5;178;1;4m)[0m[90m# foobar[0m[39m[0m
+
+[0m[38;5;178m([0m[38;5;161m([0m[38;5;45m[[0m[38;5;99m[[0m[38;5;99m][0m[38;5;45m][0m [0m[38;5;45m[[0m[38;5;99m[[0m  [0m[38;5;223m{[0m[38;5;130m{[0m [0m[38;5;130m}[0m[38;5;223m}[0m[38;5;99m][0m[38;5;45m][0m[38;5;161m)[0m[38;5;178m)[0m [0m[38;5;196;1m][0m[38;5;196;1m][0m [0m[38;5;196;1m)[0m[38;5;196;1m)[0m [0m[38;5;196;1m}[0m[38;5;196;1m}[0m[0m
+[0m[33m([0m[32m([0m[36m[[0m[35m[[0m[35m][0m[36m][0m [0m[36m[[0m[35m[[0m  [0m[37m{[0m[39m{[0m [0m[39m}[0m[37m}[0m[35m][0m[36m][0m[32m)[0m[33m)[0m [0m[91m][0m[91m][0m [0m[91m)[0m[91m)[0m [0m[91m}[0m[91m}[0m[0m   Testing OhMyREPL tests passed 

@@ -1,0 +1,121 @@
+ Resolving package versions...
+ Installed Parsers ─────────────── v0.3.10
+ Installed MathOptInterfaceMosek ─ v0.5.2
+ Installed BenchmarkTools ──────── v0.4.3
+ Installed Compat ──────────────── v2.2.0
+ Installed Mosek ───────────────── v0.9.11
+ Installed JSON ────────────────── v0.21.0
+ Installed MathProgBase ────────── v0.7.7
+ Installed MathOptInterface ────── v0.9.7
+ Installed OrderedCollections ──── v1.1.0
+  Updating `~/.julia/environments/v1.2/Project.toml`
+  [0087ddc6] + MathOptInterfaceMosek v0.5.2
+  Updating `~/.julia/environments/v1.2/Manifest.toml`
+  [6e4b80f9] + BenchmarkTools v0.4.3
+  [34da2185] + Compat v2.2.0
+  [682c06a0] + JSON v0.21.0
+  [b8f27783] + MathOptInterface v0.9.7
+  [0087ddc6] + MathOptInterfaceMosek v0.5.2
+  [fdba3010] + MathProgBase v0.7.7
+  [6405355b] + Mosek v0.9.11
+  [bac558e1] + OrderedCollections v1.1.0
+  [69de0a69] + Parsers v0.3.10
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Mosek → `~/.julia/packages/Mosek/vBHcL/deps/build.log`
+   Testing MathOptInterfaceMosek
+    Status `/tmp/jl_YYXNVI/Manifest.toml`
+  [6e4b80f9] BenchmarkTools v0.4.3
+  [34da2185] Compat v2.2.0
+  [682c06a0] JSON v0.21.0
+  [b8f27783] MathOptInterface v0.9.7
+  [0087ddc6] MathOptInterfaceMosek v0.5.2
+  [fdba3010] MathProgBase v0.7.7
+  [6405355b] Mosek v0.9.11
+  [bac558e1] OrderedCollections v1.1.0
+  [69de0a69] Parsers v0.3.10
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [ade2ca70] Dates  [`@stdlib/Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib/DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib/LibGit2`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [a63ad114] Mmap  [`@stdlib/Mmap`]
+  [44cfe95a] Pkg  [`@stdlib/Pkg`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [3fa0cd96] REPL  [`@stdlib/REPL`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [ea8e919c] SHA  [`@stdlib/SHA`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib/SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [10745b16] Statistics  [`@stdlib/Statistics`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [cf7118a7] UUIDs  [`@stdlib/UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+Test Summary: | Pass  Total
+SolverName    |    1      1
+Test Summary: |
+Copy          | No tests
+Unit: Error During Test at /root/.julia/packages/MathOptInterfaceMosek/iz5zS/test/runtests.jl:43
+  Got exception outside of a @test
+  UndefVarError: QuadtoSOC not defined
+  Stacktrace:
+   [1] getproperty(::Module, ::Symbol) at ./Base.jl:13
+   [2] top-level scope at /root/.julia/packages/MathOptInterfaceMosek/iz5zS/test/runtests.jl:46
+   [3] top-level scope at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Test/src/Test.jl:1113
+   [4] top-level scope at /root/.julia/packages/MathOptInterfaceMosek/iz5zS/test/runtests.jl:45
+   [5] include at ./boot.jl:328 [inlined]
+   [6] include_relative(::Module, ::String) at ./loading.jl:1094
+   [7] include(::Module, ::String) at ./Base.jl:31
+   [8] include(::String) at ./client.jl:431
+   [9] top-level scope at none:5
+   [10] eval(::Module, ::Any) at ./boot.jl:330
+   [11] exec_options(::Base.JLOptions) at ./client.jl:271
+   [12] _start() at ./client.jl:464
+  
+Test Summary: | Error  Total
+Unit          |     1      1
+ERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 1 errored, 0 broken.
+in expression starting at /root/.julia/packages/MathOptInterfaceMosek/iz5zS/test/runtests.jl:43
+ERROR: Package MathOptInterfaceMosek errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/Operations.jl:1288
+ [3] #test at ./none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:245
+ [5] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:233 [inlined]
+ [6] #test#61 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [7] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:230 [inlined]
+ [8] #test#60 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [9] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [11] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.2/Pkg/src/API.jl:228
+ [12] top-level scope at none:10

@@ -1,0 +1,65 @@
+ Resolving package versions...
+ Installed GMT ─ v0.12.0
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [5752ebe1] + GMT v0.12.0
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [5752ebe1] + GMT v0.12.0
+  [de0858da] + Printf 
+  [4ec0a83e] + Unicode 
+   Testing GMT
+ Resolving package versions...
+Status `/tmp/jl_cEq02X/Manifest.toml`
+  [5752ebe1] GMT v0.12.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [de0858da] Printf  [`@stdlib/Printf`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+  [4ec0a83e] Unicode  [`@stdlib/Unicode`]
+
+
+You don't seem to have GMT installed and I don't currently install it automatically,
+so you will have to do it yourself. Please follow instructions bellow but please note
+that since GMT is migrating to Github (https://github.com/GenericMappingTools/gmt),
+some of the links may change in a near future.
+
+
+https://github.com/GenericMappingTools/gmt/blob/master/INSTALL.md
+ERROR: LoadError: InitError: IOError: could not spawn `gmt --version`: no such file or directory (ENOENT)
+Stacktrace:
+ [1] _spawn_primitive(::String, ::Cmd, ::Array{Any,1}) at ./process.jl:99
+ [2] #546 at ./process.jl:112 [inlined]
+ [3] setup_stdios(::Base.var"#546#547"{Cmd}, ::Array{Any,1}) at ./process.jl:196
+ [4] _spawn at ./process.jl:111 [inlined]
+ [5] eachline(::Cmd; keep::Bool) at ./process.jl:317
+ [6] eachline at ./process.jl:316 [inlined]
+ [7] #readlines#290 at ./io.jl:498 [inlined]
+ [8] readlines at ./io.jl:498 [inlined]
+ [9] __init__() at /root/.julia/packages/GMT/nfsRH/src/GMT.jl:151
+ [10] _include_from_serialized(::String, ::Array{Any,1}) at ./loading.jl:690
+ [11] _require_from_serialized(::String) at ./loading.jl:741
+ [12] _require(::Base.PkgId) at ./loading.jl:1032
+ [13] require(::Base.PkgId) at ./loading.jl:920
+ [14] require(::Module, ::Symbol) at ./loading.jl:915
+ [15] include(::String) at ./client.jl:439
+ [16] top-level scope at none:6
+during initialization of module GMT
+in expression starting at /root/.julia/packages/GMT/nfsRH/test/runtests.jl:1
+ERROR: Package GMT errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10

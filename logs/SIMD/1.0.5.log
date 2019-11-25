@@ -1,0 +1,619 @@
+ Resolving package versions...
+ Installed SIMD ─ v2.8.0
+  Updating `~/.julia/environments/v1.0/Project.toml`
+  [fdea26ae] + SIMD v2.8.0
+  Updating `~/.julia/environments/v1.0/Manifest.toml`
+  [fdea26ae] + SIMD v2.8.0
+  [2a0f44e3] + Base64 
+  [b77e0a4c] + InteractiveUtils 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [d6f4376e] + Markdown 
+   Testing SIMD
+ Resolving package versions...
+    Status `/tmp/tmpHtNOQG/Manifest.toml`
+  [fdea26ae] SIMD v2.8.0
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [8dfed614] Test  [`@stdlib/Test`]
+
+; Function vsum
+; Location: /root/.julia/packages/SIMD/Am38N/test/runtests.jl:569
+define double @julia_vsum_36447(%jl_value_t addrspace(10)* nonnull align 8 dereferenceable(40), %jl_value_t addrspace(10)*) {
+top:
+  %gcframe = alloca %jl_value_t addrspace(10)*, i32 3
+  %2 = bitcast %jl_value_t addrspace(10)** %gcframe to i8*
+  call void @llvm.memset.p0i8.i32(i8* %2, i8 0, i32 24, i32 0, i1 false)
+  %3 = alloca [1 x { i64 }], align 8
+  %thread_ptr = call i8* asm "movq %fs:0, $0", "=r"()
+  %ptls_i8 = getelementptr i8, i8* %thread_ptr, i64 -10920
+  %ptls = bitcast i8* %ptls_i8 to %jl_value_t***
+; Function length; {
+; Location: abstractarray.jl:159
+; Function size; {
+; Location: subarray.jl:57
+; Function axes; {
+; Location: subarray.jl:358
+; Function getproperty; {
+; Location: sysimg.jl:18
+  %4 = getelementptr %jl_value_t addrspace(10)*, %jl_value_t addrspace(10)** %gcframe, i32 0
+  %5 = bitcast %jl_value_t addrspace(10)** %4 to i64*
+  store i64 2, i64* %5
+  %6 = getelementptr %jl_value_t**, %jl_value_t*** %ptls, i32 0
+  %7 = getelementptr %jl_value_t addrspace(10)*, %jl_value_t addrspace(10)** %gcframe, i32 1
+  %8 = bitcast %jl_value_t addrspace(10)** %7 to %jl_value_t***
+  %9 = load %jl_value_t**, %jl_value_t*** %6
+  store %jl_value_t** %9, %jl_value_t*** %8
+  %10 = bitcast %jl_value_t*** %6 to %jl_value_t addrspace(10)***
+  store %jl_value_t addrspace(10)** %gcframe, %jl_value_t addrspace(10)*** %10
+  %11 = addrspacecast %jl_value_t addrspace(10)* %0 to %jl_value_t addrspace(11)*
+  %12 = bitcast %jl_value_t addrspace(11)* %11 to i8 addrspace(11)*
+  %13 = getelementptr inbounds i8, i8 addrspace(11)* %12, i64 8
+;}
+; Function _indices_sub; {
+; Location: subarray.jl:363
+; Function unsafe_indices; {
+; Location: abstractarray.jl:97
+; Function unsafe_length; {
+; Location: range.jl:494
+; Function last; {
+; Location: range.jl:548
+; Function getproperty; {
+; Location: sysimg.jl:18
+  %14 = getelementptr inbounds i8, i8 addrspace(11)* %12, i64 16
+  %15 = bitcast i8 addrspace(11)* %14 to i64 addrspace(11)*
+;}}
+; Function first; {
+; Location: range.jl:543
+; Function getproperty; {
+; Location: sysimg.jl:18
+  %16 = bitcast i8 addrspace(11)* %13 to i64 addrspace(11)*
+;}}
+; Function -; {
+; Location: int.jl:52
+  %17 = load i64, i64 addrspace(11)* %15, align 8
+  %18 = load i64, i64 addrspace(11)* %16, align 8
+  %19 = sub i64 %17, %18
+;}
+; Function +; {
+; Location: int.jl:53
+  %20 = add i64 %19, 1
+;}}
+; Function Type; {
+; Location: range.jl:298
+; Function Type; {
+; Location: range.jl:289
+; Function max; {
+; Location: promotion.jl:436
+  %21 = icmp sgt i64 %20, 0
+  %22 = select i1 %21, i64 %20, i64 0
+;}}}}}}}}
+; Function rem; {
+; Location: int.jl:233
+  %23 = and i64 %22, 3
+;}
+; Function ==; {
+; Location: promotion.jl:425
+  %24 = icmp eq i64 %23, 0
+;}
+  br i1 %24, label %L14, label %L156
+
+L14:                                              ; preds = %top
+; Location: /root/.julia/packages/SIMD/Am38N/test/runtests.jl:572
+; Function Colon; {
+; Location: range.jl:22
+; Function _colon; {
+; Location: range.jl:24
+; Function Type; {
+; Location: range.jl:231
+; Function Type; {
+; Location: range.jl:180
+  %25 = call i64 @julia_steprange_last_24022(i64 1, i64 4, i64 %22)
+;}}}}
+; Function iterate; {
+; Location: range.jl:571
+; Function isempty; {
+; Location: range.jl:453
+; Function &; {
+; Location: bool.jl:40
+  %26 = icmp sgt i64 %25, 0
+;}}}
+  br i1 %26, label %L41.L46_crit_edge, label %L152
+
+L41.L46_crit_edge:                                ; preds = %L14
+; Location: /root/.julia/packages/SIMD/Am38N/test/runtests.jl:573
+; Function getindex; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1943
+; Function _preprocessindices; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1922
+  %.sroa.0.0..sroa_idx = getelementptr inbounds [1 x { i64 }], [1 x { i64 }]* %3, i64 0, i64 0, i32 0
+  store i64 1, i64* %.sroa.0.0..sroa_idx, align 8
+; Function checkbounds; {
+; Location: abstractarray.jl:449
+; Function checkbounds; {
+; Location: abstractarray.jl:434
+; Function eachindex; {
+; Location: abstractarray.jl:214
+; Function axes1; {
+; Location: abstractarray.jl:93
+; Function axes; {
+; Location: subarray.jl:358
+; Function _indices_sub; {
+; Location: subarray.jl:363
+; Function unsafe_indices; {
+; Location: abstractarray.jl:97
+; Function unsafe_length; {
+; Location: range.jl:494
+; Function -; {
+; Location: int.jl:52
+  %27 = load i64, i64 addrspace(11)* %15, align 8
+  %28 = load i64, i64 addrspace(11)* %16, align 8
+  %29 = sub i64 %27, %28
+  %30 = getelementptr inbounds i8, i8 addrspace(11)* %12, i64 24
+  %31 = bitcast i8 addrspace(11)* %30 to i64 addrspace(11)*
+  %32 = load i64, i64 addrspace(11)* %31, align 8
+  %33 = getelementptr inbounds i8, i8 addrspace(11)* %12, i64 32
+  %34 = bitcast i8 addrspace(11)* %33 to i64 addrspace(11)*
+  %35 = load i64, i64 addrspace(11)* %34, align 8
+  %36 = add i64 %32, 2305843009213693951
+  %37 = add i64 %36, %35
+  %38 = bitcast %jl_value_t addrspace(11)* %11 to %jl_value_t addrspace(10)* addrspace(11)*
+  %39 = load %jl_value_t addrspace(10)*, %jl_value_t addrspace(10)* addrspace(11)* %38, align 8
+  %40 = addrspacecast %jl_value_t addrspace(10)* %39 to %jl_value_t addrspace(11)*
+;}}}}}}}
+; Function checkindex; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1871
+  br label %L71
+
+L46:                                              ; preds = %pass16
+;}}}}}
+; Function iterate; {
+; Location: range.jl:576
+; Function +; {
+; Location: int.jl:53
+  %41 = add nuw i64 %value_phi439, 4
+;}}
+; Function getindex; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1943
+; Function _preprocessindices; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1922
+; Function checkbounds; {
+; Location: abstractarray.jl:449
+; Function checkbounds; {
+; Location: abstractarray.jl:434
+; Function checkindex; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1871
+; Function <=; {
+; Location: int.jl:428
+  %42 = icmp slt i64 %41, 1
+;}
+  br i1 %42, label %L80, label %L71
+
+L71:                                              ; preds = %L41.L46_crit_edge, %L46
+  %value_phi439 = phi i64 [ 1, %L41.L46_crit_edge ], [ %41, %L46 ]
+  %value_phi335 = phi <4 x double> [ zeroinitializer, %L41.L46_crit_edge ], [ %res.i34, %L46 ]
+  %43 = add i64 %29, 1
+;}
+; Function eachindex; {
+; Location: abstractarray.jl:214
+; Function axes1; {
+; Location: abstractarray.jl:93
+; Function axes; {
+; Location: subarray.jl:358
+; Function _indices_sub; {
+; Location: subarray.jl:363
+; Function unsafe_indices; {
+; Location: abstractarray.jl:97
+; Function Type; {
+; Location: range.jl:298
+; Function Type; {
+; Location: range.jl:289
+; Function max; {
+; Location: promotion.jl:436
+  %44 = icmp sgt i64 %43, 0
+  %45 = select i1 %44, i64 %43, i64 0
+;}}}}}}}}
+; Function checkindex; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1871
+; Function last; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1865
+; Function -; {
+; Location: int.jl:52
+  %46 = add nuw i64 %value_phi439, 3
+;}}
+; Function <=; {
+; Location: int.jl:428
+  %47 = icmp sgt i64 %46, %45
+;}}}
+  br i1 %47, label %L80, label %pass16
+
+L80:                                              ; preds = %L71, %L46
+  %value_phi440 = phi i64 [ %value_phi439, %L71 ], [ %41, %L46 ]
+;}
+  store i64 %value_phi440, i64* %.sroa.0.0..sroa_idx, align 8
+; Function checkbounds; {
+; Location: abstractarray.jl:449
+  %48 = addrspacecast [1 x { i64 }]* %3 to [1 x { i64 }] addrspace(11)*
+  call void @julia_throw_boundserror_36325(%jl_value_t addrspace(10)* nonnull %0, [1 x { i64 }] addrspace(11)* nocapture readonly %48)
+  call void @llvm.trap()
+  unreachable
+
+L152.loopexit:                                    ; preds = %pass16
+;}
+  store i64 %value_phi439, i64* %.sroa.0.0..sroa_idx, align 8
+;}}
+; Location: /root/.julia/packages/SIMD/Am38N/test/runtests.jl:575
+; Function sum; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1286
+; Function llvmwrapreduce; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1241
+; Function macro expansion; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1274
+  br label %L152
+
+L152:                                             ; preds = %L152.loopexit, %L14
+  %value_phi24 = phi <4 x double> [ zeroinitializer, %L14 ], [ %res.i34, %L152.loopexit ]
+  %vec_2_1.i = shufflevector <4 x double> %value_phi24, <4 x double> undef, <2 x i32> <i32 0, i32 1>
+  %vec_2_2.i = shufflevector <4 x double> %value_phi24, <4 x double> undef, <2 x i32> <i32 2, i32 3>
+  %vec_2.i = fadd <2 x double> %vec_2_1.i, %vec_2_2.i
+  %vec_1_1.i = shufflevector <2 x double> %vec_2.i, <2 x double> undef, <1 x i32> zeroinitializer
+  %vec_1_2.i = shufflevector <2 x double> %vec_2.i, <2 x double> undef, <1 x i32> <i32 1>
+  %vec_1.i = fadd <1 x double> %vec_1_1.i, %vec_1_2.i
+  %res.i33 = extractelement <1 x double> %vec_1.i, i32 0
+;}}}
+  %49 = getelementptr %jl_value_t addrspace(10)*, %jl_value_t addrspace(10)** %gcframe, i32 1
+  %50 = load %jl_value_t addrspace(10)*, %jl_value_t addrspace(10)** %49
+  %51 = getelementptr %jl_value_t**, %jl_value_t*** %ptls, i32 0
+  %52 = bitcast %jl_value_t*** %51 to %jl_value_t addrspace(10)**
+  store %jl_value_t addrspace(10)* %50, %jl_value_t addrspace(10)** %52
+  ret double %res.i33
+
+L156:                                             ; preds = %top
+; Location: /root/.julia/packages/SIMD/Am38N/test/runtests.jl:569
+; Function Type; {
+; Location: boot.jl:292
+  %53 = bitcast %jl_value_t*** %ptls to i8*
+  %54 = call noalias nonnull %jl_value_t addrspace(10)* @jl_gc_pool_alloc(i8* %53, i32 1424, i32 16) #1
+  %55 = bitcast %jl_value_t addrspace(10)* %54 to %jl_value_t addrspace(10)* addrspace(10)*
+  %56 = getelementptr %jl_value_t addrspace(10)*, %jl_value_t addrspace(10)* addrspace(10)* %55, i64 -1
+  store %jl_value_t addrspace(10)* addrspacecast (%jl_value_t* inttoptr (i64 140544585565664 to %jl_value_t*) to %jl_value_t addrspace(10)*), %jl_value_t addrspace(10)* addrspace(10)* %56
+  %57 = bitcast %jl_value_t addrspace(10)* %54 to %jl_value_t addrspace(10)* addrspace(10)*
+  store %jl_value_t addrspace(10)* addrspacecast (%jl_value_t* inttoptr (i64 140544501557968 to %jl_value_t*) to %jl_value_t addrspace(10)*), %jl_value_t addrspace(10)* addrspace(10)* %57, align 8
+;}
+  %58 = addrspacecast %jl_value_t addrspace(10)* %54 to %jl_value_t addrspace(12)*
+  %59 = getelementptr %jl_value_t addrspace(10)*, %jl_value_t addrspace(10)** %gcframe, i32 2
+  store %jl_value_t addrspace(10)* %54, %jl_value_t addrspace(10)** %59
+  call void @jl_throw(%jl_value_t addrspace(12)* %58)
+  unreachable
+
+pass16:                                           ; preds = %L71
+; Location: /root/.julia/packages/SIMD/Am38N/test/runtests.jl:573
+; Function getindex; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1944
+; Function _pointer; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1935
+; Function pointer; {
+; Location: subarray.jl:350
+; Function +; {
+; Location: int.jl:53
+  %60 = add i64 %37, %value_phi439
+  %61 = addrspacecast %jl_value_t addrspace(11)* %40 to %jl_value_t*
+;}
+; Location: subarray.jl:352
+; Function pointer; {
+; Location: abstractarray.jl:861
+; Function unsafe_convert; {
+; Location: pointer.jl:65
+  %62 = bitcast %jl_value_t* %61 to i8**
+  %63 = load i8*, i8** %62, align 8
+;}
+; Function *; {
+; Location: int.jl:54
+  %64 = shl i64 %60, 3
+  %65 = add i64 %64, -8
+;}
+; Function +; {
+; Location: pointer.jl:155
+  %66 = getelementptr i8, i8* %63, i64 %65
+;}}}}
+; Function vload; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1426
+; Function vload; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1426
+; Function vload; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1356
+; Function vload; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1356
+; Function macro expansion; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1383
+  %ptr.i = bitcast i8* %66 to <4 x double>*
+  %res.i = load <4 x double>, <4 x double>* %ptr.i, align 8
+;}}}}}}
+; Function +; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:1083
+; Function llvmwrap; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:604
+; Function llvmwrap; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:604
+; Function macro expansion; {
+; Location: /root/.julia/packages/SIMD/Am38N/src/SIMD.jl:623
+  %res.i34 = fadd <4 x double> %value_phi335, %res.i
+;}}}}
+; Function iterate; {
+; Location: range.jl:575
+; Function ==; {
+; Location: promotion.jl:425
+  %67 = icmp eq i64 %value_phi439, %25
+;}}
+  br i1 %67, label %L152.loopexit, label %L46
+}
+	.text
+; Function vsum {
+; Location: runtests.jl:569
+	pushq	%r15
+	pushq	%r14
+	pushq	%rbx
+	subq	$48, %rsp
+	vxorpd	%xmm0, %xmm0, %xmm0
+	movq	%fs:0, %rax
+	movq	$0, 32(%rsp)
+	leaq	16(%rsp), %rdx
+	movq	%rdi, %r15
+	vmovapd	%xmm0, 16(%rsp)
+; Function length; {
+; Location: abstractarray.jl:159
+; Function size; {
+; Location: subarray.jl:57
+; Function axes; {
+; Location: subarray.jl:358
+; Function getproperty; {
+; Location: sysimg.jl:18
+	movq	$2, 16(%rsp)
+	leaq	-10920(%rax), %r14
+	movq	-10920(%rax), %rcx
+	movq	%rcx, 24(%rsp)
+	movq	%rdx, -10920(%rax)
+;}}
+; Function axes; {
+; Location: int.jl:52
+	movq	16(%r15), %rax
+	subq	8(%r15), %rax
+;}
+; Function axes; {
+; Location: subarray.jl:358
+; Function _indices_sub; {
+; Location: subarray.jl:363
+; Function unsafe_indices; {
+; Location: abstractarray.jl:97
+; Function unsafe_length; {
+; Location: int.jl:53
+	incq	%rax
+;}
+; Function Type; {
+; Location: range.jl:298
+; Function Type; {
+; Location: range.jl:289
+; Function max; {
+; Location: promotion.jl:436
+	movq	%rax, %rcx
+	sarq	$63, %rcx
+	andnq	%rax, %rcx, %rdx
+;}}}}}}}}
+; Function ==; {
+; Location: promotion.jl:425
+	testb	$3, %dl
+;}
+	jne	L325
+; Location: runtests.jl:572
+; Function Colon; {
+; Location: range.jl:22
+; Function _colon; {
+; Location: range.jl:24
+; Function Type; {
+; Location: range.jl:231
+; Function Type; {
+; Location: range.jl:180
+	movabsq	$steprange_last, %rax
+	movl	$1, %edi
+	movl	$4, %esi
+	callq	*%rax
+;}}}}
+; Function iterate; {
+; Location: range.jl:571
+; Function isempty; {
+; Location: range.jl:453
+; Function &; {
+; Location: bool.jl:40
+	testq	%rax, %rax
+;}}}
+	jle	L280
+; Location: runtests.jl:573
+; Function getindex; {
+; Location: SIMD.jl:1943
+; Function _preprocessindices; {
+; Location: SIMD.jl:1922
+	movq	$1, 8(%rsp)
+	vxorpd	%xmm0, %xmm0, %xmm0
+; Function checkbounds; {
+; Location: abstractarray.jl:449
+; Function checkbounds; {
+; Location: abstractarray.jl:434
+; Function eachindex; {
+; Location: abstractarray.jl:214
+; Function axes1; {
+; Location: abstractarray.jl:93
+; Function axes; {
+; Location: subarray.jl:358
+; Function _indices_sub; {
+; Location: subarray.jl:363
+; Function unsafe_indices; {
+; Location: abstractarray.jl:97
+; Function unsafe_length; {
+; Location: range.jl:494
+; Function -; {
+; Location: int.jl:52
+	movq	16(%r15), %rbx
+	movq	32(%r15), %rsi
+	movq	24(%r15), %rdx
+	movq	(%r15), %rcx
+	subq	8(%r15), %rbx
+;}}}}}}}}
+; Function checkbounds; {
+; Location: SIMD.jl:1871
+	shlq	$3, %rsi
+	incq	%rbx
+	leaq	-8(%rsi,%rdx,8), %rsi
+	movl	$1, %edx
+	movq	%rbx, %rdi
+	sarq	$63, %rdi
+	andnq	%rbx, %rdi, %rdi
+	nopl	(%rax)
+;}
+; Function checkbounds; {
+; Location: abstractarray.jl:434
+; Function checkindex; {
+; Location: SIMD.jl:1871
+; Function <=; {
+; Location: int.jl:428
+L208:
+	leaq	3(%rdx), %rbx
+	cmpq	%rdi, %rbx
+;}}}
+	jg	L243
+;}}}
+; Function getindex; {
+; Location: abstractarray.jl
+	movq	(%rcx), %rbx
+;}
+; Function getindex; {
+; Location: SIMD.jl:1944
+; Function vload; {
+; Location: SIMD.jl:1426
+; Function vload; {
+; Location: SIMD.jl:1426
+; Function vload; {
+; Location: SIMD.jl:1356
+; Function vload; {
+; Location: SIMD.jl:1356
+; Function macro expansion; {
+; Location: SIMD.jl:1383
+	addq	%rsi, %rbx
+;}}}}}}
+; Function iterate; {
+; Location: range.jl:575
+; Function ==; {
+; Location: promotion.jl:425
+	cmpq	%rdx, %rax
+;}}
+; Function +; {
+; Location: SIMD.jl:1083
+; Function llvmwrap; {
+; Location: SIMD.jl:604
+; Function llvmwrap; {
+; Location: SIMD.jl:604
+; Function macro expansion; {
+; Location: SIMD.jl:623
+	vaddpd	-8(%rbx,%rdx,8), %ymm0, %ymm0
+;}}}}
+	je	L273
+; Function iterate; {
+; Location: range.jl:576
+; Function +; {
+; Location: int.jl:53
+	addq	$4, %rdx
+;}}
+; Function getindex; {
+; Location: SIMD.jl:1943
+; Function _preprocessindices; {
+; Location: SIMD.jl:1922
+; Function checkbounds; {
+; Location: abstractarray.jl:449
+; Function checkbounds; {
+; Location: abstractarray.jl:434
+; Function checkindex; {
+; Location: SIMD.jl:1871
+; Function <=; {
+; Location: int.jl:428
+	testq	%rdx, %rdx
+;}
+	jg	L208
+;}}
+L243:
+	movabsq	$throw_boundserror, %rax
+	leaq	8(%rsp), %rsi
+	movq	%r15, %rdi
+;}
+	movq	%rdx, 8(%rsp)
+; Function checkbounds; {
+; Location: abstractarray.jl:449
+	vzeroupper
+	callq	*%rax
+	ud2
+;}}}}
+; Function vsum {
+; Location: SIMD.jl:1922
+L273:
+	movq	%rdx, 8(%rsp)
+	jmp	L284
+L280:
+	vxorpd	%xmm0, %xmm0, %xmm0
+;}
+; Function vsum {
+; Location: runtests.jl:575
+L284:
+	movq	24(%rsp), %rax
+; Function sum; {
+; Location: SIMD.jl:1286
+; Function llvmwrapreduce; {
+; Location: SIMD.jl:1241
+; Function macro expansion; {
+; Location: SIMD.jl:1274
+	vextractf128	$1, %ymm0, %xmm1
+	vaddpd	%xmm1, %xmm0, %xmm0
+	vpermilpd	$1, %xmm0, %xmm1 # xmm1 = xmm0[1,0]
+	vaddsd	%xmm1, %xmm0, %xmm0
+;}}}
+	movq	%rax, (%r14)
+	addq	$48, %rsp
+	popq	%rbx
+	popq	%r14
+	popq	%r15
+	vzeroupper
+	retq
+; Location: runtests.jl:569
+; Function Type; {
+; Location: boot.jl:292
+L325:
+	movabsq	$jl_gc_pool_alloc, %rax
+	movl	$1424, %esi             # imm = 0x590
+	movl	$16, %edx
+	movq	%r14, %rdi
+	callq	*%rax
+	movabsq	$jl_system_image_data, %rcx
+	movabsq	$140544501557968, %rdx  # imm = 0x7FD311172AD0
+;}
+	movq	%rax, %rdi
+	movq	%rax, 32(%rsp)
+; Function Type; {
+; Location: boot.jl:292
+	movq	%rcx, -8(%rax)
+;}
+	movabsq	$jl_throw, %rcx
+; Function Type; {
+; Location: boot.jl:292
+	movq	%rdx, (%rax)
+;}
+	callq	*%rcx
+	nopl	(%rax)
+;}
+Test Summary: | Pass  Total
+SIMD          |  817    817
+   Testing SIMD tests passed 

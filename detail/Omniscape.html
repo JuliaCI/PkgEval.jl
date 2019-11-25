@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Julia Package Listing - Testing Information</title>
+
+    <style>/* -- Mix of julialang.org, Bootstrap 3, and custom -- */
+body {
+  background-color: white;
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.42857143;
+}
+.site {
+  max-width: 785px;
+  margin: 2.5em auto 2em;
+  padding: 0 1.5em;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.titlebox {
+  text-align: center;
+  font-size: 120%;
+  margin-top: 3em;
+}
+.ok     { background-color: #11AA11; } /*Tests passing*/
+.fail   { background-color: #DD3333; } /*Tests failed*/
+.skip   { background-color: #3333DD; } /*Tests skipped*/
+.kill   { background-color: #222222; } /*Tests interrupted*/
+.statusbox {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.pkglisting h2 { margin-bottom: 0px; }
+pre {margin: 0;}
+@media (min-width: 785px) {
+  .pkglisting {
+    display: table;
+    width: 100%;
+  }
+  .pkgnamedesc {
+    display: table-cell;
+    width: 50%;
+  }
+  .pkgvertest {
+    display: table-cell;
+    width:50%;
+    text-align: right
+  }
+}
+/* collapsible sections */
+.collapsible {
+  font-family: Georgia, 'Liberation Serif', serif;
+  font-size: 14px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.content {
+  display: none;
+  overflow: hidden;
+}
+</style>
+  </head>
+
+  <body>
+  <div class="site">
+    <!-- HEADER -->
+    <div class="titlebox">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="210px" height="142px" viewBox="0 0 310 216" enable-background="new 0 0 310 216" xml:space="preserve">
+
+<!-- blue dot -->
+<circle fill="#6b85dd" stroke="#4266d5" stroke-width="3" cx="50.5" cy="58.665" r="16.5"></circle>
+<!-- red dot -->
+<circle fill="#d66661" stroke="#c93d39" stroke-width="3" cx="212.459" cy="60.249" r="16.5"></circle>
+<!-- green dot -->
+<circle fill="#6bab5b" stroke="#3b972e" stroke-width="3" cx="233.834" cy="23.874" r="16.5"></circle>
+<!-- purple dot -->
+<circle fill="#aa7dc0" stroke="#945bb0" stroke-width="3" cx="255.459" cy="59.999" r="16.5"></circle>
+
+<!-- "j" -->
+<path fill="#252525" d="M37.216,138.427c0-15.839,0.006-31.679-0.018-47.517c-0.001-0.827,0.169-1.234,1.043-1.47
+    c7.876-2.127,15.739-4.308,23.606-6.47c1.33-0.366,1.333-0.36,1.333,1.019c0,25.758,0.015,51.517-0.012,77.274
+    c-0.006,5.514,0.245,11.032-0.272,16.543c-0.628,6.69-2.15,13.092-6.438,18.506c-3.781,4.771-8.898,7.25-14.767,8.338
+    c-6.599,1.222-13.251,1.552-19.934,0.938c-4.616-0.423-9.045-1.486-12.844-4.363c-2.863-2.168-4.454-4.935-3.745-8.603
+    c0.736-3.806,3.348-5.978,6.861-7.127c2.262-0.74,4.628-0.872,6.994-0.53c1.823,0.264,3.42,1.023,4.779,2.288
+    c1.38,1.284,2.641,2.674,3.778,4.177c0.872,1.15,1.793,2.256,2.991,3.086c2.055,1.426,4,0.965,5.213-1.216
+    c0.819-1.473,0.997-3.106,1.173-4.731c0.255-2.348,0.255-4.707,0.256-7.062C37.218,167.145,37.216,152.786,37.216,138.427z"></path>
+
+<!-- "u" -->
+<path fill="#252525" d="M125.536,162.479c-2.908,2.385-5.783,4.312-8.88,5.904c-10.348,5.323-20.514,4.521-30.324-1.253
+    c-6.71-3.95-11.012-9.849-12.52-17.606c-0.236-1.213-0.363-2.438-0.363-3.688c0.01-19.797,0.017-39.593-0.02-59.39
+    c-0.002-1.102,0.285-1.357,1.363-1.351c7.798,0.049,15.597,0.044,23.396,0.003c0.95-0.005,1.177,0.25,1.175,1.183
+    c-0.027,19.356-0.025,38.713-0.018,58.07c0.002,6.34,3.599,10.934,9.672,12.42c2.13,0.521,4.19,0.396,6.173-0.6
+    c4.26-2.139,7.457-5.427,10.116-9.307c0.333-0.487,0.224-1,0.224-1.51c0.007-19.635,0.016-39.271-0.02-58.904
+    c-0.002-1.083,0.255-1.369,1.353-1.361c7.838,0.052,15.677,0.045,23.515,0.004c0.916-0.005,1.103,0.244,1.102,1.124
+    c-0.025,27.677-0.026,55.353,0.002,83.024c0.001,0.938-0.278,1.099-1.139,1.095c-7.918-0.028-15.837-0.028-23.756-0.001
+    c-0.815,0.003-1.1-0.166-1.073-1.037C125.581,167.117,125.536,164.928,125.536,162.479z"></path>
+
+<!-- "l" -->
+<path fill="#252525" d="M187.423,107.08c0,20.637-0.011,41.273,0.026,61.91c0.003,1.119-0.309,1.361-1.381,1.355
+    c-7.799-0.052-15.598-0.047-23.396-0.008c-0.898,0.008-1.117-0.222-1.115-1.115c0.021-39.074,0.021-78.147,0-117.226
+    c0-0.811,0.189-1.169,1.006-1.392c7.871-2.149,15.73-4.327,23.584-6.545c1.045-0.295,1.308-0.17,1.306,0.985
+    C187.412,65.727,187.423,86.403,187.423,107.08z"></path>
+
+<!-- "i" -->
+<path fill="#252525" d="M223.46,126.477c0,14.155-0.011,28.312,0.021,42.467c0.002,1.027-0.164,1.418-1.332,1.408
+    c-7.838-0.061-15.676-0.047-23.516-0.01c-0.881,0.004-1.121-0.189-1.119-1.104c0.026-26.153,0.025-52.307,0-78.458
+    c0-0.776,0.203-1.101,0.941-1.302c7.984-2.172,15.972-4.35,23.938-6.596c1.049-0.296,1.08,0.031,1.078,0.886
+    C223.454,98.004,223.46,112.239,223.46,126.477z"></path>
+
+<!-- "a" -->
+<path fill="#252525" d="M277.695,163.6c-0.786,0.646-1.404,1.125-2,1.635c-4.375,3.746-9.42,5.898-15.16,6.42
+    c-5.792,0.527-11.479,0.244-16.934-2.047c-12.08-5.071-15.554-17.188-11.938-27.448c1.799-5.111,5.472-8.868,9.831-11.94
+    c5.681-4.003,12.009-6.732,18.504-9.074c5.576-2.014,11.186-3.939,16.955-5.347c0.445-0.104,0.773-0.243,0.757-0.854
+    c-0.136-4.389,0.261-8.79-0.479-13.165c-1.225-7.209-6.617-10.013-12.895-9.348c-0.516,0.055-1.029,0.129-1.536,0.241
+    c-4.877,1.081-7.312,4.413-7.374,10.127c-0.02,1.729-0.229,3.418-0.693,5.084c-0.906,3.229-2.969,5.354-6.168,6.266
+    c-3.422,0.979-6.893,0.998-10.23-0.305c-6.529-2.543-8.877-10.164-5.12-16.512c2.249-3.799,5.606-6.4,9.461-8.405
+    c6.238-3.246,12.914-4.974,19.896-5.537c7.565-0.61,15.096-0.366,22.49,1.507c4.285,1.085,8.312,2.776,11.744,5.657
+    c4.473,3.749,6.776,8.647,6.812,14.374c0.139,21.477,0.096,42.951,0.143,64.428c0.002,0.799-0.248,0.983-1.021,0.98
+    c-8.035-0.025-16.074-0.023-24.113-0.001c-0.716,0.002-0.973-0.146-0.941-0.915C277.736,167.562,277.695,165.698,277.695,163.6z
+     M277.695,126.393c-4.793,2.104-9.25,4.373-13.287,7.408c-2.151,1.618-4.033,3.483-5.732,5.581
+    c-4.229,5.226-1.988,13.343,1.693,16.599c1.592,1.406,3.359,1.906,5.419,1.521c1.621-0.307,3.149-0.857,4.549-1.734
+    c1.521-0.951,2.949-2.072,4.539-2.887c2.31-1.18,2.97-2.861,2.894-5.445C277.561,140.484,277.695,133.527,277.695,126.393z"></path>
+
+</svg>
+
+        <h1>
+          <a name="Omniscape">Omniscape</a>
+        </h1>
+
+        <p>
+          <a href="../index.html#Omniscape">← Back to package list</a>
+        </p>
+
+    </div>
+
+    <p>
+      If you think that there is an error in how your package is being tested or represented, please file an issue at <a href="https://github.com/JuliaComputing/NewPkgEval.jl">NewPkgEval.jl</a>, making sure to read the FAQ first.
+    </p>
+
+
+    <h3>Results with Julia v1.0.5</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package requires a missing binary dependency.
+      Last evaluation was 1 day, 10 hours ago and took 2 minutes, 40 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Omniscape/1.0.5.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed Inflate ────────────── v0.1.1
+ Installed GZip ───────────────── v0.5.0
+ Installed AlgebraicMultigrid ─── v0.2.2
+ Installed OrderedCollections ─── v1.1.0
+ Installed MacroTools ─────────── v0.5.2
+ Installed StaticArrays ───────── v0.12.1
+ Installed Omniscape ──────────── v0.1.2
+ Installed Circuitscape ───────── v5.5.4
+ Installed RecipesBase ────────── v0.7.0
+ Installed SimpleWeightedGraphs ─ v1.1.0
+ Installed ArnoldiMethod ──────── v0.0.4
+ Installed SimpleTraits ───────── v0.9.1
+ Installed IterativeSolvers ───── v0.8.1
+ Installed DataStructures ─────── v0.17.6
+ Installed LightGraphs ────────── v1.3.0
+ Installed Compat ─────────────── v2.2.0
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Project.toml`
+  [a38d70fc] + Omniscape v0.1.2
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.0&#x2F;Manifest.toml`
+  [2169fc97] + AlgebraicMultigrid v0.2.2
+  [ec485272] + ArnoldiMethod v0.0.4
+  [2b7a1792] + Circuitscape v5.5.4
+  [34da2185] + Compat v2.2.0
+  [864edb3b] + DataStructures v0.17.6
+  [92fee26a] + GZip v0.5.0
+  [d25df0c9] + Inflate v0.1.1
+  [42fd0dbc] + IterativeSolvers v0.8.1
+  [093fc24a] + LightGraphs v1.3.0
+  [1914dd2f] + MacroTools v0.5.2
+  [a38d70fc] + Omniscape v0.1.2
+  [bac558e1] + OrderedCollections v1.1.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [699a6c99] + SimpleTraits v0.9.1
+  [47aef6b3] + SimpleWeightedGraphs v1.1.0
+  [90137ffa] + StaticArrays v0.12.1
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing Omniscape
+    Status `&#x2F;tmp&#x2F;tmpg2uB2i&#x2F;Manifest.toml`
+  [2169fc97] AlgebraicMultigrid v0.2.2
+  [ec485272] ArnoldiMethod v0.0.4
+  [2b7a1792] Circuitscape v5.5.4
+  [34da2185] Compat v2.2.0
+  [864edb3b] DataStructures v0.17.6
+  [92fee26a] GZip v0.5.0
+  [d25df0c9] Inflate v0.1.1
+  [42fd0dbc] IterativeSolvers v0.8.1
+  [093fc24a] LightGraphs v1.3.0
+  [1914dd2f] MacroTools v0.5.2
+  [a38d70fc] Omniscape v0.1.2
+  [bac558e1] OrderedCollections v1.1.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [699a6c99] SimpleTraits v0.9.1
+  [47aef6b3] SimpleWeightedGraphs v1.1.0
+  [90137ffa] StaticArrays v0.12.1
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+ERROR: LoadError: LoadError: error compiling top-level scope: could not load library &quot;libz&quot;
+libz.so: cannot open shared object file: No such file or directory
+Stacktrace:
+ [1] include at .&#x2F;boot.jl:317 [inlined]
+ [2] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+ [3] include at .&#x2F;sysimg.jl:29 [inlined]
+ [4] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GZip&#x2F;LD2ly&#x2F;src&#x2F;GZip.jl:2
+ [5] top-level scope at none:0
+ [6] include at .&#x2F;boot.jl:317 [inlined]
+ [7] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+ [8] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+ [9] top-level scope at none:2
+ [10] eval at .&#x2F;boot.jl:319 [inlined]
+ [11] eval(::Expr) at .&#x2F;client.jl:393
+ [12] top-level scope at .&#x2F;none:3
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GZip&#x2F;LD2ly&#x2F;src&#x2F;zlib_h.jl:11
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GZip&#x2F;LD2ly&#x2F;src&#x2F;GZip.jl:73
+ERROR: LoadError: Failed to precompile GZip [92fee26a-97fe-5a0c-ad85-20a5f3185b63] to &#x2F;root&#x2F;.julia&#x2F;compiled&#x2F;v1.0&#x2F;GZip&#x2F;s2LKY.ji.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at .&#x2F;loading.jl:1203
+ [3] _require(::Base.PkgId) at .&#x2F;loading.jl:960
+ [4] require(::Base.PkgId) at .&#x2F;loading.jl:858
+ [5] require(::Module, ::Symbol) at .&#x2F;loading.jl:853
+ [6] include at .&#x2F;boot.jl:317 [inlined]
+ [7] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+ [8] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+ [9] top-level scope at none:2
+ [10] eval at .&#x2F;boot.jl:319 [inlined]
+ [11] eval(::Expr) at .&#x2F;client.jl:393
+ [12] top-level scope at .&#x2F;none:3
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Circuitscape&#x2F;mKAhh&#x2F;src&#x2F;Circuitscape.jl:7
+ERROR: LoadError: Failed to precompile Circuitscape [2b7a1792-8151-5239-925d-e2b8fdfa3201] to &#x2F;root&#x2F;.julia&#x2F;compiled&#x2F;v1.0&#x2F;Circuitscape&#x2F;sf36C.ji.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at .&#x2F;loading.jl:1203
+ [3] _require(::Base.PkgId) at .&#x2F;loading.jl:960
+ [4] require(::Base.PkgId) at .&#x2F;loading.jl:858
+ [5] require(::Module, ::Symbol) at .&#x2F;loading.jl:853
+ [6] include at .&#x2F;boot.jl:317 [inlined]
+ [7] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+ [8] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+ [9] top-level scope at none:2
+ [10] eval at .&#x2F;boot.jl:319 [inlined]
+ [11] eval(::Expr) at .&#x2F;client.jl:393
+ [12] top-level scope at .&#x2F;none:3
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Omniscape&#x2F;8T6Cm&#x2F;src&#x2F;Omniscape.jl:2
+ERROR: LoadError: Failed to precompile Omniscape [a38d70fc-99f5-11e9-1e3d-cbca093024c3] to &#x2F;root&#x2F;.julia&#x2F;compiled&#x2F;v1.0&#x2F;Omniscape&#x2F;uqaJf.ji.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at .&#x2F;loading.jl:1203
+ [3] _require(::Base.PkgId) at .&#x2F;loading.jl:960
+ [4] require(::Base.PkgId) at .&#x2F;loading.jl:858
+ [5] require(::Module, ::Symbol) at .&#x2F;loading.jl:853
+ [6] include at .&#x2F;boot.jl:317 [inlined]
+ [7] include_relative(::Module, ::String) at .&#x2F;loading.jl:1044
+ [8] include(::Module, ::String) at .&#x2F;sysimg.jl:29
+ [9] include(::String) at .&#x2F;client.jl:392
+ [10] top-level scope at none:0
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Omniscape&#x2F;8T6Cm&#x2F;test&#x2F;runtests.jl:1
+ERROR: Package Omniscape errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Types.jl:120
+ [2] #test#65(::Bool, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1357
+ [3] #test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:0 [inlined]
+ [4] #test#44(::Bool, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::Function, ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:278
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:263 [inlined]
+ [6] #test#43 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:260 [inlined]
+ [8] #test#42 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:259 [inlined]
+ [10] #test#41 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258 [inlined]
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.0&#x2F;Pkg&#x2F;src&#x2F;API.jl:258
+ [12] top-level scope at none:0
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.2.0</h3>
+
+    <p>
+      Testing was <strong>unsuccessful</strong>: package requires a missing binary dependency.
+      Last evaluation was 1 day, 10 hours ago and took 1 minute, 36 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Omniscape/1.2.0.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed SimpleTraits ───────── v0.9.1
+ Installed RecipesBase ────────── v0.7.0
+ Installed Inflate ────────────── v0.1.1
+ Installed SimpleWeightedGraphs ─ v1.1.0
+ Installed Omniscape ──────────── v0.1.2
+ Installed DataStructures ─────── v0.17.6
+ Installed IterativeSolvers ───── v0.8.1
+ Installed LightGraphs ────────── v1.3.0
+ Installed MacroTools ─────────── v0.5.2
+ Installed OrderedCollections ─── v1.1.0
+ Installed Compat ─────────────── v2.2.0
+ Installed ArnoldiMethod ──────── v0.0.4
+ Installed GZip ───────────────── v0.5.0
+ Installed StaticArrays ───────── v0.12.1
+ Installed AlgebraicMultigrid ─── v0.2.2
+ Installed Circuitscape ───────── v5.5.4
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Project.toml`
+  [a38d70fc] + Omniscape v0.1.2
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.2&#x2F;Manifest.toml`
+  [2169fc97] + AlgebraicMultigrid v0.2.2
+  [ec485272] + ArnoldiMethod v0.0.4
+  [2b7a1792] + Circuitscape v5.5.4
+  [34da2185] + Compat v2.2.0
+  [864edb3b] + DataStructures v0.17.6
+  [92fee26a] + GZip v0.5.0
+  [d25df0c9] + Inflate v0.1.1
+  [42fd0dbc] + IterativeSolvers v0.8.1
+  [093fc24a] + LightGraphs v1.3.0
+  [1914dd2f] + MacroTools v0.5.2
+  [a38d70fc] + Omniscape v0.1.2
+  [bac558e1] + OrderedCollections v1.1.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [699a6c99] + SimpleTraits v0.9.1
+  [47aef6b3] + SimpleWeightedGraphs v1.1.0
+  [90137ffa] + StaticArrays v0.12.1
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing Omniscape
+    Status `&#x2F;tmp&#x2F;jl_GTXCsW&#x2F;Manifest.toml`
+  [2169fc97] AlgebraicMultigrid v0.2.2
+  [ec485272] ArnoldiMethod v0.0.4
+  [2b7a1792] Circuitscape v5.5.4
+  [34da2185] Compat v2.2.0
+  [864edb3b] DataStructures v0.17.6
+  [92fee26a] GZip v0.5.0
+  [d25df0c9] Inflate v0.1.1
+  [42fd0dbc] IterativeSolvers v0.8.1
+  [093fc24a] LightGraphs v1.3.0
+  [1914dd2f] MacroTools v0.5.2
+  [a38d70fc] Omniscape v0.1.2
+  [bac558e1] OrderedCollections v1.1.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [699a6c99] SimpleTraits v0.9.1
+  [47aef6b3] SimpleWeightedGraphs v1.1.0
+  [90137ffa] StaticArrays v0.12.1
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+ERROR: LoadError: LoadError: error compiling top-level scope: could not load library &quot;libz&quot;
+libz.so: cannot open shared object file: No such file or directory
+Stacktrace:
+ [1] include at .&#x2F;boot.jl:328 [inlined]
+ [2] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+ [3] include at .&#x2F;Base.jl:31 [inlined]
+ [4] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GZip&#x2F;LD2ly&#x2F;src&#x2F;GZip.jl:2
+ [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GZip&#x2F;LD2ly&#x2F;src&#x2F;GZip.jl:73
+ [6] include at .&#x2F;boot.jl:328 [inlined]
+ [7] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+ [8] include(::Module, ::String) at .&#x2F;Base.jl:31
+ [9] top-level scope at none:2
+ [10] eval at .&#x2F;boot.jl:330 [inlined]
+ [11] eval(::Expr) at .&#x2F;client.jl:432
+ [12] top-level scope at .&#x2F;none:3
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GZip&#x2F;LD2ly&#x2F;src&#x2F;zlib_h.jl:11
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GZip&#x2F;LD2ly&#x2F;src&#x2F;GZip.jl:73
+caused by [exception 1]
+could not load library &quot;libz&quot;
+libz.so: cannot open shared object file: No such file or directory
+Stacktrace:
+ [1] include at .&#x2F;boot.jl:328 [inlined]
+ [2] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+ [3] include at .&#x2F;Base.jl:31 [inlined]
+ [4] include(::String) at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GZip&#x2F;LD2ly&#x2F;src&#x2F;GZip.jl:2
+ [5] top-level scope at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;GZip&#x2F;LD2ly&#x2F;src&#x2F;GZip.jl:73
+ [6] include at .&#x2F;boot.jl:328 [inlined]
+ [7] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+ [8] include(::Module, ::String) at .&#x2F;Base.jl:31
+ [9] top-level scope at none:2
+ [10] eval at .&#x2F;boot.jl:330 [inlined]
+ [11] eval(::Expr) at .&#x2F;client.jl:432
+ [12] top-level scope at .&#x2F;none:3
+ERROR: LoadError: Failed to precompile GZip [92fee26a-97fe-5a0c-ad85-20a5f3185b63] to &#x2F;root&#x2F;.julia&#x2F;compiled&#x2F;v1.2&#x2F;GZip&#x2F;s2LKY.ji.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at .&#x2F;loading.jl:1253
+ [3] _require(::Base.PkgId) at .&#x2F;loading.jl:1013
+ [4] require(::Base.PkgId) at .&#x2F;loading.jl:911
+ [5] require(::Module, ::Symbol) at .&#x2F;loading.jl:906
+ [6] include at .&#x2F;boot.jl:328 [inlined]
+ [7] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+ [8] include(::Module, ::String) at .&#x2F;Base.jl:31
+ [9] top-level scope at none:2
+ [10] eval at .&#x2F;boot.jl:330 [inlined]
+ [11] eval(::Expr) at .&#x2F;client.jl:432
+ [12] top-level scope at .&#x2F;none:3
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Circuitscape&#x2F;mKAhh&#x2F;src&#x2F;Circuitscape.jl:7
+ERROR: LoadError: Failed to precompile Circuitscape [2b7a1792-8151-5239-925d-e2b8fdfa3201] to &#x2F;root&#x2F;.julia&#x2F;compiled&#x2F;v1.2&#x2F;Circuitscape&#x2F;sf36C.ji.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at .&#x2F;loading.jl:1253
+ [3] _require(::Base.PkgId) at .&#x2F;loading.jl:1013
+ [4] require(::Base.PkgId) at .&#x2F;loading.jl:911
+ [5] require(::Module, ::Symbol) at .&#x2F;loading.jl:906
+ [6] include at .&#x2F;boot.jl:328 [inlined]
+ [7] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+ [8] include(::Module, ::String) at .&#x2F;Base.jl:31
+ [9] top-level scope at none:2
+ [10] eval at .&#x2F;boot.jl:330 [inlined]
+ [11] eval(::Expr) at .&#x2F;client.jl:432
+ [12] top-level scope at .&#x2F;none:3
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Omniscape&#x2F;8T6Cm&#x2F;src&#x2F;Omniscape.jl:2
+ERROR: LoadError: Failed to precompile Omniscape [a38d70fc-99f5-11e9-1e3d-cbca093024c3] to &#x2F;root&#x2F;.julia&#x2F;compiled&#x2F;v1.2&#x2F;Omniscape&#x2F;uqaJf.ji.
+Stacktrace:
+ [1] error(::String) at .&#x2F;error.jl:33
+ [2] compilecache(::Base.PkgId, ::String) at .&#x2F;loading.jl:1253
+ [3] _require(::Base.PkgId) at .&#x2F;loading.jl:1013
+ [4] require(::Base.PkgId) at .&#x2F;loading.jl:911
+ [5] require(::Module, ::Symbol) at .&#x2F;loading.jl:906
+ [6] include at .&#x2F;boot.jl:328 [inlined]
+ [7] include_relative(::Module, ::String) at .&#x2F;loading.jl:1094
+ [8] include(::Module, ::String) at .&#x2F;Base.jl:31
+ [9] include(::String) at .&#x2F;client.jl:431
+ [10] top-level scope at none:5
+in expression starting at &#x2F;root&#x2F;.julia&#x2F;packages&#x2F;Omniscape&#x2F;8T6Cm&#x2F;test&#x2F;runtests.jl:1
+ERROR: Package Omniscape errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Types.jl:112
+ [2] #test#119(::Bool, ::Nothing, ::typeof(Pkg.Operations.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;Operations.jl:1288
+ [3] #test at .&#x2F;none:0 [inlined]
+ [4] #test#62(::Bool, ::Nothing, ::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:245
+ [5] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:233 [inlined]
+ [6] #test#61 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:230 [inlined]
+ [7] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:230 [inlined]
+ [8] #test#60 at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:229 [inlined]
+ [9] test at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:229 [inlined]
+ [10] #test#59(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Pkg.API.test), ::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:228
+ [11] test(::String) at &#x2F;buildworker&#x2F;worker&#x2F;package_linux64&#x2F;build&#x2F;usr&#x2F;share&#x2F;julia&#x2F;stdlib&#x2F;v1.2&#x2F;Pkg&#x2F;src&#x2F;API.jl:228
+ [12] top-level scope at none:10
+</pre>
+      </div>
+
+    <h3>Results with Julia v1.4.0-DEV-1ee8965da4</h3>
+
+    <p>
+      Testing was <strong>successful</strong>.
+      Last evaluation was 1 day, 9 hours ago and took 4 minutes, 46 seconds.
+    </p>
+
+    <p>
+      Click <a href="/home/tim/Julia/pkg/NewPkgEval/site/build/logs/Omniscape/1.4.0-DEV-1ee8965da4.log">here</a> to download the log file.
+      
+    </p>
+
+      <button class="collapsible">Click here to show the log contents.</button>
+      <div class="content">
+      <pre> Resolving package versions...
+ Installed RecipesBase ────────── v0.7.0
+ Installed SimpleTraits ───────── v0.9.1
+ Installed OrderedCollections ─── v1.1.0
+ Installed Omniscape ──────────── v0.1.2
+ Installed StaticArrays ───────── v0.12.1
+ Installed MacroTools ─────────── v0.5.2
+ Installed LightGraphs ────────── v1.3.0
+ Installed Circuitscape ───────── v5.5.4
+ Installed SimpleWeightedGraphs ─ v1.1.0
+ Installed DataStructures ─────── v0.17.6
+ Installed IterativeSolvers ───── v0.8.1
+ Installed Inflate ────────────── v0.1.1
+ Installed GZip ───────────────── v0.5.0
+ Installed Compat ─────────────── v2.2.0
+ Installed ArnoldiMethod ──────── v0.0.4
+ Installed AlgebraicMultigrid ─── v0.2.2
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Project.toml`
+  [a38d70fc] + Omniscape v0.1.2
+  Updating `~&#x2F;.julia&#x2F;environments&#x2F;v1.4&#x2F;Manifest.toml`
+  [2169fc97] + AlgebraicMultigrid v0.2.2
+  [ec485272] + ArnoldiMethod v0.0.4
+  [2b7a1792] + Circuitscape v5.5.4
+  [34da2185] + Compat v2.2.0
+  [864edb3b] + DataStructures v0.17.6
+  [92fee26a] + GZip v0.5.0
+  [d25df0c9] + Inflate v0.1.1
+  [42fd0dbc] + IterativeSolvers v0.8.1
+  [093fc24a] + LightGraphs v1.3.0
+  [1914dd2f] + MacroTools v0.5.2
+  [a38d70fc] + Omniscape v0.1.2
+  [bac558e1] + OrderedCollections v1.1.0
+  [3cdcf5f2] + RecipesBase v0.7.0
+  [699a6c99] + SimpleTraits v0.9.1
+  [47aef6b3] + SimpleWeightedGraphs v1.1.0
+  [90137ffa] + StaticArrays v0.12.1
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+   Testing Omniscape
+Status `&#x2F;tmp&#x2F;jl_T6nsui&#x2F;Manifest.toml`
+  [2169fc97] AlgebraicMultigrid v0.2.2
+  [ec485272] ArnoldiMethod v0.0.4
+  [2b7a1792] Circuitscape v5.5.4
+  [34da2185] Compat v2.2.0
+  [864edb3b] DataStructures v0.17.6
+  [92fee26a] GZip v0.5.0
+  [d25df0c9] Inflate v0.1.1
+  [42fd0dbc] IterativeSolvers v0.8.1
+  [093fc24a] LightGraphs v1.3.0
+  [1914dd2f] MacroTools v0.5.2
+  [a38d70fc] Omniscape v0.1.2
+  [bac558e1] OrderedCollections v1.1.0
+  [3cdcf5f2] RecipesBase v0.7.0
+  [699a6c99] SimpleTraits v0.9.1
+  [47aef6b3] SimpleWeightedGraphs v1.1.0
+  [90137ffa] StaticArrays v0.12.1
+  [2a0f44e3] Base64  [`@stdlib&#x2F;Base64`]
+  [ade2ca70] Dates  [`@stdlib&#x2F;Dates`]
+  [8bb1440f] DelimitedFiles  [`@stdlib&#x2F;DelimitedFiles`]
+  [8ba89e20] Distributed  [`@stdlib&#x2F;Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib&#x2F;InteractiveUtils`]
+  [76f85450] LibGit2  [`@stdlib&#x2F;LibGit2`]
+  [8f399da3] Libdl  [`@stdlib&#x2F;Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib&#x2F;LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib&#x2F;Logging`]
+  [d6f4376e] Markdown  [`@stdlib&#x2F;Markdown`]
+  [a63ad114] Mmap  [`@stdlib&#x2F;Mmap`]
+  [44cfe95a] Pkg  [`@stdlib&#x2F;Pkg`]
+  [de0858da] Printf  [`@stdlib&#x2F;Printf`]
+  [3fa0cd96] REPL  [`@stdlib&#x2F;REPL`]
+  [9a3f8284] Random  [`@stdlib&#x2F;Random`]
+  [ea8e919c] SHA  [`@stdlib&#x2F;SHA`]
+  [9e88b42a] Serialization  [`@stdlib&#x2F;Serialization`]
+  [1a1011a3] SharedArrays  [`@stdlib&#x2F;SharedArrays`]
+  [6462fe0b] Sockets  [`@stdlib&#x2F;Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib&#x2F;SparseArrays`]
+  [10745b16] Statistics  [`@stdlib&#x2F;Statistics`]
+  [8dfed614] Test  [`@stdlib&#x2F;Test`]
+  [cf7118a7] UUIDs  [`@stdlib&#x2F;UUIDs`]
+  [4ec0a83e] Unicode  [`@stdlib&#x2F;Unicode`]
+[ Info: 2019-11-24 01:32:42 : Time taken to construct preconditioner = 2.705777597 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.014503934 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000412363 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000248101 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000648101 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000101233 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000243873 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000322593 seconds
+time taken to calculate artifact correction array: 4.215553045272827 seconds
+Solving targets
+Solving target 1 of 100
+Solving target 2 of 100
+Solving target 3 of 100
+Solving target 4 of 100
+Solving target 5 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000461506 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000173921 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000356026 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000198787 seconds
+Solving target 6 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.001128743 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000275574 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000313576 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000201192 seconds
+Solving target 7 of 100
+Solving target 8 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.00027355 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000209357 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.00024748 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000413866 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000254633 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000161647 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000295541 seconds
+Solving target 9 of 100
+Solving target 10 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000111532 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000274832 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000155405 seconds
+Solving target 11 of 100
+Solving target 12 of 100
+Solving target 13 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.149803678 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.00028416 seconds
+Solving target 14 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000658571 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.00031612 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000455324 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.00035841 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000460355 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000369502 seconds
+Solving target 15 of 100
+Solving target 16 of 100
+Solving target 17 of 100
+Solving target 18 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000493858 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000385692 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000438953 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000422542 seconds
+Solving target 19 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000448532 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000407453 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000417974 seconds
+Solving target 20 of 100
+Solving target 21 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000334676 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000320969 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000249183 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000313315 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.00021056 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000435077 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.00028437 seconds
+Solving target 22 of 100
+Solving target 23 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000546157 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000324517 seconds
+Solving target 24 of 100
+Solving target 25 of 100
+Solving target 26 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.0004578 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000324336 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.00045831 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000370273 seconds
+Solving target 27 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000814747 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000453751 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000411982 seconds
+Solving target 28 of 100
+Solving target 29 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000309869 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000398617 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000279301 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000355054 seconds
+Solving target 30 of 100
+Solving target 31 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000318454 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.00027906 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000211191 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.00028424 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000141729 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000355855 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000267979 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.00036836 seconds
+Solving target 32 of 100
+Solving target 33 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000342891 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000369202 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000286334 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000377327 seconds
+Solving target 34 of 100
+Solving target 35 of 100
+Solving target 36 of 100
+Solving target 37 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000292215 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000407464 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000270574 seconds
+Solving target 38 of 100
+Solving target 39 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000395551 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.00026851 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000359433 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000312223 seconds
+Solving target 40 of 100
+Solving target 41 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000446477 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000276545 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000244394 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000204178 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000244064 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000181975 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000338703 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.00021591 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000361526 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000232071 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000344564 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.00033702 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000346167 seconds
+Solving target 42 of 100
+Solving target 43 of 100
+Solving target 44 of 100
+Solving target 45 of 100
+Solving target 46 of 100
+Solving target 47 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000323534 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000382386 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000262308 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000381324 seconds
+Solving target 48 of 100
+Solving target 49 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000380973 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.00038444 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000330047 seconds
+Solving target 50 of 100
+Solving target 51 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000417953 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000319296 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000264683 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000230057 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000299118 seconds
+Solving target 52 of 100
+Solving target 53 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000186234 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000356166 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000258621 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000403797 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000343092 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000421841 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000328845 seconds
+Solving target 54 of 100
+Solving target 55 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000422021 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000451858 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000404478 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.00045276 seconds
+Solving target 56 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000392656 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000493708 seconds
+Solving target 57 of 100
+Solving target 58 of 100
+Solving target 59 of 100
+Solving target 60 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000490451 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000383488 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000345376 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000280472 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000331771 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000224336 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000270453 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000182556 seconds
+Solving target 61 of 100
+Solving target 62 of 100
+Solving target 63 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000457239 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000274491 seconds
+Solving target 64 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000447329 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000315419 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000462659 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000340868 seconds
+Solving target 65 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000438052 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000382246 seconds
+Solving target 66 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000416722 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000377908 seconds
+Solving target 67 of 100
+Solving target 68 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000434605 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.00030569 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000394229 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000372498 seconds
+Solving target 69 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000339775 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000253662 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000278419 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000191043 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000253682 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000163761 seconds
+Solving target 70 of 100
+Solving target 71 of 100
+Solving target 72 of 100
+Solving target 73 of 100
+Solving target 74 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000430377 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000244975 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.00037395 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.00030557 seconds
+Solving target 75 of 100
+Solving target 76 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000401502 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000311702 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000345025 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000318504 seconds
+Solving target 77 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.00036324 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000348241 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.00035843 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000279571 seconds
+Solving target 78 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000366556 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000288658 seconds
+Solving target 79 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000311582 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000220268 seconds
+Solving target 80 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000246959 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000175163 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000222172 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000148112 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000287095 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000207574 seconds
+Solving target 81 of 100
+Solving target 82 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000315639 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000249493 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000300962 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000228754 seconds
+Solving target 83 of 100
+Solving target 84 of 100
+Solving target 85 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000322292 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000288808 seconds
+Solving target 86 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.00034275 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000320739 seconds
+Solving target 87 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000320349 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000239976 seconds
+Solving target 88 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.00033218 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000206643 seconds
+Solving target 89 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000217213 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000224997 seconds
+Solving target 90 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000290222 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000127242 seconds
+Solving target 91 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000231219 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 8.3579e-5 seconds
+Solving target 92 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000170103 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000140798 seconds
+Solving target 93 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000195782 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.0001841 seconds
+Solving target 94 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.00020009 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000295522 seconds
+Solving target 95 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000191453 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.00022122 seconds
+Solving target 96 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000175894 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000177938 seconds
+Solving target 97 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000182527 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000165344 seconds
+Solving target 98 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000182837 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000163029 seconds
+Solving target 99 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000174942 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000153401 seconds
+Solving target 100 of 100
+[ Info: 2019-11-24 01:32:43 : Time taken to construct preconditioner = 0.000245827 seconds
+[ Info: 2019-11-24 01:32:43 : Time taken to solve linear system = 0.000132592 seconds
+Done
+Time taken to complete job: 7.0 seconds
+┌ Warning: block_size is even, but must be odd. Using block_size + 1.
+└ @ Omniscape ~&#x2F;.julia&#x2F;packages&#x2F;Omniscape&#x2F;8T6Cm&#x2F;src&#x2F;run_omniscape.jl:23
+Starting up Omniscape to use 4 processes in parallel
+[ Info: 2019-11-24 01:32:58 : Time taken to construct preconditioner = 0.000485802 seconds
+[ Info: 2019-11-24 01:32:58 : Time taken to solve linear system = 0.000309207 seconds
+[ Info: 2019-11-24 01:32:58 : Time taken to construct preconditioner = 0.000465935 seconds
+[ Info: 2019-11-24 01:32:58 : Time taken to solve linear system = 0.000262088 seconds
+time taken to calculate artifact correction array: 0.012629985809326172 seconds
+Solving targets
+      From worker 5:	Solving target 2 of 100
+      From worker 3:	Solving target 3 of 100
+      From worker 4:	Solving target 4 of 100
+[ Info: 2019-11-24 01:33:48 : Time taken to construct preconditioner = 3.298906104 seconds
+[ Info: 2019-11-24 01:33:48 : Time taken to solve linear system = 0.01586035 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:48 : Time taken to construct preconditioner = 0.000325618 seconds
+[ Info: 2019-11-24 01:33:48 : Time taken to solve linear system = 0.000201322 seconds
+      From worker 2:	Solving target 1 of 100
+[ Info: 2019-11-24 01:33:50 : Time taken to construct preconditioner = 0.000270844 seconds
+[ Info: 2019-11-24 01:33:50 : Time taken to solve linear system = 0.000212935 seconds
+[ Info: 2019-11-24 01:33:50 : Time taken to construct preconditioner = 0.016639811 seconds
+[ Info: 2019-11-24 01:33:50 : Time taken to solve linear system = 0.000210539 seconds
+      From worker 5:	Solving target 5 of 100
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:50 : Time taken to construct preconditioner = 0.000280863 seconds
+[ Info: 2019-11-24 01:33:50 : Time taken to solve linear system = 0.000327321 seconds
+[ Info: 2019-11-24 01:33:50 : Time taken to construct preconditioner = 0.000313465 seconds
+[ Info: 2019-11-24 01:33:50 : Time taken to solve linear system = 0.000225217 seconds
+      From worker 5:	Solving target 6 of 100
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:50 : Time taken to construct preconditioner = 0.000296443 seconds
+[ Info: 2019-11-24 01:33:50 : Time taken to solve linear system = 0.005369457 seconds
+[ Info: 2019-11-24 01:33:50 : Time taken to construct preconditioner = 0.000381394 seconds
+[ Info: 2019-11-24 01:33:50 : Time taken to solve linear system = 0.000240838 seconds
+      From worker 5:	Solving target 7 of 100
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:50 : Time taken to construct preconditioner = 0.000292756 seconds
+[ Info: 2019-11-24 01:33:50 : Time taken to solve linear system = 0.000247881 seconds
+[ Info: 2019-11-24 01:33:50 : Time taken to construct preconditioner = 0.00034764 seconds
+[ Info: 2019-11-24 01:33:50 : Time taken to solve linear system = 0.00024217 seconds
+      From worker 5:	Solving target 8 of 100
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:50 : Time taken to construct preconditioner = 0.000243793 seconds
+      From worker 5:	Solving target 9 of 100
+[ Info: 2019-11-24 01:33:50 : Time taken to solve linear system = 0.000157138 seconds
+[ Info: 2019-11-24 01:33:50 : Time taken to construct preconditioner = 0.000298296 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:50 : Time taken to solve linear system = 0.000176615 seconds
+[ Info: 2019-11-24 01:33:50 : Time taken to construct preconditioner = 0.000392536 seconds
+      From worker 5:	Solving target 10 of 100
+[ Info: 2019-11-24 01:33:50 : Time taken to solve linear system = 0.000171205 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:50 : Time taken to construct preconditioner = 0.00037353 seconds
+[ Info: 2019-11-24 01:33:50 : Time taken to solve linear system = 0.000125599 seconds
+[ Info: 2019-11-24 01:33:50 : Time taken to construct preconditioner = 0.000230117 seconds
+      From worker 5:	Solving target 11 of 100
+[ Info: 2019-11-24 01:33:50 : Time taken to solve linear system = 0.000161547 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:50 : Time taken to construct preconditioner = 0.000284239 seconds
+[ Info: 2019-11-24 01:33:50 : Time taken to solve linear system = 0.002289287 seconds
+      From worker 5:	Solving target 12 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.319136393 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000275543 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000437291 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000240868 seconds
+      From worker 5:	    calculating flow potential
+      From worker 5:	Solving target 13 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000762348 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00022616 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000399599 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000351467 seconds
+      From worker 5:	Solving target 14 of 100
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000509878 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000341799 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000924025 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000329256 seconds
+      From worker 5:	Solving target 15 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000471385 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000506031 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000476565 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00045819 seconds
+      From worker 5:	Solving target 16 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000368681 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000578689 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000624766 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000348742 seconds
+      From worker 5:	Solving target 17 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000379901 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000358571 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000391463 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000359263 seconds
+      From worker 5:	Solving target 18 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000444865 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000308817 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000393728 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000306101 seconds
+      From worker 5:	Solving target 19 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000299038 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000261587 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000401763 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000306202 seconds
+      From worker 5:	Solving target 20 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000234616 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000158611 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000317533 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000196964 seconds
+      From worker 5:	Solving target 21 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000422903 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000159062 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000420248 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000252209 seconds
+      From worker 5:	Solving target 22 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000436428 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000233945 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.0005322 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000313094 seconds
+      From worker 5:	Solving target 23 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000493969 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000360054 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000581885 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000507223 seconds
+      From worker 5:	Solving target 24 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.00036334 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00024231 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000567928 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000358852 seconds
+      From worker 5:	Solving target 25 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000435357 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000318315 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000532872 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000423474 seconds
+      From worker 5:	Solving target 26 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.00040547 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000414778 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000581544 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000419787 seconds
+      From worker 5:	Solving target 27 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000433764 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000377206 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000612874 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000389089 seconds
+      From worker 5:	Solving target 28 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000352209 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000318434 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000559433 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00041112 seconds
+      From worker 5:	Solving target 29 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000346428 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000311471 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000442169 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00037882 seconds
+      From worker 5:	Solving target 30 of 100
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000299438 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000227502 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000346077 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000219978 seconds
+      From worker 5:	Solving target 31 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000282957 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000141729 seconds
+      From worker 5:	    calculating flow potential
+      From worker 5:	Solving target 32 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.034936226 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000267498 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000553962 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00045311 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000484821 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000385592 seconds
+      From worker 5:	Solving target 33 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000397435 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000435717 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000529576 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000393978 seconds
+      From worker 5:	Solving target 34 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000416962 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000427351 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000570284 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00053188 seconds
+      From worker 5:	Solving target 35 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000689119 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000649603 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000819396 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000556247 seconds
+      From worker 5:	Solving target 36 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000355786 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000413435 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000519527 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000444534 seconds
+      From worker 5:	Solving target 37 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.00038941 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000390492 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000601242 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000440727 seconds
+      From worker 5:	Solving target 38 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000422392 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000533573 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000588308 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000499969 seconds
+      From worker 5:	Solving target 39 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000443242 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000412714 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000538463 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000308967 seconds
+      From worker 5:	Solving target 40 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000233784 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00021606 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.00029988 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000214998 seconds
+      From worker 5:	Solving target 41 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000249494 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000156227 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000266406 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000222692 seconds
+      From worker 5:	Solving target 42 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000336639 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000303447 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000379951 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000381504 seconds
+      From worker 5:	Solving target 43 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000349914 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000287806 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000502214 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000360624 seconds
+      From worker 5:	Solving target 44 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000367327 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000333633 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000471556 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000420568 seconds
+      From worker 5:	Solving target 45 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000379691 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000303086 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000430457 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000404188 seconds
+      From worker 5:	Solving target 46 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000323104 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000297776 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000456647 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000441027 seconds
+      From worker 5:	Solving target 47 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000339675 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000562308 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000519837 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000491643 seconds
+      From worker 5:	Solving target 48 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000383248 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000410339 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000462618 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000431098 seconds
+      From worker 5:	Solving target 49 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000314337 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000338292 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.00036336 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000322623 seconds
+      From worker 5:	Solving target 50 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000271265 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000276575 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000296243 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00022129 seconds
+      From worker 5:	Solving target 51 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000270775 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000172979 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000324346 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00022144 seconds
+      From worker 5:	Solving target 52 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000379822 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000238182 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000439975 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000307324 seconds
+      From worker 5:	Solving target 53 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000494178 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000416481 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000611681 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000617232 seconds
+      From worker 5:	Solving target 54 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000481464 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000466586 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000656366 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000697024 seconds
+      From worker 5:	Solving target 55 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.00042109 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000560374 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.00065261 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000789139 seconds
+      From worker 5:	Solving target 56 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000456066 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000675022 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000664072 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00044775 seconds
+      From worker 5:	Solving target 57 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000341719 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000431008 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000462969 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000385122 seconds
+      From worker 5:	Solving target 58 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000362859 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000369151 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000485893 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000353561 seconds
+      From worker 5:	Solving target 59 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000380172 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000323705 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000459964 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000306653 seconds
+      From worker 5:	Solving target 60 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000287496 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00024763 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000356357 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000208596 seconds
+      From worker 5:	Solving target 61 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000281224 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000223845 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000334265 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000323274 seconds
+      From worker 5:	Solving target 62 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000548462 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000591994 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000422823 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00043183 seconds
+      From worker 5:	Solving target 63 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000494839 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000371305 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000650074 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000580132 seconds
+      From worker 5:	Solving target 64 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000339485 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000524236 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.00043206 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000597334 seconds
+      From worker 5:	Solving target 65 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000335106 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00052108 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000440306 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000438963 seconds
+      From worker 5:	Solving target 66 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000401081 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000492986 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.00058469 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000455996 seconds
+      From worker 5:	Solving target 67 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000421892 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000383859 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.00080024 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000739364 seconds
+      From worker 5:	Solving target 68 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000397756 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000419927 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000430437 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000471035 seconds
+      From worker 5:	Solving target 69 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000316551 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000309558 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000402384 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000306342 seconds
+      From worker 5:	Solving target 70 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000255185 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000232081 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000304729 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000245085 seconds
+      From worker 5:	Solving target 71 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000240818 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000206703 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000295691 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000198908 seconds
+      From worker 5:	Solving target 72 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000317713 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000241819 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000341368 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000257989 seconds
+      From worker 5:	Solving target 73 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000344204 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000305601 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.00072158 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000618905 seconds
+      From worker 5:	Solving target 74 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.00038416 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000312754 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000434285 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000324226 seconds
+      From worker 5:	Solving target 75 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000332492 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000303357 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000444634 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000341969 seconds
+      From worker 5:	Solving target 76 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000334044 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000382596 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000418554 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000325188 seconds
+      From worker 5:	Solving target 77 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000342741 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000275363 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000474301 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00034262 seconds
+      From worker 5:	Solving target 78 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000366236 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000280743 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000780543 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000396242 seconds
+      From worker 5:	Solving target 79 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000352068 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000208055 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000370864 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00026876 seconds
+      From worker 5:	Solving target 80 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000259252 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000164963 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.00030525 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000214387 seconds
+      From worker 5:	Solving target 81 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000244594 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000139635 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000230778 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000203397 seconds
+      From worker 5:	Solving target 82 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000271135 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000221751 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000314818 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000272788 seconds
+      From worker 5:	Solving target 83 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000295091 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000255646 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000403235 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000256617 seconds
+      From worker 5:	Solving target 84 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000314498 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000246688 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000376074 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000279842 seconds
+      From worker 5:	Solving target 85 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000307324 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000281725 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000389239 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00033668 seconds
+      From worker 5:	Solving target 86 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000347941 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000391624 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000469311 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000283598 seconds
+      From worker 5:	Solving target 87 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000284219 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00024773 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000371686 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000265895 seconds
+      From worker 5:	Solving target 88 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000295581 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000214908 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000398687 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000294359 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000262078 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000244023 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000326981 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000237972 seconds
+      From worker 5:	Solving target 89 of 100
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000367127 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000150516 seconds
+      From worker 5:	Solving target 90 of 100
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000286054 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000266937 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000333964 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 9.5962e-5 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000429405 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000128394 seconds
+      From worker 5:	Solving target 91 of 100
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000170674 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000158381 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000247841 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000149614 seconds
+      From worker 5:	Solving target 92 of 100
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000304508 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000425669 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000411161 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000258461 seconds
+      From worker 5:	Solving target 93 of 100
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000212464 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.00023697 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.00035782 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000272879 seconds
+      From worker 5:	Solving target 94 of 100
+      From worker 5:	    calculating flow potential
+      From worker 5:	Solving target 95 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000189119 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000231119 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000311262 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000418264 seconds
+      From worker 5:	Solving target 96 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000178729 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000145196 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000277137 seconds
+[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000185382 seconds
+      From worker 5:	    calculating flow potential
+      From worker 5:	Solving target 97 of 100
+[ Info: 2019-11-24 01:33:51 : Time taken to construct preconditioner = 0.000167428 seconds
+      From worker 5:	    calculating flow potential[ Info: 2019-11-24 01:33:51 : Time taken to solve linear system = 0.000173229 seconds
+
+[ Info: 2019-11-24 01:33:52 : Time taken to construct preconditioner = 0.00028439 seconds
+[ Info: 2019-11-24 01:33:52 : Time taken to solve linear system = 0.000185202 seconds
+      From worker 5:	Solving target 98 of 100
+[ Info: 2019-11-24 01:33:52 : Time taken to construct preconditioner = 0.000167528 seconds
+[ Info: 2019-11-24 01:33:52 : Time taken to solve linear system = 0.000145106 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:52 : Time taken to construct preconditioner = 0.000295522 seconds
+[ Info: 2019-11-24 01:33:52 : Time taken to solve linear system = 0.000220539 seconds
+      From worker 5:	Solving target 99 of 100
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:52 : Time taken to construct preconditioner = 0.000181675 seconds
+[ Info: 2019-11-24 01:33:52 : Time taken to solve linear system = 0.000151919 seconds
+[ Info: 2019-11-24 01:33:52 : Time taken to construct preconditioner = 0.000327171 seconds
+[ Info: 2019-11-24 01:33:52 : Time taken to solve linear system = 0.000370865 seconds
+      From worker 5:	Solving target 100 of 100
+[ Info: 2019-11-24 01:33:52 : Time taken to construct preconditioner = 0.00025815 seconds
+[ Info: 2019-11-24 01:33:52 : Time taken to solve linear system = 0.000102905 seconds
+[ Info: 2019-11-24 01:33:52 : Time taken to construct preconditioner = 0.00028945 seconds
+[ Info: 2019-11-24 01:33:52 : Time taken to solve linear system = 0.00010504 seconds
+      From worker 5:	    calculating flow potential
+[ Info: 2019-11-24 01:33:50 : Time taken to construct preconditioner = 4.393760203 seconds
+[ Info: 2019-11-24 01:33:52 : Time taken to solve linear system = 0.012757096 seconds
+      From worker 3:	    calculating flow potential
+[ Info: 2019-11-24 01:33:52 : Time taken to construct preconditioner = 0.000435126 seconds
+[ Info: 2019-11-24 01:33:52 : Time taken to solve linear system = 0.000204859 seconds
+[ Info: 2019-11-24 01:33:53 : Time taken to construct preconditioner = 5.856779083 seconds
+[ Info: 2019-11-24 01:33:54 : Time taken to solve linear system = 0.011355636 seconds
+      From worker 4:	    calculating flow potential
+[ Info: 2019-11-24 01:33:54 : Time taken to construct preconditioner = 0.000336599 seconds
+[ Info: 2019-11-24 01:33:54 : Time taken to solve linear system = 0.00022625 seconds
+[ Info: 2019-11-24 01:33:55 : Time taken to construct preconditioner = 4.517455529 seconds
+      From worker 2:	    calculating flow potential
+[ Info: 2019-11-24 01:33:55 : Time taken to solve linear system = 0.012348611 seconds
+[ Info: 2019-11-24 01:33:55 : Time taken to construct preconditioner = 0.000390331 seconds
+[ Info: 2019-11-24 01:33:55 : Time taken to solve linear system = 0.000180733 seconds
+Combining maps across workers
+Done
+Time taken to complete job: 74.1 seconds
+Starting up Omniscape to use 4 processes in parallel
+[ Info: 2019-11-24 01:34:08 : Time taken to construct preconditioner = 0.000662208 seconds
+[ Info: 2019-11-24 01:34:08 : Time taken to solve linear system = 0.000503917 seconds
+[ Info: 2019-11-24 01:34:08 : Time taken to construct preconditioner = 0.000628574 seconds
+[ Info: 2019-11-24 01:34:08 : Time taken to solve linear system = 0.000458281 seconds
+time taken to calculate artifact correction array: 0.008401870727539062 seconds
+Solving targets
+      From worker 8:	Solving target 3 of 74
+      From worker 7:	Solving target 2 of 74
+      From worker 6:	Solving target 1 of 74
+[ Info: 2019-11-24 01:34:52 : Time taken to construct preconditioner = 3.880231111 seconds
+[ Info: 2019-11-24 01:34:53 : Time taken to solve linear system = 0.011482713 seconds
+      From worker 9:	Solving target 4 of 74
+      From worker 8:	Solving target 5 of 74
+[ Info: 2019-11-24 01:34:53 : Time taken to construct preconditioner = 0.000388779 seconds
+[ Info: 2019-11-24 01:34:53 : Time taken to solve linear system = 0.000283909 seconds
+      From worker 8:	Solving target 6 of 74
+[ Info: 2019-11-24 01:34:53 : Time taken to construct preconditioner = 0.00035233 seconds
+[ Info: 2019-11-24 01:34:53 : Time taken to solve linear system = 0.000108085 seconds
+      From worker 8:	Solving target 7 of 74
+[ Info: 2019-11-24 01:34:53 : Time taken to construct preconditioner = 0.00029994 seconds
+[ Info: 2019-11-24 01:34:53 : Time taken to solve linear system = 0.000214808 seconds
+      From worker 8:	Solving target 8 of 74
+[ Info: 2019-11-24 01:34:53 : Time taken to construct preconditioner = 0.000389079 seconds
+[ Info: 2019-11-24 01:34:53 : Time taken to solve linear system = 0.000260115 seconds
+      From worker 8:	Solving target 9 of 74
+[ Info: 2019-11-24 01:34:53 : Time taken to construct preconditioner = 0.000475433 seconds
+[ Info: 2019-11-24 01:34:53 : Time taken to solve linear system = 0.000265875 seconds
+      From worker 8:	Solving target 10 of 74
+[ Info: 2019-11-24 01:34:53 : Time taken to construct preconditioner = 0.000552559 seconds
+[ Info: 2019-11-24 01:34:53 : Time taken to solve linear system = 0.000393378 seconds
+      From worker 8:	Solving target 11 of 74
+[ Info: 2019-11-24 01:34:53 : Time taken to construct preconditioner = 0.000449804 seconds
+[ Info: 2019-11-24 01:34:53 : Time taken to solve linear system = 0.000550095 seconds
+      From worker 8:	Solving target 12 of 74
+[ Info: 2019-11-24 01:34:53 : Time taken to construct preconditioner = 0.000658531 seconds
+[ Info: 2019-11-24 01:34:53 : Time taken to solve linear system = 0.000341398 seconds
+      From worker 8:	Solving target 13 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.140196435 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000291363 seconds
+      From worker 8:	Solving target 14 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000353271 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000243373 seconds
+      From worker 8:	Solving target 15 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.00047406 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000308446 seconds
+      From worker 8:	Solving target 16 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.00050013 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000394689 seconds
+      From worker 8:	Solving target 17 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000496914 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000391895 seconds
+      From worker 8:	Solving target 18 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000523945 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000490572 seconds
+      From worker 8:	Solving target 19 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000497876 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000460344 seconds
+      From worker 8:	Solving target 20 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000362058 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000337151 seconds
+      From worker 8:	Solving target 21 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000327652 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000231429 seconds
+      From worker 8:	Solving target 22 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.00058401 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000309598 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000571205 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000457278 seconds
+      From worker 8:	Solving target 23 of 74
+      From worker 8:	Solving target 24 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000524637 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000401233 seconds
+      From worker 8:	Solving target 25 of 74
+[ Info: 2019-11-24 01:34:53 : Time taken to construct preconditioner = 2.823582672 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000545686 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000377968 seconds
+      From worker 8:	Solving target 26 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000559193 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000440347 seconds
+      From worker 8:	Solving target 27 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000543783 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.011110916 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000440116 seconds
+      From worker 8:	Solving target 28 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000417253 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000388899 seconds
+      From worker 8:	Solving target 29 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000359573 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000179721 seconds
+      From worker 8:	Solving target 30 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000390351 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000804037 seconds
+      From worker 8:	Solving target 31 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000413224 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000364933 seconds
+      From worker 8:	Solving target 32 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.00045815 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000405611 seconds
+      From worker 8:	Solving target 33 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000443362 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000415059 seconds
+      From worker 8:	Solving target 34 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000458521 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000503757 seconds
+      From worker 8:	Solving target 35 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000642531 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000495001 seconds
+      From worker 8:	Solving target 36 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.00041565 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000312724 seconds
+      From worker 8:	Solving target 37 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000296774 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.00021574 seconds
+      From worker 8:	Solving target 38 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000328704 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000255055 seconds
+      From worker 8:	Solving target 39 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000528875 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000347911 seconds
+      From worker 8:	Solving target 40 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000459512 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000534665 seconds
+      From worker 8:	Solving target 41 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000506782 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.00050555 seconds
+      From worker 8:	Solving target 42 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000437221 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000460064 seconds
+      From worker 8:	Solving target 43 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.00058437 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000351157 seconds
+      From worker 8:	Solving target 44 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000387797 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000397315 seconds
+      From worker 8:	Solving target 45 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000445797 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000211191 seconds
+      From worker 8:	Solving target 46 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000436148 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000391233 seconds
+      From worker 8:	Solving target 47 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000546969 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000648542 seconds
+      From worker 8:	Solving target 48 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000494099 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000570304 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.00048414 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000402244 seconds
+      From worker 8:	Solving target 49 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000424657 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000331539 seconds
+      From worker 8:	Solving target 50 of 74
+      From worker 8:	Solving target 51 of 74
+      From worker 8:	Solving target 52 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000382617 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.00024769 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.00036308 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.002587124 seconds
+      From worker 8:	Solving target 53 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000446388 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000393587 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000560515 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000607815 seconds
+      From worker 8:	Solving target 54 of 74
+      From worker 8:	Solving target 55 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000463631 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000618154 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000490802 seconds
+      From worker 8:	Solving target 56 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000625829 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000491644 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000538793 seconds
+      From worker 8:	Solving target 57 of 74
+      From worker 8:	Solving target 58 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000379842 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.00037387 seconds
+      From worker 8:	Solving target 59 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.00034699 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000235027 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000301483 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000187546 seconds
+      From worker 8:	Solving target 60 of 74
+      From worker 8:	Solving target 61 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000870103 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000430508 seconds
+      From worker 8:	Solving target 62 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000541248 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.00042621 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000476976 seconds
+      From worker 8:	Solving target 63 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000513415 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000405259 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000413015 seconds
+      From worker 8:	Solving target 64 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000341389 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000308175 seconds
+      From worker 8:	Solving target 65 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000280743 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000185332 seconds
+      From worker 8:	Solving target 66 of 74
+      From worker 8:	Solving target 67 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000267659 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000266216 seconds
+      From worker 8:	Solving target 68 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000274722 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000220028 seconds
+      From worker 8:	Solving target 69 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000270213 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000292595 seconds
+      From worker 8:	Solving target 70 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000273159 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.00028907 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.00024696 seconds
+      From worker 8:	Solving target 71 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000267718 seconds
+      From worker 8:	Solving target 72 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000304108 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000278208 seconds
+      From worker 8:	Solving target 73 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000211792 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.00020559 seconds
+      From worker 8:	Solving target 74 of 74
+[ Info: 2019-11-24 01:34:54 : Time taken to construct preconditioner = 0.000308866 seconds
+[ Info: 2019-11-24 01:34:54 : Time taken to solve linear system = 0.000106062 seconds
+[ Info: 2019-11-24 01:34:56 : Time taken to construct preconditioner = 2.94514908 seconds
+[ Info: 2019-11-24 01:34:56 : Time taken to solve linear system = 0.014097289 seconds
+[ Info: 2019-11-24 01:34:57 : Time taken to construct preconditioner = 2.847764837 seconds
+[ Info: 2019-11-24 01:34:58 : Time taken to solve linear system = 0.011241985 seconds
+Combining maps across workers
+Done
+Time taken to complete job: 61.8 seconds
+   Testing Omniscape tests passed 
+</pre>
+      </div>
+
+
+  </div>
+  </body>
+
+  <script type="text/javascript">// handle collapsibles
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].textContent = "▸ " + coll[i].textContent
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            this.textContent = "▸" + this.textContent.substr(1)
+            content.style.display = "none";
+        } else {
+            this.textContent = "▾" + this.textContent.substr(1)
+            content.style.display = "block";
+        }
+    });
+}
+</script>
+</html>
+

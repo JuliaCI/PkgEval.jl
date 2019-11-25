@@ -1,0 +1,136 @@
+ Resolving package versions...
+ Installed ArrayLayouts ─── v0.1.5
+ Installed FillArrays ───── v0.8.2
+ Installed BandedMatrices ─ v0.14.1
+  Updating `~/.julia/environments/v1.4/Project.toml`
+  [aae01518] + BandedMatrices v0.14.1
+  Updating `~/.julia/environments/v1.4/Manifest.toml`
+  [4c555306] + ArrayLayouts v0.1.5
+  [aae01518] + BandedMatrices v0.14.1
+  [1a297f60] + FillArrays v0.8.2
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [9a3f8284] + Random 
+  [9e88b42a] + Serialization 
+  [2f01184e] + SparseArrays 
+   Testing BandedMatrices
+ Resolving package versions...
+Status `/tmp/jl_Rqpvvo/Manifest.toml`
+  [4c555306] ArrayLayouts v0.1.5
+  [aae01518] BandedMatrices v0.14.1
+  [1a297f60] FillArrays v0.8.2
+  [2a0f44e3] Base64  [`@stdlib/Base64`]
+  [8ba89e20] Distributed  [`@stdlib/Distributed`]
+  [b77e0a4c] InteractiveUtils  [`@stdlib/InteractiveUtils`]
+  [8f399da3] Libdl  [`@stdlib/Libdl`]
+  [37e2e46d] LinearAlgebra  [`@stdlib/LinearAlgebra`]
+  [56ddb016] Logging  [`@stdlib/Logging`]
+  [d6f4376e] Markdown  [`@stdlib/Markdown`]
+  [9a3f8284] Random  [`@stdlib/Random`]
+  [9e88b42a] Serialization  [`@stdlib/Serialization`]
+  [6462fe0b] Sockets  [`@stdlib/Sockets`]
+  [2f01184e] SparseArrays  [`@stdlib/SparseArrays`]
+  [8dfed614] Test  [`@stdlib/Test`]
+Test Summary: | Pass  Total
+BandedMatrix  | 3332   3332
+Test Summary:         | Pass  Total
+BandedMatrix SubArray |  135    135
+Test Summary:  |  Pass  Total
+Linear Algebra | 22865  22865
+  0.000056 seconds (18 allocations: 944 bytes)
+Test Summary: | Pass  Total
+broadcasting  |  173    173
+Test Summary: | Pass  Total
+Indexing      |  511    511
+Test Summary: | Pass  Total
+Banded A\b    |   54     54
+Test Summary: | Pass  Broken  Total
+QR tests      | 1111       4   1115
+Test Summary: | Pass  Total
+Symmetric     |   31     31
+Test Summary: | Pass  Total
+Hermitian     |   18     18
+LDLᵀ: Error During Test at /root/.julia/packages/BandedMatrices/Lrc8q/test/test_symbanded.jl:143
+  Test threw exception
+  Expression: det(F) ≈ det(SAL)
+  MethodError: no method matching bunchkaufman!(::Symmetric{Float32,BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}}, ::Bool; check=false)
+  Closest candidates are:
+    bunchkaufman!(!Matched::Hermitian{T,S} where S<:Union{DenseArray{T,2}, Base.ReinterpretArray{T,2,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray}, Base.ReshapedArray{T,2,A,MI} where MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N} where N} where A<:Union{Base.ReinterpretArray{T,N,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray}, SubArray{T,2,A,I,L} where L where I<:Tuple{Vararg{Union{Int64, AbstractRange{Int64}, Base.AbstractCartesianIndex},N} where N} where A<:Union{Base.ReinterpretArray{T,N,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, Base.ReshapedArray{T,N,A,MI} where MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N} where N} where A<:Union{Base.ReinterpretArray{T,N,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, DenseArray}} where T<:Union{Complex{Float32}, Complex{Float64}}, ::Bool; check) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/bunchkaufman.jl:104
+    bunchkaufman!(!Matched::Union{Hermitian{T,S}, Symmetric{T,S}, Symmetric{Complex{T},S}} where S<:(Union{DenseArray{T,2}, Base.ReinterpretArray{T,2,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray}, Base.ReshapedArray{T,2,A,MI} where MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N} where N} where A<:Union{Base.ReinterpretArray{T,N,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray}, SubArray{T,2,A,I,L} where L where I<:Tuple{Vararg{Union{Int64, AbstractRange{Int64}, Base.AbstractCartesianIndex},N} where N} where A<:Union{Base.ReinterpretArray{T,N,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, Base.ReshapedArray{T,N,A,MI} where MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N} where N} where A<:Union{Base.ReinterpretArray{T,N,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, DenseArray}} where T) where T<:Union{Float32, Float64}, ::Bool; check) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/bunchkaufman.jl:98
+    bunchkaufman!(!Matched::Union{DenseArray{#s626,2}, Base.ReinterpretArray{#s626,2,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray}, Base.ReshapedArray{#s626,2,A,MI} where MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N} where N} where A<:Union{Base.ReinterpretArray{T,N,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray}, SubArray{#s626,2,A,I,L} where L where I<:Tuple{Vararg{Union{Int64, AbstractRange{Int64}, Base.AbstractCartesianIndex},N} where N} where A<:Union{Base.ReinterpretArray{T,N,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, Base.ReshapedArray{T,N,A,MI} where MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N} where N} where A<:Union{Base.ReinterpretArray{T,N,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, DenseArray}} where #s626<:Union{Complex{Float32}, Complex{Float64}, Float32, Float64}, ::Bool; check) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/bunchkaufman.jl:109
+  Stacktrace:
+   [1] bunchkaufman(::Symmetric{Float32,BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}}, ::Bool; check::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/bunchkaufman.jl:186
+   [2] _factorize(::Symmetric{Float32,BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}}; check::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/symmetric.jl:624
+   [3] det(::Symmetric{Float32,BandedMatrix{Float32,Array{Float32,2},Base.OneTo{Int64}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/symmetric.jl:631
+   [4] macro expansion at /root/.julia/packages/BandedMatrices/Lrc8q/test/test_symbanded.jl:143 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [6] top-level scope at /root/.julia/packages/BandedMatrices/Lrc8q/test/test_symbanded.jl:121
+  
+LDLᵀ: Error During Test at /root/.julia/packages/BandedMatrices/Lrc8q/test/test_symbanded.jl:143
+  Test threw exception
+  Expression: det(F) ≈ det(SAL)
+  MethodError: no method matching bunchkaufman!(::Symmetric{Float64,BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}}, ::Bool; check=false)
+  Closest candidates are:
+    bunchkaufman!(!Matched::Hermitian{T,S} where S<:Union{DenseArray{T,2}, Base.ReinterpretArray{T,2,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray}, Base.ReshapedArray{T,2,A,MI} where MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N} where N} where A<:Union{Base.ReinterpretArray{T,N,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray}, SubArray{T,2,A,I,L} where L where I<:Tuple{Vararg{Union{Int64, AbstractRange{Int64}, Base.AbstractCartesianIndex},N} where N} where A<:Union{Base.ReinterpretArray{T,N,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, Base.ReshapedArray{T,N,A,MI} where MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N} where N} where A<:Union{Base.ReinterpretArray{T,N,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, DenseArray}} where T<:Union{Complex{Float32}, Complex{Float64}}, ::Bool; check) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/bunchkaufman.jl:104
+    bunchkaufman!(!Matched::Union{Hermitian{T,S}, Symmetric{T,S}, Symmetric{Complex{T},S}} where S<:(Union{DenseArray{T,2}, Base.ReinterpretArray{T,2,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray}, Base.ReshapedArray{T,2,A,MI} where MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N} where N} where A<:Union{Base.ReinterpretArray{T,N,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray}, SubArray{T,2,A,I,L} where L where I<:Tuple{Vararg{Union{Int64, AbstractRange{Int64}, Base.AbstractCartesianIndex},N} where N} where A<:Union{Base.ReinterpretArray{T,N,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, Base.ReshapedArray{T,N,A,MI} where MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N} where N} where A<:Union{Base.ReinterpretArray{T,N,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, DenseArray}} where T) where T<:Union{Float32, Float64}, ::Bool; check) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/bunchkaufman.jl:98
+    bunchkaufman!(!Matched::Union{DenseArray{#s626,2}, Base.ReinterpretArray{#s626,2,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray}, Base.ReshapedArray{#s626,2,A,MI} where MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N} where N} where A<:Union{Base.ReinterpretArray{T,N,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray}, SubArray{#s626,2,A,I,L} where L where I<:Tuple{Vararg{Union{Int64, AbstractRange{Int64}, Base.AbstractCartesianIndex},N} where N} where A<:Union{Base.ReinterpretArray{T,N,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, Base.ReshapedArray{T,N,A,MI} where MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N} where N} where A<:Union{Base.ReinterpretArray{T,N,S,A} where S where A<:Union{SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, SubArray{T,N,A,I,true} where I<:Union{Tuple{Vararg{Real,N} where N}, Tuple{AbstractUnitRange,Vararg{Any,N} where N}} where A<:DenseArray where N where T, DenseArray} where N where T, DenseArray}} where #s626<:Union{Complex{Float32}, Complex{Float64}, Float32, Float64}, ::Bool; check) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/bunchkaufman.jl:109
+  Stacktrace:
+   [1] bunchkaufman(::Symmetric{Float64,BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}}, ::Bool; check::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/bunchkaufman.jl:186
+   [2] _factorize(::Symmetric{Float64,BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}}; check::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/symmetric.jl:624
+   [3] det(::Symmetric{Float64,BandedMatrix{Float64,Array{Float64,2},Base.OneTo{Int64}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/symmetric.jl:631
+   [4] macro expansion at /root/.julia/packages/BandedMatrices/Lrc8q/test/test_symbanded.jl:143 [inlined]
+   [5] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [6] top-level scope at /root/.julia/packages/BandedMatrices/Lrc8q/test/test_symbanded.jl:121
+  
+LDLᵀ: Error During Test at /root/.julia/packages/BandedMatrices/Lrc8q/test/test_symbanded.jl:143
+  Test threw exception
+  Expression: det(F) ≈ det(SAL)
+  attempt to access Array{BigFloat,2} with bandwidths (2, 9) at band 1
+  Stacktrace:
+   [1] banded_setindex! at /root/.julia/packages/BandedMatrices/Lrc8q/src/banded/BandedMatrix.jl:428 [inlined]
+   [2] setindex! at /root/.julia/packages/BandedMatrices/Lrc8q/src/banded/BandedMatrix.jl:437 [inlined]
+   [3] copytri! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/matmul.jl:444 [inlined]
+   [4] copytri! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/matmul.jl:436 [inlined]
+   [5] lu!(::Symmetric{BigFloat,BandedMatrix{BigFloat,Array{BigFloat,2},Base.OneTo{Int64}}}, ::Val{true}; check::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/lu.jl:89
+   [6] #lu#142 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/lu.jl:273 [inlined]
+   [7] _factorize(::Symmetric{BigFloat,BandedMatrix{BigFloat,Array{BigFloat,2},Base.OneTo{Int64}}}; check::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/symmetric.jl:626
+   [8] det(::Symmetric{BigFloat,BandedMatrix{BigFloat,Array{BigFloat,2},Base.OneTo{Int64}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/symmetric.jl:631
+   [9] macro expansion at /root/.julia/packages/BandedMatrices/Lrc8q/test/test_symbanded.jl:143 [inlined]
+   [10] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [11] top-level scope at /root/.julia/packages/BandedMatrices/Lrc8q/test/test_symbanded.jl:121
+  
+LDLᵀ: Error During Test at /root/.julia/packages/BandedMatrices/Lrc8q/test/test_symbanded.jl:143
+  Test threw exception
+  Expression: det(F) ≈ det(SAL)
+  attempt to access Array{Rational{BigInt},2} with bandwidths (2, 9) at band 1
+  Stacktrace:
+   [1] banded_setindex! at /root/.julia/packages/BandedMatrices/Lrc8q/src/banded/BandedMatrix.jl:428 [inlined]
+   [2] setindex! at /root/.julia/packages/BandedMatrices/Lrc8q/src/banded/BandedMatrix.jl:437 [inlined]
+   [3] copytri! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/matmul.jl:444 [inlined]
+   [4] copytri! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/matmul.jl:436 [inlined]
+   [5] lu!(::Symmetric{Rational{BigInt},BandedMatrix{Rational{BigInt},Array{Rational{BigInt},2},Base.OneTo{Int64}}}, ::Val{true}; check::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/lu.jl:89
+   [6] #lu#142 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/lu.jl:273 [inlined]
+   [7] _factorize(::Symmetric{Rational{BigInt},BandedMatrix{Rational{BigInt},Array{Rational{BigInt},2},Base.OneTo{Int64}}}; check::Bool) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/symmetric.jl:626
+   [8] det(::Symmetric{Rational{BigInt},BandedMatrix{Rational{BigInt},Array{Rational{BigInt},2},Base.OneTo{Int64}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/LinearAlgebra/src/symmetric.jl:631
+   [9] macro expansion at /root/.julia/packages/BandedMatrices/Lrc8q/test/test_symbanded.jl:143 [inlined]
+   [10] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Test/src/Test.jl:1110 [inlined]
+   [11] top-level scope at /root/.julia/packages/BandedMatrices/Lrc8q/test/test_symbanded.jl:121
+  
+Test Summary: | Pass  Error  Total
+LDLᵀ          |   19      4     23
+ERROR: LoadError: LoadError: Some tests did not pass: 19 passed, 0 failed, 4 errored, 0 broken.
+in expression starting at /root/.julia/packages/BandedMatrices/Lrc8q/test/test_symbanded.jl:120
+in expression starting at /root/.julia/packages/BandedMatrices/Lrc8q/test/runtests.jl:12
+ERROR: Package BandedMatrices errored during testing
+Stacktrace:
+ [1] pkgerror(::String, ::Vararg{String,N} where N) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Types.jl:53
+ [2] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/Operations.jl:1379
+ [3] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}; coverage::Bool, test_fn::Nothing, julia_args::Cmd, test_args::Cmd, kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:287
+ [4] test(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:274
+ [5] #test#56 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [6] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:268 [inlined]
+ [7] #test#55 at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [8] test at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:267 [inlined]
+ [9] test(::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [10] test(::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.4/Pkg/src/API.jl:266
+ [11] top-level scope at none:10
