@@ -1,4 +1,5 @@
 using ProgressMeter
+using DataFrames
 using Random
 
 function prepare_runner()
@@ -193,7 +194,7 @@ function kill_container(p, container)
 end
 
 function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
-             ninstances::Integer=Sys.CPU_THREADS, callback=nothing, kwargs...)
+             ninstances::Integer=Sys.CPU_THREADS, kwargs...)
     # here we deal with managing execution: spawning workers, output, result I/O, etc
 
     jobs = [(julia=julia, pkg=pkg) for julia in julia_versions for pkg in pkgs]
@@ -230,12 +231,12 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
     p = Progress(njobs; barlen=50, color=:normal)
     function update_output()
         # known statuses
-        o = count(==(:ok),      values(result))
-        s = count(==(:skip),    values(result))
-        f = count(==(:fail),    values(result))
-        k = count(==(:kill),    values(result))
+        o = count(==(:ok),      result[!, :status])
+        s = count(==(:skip),    result[!, :status])
+        f = count(==(:fail),    result[!, :status])
+        k = count(==(:kill),    result[!, :status])
         # remaining
-        x = njobs - length(result)
+        x = njobs - nrow(result)
 
         function runtimestr(start)
             time = Dates.canonicalize(Dates.CompoundPeriod(now() - start))
@@ -275,14 +276,22 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
             end
             print(String(take!(io.io)))
             p.tlast = 0
-            update!(p, length(result))
+            update!(p, nrow(result))
             sleep(1)
             CSI = "\e["
             print(io, "$(CSI)$(ceil(Int, ninstances/2)+1)A$(CSI)1G$(CSI)0J")
         end
     end
 
-    result = Dict{NamedTuple{(:julia, :pkg), Tuple{VersionNumber, String}},Symbol}()
+    result = DataFrame(julia = VersionNumber[],
+                       registry = String[],
+                       name = String[],
+                       version = Union{Missing,VersionNumber}[],
+                       status = Symbol[],
+                       reason = Union{Missing,Symbol}[],
+                       duration = Float64[],
+                       log = Union{Missing,String}[])
+
     try @sync begin
         # Printer
         @async begin
@@ -308,14 +317,12 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
                         running[i] = job
                         pkg_version, status, reason, log =
                             run_sandboxed_test(job.julia, job.pkg; kwargs...)
-                        result[(julia=job.julia,pkg=job.pkg.name)] = status
+                        push!(result, [job.julia, job.pkg.registry, job.pkg.name,
+                                       pkg_version, status, reason,
+                                       (now()-times[i]) / Millisecond(1000), log])
                         running[i] = nothing
 
-                        # report to the caller
-                        if callback !== nothing
-                            callback(job.julia, job.pkg.name, pkg_version,
-                                     times[i], status, reason, log)
-                        elseif log !== missing
+                        if log !== missing
                             mkpath(log_path(job.julia))
                             write(joinpath(log_path(job.julia), "$(job.pkg.name).log"), log)
                         end

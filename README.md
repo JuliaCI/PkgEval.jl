@@ -20,8 +20,11 @@ Julia versions:
 julia> using NewPkgEval
 
 julia> NewPkgEval.run([v"1.2.0"], ["Example"])
-Dict{String,Symbol} with 1 entry:
-  "Example" => :ok
+1×8 DataFrames.DataFrame. Omitted printing of 1 columns
+│ Row │ julia     │ registry │ name    │ version   │ status │ reason  │ duration │
+│     │ VersionN… │ String   │ String  │ Version…⍰ │ Symbol │ Symbol⍰ │ Float64  │
+├─────┼───────────┼──────────┼─────────┼───────────┼────────┼─────────┼──────────┤
+│ 1   │ v"1.2.0"  │ General  │ Example │ v"0.5.3"  │ ok     │ missing │ 7.135    │
 ```
 
 Detailed logs will be generated in the `logs/` directory. For this example,
