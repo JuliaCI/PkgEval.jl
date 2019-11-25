@@ -5,6 +5,7 @@ using DataFrames
 using Dates
 using Mustache
 using TimeZones
+using JSON
 
 # human-readable versions of the test statusses and reasons
 const statusses = Dict(
@@ -73,6 +74,8 @@ function main(;dbfile=joinpath(@__DIR__, "test.db"))
         )
     )
 
+    json = Dict()
+
     pkg_output = String[]
     for pkg_name in sort(pkg_names)
         data = Dict()
@@ -81,12 +84,13 @@ function main(;dbfile=joinpath(@__DIR__, "test.db"))
         data["SITE_JS"] = site_js
 
         # version-independent values
-        data["NAME"]        = pkg_name
+        data["NAME"] = pkg_name
 
         # per-version information
         pkg_builds = current_run[current_run[!, :package_name] .== pkg_name, :]
         sort!(pkg_builds, [:julia_version])
         data["PKG_BUILDS"] = Dict[]
+        json[pkg_name] = Dict[]
         for build in eachrow(pkg_builds)
             # time information
             duration = Dates.canonicalize(Dates.CompoundPeriod(Dates.Second(round(Int, build.duration))))
@@ -100,7 +104,7 @@ function main(;dbfile=joinpath(@__DIR__, "test.db"))
                 pop!(time_ago.periods)
             end
 
-            ver_data = Dict(
+            push!(data["PKG_BUILDS"], Dict(
                 "JULIA_RELEASE" => build.julia_release,
                 "JULIA_VERSION" => build.julia_version,
                 "PKG_VERSION"   => coalesce(build.package_version, false),
@@ -114,8 +118,17 @@ function main(;dbfile=joinpath(@__DIR__, "test.db"))
                 "LOG"           => coalesce(build.log, false),
                 "LOG_LINK"      => build.log === missing ? false :
                                    site_path("build", "logs", pkg_name, "$(build.julia_version).log")
-            )
-            push!(data["PKG_BUILDS"], ver_data)
+            ))
+
+            push!(json[pkg_name], Dict(
+                "julia_release"     => build.julia_release,
+                "julia_version"     => build.julia_version,
+                "package_version"   => build.package_version,
+                "status"            => build.status,
+                "reason"            => build.reason,
+                "datetime"          => build.datetime,
+                "duration"          => build.duration,
+            ))
 
             # dump the log to a file (for downloading)
             if build.log !== missing
@@ -139,6 +152,11 @@ function main(;dbfile=joinpath(@__DIR__, "test.db"))
         println(fp, index_head)
         println(fp, join(pkg_output, "\n"))
         println(fp, index_foot)
+    end
+
+    # output the JSON database
+    open(site_path("build", "pkg.json"),"w") do fp
+        JSON.print(fp, json)
     end
 
     return
