@@ -4,14 +4,19 @@ import Pkg.TOML
 using Pkg
 using Base: UUID
 using Dates
+using ProgressMeter
+using DataFrames
+using Random
+using Mustache
+using JSON
 
-downloads_dir(name) = joinpath(@__DIR__, "..", "deps", "downloads", name)
-julia_path(ver) = joinpath(@__DIR__, "..", "deps", "julia-$ver")
-versions_file() = joinpath(@__DIR__, "..", "deps", "Versions.toml")
+downloads_dir(name) = joinpath(dirname(@__DIR__), "deps", "downloads", name)
+julia_path(ver) = joinpath(dirname(@__DIR__), "deps", "usr", "julia-$ver")
+versions_file() = joinpath(dirname(@__DIR__), "deps", "Versions.toml")
 registry_path(name) = joinpath(first(DEPOT_PATH), "registries", name)
-registries_file() = joinpath(@__DIR__, "..", "deps", "Registries.toml")
-builds_file() = joinpath(@__DIR__, "..", "deps", "Builds.toml")
-log_path(julia) = joinpath(@__DIR__, "..", "logs/logs-$julia")
+registries_file() = joinpath(dirname(@__DIR__), "deps", "Registries.toml")
+releases_file() = joinpath(dirname(@__DIR__), "deps", "Releases.toml")
+log_path(julia) = joinpath(dirname(@__DIR__), "logs/logs-$julia")
 
 """
     read_versions() -> Dict
@@ -30,14 +35,15 @@ registries.
 read_registries() = TOML.parsefile(registries_file())
 
 """
-    read_builds() -> Dict
+    read_releases() -> Dict
 
-Parse the `deps/Builds.toml` file containing download information for various Julia builds.
+Parse the `deps/Releases.toml` file containing download information for various Julia releases.
 """
-read_builds() = TOML.parsefile(builds_file())
+read_releases() = TOML.parsefile(releases_file())
 
 include("registry.jl")
 include("julia.jl")
 include("run.jl")
+include("report.jl")
 
 end # module

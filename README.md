@@ -20,8 +20,11 @@ Julia versions:
 julia> using NewPkgEval
 
 julia> NewPkgEval.run([v"1.2.0"], ["Example"])
-Dict{String,Symbol} with 1 entry:
-  "Example" => :ok
+1×8 DataFrames.DataFrame. Omitted printing of 1 columns
+│ Row │ julia     │ registry │ name    │ version   │ status │ reason  │ duration │
+│     │ VersionN… │ String   │ String  │ Version…⍰ │ Symbol │ Symbol⍰ │ Float64  │
+├─────┼───────────┼──────────┼─────────┼───────────┼────────┼─────────┼──────────┤
+│ 1   │ v"1.2.0"  │ General  │ Example │ v"0.5.3"  │ ok     │ missing │ 7.135    │
 ```
 
 Detailed logs will be generated in the `logs/` directory. For this example,
@@ -41,6 +44,40 @@ build the Docker image, and `prepare_julia` to download and unpack a binary vers
 Julia.
 
 
+## Analyzing results
+
+Most of the time, you will want to compare the results that you obtained. For example:
+
+```julia
+julia> result = NewPkgEval.run([v"1.2.0", v"1.4.0-DEV-76ebc419f0"], ["AbstractNumbers"])
+2×8 DataFrame. Omitted printing of 1 columns
+│ Row │ julia                   │ registry │ name            │ version   │ status │ reason        │ duration │
+│     │ VersionNumber           │ String   │ String          │ Version…⍰ │ Symbol │ Symbol⍰       │ Float64  │
+├─────┼─────────────────────────┼──────────┼─────────────────┼───────────┼────────┼───────────────┼──────────┤
+│ 1   │ v"1.2.0"                │ General  │ AbstractNumbers │ v"0.2.0"  │ ok     │ missing       │ 24.768   │
+│ 2   │ v"1.4.0-DEV-76ebc419f0" │ General  │ AbstractNumbers │ v"0.2.0"  │ fail   │ test_failures │ 26.803   │
+```
+
+If you simply want to compare two Julia versions, use `NewPkgEval.compare`:
+
+```julia
+julia> NewPkgEval.compare(result, v"1.2.0", v"1.4.0-DEV-76ebc419f0")
+On v1.4.0-DEV-76ebc419f0, out of 1 packages 0 passed, 1 failed, 0 got killed and 0 were skipped.
+
+Comparing against v1.2.0:
+- AbstractNumbers status was ok, now fail (reason: test_failures)
+In summary, 0 packages now succeed, while 1 have started to fail.
+```
+
+For more extensive evaluations, or when more versions are involved, use `NewPkgEval.render`
+to generate a HTML site in the `website/build` directory at the root of the repository:
+
+```julia
+julia> NewPkgEval.render(result)
+Generating site at /home/tim/Julia/pkg/NewPkgEval/site/build
+```
+
+
 ## Choosing a different version of Julia
 
 NewPkgEval ultimately needs a binary build of Julia to run tests with, but there's multiple
@@ -56,14 +93,14 @@ julia> NewPkgEval.prepare_julia(v"1.2.0-nonexistent")
 ERROR: Requested Julia version not found
 ```
 
-Alternatively, you can download a named release as listed in `Builds.toml`. By calling
+Alternatively, you can download a named release as listed in `Releases.toml`. By calling
 `download_julia` with a release name, this release will be downloaded, hashed, and added to
 the `Versions.toml` database for later use. The method returns the version number that
 corresponds with this added entry; you should use it when calling into other functions of
 the package:
 
 ```julia
-julia_version = NewPkgEval.download_julia("latest")
+julia_version = NewPkgEval.download_julia("nightly")
 NewPkgEval.run([julia_version], ...)
 ```
 

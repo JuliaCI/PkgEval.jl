@@ -54,15 +54,15 @@ end
 """
     version = download_julia(name::String)
 
-Download Julia from an on-line source listed in Builds.toml as identified by `name`.
+Download Julia from an on-line source listed in Releases.toml as identified by `name`.
 Returns the `version` (what other functions use to identify this build).
 This version will be added to Versions.toml.
 """
 
 function download_julia(name::String)
-    builds = read_builds()
-    @assert haskey(builds, name) "Julia build $name is not registered in Builds.toml"
-    data = builds[name]
+    releases = read_releases()
+    @assert haskey(releases, name) "Julia release $name is not registered in Releases.toml"
+    data = releases[name]
 
     # get the filename and extension from the url
     url = data["url"]
