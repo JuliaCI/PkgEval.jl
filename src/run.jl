@@ -245,7 +245,7 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
         end
 
         if on_ci
-            println("$x packages to test ($o succeeded, $f failed, $k killed, $s skipped, $(runtimestr(start)))")
+            println("$x combinations to test ($o succeeded, $f failed, $k killed, $s skipped, $(runtimestr(start)))")
             sleep(10)
         else
             print(io, "Success: ")
