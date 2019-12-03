@@ -99,8 +99,10 @@ function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 5*1024^2 #= 5
 
     # prepare for launching a container
     container = "Julia_v$(julia)-$(pkg.name)"
-    arg = """
+    arg = raw"""
         using Pkg
+
+        println("Running tests on $(gethostname()) with Julia v$VERSION")
 
         # Prevent Pkg from updating registy on the Pkg.add
         Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
@@ -108,11 +110,11 @@ function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 5*1024^2 #= 5
         ENV["CI"] = true
         ENV["PKGEVAL"] = true
 
-        Pkg.add($(repr(pkg.name)))
-        Pkg.test($(repr(pkg.name)))
+        Pkg.add(ARGS...)
+        Pkg.test(ARGS...)
     """
     cmd = do_depwarns ? `--depwarn=error` : ``
-    cmd = `$cmd -e $arg`
+    cmd = `$cmd -e $arg $(pkg.name)`
 
     mktemp() do path, f
         p = run_sandboxed_julia(julia, cmd; stdout=f, stderr=f, stdin=devnull,
