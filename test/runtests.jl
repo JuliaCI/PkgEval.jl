@@ -46,3 +46,5 @@ end
     NewPkgEval.compare(results, lts, stable)
     NewPkgEval.render(results)
 end
+
+NewPkgEval.purge()

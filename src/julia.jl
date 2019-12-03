@@ -7,6 +7,30 @@ import SHA: sha256
 # Utilities
 #
 
+function purge()
+    # prune Versions.toml: only keep versions that have an URL (i.e. removing local stuff)
+    versions = read_versions()
+    rm(versions_file())
+    open(versions_file(); append=true) do io
+        for version in sort(collect(keys(versions)))
+            data = versions[version]
+            if haskey(data, "url")
+                println(io, "[\"$version\"]")
+                for (key, value) in data
+                    println(io, "$key = $(repr(value))")
+                end
+                println(io)
+            else
+                rm(downloads_dir(data["file"]); force=true)
+                rm(downloads_dir(data["file"]) * ".sha256"; force=true)
+            end
+        end
+    end
+
+    # remove extracted trees
+    rm(joinpath(dirname(@__DIR__), "deps", "usr"); recursive=true, force=true)
+end
+
 function hash_file(path)
     open(path, "r") do f
         bytes2hex(sha256(f))
