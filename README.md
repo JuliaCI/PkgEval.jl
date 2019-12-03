@@ -94,21 +94,21 @@ ERROR: Requested Julia version not found
 ```
 
 Alternatively, you can download a named release as listed in `Releases.toml`. By calling
-`download_julia` with a release name, this release will be downloaded, hashed, and added to
-the `Versions.toml` database for later use. The method returns the version number that
-corresponds with this added entry; you should use it when calling into other functions of
-the package:
+`obtain_julia_release` with a release name, this release will be downloaded, hashed, and
+added to the `Versions.toml` database for later use. The method returns the version number
+that corresponds with this added entry; you should use it when calling into other functions
+of the package:
 
 ```julia
-julia_version = NewPkgEval.download_julia("nightly")
+julia_version = NewPkgEval.obtain_julia_release("nightly")
 NewPkgEval.run([julia_version], ...)
 ```
 
-For even more control, you can build Julia by calling the `build_julia` function, passing a
-string that identifies a branch, tag or commit in the Julia Git repository:
+For even more control, you can build Julia by calling the `perform_julia_build` function,
+passing a string that identifies a branch, tag or commit in the Julia Git repository:
 
 ```julia
-julia_version = NewPkgEval.build_julia("master")
+julia_version = NewPkgEval.perform_julia_build("master")
 ```
 
 Similarly, this function returns a version number that corresponds with an entry added to
@@ -123,6 +123,7 @@ sha = "dcd105b94906359cae52656129615a1446e7aee1e992ae9c06a15554d83a46f0"
 If you get a permission error while building Julia, try to set the variable
 `BINARYBUILDER_RUNNER=privileged`, restart Julia and try the build again.
 
-Finally, it is also possible to build Julia yourself, in which case you will need to create
-a tarball, copy it to the `deps/downloads` directory, and add a correct version stanza to
-`Versions.toml`.
+To facilitate all this, there's a higher-level function `obtain_julia` that will try each of
+the above methods until a valid version is found and returned. It is of course also possible
+to build Julia yourself, in which case you will need to create a tarball, copy it to the
+`deps/downloads` directory, and add a correct version stanza to `Versions.toml`.
