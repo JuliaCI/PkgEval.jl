@@ -23,4 +23,8 @@ include("julia.jl")
 include("run.jl")
 include("report.jl")
 
+function __init__()
+    Pkg.PlatformEngines.probe_platform_engines!()
+end
+
 end # module

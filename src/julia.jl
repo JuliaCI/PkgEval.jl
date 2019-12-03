@@ -81,7 +81,7 @@ function prepare_julia(the_ver::VersionNumber)
             mkpath(dirname(file))
 
             Pkg.PlatformEngines.download_verify_unpack(url, data["sha"], dir;
-                                                        tarball_path=file, force=true)
+                                                       tarball_path=file, force=true)
         else
             file = data["file"]
             !isabspath(file) && (file = downloads_dir(file))
@@ -178,7 +178,7 @@ function obtain_julia_release(name::String)
         # move to its final location
         filename = "julia-$version$ext"
         if ispath(downloads_dir(filename))
-            @warn "Destination file $tarball already exists, assuming it matches"
+            @warn "Destination file $filename already exists, assuming it matches"
             rm(filepath)
         else
             mv(filepath, downloads_dir(filename))
@@ -267,8 +267,11 @@ function obtain_julia_build(spec::String="master", repo_name::String="JuliaLang/
     try
         filename = basename(url)
         filepath = downloads_dir(filename)
-        @assert !ispath(filepath)
-        download(url, filepath)
+        if ispath(filepath)
+            @warn "Destination file $filename already exists, assuming it matches"
+        else
+            download(url, filepath)
+        end
         filehash = hash_file(filepath)
 
         # Update Versions.toml
