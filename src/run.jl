@@ -51,7 +51,7 @@ end
 
 """
     run_sandboxed_test(julia::VersionNumber, pkg; do_depwarns=false, log_limit=5*1024^2,
-                       time_limit=60*45)
+                       time_limit=60*60)
 
 Run the unit tests for a single package `pkg` inside of a sandbox using Julia version
 `julia`. If `do_depwarns` is `true`, deprecation warnings emitted while running the
@@ -64,7 +64,7 @@ directory.
 Refer to `run_sandboxed_julia`[@ref] for more possible `keyword arguments.
 """
 function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 5*1024^2 #= 5 MB =#,
-                            time_limit = 45*60, do_depwarns=false, kwargs...)
+                            time_limit = 60*60, do_depwarns=false, kwargs...)
     # everything related to testing in Julia: version compatibility, invoking Pkg, etc
 
     if pkg.name in skip_lists[pkg.registry]
