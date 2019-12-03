@@ -97,7 +97,7 @@ const reasons = Dict(
     :missing_dependency     => "package is missing a dependency",
     :test_failures          => "package has test failures",
     :syntax                 => "package has syntax issues",
-    :unknown                => "testing failed for unknown reasons",
+    :unknown                => "there were unidentified errors",
     # kill
     :time_limit             => "test duration exceeded the time limit",
     :log_limit              => "test log exceeded the size limit",

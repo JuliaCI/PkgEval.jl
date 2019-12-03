@@ -2,7 +2,36 @@ using BinaryBuilder
 using LibGit2
 import SHA: sha256
 
-function filehash(path)
+
+#
+# Utilities
+#
+
+function purge()
+    # prune Versions.toml: only keep versions that have an URL (i.e. removing local stuff)
+    versions = read_versions()
+    rm(versions_file())
+    open(versions_file(); append=true) do io
+        for version in sort(collect(keys(versions)))
+            data = versions[version]
+            if haskey(data, "url")
+                println(io, "[\"$version\"]")
+                for (key, value) in data
+                    println(io, "$key = $(repr(value))")
+                end
+                println(io)
+            else
+                rm(downloads_dir(data["file"]); force=true)
+                rm(downloads_dir(data["file"]) * ".sha256"; force=true)
+            end
+        end
+    end
+
+    # remove extracted trees
+    rm(joinpath(dirname(@__DIR__), "deps", "usr"); recursive=true, force=true)
+end
+
+function hash_file(path)
     open(path, "r") do f
         bytes2hex(sha256(f))
     end
@@ -19,10 +48,23 @@ function installed_julia_dir(ver)
      jp
 end
 
+
+#
+# Versions
+#
+
+# a version is identified by a specific unique version, includes a hash to verify, and
+# points to a local file or a remove resource.
+
+versions_file() = joinpath(dirname(@__DIR__), "deps", "Versions.toml")
+
+read_versions() = TOML.parse(read(versions_file(), String))
+
 """
     prepare_julia(the_ver)
 
-Download the specified version of Julia using the information provided in `Versions.toml`.
+Download and extract the specified version of Julia using the information provided in
+`Versions.toml`.
 """
 function prepare_julia(the_ver::VersionNumber)
     vers = read_versions()
@@ -51,15 +93,54 @@ function prepare_julia(the_ver::VersionNumber)
     error("Requested Julia version $the_ver not found")
 end
 
+function obtain_julia(spec::String)::VersionNumber
+    try
+        # maybe it's a named release
+        # NOTE: check this first, because "1.3" could otherwise be interpreted as v"1.3.0"
+        obtain_julia_release(spec)
+    catch
+        try
+            # maybe it already refers to a version in Versions.toml
+            version = VersionNumber(spec)
+            prepare_julia(version)
+            version
+        catch
+            # assume it points to something in our Git repository
+            obtain_julia_build(spec)
+        end
+    end
+end
+
+
+#
+# Releases
+#
+
+# a release is identified by name, points to an online resource, but does not have a version
+# number. it will be downloaded, probed, and added to Versions.toml.
+
+releases_file() = joinpath(dirname(@__DIR__), "deps", "Releases.toml")
+
+read_releases() = TOML.parsefile(releases_file())
+
+# get the Julia version and short hash from a Julia installation
+function get_julia_version(base)
+    version = VersionNumber(read(`$(installed_julia_dir(base))/bin/julia -e 'print(Base.VERSION_STRING)'`, String))
+    if version.prerelease != ()
+        shorthash = read(`$(installed_julia_dir(base))/bin/julia -e 'print(Base.GIT_VERSION_INFO.commit_short)'`, String)
+        version = VersionNumber(string(version) * string("-", shorthash))
+    end
+    return version
+end
+
 """
-    version = download_julia(name::String)
+    version = obtain_julia_release(name::String)
 
 Download Julia from an on-line source listed in Releases.toml as identified by `name`.
 Returns the `version` (what other functions use to identify this build).
 This version will be added to Versions.toml.
 """
-
-function download_julia(name::String)
+function obtain_julia_release(name::String)
     releases = read_releases()
     @assert haskey(releases, name) "Julia release $name is not registered in Releases.toml"
     data = releases[name]
@@ -75,93 +156,160 @@ function download_julia(name::String)
     end
 
     # download
-    temp_file = downloads_dir(base)
-    mkpath(dirname(temp_file))
-    ispath(temp_file) && rm(temp_file)
-    Pkg.PlatformEngines.download(url, temp_file)
+    filepath = downloads_dir(base)
+    mkpath(dirname(filepath))
+    ispath(filepath) && rm(filepath)
+    Pkg.PlatformEngines.download(url, filepath)
 
     # unpack
-    temp_dir = julia_path(base)
-    ispath(temp_dir) && rm(temp_dir; recursive=true)
-    Pkg.PlatformEngines.unpack(temp_file, temp_dir)
+    tempdir = julia_path(base)
+    ispath(tempdir) && rm(tempdir; recursive=true)
+    Pkg.PlatformEngines.unpack(filepath, tempdir)
 
-    # figure out stuff from the downloaded binary
-    version = VersionNumber(read(`$(installed_julia_dir(base))/bin/julia -e 'print(Base.VERSION_STRING)'`, String))
-    if version.prerelease != ()
-        commit_short = read(`$(installed_julia_dir(base))/bin/julia -e 'print(Base.GIT_VERSION_INFO.commit_short)'`, String)
-        version = VersionNumber(string(version) * string("-", commit_short))
-    end
-    rm(temp_dir; recursive=true) # let `prepare_julia` unpack; keeps code simpler here
-
+    version = get_julia_version(base)
     versions = read_versions()
     if haskey(versions, string(version))
         @info "Julia $name (version $version) already available"
-        rm(temp_file)
+        rm(filepath)
     else
         # always use the hash of the downloaded file to force a check during `prepare_julia`
-        hash = filehash(temp_file)
+        filehash = hash_file(filepath)
 
         # move to its final location
-        tarball = "julia-$version$ext"
-        tarball_path = downloads_dir(tarball)
-        if ispath(tarball_path)
+        filename = "julia-$version$ext"
+        if ispath(downloads_dir(filename))
             @warn "Destination file $tarball already exists, assuming it matches"
-            rm(temp_file)
+            rm(filepath)
         else
-            mv(temp_file, tarball_path)
+            mv(filepath, downloads_dir(filename))
         end
 
         # Update Versions.toml
         version_stanza = """
             ["$version"]
-            file = "$tarball"
-            sha = "$hash"
+            file = "$filename"
+            sha = "$filehash"
             """
         open(versions_file(); append=true) do f
             println(f, version_stanza)
         end
     end
 
+    rm(tempdir; recursive=true) # let `prepare_julia` unpack; keeps code simpler here
     return version
 end
 
-"""
-    version = build_julia(ref::String="master"; binarybuilder_args::Vector{String}=String["--verbose"])
 
-Check-out and build Julia at git reference `ref` using BinaryBuilder.
-Returns the `version` (what other functions use to identify this build).
-This version will be added to Versions.toml.
-"""
-function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=String["--verbose"])
-    # get the Julia repo
-    repo_path = downloads_dir("julia")
+#
+# Builds
+#
+
+# get a repository handle, cloning or updating the repository along the way
+function get_repo(name)
+    repo_path = downloads_dir(name)
     if !isdir(repo_path)
-        @info "Cloning Julia repository..."
-        repo = LibGit2.clone("https://github.com/JuliaLang/julia", repo_path)
+        @info "Cloning $name..."
+        repo = LibGit2.clone("https://github.com/$name", repo_path)
     else
         repo = LibGit2.GitRepo(repo_path)
         LibGit2.fetch(repo)
     end
 
+    return repo
+end
+
+# look up a refspec in a git repository
+function get_repo_commit(repo::LibGit2.GitRepo, spec)
+    reference = try
+        # maybe it's a remote branch
+        LibGit2.GitCommit(repo, "refs/remotes/origin/$spec")
+    catch err
+        isa(err, LibGit2.GitError) || rethrow()
+        try
+            # maybe it's a version tag
+            LibGit2.GitCommit(repo, "refs/tags/v$spec")
+        catch err
+            isa(err, LibGit2.GitError) || rethrow()
+            LibGit2.GitCommit(repo, spec)
+        end
+    end
+end
+
+# get the Julia version and short hash corresponding with a refspec in a Julia repo
+function get_julia_repoversion(spec, repo_name)
+    # get the Julia repo
+    repo = get_repo(repo_name)
+    commit = get_repo_commit(repo, spec)
+
     # lookup the version number and commit hash
-    reference = LibGit2.GitCommit(repo, ref)
-    tree = LibGit2.peel(LibGit2.GitTree, reference)
+    tree = LibGit2.peel(LibGit2.GitTree, commit)
     version = VersionNumber(chomp(LibGit2.content(tree["VERSION"])))
-    commit = string(LibGit2.GitHash(reference))
+    hash = LibGit2.GitHash(commit)
+    # FIXME: no way to get the short hash with LibGit2? It just uses the length argument.
+    #shorthash = LibGit2.GitShortHash(hash, 7)
+    shorthash = LibGit2.GitShortHash(chomp(read(`git -C $(downloads_dir(repo_name)) rev-parse --short $hash`, String)))
     if version.prerelease != ()
-        commit_short = commit[1:10]
-        version = VersionNumber(string(version) * string("-", commit_short))
+        version = VersionNumber(string(version) * "-" * string(shorthash))
     end
 
+    return version, string(hash), string(shorthash)
+end
+
+function obtain_julia_build(spec::String="master", repo_name::String="JuliaLang/julia")
+    version, hash, shorthash = get_julia_repoversion(spec, repo_name)
     versions = read_versions()
     if haskey(versions, string(version))
-        @info "Julia $ref (version $version) already available"
+        return version
+    end
+
+    # try downloading it from the build bots
+    url = "https://julialangnightlies.s3.amazonaws.com/bin/linux/x64/$(version.major).$(version.minor)/julia-$(shorthash)-linux64.tar.gz"
+    try
+        filename = basename(url)
+        filepath = downloads_dir(filename)
+        @assert !ispath(filepath)
+        download(url, filepath)
+        filehash = hash_file(filepath)
+
+        # Update Versions.toml
+        version_stanza = """
+            ["$version"]
+            file = "$filename"
+            sha = "$filehash"
+            """
+        open(versions_file(); append=true) do f
+            println(f, version_stanza)
+        end
+
+        return version
+    catch ex
+        # assume this was a download failure, and proceed to build Julia ourselves
+        # TODO: check this was actually a 404
+        isa(ex, ProcessFailedException) || rethrow()
+        bt = catch_backtrace()
+        @error "Could not download Julia $spec (version $version), performing a build" exception=(ex,bt)
+        perform_julia_build(spec, repo_name)
+    end
+end
+
+"""
+    version = perform_julia_build(ref::String="master"; binarybuilder_args::Vector{String}=String["--verbose"])
+
+Check-out and build Julia at git reference `ref` using BinaryBuilder.
+Returns the `version` (what other functions use to identify this build).
+This version will be added to Versions.toml.
+"""
+function perform_julia_build(spec::String="master", repo_name::String="JuliaLang/julia";
+                             binarybuilder_args::Vector{String}=String["--verbose"])
+    version, hash, shorthash = get_julia_repoversion(spec, repo_name)
+    versions = read_versions()
+    if haskey(versions, string(version))
         return version
     end
 
     # Collection of sources required to build julia
     sources = [
-        "https://github.com/JuliaLang/julia.git" => commit,
+        "https://github.com/JuliaLang/julia.git" => hash,
     ]
 
     # Bash recipe for building across all platforms
@@ -200,27 +348,30 @@ function build_julia(ref::String="master"; binarybuilder_args::Vector{String}=St
     product_hashes = cd(joinpath(@__DIR__, "..", "deps")) do
         build_tarballs(binarybuilder_args, "julia", version, sources, script, platforms, products, dependencies, preferred_gcc_version=v"7", skip_audit=true)
     end
-    temp_file, hash = product_hashes[platforms[1]]
-    tarball = basename(temp_file)
+    filepath, filehash = product_hashes[platforms[1]]
+    filename = basename(filepath)
 
     # Update Versions.toml
     version_stanza = """
         ["$version"]
-        file = "$tarball"
-        sha = "$hash"
+        file = "$filename"
+        sha = "$filehash"
         """
     open(versions_file(); append=true) do f
         println(f, version_stanza)
     end
 
     # Copy the generated tarball to the downloads folder
-    tarball_path = downloads_dir(tarball)
-    if ispath(tarball_path)
+    if ispath(downloads_dir(filename))
         # NOTE: we can't use the previous file here (like in `download_julia`)
         #       because the hash will most certainly be different
-        @warn "Destination file $tarball already exists, overwriting"
+        @warn "Destination file $filename already exists, overwriting"
     end
-    mv(temp_file, tarball_path)
+    mv(filepath, downloads_dir(filename))
+
+    # clean-up
+    rm(joinpath(dirname(@__DIR__), "deps", "build"); recursive=true, force=true)
+    rm(joinpath(dirname(@__DIR__), "deps", "products"); recursive=true, force=true)
 
     return version
 end

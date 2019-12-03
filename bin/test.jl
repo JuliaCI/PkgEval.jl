@@ -16,7 +16,7 @@ function main(;julia_releases=["stable"], pkg_names=["Example"], registry="Gener
     end
 
     # get the Julia versions
-    julia_versions = NewPkgEval.download_julia.(julia_releases)
+    julia_versions = NewPkgEval.obtain_julia.(julia_releases)
     NewPkgEval.prepare_julia.(julia_versions)
 
     # get the packages
@@ -36,7 +36,7 @@ function main(;julia_releases=["stable"], pkg_names=["Example"], registry="Gener
     # generate a website
     NewPkgEval.render(result)
 
-    return
+    return result
 end
 
 isinteractive() || main(julia_releases=["lts", "stable", "nightly"], pkg_names=String[],
