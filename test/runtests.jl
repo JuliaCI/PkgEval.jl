@@ -3,20 +3,7 @@ using Test
 
 # determine the version to use
 const version = get(ENV, "JULIA_VERSION", string(VERSION))
-const julia = try
-    # maybe it already refers to a version in Versions.toml
-    v = VersionNumber(version)
-    NewPkgEval.prepare_julia(v)
-    v
-catch
-    # maybe it points to a build in Builds.jl
-    try
-        NewPkgEval.download_julia(version)
-    catch
-        # assume it points to something in our Git repository
-        NewPkgEval.build_julia(version)
-    end
-end
+const julia = NewPkgEval.obtain_julia(version)
 NewPkgEval.prepare_julia(julia::VersionNumber)
 
 @testset "sandbox" begin

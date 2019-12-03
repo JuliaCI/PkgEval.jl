@@ -16,7 +16,7 @@ function main(;julia_releases=["stable"], pkg_names=["Example"], registry="Gener
     end
 
     # get the Julia versions
-    julia_versions = NewPkgEval.download_julia.(julia_releases)
+    julia_versions = NewPkgEval.obtain_julia.(julia_releases)
     NewPkgEval.prepare_julia.(julia_versions)
 
     # get the packages
