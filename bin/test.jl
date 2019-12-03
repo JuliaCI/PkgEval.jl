@@ -36,7 +36,7 @@ function main(;julia_releases=["stable"], pkg_names=["Example"], registry="Gener
     # generate a website
     NewPkgEval.render(result)
 
-    return
+    return result
 end
 
 isinteractive() || main(julia_releases=["lts", "stable", "nightly"], pkg_names=String[],
