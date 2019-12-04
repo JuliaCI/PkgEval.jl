@@ -102,7 +102,7 @@ function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 5*1024^2 #= 5
     arg = raw"""
         using Pkg
 
-        println("Running tests on $(gethostname()) with Julia v$VERSION")
+        println("Running tests with Julia v$VERSION")
 
         # Prevent Pkg from updating registy on the Pkg.add
         Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
