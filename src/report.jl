@@ -134,8 +134,6 @@ function render(current_run)
         )
     )
 
-    json = Dict()
-
     pkg_output = String[]
     for pkg_name in sort(pkg_names)
         data = Dict()
@@ -150,7 +148,6 @@ function render(current_run)
         pkg_builds = current_run[current_run[!, :name] .== pkg_name, :]
         sort!(pkg_builds, [:julia])
         data["BUILDS"] = Dict[]
-        json[pkg_name] = Dict[]
         for build in eachrow(pkg_builds)
             # time information
             duration = Dates.canonicalize(Dates.CompoundPeriod(Dates.Second(round(Int, build.duration))))
@@ -167,14 +164,6 @@ function render(current_run)
                 "LOG"           => coalesce(build.log, false),
                 "LOG_LINK"      => build.log === missing ? false :
                                    site_path("build", "logs", pkg_name, "$(build.julia).log")
-            ))
-
-            push!(json[pkg_name], Dict(
-                "julia"         => build.julia,
-                "version"       => build.version,
-                "status"        => build.status,
-                "reason"        => build.reason,
-                "duration"      => build.duration,
             ))
 
             # dump the log to a file (for downloading)
@@ -199,11 +188,6 @@ function render(current_run)
         println(fp, index_head)
         println(fp, join(pkg_output, "\n"))
         println(fp, index_foot)
-    end
-
-    # output the JSON database
-    open(site_path("build", "pkg.json"),"w") do fp
-        JSON.print(fp, json)
     end
 
     return
