@@ -1,6 +1,6 @@
 function prepare_runner()
     cd(joinpath(dirname(@__DIR__), "runner")) do
-        Base.run(`docker build . -t newpkgeval`)
+        image = chomp(read(`docker build --quiet --tag newpkgeval .`, String))
     end
     return
 end
