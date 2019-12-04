@@ -183,13 +183,7 @@ function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 5*1024^2 #= 5
     end
 end
 
-function kill_container(p, container)
-    Base.run(`docker kill --signal=SIGTERM $container`)
-    sleep(3)
-    if process_running(p)
-        Base.run(`docker kill --signal=SIGKILL $container`)
-    end
-end
+kill_container(p, container) = Base.run(`docker stop $container`)
 
 function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
              ninstances::Integer=Sys.CPU_THREADS, kwargs...)
