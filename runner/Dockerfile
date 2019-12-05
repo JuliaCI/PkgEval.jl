@@ -19,3 +19,7 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     # clean-up
     && rm -rf /var/lib/apt/lists/*
+
+RUN useradd --create-home --shell /bin/bash pkgeval
+WORKDIR /home/pkgeval
+USER pkgeval
