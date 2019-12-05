@@ -24,6 +24,7 @@ include("report.jl")
 
 function __init__()
     Pkg.PlatformEngines.probe_platform_engines!()
+    chmod(versions_file(), 0o644) # mutated by this package
 end
 
 end # module
