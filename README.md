@@ -19,16 +19,22 @@ Julia versions:
 ```julia
 julia> using NewPkgEval
 
-julia> NewPkgEval.run([v"1.2.0"], ["Example"])
-1×8 DataFrames.DataFrame. Omitted printing of 1 columns
-│ Row │ julia     │ registry │ name    │ version   │ status │ reason  │ duration │
-│     │ VersionN… │ String   │ String  │ Version…⍰ │ Symbol │ Symbol⍰ │ Float64  │
-├─────┼───────────┼──────────┼─────────┼───────────┼────────┼─────────┼──────────┤
-│ 1   │ v"1.2.0"  │ General  │ Example │ v"0.5.3"  │ ok     │ missing │ 7.135    │
+julia> julia_versions = NewPkgEval.obtain_julia.(["1.3", "nightly"])
+2-element Array{VersionNumber,1}:
+ v"1.3.0"
+ v"1.4.0-DEV-3c182bc5c2"
+
+julia> NewPkgEval.run(julia_versions, ["Example"])
+2×8 DataFrames.DataFrame. Omitted printing of 1 columns
+│ Row │ julia                   │ registry │ name    │ version   │ status │ reason  │ duration │
+│     │ VersionNumber           │ String   │ String  │ Version…⍰ │ Symbol │ Symbol⍰ │ Float64  │
+├─────┼─────────────────────────┼──────────┼─────────┼───────────┼────────┼─────────┼──────────┤
+│ 1   │ v"1.3.0"                │ General  │ Example │ v"0.5.3"  │ ok     │ missing │ 6.94     │
+│ 2   │ v"1.4.0-DEV-3c182bc5c2" │ General  │ Example │ v"0.5.3"  │ ok     │ missing │ 6.948    │
 ```
 
 Detailed logs will be generated in the `logs/` directory. For this example,
-`logs/logs-1.2.0/Example.log` would contain:
+`logs/logs-1.3.0/Example.log` would contain:
 
 ```
 Resolving package versions...
