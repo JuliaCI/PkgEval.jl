@@ -172,10 +172,16 @@ function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 5*1024^2 #= 5
                 reason = :binary_dependency
             elseif occursin(r"Package .+ does not have .+ in its dependencies", log)
                 reason = :missing_dependency
-            elseif occursin("Some tests did not pass", log)
+            elseif occursin(r"Package .+ not found in current path", log)
+                reason = :missing_package
+            elseif occursin("Some tests did not pass", log) || occursin("Test Failed", log)
                 reason = :test_failures
             elseif occursin("ERROR: LoadError: syntax", log)
                 reason = :syntax
+            elseif occursin("signal (11): Segmentation fault", log)
+                reason = :segfault
+            elseif occursin("Unreachable reached", log)
+                reason = :unreachable
             end
         end
 

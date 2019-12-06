@@ -94,9 +94,12 @@ const reasons = Dict(
     :unsatisfiable          => "package could not be installed",
     :untestable             => "package does not have any tests",
     :binary_dependency      => "package requires a missing binary dependency",
-    :missing_dependency     => "package is missing a dependency",
+    :missing_dependency     => "package is missing a package dependency",
+    :missing_package        => "package is using an unknown package",
     :test_failures          => "package has test failures",
     :syntax                 => "package has syntax issues",
+    :segfault               => "a segmentation fault happened",
+    :unreachable            => "an unreachable instruction was executed",
     :unknown                => "there were unidentified errors",
     # kill
     :time_limit             => "test duration exceeded the time limit",
