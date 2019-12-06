@@ -276,8 +276,8 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
     end
 
     result = DataFrame(julia = VersionNumber[],
-                       registry = String[],
                        name = String[],
+                       uuid = UUID[],
                        version = Union{Missing,VersionNumber}[],
                        status = Symbol[],
                        reason = Union{Missing,Symbol}[],
@@ -309,9 +309,9 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
                         running[i] = job
                         pkg_version, status, reason, log =
                             run_sandboxed_test(job.julia, job.pkg; kwargs...)
-                        push!(result, [job.julia, job.pkg.registry, job.pkg.name,
-                                       pkg_version, status, reason,
-                                       (now()-times[i]) / Millisecond(1000), log])
+                        duration = (now()-times[i]) / Millisecond(1000)
+                        push!(result, [job.julia, job.pkg.name, job.pkg.uuid, pkg_version,
+                                       status, reason, duration, log])
                         running[i] = nothing
 
                         if log !== missing
