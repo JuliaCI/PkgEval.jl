@@ -100,11 +100,11 @@ function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 5*1024^2 #= 5
     # prepare for launching a container
     container = "Julia_v$(julia)-$(pkg.name)"
     arg = raw"""
+        using InteractiveUtils
+        versioninfo()
+        println()
+
         using Pkg
-
-        println("Running tests with Julia v$VERSION")
-
-        # Prevent Pkg from updating registy on the Pkg.add
         Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
 
         ENV["CI"] = true
