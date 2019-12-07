@@ -13,7 +13,7 @@ cd NewPkgEval.jl
 julia --project -e 'import Pkg; Pkg.instantiate()'
 ```
 
-Then use the following commands to run the tests of a list of packages on a selection of
+Then start Julia with `julia --project` and use the following commands to run the tests of a list of packages on a selection of
 Julia versions:
 
 ```julia
