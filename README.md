@@ -10,7 +10,7 @@ Start by installing the package:
 ```shell
 git clone https://github.com/JuliaComputing/NewPkgEval.jl.git
 cd NewPkgEval.jl
-julia --project 'import Pkg; Pkg.instantiate()'
+julia --project -e 'import Pkg; Pkg.instantiate()'
 ```
 
 Then use the following commands to run the tests of a list of packages on a selection of
