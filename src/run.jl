@@ -156,7 +156,6 @@ function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 5*1024^2 #= 5
         end
 
         if succeeded
-            @assert status == nothing
             status = :ok
         elseif status === nothing
             status = :fail
