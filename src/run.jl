@@ -50,20 +50,21 @@ function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true, 
 end
 
 """
-    run_sandboxed_test(julia::VersionNumber, pkg; do_depwarns=false, log_limit=5*1024^2,
+    run_sandboxed_test(julia::VersionNumber, pkg; do_depwarns=false, log_limit=2^20,
                        time_limit=60*60)
 
 Run the unit tests for a single package `pkg` inside of a sandbox using Julia version
 `julia`. If `do_depwarns` is `true`, deprecation warnings emitted while running the
 package's tests will cause the tests to fail. Test will be forcibly interrupted after
-`time_limit` seconds or if the log becomes larger than `log_limit`.
+`time_limit` seconds (defaults to 1h) or if the log becomes larger than `log_limit`
+(defaults to 1MB).
 
 A log for the tests is written to a version-specific directory in the NewPkgEval root
 directory.
 
 Refer to `run_sandboxed_julia`[@ref] for more possible `keyword arguments.
 """
-function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 5*1024^2 #= 5 MB =#,
+function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 2^20 #= 1 MB =#,
                             time_limit = 60*60, do_depwarns=false, kwargs...)
     # everything related to testing in Julia: version compatibility, invoking Pkg, etc
 
