@@ -222,15 +222,29 @@ end
 function get_repo_commit(repo::LibGit2.GitRepo, spec)
     reference = try
         # maybe it's a remote branch
-        LibGit2.GitCommit(repo, "refs/remotes/origin/$spec")
+        ref = "refs/remotes/origin/$spec"
+        ref, LibGit2.GitCommit(repo, ref)
     catch err
         isa(err, LibGit2.GitError) || rethrow()
         try
             # maybe it's a version tag
-            LibGit2.GitCommit(repo, "refs/tags/v$spec")
+            ref = "refs/tags/v$spec"
+            ref, LibGit2.GitCommit(repo, ref)
         catch err
             isa(err, LibGit2.GitError) || rethrow()
-            LibGit2.GitCommit(repo, spec)
+            try
+                # maybe it's a remote ref, and we need to fetch it first
+                remote = LibGit2.get(LibGit2.GitRemote, repo, "origin")
+                fetchspec = "+refs/$spec:refs/remotes/origin/$spec"
+                LibGit2.fetch(remote, [fetchspec])
+                ref = "refs/remotes/origin/$spec"
+                ref, LibGit2.GitCommit(repo, ref)
+            catch err
+                isa(err, LibGit2.GitError) || rethrow()
+
+                # give up and assume it's a commit or something
+                nothing, LibGit2.GitCommit(repo, spec)
+            end
         end
     end
 end
@@ -239,7 +253,7 @@ end
 function get_julia_repoversion(spec, repo_name)
     # get the Julia repo
     repo = get_repo(repo_name)
-    commit = get_repo_commit(repo, spec)
+    ref, commit = get_repo_commit(repo, spec)
 
     # lookup the version number and commit hash
     tree = LibGit2.peel(LibGit2.GitTree, commit)
@@ -252,11 +266,11 @@ function get_julia_repoversion(spec, repo_name)
         version = VersionNumber(string(version) * "-" * string(shorthash))
     end
 
-    return version, string(hash), string(shorthash)
+    return version, ref, string(hash), string(shorthash)
 end
 
 function obtain_julia_build(spec::String="master", repo_name::String="JuliaLang/julia")
-    version, hash, shorthash = get_julia_repoversion(spec, repo_name)
+    version, ref, hash, shorthash = get_julia_repoversion(spec, repo_name)
     versions = read_versions()
     if haskey(versions, string(version))
         return version
@@ -304,15 +318,24 @@ This version will be added to Versions.toml.
 """
 function perform_julia_build(spec::String="master", repo_name::String="JuliaLang/julia";
                              binarybuilder_args::Vector{String}=String["--verbose"])
-    version, hash, shorthash = get_julia_repoversion(spec, repo_name)
+    version, ref, hash, shorthash = get_julia_repoversion(spec, repo_name)
     versions = read_versions()
     if haskey(versions, string(version))
         return version
     end
 
     # Collection of sources required to build julia
+    # NOTE: we need to check out Julia ourselves, because BinaryBuilder does not know how to
+    #       fetch and checkout remote refs.
+    repo = get_repo(repo_name)
+    LibGit2.checkout!(repo, hash)
+    if ref !== nothing
+        # switch branches to get a useful versioninfo()
+        LibGit2.branch!(repo, ref; force=true)
+    end
+    repo_path = downloads_dir(repo_name)
     sources = [
-        "https://github.com/JuliaLang/julia.git" => hash,
+        repo_path
     ]
 
     # Bash recipe for building across all platforms
@@ -321,7 +344,6 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
     mount -t devpts -o newinstance jrunpts /dev/pts
     mount -o bind /dev/pts/ptmx /dev/ptmx
 
-    cd julia
     cat > Make.user <<EOF
     JULIA_CPU_TARGET=generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)
     EOF
