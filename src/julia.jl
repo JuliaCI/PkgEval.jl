@@ -230,7 +230,18 @@ function get_repo_commit(repo::LibGit2.GitRepo, spec)
             LibGit2.GitCommit(repo, "refs/tags/v$spec")
         catch err
             isa(err, LibGit2.GitError) || rethrow()
-            LibGit2.GitCommit(repo, spec)
+            try
+                # maybe it's a remote ref, and we need to fetch it first
+                remote = LibGit2.get(LibGit2.GitRemote, repo, "origin")
+                fetchspec = "+refs/$spec:refs/remotes/origin/$spec"
+                LibGit2.fetch(remote, [fetchspec])
+                LibGit2.GitCommit(repo, "refs/remotes/origin/$spec")
+            catch err
+                isa(err, LibGit2.GitError) || rethrow()
+
+                # give up and assume it's a commit or something
+                LibGit2.GitCommit(repo, spec)
+            end
         end
     end
 end
@@ -311,8 +322,13 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
     end
 
     # Collection of sources required to build julia
+    # NOTE: we need to check out Julia ourselves, because BinaryBuilder does not know how to
+    #       fetch and checkout remote refs.
+    repo = get_repo(repo_name)
+    LibGit2.checkout!(repo, hash)
+    repo_path = downloads_dir(repo_name)
     sources = [
-        "https://github.com/JuliaLang/julia.git" => hash,
+        repo_path
     ]
 
     # Bash recipe for building across all platforms
@@ -321,7 +337,6 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
     mount -t devpts -o newinstance jrunpts /dev/pts
     mount -o bind /dev/pts/ptmx /dev/ptmx
 
-    cd julia
     cat > Make.user <<EOF
     JULIA_CPU_TARGET=generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)
     EOF
