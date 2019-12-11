@@ -34,8 +34,9 @@ function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true, 
     @assert isdir(installed_julia_path)
     registry_path = joinpath(first(DEPOT_PATH), "registries")
     @assert isdir(registry_path)
-    cmd = ```$cmd --mount type=bind,source=$installed_julia_path,target=/opt/julia
-                  --mount type=bind,source=$registry_path,target=/opt/julia/local/share/julia/registries,readonly```
+    cmd = ```$cmd --mount type=bind,source=$installed_julia_path,target=/opt/julia,readonly
+                  --mount type=bind,source=$registry_path,target=/usr/local/share/julia/registries,readonly
+                  --env JULIA_DEPOT_PATH="::/usr/local/share/julia"```
 
     if interactive
         cmd = `$cmd --interactive --tty`
