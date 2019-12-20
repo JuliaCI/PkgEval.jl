@@ -23,6 +23,16 @@ RUN apt-get update && apt-get install -y \
     default-jre-headless \
     # RCall.jl
     r-base \
+    # PGFPlotsX.jl, PredictMD.jl
+    gnuplot \
+    pdf2svg \
+    poppler-utils \
+    texlive \
+    texlive-binaries \
+    texlive-latex-base \
+    texlive-latex-extra \
+    texlive-luatex \
+    texlive-pictures \
     # clean-up
     && rm -rf /var/lib/apt/lists/*
 
