@@ -33,8 +33,7 @@ julia> NewPkgEval.run(julia_versions, ["Example"])
 │ 2   │ v"1.4.0-DEV-3c182bc5c2" │ General  │ Example │ v"0.5.3"  │ ok     │ missing │ 6.948    │
 ```
 
-Detailed logs will be generated in the `logs/` directory. For this example,
-`logs/logs-1.3.0/Example.log` would contain:
+Test logs are part of this dataframe in the `log` column. For example, in this case:
 
 ```
 Resolving package versions...

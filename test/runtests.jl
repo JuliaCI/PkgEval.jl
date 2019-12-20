@@ -33,9 +33,8 @@ end
 @testset "main entrypoint" begin
     results = NewPkgEval.run([julia], pkgnames)
     @test all(results.status .== :ok)
-    for pkg in pkgnames
-        output = read(joinpath(NewPkgEval.log_path(julia), "$pkg.log"), String)
-        @test occursin("Testing $pkg tests passed", output)
+    for result in eachrow(results)
+        @test occursin("Testing $(result.name) tests passed", result.log)
     end
 end
 
