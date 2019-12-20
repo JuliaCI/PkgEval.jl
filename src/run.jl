@@ -179,6 +179,8 @@ function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 2^20 #= 1 MB 
                 reason = :test_failures
             elseif occursin("ERROR: LoadError: syntax", log)
                 reason = :syntax
+            elseif occursin("GC error (probable corruption)", log)
+                reason = :gc_corruption
             elseif occursin("signal (11): Segmentation fault", log)
                 reason = :segfault
             elseif occursin("signal (6): Abort", log)
