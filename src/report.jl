@@ -99,6 +99,7 @@ const reasons = Dict(
     :test_failures          => "package has test failures",
     :syntax                 => "package has syntax issues",
     :segfault               => "a segmentation fault happened",
+    :abort                  => "the process was aborted",
     :unreachable            => "an unreachable instruction was executed",
     :unknown                => "there were unidentified errors",
     # kill

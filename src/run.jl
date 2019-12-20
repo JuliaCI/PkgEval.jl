@@ -181,6 +181,8 @@ function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 2^20 #= 1 MB 
                 reason = :syntax
             elseif occursin("signal (11): Segmentation fault", log)
                 reason = :segfault
+            elseif occursin("signal (6): Abort", log)
+                reason = :abort
             elseif occursin("Unreachable reached", log)
                 reason = :unreachable
             end
