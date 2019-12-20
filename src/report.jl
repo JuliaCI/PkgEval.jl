@@ -98,7 +98,9 @@ const reasons = Dict(
     :missing_package        => "package is using an unknown package",
     :test_failures          => "package has test failures",
     :syntax                 => "package has syntax issues",
+    :gc_corruption          => "GC corruption detected",
     :segfault               => "a segmentation fault happened",
+    :abort                  => "the process was aborted",
     :unreachable            => "an unreachable instruction was executed",
     :unknown                => "there were unidentified errors",
     # kill
