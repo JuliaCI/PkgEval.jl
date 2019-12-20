@@ -1,7 +1,7 @@
 const DEFAULT_REGISTRY = "General"
 
-# Skip these packages when testing packages
 const skip_lists = Dict{String,Vector{String}}()
+const retry_lists = Dict{String,Vector{String}}()
 
 """
     prepare_registry([name])
@@ -22,6 +22,7 @@ function prepare_registry(name=DEFAULT_REGISTRY; update::Bool=false)
 
     # read some metadata
     skip_lists[name] = get(reg, "skip", String[])
+    retry_lists[name] = get(reg, "retry", String[])
 
     return
 end
