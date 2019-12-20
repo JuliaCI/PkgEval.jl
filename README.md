@@ -5,6 +5,15 @@
 
 ## Quick start
 
+To use NewPkgEval.jl, you need to Docker and make sure you can start containers (typically,
+you need to be a member of the `docker` group):
+
+```
+$ docker run hello-world
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+```
+
 Start by installing the package:
 
 ```shell
@@ -13,8 +22,8 @@ cd NewPkgEval.jl
 julia --project -e 'import Pkg; Pkg.instantiate()'
 ```
 
-Then start Julia with `julia --project` and use the following commands to run the tests of a list of packages on a selection of
-Julia versions:
+Then start Julia with `julia --project` and use the following commands to run the tests of a
+list of packages on a selection of Julia versions:
 
 ```julia
 julia> using NewPkgEval
@@ -48,6 +57,39 @@ available as well. These methods however require you to first prepare the enviro
 yourself, by calling `prepare_registry` to set-up the package registry, `prepare_runner` to
 build the Docker image, and `prepare_julia` to download and unpack a binary version of
 Julia.
+
+
+## Why does my package fail?
+
+If you want to debug why your package fails, it's probably easiest to use an interactive
+shell:
+
+```julia
+julia> using NewPkgEval
+
+julia> julia_version = v"1.3.0"  # use `obtain_julia` if you need a specific build
+
+julia> NewPkgEval.prepare_julia(julia_version)
+julia> NewPkgEval.prepare_runner()
+julia> NewPkgEval.prepare_registry()
+
+julia> NewPkgEval.run_sandboxed_julia(julia_version)
+```
+
+Now you can install, load end test your package. If that fails because of some missing
+dependency, you can just install that using the `apt` package manager within the container:
+
+```
+julia> # in the spawned container's Julia session, switch to REPL mode by pressing ;
+
+shell> sudo apt update
+shell> sudo apt install ...
+```
+
+Once you've found the missing dependency and verified that it fixes the tests of your
+package, make a [pull
+request](https://github.com/JuliaComputing/NewPkgEval.jl/edit/master/runner/Dockerfile) to
+include the dependency in the default image.
 
 
 ## Analyzing results
