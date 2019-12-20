@@ -331,11 +331,6 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
                         push!(result, [job.julia, job.pkg.name, job.pkg.uuid, pkg_version,
                                        status, reason, duration, log])
                         running[i] = nothing
-
-                        if log !== missing
-                            mkpath(log_path(job.julia))
-                            write(joinpath(log_path(job.julia), "$(job.pkg.name).log"), log)
-                        end
                     end
                 catch e
                     stop_work()
