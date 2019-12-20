@@ -316,6 +316,17 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
                         running[i] = job
                         pkg_version, status, reason, log =
                             run_sandboxed_test(job.julia, job.pkg; kwargs...)
+
+                        # certain packages are known to have flaky tests; retry them
+                        for j in 1:2
+                            if status == :fail && reason == :test_failures &&
+                               job.pkg.name in retry_lists[job.pkg.registry]
+                                times[i] = now()
+                                pkg_version, status, reason, log =
+                                    run_sandboxed_test(job.julia, job.pkg; kwargs...)
+                            end
+                        end
+
                         duration = (now()-times[i]) / Millisecond(1000)
                         push!(result, [job.julia, job.pkg.name, job.pkg.uuid, pkg_version,
                                        status, reason, duration, log])
