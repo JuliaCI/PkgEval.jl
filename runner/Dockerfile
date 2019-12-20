@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
     # download engines
     curl \
     # essential tools
-    git unzip \
+    git unzip sudo \
     # toolchain
     build-essential gfortran pkg-config \
     # PyCall.jl
@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install -y \
     # clean-up
     && rm -rf /var/lib/apt/lists/*
 
-RUN useradd --create-home --shell /bin/bash pkgeval
+RUN useradd --create-home --shell /bin/bash --groups sudo pkgeval && \
+    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 WORKDIR /home/pkgeval
 USER pkgeval
