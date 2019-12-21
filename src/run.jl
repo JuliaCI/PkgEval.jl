@@ -100,7 +100,7 @@ function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 2^20 #= 1 MB 
     end
 
     # prepare for launching a container
-    container = "Julia_v$(julia)-$(pkg.name)"
+    container = "Julia_v$(julia)-$(pkg.name)-$(randstring(8))"
     arg = raw"""
         using InteractiveUtils
         versioninfo()
