@@ -3,6 +3,8 @@ FROM ubuntu:latest
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
+    # container tools
+    dumb-init \
     # download engines
     curl \
     # essential tools
@@ -42,3 +44,5 @@ RUN useradd --create-home --shell /bin/bash --groups sudo pkgeval && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 WORKDIR /home/pkgeval
 USER pkgeval
+
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
