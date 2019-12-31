@@ -33,6 +33,8 @@ RUN apt-get update && apt-get install -y \
     texlive-latex-extra \
     texlive-luatex \
     texlive-pictures \
+    # Any package that needs a display (e.g. Gtk.jl)
+    xvfb \
     # clean-up
     && rm -rf /var/lib/apt/lists/*
 

@@ -46,7 +46,7 @@ function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true, 
         cmd = `$cmd --name $name`
     end
 
-    container = chomp(read(`$cmd --rm newpkgeval /opt/julia/bin/julia $args`, String))
+    container = chomp(read(`$cmd --rm newpkgeval xvfb-run /opt/julia/bin/julia $args`, String))
     return something(name, container)
 end
 
