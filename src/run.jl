@@ -111,7 +111,7 @@ function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 2^20 #= 1 MB 
 
         ENV["CI"] = true
         ENV["PKGEVAL"] = true
-        ENV["JULIAPKGEVAL"] = true
+        ENV["JULIA_PKGEVAL"] = true
 
         Pkg.add(ARGS...)
         Pkg.test(ARGS...)
