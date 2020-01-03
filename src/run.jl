@@ -154,7 +154,12 @@ function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 2^20 #= 1 MB 
         # pick up the installed package version from the log
         let match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
             if match !== nothing
-                version = VersionNumber(match.captures[1])
+                version = try
+                    VersionNumber(match.captures[1])
+                catch
+                    @error "Could not parse installed package version number '$(match.captures[1])'"
+                    v"0"
+                end
             end
         end
 
