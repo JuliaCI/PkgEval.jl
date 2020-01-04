@@ -18,7 +18,7 @@ NewPkgEval.prepare_julia(julia::VersionNumber)
     NewPkgEval.run_sandboxed_julia(julia, `-e 'using InteractiveUtils; versioninfo()'`)
 end
 
-const pkgnames = ["TimerOutputs", "Crayons", "Example"]
+const pkgnames = ["TimerOutputs", "Crayons", "Example", "Gtk"]
 
 @testset "low-level interface" begin
     NewPkgEval.prepare_registry()
