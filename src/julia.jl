@@ -213,6 +213,11 @@ function get_repo(name)
     else
         repo = LibGit2.GitRepo(repo_path)
         LibGit2.fetch(repo)
+
+        # prune to get rid of nonexisting branches (like the pull/PR/merge ones)
+        remote = LibGit2.get(LibGit2.GitRemote, repo, "origin")
+        fo = LibGit2.FetchOptions(prune=true)
+        LibGit2.fetch(remote, String[]; options=fo)
     end
 
     return repo
@@ -220,30 +225,27 @@ end
 
 # look up a refspec in a git repository
 function get_repo_commit(repo::LibGit2.GitRepo, spec)
-    reference = try
+    try
         # maybe it's a remote branch
-        ref = "refs/remotes/origin/$spec"
-        ref, LibGit2.GitCommit(repo, ref)
+        remote = LibGit2.get(LibGit2.GitRemote, repo, "origin")
+        LibGit2.GitCommit(repo, "refs/remotes/origin/$spec")
     catch err
         isa(err, LibGit2.GitError) || rethrow()
         try
             # maybe it's a version tag
-            ref = "refs/tags/v$spec"
-            ref, LibGit2.GitCommit(repo, ref)
+            LibGit2.GitCommit(repo, "refs/tags/v$spec")
         catch err
             isa(err, LibGit2.GitError) || rethrow()
             try
                 # maybe it's a remote ref, and we need to fetch it first
                 remote = LibGit2.get(LibGit2.GitRemote, repo, "origin")
-                fetchspec = "+refs/$spec:refs/remotes/origin/$spec"
-                LibGit2.fetch(remote, [fetchspec])
-                ref = "refs/remotes/origin/$spec"
-                ref, LibGit2.GitCommit(repo, ref)
+                LibGit2.fetch(remote, ["+refs/$spec:refs/remotes/origin/$spec"])
+                LibGit2.GitCommit(repo, "refs/remotes/origin/$spec")
             catch err
                 isa(err, LibGit2.GitError) || rethrow()
 
                 # give up and assume it's a commit or something
-                nothing, LibGit2.GitCommit(repo, spec)
+                LibGit2.GitCommit(repo, spec)
             end
         end
     end
@@ -253,7 +255,7 @@ end
 function get_julia_repoversion(spec, repo_name)
     # get the Julia repo
     repo = get_repo(repo_name)
-    ref, commit = get_repo_commit(repo, spec)
+    commit = get_repo_commit(repo, spec)
 
     # lookup the version number and commit hash
     tree = LibGit2.peel(LibGit2.GitTree, commit)
@@ -266,11 +268,11 @@ function get_julia_repoversion(spec, repo_name)
         version = VersionNumber(string(version) * "-" * string(shorthash))
     end
 
-    return version, ref, string(hash), string(shorthash)
+    return version, string(hash), string(shorthash)
 end
 
 function obtain_julia_build(spec::String="master", repo_name::String="JuliaLang/julia")
-    version, ref, hash, shorthash = get_julia_repoversion(spec, repo_name)
+    version, hash, shorthash = get_julia_repoversion(spec, repo_name)
     versions = read_versions()
     if haskey(versions, string(version))
         return version
@@ -310,15 +312,15 @@ function obtain_julia_build(spec::String="master", repo_name::String="JuliaLang/
 end
 
 """
-    version = perform_julia_build(ref::String="master"; binarybuilder_args::Vector{String}=String["--verbose"])
+    version = perform_julia_build(spec::String="master"; binarybuilder_args::Vector{String}=String["--verbose"])
 
-Check-out and build Julia at git reference `ref` using BinaryBuilder.
+Check-out and build Julia at git reference `spec` using BinaryBuilder.
 Returns the `version` (what other functions use to identify this build).
 This version will be added to Versions.toml.
 """
 function perform_julia_build(spec::String="master", repo_name::String="JuliaLang/julia";
                              binarybuilder_args::Vector{String}=String["--verbose"])
-    version, ref, hash, shorthash = get_julia_repoversion(spec, repo_name)
+    version, hash, shorthash = get_julia_repoversion(spec, repo_name)
     versions = read_versions()
     if haskey(versions, string(version))
         return version
@@ -329,10 +331,6 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
     #       fetch and checkout remote refs.
     repo = get_repo(repo_name)
     LibGit2.checkout!(repo, hash)
-    if ref !== nothing
-        # switch branches to get a useful versioninfo()
-        LibGit2.branch!(repo, ref; force=true)
-    end
     repo_path = downloads_dir(repo_name)
     sources = [
         repo_path
