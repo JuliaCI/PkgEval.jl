@@ -347,6 +347,10 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
     EOF
     make -j${nproc}
 
+    # prevent building documentation
+    mkdir -p doc/_build/html/en
+    touch doc/_build/html/en/index.html
+
     make install
     cp LICENSE.md ${prefix}
     contrib/fixup-libgfortran.sh ${prefix}/lib/julia
