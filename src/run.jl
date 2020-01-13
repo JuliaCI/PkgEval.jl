@@ -37,7 +37,8 @@ function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true, 
     cmd = ```$cmd --mount type=bind,source=$installed_julia_path,target=/opt/julia,readonly
                   --mount type=bind,source=$registry_path,target=/usr/local/share/julia/registries,readonly
                   --env JULIA_DEPOT_PATH="::/usr/local/share/julia"
-                  --tmpfs /home/pkgeval:exec,uid=1000,gid=1000```
+                  --tmpfs /home/pkgeval:exec,uid=1000,gid=1000
+                  --cpus=1```
     # FIXME: tmpfs mounts don't copy uid/gid back, so we need to correct this manually
     #        https://github.com/opencontainers/runc/issues/1647
 
