@@ -312,14 +312,15 @@ function obtain_julia_build(spec::String="master", repo_name::String="JuliaLang/
 end
 
 """
-    version = perform_julia_build(spec::String="master"; binarybuilder_args::Vector{String}=String["--verbose"])
+    version = perform_julia_build(spec::String="master"; precompile::Bool=true
+                                  binarybuilder_args::Vector{String}=String[])
 
 Check-out and build Julia at git reference `spec` using BinaryBuilder.
 Returns the `version` (what other functions use to identify this build).
 This version will be added to Versions.toml.
 """
 function perform_julia_build(spec::String="master", repo_name::String="JuliaLang/julia";
-                             binarybuilder_args::Vector{String}=String["--verbose"],
+                             binarybuilder_args::Vector{String}=String[],
                              precompile::Bool=true)
     version, hash, shorthash = get_julia_repoversion(spec, repo_name)
     versions = read_versions()
