@@ -155,7 +155,7 @@ function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 2^20 #= 1 MB 
                 reason = :log_limit
                 break
             end
-            sleep(2)
+            sleep(1)
         end
 
         succeeded = success(p)
@@ -313,22 +313,21 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
                        duration = Float64[],
                        log = Union{Missing,String}[])
 
-    try @sync begin
-        # Printer
-        @async begin
-            try
-                while (!isempty(jobs) || !all(==(nothing), running)) && !done
-                    update_output()
-                end
-                println()
-                stop_work()
-            catch e
-                stop_work()
-                !isa(e, InterruptException) && rethrow(e)
+    # Printer
+    @async begin
+        try
+            while (!isempty(jobs) || !all(==(nothing), running)) && !done
+                update_output()
             end
+            stop_work()
+        catch e
+            stop_work()
+            isa(e, InterruptException) || rethrow(e)
         end
+    end
 
-        # Workers
+    # Workers
+    try @sync begin
         for i = 1:ninstances
             push!(all_workers, @async begin
                 try
@@ -362,8 +361,10 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
         end
     end
     catch e
-        e isa InterruptException || rethrow(e)
+        isa(e, InterruptException) || rethrow(e)
     end
+    println()
+
     return result
 end
 
