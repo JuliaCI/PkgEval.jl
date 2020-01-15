@@ -312,14 +312,16 @@ function obtain_julia_build(spec::String="master", repo_name::String="JuliaLang/
 end
 
 """
-    version = perform_julia_build(spec::String="master"; binarybuilder_args::Vector{String}=String["--verbose"])
+    version = perform_julia_build(spec::String="master"; precompile::Bool=true
+                                  binarybuilder_args::Vector{String}=String[])
 
 Check-out and build Julia at git reference `spec` using BinaryBuilder.
 Returns the `version` (what other functions use to identify this build).
 This version will be added to Versions.toml.
 """
 function perform_julia_build(spec::String="master", repo_name::String="JuliaLang/julia";
-                             binarybuilder_args::Vector{String}=String["--verbose"])
+                             binarybuilder_args::Vector{String}=String[],
+                             precompile::Bool=true)
     version, hash, shorthash = get_julia_repoversion(spec, repo_name)
     versions = read_versions()
     if haskey(versions, string(version))
@@ -336,6 +338,16 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
         repo_path
     ]
 
+    # Define a Make.user
+    make_user = """
+        JULIA_CPU_TARGET=generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)
+        """
+    if !precompile
+        make_user *= """
+            JULIA_PRECOMPILE=0
+            """
+    end
+
     # Bash recipe for building across all platforms
     script = raw"""
     cd $WORKSPACE/srcdir
@@ -343,7 +355,7 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
     mount -o bind /dev/pts/ptmx /dev/ptmx
 
     cat > Make.user <<EOF
-    JULIA_CPU_TARGET=generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)
+    """ * make_user * raw"""
     EOF
     make -j${nproc}
 
