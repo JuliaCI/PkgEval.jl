@@ -215,7 +215,7 @@ end
 kill_container(p, container) = Base.run(`docker stop $container`)
 
 function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
-             ninstances::Integer=Sys.CPU_THREADS, kwargs...)
+             ninstances::Integer=Sys.CPU_THREADS, retries::Integer=2, kwargs...)
     # here we deal with managing execution: spawning workers, output, result I/O, etc
 
     jobs = [(julia=julia, pkg=pkg) for julia in julia_versions for pkg in pkgs]
@@ -339,7 +339,7 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
                             run_sandboxed_test(job.julia, job.pkg; kwargs...)
 
                         # certain packages are known to have flaky tests; retry them
-                        for j in 1:2
+                        for j in 1:retries
                             if status == :fail && reason == :test_failures &&
                                job.pkg.name in retry_lists[job.pkg.registry]
                                 times[i] = now()
