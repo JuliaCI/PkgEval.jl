@@ -8,6 +8,7 @@ using ProgressMeter
 using DataFrames
 using Random
 using Mustache
+using CUDAapi
 
 downloads_dir(name) = joinpath(dirname(@__DIR__), "deps", "downloads", name)
 julia_path(ver) = joinpath(dirname(@__DIR__), "deps", "usr", "julia-$ver")

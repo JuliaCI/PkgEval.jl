@@ -29,6 +29,11 @@ function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true,
                                name=nothing, cpus::Integer=2, tmpfs::Bool=true)
     cmd = `docker run --detach`
 
+    # expose any available GPUs if they are available
+    if usable_cuda_gpus() > 0
+        cmd = `$cmd --gpus all -e NVIDIA_VISIBLE_DEVICES=all -e NVIDIA_DRIVER_CAPABILITIES=all`
+    end
+
     # mount data
     @assert ispath(julia_path(julia))
     installed_julia_path = installed_julia_dir(julia)

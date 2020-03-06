@@ -37,6 +37,8 @@ RUN apt-get update && apt-get install -y \
     texlive-pictures \
     # Any package that needs a display (e.g. Gtk.jl)
     xvfb \
+    # CUDA packages
+    nvidia-cuda-toolkit \
     # clean-up
     && rm -rf /var/lib/apt/lists/*
 
