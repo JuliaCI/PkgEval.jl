@@ -44,8 +44,11 @@ function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true,
     @assert isdir(installed_julia_path)
     registry_path = registry_dir()
     @assert isdir(registry_path)
+    artifact_path = artifact_dir()
+    mkpath(artifact_path)
     cmd = ```$cmd --mount type=bind,source=$installed_julia_path,target=/opt/julia,readonly
                   --mount type=bind,source=$registry_path,target=/usr/local/share/julia/registries,readonly
+                  --mount type=bind,source=$artifact_path,target=/var/cache/julia/artifacts
                   --env JULIA_DEPOT_PATH="::/usr/local/share/julia"
           ```
 
@@ -54,6 +57,7 @@ function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true,
         cmd = `$cmd --tmpfs /home/pkgeval:exec,uid=1000,gid=1000`
         # FIXME: tmpfs mounts don't copy uid/gid back, so we need to correct this manually
         #        https://github.com/opencontainers/runc/issues/1647
+        # FIXME: this also breaks mounting artifacts in .julia directly
     end
 
     # restrict resource usage
@@ -126,6 +130,9 @@ function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 2^20 #= 1 MB 
         using InteractiveUtils
         versioninfo()
         println()
+
+        mkpath(".julia")
+        symlink("/var/cache/julia/artifacts", ".julia/artifacts")
 
         using Pkg
         Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
