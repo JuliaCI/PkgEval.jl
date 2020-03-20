@@ -39,10 +39,10 @@ function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true,
     end
 
     # mount data
-    @assert ispath(julia_path(julia))
+    @assert ispath(julia_dir(julia))
     installed_julia_path = installed_julia_dir(julia)
     @assert isdir(installed_julia_path)
-    registry_path = joinpath(first(DEPOT_PATH), "registries")
+    registry_path = registry_dir()
     @assert isdir(registry_path)
     cmd = ```$cmd --mount type=bind,source=$installed_julia_path,target=/opt/julia,readonly
                   --mount type=bind,source=$registry_path,target=/usr/local/share/julia/registries,readonly

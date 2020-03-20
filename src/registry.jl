@@ -3,6 +3,8 @@ const DEFAULT_REGISTRY = "General"
 const skip_lists = Dict{String,Vector{String}}()
 const retry_lists = Dict{String,Vector{String}}()
 
+read_registries() = TOML.parsefile(registries_file())
+
 """
     prepare_registry([name])
 
@@ -39,7 +41,7 @@ function read_pkgs(pkg_names::Vector{String}=String[]; registry=DEFAULT_REGISTRY
     want_all = isempty(pkg_names)
 
     pkg_data = []
-    regpath = registry_path(registry)
+    regpath = registry_dir(registry)
     open(joinpath(regpath, "Registry.toml")) do io
         for (_uuid, pkgdata) in Pkg.Types.read_registry(joinpath(regpath, "Registry.toml"))["packages"]
             uuid = UUID(_uuid)
