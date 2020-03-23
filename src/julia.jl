@@ -208,7 +208,7 @@ end
 function get_repo(name)
     repo_path = downloads_dir(name)
     if !isdir(repo_path)
-        @info "Cloning $name..."
+        @debug "Cloning $name to $repo_path..."
         repo = LibGit2.clone("https://github.com/$name", repo_path)
     else
         repo = LibGit2.GitRepo(repo_path)
@@ -385,7 +385,9 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
 
     # Build the tarballs
     product_hashes = cd(joinpath(@__DIR__, "..", "deps")) do
-        build_tarballs(binarybuilder_args, "julia", version, sources, script, platforms, products, dependencies, preferred_gcc_version=v"7", skip_audit=true)
+        build_tarballs(binarybuilder_args, "julia", version, sources, script, platforms,
+                       products, dependencies, preferred_gcc_version=v"7", skip_audit=true,
+                       verbose=isdebug(:binarybuilder))
     end
     filepath, filehash = product_hashes[platforms[1]]
     filename = basename(filepath)
