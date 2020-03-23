@@ -1,6 +1,10 @@
 function prepare_runner()
     cd(joinpath(dirname(@__DIR__), "runner")) do
-        image = chomp(read(`docker build --quiet --tag newpkgeval .`, String))
+        cmd = `docker build --tag newpkgeval .`
+        if !isdebug(:docker)
+            cmd = pipeline(cmd, stdout=devnull, stderr=devnull)
+        end
+        Base.run(cmd)
     end
     return
 end

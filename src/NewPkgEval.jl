@@ -17,6 +17,9 @@ registries_file() = joinpath(dirname(@__DIR__), "deps", "Registries.toml")
 
 read_registries() = TOML.parsefile(registries_file())
 
+# utils
+isdebug(group) = Base.CoreLogging.current_logger_for_env(Base.CoreLogging.Debug, group, NewPkgEval) !== nothing
+
 include("registry.jl")
 include("julia.jl")
 include("run.jl")
