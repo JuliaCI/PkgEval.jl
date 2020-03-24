@@ -6,6 +6,15 @@ function prepare_runner()
         end
         Base.run(cmd)
     end
+
+    # make sure we own the artifact path
+    # FIXME: use a PkgServer cache
+    artifact_path = artifact_dir()
+    mkpath(artifact_path)
+    Base.run(```docker run --mount type=bind,source=$artifact_path,target=/artifacts
+                           newpkgeval
+                           sudo chown -R pkgeval:pkgeval /artifacts```)
+
     return
 end
 
@@ -45,7 +54,7 @@ function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true,
     registry_path = registry_dir()
     @assert isdir(registry_path)
     artifact_path = artifact_dir()
-    mkpath(artifact_path)
+    @assert isdir(artifact_path)
     cmd = ```$cmd --mount type=bind,source=$installed_julia_path,target=/opt/julia,readonly
                   --mount type=bind,source=$registry_path,target=/usr/local/share/julia/registries,readonly
                   --mount type=bind,source=$artifact_path,target=/var/cache/julia/artifacts
