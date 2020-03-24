@@ -8,27 +8,30 @@ import SHA: sha256
 #
 
 function purge()
-    # prune Versions.toml: only keep versions that have an URL (i.e. removing local stuff)
-    versions = read_versions()
-    rm(versions_file())
-    open(versions_file(); append=true) do io
-        for version in sort(collect(keys(versions)))
-            data = versions[version]
-            if haskey(data, "url")
-                println(io, "[\"$version\"]")
+    # remove old builds
+    vers = TOML.parse(read(extra_versions_file(), String))
+    rm(extra_versions_file())
+    open(extra_versions_file(); append=true) do io
+        for (ver, data) in vers
+            @assert haskey(data, "file")
+            @assert !haskey(data, "url")
+
+            path = download_dir(data["file"])
+            if round(now() - unix2datetime(mtime(path)), Dates.Week) < Dates.Week(1)
+                println(io, "[\"$ver\"]")
                 for (key, value) in data
                     println(io, "$key = $(repr(value))")
                 end
                 println(io)
             else
-                rm(downloads_dir(data["file"]); force=true)
-                rm(downloads_dir(data["file"]) * ".sha256"; force=true)
+                rm(path)
+                rm(path * ".sha256"; force=true)
             end
         end
     end
 
     # remove extracted trees
-    rm(joinpath(dirname(@__DIR__), "deps", "usr"); recursive=true, force=true)
+    rm(joinpath(cache_dir(), "usr"); recursive=true, force=true)
 end
 
 function hash_file(path)
@@ -38,7 +41,7 @@ function hash_file(path)
 end
 
 function installed_julia_dir(ver)
-     jp = julia_path(ver)
+     jp = julia_dir(ver)
      jp_contents = readdir(jp)
      # Allow the unpacked directory to either be insider another directory (as produced by
      # the buildbots) or directly inside the mapped directory (as produced by the BB script)
@@ -56,9 +59,8 @@ end
 # a version is identified by a specific unique version, includes a hash to verify, and
 # points to a local file or a remove resource.
 
-versions_file() = joinpath(dirname(@__DIR__), "deps", "Versions.toml")
-
-read_versions() = TOML.parse(read(versions_file(), String))
+read_versions() = merge(TOML.parse(read(versions_file(), String)),
+                        TOML.parse(read(extra_versions_file(), String)))
 
 """
     prepare_julia(the_ver)
@@ -70,21 +72,21 @@ function prepare_julia(the_ver::VersionNumber)
     vers = read_versions()
     for (ver, data) in vers
         ver == string(the_ver) || continue
-        dir = julia_path(ver)
+        dir = julia_dir(ver)
         mkpath(dirname(dir))
         if haskey(data, "url")
             url = data["url"]
 
             file = get(data, "file", "julia-$ver.tar.gz")
             @assert !isabspath(file)
-            file = downloads_dir(file)
+            file = download_dir(file)
             mkpath(dirname(file))
 
             Pkg.PlatformEngines.download_verify_unpack(url, data["sha"], dir;
                                                        tarball_path=file, force=true)
         else
             file = data["file"]
-            !isabspath(file) && (file = downloads_dir(file))
+            !isabspath(file) && (file = download_dir(file))
             Pkg.PlatformEngines.verify(file, data["sha"])
             isdir(dir) || Pkg.PlatformEngines.unpack(file, dir)
         end
@@ -118,8 +120,6 @@ end
 
 # a release is identified by name, points to an online resource, but does not have a version
 # number. it will be downloaded, probed, and added to Versions.toml.
-
-releases_file() = joinpath(dirname(@__DIR__), "deps", "Releases.toml")
 
 read_releases() = TOML.parsefile(releases_file())
 
@@ -156,13 +156,13 @@ function obtain_julia_release(name::String)
     end
 
     # download
-    filepath = downloads_dir(base)
+    filepath = download_dir(base)
     mkpath(dirname(filepath))
     ispath(filepath) && rm(filepath)
     Pkg.PlatformEngines.download(url, filepath)
 
     # unpack
-    tempdir = julia_path(base)
+    tempdir = julia_dir(base)
     ispath(tempdir) && rm(tempdir; recursive=true)
     Pkg.PlatformEngines.unpack(filepath, tempdir)
 
@@ -177,11 +177,11 @@ function obtain_julia_release(name::String)
 
         # move to its final location
         filename = "julia-$version$ext"
-        if ispath(downloads_dir(filename))
+        if ispath(download_dir(filename))
             @warn "Destination file $filename already exists, assuming it matches"
             rm(filepath)
         else
-            mv(filepath, downloads_dir(filename))
+            mv(filepath, download_dir(filename))
         end
 
         # Update Versions.toml
@@ -190,7 +190,7 @@ function obtain_julia_release(name::String)
             file = "$filename"
             sha = "$filehash"
             """
-        open(versions_file(); append=true) do f
+        open(extra_versions_file(); append=true) do f
             println(f, version_stanza)
         end
     end
@@ -206,7 +206,7 @@ end
 
 # get a repository handle, cloning or updating the repository along the way
 function get_repo(name)
-    repo_path = downloads_dir(name)
+    repo_path = download_dir(name)
     if !isdir(repo_path)
         @debug "Cloning $name to $repo_path..."
         repo = LibGit2.clone("https://github.com/$name", repo_path)
@@ -263,7 +263,7 @@ function get_julia_repoversion(spec, repo_name)
     hash = LibGit2.GitHash(commit)
     # FIXME: no way to get the short hash with LibGit2? It just uses the length argument.
     #shorthash = LibGit2.GitShortHash(hash, 7)
-    shorthash = LibGit2.GitShortHash(chomp(read(`git -C $(downloads_dir(repo_name)) rev-parse --short $hash`, String)))
+    shorthash = LibGit2.GitShortHash(chomp(read(`git -C $(download_dir(repo_name)) rev-parse --short $hash`, String)))
     if version.prerelease != ()
         version = VersionNumber(string(version) * "-" * string(shorthash))
     end
@@ -282,7 +282,7 @@ function obtain_julia_build(spec::String="master", repo_name::String="JuliaLang/
     url = "https://julialangnightlies.s3.amazonaws.com/bin/linux/x64/$(version.major).$(version.minor)/julia-$(shorthash)-linux64.tar.gz"
     try
         filename = basename(url)
-        filepath = downloads_dir(filename)
+        filepath = download_dir(filename)
         if ispath(filepath)
             @warn "Destination file $filename already exists, assuming it matches"
         else
@@ -296,7 +296,7 @@ function obtain_julia_build(spec::String="master", repo_name::String="JuliaLang/
             file = "$filename"
             sha = "$filehash"
             """
-        open(versions_file(); append=true) do f
+        open(extra_versions_file(); append=true) do f
             println(f, version_stanza)
         end
 
@@ -333,7 +333,7 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
     #       fetch and checkout remote refs.
     repo = get_repo(repo_name)
     LibGit2.checkout!(repo, hash)
-    repo_path = downloads_dir(repo_name)
+    repo_path = download_dir(repo_name)
     sources = [
         repo_path
     ]
@@ -398,17 +398,17 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
         file = "$filename"
         sha = "$filehash"
         """
-    open(versions_file(); append=true) do f
+    open(extra_versions_file(); append=true) do f
         println(f, version_stanza)
     end
 
     # Copy the generated tarball to the downloads folder
-    if ispath(downloads_dir(filename))
+    if ispath(download_dir(filename))
         # NOTE: we can't use the previous file here (like in `download_julia`)
         #       because the hash will most certainly be different
         @warn "Destination file $filename already exists, overwriting"
     end
-    mv(filepath, downloads_dir(filename))
+    mv(filepath, download_dir(filename))
 
     # clean-up
     rm(joinpath(dirname(@__DIR__), "deps", "build"); recursive=true, force=true)
