@@ -1,7 +1,7 @@
 The NewPkgEval.jl package is licensed under the MIT "Expat" License:
 
 > Copyright (c) 2015-2018: Iain Dunning
-> Copyright (c) 2018-2019: Julia Computing Inc.
+> Copyright (c) 2018-current: Julia Computing Inc.
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal
