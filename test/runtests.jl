@@ -3,19 +3,19 @@ using Test
 
 # determine the version to use
 const version = get(ENV, "JULIA_VERSION", string(VERSION))
-const julia = NewPkgEval.obtain_julia(version)
-NewPkgEval.prepare_julia(julia::VersionNumber)
+const julia = NewPkgEval.obtain_julia(version)::VersionNumber
+const install = NewPkgEval.prepare_julia(julia)
 
 @testset "sandbox" begin
     NewPkgEval.prepare_runner()
     mktemp() do path, io
-        NewPkgEval.run_sandboxed_julia(julia, `-e 'print(1337)'`; stdout=io)
+        NewPkgEval.run_sandboxed_julia(install, `-e 'print(1337)'`; stdout=io)
         close(io)
         @test read(path, String) == "1337"
     end
 
     # print versioninfo so we can verify in CI logs that the correct version is used
-    NewPkgEval.run_sandboxed_julia(julia, `-e 'using InteractiveUtils; versioninfo()'`)
+    NewPkgEval.run_sandboxed_julia(install, `-e 'using InteractiveUtils; versioninfo()'`)
 end
 
 const pkgnames = ["TimerOutputs", "Crayons", "Example", "Gtk"]
@@ -49,3 +49,4 @@ end
 end
 
 NewPkgEval.purge()
+rm(install; recursive=true)

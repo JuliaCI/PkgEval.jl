@@ -29,9 +29,6 @@ function purge()
             end
         end
     end
-
-    # remove extracted trees
-    rm(joinpath(cache_dir(), "usr"); recursive=true, force=true)
 end
 
 function hash_file(path)
@@ -40,8 +37,7 @@ function hash_file(path)
     end
 end
 
-function installed_julia_dir(ver)
-     jp = julia_dir(ver)
+function installed_julia_dir(jp)
      jp_contents = readdir(jp)
      # Allow the unpacked directory to either be insider another directory (as produced by
      # the buildbots) or directly inside the mapped directory (as produced by the BB script)
@@ -63,17 +59,15 @@ read_versions() = merge(TOML.parse(read(versions_file(), String)),
                         TOML.parse(read(extra_versions_file(), String)))
 
 """
-    prepare_julia(the_ver)
+    prepare_julia(the_ver, dir=mktempdir())
 
 Download and extract the specified version of Julia using the information provided in
-`Versions.toml`.
+`Versions.toml` to the directory `dir`.
 """
-function prepare_julia(the_ver::VersionNumber)
+function prepare_julia(the_ver::VersionNumber, dir::String=mktempdir())
     vers = read_versions()
     for (ver, data) in vers
         ver == string(the_ver) || continue
-        dir = julia_dir(ver)
-        mkpath(dirname(dir))
         if haskey(data, "url")
             url = data["url"]
 
@@ -83,14 +77,15 @@ function prepare_julia(the_ver::VersionNumber)
             mkpath(dirname(file))
 
             Pkg.PlatformEngines.download_verify_unpack(url, data["sha"], dir;
-                                                       tarball_path=file, force=true)
+                                                       tarball_path=file, force=true,
+                                                       ignore_existence=true)
         else
             file = data["file"]
             !isabspath(file) && (file = download_dir(file))
             Pkg.PlatformEngines.verify(file, data["sha"])
-            isdir(dir) || Pkg.PlatformEngines.unpack(file, dir)
+            Pkg.PlatformEngines.unpack(file, dir)
         end
-        return
+        return dir
     end
     error("Requested Julia version $the_ver not found")
 end
@@ -195,7 +190,7 @@ function obtain_julia_release(name::String)
         end
     end
 
-    rm(tempdir; recursive=true) # let `prepare_julia` unpack; keeps code simpler here
+    rm(tempdir; recursive=true)
     return version
 end
 
@@ -266,7 +261,7 @@ function get_julia_repoversion(spec, repo_name)
     shorthash = LibGit2.GitShortHash(chomp(read(`git -C $(download_dir(repo_name)) rev-parse --short $hash`, String)))
     version = VersionNumber(string(version) * "-" * string(shorthash))
     # NOTE: we append the hash to differentiate commits with identical VERSION files
-    #       (we can't oly do this for -DEV versions because of backport branches)
+    #       (we can't only do this for -DEV versions because of backport branches)
 
     return version, string(hash), string(shorthash)
 end

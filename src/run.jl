@@ -19,11 +19,11 @@ function prepare_runner()
 end
 
 """
-    run_sandboxed_julia(julia::VersionNumber, args=``; wait=true, interactive=true,
+    run_sandboxed_julia(install::String, args=``; wait=true, interactive=true,
                         stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
 
 Run Julia inside of a sandbox, passing the given arguments `args` to it. The argument
-`julia` specifies the version of Julia to use.
+`install` specifies the directory where Julia can be found.
 
 The argument `wait` determines if the process will be waited on, and defaults to true. If
 setting this argument to `false`, remember that the sandbox is using on Docker and killing
@@ -32,13 +32,13 @@ argument to set the container name, and use that to kill the Julia process.
 
 The keyword argument `interactive` maps to the Docker option, and defaults to true.
 """
-function run_sandboxed_julia(julia::VersionNumber, args=``; wait=true,
+function run_sandboxed_julia(install::String, args=``; wait=true,
                              stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
-    container = spawn_sandboxed_julia(julia, args; kwargs...)
+    container = spawn_sandboxed_julia(install, args; kwargs...)
     Base.run(pipeline(`docker attach $container`, stdin=stdin, stdout=stdout, stderr=stderr); wait=wait)
 end
 
-function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true,
+function spawn_sandboxed_julia(install::String, args=``; interactive=true,
                                name=nothing, cpus::Integer=2, tmpfs::Bool=true)
     cmd = `docker run --detach`
 
@@ -48,14 +48,13 @@ function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true,
     end
 
     # mount data
-    @assert ispath(julia_dir(julia))
-    installed_julia_path = installed_julia_dir(julia)
-    @assert isdir(installed_julia_path)
+    julia_path = installed_julia_dir(install)
+    @assert isdir(julia_path)
     registry_path = registry_dir()
     @assert isdir(registry_path)
     artifact_path = artifact_dir()
     @assert isdir(artifact_path)
-    cmd = ```$cmd --mount type=bind,source=$installed_julia_path,target=/opt/julia,readonly
+    cmd = ```$cmd --mount type=bind,source=$julia_path,target=/opt/julia,readonly
                   --mount type=bind,source=$registry_path,target=/usr/local/share/julia/registries,readonly
                   --mount type=bind,source=$artifact_path,target=/var/cache/julia/artifacts
                   --env JULIA_DEPOT_PATH="::/usr/local/share/julia"
@@ -85,11 +84,11 @@ function spawn_sandboxed_julia(julia::VersionNumber, args=``; interactive=true,
 end
 
 """
-    run_sandboxed_test(julia::VersionNumber, pkg; do_depwarns=false, log_limit=2^20,
+    run_sandboxed_test(install::String, pkg; do_depwarns=false, log_limit=2^20,
                        time_limit=60*60)
 
-Run the unit tests for a single package `pkg` inside of a sandbox using Julia version
-`julia`. If `do_depwarns` is `true`, deprecation warnings emitted while running the
+Run the unit tests for a single package `pkg` inside of a sandbox using a Julia installation
+at `install`. If `do_depwarns` is `true`, deprecation warnings emitted while running the
 package's tests will cause the tests to fail. Test will be forcibly interrupted after
 `time_limit` seconds (defaults to 1h) or if the log becomes larger than `log_limit`
 (defaults to 1MB).
@@ -99,42 +98,10 @@ directory.
 
 Refer to `run_sandboxed_julia`[@ref] for more possible `keyword arguments.
 """
-function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 2^20 #= 1 MB =#,
+function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
                             time_limit = 60*60, do_depwarns=false, kwargs...)
-    # everything related to testing in Julia: version compatibility, invoking Pkg, etc
-
-    if pkg.name in skip_lists[pkg.registry]
-        return missing, :skip, :explicit, missing
-    elseif endswith(pkg.name, "_jll")
-        return missing, :skip, :jll, missing
-    end
-
-    # can we even test this package?
-    pkg_versions = Pkg.Operations.load_versions(pkg.path)
-    julia_supported = Dict{VersionNumber,Bool}()
-    pkg_compat = Pkg.Operations.load_package_data_raw(Pkg.Types.VersionSpec,
-                                                      joinpath(pkg.path, "Compat.toml"))
-    for (version_range, bounds) in pkg_compat
-        if haskey(bounds, "julia")
-            for pkg_version in keys(pkg_versions)
-                if pkg_version in version_range
-                    julia_supported[pkg_version] = julia ∈ bounds["julia"]
-                end
-            end
-        end
-    end
-    if length(julia_supported) != length(pkg_versions)
-        # not all versions have a bound for Julia, so we need to be conservative
-        supported = true
-    else
-        supported = any(values(julia_supported))
-    end
-    if !supported
-        return missing, :skip, :unsupported, missing
-    end
-
     # prepare for launching a container
-    container = "Julia_v$(julia)-$(pkg.name)-$(randstring(8))"
+    container = "$(pkg.name)-$(randstring(8))"
     arg = raw"""
         using InteractiveUtils
         versioninfo()
@@ -157,7 +124,7 @@ function run_sandboxed_test(julia::VersionNumber, pkg; log_limit = 2^20 #= 1 MB 
     cmd = `$cmd -e $arg $(pkg.name)`
 
     mktemp() do path, f
-        p = run_sandboxed_julia(julia, cmd; stdout=f, stderr=f, stdin=devnull,
+        p = run_sandboxed_julia(install, cmd; stdout=f, stderr=f, stdin=devnull,
                                 interactive=false, wait=false, name=container, kwargs...)
         status = nothing
         reason = missing
@@ -243,7 +210,15 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
              ninstances::Integer=Sys.CPU_THREADS, retries::Integer=2, kwargs...)
     # here we deal with managing execution: spawning workers, output, result I/O, etc
 
-    jobs = [(julia=julia, pkg=pkg) for julia in julia_versions for pkg in pkgs]
+    prepare_runner()
+
+    julia_installs = Dict{VersionNumber,String}()
+    for julia in julia_versions
+        julia_installs[julia] = prepare_julia(julia)
+    end
+
+    jobs = [(julia=julia, install=install, pkg=pkg) for (julia,install) in julia_installs
+                                                    for pkg in pkgs]
 
     # use a random test order to (hopefully) get a more reasonable ETA
     shuffle!(jobs)
@@ -360,8 +335,48 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
                         job = pop!(jobs)
                         times[i] = now()
                         running[i] = job
+
+                        # can we even test this package?
+                        pkg_versions = Pkg.Operations.load_versions(job.pkg.path)
+                        julia_supported = Dict{VersionNumber,Bool}()
+                        pkg_compat =
+                            Pkg.Operations.load_package_data_raw(Pkg.Types.VersionSpec,
+                                                                 joinpath(job.pkg.path,
+                                                                          "Compat.toml"))
+                        for (version_range, bounds) in pkg_compat
+                            if haskey(bounds, "julia")
+                                for pkg_version in keys(pkg_versions)
+                                    if pkg_version in version_range
+                                        julia_supported[pkg_version] =
+                                            job.julia ∈ bounds["julia"]
+                                    end
+                                end
+                            end
+                        end
+                        if length(julia_supported) != length(pkg_versions)
+                            # not all versions have a bound for Julia,
+                            # so we need to be conservative
+                            supported = true
+                        else
+                            supported = any(values(julia_supported))
+                        end
+                        if !supported
+                            push!(result, [job.julia, job.pkg.name, job.pkg.uuid, missing,
+                                           :skip, :unsupported, 0, missing])
+                            continue
+                        elseif job.pkg.name in skip_lists[job.pkg.registry]
+                            push!(result, [job.julia, job.pkg.name, job.pkg.uuid, missing,
+                                           :skip, :explicit, 0, missing])
+                            continue
+                        elseif endswith(job.pkg.name, "_jll")
+                            push!(result, [job.julia, job.pkg.name, job.pkg.uuid, missing,
+                                           :skip, :jll, 0, missing])
+                            continue
+                        end
+
+                        # perform an initial run
                         pkg_version, status, reason, log =
-                            run_sandboxed_test(job.julia, job.pkg; kwargs...)
+                            run_sandboxed_test(job.install, job.pkg; kwargs...)
 
                         # certain packages are known to have flaky tests; retry them
                         for j in 1:retries
@@ -369,7 +384,7 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
                                job.pkg.name in retry_lists[job.pkg.registry]
                                 times[i] = now()
                                 pkg_version, status, reason, log =
-                                    run_sandboxed_test(job.julia, job.pkg; kwargs...)
+                                    run_sandboxed_test(job.install, job.pkg; kwargs...)
                             end
                         end
 
@@ -387,8 +402,14 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
     end
     catch e
         isa(e, InterruptException) || rethrow(e)
+    finally
+        println()
+
+        # clean-up
+        for (julia, install) in julia_installs
+            rm(install; recursive=true)
+        end
     end
-    println()
 
     return result
 end
@@ -407,13 +428,8 @@ keyword arguments.
 function run(julia_versions::Vector{VersionNumber}=[Base.VERSION],
              pkg_names::Vector{String}=String[];
              registry::String=DEFAULT_REGISTRY, update_registry::Bool=true, kwargs...)
-    # high-level entry-point that takes care of everything
-
     prepare_registry(registry; update=update_registry)
-
-    prepare_runner()
     pkgs = read_pkgs(pkg_names)
 
-    prepare_julia.(julia_versions)
     run(julia_versions, pkgs; kwargs...)
 end

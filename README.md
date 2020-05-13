@@ -68,11 +68,11 @@ julia> using NewPkgEval
 
 julia> julia_version = v"1.3.0"  # use `obtain_julia` if you need a specific build
 
-julia> NewPkgEval.prepare_julia(julia_version)
+julia> julia_install = NewPkgEval.prepare_julia(julia_version)
 julia> NewPkgEval.prepare_runner()
 julia> NewPkgEval.prepare_registry()
 
-julia> NewPkgEval.run_sandboxed_julia(julia_version)
+julia> NewPkgEval.run_sandboxed_julia(julia_install)
 ```
 
 Now you can install, load end test your package. If that fails because of some missing
