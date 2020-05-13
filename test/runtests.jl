@@ -32,9 +32,11 @@ end
 
 @testset "main entrypoint" begin
     results = NewPkgEval.run([julia], pkgnames)
-    @test all(results.status .== :ok)
-    for result in eachrow(results)
-        @test occursin("Testing $(result.name) tests passed", result.log)
+    if !(version == "master" || version == "nightly")
+        @test all(results.status .== :ok)
+        for result in eachrow(results)
+            @test occursin("Testing $(result.name) tests passed", result.log)
+        end
     end
 end
 
