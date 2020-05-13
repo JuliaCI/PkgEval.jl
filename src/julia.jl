@@ -147,21 +147,25 @@ function obtain_julia_release(name::String)
         ext = ".tar.gz"
         base = filename[1:end-7]
     else
-        ext, base = splitext(filename)
+        base, ext = splitext(filename)
     end
 
     # download
-    filepath = download_dir(base)
+    filepath = download_dir(filename)
+    duplicates = 0
+    while ispath(filepath)
+        duplicates += 1
+        filepath = download_dir("$(base).$(duplicates)$(ext)")
+    end
     mkpath(dirname(filepath))
-    ispath(filepath) && rm(filepath)
     Pkg.PlatformEngines.download(url, filepath)
 
-    # unpack
-    tempdir = julia_dir(base)
-    ispath(tempdir) && rm(tempdir; recursive=true)
-    Pkg.PlatformEngines.unpack(filepath, tempdir)
+    # get version
+    version = mktempdir() do install
+        Pkg.PlatformEngines.unpack(filepath, install)
+        get_julia_version(install)
+    end
 
-    version = get_julia_version(base)
     versions = read_versions()
     if haskey(versions, string(version))
         @info "Julia $name (version $version) already available"
@@ -170,7 +174,7 @@ function obtain_julia_release(name::String)
         # always use the hash of the downloaded file to force a check during `prepare_julia`
         filehash = hash_file(filepath)
 
-        # move to its final location
+        # rename to include the version
         filename = "julia-$version$ext"
         if ispath(download_dir(filename))
             @warn "Destination file $filename already exists, assuming it matches"
@@ -190,7 +194,6 @@ function obtain_julia_release(name::String)
         end
     end
 
-    rm(tempdir; recursive=true)
     return version
 end
 
@@ -386,6 +389,21 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
     end
     filepath, filehash = product_hashes[platforms[1]]
     filename = basename(filepath)
+    if endswith(filename, ".tar.gz")
+        ext = ".tar.gz"
+        base = filename[1:end-7]
+    else
+        base, ext = splitext(filename)
+    end
+
+    # Copy the generated tarball to the downloads folder
+    new_filepath = download_dir(filename)
+    duplicates = 0
+    while ispath(new_filepath)
+        duplicates += 1
+        new_filepath = download_dir("$(base).$(duplicates)$(ext)")
+    end
+    mv(filepath, download_dir(filename))
 
     # Update Versions.toml
     version_stanza = """
@@ -396,14 +414,6 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
     open(extra_versions_file(); append=true) do f
         println(f, version_stanza)
     end
-
-    # Copy the generated tarball to the downloads folder
-    if ispath(download_dir(filename))
-        # NOTE: we can't use the previous file here (like in `download_julia`)
-        #       because the hash will most certainly be different
-        @warn "Destination file $filename already exists, overwriting"
-    end
-    mv(filepath, download_dir(filename))
 
     # clean-up
     rm(joinpath(dirname(@__DIR__), "deps", "build"); recursive=true, force=true)
