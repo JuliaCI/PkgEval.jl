@@ -19,7 +19,6 @@ registries_file() = joinpath(dirname(@__DIR__), "deps", "Registries.toml")
 cache_dir() = joinpath(get(ENV, "XDG_CACHE_HOME", joinpath(homedir(), ".cache")), "NewPkgEval")
 download_dir(name) = joinpath(cache_dir(), "downloads", name)
 artifact_dir() = joinpath(cache_dir(), "artifacts")
-julia_dir(ver) = joinpath(cache_dir(), "usr", "julia-$ver")
 extra_versions_file() = joinpath(cache_dir(), "Versions.toml")
 
 # fixed locations
