@@ -17,10 +17,6 @@ RUN apt-get update && apt-get install -y \
     git unzip sudo \
     # toolchain
     build-essential gfortran pkg-config \
-    # PyCall.jl
-    python3 libpython3.6 python3-distutils virtualenv \
-    # PyPlot
-    python3-matplotlib \
     # TimeZones.jl
     tzdata \
     # FFMPEG.jl
@@ -29,8 +25,6 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     # JavaCall.jl
     default-jre-headless \
-    # RCall.jl
-    r-base \
     # PGFPlotsX.jl, PredictMD.jl
     gnuplot \
     pdf2svg \

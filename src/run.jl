@@ -116,6 +116,9 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
         ENV["CI"] = true
         ENV["PKGEVAL"] = true
         ENV["JULIA_PKGEVAL"] = true
+    
+        ENV["PYTHON"] = ""
+        ENV["R_HOME"] = "*"
 
         Pkg.add(ARGS...)
         Pkg.test(ARGS...)
