@@ -340,23 +340,40 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
                         running[i] = job
 
                         # can we even test this package?
-                        pkg_versions = Pkg.Operations.load_versions(job.pkg.path)
                         julia_supported = Dict{VersionNumber,Bool}()
-                        pkg_compat =
-                            Pkg.Operations.load_package_data_raw(Pkg.Types.VersionSpec,
+                        if VERSION >= v"1.5"
+                            ctx = Pkg.Types.Context()
+                            pkg_version_info = Pkg.Operations.load_versions(ctx, job.pkg.path)
+                            pkg_versions = sort!(collect(keys(pkg_version_info)))
+                            pkg_compat =
+                                Pkg.Operations.load_package_data(Pkg.Types.VersionSpec,
                                                                  joinpath(job.pkg.path,
-                                                                          "Compat.toml"))
-                        for (version_range, bounds) in pkg_compat
-                            if haskey(bounds, "julia")
-                                for pkg_version in keys(pkg_versions)
-                                    if pkg_version in version_range
-                                        julia_supported[pkg_version] =
-                                            job.julia ∈ bounds["julia"]
+                                                                          "Compat.toml"),
+                                                                 pkg_versions)
+                            for (pkg_version, bounds) in pkg_compat
+                                if haskey(bounds, "julia")
+                                    julia_supported[pkg_version] =
+                                        job.julia ∈ bounds["julia"]
+                                end
+                            end
+                        else
+                            pkg_version_info = Pkg.Operations.load_versions(job.pkg.path)
+                            pkg_compat =
+                                Pkg.Operations.load_package_data_raw(Pkg.Types.VersionSpec,
+                                                                     joinpath(job.pkg.path,
+                                                                              "Compat.toml"))
+                            for (version_range, bounds) in pkg_compat
+                                if haskey(bounds, "julia")
+                                    for pkg_version in keys(pkg_version_info)
+                                        if pkg_version in version_range
+                                            julia_supported[pkg_version] =
+                                                job.julia ∈ bounds["julia"]
+                                        end
                                     end
                                 end
                             end
                         end
-                        if length(julia_supported) != length(pkg_versions)
+                        if length(julia_supported) != length(pkg_version_info)
                             # not all versions have a bound for Julia,
                             # so we need to be conservative
                             supported = true
