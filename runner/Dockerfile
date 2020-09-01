@@ -13,10 +13,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     git unzip sudo \
     # toolchain
     build-essential gfortran pkg-config \
-    # TimeZones.jl
-    tzdata \
-    # FFMPEG.jl
-    ffmpeg \
     # GZip.jl
     zlib1g-dev \
     # JavaCall.jl
