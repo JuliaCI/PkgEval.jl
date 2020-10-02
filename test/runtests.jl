@@ -45,7 +45,6 @@ end
     stable = v"1.2.0"
     results = NewPkgEval.run([lts, stable], ["Example"])
     NewPkgEval.compare(results, lts, stable)
-    NewPkgEval.render(results)
 end
 
 NewPkgEval.purge()

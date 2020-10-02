@@ -7,7 +7,6 @@ using Dates
 using ProgressMeter
 using DataFrames
 using Random
-using Mustache
 using CUDAapi
 
 # immutable: in package directory
