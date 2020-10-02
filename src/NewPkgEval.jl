@@ -7,7 +7,7 @@ using Dates
 using ProgressMeter
 using DataFrames
 using Random
-using CUDAapi
+using Libdl
 
 # immutable: in package directory
 versions_file() = joinpath(dirname(@__DIR__), "deps", "Versions.toml")

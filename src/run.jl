@@ -43,7 +43,7 @@ function spawn_sandboxed_julia(install::String, args=``; interactive=true,
     cmd = `docker run --detach`
 
     # expose any available GPUs if they are available
-    if usable_cuda_gpus() > 0
+    if find_library("libcuda") != ""
         cmd = `$cmd --gpus all -e NVIDIA_VISIBLE_DEVICES=all -e NVIDIA_DRIVER_CAPABILITIES=all`
     end
 
@@ -116,7 +116,7 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
         ENV["CI"] = true
         ENV["PKGEVAL"] = true
         ENV["JULIA_PKGEVAL"] = true
-    
+
         ENV["PYTHON"] = ""
         ENV["R_HOME"] = "*"
 
