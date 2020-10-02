@@ -207,7 +207,13 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     end
 end
 
-kill_container(p, container) = Base.run(`docker stop $container`)
+function kill_container(p, container)
+    cmd = `docker stop $container`
+    if !isdebug(:docker)
+        cmd = pipeline(cmd, stdout=devnull, stderr=devnull)
+    end
+    Base.run(cmd)
+end
 
 function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
              ninstances::Integer=Sys.CPU_THREADS, retries::Integer=2, kwargs...)
