@@ -303,7 +303,7 @@ function obtain_julia_build(spec::String="master", repo_name::String="JuliaLang/
     catch ex
         # assume this was a download failure, and proceed to build Julia ourselves
         # TODO: check this was actually a 404
-        isa(ex, ProcessFailedException) || rethrow()
+        isa(ex, ErrorException) || rethrow()
         bt = catch_backtrace()
         @error "Could not download Julia $spec (version $version), performing a build" exception=(ex,bt)
         perform_julia_build(spec, repo_name)
@@ -334,7 +334,7 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
     LibGit2.checkout!(repo, hash)
     repo_path = download_dir(repo_name)
     sources = [
-        repo_path
+        DirectorySource(repo_path)
     ]
 
     # Define a Make.user
