@@ -429,6 +429,7 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
     catch e
         isa(e, InterruptException) || rethrow(e)
     finally
+        stop_work()
         println()
 
         # clean-up
