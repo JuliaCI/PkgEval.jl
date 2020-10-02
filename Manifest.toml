@@ -1,5 +1,11 @@
 # This file is machine-generated - editing it directly is not advised
 
+[[ArgParse]]
+deps = ["Logging", "TextWrap"]
+git-tree-sha1 = "a8fc2e149cd6db276c76faebe197ccd3a92fb9ff"
+uuid = "c7e460c6-2fb9-53a9-8c5b-16f535851c63"
+version = "1.1.0"
+
 [[AssetRegistry]]
 deps = ["Distributed", "JSON", "Pidfile", "SHA", "Test"]
 git-tree-sha1 = "b25e88db7944f98789130d7b503276bc34bc098e"
@@ -15,16 +21,10 @@ version = "0.2.0"
 uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 
 [[BinaryBuilder]]
-deps = ["Base64", "Dates", "GitHub", "HTTP", "InteractiveUtils", "JLD2", "JSON", "LibGit2", "Libdl", "MbedTLS", "ObjectFile", "Pkg", "PkgLicenses", "ProgressMeter", "REPL", "Random", "Registrator", "RegistryTools", "SHA", "Sockets", "ghr_jll"]
-git-tree-sha1 = "d995cc425ca973880f5913835673c1289a524cdf"
+deps = ["ArgParse", "Base64", "CodecZlib", "Dates", "GitHub", "HTTP", "InteractiveUtils", "JLD2", "JSON", "LibGit2", "Libdl", "Logging", "LoggingExtras", "MbedTLS", "ObjectFile", "Pkg", "PkgLicenses", "ProgressMeter", "REPL", "Random", "Registrator", "RegistryTools", "SHA", "Sockets", "UUIDs", "ghr_jll"]
+git-tree-sha1 = "ed165beb553996c40d386539d345b561b91008e7"
 uuid = "12aac903-9f7c-5d81-afc2-d9565ea332ae"
-version = "0.2.2"
-
-[[BinaryProvider]]
-deps = ["Libdl", "Logging", "SHA"]
-git-tree-sha1 = "ecdec412a9abc8db54c0efc5548c64dfce072058"
-uuid = "b99e7846-7c00-51b0-8f62-c81ae34c0232"
-version = "0.5.10"
+version = "0.2.5"
 
 [[CategoricalArrays]]
 deps = ["DataAPI", "Future", "JSON", "Missings", "Printf", "Statistics", "StructTypes", "Unicode"]
@@ -51,9 +51,9 @@ version = "1.3.0"
 
 [[DataFrames]]
 deps = ["CategoricalArrays", "Compat", "DataAPI", "Future", "InvertedIndices", "IteratorInterfaceExtensions", "Missings", "PooledArrays", "Printf", "REPL", "Reexport", "SortingAlgorithms", "Statistics", "TableTraits", "Tables", "Unicode"]
-git-tree-sha1 = "1b4d832288e2d919eeaccdf1d9af7a8a57d773d6"
+git-tree-sha1 = "a7c1c9a6e47a92321bbc9d500dab9b04cc4a6a39"
 uuid = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
-version = "0.21.0"
+version = "0.21.7"
 
 [[DataStructures]]
 deps = ["InteractiveUtils", "OrderedCollections"]
@@ -179,7 +179,6 @@ uuid = "deac9b47-8bc7-5906-a0fe-35ac56dc84c0"
 version = "7.71.1+0"
 
 [[LibGit2]]
-deps = ["Printf"]
 uuid = "76f85450-5226-5b5a-8eaa-529ad045b433"
 
 [[LibSSH2_jll]]
@@ -198,6 +197,12 @@ uuid = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 [[Logging]]
 uuid = "56ddb016-857b-54e1-b83d-db4d58db5568"
 
+[[LoggingExtras]]
+deps = ["Dates"]
+git-tree-sha1 = "03289aba73c0abc25ff0229bed60f2a4129cd15c"
+uuid = "e6f89c97-d47a-5376-807f-9c37f3926c36"
+version = "0.4.2"
+
 [[MacroTools]]
 deps = ["Markdown", "Random"]
 git-tree-sha1 = "f7d2e3f654af75f01ec49be82c231c382214223a"
@@ -209,10 +214,10 @@ deps = ["Base64"]
 uuid = "d6f4376e-aef5-505a-96c1-9c027394607a"
 
 [[MbedTLS]]
-deps = ["BinaryProvider", "Dates", "Libdl", "Random", "Sockets"]
-git-tree-sha1 = "85f5947b53c8cfd53ccfa3f4abae31faa22c2181"
+deps = ["Dates", "MbedTLS_jll", "Random", "Sockets"]
+git-tree-sha1 = "426a6978b03a97ceb7ead77775a1da066343ec6e"
 uuid = "739be429-bea8-5141-9913-cc70e7f3736d"
-version = "0.7.0"
+version = "1.0.2"
 
 [[MbedTLS_jll]]
 deps = ["Libdl", "Pkg"]
@@ -271,7 +276,7 @@ uuid = "fa939f87-e72e-5be4-a000-7fc836dbe307"
 version = "1.2.0"
 
 [[Pkg]]
-deps = ["Dates", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "UUIDs"]
+deps = ["Dates", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "Test", "UUIDs"]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 
 [[PkgLicenses]]
@@ -292,9 +297,9 @@ uuid = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 
 [[ProgressMeter]]
 deps = ["Distributed", "Printf"]
-git-tree-sha1 = "ea1f4fa0ff5e8b771bf130d87af5b7ef400760bd"
+git-tree-sha1 = "4cff8da83f89e06eeae5b81307a08bb33a96a602"
 uuid = "92933f4c-e287-5a05-a399-4b506db050ca"
-version = "1.2.0"
+version = "1.4.0"
 
 [[REPL]]
 deps = ["InteractiveUtils", "Markdown", "Sockets"]
@@ -376,6 +381,11 @@ version = "1.1.0"
 [[Test]]
 deps = ["Distributed", "InteractiveUtils", "Logging", "Random"]
 uuid = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[[TextWrap]]
+git-tree-sha1 = "9250ef9b01b66667380cf3275b3f7488d0e25faf"
+uuid = "b718987f-49a8-5099-9789-dcd902bef87d"
+version = "1.0.1"
 
 [[TimeToLive]]
 deps = ["Dates"]
