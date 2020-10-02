@@ -1,4 +1,5 @@
 using BinaryBuilder
+using Downloads
 using LibGit2
 import SHA: sha256
 
@@ -158,7 +159,7 @@ function obtain_julia_release(name::String)
         filepath = download_dir("$(base).$(duplicates)$(ext)")
     end
     mkpath(dirname(filepath))
-    Pkg.PlatformEngines.download(url, filepath)
+    Downloads.download(url, filepath)
 
     # get version
     version = mktempdir() do install
@@ -284,7 +285,7 @@ function obtain_julia_build(spec::String="master", repo_name::String="JuliaLang/
         if ispath(filepath)
             @warn "Destination file $filename already exists, assuming it matches"
         else
-            download(url, filepath)
+            Downloads.download(url, filepath)
         end
         filehash = hash_file(filepath)
 

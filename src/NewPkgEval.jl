@@ -33,7 +33,6 @@ include("run.jl")
 include("report.jl")
 
 function __init__()
-    Pkg.PlatformEngines.probe_platform_engines!()
     mkpath(cache_dir())
     touch(extra_versions_file())
 end
