@@ -333,6 +333,15 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
         return version
     end
 
+    # Define a Make.user
+    bundled = mktempdir()
+    open("$bundled/Make.user", "w") do io
+        println(io, "JULIA_CPU_TARGET=generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)")
+        for buildflag in buildflags
+            println(io, buildflag)
+        end
+    end
+
     # Collection of sources required to build julia
     # NOTE: we need to check out Julia ourselves, because BinaryBuilder does not know how to
     #       fetch and checkout remote refs.
@@ -341,32 +350,30 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
     repo_path = download_dir(repo_name)
     sources = [
         DirectorySource(repo_path; target="julia"),
-        DirectorySource(srccache_dir(); target="srccache")
+        DirectorySource(srccache_dir(); target="srccache"),
+        DirectorySource(bundled; target="bundled"),
     ]
     mkpath(srccache_dir())
 
-    # Default flags
-    prepend!(buildflags, [
-        "JULIA_CPU_TARGET='generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)'"
-    ])
-
     # Bash recipe for building across all platforms
     script = raw"""
-    cd $WORKSPACE/srcdir/julia
-    ln -s $WORKSPACE/srcdir/srccache deps/srccache
-    mount -t devpts -o newinstance jrunpts /dev/pts
-    mount -o bind /dev/pts/ptmx /dev/ptmx
+        cd $WORKSPACE/srcdir/julia
+        ln -s $WORKSPACE/srcdir/srccache deps/srccache
+        ln -s $WORKSPACE/srcdir/bundled/Make.user Make.user
+        mount -t devpts -o newinstance jrunpts /dev/pts
+        mount -o bind /dev/pts/ptmx /dev/ptmx
 
-    make -j${nproc} """ * join(buildflags, " ") * raw"""
+        make -j${nproc}
 
-    # prevent building documentation
-    mkdir -p doc/_build/html/en
-    touch doc/_build/html/en/index.html
+        # prevent building documentation
+        mkdir -p doc/_build/html/en
+        touch doc/_build/html/en/index.html
 
-    make install
-    cp LICENSE.md ${prefix}
-    contrib/fixup-libgfortran.sh ${prefix}/lib/julia
-    contrib/fixup-libstdc++.sh ${prefix}/lib ${prefix}/lib/julia
+        make install -j${nproc}
+
+        cp LICENSE.md ${prefix}
+        contrib/fixup-libgfortran.sh ${prefix}/lib/julia
+        contrib/fixup-libstdc++.sh ${prefix}/lib ${prefix}/lib/julia
     """
 
     # These are the platforms we will build for by default, unless further
