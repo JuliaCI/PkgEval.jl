@@ -311,8 +311,9 @@ function obtain_julia_build(spec::String="master", repo_name::String="JuliaLang/
 end
 
 """
-    version = perform_julia_build(spec::String="master"; precompile::Bool=true
-                                  binarybuilder_args::Vector{String}=String[])
+    version = perform_julia_build(spec::String="master";
+                                  binarybuilder_args::Vector{String}=String[]
+                                  buildflags::Vector{String}=String[])
 
 Check-out and build Julia at git reference `spec` using BinaryBuilder.
 Returns the `version` (what other functions use to identify this build).
@@ -320,8 +321,13 @@ This version will be added to Versions.toml.
 """
 function perform_julia_build(spec::String="master", repo_name::String="JuliaLang/julia";
                              binarybuilder_args::Vector{String}=String[],
-                             precompile::Bool=true)
+                             buildflags::Vector{String}=String[])
     version, hash, shorthash = get_julia_repoversion(spec, repo_name)
+    if !isempty(buildflags)
+        version = VersionNumber(version.major, version.minor, version.patch,
+                                (version.prerelease...,
+                                 "build-$(string(Base.hash(buildflags), base=16))"))
+    end
     versions = read_versions()
     if haskey(versions, string(version))
         return version
@@ -339,15 +345,10 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
     ]
     mkpath(srccache_dir())
 
-    # Define a Make.user
-    make_user = """
-        JULIA_CPU_TARGET=generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)
-        """
-    if !precompile
-        make_user *= """
-            JULIA_PRECOMPILE=0
-            """
-    end
+    # Default flags
+    prepend!(buildflags, [
+        "JULIA_CPU_TARGET='generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)'"
+    ])
 
     # Bash recipe for building across all platforms
     script = raw"""
@@ -356,10 +357,7 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
     mount -t devpts -o newinstance jrunpts /dev/pts
     mount -o bind /dev/pts/ptmx /dev/ptmx
 
-    cat > Make.user <<EOF
-    """ * make_user * raw"""
-    EOF
-    make -j${nproc}
+    make -j${nproc} """ * join(buildflags, " ") * raw"""
 
     # prevent building documentation
     mkdir -p doc/_build/html/en
