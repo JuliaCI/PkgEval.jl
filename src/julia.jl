@@ -334,8 +334,10 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
     LibGit2.checkout!(repo, hash)
     repo_path = download_dir(repo_name)
     sources = [
-        DirectorySource(repo_path)
+        DirectorySource(repo_path; target="julia"),
+        DirectorySource(srccache_dir(); target="srccache")
     ]
+    mkpath(srccache_dir())
 
     # Define a Make.user
     make_user = """
@@ -349,7 +351,8 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
 
     # Bash recipe for building across all platforms
     script = raw"""
-    cd $WORKSPACE/srcdir
+    cd $WORKSPACE/srcdir/julia
+    ln -s $WORKSPACE/srcdir/srccache deps/srccache
     mount -t devpts -o newinstance jrunpts /dev/pts
     mount -o bind /dev/pts/ptmx /dev/ptmx
 
