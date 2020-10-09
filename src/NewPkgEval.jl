@@ -19,6 +19,7 @@ cache_dir() = joinpath(get(ENV, "XDG_CACHE_HOME", joinpath(homedir(), ".cache"))
 download_dir(name) = joinpath(cache_dir(), "downloads", name)
 artifact_dir() = joinpath(cache_dir(), "artifacts")
 extra_versions_file() = joinpath(cache_dir(), "Versions.toml")
+compilecache_dir() = joinpath(cache_dir(), "compiled")
 
 # fixed locations
 registry_dir() = joinpath(first(DEPOT_PATH), "registries")

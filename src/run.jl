@@ -7,13 +7,13 @@ function prepare_runner()
         Base.run(cmd)
     end
 
-    # make sure we own the artifact path
-    # FIXME: use a PkgServer cache
-    artifact_path = artifact_dir()
-    mkpath(artifact_path)
-    Base.run(```docker run --mount type=bind,source=$artifact_path,target=/artifacts
-                           newpkgeval
-                           sudo chown -R pkgeval:pkgeval /artifacts```)
+    # make sure we own our caches
+    for cache in (artifact_dir(), compilecache_dir())
+        mkpath(cache)
+        Base.run(```docker run --mount type=bind,source=$cache,target=/cache
+                               newpkgeval
+                               sudo chown -R pkgeval:pkgeval /cache```)
+    end
 
     return
 end
@@ -54,9 +54,12 @@ function spawn_sandboxed_julia(install::String, args=``; interactive=true,
     @assert isdir(registry_path)
     artifact_path = artifact_dir()
     @assert isdir(artifact_path)
+    compilecache_path = compilecache_dir()
+    @assert isdir(compilecache_path)
     cmd = ```$cmd --mount type=bind,source=$julia_path,target=/opt/julia,readonly
                   --mount type=bind,source=$registry_path,target=/usr/local/share/julia/registries,readonly
                   --mount type=bind,source=$artifact_path,target=/var/cache/julia/artifacts
+                  --mount type=bind,source=$compilecache_path,target=/var/cache/julia/compilecache
                   --env JULIA_DEPOT_PATH="::/usr/local/share/julia"
           ```
 
@@ -70,6 +73,9 @@ function spawn_sandboxed_julia(install::String, args=``; interactive=true,
 
     # restrict resource usage
     cmd = `$cmd --cpus=$cpus --env JULIA_NUM_THREADS=$cpus`
+
+    # allow limitless precompilation files
+    cmd = `$cmd --env JULIA_MAX_NUM_PRECOMPILE_FILES=$(typemax(Int))`
 
     if interactive
         cmd = `$cmd --interactive --tty`
@@ -109,6 +115,11 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
 
         mkpath(".julia")
         symlink("/var/cache/julia/artifacts", ".julia/artifacts")
+        if isdefined(Base, :MAX_NUM_PRECOMPILE_FILES) &&
+           Base.MAX_NUM_PRECOMPILE_FILES isa Ref &&
+           Base.MAX_NUM_PRECOMPILE_FILES > 10
+            symlink("/var/cache/julia/compilecache", ".julia/compiled")
+        end
 
         using Pkg
         Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
