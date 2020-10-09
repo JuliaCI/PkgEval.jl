@@ -7,20 +7,13 @@ function prepare_runner()
         Base.run(cmd)
     end
 
-    # make sure we own our caches
-    for cache in (artifact_dir(), compilecache_dir())
-        mkpath(cache)
-        Base.run(```docker run --mount type=bind,source=$cache,target=/cache
-                               newpkgeval
-                               sudo chown -R pkgeval:pkgeval /cache```)
-    end
-
     return
 end
 
 """
     run_sandboxed_julia(install::String, args=``; wait=true, interactive=true,
-                        stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
+                        stdin=stdin, stdout=stdout, stderr=stderr,
+                        cache=nothing, storage=nothing, kwargs...)
 
 Run Julia inside of a sandbox, passing the given arguments `args` to it. The argument
 `install` specifies the directory where Julia can be found.
@@ -30,6 +23,10 @@ setting this argument to `false`, remember that the sandbox is using on Docker a
 the process does not necessarily kill the container. It is advised to use the `name` keyword
 argument to set the container name, and use that to kill the Julia process.
 
+The `cache` directory is used to cache temporary files across runs, e.g. compilation caches,
+and can be expected to be removed at any point. The `storage` directory can be used for more
+lasting files, e.g. artifacts.
+
 The keyword argument `interactive` maps to the Docker option, and defaults to true.
 """
 function run_sandboxed_julia(install::String, args=``; wait=true,
@@ -38,8 +35,8 @@ function run_sandboxed_julia(install::String, args=``; wait=true,
     Base.run(pipeline(`docker attach $container`, stdin=stdin, stdout=stdout, stderr=stderr); wait=wait)
 end
 
-function spawn_sandboxed_julia(install::String, args=``; interactive=true,
-                               name=nothing, cpus::Integer=2, tmpfs::Bool=true)
+function spawn_sandboxed_julia(install::String, args=``; interactive=true, name=nothing,
+                               cpus::Integer=2, tmpfs::Bool=true, cache=nothing, storage=nothing)
     cmd = `docker run --detach`
 
     # expose any available GPUs if they are available
@@ -52,16 +49,18 @@ function spawn_sandboxed_julia(install::String, args=``; interactive=true,
     @assert isdir(julia_path)
     registry_path = registry_dir()
     @assert isdir(registry_path)
-    artifact_path = artifact_dir()
-    @assert isdir(artifact_path)
-    compilecache_path = compilecache_dir()
-    @assert isdir(compilecache_path)
     cmd = ```$cmd --mount type=bind,source=$julia_path,target=/opt/julia,readonly
                   --mount type=bind,source=$registry_path,target=/usr/local/share/julia/registries,readonly
-                  --mount type=bind,source=$artifact_path,target=/var/cache/julia/artifacts
-                  --mount type=bind,source=$compilecache_path,target=/var/cache/julia/compilecache
                   --env JULIA_DEPOT_PATH="::/usr/local/share/julia"
           ```
+
+    if storage !== nothing
+        cmd = `$cmd --mount type=bind,source=$storage,target=/storage`
+    end
+
+    if cache !== nothing
+        cmd = `$cmd --mount type=bind,source=$cache,target=/cache`
+    end
 
     # mount working directory in tmpfs
     if tmpfs
@@ -90,8 +89,8 @@ function spawn_sandboxed_julia(install::String, args=``; interactive=true,
 end
 
 """
-    run_sandboxed_test(install::String, pkg; do_depwarns=false, log_limit=2^20,
-                       time_limit=60*60)
+    run_sandboxed_test(install::String, pkg; do_depwarns=false,
+                       log_limit=2^20, time_limit=60*60)
 
 Run the unit tests for a single package `pkg` inside of a sandbox using a Julia installation
 at `install`. If `do_depwarns` is `true`, deprecation warnings emitted while running the
@@ -114,11 +113,18 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
         println()
 
         mkpath(".julia")
-        symlink("/var/cache/julia/artifacts", ".julia/artifacts")
+
+        # global storage of downloaded artifacts
+        # TODO: use PkgServer?
+        mkpath("/storage/artifacts")
+        symlink("/storage/artifacts", ".julia/artifacts")
+
+        # local storage of compiled packages
         if isdefined(Base, :MAX_NUM_PRECOMPILE_FILES) &&
            Base.MAX_NUM_PRECOMPILE_FILES isa Ref &&
-           Base.MAX_NUM_PRECOMPILE_FILES > 10
-            symlink("/var/cache/julia/compilecache", ".julia/compiled")
+           Base.MAX_NUM_PRECOMPILE_FILES[] > 10
+            mkpath("/cache/compiled")
+            symlink("/cache/compiled", ".julia/compiled")
         end
 
         using Pkg
@@ -232,13 +238,29 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
 
     prepare_runner()
 
-    julia_installs = Dict{VersionNumber,String}()
+    # Julia installation and local cache
+    julia_environments = Dict{VersionNumber,Tuple{String,String}}()
     for julia in julia_versions
-        julia_installs[julia] = prepare_julia(julia)
+        install = prepare_julia(julia)
+        cache = mktempdir()
+        julia_environments[julia] = (install, cache)
     end
 
-    jobs = [(julia=julia, install=install, pkg=pkg) for (julia,install) in julia_installs
-                                                    for pkg in pkgs]
+    # global storage
+    storage = storage_dir()
+    mkpath(storage)
+
+    # make sure data is writable
+    for (julia, (install,cache)) in julia_environments
+        Base.run(```docker run --mount type=bind,source=$storage,target=/storage
+                               --mount type=bind,source=$cache,target=/cache
+                               newpkgeval
+                               sudo chown -R pkgeval:pkgeval /storage /cache```)
+    end
+
+    jobs = [(julia=julia, install=install, cache=cache,
+             pkg=pkg) for (julia,(install,cache)) in julia_environments
+                      for pkg in pkgs]
 
     # use a random test order to (hopefully) get a more reasonable ETA
     shuffle!(jobs)
@@ -413,7 +435,8 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
 
                         # perform an initial run
                         pkg_version, status, reason, log =
-                            run_sandboxed_test(job.install, job.pkg; kwargs...)
+                            run_sandboxed_test(job.install, job.pkg; cache=job.cache,
+                                               storage=storage, kwargs...)
 
                         # certain packages are known to have flaky tests; retry them
                         for j in 1:retries
@@ -421,7 +444,8 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
                                job.pkg.name in retry_lists[job.pkg.registry]
                                 times[i] = now()
                                 pkg_version, status, reason, log =
-                                    run_sandboxed_test(job.install, job.pkg; kwargs...)
+                                    run_sandboxed_test(job.install, job.pkg; cache=job.cache,
+                                                       storage=storage, kwargs...)
                             end
                         end
 
@@ -444,8 +468,14 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
         println()
 
         # clean-up
-        for (julia, install) in julia_installs
+        for (julia, (install,cache)) in julia_environments
             rm(install; recursive=true)
+            uid = ccall(:getuid, Cint, ())
+            gid = ccall(:getgid, Cint, ())
+            Base.run(```docker run --mount type=bind,source=$cache,target=/cache
+                                   newpkgeval
+                                   sudo chown -R $uid:$gid /cache```)
+            rm(cache; recursive=true)
         end
     end
 
