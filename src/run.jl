@@ -188,7 +188,7 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
                    Host: localhost""")
             write(docker, "\r\n\r\n")
             headers = readuntil(docker, "\r\n\r\n")
-            contains(headers, "HTTP/1.1 200 OK") || return nothing
+            occursin("HTTP/1.1 200 OK", headers) || return nothing
             stats = nothing
             while true
                 len = parse(Int, readuntil(docker, "\r\n"); base=16)
@@ -318,7 +318,7 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
                Host: localhost""")
         write(docker, "\r\n\r\n")
         headers = readuntil(docker, "\r\n\r\n")
-        contains(headers, "HTTP/1.1 200 OK") || error("Invalid reply: $headers")
+        occursin("HTTP/1.1 200 OK", headers) || error("Invalid reply: $headers")
         len = parse(Int, readuntil(docker, "\r\n"); base=16)
         body = String(read(docker, len))
         close(docker)
