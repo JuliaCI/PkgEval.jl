@@ -181,13 +181,14 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
 
         # monitor stats
         t3 = @async begin
-            stats = nothing
             docker = connect("/var/run/docker.sock")
             write(docker,
                 """GET /containers/$container/stats HTTP/1.1
                    Host: localhost""")
             write(docker, "\r\n\r\n")
-            headers = readuntil(docker, "\r\n\r\n") # TODO: verify code
+            headers = readuntil(docker, "\r\n\r\n")
+            contains(headers, "HTTP/1.1 200 OK") || return nothing
+            stats = nothing
             while true
                 len = parse(Int, readuntil(docker, "\r\n"); base=16)
                 len==0 && break
@@ -316,6 +317,7 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
                Host: localhost""")
         write(docker, "\r\n\r\n")
         headers = readuntil(docker, "\r\n\r\n")
+        contains(headers, "HTTP/1.1 200 OK") || error("Invalid reply: $headers")
         len = parse(Int, readuntil(docker, "\r\n"); base=16)
         body = String(read(docker, len))
         close(docker)
