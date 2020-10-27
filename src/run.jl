@@ -108,6 +108,9 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     # prepare for launching a container
     container = "$(pkg.name)-$(randstring(8))"
     arg = raw"""
+        using Dates
+        print('#'^80, "\n# Set-up: $(now())\n#\n\n")
+
         using InteractiveUtils
         versioninfo()
         println()
@@ -137,8 +140,15 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
         ENV["PYTHON"] = ""
         ENV["R_HOME"] = "*"
 
+        print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
+
         Pkg.add(ARGS...)
+
+        print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n")
+
         Pkg.test(ARGS...)
+
+        print("\n\n", '#'^80, "\n# Teardown: $(now())\n#\n\n")
     """
     cmd = do_depwarns ? `--depwarn=error` : ``
     cmd = `$cmd -e $arg $(pkg.name)`
@@ -205,13 +215,14 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
                      cpu_stats["cpu_usage"]["total_usage"]/1e9,
                      cpu_stats["cpu_usage"]["usage_in_usermode"]/1e9,
                      cpu_stats["cpu_usage"]["usage_in_kernelmode"]/1e9)
+            println(io)
 
             println(io, "Network usage:")
             for (network, network_stats) in stats["networks"]
                 println(io, "- $network: $(Base.format_bytes(network_stats["rx_bytes"])) received, $(Base.format_bytes(network_stats["tx_bytes"])) sent")
             end
 
-            log *= "\n" * String(take!(io))
+            log *= String(take!(io))
         end
 
         # pick up the installed package version from the log
