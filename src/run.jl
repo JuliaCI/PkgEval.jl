@@ -159,8 +159,7 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
         end
 
         # kill on too-large logs
-        t2 = @async while true
-            process_running(p) || break
+        t2 = @async while process_running(p)
             if stat(path).size > log_limit
                 kill_container(p, container)
                 status = :kill
@@ -170,10 +169,50 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
             sleep(1)
         end
 
+        # monitor stats
+        t3 = @async begin
+            stats = nothing
+            docker = connect("/var/run/docker.sock")
+            write(docker,
+                """GET /containers/$container/stats HTTP/1.1
+                   Host: localhost""")
+            write(docker, "\r\n\r\n")
+            headers = readuntil(docker, "\r\n\r\n") # TODO: verify code
+            while true
+                len = parse(Int, readuntil(docker, "\r\n"); base=16)
+                len==0 && break
+                body = String(read(docker, len))
+                stats = JSON.parse(body)
+                readuntil(docker, "\r\n")
+            end
+            close(docker)
+            return stats
+        end
+
         succeeded = success(p)
         log = read(path, String)
         close(t)
         wait(t2)
+        stats = fetch(t3)
+
+        # append some simple statistics to the log
+        # TODO: serialize the statistics
+        if stats !== nothing
+            io = IOBuffer()
+
+            cpu_stats = stats["cpu_stats"]
+            @printf(io, "CPU usage: %.2fs (%.2fs user, %.2fs kernel)\n",
+                     cpu_stats["cpu_usage"]["total_usage"]/1e9,
+                     cpu_stats["cpu_usage"]["usage_in_usermode"]/1e9,
+                     cpu_stats["cpu_usage"]["usage_in_kernelmode"]/1e9)
+
+            println(io, "Network usage:")
+            for (network, network_stats) in stats["networks"]
+                println(io, "- $network: $(Base.format_bytes(network_stats["rx_bytes"])) received, $(Base.format_bytes(network_stats["tx_bytes"])) sent")
+            end
+
+            log *= "\n" * String(take!(io))
+        end
 
         # pick up the installed package version from the log
         let match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
@@ -256,6 +295,20 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
                                --mount type=bind,source=$cache,target=/cache
                                newpkgeval
                                sudo chown -R pkgeval:pkgeval /storage /cache```)
+    end
+
+    # ensure we can use Docker's API
+    info = let
+        docker = connect("/var/run/docker.sock")
+        write(docker,
+            """GET /info HTTP/1.1
+               Host: localhost""")
+        write(docker, "\r\n\r\n")
+        headers = readuntil(docker, "\r\n\r\n")
+        len = parse(Int, readuntil(docker, "\r\n"); base=16)
+        body = String(read(docker, len))
+        close(docker)
+        JSON.parse(body)
     end
 
     jobs = [(julia=julia, install=install, cache=cache,
