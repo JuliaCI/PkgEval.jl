@@ -123,7 +123,8 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
         symlink("/storage/artifacts", ".julia/artifacts")
 
         # local storage of compiled packages
-        if isdefined(Base, :MAX_NUM_PRECOMPILE_FILES) &&
+        # FIXME: disabled, as this significantly regresses total PkgEval run time
+        if false && isdefined(Base, :MAX_NUM_PRECOMPILE_FILES) &&
            Base.MAX_NUM_PRECOMPILE_FILES isa Ref &&
            Base.MAX_NUM_PRECOMPILE_FILES[] > 10
             mkpath("/cache/compiled")
