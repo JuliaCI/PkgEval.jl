@@ -32,10 +32,12 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     # clean-up
     && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir /storage /cache
-
 RUN useradd --create-home --shell /bin/bash --groups sudo pkgeval && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+RUN mkdir /storage /cache && \
+    chown pkgeval /storage /cache
+
 WORKDIR /home/pkgeval
 USER pkgeval
 
