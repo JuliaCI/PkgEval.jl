@@ -52,6 +52,7 @@ function spawn_sandboxed_julia(install::String, args=``; interactive=true, name=
     cmd = ```$cmd --mount type=bind,source=$julia_path,target=/opt/julia,readonly
                   --mount type=bind,source=$registry_path,target=/usr/local/share/julia/registries,readonly
                   --env JULIA_DEPOT_PATH="::/usr/local/share/julia"
+                  --env JULIA_PKG_SERVER
           ```
 
     if storage !== nothing
@@ -118,7 +119,6 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
         mkpath(".julia")
 
         # global storage of downloaded artifacts
-        # TODO: use PkgServer?
         mkpath("/storage/artifacts")
         symlink("/storage/artifacts", ".julia/artifacts")
 
