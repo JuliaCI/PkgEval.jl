@@ -175,6 +175,12 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     input = Pipe()
     output = Pipe()
 
+    function stop()
+        kill_container(p, container)
+        close(output)   # XXX: docker run sometimes hangs after container exit,
+                        #      maybe that's because of stream blocking?
+    end
+
     p = run_sandboxed_julia(install, cmd; stdout=output, stderr=output, stdin=input,
                             tty=false, wait=false, name=container, kwargs...)
 
@@ -191,7 +197,7 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
         process_running(p) || return
         status = :kill
         reason = :time_limit
-        kill_container(p, container)
+        stop()
     end
 
     # kill on inactivity (fewer than 1 second of CPU usage every minute)
@@ -208,7 +214,7 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
                 if usage_diff < 1
                     status = :kill
                     reason = :inactivity
-                    kill_container(p, container)
+                    stop()
                 end
             end
             previous_stats = current_stats
@@ -221,21 +227,22 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     t3 = @async begin
         io = IOBuffer()
         stats = nothing
-        while process_running(p)
+        while process_running(p) && isopen(output)
             line = readline(output)
             println(io, line)
 
             # right before the container ends, gather some statistics
             if occursin("PkgEval teardown", line)
                 stats = query_container(container)
-                kill_container(p, container)
+                stop()
+                break
             end
 
             # kill on too-large logs
             if io.size > log_limit
-                kill_container(p, container)
                 status = :kill
                 reason = :log_limit
+                stop()
                 break
             end
         end
