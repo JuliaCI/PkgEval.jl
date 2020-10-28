@@ -252,6 +252,8 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
         println(io, "Raw statistics: $stats")
 
         log *= String(take!(io))
+    else
+        log *= "No statistics gathered."
     end
 
     # pick up the installed package version from the log
