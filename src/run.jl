@@ -114,7 +114,7 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     script = raw"""
         try
             using Dates
-            print('#'^80, "\n# Set-up: $(now())\n#\n\n")
+            print('#'^80, "\n# PkgEval set-up: $(now())\n#\n\n")
 
             using InteractiveUtils
             versioninfo()
@@ -145,23 +145,26 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
             ENV["PYTHON"] = ""
             ENV["R_HOME"] = "*"
 
+
             print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
 
             Pkg.add(ARGS...)
 
-            print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n")
+
+            print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n\n")
 
             Pkg.test(ARGS...)
         finally
-            print("\n\n", '#'^80, "\n# Teardown: $(now())\n#\n\n")
+            print("\n\n", '#'^80, "\n# PkgEval teardown: $(now())\n#\n")
         end"""
     cmd = do_depwarns ? `--depwarn=error` : ``
     cmd = `$cmd --eval 'eval(Meta.parse(read(stdin,String)))' $(pkg.name)`
 
-    pipe = Pipe()
+    input = Pipe()
+    output = Pipe()
 
     mktemp() do path, f
-        p = run_sandboxed_julia(install, cmd; stdout=f, stderr=f, stdin=pipe,
+        p = run_sandboxed_julia(install, cmd; stdout=output, stderr=output, stdin=input,
                                 tty=false, wait=false, name=container, kwargs...)
         status = nothing
         reason = missing
@@ -169,8 +172,8 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
 
         # pass the script over standard input to avoid exceeding max command line size,
         # and keep the process listing somewhat clean
-        println(pipe, script)
-        close(pipe.in)
+        println(input, script)
+        close(input.in)
 
         # kill on timeout
         t = Timer(time_limit) do timer
@@ -180,46 +183,48 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
             kill_container(p, container)
         end
 
-        # kill on too-large logs
-        t2 = @async while process_running(p)
-            if stat(path).size > log_limit
-                kill_container(p, container)
-                status = :kill
-                reason = :log_limit
-                break
-            end
-            sleep(1)
-        end
-
-        # monitor stats
-        t3 = @async begin
-            # give the container the change to start up
-            sleep(1)
-
-            docker = connect("/var/run/docker.sock")
-            write(docker,
-                """GET /containers/$container/stats HTTP/1.1
-                   Host: localhost""")
-            write(docker, "\r\n\r\n")
-            headers = readuntil(docker, "\r\n\r\n")
-            occursin("HTTP/1.1 200 OK", headers) || return nothing
+        # collect output and stats
+        t2 = @async begin
+            io = IOBuffer()
             stats = nothing
-            while true
-                len = parse(Int, readuntil(docker, "\r\n"); base=16)
-                len==0 && break
-                body = String(read(docker, len))
-                stats = JSON.parse(body)
-                readuntil(docker, "\r\n")
+            while process_running(p)
+                line = readline(output)
+                println(io, line)
+
+                # right before the container ends, gather some statistics
+                if occursin("PkgEval teardown", line)
+                    docker = connect("/var/run/docker.sock")
+                    write(docker,
+                        """GET /containers/$container/stats HTTP/1.1
+                           Host: localhost""")
+                    write(docker, "\r\n\r\n")
+                    headers = readuntil(docker, "\r\n\r\n")
+                    if occursin("HTTP/1.1 200 OK", headers)
+                        len = parse(Int, readuntil(docker, "\r\n"); base=16)
+                        len==0 && break
+                        body = String(read(docker, len))
+                        stats = JSON.parse(body)
+                    end
+                    close(docker)
+
+                    close(input.in)
+                end
+
+                # kill on too-large logs
+                if io.size > log_limit
+                    kill_container(p, container)
+                    status = :kill
+                    reason = :log_limit
+                    break
+                end
             end
-            close(docker)
-            return stats
+            return String(take!(io)), stats
         end
 
         succeeded = success(p)
-        log = read(path, String)
+        close(output)
         close(t)
-        wait(t2)
-        stats = fetch(t3)
+        log, stats = fetch(t2)
 
         # append some simple statistics to the log
         # TODO: serialize the statistics
