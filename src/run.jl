@@ -36,7 +36,7 @@ function run_sandboxed_julia(install::String, args=``; wait=true,
 end
 
 function runner_sandboxed_julia(install::String, args=``; interactive=true, tty=true, name=nothing,
-                               cpus::Integer=2, tmpfs::Bool=true, cache=nothing, storage=nothing)
+                                cpus::Vector{Int}=Int[], tmpfs::Bool=true, cache=nothing, storage=nothing)
     cmd = `docker run`
 
     # expose any available GPUs if they are available
@@ -72,7 +72,9 @@ function runner_sandboxed_julia(install::String, args=``; interactive=true, tty=
     end
 
     # restrict resource usage
-    cmd = `$cmd --cpus=$cpus --env JULIA_NUM_THREADS=$cpus`
+    if !isempty(cpus)
+        cmd = `$cmd --cpuset-cpus=$(join(cpus, ','))`
+    end
 
     # allow limitless precompilation files
     cmd = `$cmd --env JULIA_MAX_NUM_PRECOMPILE_FILES=$(typemax(Int))`
@@ -581,7 +583,7 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
                         # perform an initial run
                         pkg_version, status, reason, log =
                             run_sandboxed_test(job.install, job.pkg; cache=job.cache,
-                                               storage=storage, kwargs...)
+                                               storage=storage, cpus=[i-1], kwargs...)
 
                         # certain packages are known to have flaky tests; retry them
                         for j in 1:retries
@@ -590,7 +592,7 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
                                 times[i] = now()
                                 pkg_version, status, reason, log =
                                     run_sandboxed_test(job.install, job.pkg; cache=job.cache,
-                                                       storage=storage, kwargs...)
+                                                       storage=storage, cpus=[i-1], kwargs...)
                             end
                         end
 
