@@ -156,8 +156,18 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
             print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n\n")
 
             Pkg.test(ARGS...)
+
+            println("\nPkgEval succeeded")
+        catch err
+            print("\nPkgEval failed: ")
+            showerror(stdout, err)
+            Base.show_backtrace(stdout, catch_backtrace())
+            println()
         finally
             print("\n\n", '#'^80, "\n# PkgEval teardown: $(now())\n#\n\n")
+
+            # give the host some time to pick the above marker up, and kill us
+            sleep(60)
         end"""
     cmd = do_depwarns ? `--depwarn=error` : ``
     cmd = `$cmd --eval 'eval(Meta.parse(read(stdin,String)))' $(pkg.name)`
@@ -172,6 +182,9 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     # and keep the process listing somewhat clean
     println(input, script)
     close(input.in)
+
+    status = nothing
+    reason = missing
 
     # kill on timeout
     t = Timer(time_limit) do timer
@@ -204,7 +217,7 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
                 end
                 close(docker)
 
-                close(input.in)
+                kill_container(p, container)
             end
 
             # kill on too-large logs
@@ -218,9 +231,9 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
         return String(take!(io)), stats
     end
 
-    succeeded = success(p)
-    close(output)
+    wait(p)
     close(t)
+    close(output)
     log, stats = fetch(t2)
 
     # append some simple statistics to the log
@@ -270,38 +283,39 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     end
 
     # try to figure out the failure reason
-    if succeeded
-        status = :ok
-        reason = missing
-    else
-        status = :fail
-
-        # figure out a more accurate failure reason from the log
-        reason = if occursin("ERROR: Unsatisfiable requirements detected for package", log)
-            # NOTE: might be the package itself, or one of its dependencies
-            :unsatisfiable
-        elseif occursin("ERROR: Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
-            :untestable
-        elseif occursin("cannot open shared object file: No such file or directory", log)
-            :binary_dependency
-        elseif occursin(r"Package .+ does not have .+ in its dependencies", log)
-            :missing_dependency
-        elseif occursin(r"Package .+ not found in current path", log)
-            :missing_package
-        elseif occursin("Some tests did not pass", log) || occursin("Test Failed", log)
-            :test_failures
-        elseif occursin("ERROR: LoadError: syntax", log)
-            :syntax
-        elseif occursin("GC error (probable corruption)", log)
-            :gc_corruption
-        elseif occursin("signal (11): Segmentation fault", log)
-            :segfault
-        elseif occursin("signal (6): Abort", log)
-            :abort
-        elseif occursin("Unreachable reached", log)
-            :unreachable
+    if status == nothing
+        if occursin("PkgEval succeeded", log)
+            status = :ok
         else
-            :unknown
+            status = :fail
+
+            # figure out a more accurate failure reason from the log
+            reason = if occursin("ERROR: Unsatisfiable requirements detected for package", log)
+                # NOTE: might be the package itself, or one of its dependencies
+                :unsatisfiable
+            elseif occursin("ERROR: Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
+                :untestable
+            elseif occursin("cannot open shared object file: No such file or directory", log)
+                :binary_dependency
+            elseif occursin(r"Package .+ does not have .+ in its dependencies", log)
+                :missing_dependency
+            elseif occursin(r"Package .+ not found in current path", log)
+                :missing_package
+            elseif occursin("Some tests did not pass", log) || occursin("Test Failed", log)
+                :test_failures
+            elseif occursin("ERROR: LoadError: syntax", log)
+                :syntax
+            elseif occursin("GC error (probable corruption)", log)
+                :gc_corruption
+            elseif occursin("signal (11): Segmentation fault", log)
+                :segfault
+            elseif occursin("signal (6): Abort", log)
+                :abort
+            elseif occursin("Unreachable reached", log)
+                :unreachable
+            else
+                :unknown
+            end
         end
     end
 
