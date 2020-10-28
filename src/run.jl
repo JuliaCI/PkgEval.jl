@@ -142,6 +142,8 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
             ENV["PKGEVAL"] = true
             ENV["JULIA_PKGEVAL"] = true
 
+            ENV["JULIA_PKG_PRECOMPILE_AUTO"] = 0
+
             ENV["PYTHON"] = ""
             ENV["R_HOME"] = "*"
 
