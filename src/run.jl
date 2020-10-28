@@ -204,7 +204,7 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
 
     # kill on inactivity (fewer than 1 second of CPU usage every minute)
     previous_stats = nothing
-    t2 = Timer(30; interval=60) do timer
+    t2 = Timer(60; interval=300) do timer
         process_running(p) || return
         try
             current_stats = query_container(container)
