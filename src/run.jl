@@ -212,16 +212,26 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
         if stats !== nothing
             io = IOBuffer()
 
-            cpu_stats = stats["cpu_stats"]
-            @printf(io, "CPU usage: %.2fs (%.2fs user, %.2fs kernel)\n",
-                     cpu_stats["cpu_usage"]["total_usage"]/1e9,
-                     cpu_stats["cpu_usage"]["usage_in_usermode"]/1e9,
-                     cpu_stats["cpu_usage"]["usage_in_kernelmode"]/1e9)
-            println(io)
+            try
+                cpu_stats = stats["cpu_stats"]
+                @printf(io, "CPU usage: %.2fs (%.2fs user, %.2fs kernel)\n",
+                        cpu_stats["cpu_usage"]["total_usage"]/1e9,
+                        cpu_stats["cpu_usage"]["usage_in_usermode"]/1e9,
+                        cpu_stats["cpu_usage"]["usage_in_kernelmode"]/1e9)
+                println(io)
 
-            println(io, "Network usage:")
-            for (network, network_stats) in stats["networks"]
-                println(io, "- $network: $(Base.format_bytes(network_stats["rx_bytes"])) received, $(Base.format_bytes(network_stats["tx_bytes"])) sent")
+                println(io, "Network usage:")
+                for (network, network_stats) in stats["networks"]
+                    println(io, "- $network: $(Base.format_bytes(network_stats["rx_bytes"])) received, $(Base.format_bytes(network_stats["tx_bytes"])) sent")
+                end
+            catch err
+                print(io, "Could not render usage statistics: ")
+                Base.showerror(io, err)
+                Base.show_backtrace(io, catch_backtrace())
+                println(io)
+
+                println(io)
+                println(io, "Raw data: $stats")
             end
 
             log *= String(take!(io))
