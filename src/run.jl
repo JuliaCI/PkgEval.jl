@@ -176,7 +176,7 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     output = Pipe()
 
     function stop()
-        kill_container(p, container)
+        kill_container(container)
         close(output)   # XXX: docker run sometimes hangs after container exit,
                         #      maybe that's because of stream blocking?
     end
@@ -210,8 +210,9 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
                current_stats !== nothing && current_stats["cpu_stats"] !== nothing
                 previous_cpu_stats = previous_stats["cpu_stats"]
                 current_cpu_stats = current_stats["cpu_stats"]
-                usage_diff = (current_cpu_stats["cpu_usage"]["total_usage"] - previous_cpu_stats["cpu_usage"]["total_usage"]) / 1e9
-                if usage_diff < 1
+                usage_diff = (current_cpu_stats["cpu_usage"]["total_usage"] -
+                              previous_cpu_stats["cpu_usage"]["total_usage"]) / 1e9
+                if 0 <= usage_diff < 1
                     status = :kill
                     reason = :inactivity
                     stop()
@@ -356,11 +357,8 @@ function query_container(container)
     return stats
 end
 
-function kill_container(p, container)
-    cmd = `docker stop $container`
-    if !isdebug(:docker)
-        cmd = pipeline(cmd, stdout=devnull, stderr=devnull)
-    end
+function kill_container(container)
+    cmd = pipeline(`docker stop $container`, stdout=devnull)
     Base.run(cmd)
 end
 
