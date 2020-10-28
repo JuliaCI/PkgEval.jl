@@ -204,19 +204,7 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
 
             # right before the container ends, gather some statistics
             if occursin("PkgEval teardown", line)
-                docker = connect("/var/run/docker.sock")
-                write(docker, """GET /containers/$container/stats HTTP/1.1
-                                 Host: localhost""")
-                write(docker, "\r\n\r\n")
-                headers = readuntil(docker, "\r\n\r\n")
-                if occursin("HTTP/1.1 200 OK", headers)
-                    len = parse(Int, readuntil(docker, "\r\n"); base=16)
-                    if len > 0
-                        stats = String(read(docker, len))
-                    end
-                end
-                close(docker)
-
+                stats = query_container(container)
                 kill_container(p, container)
             end
 
@@ -239,11 +227,10 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     # append some simple statistics to the log
     # TODO: serialize the statistics
     if stats !== nothing
-        json = JSON.parse(stats)
         io = IOBuffer()
 
         try
-            cpu_stats = json["cpu_stats"]
+            cpu_stats = stats["cpu_stats"]
             @printf(io, "CPU usage: %.2fs (%.2fs user, %.2fs kernel)\n",
                     cpu_stats["cpu_usage"]["total_usage"]/1e9,
                     cpu_stats["cpu_usage"]["usage_in_usermode"]/1e9,
@@ -251,7 +238,7 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
             println(io)
 
             println(io, "Network usage:")
-            for (network, network_stats) in json["networks"]
+            for (network, network_stats) in stats["networks"]
                 println(io, "- $network: $(Base.format_bytes(network_stats["rx_bytes"])) received, $(Base.format_bytes(network_stats["tx_bytes"])) sent")
             end
         catch err
@@ -262,7 +249,8 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
         end
 
         println(io)
-        println(io, "Raw statistics: $stats")
+        print(io, "Raw statistics: ")
+        JSON.print(io, stats)
 
         log *= String(take!(io))
     else
@@ -320,6 +308,21 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     end
 
     return version, status, reason, log
+end
+
+function query_container(container)
+    docker = connect("/var/run/docker.sock")
+    write(docker, """GET /containers/$container/stats HTTP/1.1
+                        Host: localhost""")
+    write(docker, "\r\n\r\n")
+    headers = readuntil(docker, "\r\n\r\n")
+    occursin("HTTP/1.1 200 OK", headers) || return nothing
+    len = parse(Int, readuntil(docker, "\r\n"); base=16)
+    len > 0 || return nothing
+    body = String(read(docker, len))
+    stats = JSON.parse(body)
+    close(docker)
+    return stats
 end
 
 function kill_container(p, container)
