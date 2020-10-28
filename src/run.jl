@@ -155,7 +155,7 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
 
             Pkg.test(ARGS...)
         finally
-            print("\n\n", '#'^80, "\n# PkgEval teardown: $(now())\n#\n")
+            print("\n\n", '#'^80, "\n# PkgEval teardown: $(now())\n#\n\n")
         end"""
     cmd = do_depwarns ? `--depwarn=error` : ``
     cmd = `$cmd --eval 'eval(Meta.parse(read(stdin,String)))' $(pkg.name)`
@@ -163,146 +163,144 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     input = Pipe()
     output = Pipe()
 
-    mktemp() do path, f
-        p = run_sandboxed_julia(install, cmd; stdout=output, stderr=output, stdin=input,
-                                tty=false, wait=false, name=container, kwargs...)
-        status = nothing
-        reason = missing
-        version = missing
+    p = run_sandboxed_julia(install, cmd; stdout=output, stderr=output, stdin=input,
+                            tty=false, wait=false, name=container, kwargs...)
+    status = nothing
+    reason = missing
+    version = missing
 
-        # pass the script over standard input to avoid exceeding max command line size,
-        # and keep the process listing somewhat clean
-        println(input, script)
-        close(input.in)
+    # pass the script over standard input to avoid exceeding max command line size,
+    # and keep the process listing somewhat clean
+    println(input, script)
+    close(input.in)
 
-        # kill on timeout
-        t = Timer(time_limit) do timer
-            process_running(p) || return
-            status = :kill
-            reason = :time_limit
-            kill_container(p, container)
-        end
-
-        # collect output and stats
-        t2 = @async begin
-            io = IOBuffer()
-            stats = nothing
-            while process_running(p)
-                line = readline(output)
-                println(io, line)
-
-                # right before the container ends, gather some statistics
-                if occursin("PkgEval teardown", line)
-                    docker = connect("/var/run/docker.sock")
-                    write(docker,
-                        """GET /containers/$container/stats HTTP/1.1
-                           Host: localhost""")
-                    write(docker, "\r\n\r\n")
-                    headers = readuntil(docker, "\r\n\r\n")
-                    if occursin("HTTP/1.1 200 OK", headers)
-                        len = parse(Int, readuntil(docker, "\r\n"); base=16)
-                        len==0 && break
-                        body = String(read(docker, len))
-                        stats = JSON.parse(body)
-                    end
-                    close(docker)
-
-                    close(input.in)
-                end
-
-                # kill on too-large logs
-                if io.size > log_limit
-                    kill_container(p, container)
-                    status = :kill
-                    reason = :log_limit
-                    break
-                end
-            end
-            return String(take!(io)), stats
-        end
-
-        succeeded = success(p)
-        close(output)
-        close(t)
-        log, stats = fetch(t2)
-
-        # append some simple statistics to the log
-        # TODO: serialize the statistics
-        if stats !== nothing
-            io = IOBuffer()
-
-            try
-                cpu_stats = stats["cpu_stats"]
-                @printf(io, "CPU usage: %.2fs (%.2fs user, %.2fs kernel)\n",
-                        cpu_stats["cpu_usage"]["total_usage"]/1e9,
-                        cpu_stats["cpu_usage"]["usage_in_usermode"]/1e9,
-                        cpu_stats["cpu_usage"]["usage_in_kernelmode"]/1e9)
-                println(io)
-
-                println(io, "Network usage:")
-                for (network, network_stats) in stats["networks"]
-                    println(io, "- $network: $(Base.format_bytes(network_stats["rx_bytes"])) received, $(Base.format_bytes(network_stats["tx_bytes"])) sent")
-                end
-            catch err
-                print(io, "Could not render usage statistics: ")
-                Base.showerror(io, err)
-                Base.show_backtrace(io, catch_backtrace())
-                println(io)
-
-                println(io)
-                println(io, "Raw data: $stats")
-            end
-
-            log *= String(take!(io))
-        end
-
-        # pick up the installed package version from the log
-        let match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
-            if match !== nothing
-                version = try
-                    VersionNumber(match.captures[1])
-                catch
-                    @error "Could not parse installed package version number '$(match.captures[1])'"
-                    v"0"
-                end
-            end
-        end
-
-        if succeeded
-            status = :ok
-        elseif status === nothing
-            status = :fail
-            reason = :unknown
-
-            # figure out a more accurate failure reason from the log
-            if occursin("ERROR: Unsatisfiable requirements detected for package", log)
-                # NOTE: might be the package itself, or one of its dependencies
-                reason = :unsatisfiable
-            elseif occursin("ERROR: Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
-                reason = :untestable
-            elseif occursin("cannot open shared object file: No such file or directory", log)
-                reason = :binary_dependency
-            elseif occursin(r"Package .+ does not have .+ in its dependencies", log)
-                reason = :missing_dependency
-            elseif occursin(r"Package .+ not found in current path", log)
-                reason = :missing_package
-            elseif occursin("Some tests did not pass", log) || occursin("Test Failed", log)
-                reason = :test_failures
-            elseif occursin("ERROR: LoadError: syntax", log)
-                reason = :syntax
-            elseif occursin("GC error (probable corruption)", log)
-                reason = :gc_corruption
-            elseif occursin("signal (11): Segmentation fault", log)
-                reason = :segfault
-            elseif occursin("signal (6): Abort", log)
-                reason = :abort
-            elseif occursin("Unreachable reached", log)
-                reason = :unreachable
-            end
-        end
-
-        return version, status, reason, log
+    # kill on timeout
+    t = Timer(time_limit) do timer
+        process_running(p) || return
+        status = :kill
+        reason = :time_limit
+        kill_container(p, container)
     end
+
+    # collect output and stats
+    t2 = @async begin
+        io = IOBuffer()
+        stats = nothing
+        while process_running(p)
+            line = readline(output)
+            println(io, line)
+
+            # right before the container ends, gather some statistics
+            if occursin("PkgEval teardown", line)
+                docker = connect("/var/run/docker.sock")
+                write(docker, """GET /containers/$container/stats HTTP/1.1
+                                 Host: localhost""")
+                write(docker, "\r\n\r\n")
+                headers = readuntil(docker, "\r\n\r\n")
+                if occursin("HTTP/1.1 200 OK", headers)
+                    len = parse(Int, readuntil(docker, "\r\n"); base=16)
+                    len==0 && break
+                    stats = String(read(docker, len))
+                end
+                close(docker)
+
+                close(input.in)
+            end
+
+            # kill on too-large logs
+            if io.size > log_limit
+                kill_container(p, container)
+                status = :kill
+                reason = :log_limit
+                break
+            end
+        end
+        return String(take!(io)), stats
+    end
+
+    succeeded = success(p)
+    close(output)
+    close(t)
+    log, stats = fetch(t2)
+
+    # append some simple statistics to the log
+    # TODO: serialize the statistics
+    if stats !== nothing
+        json = JSON.parse(stats)
+        io = IOBuffer()
+
+        try
+            cpu_stats = json["cpu_stats"]
+            @printf(io, "CPU usage: %.2fs (%.2fs user, %.2fs kernel)\n",
+                    cpu_stats["cpu_usage"]["total_usage"]/1e9,
+                    cpu_stats["cpu_usage"]["usage_in_usermode"]/1e9,
+                    cpu_stats["cpu_usage"]["usage_in_kernelmode"]/1e9)
+            println(io)
+
+            println(io, "Network usage:")
+            for (network, network_stats) in json["networks"]
+                println(io, "- $network: $(Base.format_bytes(network_stats["rx_bytes"])) received, $(Base.format_bytes(network_stats["tx_bytes"])) sent")
+            end
+        catch err
+            print(io, "Could not render usage statistics: ")
+            Base.showerror(io, err)
+            Base.show_backtrace(io, catch_backtrace())
+            println(io)
+        end
+
+        println(io)
+        println(io, "Raw statistics: $stats")
+
+        log *= String(take!(io))
+    end
+    println(log)
+
+    # pick up the installed package version from the log
+    let match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
+        if match !== nothing
+            version = try
+                VersionNumber(match.captures[1])
+            catch
+                @error "Could not parse installed package version number '$(match.captures[1])'"
+                v"0"
+            end
+        end
+    end
+
+    if succeeded
+        status = :ok
+    elseif status === nothing
+        status = :fail
+        reason = :unknown
+
+        # figure out a more accurate failure reason from the log
+        if occursin("ERROR: Unsatisfiable requirements detected for package", log)
+            # NOTE: might be the package itself, or one of its dependencies
+            reason = :unsatisfiable
+        elseif occursin("ERROR: Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
+            reason = :untestable
+        elseif occursin("cannot open shared object file: No such file or directory", log)
+            reason = :binary_dependency
+        elseif occursin(r"Package .+ does not have .+ in its dependencies", log)
+            reason = :missing_dependency
+        elseif occursin(r"Package .+ not found in current path", log)
+            reason = :missing_package
+        elseif occursin("Some tests did not pass", log) || occursin("Test Failed", log)
+            reason = :test_failures
+        elseif occursin("ERROR: LoadError: syntax", log)
+            reason = :syntax
+        elseif occursin("GC error (probable corruption)", log)
+            reason = :gc_corruption
+        elseif occursin("signal (11): Segmentation fault", log)
+            reason = :segfault
+        elseif occursin("signal (6): Abort", log)
+            reason = :abort
+        elseif occursin("Unreachable reached", log)
+            reason = :unreachable
+        end
+    end
+
+    return version, status, reason, log
 end
 
 function kill_container(p, container)
