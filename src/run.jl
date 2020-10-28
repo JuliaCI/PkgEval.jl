@@ -165,9 +165,6 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
 
     p = run_sandboxed_julia(install, cmd; stdout=output, stderr=output, stdin=input,
                             tty=false, wait=false, name=container, kwargs...)
-    status = nothing
-    reason = missing
-    version = missing
 
     # pass the script over standard input to avoid exceeding max command line size,
     # and keep the process listing somewhat clean
@@ -199,8 +196,9 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
                 headers = readuntil(docker, "\r\n\r\n")
                 if occursin("HTTP/1.1 200 OK", headers)
                     len = parse(Int, readuntil(docker, "\r\n"); base=16)
-                    len==0 && break
-                    stats = String(read(docker, len))
+                    if len > 0
+                        stats = String(read(docker, len))
+                    end
                 end
                 close(docker)
 
@@ -253,50 +251,53 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
 
         log *= String(take!(io))
     end
-    println(log)
 
     # pick up the installed package version from the log
-    let match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
-        if match !== nothing
-            version = try
-                VersionNumber(match.captures[1])
-            catch
-                @error "Could not parse installed package version number '$(match.captures[1])'"
-                v"0"
-            end
+    version_match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
+    version = if version_match !== nothing
+        try
+            VersionNumber(version_match.captures[1])
+        catch
+            @error "Could not parse installed package version number '$(version_match.captures[1])'"
+            v"0"
         end
+    else
+        missing
     end
 
+    # try to figure out the failure reason
     if succeeded
         status = :ok
-    elseif status === nothing
+        reason = missing
+    else
         status = :fail
-        reason = :unknown
 
         # figure out a more accurate failure reason from the log
-        if occursin("ERROR: Unsatisfiable requirements detected for package", log)
+        reason = if occursin("ERROR: Unsatisfiable requirements detected for package", log)
             # NOTE: might be the package itself, or one of its dependencies
-            reason = :unsatisfiable
+            :unsatisfiable
         elseif occursin("ERROR: Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
-            reason = :untestable
+            :untestable
         elseif occursin("cannot open shared object file: No such file or directory", log)
-            reason = :binary_dependency
+            :binary_dependency
         elseif occursin(r"Package .+ does not have .+ in its dependencies", log)
-            reason = :missing_dependency
+            :missing_dependency
         elseif occursin(r"Package .+ not found in current path", log)
-            reason = :missing_package
+            :missing_package
         elseif occursin("Some tests did not pass", log) || occursin("Test Failed", log)
-            reason = :test_failures
+            :test_failures
         elseif occursin("ERROR: LoadError: syntax", log)
-            reason = :syntax
+            :syntax
         elseif occursin("GC error (probable corruption)", log)
-            reason = :gc_corruption
+            :gc_corruption
         elseif occursin("signal (11): Segmentation fault", log)
-            reason = :segfault
+            :segfault
         elseif occursin("signal (6): Abort", log)
-            reason = :abort
+            :abort
         elseif occursin("Unreachable reached", log)
-            reason = :unreachable
+            :unreachable
+        else
+            :unknown
         end
     end
 
