@@ -31,13 +31,13 @@ The keyword argument `interactive` maps to the Docker option, and defaults to tr
 """
 function run_sandboxed_julia(install::String, args=``; wait=true,
                              stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
-    container = spawn_sandboxed_julia(install, args; kwargs...)
-    Base.run(pipeline(`docker attach $container`, stdin=stdin, stdout=stdout, stderr=stderr); wait=wait)
+    cmd = runner_sandboxed_julia(install, args; kwargs...)
+    Base.run(pipeline(cmd, stdin=stdin, stdout=stdout, stderr=stderr); wait=wait)
 end
 
-function spawn_sandboxed_julia(install::String, args=``; interactive=true, name=nothing,
+function runner_sandboxed_julia(install::String, args=``; interactive=true, tty=true, name=nothing,
                                cpus::Integer=2, tmpfs::Bool=true, cache=nothing, storage=nothing)
-    cmd = `docker run --detach`
+    cmd = `docker run`
 
     # expose any available GPUs if they are available
     if find_library("libcuda") != ""
@@ -78,15 +78,18 @@ function spawn_sandboxed_julia(install::String, args=``; interactive=true, name=
     cmd = `$cmd --env JULIA_MAX_NUM_PRECOMPILE_FILES=$(typemax(Int))`
 
     if interactive
-        cmd = `$cmd --interactive --tty`
+        cmd = `$cmd --interactive`
+    end
+
+    if tty
+        cmd = `$cmd --tty`
     end
 
     if name !== nothing
         cmd = `$cmd --name $name`
     end
 
-    container = chomp(read(`$cmd --rm newpkgeval xvfb-run /opt/julia/bin/julia $args`, String))
-    return something(name, container)
+    `$cmd --rm newpkgeval xvfb-run /opt/julia/bin/julia $args`
 end
 
 """
@@ -108,58 +111,66 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
                             time_limit = 60*60, do_depwarns=false, kwargs...)
     # prepare for launching a container
     container = "$(pkg.name)-$(randstring(8))"
-    arg = raw"""
-        using Dates
-        print('#'^80, "\n# Set-up: $(now())\n#\n\n")
+    script = raw"""
+        try
+            using Dates
+            print('#'^80, "\n# Set-up: $(now())\n#\n\n")
 
-        using InteractiveUtils
-        versioninfo()
-        println()
+            using InteractiveUtils
+            versioninfo()
+            println()
 
-        mkpath(".julia")
+            mkpath(".julia")
 
-        # global storage of downloaded artifacts
-        mkpath("/storage/artifacts")
-        symlink("/storage/artifacts", ".julia/artifacts")
+            # global storage of downloaded artifacts
+            mkpath("/storage/artifacts")
+            symlink("/storage/artifacts", ".julia/artifacts")
 
-        # local storage of compiled packages
-        # FIXME: disabled, as this significantly regresses total PkgEval run time
-        if false && isdefined(Base, :MAX_NUM_PRECOMPILE_FILES) &&
-           Base.MAX_NUM_PRECOMPILE_FILES isa Ref &&
-           Base.MAX_NUM_PRECOMPILE_FILES[] > 10
-            mkpath("/cache/compiled")
-            symlink("/cache/compiled", ".julia/compiled")
-        end
+            # local storage of compiled packages
+            # FIXME: disabled, as this significantly regresses total PkgEval run time
+            if false && isdefined(Base, :MAX_NUM_PRECOMPILE_FILES) &&
+            Base.MAX_NUM_PRECOMPILE_FILES isa Ref &&
+            Base.MAX_NUM_PRECOMPILE_FILES[] > 10
+                mkpath("/cache/compiled")
+                symlink("/cache/compiled", ".julia/compiled")
+            end
 
-        using Pkg
-        Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
+            using Pkg
+            Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
 
-        ENV["CI"] = true
-        ENV["PKGEVAL"] = true
-        ENV["JULIA_PKGEVAL"] = true
+            ENV["CI"] = true
+            ENV["PKGEVAL"] = true
+            ENV["JULIA_PKGEVAL"] = true
 
-        ENV["PYTHON"] = ""
-        ENV["R_HOME"] = "*"
+            ENV["PYTHON"] = ""
+            ENV["R_HOME"] = "*"
 
-        print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
+            print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
 
-        Pkg.add(ARGS...)
+            Pkg.add(ARGS...)
 
-        print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n")
+            print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n")
 
-        Pkg.test(ARGS...)
-
-        print("\n\n", '#'^80, "\n# Teardown: $(now())\n#\n\n")
-    """
+            Pkg.test(ARGS...)
+        finally
+            print("\n\n", '#'^80, "\n# Teardown: $(now())\n#\n\n")
+        end"""
     cmd = do_depwarns ? `--depwarn=error` : ``
-    cmd = `$cmd -e $arg $(pkg.name)`
+    cmd = `$cmd --eval 'eval(Meta.parse(read(stdin,String)))' $(pkg.name)`
+
+    pipe = Pipe()
 
     mktemp() do path, f
-        p = run_sandboxed_julia(install, cmd; stdout=f, stderr=f, stdin=devnull,
-                                interactive=false, wait=false, name=container, kwargs...)
+        p = run_sandboxed_julia(install, cmd; stdout=f, stderr=f, stdin=pipe,
+                                tty=false, wait=false, name=container, kwargs...)
         status = nothing
         reason = missing
         version = missing
+
+        # pass the script over standard input to avoid exceeding max command line size,
+        # and keep the process listing somewhat clean
+        println(pipe, script)
+        close(pipe.in)
 
         # kill on timeout
         t = Timer(time_limit) do timer
@@ -182,6 +193,9 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
 
         # monitor stats
         t3 = @async begin
+            # give the container the change to start up
+            sleep(1)
+
             docker = connect("/var/run/docker.sock")
             write(docker,
                 """GET /containers/$container/stats HTTP/1.1
