@@ -28,6 +28,7 @@ const reasons = Dict(
     # kill
     :time_limit             => "test duration exceeded the time limit",
     :log_limit              => "test log exceeded the size limit",
+    :inactivity             => "tests became inactive",
 )
 
 
