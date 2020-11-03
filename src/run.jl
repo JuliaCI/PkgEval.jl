@@ -255,6 +255,7 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     wait(p)
     close(t)
     close(t2)
+    close(input)
     close(output)
     log, stats = fetch(t3)
 
