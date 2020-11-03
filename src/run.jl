@@ -313,10 +313,10 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
             status = :fail
 
             # figure out a more accurate failure reason from the log
-            reason = if occursin("ERROR: Unsatisfiable requirements detected for package", log)
+            reason = if occursin("Unsatisfiable requirements detected for package", log)
                 # NOTE: might be the package itself, or one of its dependencies
                 :unsatisfiable
-            elseif occursin("ERROR: Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
+            elseif occursin("Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
                 :untestable
             elseif occursin("cannot open shared object file: No such file or directory", log)
                 :binary_dependency
