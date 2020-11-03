@@ -3,7 +3,9 @@ using Test
 
 # determine the version to use
 const version = get(ENV, "JULIA_VERSION", string(VERSION))
+@info "Testing with Julia $version"
 const julia = NewPkgEval.obtain_julia(version)::VersionNumber
+@info "Resolved to Julia v$julia"
 const install = NewPkgEval.prepare_julia(julia)
 
 @testset "sandbox" begin
