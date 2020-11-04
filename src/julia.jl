@@ -301,9 +301,8 @@ function obtain_julia_build(spec::String="master", repo_name::String="JuliaLang/
 
         return version
     catch ex
-        # assume this was a download failure, and proceed to build Julia ourselves
-        # TODO: check this was actually a 404
-        isa(ex, ErrorException) || rethrow()
+        # if this was a download failure, proceed to build Julia ourselves
+        isa(ex, Downloads.RequestError) || rethrow()
         bt = catch_backtrace()
         @error "Could not download Julia $spec (version $version), performing a build" exception=(ex,bt)
         perform_julia_build(spec, repo_name)
