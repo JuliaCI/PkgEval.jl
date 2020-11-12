@@ -178,9 +178,9 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     output = Pipe()
 
     function stop()
-        kill_container(container)
         close(output)   # XXX: docker run sometimes hangs after container exit,
                         #      maybe that's because of stream blocking?
+        kill_container(container)
     end
 
     # XXX: docker run sometimes hangs, maybe that's because of racy operations?
