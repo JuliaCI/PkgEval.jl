@@ -183,6 +183,9 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
                         #      maybe that's because of stream blocking?
     end
 
+    # XXX: docker run sometimes hangs, maybe that's because of racy operations?
+    container_lock = ReentrantLock()
+
     p = run_sandboxed_julia(install, cmd; stdout=output, stderr=output, stdin=input,
                             tty=false, wait=false, name=container, kwargs...)
 
@@ -196,33 +199,37 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
 
     # kill on timeout
     t = Timer(time_limit) do timer
-        process_running(p) || return
-        status = :kill
-        reason = :time_limit
-        stop()
+        lock(container_lock) do
+            process_running(p) || return
+            status = :kill
+            reason = :time_limit
+            stop()
+        end
     end
 
     # kill on inactivity (fewer than 1 second of CPU usage every minute)
     previous_stats = nothing
     t2 = Timer(60; interval=300) do timer
-        process_running(p) || return
-        try
-            current_stats = query_container(container)
-            if previous_stats !== nothing && previous_stats["cpu_stats"] !== nothing &&
-               current_stats !== nothing && current_stats["cpu_stats"] !== nothing
-                previous_cpu_stats = previous_stats["cpu_stats"]
-                current_cpu_stats = current_stats["cpu_stats"]
-                usage_diff = (current_cpu_stats["cpu_usage"]["total_usage"] -
-                              previous_cpu_stats["cpu_usage"]["total_usage"]) / 1e9
-                if 0 <= usage_diff < 1
-                    status = :kill
-                    reason = :inactivity
-                    stop()
+        lock(container_lock) do
+            process_running(p) || return
+            try
+                current_stats = query_container(container)
+                if previous_stats !== nothing && previous_stats["cpu_stats"] !== nothing &&
+                   current_stats !== nothing && current_stats["cpu_stats"] !== nothing
+                    previous_cpu_stats = previous_stats["cpu_stats"]
+                    current_cpu_stats = current_stats["cpu_stats"]
+                    usage_diff = (current_cpu_stats["cpu_usage"]["total_usage"] -
+                                previous_cpu_stats["cpu_usage"]["total_usage"]) / 1e9
+                    if 0 <= usage_diff < 1
+                        status = :kill
+                        reason = :inactivity
+                        stop()
+                    end
                 end
+                previous_stats = current_stats
+            catch err
+                @error "Failed to check for inactivity" exception=(err, catch_backtrace())
             end
-            previous_stats = current_stats
-        catch err
-            @error "Failed to check for inactivity" exception=(err, catch_backtrace())
         end
     end
 
@@ -236,16 +243,22 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
 
             # right before the container ends, gather some statistics
             if occursin("PkgEval teardown", line)
-                stats = query_container(container)
-                stop()
+                lock(container_lock) do
+                    process_running(p) || return
+                    stats = query_container(container)
+                    stop()
+                end
                 break
             end
 
             # kill on too-large logs
             if io.size > log_limit
-                status = :kill
-                reason = :log_limit
-                stop()
+                lock(container_lock) do
+                    process_running(p) || return
+                    status = :kill
+                    reason = :log_limit
+                    stop()
+                end
                 break
             end
         end
