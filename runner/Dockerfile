@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     # container tools
     dumb-init \
     # download engines
-    curl \
+    curl ca-certificates \
     # essential tools
     git unzip sudo \
     # toolchain
