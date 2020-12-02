@@ -83,9 +83,6 @@ function runner_sandboxed_julia(install::String, args=``; interactive=true, tty=
         cmd = `$cmd --cpuset-cpus=$(join(cpus, ','))`
     end
 
-    # allow limitless precompilation files
-    cmd = `$cmd --env JULIA_MAX_NUM_PRECOMPILE_FILES=$(typemax(Int))`
-
     if interactive
         cmd = `$cmd --interactive`
     end
