@@ -52,8 +52,15 @@ function runner_sandboxed_julia(install::String, args=``; interactive=true, tty=
     cmd = ```$cmd --mount type=bind,source=$julia_path,target=/opt/julia,readonly
                   --mount type=bind,source=$registry_path,target=/usr/local/share/julia/registries,readonly
                   --env JULIA_DEPOT_PATH="::/usr/local/share/julia"
+                  --env JULIA_PKG_PRECOMPILE_AUTO=0
                   --env JULIA_PKG_SERVER
           ```
+
+    # allow identification of PkgEval
+    cmd = `$cmd --env CI=true --env PKGEVAL=true --env JULIA_PKGEVAL=true`
+
+    # disable system discovery of Python and R
+    cmd = `$cmd --env PYTHON="" --env R_HOME="*"`
 
     if storage !== nothing
         cmd = `$cmd --mount type=bind,source=$storage,target=/storage`
@@ -128,26 +135,8 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
             mkpath("/storage/artifacts")
             symlink("/storage/artifacts", ".julia/artifacts")
 
-            # local storage of compiled packages
-            # FIXME: disabled, as this significantly regresses total PkgEval run time
-            if false && isdefined(Base, :MAX_NUM_PRECOMPILE_FILES) &&
-            Base.MAX_NUM_PRECOMPILE_FILES isa Ref &&
-            Base.MAX_NUM_PRECOMPILE_FILES[] > 10
-                mkpath("/cache/compiled")
-                symlink("/cache/compiled", ".julia/compiled")
-            end
-
             using Pkg
             Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
-
-            ENV["CI"] = true
-            ENV["PKGEVAL"] = true
-            ENV["JULIA_PKGEVAL"] = true
-
-            ENV["JULIA_PKG_PRECOMPILE_AUTO"] = 0
-
-            ENV["PYTHON"] = ""
-            ENV["R_HOME"] = "*"
 
 
             print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
