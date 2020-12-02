@@ -1,10 +1,17 @@
+export Configuration
+
+uid() = ccall(:getuid, Cint, ())
+gid() = ccall(:getgid, Cint, ())
+
 function prepare_runner()
     cd(joinpath(dirname(@__DIR__), "runner")) do
-        cmd = `docker build --tag newpkgeval .`
-        if !isdebug(:docker)
-            cmd = pipeline(cmd, stdout=devnull, stderr=devnull)
+        for runner in ("ubuntu", "arch")
+            cmd = `docker build --tag newpkgeval:$runner --file Dockerfile.$runner .`
+            if !isdebug(:docker)
+                cmd = pipeline(cmd, stdout=devnull, stderr=devnull)
+            end
+            Base.run(cmd)
         end
-        Base.run(cmd)
     end
 
     return
@@ -35,9 +42,15 @@ function run_sandboxed_julia(install::String, args=``; wait=true,
     Base.run(pipeline(cmd, stdin=stdin, stdout=stdout, stderr=stderr); wait=wait)
 end
 
-function runner_sandboxed_julia(install::String, args=``; interactive=true, tty=true, name=nothing,
-                                cpus::Vector{Int}=Int[], tmpfs::Bool=true, cache=nothing, storage=nothing)
-    cmd = `docker run`
+function runner_sandboxed_julia(install::String, args=``; interactive=true, tty=true,
+                                name=nothing, cpus::Vector{Int}=Int[], tmpfs::Bool=true,
+                                storage=nothing, cache=nothing, sysimage=nothing,
+                                xvfb::Bool=true, init::Bool=true,
+                                runner="ubuntu", user="pkgeval", group="pkgeval",
+                                install_dir="/opt/julia")
+    ## Docker args
+
+    cmd = `docker run --rm`
 
     # expose any available GPUs if they are available
     if find_library("libcuda") != ""
@@ -47,17 +60,10 @@ function runner_sandboxed_julia(install::String, args=``; interactive=true, tty=
     # mount data
     julia_path = installed_julia_dir(install)
     @assert isdir(julia_path)
-    cmd = ```$cmd --mount type=bind,source=$julia_path,target=/opt/julia,readonly
+    cmd = ```$cmd --mount type=bind,source=$julia_path,target=$install_dir,readonly
                   --env JULIA_DEPOT_PATH="::/usr/local/share/julia"
-                  --env JULIA_PKG_PRECOMPILE_AUTO=0
                   --env JULIA_PKG_SERVER
           ```
-
-    # allow identification of PkgEval
-    cmd = `$cmd --env CI=true --env PKGEVAL=true --env JULIA_PKGEVAL=true`
-
-    # disable system discovery of Python and R
-    cmd = `$cmd --env PYTHON="" --env R_HOME="*"`
 
     if storage !== nothing
         cmd = `$cmd --mount type=bind,source=$storage,target=/storage`
@@ -69,10 +75,7 @@ function runner_sandboxed_julia(install::String, args=``; interactive=true, tty=
 
     # mount working directory in tmpfs
     if tmpfs
-        cmd = `$cmd --tmpfs /home/pkgeval:exec,uid=1000,gid=1000`
-        # FIXME: tmpfs mounts don't copy uid/gid back, so we need to correct this manually
-        #        https://github.com/opencontainers/runc/issues/1647
-        # FIXME: this also breaks mounting artifacts in .julia directly
+        cmd = `$cmd --tmpfs /home/$user:exec`
     end
 
     # restrict resource usage
@@ -92,7 +95,39 @@ function runner_sandboxed_julia(install::String, args=``; interactive=true, tty=
         cmd = `$cmd --name $name`
     end
 
-    `$cmd --rm newpkgeval xvfb-run /opt/julia/bin/julia $args`
+    if init
+        cmd = `$cmd --init`
+    end
+
+    cmd = `$cmd newpkgeval:$runner`
+
+
+    ## Entrypoint script args
+
+    # use the current user and group ID to ensure cache and storage are writable
+    container_uid = uid()
+    container_gid = gid()
+    if container_uid < 1000 || container_gid < 1000
+        # system ids might conflict with groups/users in the container
+        # TODO: can we use userns-remap?
+        @warn """"You are running PkgEval as a system user (with id $uid:$gid); this is not compatible with the container set-up.
+                  I will be using id 1000:1000, but that means the cache and storage on the host file system will not be owned by you."""
+    end
+
+    cmd = `$cmd $user $container_uid $group $container_gid`
+
+
+    ## Julia args
+
+    if sysimage !== nothing
+        args = `--sysimage=$sysimage $args`
+    end
+
+    if xvfb
+        `$cmd xvfb-run $install_dir/bin/julia $args`
+    else
+        `$cmd $install_dir/bin/julia $args`
+    end
 end
 
 """
@@ -111,7 +146,8 @@ directory.
 Refer to `run_sandboxed_julia`[@ref] for more possible `keyword arguments.
 """
 function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
-                            time_limit = 60*60, do_depwarns=false, kwargs...)
+                            time_limit = 60*60, do_depwarns=false,
+                            kwargs...)
     # prepare for launching a container
     container = "$(pkg.name)-$(randstring(8))"
     script = raw"""
@@ -123,28 +159,18 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
             versioninfo()
             println()
 
-            mkpath(".julia")
-
-            # global storage of downloaded artifacts
-            mkpath("/storage/artifacts")
-            symlink("/storage/artifacts", ".julia/artifacts")
-
-            # local cache of the registry checkout
-            mkpath("/cache/registries")
-            symlink("/cache/registries", ".julia/registries")
-
             using Pkg
             Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
 
 
             print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
 
-            Pkg.add(ARGS...)
+            Pkg.add(ARGS[1])
 
 
-            print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n\n")
+            print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n")
 
-            Pkg.test(ARGS...)
+            Pkg.test(ARGS[1])
 
             println("\nPkgEval succeeded")
         catch err
@@ -168,11 +194,11 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
         kill_container(container)
     end
 
-    # XXX: docker run sometimes hangs, maybe that's because of racy operations?
     container_lock = ReentrantLock()
 
-    p = run_sandboxed_julia(install, cmd; stdout=output, stderr=output, stdin=input,
-                            tty=false, wait=false, name=container, kwargs...)
+    p = run_sandboxed_julia(install, cmd; name=container, tty=false, wait=false,
+                                          stdout=output, stderr=output, stdin=input,
+                                          kwargs...)
     close(output.in)
 
     # pass the script over standard input to avoid exceeding max command line size,
@@ -366,16 +392,25 @@ function kill_container(container)
     end
 end
 
-function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
+Base.@kwdef struct Configuration
+    julia::VersionNumber = Base.VERSION
+    # TODO: depwarn, checkbounds, etc
+    # TODO: also move buildflags here?
+end
+
+# behave as a scalar in broadcast expressions
+Base.broadcastable(x::Configuration) = Ref(x)
+
+function run(configs::Vector{Configuration}, pkgs::Vector;
              ninstances::Integer=Sys.CPU_THREADS, retries::Integer=2, kwargs...)
     # here we deal with managing execution: spawning workers, output, result I/O, etc
 
     prepare_runner()
 
     # Julia installation and local cache
-    julia_environments = Dict{VersionNumber,Tuple{String,String}}()
-    for julia in julia_versions
-        install = prepare_julia(julia)
+    instantiated_configs = Dict{Configuration,Tuple{String,String}}()
+    for config in configs
+        install = prepare_julia(config.julia)
         cache = mktempdir()
 
         # copy the registry (we can't mount it because permissions might be incompatible)
@@ -384,20 +419,12 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
         @assert isdir(registry_path)
         cp(registry_path, joinpath(cache, "registries"))
 
-        julia_environments[julia] = (install, cache)
+        instantiated_configs[config] = (install, cache)
     end
 
     # global storage
     storage = storage_dir()
     mkpath(storage)
-
-    # make sure data is writable
-    for (julia, (install,cache)) in julia_environments
-        Base.run(```docker run --mount type=bind,source=$storage,target=/storage
-                               --mount type=bind,source=$cache,target=/cache
-                               newpkgeval
-                               sudo chown -R pkgeval:pkgeval /storage /cache```)
-    end
 
     # ensure we can use Docker's API
     info = let
@@ -414,16 +441,14 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
         JSON.parse(body)
     end
 
-    jobs = [(julia=julia, install=install, cache=cache,
-             pkg=pkg) for (julia,(install,cache)) in julia_environments
-                      for pkg in pkgs]
+    jobs = vec(collect(Iterators.product(instantiated_configs, pkgs)))
 
     # use a random test order to (hopefully) get a more reasonable ETA
     shuffle!(jobs)
 
     njobs = length(jobs)
     ninstances = min(njobs, ninstances)
-    running = Vector{Union{Nothing, eltype(jobs)}}(nothing, ninstances)
+    running = Vector{Any}(nothing, ninstances)
     times = DateTime[now() for i = 1:ninstances]
     all_workers = Task[]
 
@@ -485,7 +510,8 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
                 str = if job === nothing
                     " #$i: -------"
                 else
-                    " #$i: $(job.pkg.name) @ $(job.julia) ($(runtimestr(times[i])))"
+                    config, pkg = job
+                    " #$i: $(pkg.name) @ $(config.julia) ($(runtimestr(times[i])))"
                 end
                 if i%2 == 1 && i < ninstances
                     print(io, rpad(str, 50))
@@ -502,7 +528,7 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
         end
     end
 
-    result = DataFrame(julia = VersionNumber[],
+    result = DataFrame(config = Configuration[],
                        name = String[],
                        uuid = UUID[],
                        version = Union{Missing,VersionNumber}[],
@@ -530,24 +556,24 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
             push!(all_workers, @async begin
                 try
                     while !isempty(jobs) && !done
-                        job = pop!(jobs)
+                        (config, (install, cache)), pkg = pop!(jobs)
                         times[i] = now()
-                        running[i] = job
+                        running[i] = (config, pkg)
 
                         # can we even test this package?
                         julia_supported = Dict{VersionNumber,Bool}()
                         ctx = Pkg.Types.Context()
-                        pkg_version_info = Pkg.Operations.load_versions(ctx, job.pkg.path)
+                        pkg_version_info = Pkg.Operations.load_versions(ctx, pkg.path)
                         pkg_versions = sort!(collect(keys(pkg_version_info)))
                         pkg_compat =
                             Pkg.Operations.load_package_data(ctx, Pkg.Types.VersionSpec,
-                                                             joinpath(job.pkg.path,
+                                                             joinpath(pkg.path,
                                                                       "Compat.toml"),
                                                              pkg_versions)
                         for (pkg_version, bounds) in pkg_compat
                             if haskey(bounds, "julia")
                                 julia_supported[pkg_version] =
-                                    job.julia ∈ bounds["julia"]
+                                    config.julia ∈ bounds["julia"]
                             end
                         end
                         if length(julia_supported) != length(pkg_version_info)
@@ -558,37 +584,41 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
                             supported = any(values(julia_supported))
                         end
                         if !supported
-                            push!(result, [job.julia, job.pkg.name, job.pkg.uuid, missing,
+                            push!(result, [config,
+                                           pkg.name, pkg.uuid, missing,
                                            :skip, :unsupported, 0, missing])
                             continue
-                        elseif job.pkg.name in skip_lists[job.pkg.registry]
-                            push!(result, [job.julia, job.pkg.name, job.pkg.uuid, missing,
+                        elseif pkg.name in skip_lists[pkg.registry]
+                            push!(result, [config,
+                                           pkg.name, pkg.uuid, missing,
                                            :skip, :explicit, 0, missing])
                             continue
-                        elseif endswith(job.pkg.name, "_jll")
-                            push!(result, [job.julia, job.pkg.name, job.pkg.uuid, missing,
+                        elseif endswith(pkg.name, "_jll")
+                            push!(result, [config,
+                                           pkg.name, pkg.uuid, missing,
                                            :skip, :jll, 0, missing])
                             continue
                         end
 
                         # perform an initial run
                         pkg_version, status, reason, log =
-                            run_sandboxed_test(job.install, job.pkg; cache=job.cache,
+                            run_sandboxed_test(install, pkg; cache=cache,
                                                storage=storage, cpus=[i-1], kwargs...)
 
                         # certain packages are known to have flaky tests; retry them
                         for j in 1:retries
                             if status == :fail && reason == :test_failures &&
-                               job.pkg.name in retry_lists[job.pkg.registry]
+                               pkg.name in retry_lists[pkg.registry]
                                 times[i] = now()
                                 pkg_version, status, reason, log =
-                                    run_sandboxed_test(job.install, job.pkg; cache=job.cache,
+                                    run_sandboxed_test(install, pkg; cache=cache,
                                                        storage=storage, cpus=[i-1], kwargs...)
                             end
                         end
 
                         duration = (now()-times[i]) / Millisecond(1000)
-                        push!(result, [job.julia, job.pkg.name, job.pkg.uuid, pkg_version,
+                        push!(result, [config,
+                                       pkg.name, pkg.uuid, pkg_version,
                                        status, reason, duration, log])
                         running[i] = nothing
                     end
@@ -606,14 +636,13 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
         println()
 
         # clean-up
-        for (julia, (install,cache)) in julia_environments
+        for (config, (install,cache)) in instantiated_configs
             rm(install; recursive=true)
-            uid = ccall(:getuid, Cint, ())
-            gid = ccall(:getgid, Cint, ())
-            Base.run(```docker run --mount type=bind,source=$cache,target=/cache
-                                   newpkgeval
-                                   sudo chown -R $uid:$gid /cache```)
-            rm(cache; recursive=true)
+            if uid() < 1000 || gid() < 1000
+                @warn "Cannot remove cache due to running as system user or group"
+            else
+                rm(cache; recursive=true)
+            end
         end
     end
 
@@ -621,21 +650,26 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
 end
 
 """
-    run(julia_versions::Vector{VersionNumber}=[Base.VERSION],
+    run(configs::Vector{Configuration}=[Configuration()],
         pkg_names::Vector{String}=[]]; registry=General, update_registry=true, kwargs...)
 
 Run all tests for all packages in the registry `registry`, or only for the packages as
-identified by their name in `pkgnames`, using Julia versions `julia_versions`.
+identified by their name in `pkgnames`, using the configurations from `configs`.
 The registry is first updated if `update_registry` is set to true.
 
 Refer to `run_sandboxed_test`[@ref] and `run_sandboxed_julia`[@ref] for more possible
 keyword arguments.
 """
-function run(julia_versions::Vector{VersionNumber}=[Base.VERSION],
+function run(configs::Vector{Configuration}=[Configuration()],
              pkg_names::Vector{String}=String[];
              registry::String=DEFAULT_REGISTRY, update_registry::Bool=true, kwargs...)
     prepare_registry(registry; update=update_registry)
     pkgs = read_pkgs(pkg_names)
 
-    run(julia_versions, pkgs; kwargs...)
+    run(configs, pkgs; kwargs...)
 end
+
+# for backwards compatibility
+run(julia_versions::Vector{VersionNumber}, args...; kwargs...) =
+    run([Configuration(julia=julia_version) for julia_version in julia_versions], args...;
+        kwargs...)
