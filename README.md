@@ -1,11 +1,11 @@
-# NewPkgEval.jl
+# PkgEval.jl
 
 *Evaluate Julia packages.*
 
 
 ## Quick start
 
-To use NewPkgEval.jl, you need to Docker and make sure you can start containers (typically,
+To use PkgEval.jl, you need to Docker and make sure you can start containers (typically,
 you need to be a member of the `docker` group):
 
 ```
@@ -17,8 +17,8 @@ This message shows that your installation appears to be working correctly.
 Start by installing the package:
 
 ```shell
-git clone https://github.com/JuliaComputing/NewPkgEval.jl.git
-cd NewPkgEval.jl
+git clone https://github.com/JuliaCI/PkgEval.jl.git
+cd PkgEval.jl
 julia --project -e 'import Pkg; Pkg.instantiate()'
 ```
 
@@ -26,14 +26,14 @@ Then start Julia with `julia --project` and use the following commands to run th
 list of packages on a selection of Julia versions:
 
 ```julia
-julia> using NewPkgEval
+julia> using PkgEval
 
-julia> julia_versions = NewPkgEval.obtain_julia.(["1.3", "nightly"])
+julia> julia_versions = PkgEval.obtain_julia.(["1.3", "nightly"])
 2-element Array{VersionNumber,1}:
  v"1.3.0"
  v"1.4.0-DEV-3c182bc5c2"
 
-julia> NewPkgEval.run(julia_versions, ["Example"])
+julia> PkgEval.run(julia_versions, ["Example"])
 2×8 DataFrames.DataFrame. Omitted printing of 1 columns
 │ Row │ julia                   │ registry │ name    │ version   │ status │ reason  │ duration │
 │     │ VersionNumber           │ String   │ String  │ Version…⍰ │ Symbol │ Symbol⍰ │ Float64  │
@@ -64,15 +64,15 @@ If you want to debug why your package fails, it's probably easiest to use an int
 shell:
 
 ```julia
-julia> using NewPkgEval
+julia> using PkgEval
 
 julia> julia_version = v"1.3.0"  # use `obtain_julia` if you need a specific build
 
-julia> julia_install = NewPkgEval.prepare_julia(julia_version)
-julia> NewPkgEval.prepare_runner()
-julia> NewPkgEval.prepare_registry()
+julia> julia_install = PkgEval.prepare_julia(julia_version)
+julia> PkgEval.prepare_runner()
+julia> PkgEval.prepare_registry()
 
-julia> NewPkgEval.run_sandboxed_julia(julia_install)
+julia> PkgEval.run_sandboxed_julia(julia_install)
 ```
 
 Now you can install, load end test your package. If that fails because of some missing
@@ -87,7 +87,7 @@ shell> sudo apt install ...
 
 Once you've found the missing dependency and verified that it fixes the tests of your
 package, make a [pull
-request](https://github.com/JuliaComputing/NewPkgEval.jl/edit/master/runner/Dockerfile) to
+request](https://github.com/JuliaComputing/PkgEval.jl/edit/master/runner/Dockerfile) to
 include the dependency in the default image.
 
 
@@ -96,7 +96,7 @@ include the dependency in the default image.
 Most of the time, you will want to compare the results that you obtained. For example:
 
 ```julia
-julia> result = NewPkgEval.run([v"1.2.0", v"1.4.0-DEV-76ebc419f0"], ["AbstractNumbers"])
+julia> result = PkgEval.run([v"1.2.0", v"1.4.0-DEV-76ebc419f0"], ["AbstractNumbers"])
 2×8 DataFrame. Omitted printing of 1 columns
 │ Row │ julia                   │ registry │ name            │ version   │ status │ reason        │ duration │
 │     │ VersionNumber           │ String   │ String          │ Version…⍰ │ Symbol │ Symbol⍰       │ Float64  │
@@ -105,10 +105,10 @@ julia> result = NewPkgEval.run([v"1.2.0", v"1.4.0-DEV-76ebc419f0"], ["AbstractNu
 │ 2   │ v"1.4.0-DEV-76ebc419f0" │ General  │ AbstractNumbers │ v"0.2.0"  │ fail   │ test_failures │ 26.803   │
 ```
 
-If you simply want to compare two Julia versions, use `NewPkgEval.compare`:
+If you simply want to compare two Julia versions, use `PkgEval.compare`:
 
 ```julia
-julia> NewPkgEval.compare(result, v"1.2.0", v"1.4.0-DEV-76ebc419f0")
+julia> PkgEval.compare(result, v"1.2.0", v"1.4.0-DEV-76ebc419f0")
 On v1.4.0-DEV-76ebc419f0, out of 1 packages 0 passed, 1 failed, 0 got killed and 0 were skipped.
 
 Comparing against v1.2.0:
@@ -116,18 +116,18 @@ Comparing against v1.2.0:
 In summary, 0 packages now succeed, while 1 have started to fail.
 ```
 
-For more extensive evaluations, or when more versions are involved, use `NewPkgEval.render`
+For more extensive evaluations, or when more versions are involved, use `PkgEval.render`
 to generate a HTML site in the `website/build` directory at the root of the repository:
 
 ```julia
-julia> NewPkgEval.render(result)
-Generating site at /home/tim/Julia/pkg/NewPkgEval/site/build
+julia> PkgEval.render(result)
+Generating site at /home/tim/Julia/pkg/PkgEval/site/build
 ```
 
 
 ## Choosing a different version of Julia
 
-NewPkgEval ultimately needs a binary build of Julia to run tests with, but there's multiple
+PkgEval ultimately needs a binary build of Julia to run tests with, but there's multiple
 options to provide such a build. The easiest option is to use a version number that has
 already been registered in the `Versions.toml` database, together with an URL and hash to
 download an verify the file. An error will be thrown if the specific version cannot be
@@ -136,7 +136,7 @@ to call this method explicitly if you use a lower-level interface, i.e., anythin
 `run` function from the quick start section above):
 
 ```
-julia> NewPkgEval.prepare_julia(v"1.2.0-nonexistent")
+julia> PkgEval.prepare_julia(v"1.2.0-nonexistent")
 ERROR: Requested Julia version not found
 ```
 
@@ -147,15 +147,15 @@ that corresponds with this added entry; you should use it when calling into othe
 of the package:
 
 ```julia
-julia_version = NewPkgEval.obtain_julia_release("nightly")
-NewPkgEval.run([julia_version], ...)
+julia_version = PkgEval.obtain_julia_release("nightly")
+PkgEval.run([julia_version], ...)
 ```
 
 For even more control, you can build Julia by calling the `perform_julia_build` function,
 passing a string that identifies a branch, tag or commit in the Julia Git repository:
 
 ```julia
-julia_version = NewPkgEval.perform_julia_build("master")
+julia_version = PkgEval.perform_julia_build("master")
 ```
 
 Similarly, this function returns a version number that corresponds with an entry added to

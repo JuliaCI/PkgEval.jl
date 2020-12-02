@@ -1,4 +1,4 @@
-The NewPkgEval.jl package is licensed under the MIT "Expat" License:
+The PkgEval.jl package is licensed under the MIT "Expat" License:
 
 > Copyright (c) 2015-2018: Iain Dunning
 > Copyright (c) 2018-current: Julia Computing Inc.
