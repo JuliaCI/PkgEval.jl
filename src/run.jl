@@ -104,7 +104,7 @@ package's tests will cause the tests to fail. Test will be forcibly interrupted 
 `time_limit` seconds (defaults to 1h) or if the log becomes larger than `log_limit`
 (defaults to 1MB).
 
-A log for the tests is written to a version-specific directory in the NewPkgEval root
+A log for the tests is written to a version-specific directory in the PkgEval root
 directory.
 
 Refer to `run_sandboxed_julia`[@ref] for more possible `keyword arguments.

@@ -1,4 +1,4 @@
-module NewPkgEval
+module PkgEval
 
 import Pkg.TOML
 using Pkg
@@ -18,7 +18,7 @@ releases_file() = joinpath(dirname(@__DIR__), "deps", "Releases.toml")
 registries_file() = joinpath(dirname(@__DIR__), "deps", "Registries.toml")
 
 # mutable: in .cache directory
-cache_dir() = joinpath(get(ENV, "XDG_CACHE_HOME", joinpath(homedir(), ".cache")), "NewPkgEval")
+cache_dir() = joinpath(get(ENV, "XDG_CACHE_HOME", joinpath(homedir(), ".cache")), "PkgEval")
 download_dir(name) = joinpath(cache_dir(), "downloads", name)
 storage_dir() = joinpath(cache_dir(), "storage")
 extra_versions_file() = joinpath(cache_dir(), "Versions.toml")
@@ -28,7 +28,7 @@ registry_dir() = joinpath(first(DEPOT_PATH), "registries")
 registry_dir(name) = joinpath(registry_dir(), name)
 
 # utils
-isdebug(group) = Base.CoreLogging.current_logger_for_env(Base.CoreLogging.Debug, group, NewPkgEval) !== nothing
+isdebug(group) = Base.CoreLogging.current_logger_for_env(Base.CoreLogging.Debug, group, PkgEval) !== nothing
 
 include("registry.jl")
 include("julia.jl")

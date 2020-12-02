@@ -6,7 +6,7 @@
 # then run this script:             git run ./path_to_script.jl PackageName
 
 using DataFrames
-using NewPkgEval
+using PkgEval
 using LibGit2
 
 repo = GitRepo(pwd())
@@ -15,11 +15,11 @@ hash = string(head)
 shorthash = chomp(read(`git rev-parse --short $hash`, String))
 
 try
-    julia_version = NewPkgEval.perform_julia_build(hash; precompile=false)
+    julia_version = PkgEval.perform_julia_build(hash; precompile=false)
 
     # gather results. run each test three times to catch flaky errors
     isempty(ARGS) && error("You should specify at least a single package")
-    results = NewPkgEval.run([julia_version, julia_version, julia_version], ARGS;
+    results = PkgEval.run([julia_version, julia_version, julia_version], ARGS;
                              update_registry=false, retries=0)
     results[results[!, :status] .== :kill, :status] .= :fail    # merge killed and failed
 
@@ -35,7 +35,7 @@ try
             has_issues = true
             log = "$pkg-$shorthash.log"
             test = first(filter(row->row.status == :fail, group))
-            @warn "$pkg failed tests: $(NewPkgEval.reasons[test.reason]) (see $log)"
+            @warn "$pkg failed tests: $(PkgEval.reasons[test.reason]) (see $log)"
             open(log, "w") do io
                 println(io, test.log)
             end
