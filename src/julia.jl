@@ -124,6 +124,10 @@ function get_julia_version(base)
     version = VersionNumber(read(`$(installed_julia_dir(base))/bin/julia -e 'print(Base.VERSION_STRING)'`, String))
     if version.prerelease != ()
         shorthash = read(`$(installed_julia_dir(base))/bin/julia -e 'print(Base.GIT_VERSION_INFO.commit_short)'`, String)
+        if endswith(shorthash, '*')
+            # strip the dirty marker
+            shorthash = shorthash[1:end-1]
+        end
         version = VersionNumber(string(version) * string("-", shorthash))
     end
     return version
