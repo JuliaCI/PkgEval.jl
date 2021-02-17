@@ -164,8 +164,6 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     output = Pipe()
 
     function stop()
-        close(output)   # XXX: docker run sometimes hangs after container exit,
-                        #      maybe that's because of stream blocking?
         kill_container(container)
     end
 
@@ -178,7 +176,7 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     # pass the script over standard input to avoid exceeding max command line size,
     # and keep the process listing somewhat clean
     println(input, script)
-    close(input.in)
+    close(input)
 
     status = nothing
     reason = missing
@@ -243,20 +241,21 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
                     process_running(p) || return
                     status = :kill
                     reason = :log_limit
+                    close(output)
                     stop()
                 end
                 break
             end
         end
+        write(io, output) # finish copying remaining output from kernel buffer
         return String(take!(io)), stats
     end
 
     wait(p)
     close(t)
     close(t2)
-    close(input)
-    close(output)
     log, stats = fetch(t3)
+    @assert !isopen(output) && eof(output)
 
     # append some simple statistics to the log
     # TODO: serialize the statistics
