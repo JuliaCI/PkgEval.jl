@@ -172,6 +172,7 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
 
     p = run_sandboxed_julia(install, cmd; stdout=output, stderr=output, stdin=input,
                             tty=false, wait=false, name=container, kwargs...)
+    close(output.in)
 
     # pass the script over standard input to avoid exceeding max command line size,
     # and keep the process listing somewhat clean
