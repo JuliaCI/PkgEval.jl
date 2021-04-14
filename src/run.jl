@@ -360,8 +360,9 @@ function query_container(container)
 end
 
 function kill_container(container)
-    cmd = pipeline(`docker stop $container`, stdout=devnull)
-    Base.run(cmd)
+    if !success(pipeline(`docker stop $container`, stdout=devnull))
+        @warn "Could not stop container $container"
+    end
 end
 
 function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
