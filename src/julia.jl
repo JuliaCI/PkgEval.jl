@@ -86,6 +86,10 @@ function prepare_julia(the_ver::VersionNumber, dir::String=mktempdir())
             Pkg.PlatformEngines.verify(file, data["sha"])
             Pkg.PlatformEngines.unpack(file, dir)
         end
+
+        # make sure the Julia installation is usable by the container user
+        Base.run(`chmod -R o=u $dir`)
+
         return dir
     end
     error("Requested Julia version $the_ver not found")
@@ -383,7 +387,7 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
     # These are the platforms we will build for by default, unless further
     # platforms are passed in on the command line
     platforms = [
-        Linux(:x86_64, libc=:glibc)
+        Platform("x86_64", "linux")
     ]
 
     # The products that we will ensure are always built
