@@ -47,10 +47,7 @@ function runner_sandboxed_julia(install::String, args=``; interactive=true, tty=
     # mount data
     julia_path = installed_julia_dir(install)
     @assert isdir(julia_path)
-    registry_path = registry_dir()
-    @assert isdir(registry_path)
     cmd = ```$cmd --mount type=bind,source=$julia_path,target=/opt/julia,readonly
-                  --mount type=bind,source=$registry_path,target=/usr/local/share/julia/registries,readonly
                   --env JULIA_DEPOT_PATH="::/usr/local/share/julia"
                   --env JULIA_PKG_PRECOMPILE_AUTO=0
                   --env JULIA_PKG_SERVER
@@ -131,6 +128,10 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
             # global storage of downloaded artifacts
             mkpath("/storage/artifacts")
             symlink("/storage/artifacts", ".julia/artifacts")
+
+            # local cache of the registry checkout
+            mkpath("/cache/registries")
+            symlink("/cache/registries", ".julia/registries")
 
             using Pkg
             Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
@@ -376,6 +377,13 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
     for julia in julia_versions
         install = prepare_julia(julia)
         cache = mktempdir()
+
+        # copy the registry (we can't mount it because permissions might be incompatible)
+        # XXX: actually have the target Julia process check-out the registry?
+        registry_path = registry_dir()
+        @assert isdir(registry_path)
+        cp(registry_path, joinpath(cache, "registries"))
+
         julia_environments[julia] = (install, cache)
     end
 
@@ -528,36 +536,18 @@ function run(julia_versions::Vector{VersionNumber}, pkgs::Vector;
 
                         # can we even test this package?
                         julia_supported = Dict{VersionNumber,Bool}()
-                        if VERSION >= v"1.5"
-                            ctx = Pkg.Types.Context()
-                            pkg_version_info = Pkg.Operations.load_versions(ctx, job.pkg.path)
-                            pkg_versions = sort!(collect(keys(pkg_version_info)))
-                            pkg_compat =
-                                Pkg.Operations.load_package_data(Pkg.Types.VersionSpec,
-                                                                 joinpath(job.pkg.path,
-                                                                          "Compat.toml"),
-                                                                 pkg_versions)
-                            for (pkg_version, bounds) in pkg_compat
-                                if haskey(bounds, "julia")
-                                    julia_supported[pkg_version] =
-                                        job.julia ∈ bounds["julia"]
-                                end
-                            end
-                        else
-                            pkg_version_info = Pkg.Operations.load_versions(job.pkg.path)
-                            pkg_compat =
-                                Pkg.Operations.load_package_data_raw(Pkg.Types.VersionSpec,
-                                                                     joinpath(job.pkg.path,
-                                                                              "Compat.toml"))
-                            for (version_range, bounds) in pkg_compat
-                                if haskey(bounds, "julia")
-                                    for pkg_version in keys(pkg_version_info)
-                                        if pkg_version in version_range
-                                            julia_supported[pkg_version] =
-                                                job.julia ∈ bounds["julia"]
-                                        end
-                                    end
-                                end
+                        ctx = Pkg.Types.Context()
+                        pkg_version_info = Pkg.Operations.load_versions(ctx, job.pkg.path)
+                        pkg_versions = sort!(collect(keys(pkg_version_info)))
+                        pkg_compat =
+                            Pkg.Operations.load_package_data(ctx, Pkg.Types.VersionSpec,
+                                                             joinpath(job.pkg.path,
+                                                                      "Compat.toml"),
+                                                             pkg_versions)
+                        for (pkg_version, bounds) in pkg_compat
+                            if haskey(bounds, "julia")
+                                julia_supported[pkg_version] =
+                                    job.julia ∈ bounds["julia"]
                             end
                         end
                         if length(julia_supported) != length(pkg_version_info)

@@ -11,15 +11,22 @@ const install = PkgEval.prepare_julia(julia)
 @testset "sandbox" begin
     PkgEval.prepare_runner()
     mktemp() do path, io
-        PkgEval.run_sandboxed_julia(install, `-e 'print(1337)'`; stdout=io,
-                                       tty=false, interactive=false)
-        close(io)
-        @test read(path, String) == "1337"
+        try
+            PkgEval.run_sandboxed_julia(install, `-e 'print(1337)'`; stdout=io,
+                                        tty=false, interactive=false)
+            close(io)
+            @test read(path, String) == "1337"
+        catch
+            # if we failed to spawn a container, make sure to print the reason
+            flush(io)
+            @error read(path, String)
+            rethrow()
+        end
     end
 
     # print versioninfo so we can verify in CI logs that the correct version is used
     PkgEval.run_sandboxed_julia(install, `-e 'using InteractiveUtils; versioninfo()'`;
-                                   tty=false, interactive=false)
+                                tty=false, interactive=false)
 end
 
 const pkgnames = ["TimerOutputs", "Crayons", "Example", "Gtk"]
