@@ -6,7 +6,7 @@ on:
   pull_request:
 jobs:
   test:
-    name: Julia ${{ matrix.version }} -  ${{ matrix.build_version }}
+    name: Julia ${{ matrix.version }} - ${{ matrix.build_spec }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -17,14 +17,14 @@ jobs:
           - ubuntu-latest
         arch:
           - x64
-        build_version:
+        build_spec:
           - v1.5.0                                   # entry straight in Versions.toml
           - nightly                                  # entry from Builds.toml
           - 8cb458c6dcd8e067a3bd430b006efb0dfde56cf9 # directly from Git, never built
           - master                                   # directly from Git, likely built
     env:
       JULIA_DEBUG: PkgEval
-      JULIA_VERSION: ${{ matrix.build_version }}
+      JULIA_SPEC: ${{ matrix.build_spec }}
     steps:
       - uses: actions/checkout@v2
       - uses: julia-actions/setup-julia@v1

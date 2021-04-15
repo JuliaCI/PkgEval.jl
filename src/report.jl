@@ -48,11 +48,11 @@ function print_status(io::IO, status, val=status)
     end
 end
 
-function compare(result, julia_reference, julia_version)
+function compare(result, config_against, config)
     pkg_names = unique(result.name)
 
-    builds    = result[result[!, :julia] .== julia_version, :]
-    reference = result[result[!, :julia] .== julia_reference, :]
+    builds    = result[result[!, :config] .== config, :]
+    reference = result[result[!, :config] .== config_against, :]
 
     # overview
     o = count(==(:ok),      builds[!, :status])
@@ -62,7 +62,7 @@ function compare(result, julia_reference, julia_version)
     x = o + s + k + f
     nrow(builds)
     @assert x == nrow(builds)
-    print("On v$julia_version, out of $x packages ")
+    print("On v$config, out of $x packages ")
     print_status(:ok, o)
     print(" passed, ")
     print_status(:fail, f)
@@ -75,7 +75,7 @@ function compare(result, julia_reference, julia_version)
     println()
 
     # summary of differences
-    println("Comparing against v$(julia_reference):")
+    println("Comparing against $(config_against):")
     new_failures = 0
     new_successes = 0
     for current in eachrow(builds)

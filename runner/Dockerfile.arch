@@ -1,0 +1,18 @@
+FROM archlinux:base-devel
+
+RUN pacman -Suy --noconfirm --needed \
+    # download engines
+    curl ca-certificates \
+    # essential tools
+    git unzip sudo \
+    # toolchain
+    gcc-fortran \
+    # Any package that needs a display (e.g. Gtk.jl)
+    xorg-server-xvfb \
+    # clean-up
+    && find /var/cache/pacman/ -type f -delete
+
+RUN mkdir /storage /cache
+
+COPY ./entrypoint.sh /
+ENTRYPOINT ["/entrypoint.sh"]
