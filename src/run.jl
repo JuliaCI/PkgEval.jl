@@ -470,7 +470,8 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
         end
     end
 
-    result = DataFrame(config = Configuration[],
+    # NOTE: we expand the Configuration into separate columns
+    result = DataFrame(julia = VersionNumber[],
                        name = String[],
                        uuid = UUID[],
                        version = Union{Missing,VersionNumber}[],
@@ -526,19 +527,19 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
                             supported = any(values(julia_supported))
                         end
                         if !supported
-                            push!(result, [config,
+                            push!(result, [config.julia,
                                            pkg.name, pkg.uuid, missing,
                                            :skip, :unsupported, 0, missing])
                             running[i] = nothing
                             continue
                         elseif pkg.name in skip_lists[pkg.registry]
-                            push!(result, [config,
+                            push!(result, [config.julia,
                                            pkg.name, pkg.uuid, missing,
                                            :skip, :explicit, 0, missing])
                             running[i] = nothing
                             continue
                         elseif endswith(pkg.name, "_jll")
-                            push!(result, [config,
+                            push!(result, [config.julia,
                                            pkg.name, pkg.uuid, missing,
                                            :skip, :jll, 0, missing])
                             running[i] = nothing
@@ -560,7 +561,7 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
                         end
 
                         duration = (now()-times[i]) / Millisecond(1000)
-                        push!(result, [config,
+                        push!(result, [config.julia,
                                        pkg.name, pkg.uuid, pkg_version,
                                        status, reason, duration, log])
                         running[i] = nothing
@@ -611,3 +612,4 @@ end
 run(julia_versions::Vector{VersionNumber}, args...; kwargs...) =
     run([Configuration(julia=julia_version) for julia_version in julia_versions], args...;
         kwargs...)
+prepare_runner() = return

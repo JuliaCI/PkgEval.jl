@@ -52,7 +52,7 @@ end
     lts = Configuration(julia=v"1.0.5")
     stable = Configuration(julia=v"1.2.0")
     results = PkgEval.run([lts, stable], ["Example"])
-    PkgEval.compare(results, lts, stable)
+    PkgEval.compare(results)
 end
 
 PkgEval.purge()
