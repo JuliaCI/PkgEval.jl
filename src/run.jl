@@ -1,133 +1,152 @@
 export Configuration
 
-uid() = ccall(:getuid, Cint, ())
-gid() = ccall(:getgid, Cint, ())
+const rootfs_cache = Dict()
 
-function prepare_runner()
-    cd(joinpath(dirname(@__DIR__), "runner")) do
-        for runner in ("ubuntu", "arch")
-            cmd = `docker build --tag newpkgeval:$runner --file Dockerfile.$runner .`
-            if !isdebug(:docker)
-                cmd = pipeline(cmd, stdout=devnull, stderr=devnull)
+lazy_artifact(x) = @artifact_str(x)
+
+const rootfs_lock = ReentrantLock()
+rootfs() = lock(rootfs_lock) do
+    lazy_artifact("debian")
+end
+
+"""
+    run_sandboxed_julia(install::String, args=``; env=Dict(), mounts=Dict(),
+                        wait=true, stdin=stdin, stdout=stdout, stderr=stderr,
+                        install_dir="/opt/julia", kwargs...)
+
+Run Julia inside of a sandbox, passing the given arguments `args` to it. The argument `wait`
+determines if the process will be waited on. Streams can be connected using the `stdin`,
+`stdout` and `sterr` arguments. Returns a `Process` object.
+
+Further customization is possible using the `env` arg, to set environment variables, and the
+`mounts` argument to mount additional directories. With `install_dir`, the directory where
+Julia is installed can be chosen.
+"""
+function run_sandboxed_julia(install::String, args=``; wait=true, kwargs...)
+    config, cmd = runner_sandboxed_julia(install, args; kwargs...)
+
+    # XXX: even when preferred_executor() returns UnprivilegedUserNamespacesExecutor,
+    #      sometimes a stray sudo happens at run time? no idea how.
+    exe_typ = UnprivilegedUserNamespacesExecutor
+    exe = exe_typ()
+    proc = Base.run(exe, config, cmd; wait)
+
+    # TODO: introduce a --stats flag that has the sandbox trace and report on CPU, network, ... usage
+
+    if wait
+        cleanup(exe)
+    else
+        @async begin
+            try
+                Base.wait(proc)
+                cleanup(exe)
+            catch err
+                @error "Unexpected error while cleaning up process" exception=(err, catch_backtrace())
             end
-            Base.run(cmd)
         end
     end
 
-    return
+    return proc
 end
 
-"""
-    run_sandboxed_julia(install::String, args=``; wait=true, interactive=true,
-                        stdin=stdin, stdout=stdout, stderr=stderr,
-                        cache=nothing, storage=nothing, kwargs...)
+# global Xvfb process for use by all containers
+const xvfb_lock = ReentrantLock()
+const xvfb_proc = Ref{Union{Base.Process,Nothing}}(nothing)
 
-Run Julia inside of a sandbox, passing the given arguments `args` to it. The argument
-`install` specifies the directory where Julia can be found.
+# global copy of resolv.conf to mount in all containers
+const resolvconf_lock = ReentrantLock()
+const resolvconf_path = Ref{Union{String,Nothing}}(nothing)
 
-The argument `wait` determines if the process will be waited on, and defaults to true. If
-setting this argument to `false`, remember that the sandbox is using on Docker and killing
-the process does not necessarily kill the container. It is advised to use the `name` keyword
-argument to set the container name, and use that to kill the Julia process.
-
-The `cache` directory is used to cache temporary files across runs, e.g. compilation caches,
-and can be expected to be removed at any point. The `storage` directory can be used for more
-lasting files, e.g. artifacts.
-
-The keyword argument `interactive` maps to the Docker option, and defaults to true.
-"""
-function run_sandboxed_julia(install::String, args=``; wait=true,
-                             stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
-    cmd = runner_sandboxed_julia(install, args; kwargs...)
-    Base.run(pipeline(cmd, stdin=stdin, stdout=stdout, stderr=stderr); wait=wait)
-end
-
-function runner_sandboxed_julia(install::String, args=``; interactive=true, tty=true,
-                                name=nothing, cpus::Vector{Int}=Int[], tmpfs::Bool=true,
-                                storage=nothing, cache=nothing, sysimage=nothing,
-                                xvfb::Bool=true, init::Bool=true,
-                                runner="ubuntu", user="pkgeval", group="pkgeval",
-                                install_dir="/opt/julia")
-    ## Docker args
-
-    cmd = `docker run --rm`
-
-    # expose any available GPUs if they are available
-    if find_library("libcuda") != ""
-        cmd = `$cmd --gpus all -e NVIDIA_VISIBLE_DEVICES=all -e NVIDIA_DRIVER_CAPABILITIES=all`
+function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/julia",
+                                stdin=stdin, stdout=stdout, stderr=stderr,
+                                env::Dict{String,String}=Dict{String,String}(),
+                                mounts::Dict{String,String}=Dict{String,String}(),
+                                xvfb::Bool=true, cpus::Vector{Int}=Int[])
+    # sometimes resolv.conf points to a location we can't bind mount from (for whatever reason)
+    resolvconf_file = lock(resolvconf_lock) do
+        if resolvconf_path[] == nothing
+            path, io = mktemp()
+            write(io, read("/etc/resolv.conf", String))
+            close(io)
+            resolvconf_path[] = path
+        end
+        resolvconf_path[]
     end
 
-    # mount data
     julia_path = installed_julia_dir(install)
-    @assert isdir(julia_path)
-    cmd = ```$cmd --mount type=bind,source=$julia_path,target=$install_dir,readonly
-                  --env JULIA_DEPOT_PATH="::/usr/local/share/julia"
-                  --env JULIA_PKG_SERVER
-          ```
+    read_only_maps = Dict(
+        "/" => rootfs(),
+        "/etc/resolv.conf"          => resolvconf_file,
+        install_dir                 => julia_path,
+        "/root/.julia/registries"   => registry_dir(),
+    )
 
-    if storage !== nothing
-        cmd = `$cmd --mount type=bind,source=$storage,target=/storage`
-    end
+    read_write_maps = merge(mounts, Dict(
+        "/root/.julia/artifacts"    => joinpath(storage_dir(), "artifacts")
+    ))
 
-    if cache !== nothing
-        cmd = `$cmd --mount type=bind,source=$cache,target=/cache`
-    end
-
-    # mount working directory in tmpfs
-    if tmpfs
-        cmd = `$cmd --tmpfs /home/$user:exec`
-    end
-
-    # restrict resource usage
-    if !isempty(cpus)
-        cmd = `$cmd --cpuset-cpus=$(join(cpus, ','))`
-    end
-
-    if interactive
-        cmd = `$cmd --interactive`
-    end
-
-    if tty
-        cmd = `$cmd --tty`
-    end
-
-    if name !== nothing
-        cmd = `$cmd --name $name`
-    end
-
-    if init
-        cmd = `$cmd --init`
-    end
-
-    cmd = `$cmd newpkgeval:$runner`
-
-
-    ## Entrypoint script args
-
-    # use the current user and group ID to ensure cache and storage are writable
-    container_uid = uid()
-    container_gid = gid()
-    if container_uid < 1000 || container_gid < 1000
-        # system ids might conflict with groups/users in the container
-        # TODO: can we use userns-remap?
-        @warn """"You are running PkgEval as a system user (with id $uid:$gid); this is not compatible with the container set-up.
-                  I will be using id 1000:1000, but that means the cache and storage on the host file system will not be owned by you."""
-    end
-
-    cmd = `$cmd $user $container_uid $group $container_gid`
-
-
-    ## Julia args
-
-    if sysimage !== nothing
-        args = `--sysimage=$sysimage $args`
+    env = merge(env, Dict(
+        # PkgEval detection
+        "CI" => "true",
+        "PKGEVAL" => "true",
+        "JULIA_PKGEVAL" => "true"
+    ))
+    if haskey(ENV, "TERM")
+        env["TERM"] = ENV["TERM"]
     end
 
     if xvfb
-        `$cmd xvfb-run $install_dir/bin/julia $args`
-    else
-        `$cmd $install_dir/bin/julia $args`
+        lock(xvfb_lock) do
+            if xvfb_proc[] === nothing || !process_running(xvfb_proc[])
+                proc = Base.run(`Xvfb :1 -screen 0 1024x768x16`; wait=false)
+                sleep(1)
+                process_running(proc) || error("Could not start Xvfb")
+
+                xvfb_proc[] === nothing && atexit() do
+                    kill(xvfb_proc[])
+                    wait(xvfb_proc[])
+                end
+                xvfb_proc[] = proc
+            end
+        end
+
+        env["DISPLAY"] = ":1"
+        read_write_maps["/tmp/.X11-unix"] = "/tmp/.X11-unix"
     end
+
+    cmd = `$install_dir/bin/julia $args`
+
+    # restrict resource usage
+    if !isempty(cpus)
+        cmd = `/usr/bin/taskset --cpu-list $(join(cpus, ',')) $cmd`
+    end
+
+    config = SandboxConfig(read_only_maps, read_write_maps, env;
+                           stdin, stdout, stderr, verbose=isdebug(:sandbox))
+
+    return config, cmd
+end
+
+function cpu_time(pid)
+    stats = read("/proc/$pid/stat", String)
+    m = match(r"^(\d+) \((.+)\) (.+)", stats)
+    @assert m !== nothing
+    fields = [[m.captures[1], m.captures[2]]; split(m.captures[3])]
+    utime = parse(Int, fields[14])
+    stime = parse(Int, fields[15])
+    cutime = parse(Int, fields[16])
+    cstime = parse(Int, fields[17])
+    total_time = (utime + stime + cutime + cstime) / Sys.SC_CLK_TCK
+
+    # cutime and cstime are only updated when the child exits,
+    # so recursively scan all known children
+    for tid in readdir("/proc/$pid/task")
+        children = read("/proc/$pid/task/$tid/children", String)
+        child_pids = parse.(Int, split(children))
+        total_time += sum(cpu_time, child_pids; init=0.0)
+    end
+
+    return total_time
 end
 
 """
@@ -149,7 +168,6 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
                             time_limit = 60*60, do_depwarns=false,
                             kwargs...)
     # prepare for launching a container
-    container = "$(pkg.name)-$(randstring(8))"
     script = raw"""
         try
             using Dates
@@ -180,9 +198,6 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
             println()
         finally
             print("\n\n", '#'^80, "\n# PkgEval teardown: $(now())\n#\n\n")
-
-            # give the host some time to pick the above marker up, and kill us
-            sleep(60)
         end"""
     cmd = do_depwarns ? `--depwarn=error` : ``
     cmd = `$cmd --eval 'eval(Meta.parse(read(stdin,String)))' $(pkg.name)`
@@ -190,15 +205,19 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     input = Pipe()
     output = Pipe()
 
-    function stop()
-        kill_container(container)
+    env = Dict(
+        "JULIA_PKG_PRECOMPILE_AUTO" => "0",
+        # package hacks
+        "PYTHON" => "",
+        "R_HOME" => "*"
+    )
+    if haskey(ENV, "JULIA_PKG_SERVER")
+        env["JULIA_PKG_SERVER"] = ENV["JULIA_PKG_SERVER"]
     end
 
-    container_lock = ReentrantLock()
-
-    p = run_sandboxed_julia(install, cmd; name=container, tty=false, wait=false,
-                                          stdout=output, stderr=output, stdin=input,
-                                          kwargs...)
+    proc = run_sandboxed_julia(install, cmd; env, wait=false,
+                               stdout=output, stderr=output, stdin=input,
+                               kwargs...)
     close(output.in)
 
     # pass the script over standard input to avoid exceeding max command line size,
@@ -206,117 +225,63 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     println(input, script)
     close(input)
 
+    function stop()
+        # TODO: check if running, sigterm, wait, sigkill
+        kill(proc, Base.SIGKILL)
+        close(output)
+    end
+
     status = nothing
     reason = missing
 
     # kill on timeout
-    t = Timer(time_limit) do timer
-        lock(container_lock) do
-            process_running(p) || return
-            status = :kill
-            reason = :time_limit
-            stop()
-        end
+    timeout_monitor = Timer(time_limit) do timer
+        process_running(proc) || return
+        status = :kill
+        reason = :time_limit
+        stop()
     end
 
-    # kill on inactivity (fewer than 1 second of CPU usage every minute)
-    previous_stats = nothing
-    t2 = Timer(60; interval=300) do timer
-        lock(container_lock) do
-            process_running(p) || return
-            try
-                current_stats = query_container(container)
-                if previous_stats !== nothing && previous_stats["cpu_stats"] !== nothing &&
-                   current_stats !== nothing && current_stats["cpu_stats"] !== nothing
-                    previous_cpu_stats = previous_stats["cpu_stats"]
-                    current_cpu_stats = current_stats["cpu_stats"]
-                    usage_diff = (current_cpu_stats["cpu_usage"]["total_usage"] -
-                                previous_cpu_stats["cpu_usage"]["total_usage"]) / 1e9
-                    if 0 <= usage_diff < 1
-                        status = :kill
-                        reason = :inactivity
-                        stop()
-                    end
-                end
-                previous_stats = current_stats
-            catch err
-                @error "Failed to check for inactivity" exception=(err, catch_backtrace())
+    # kill on inactivity (less than 1 second of CPU usage every minute)
+    previous_cpu_time = nothing
+    inactivity_monitor = Timer(6; interval=30) do timer
+        process_running(proc) || return
+        pid = getpid(proc)
+        current_cpu_time = cpu_time(pid)
+        if current_cpu_time > 0 && previous_cpu_time !== nothing
+            cpu_time_diff = current_cpu_time - previous_cpu_time
+            if 0 <= cpu_time_diff < 1
+                status = :kill
+                reason = :inactivity
+                stop()
             end
         end
+        previous_cpu_time = current_cpu_time
     end
 
-    # collect output and stats
-    t3 = @async begin
+    # collect output
+    log_monitor = @async begin
         io = IOBuffer()
-        stats = nothing
-        while process_running(p) && isopen(output)
-            line = readline(output)
-            println(io, line)
-
-            # right before the container ends, gather some statistics
-            if occursin("PkgEval teardown", line)
-                lock(container_lock) do
-                    process_running(p) || return
-                    stats = query_container(container)
-                    stop()
-                end
-                break
-            end
+        while isopen(output)
+            write(io, output)
 
             # kill on too-large logs
             if io.size > log_limit
-                lock(container_lock) do
-                    process_running(p) || return
-                    status = :kill
-                    reason = :log_limit
-                    close(output)
-                    stop()
-                end
+                process_running(proc) || break
+                status = :kill
+                reason = :log_limit
+                stop()
                 break
             end
         end
-        write(io, output) # finish copying remaining output from kernel buffer
-        return String(take!(io)), stats
+        return String(take!(io))
     end
 
-    wait(p)
-    close(t)
-    close(t2)
-    log, stats = fetch(t3)
+    wait(proc)
+    close(timeout_monitor)
+    close(inactivity_monitor)
+    log = fetch(log_monitor)
     @assert !isopen(output) && eof(output)
-
-    # append some simple statistics to the log
-    # TODO: serialize the statistics
-    if stats !== nothing
-        io = IOBuffer()
-
-        try
-            cpu_stats = stats["cpu_stats"]
-            @printf(io, "CPU usage: %.2fs (%.2fs user, %.2fs kernel)\n",
-                    cpu_stats["cpu_usage"]["total_usage"]/1e9,
-                    cpu_stats["cpu_usage"]["usage_in_usermode"]/1e9,
-                    cpu_stats["cpu_usage"]["usage_in_kernelmode"]/1e9)
-            println(io)
-
-            println(io, "Network usage:")
-            for (network, network_stats) in stats["networks"]
-                println(io, "- $network: $(Base.format_bytes(network_stats["rx_bytes"])) received, $(Base.format_bytes(network_stats["tx_bytes"])) sent")
-            end
-        catch err
-            print(io, "Could not render usage statistics: ")
-            Base.showerror(io, err)
-            Base.show_backtrace(io, catch_backtrace())
-            println(io)
-        end
-
-        println(io)
-        print(io, "Raw statistics: ")
-        JSON.print(io, stats)
-
-        log *= String(take!(io))
-    else
-        log *= "No statistics gathered."
-    end
 
     # pick up the installed package version from the log
     version_match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
@@ -332,7 +297,7 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     end
 
     # try to figure out the failure reason
-    if status == nothing
+    if status === nothing
         if occursin("PkgEval succeeded", log)
             status = :ok
         else
@@ -371,27 +336,6 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     return version, status, reason, log
 end
 
-function query_container(container)
-    docker = connect("/var/run/docker.sock")
-    write(docker, """GET /containers/$container/stats HTTP/1.1
-                        Host: localhost""")
-    write(docker, "\r\n\r\n")
-    headers = readuntil(docker, "\r\n\r\n")
-    occursin("HTTP/1.1 200 OK", headers) || return nothing
-    len = parse(Int, readuntil(docker, "\r\n"); base=16)
-    len > 0 || return nothing
-    body = String(read(docker, len))
-    stats = JSON.parse(body)
-    close(docker)
-    return stats
-end
-
-function kill_container(container)
-    if !success(pipeline(`docker stop $container`, stdout=devnull))
-        @warn "Could not stop container $container"
-    end
-end
-
 Base.@kwdef struct Configuration
     julia::VersionNumber = Base.VERSION
     # TODO: depwarn, checkbounds, etc
@@ -405,40 +349,11 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
              ninstances::Integer=Sys.CPU_THREADS, retries::Integer=2, kwargs...)
     # here we deal with managing execution: spawning workers, output, result I/O, etc
 
-    prepare_runner()
-
-    # Julia installation and local cache
-    instantiated_configs = Dict{Configuration,Tuple{String,String}}()
+    # Julia installation
+    instantiated_configs = Dict{Configuration,String}()
     for config in configs
         install = prepare_julia(config.julia)
-        cache = mktempdir()
-
-        # copy the registry (we can't mount it because permissions might be incompatible)
-        # XXX: actually have the target Julia process check-out the registry?
-        registry_path = registry_dir()
-        @assert isdir(registry_path)
-        cp(registry_path, joinpath(cache, "registries"))
-
-        instantiated_configs[config] = (install, cache)
-    end
-
-    # global storage
-    storage = storage_dir()
-    mkpath(storage)
-
-    # ensure we can use Docker's API
-    info = let
-        docker = connect("/var/run/docker.sock")
-        write(docker,
-            """GET /info HTTP/1.1
-               Host: localhost""")
-        write(docker, "\r\n\r\n")
-        headers = readuntil(docker, "\r\n\r\n")
-        occursin("HTTP/1.1 200 OK", headers) || error("Invalid reply: $headers")
-        len = parse(Int, readuntil(docker, "\r\n"); base=16)
-        body = String(read(docker, len))
-        close(docker)
-        JSON.parse(body)
+        instantiated_configs[config] = install
     end
 
     jobs = vec(collect(Iterators.product(instantiated_configs, pkgs)))
@@ -471,7 +386,6 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
 
     start = now()
     io = IOContext(IOBuffer(), :color=>true)
-    on_ci = parse(Bool, get(ENV, "CI", "false"))
     p = Progress(njobs; barlen=50, color=:normal)
     function update_output()
         # known statuses
@@ -492,7 +406,7 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
             end
         end
 
-        if on_ci
+        if !isinteractive()
             println("$x combinations to test ($o succeeded, $f failed, $k killed, $s skipped, $(runtimestr(start)))")
             sleep(10)
         else
@@ -556,7 +470,7 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
             push!(all_workers, @async begin
                 try
                     while !isempty(jobs) && !done
-                        (config, (install, cache)), pkg = pop!(jobs)
+                        (config, install), pkg = pop!(jobs)
                         times[i] = now()
                         running[i] = (config, pkg)
 
@@ -587,23 +501,25 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
                             push!(result, [config,
                                            pkg.name, pkg.uuid, missing,
                                            :skip, :unsupported, 0, missing])
+                            running[i] = nothing
                             continue
                         elseif pkg.name in skip_lists[pkg.registry]
                             push!(result, [config,
                                            pkg.name, pkg.uuid, missing,
                                            :skip, :explicit, 0, missing])
+                            running[i] = nothing
                             continue
                         elseif endswith(pkg.name, "_jll")
                             push!(result, [config,
                                            pkg.name, pkg.uuid, missing,
                                            :skip, :jll, 0, missing])
+                            running[i] = nothing
                             continue
                         end
 
                         # perform an initial run
                         pkg_version, status, reason, log =
-                            run_sandboxed_test(install, pkg; cache=cache,
-                                               storage=storage, cpus=[i-1], kwargs...)
+                            run_sandboxed_test(install, pkg; cpus=[i-1], kwargs...)
 
                         # certain packages are known to have flaky tests; retry them
                         for j in 1:retries
@@ -611,8 +527,7 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
                                pkg.name in retry_lists[pkg.registry]
                                 times[i] = now()
                                 pkg_version, status, reason, log =
-                                    run_sandboxed_test(install, pkg; cache=cache,
-                                                       storage=storage, cpus=[i-1], kwargs...)
+                                    run_sandboxed_test(install, pkg; cpus=[i-1], kwargs...)
                             end
                         end
 
@@ -636,13 +551,8 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
         println()
 
         # clean-up
-        for (config, (install,cache)) in instantiated_configs
+        for (config, install) in instantiated_configs
             rm(install; recursive=true)
-            if uid() < 1000 || gid() < 1000
-                @warn "Cannot remove cache due to running as system user or group"
-            else
-                rm(cache; recursive=true)
-            end
         end
     end
 

@@ -53,9 +53,8 @@ Testing Example tests passed
 
 Other `run` methods, that offer more options and control over the testing process, are
 available as well. These methods however require you to first prepare the environment
-yourself, by calling `prepare_registry` to set-up the package registry, `prepare_runner` to
-build the Docker image, and `prepare_julia` to download and unpack a binary version of
-Julia.
+yourself, by calling `prepare_registry` to set-up the package registry, and `prepare_julia`
+to download and unpack a binary version of Julia.
 
 
 ## Why does my package fail?
@@ -69,7 +68,6 @@ julia> using PkgEval
 julia> julia_version = v"1.3.0"  # use `obtain_julia` if you need a specific build
 
 julia> julia_install = PkgEval.prepare_julia(julia_version)
-julia> PkgEval.prepare_runner()
 julia> PkgEval.prepare_registry()
 
 julia> PkgEval.run_sandboxed_julia(julia_install)

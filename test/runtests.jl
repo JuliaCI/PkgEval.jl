@@ -9,11 +9,9 @@ const julia_version = PkgEval.obtain_julia(julia_spec)::VersionNumber
 const julia_install = PkgEval.prepare_julia(julia_version)
 
 @testset "sandbox" begin
-    PkgEval.prepare_runner()
     mktemp() do path, io
         try
-            PkgEval.run_sandboxed_julia(julia_install, `-e 'print(1337)'`; stdout=io,
-                                        tty=false, interactive=false)
+            PkgEval.run_sandboxed_julia(julia_install, `-e 'print(1337)'`; stdout=io)
             close(io)
             @test read(path, String) == "1337"
         catch
@@ -25,8 +23,7 @@ const julia_install = PkgEval.prepare_julia(julia_version)
     end
 
     # print versioninfo so we can verify in CI logs that the correct version is used
-    PkgEval.run_sandboxed_julia(julia_install, `-e 'using InteractiveUtils; versioninfo()'`;
-                                tty=false, interactive=false)
+    PkgEval.run_sandboxed_julia(julia_install, `-e 'using InteractiveUtils; versioninfo()'`)
 end
 
 const pkgnames = ["TimerOutputs", "Crayons", "Example", "Gtk"]
@@ -38,7 +35,7 @@ const pkgnames = ["TimerOutputs", "Crayons", "Example", "Gtk"]
 
     # timeouts
     results = PkgEval.run([Configuration(julia=julia_version)], pkgs; time_limit = 0.1)
-    @test all(results.status .== :kill)
+    @test all(results.status .== :kill) && all(results.reason .== :time_limit)
 end
 
 @testset "main entrypoint" begin
