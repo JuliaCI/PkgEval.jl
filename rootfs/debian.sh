@@ -5,7 +5,7 @@ date=$(date +%Y%m%d)
 
 rootfs=$(mktemp --directory --tmpdir="/tmp")
 
-sudo debootstrap --variant=minbase --include=ssh,curl,libicu63,git,xz-utils,bzip2,unzip,p7zip,zstd,expect,locales,libgomp1 $version "$rootfs"
+sudo debootstrap --variant=minbase --include=ssh,curl,libicu63,git,xz-utils,bzip2,unzip,p7zip,zstd,expect,locales,libgomp1,ca-certificates $version "$rootfs"
 
 # Set up the one true locale
 echo "en_US.UTF-8 UTF-8" | sudo tee "$rootfs"/etc/locale.gen
