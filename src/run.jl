@@ -114,17 +114,18 @@ function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/juli
         read_write_maps["/tmp/.X11-unix"] = "/tmp/.X11-unix"
     end
 
-    cmd = `$install_dir/bin/julia $args`
+    cmd = `$install_dir/bin/julia`
 
     # restrict resource usage
     if !isempty(cpus)
         cmd = `/usr/bin/taskset --cpu-list $(join(cpus, ',')) $cmd`
+        env["JULIA_CPU_THREADS"] = string(length(cpus)) # JuliaLang/julia#35787
     end
 
     config = SandboxConfig(read_only_maps, read_write_maps, env;
                            stdin, stdout, stderr, verbose=isdebug(:sandbox))
 
-    return config, cmd
+    return config, `$cmd $args`
 end
 
 function process_children(pid)
