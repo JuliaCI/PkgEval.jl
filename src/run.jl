@@ -81,8 +81,10 @@ function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/juli
         "/root/.julia/registries"   => registry_dir(),
     )
 
+    artifacts_path = joinpath(storage_dir(), "artifacts")
+    mkpath(artifacts_path)
     read_write_maps = merge(mounts, Dict(
-        "/root/.julia/artifacts"    => joinpath(storage_dir(), "artifacts")
+        "/root/.julia/artifacts"    => artifacts_path
     ))
 
     env = merge(env, Dict(
