@@ -127,6 +127,15 @@ function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/juli
     return config, cmd
 end
 
+function process_children(pid)
+    pids = Int[]
+    for tid in readdir("/proc/$pid/task")
+        children = read("/proc/$pid/task/$tid/children", String)
+        append!(pids, parse.(Int, split(children)))
+    end
+    pids
+end
+
 function cpu_time(pid)
     stats = read("/proc/$pid/stat", String)
     m = match(r"^(\d+) \((.+)\) (.+)", stats)
@@ -140,11 +149,7 @@ function cpu_time(pid)
 
     # cutime and cstime are only updated when the child exits,
     # so recursively scan all known children
-    for tid in readdir("/proc/$pid/task")
-        children = read("/proc/$pid/task/$tid/children", String)
-        child_pids = parse.(Int, split(children))
-        total_time += sum(cpu_time, child_pids; init=0.0)
-    end
+    total_time += sum(cpu_time, process_children(pid); init=0.0)
 
     return total_time
 end
@@ -226,8 +231,28 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     close(input)
 
     function stop()
-        # TODO: check if running, sigterm, wait, sigkill
-        kill(proc, Base.SIGKILL)
+        if process_running(proc)
+            # FIXME: if we only kill proc, we sometimes only end up killing the sandbox.
+            #        shouldn't the sandbox handle this, e.g., by creating a process group?
+            function recursive_kill(proc, sig)
+                parent_pid = getpid(proc)
+                for pid in reverse([parent_pid; process_children(parent_pid)])
+                    ccall(:uv_kill, Cint, (Cint, Cint), pid, Base.SIGKILL)
+                end
+                return
+            end
+
+            recursive_kill(proc, Base.SIGINT)
+            terminator = Timer(5) do timer
+                recursive_kill(proc, Base.SIGTERM)
+            end
+            killer = Timer(10) do timer
+                recursive_kill(proc, Base.SIGKILL)
+            end
+            wait(proc)
+            close(terminator)
+            close(killer)
+        end
         close(output)
     end
 
