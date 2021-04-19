@@ -22,8 +22,12 @@ Further customization is possible using the `env` arg, to set environment variab
 `mounts` argument to mount additional directories. With `install_dir`, the directory where
 Julia is installed can be chosen.
 """
-function run_sandboxed_julia(install::String, args=``; wait=true, kwargs...)
-    config, cmd = runner_sandboxed_julia(install, args; kwargs...)
+function run_sandboxed_julia(install::String, args=``; wait=true,
+                             mounts::Dict{String,String}=Dict{String,String}(),
+                             kwargs...)
+    config, cmd = runner_sandboxed_julia(install, args;
+                                         uid=1000, gid=1000, homedir="/home/pkgeval",
+                                         kwargs...)
 
     # XXX: even when preferred_executor() returns UnprivilegedUserNamespacesExecutor,
     #      sometimes a stray sudo happens at run time? no idea how.
@@ -61,6 +65,7 @@ function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/juli
                                 stdin=stdin, stdout=stdout, stderr=stderr,
                                 env::Dict{String,String}=Dict{String,String}(),
                                 mounts::Dict{String,String}=Dict{String,String}(),
+                                uid::Int=0, gid::Int=0, homedir::String="/root",
                                 xvfb::Bool=true, cpus::Vector{Int}=Int[])
     # sometimes resolv.conf points to a location we can't bind mount from (for whatever reason)
     resolvconf_file = lock(resolvconf_lock) do
@@ -76,22 +81,31 @@ function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/juli
     julia_path = installed_julia_dir(install)
     read_only_maps = Dict(
         "/" => rootfs(),
-        "/etc/resolv.conf"          => resolvconf_file,
-        install_dir                 => julia_path,
-        "/root/.julia/registries"   => registry_dir(),
+        "/etc/resolv.conf"                      => resolvconf_file,
+        install_dir                             => julia_path,
+        "/usr/local/share/julia/registries"     => registry_dir(),
     )
 
     artifacts_path = joinpath(storage_dir(), "artifacts")
     mkpath(artifacts_path)
     read_write_maps = merge(mounts, Dict(
-        "/root/.julia/artifacts"    => artifacts_path
+        joinpath(homedir, ".julia/artifacts")   => artifacts_path
     ))
 
     env = merge(env, Dict(
         # PkgEval detection
         "CI" => "true",
         "PKGEVAL" => "true",
-        "JULIA_PKGEVAL" => "true"
+        "JULIA_PKGEVAL" => "true",
+
+        # use the provided registry
+        # NOTE: putting a registry in a non-primary depot entry makes Pkg use it as-is,
+        #       without needingb to set Pkg.UPDATED_REGISTRY_THIS_SESSION.
+        "JULIA_DEPOT_PATH" => "::/usr/local/share/julia",
+
+        # some essential env vars (since we don't run from a shell)
+        "PATH" => "/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin",
+        "HOME" => homedir,
     ))
     if haskey(ENV, "TERM")
         env["TERM"] = ENV["TERM"]
@@ -124,7 +138,12 @@ function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/juli
         env["JULIA_CPU_THREADS"] = string(length(cpus)) # JuliaLang/julia#35787
     end
 
+    # NOTE: we use persist=true so that modifications to the rootfs are backed by
+    #       actual storage on the host, and not just the (1G hard-coded) tmpfs,
+    #       because some packages like to generate a lot of data during testing.
+
     config = SandboxConfig(read_only_maps, read_write_maps, env;
+                           uid, gid, pwd=homedir, persist=true,
                            stdin, stdout, stderr, verbose=isdebug(:sandbox))
 
     return config, `$cmd $args`
@@ -185,12 +204,10 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
             versioninfo()
             println()
 
-            using Pkg
-            Pkg.UPDATED_REGISTRY_THIS_SESSION[] = true
-
 
             print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
 
+            using Pkg
             Pkg.add(ARGS[1])
 
 
