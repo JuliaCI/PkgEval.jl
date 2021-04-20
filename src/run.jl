@@ -1,12 +1,39 @@
 export Configuration
 
-const rootfs_cache = Dict()
-
 lazy_artifact(x) = @artifact_str(x)
 
 const rootfs_lock = ReentrantLock()
-rootfs() = lock(rootfs_lock) do
-    lazy_artifact("debian")
+const rootfs_cache = Dict()
+function prepare_rootfs(distro="debian"; uid=1000, user="pkgeval", gid=1000, group="pkgeval", home="/home/$user")
+    lock(rootfs_lock) do
+        get!(rootfs_cache, (distro, uid, user, gid, group, home)) do
+            base = lazy_artifact(distro)
+
+            # a bare rootfs isn't usable out-of-the-box
+            derived = mktempdir()
+            cp(base, derived; force=true)
+
+            # add a user and group
+            chmod(joinpath(derived, "etc/passwd"), 0o644)
+            open(joinpath(derived, "etc/passwd"), "a") do io
+                println(io, "$user:x:$uid:$gid::$home:/bin/bash")
+            end
+            chmod(joinpath(derived, "etc/group"), 0o644)
+            open(joinpath(derived, "etc/group"), "a") do io
+                println(io, "$group:x:$gid:")
+            end
+            chmod(joinpath(derived, "etc/shadow"), 0o640)
+            open(joinpath(derived, "etc/shadow"), "a") do io
+                println(io, "$user:*:::::::")
+            end
+
+            # replace resolv.conf
+            rm(joinpath(derived, "etc/resolv.conf"); force=true)
+            write(joinpath(derived, "etc/resolv.conf"), read("/etc/resolv.conf"))
+
+            return (path=derived, uid, user, gid, group, home)
+        end
+    end
 end
 
 """
@@ -25,9 +52,7 @@ Julia is installed can be chosen.
 function run_sandboxed_julia(install::String, args=``; wait=true,
                              mounts::Dict{String,String}=Dict{String,String}(),
                              kwargs...)
-    config, cmd = runner_sandboxed_julia(install, args;
-                                         uid=1000, gid=1000, homedir="/home/pkgeval",
-                                         kwargs...)
+    config, cmd = runner_sandboxed_julia(install, args; kwargs...)
 
     # XXX: even when preferred_executor() returns UnprivilegedUserNamespacesExecutor,
     #      sometimes a stray sudo happens at run time? no idea how.
@@ -57,39 +82,23 @@ end
 const xvfb_lock = ReentrantLock()
 const xvfb_proc = Ref{Union{Base.Process,Nothing}}(nothing)
 
-# global copy of resolv.conf to mount in all containers
-const resolvconf_lock = ReentrantLock()
-const resolvconf_path = Ref{Union{String,Nothing}}(nothing)
-
 function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/julia",
                                 stdin=stdin, stdout=stdout, stderr=stderr,
                                 env::Dict{String,String}=Dict{String,String}(),
                                 mounts::Dict{String,String}=Dict{String,String}(),
-                                uid::Int=0, gid::Int=0, homedir::String="/root",
                                 xvfb::Bool=true, cpus::Vector{Int}=Int[])
-    # sometimes resolv.conf points to a location we can't bind mount from (for whatever reason)
-    resolvconf_file = lock(resolvconf_lock) do
-        if resolvconf_path[] == nothing
-            path, io = mktemp()
-            write(io, read("/etc/resolv.conf", String))
-            close(io)
-            resolvconf_path[] = path
-        end
-        resolvconf_path[]
-    end
-
     julia_path = installed_julia_dir(install)
+    rootfs = prepare_rootfs()
     read_only_maps = Dict(
-        "/" => rootfs(),
-        "/etc/resolv.conf"                      => resolvconf_file,
-        install_dir                             => julia_path,
-        "/usr/local/share/julia/registries"     => registry_dir(),
+        "/"                                 => rootfs.path,
+        install_dir                         => julia_path,
+        "/usr/local/share/julia/registries" => registry_dir(),
     )
 
     artifacts_path = joinpath(storage_dir(), "artifacts")
     mkpath(artifacts_path)
     read_write_maps = merge(mounts, Dict(
-        joinpath(homedir, ".julia/artifacts")   => artifacts_path
+        joinpath(rootfs.home, ".julia/artifacts")   => artifacts_path
     ))
 
     env = merge(env, Dict(
@@ -105,7 +114,7 @@ function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/juli
 
         # some essential env vars (since we don't run from a shell)
         "PATH" => "/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin",
-        "HOME" => homedir,
+        "HOME" => rootfs.home,
     ))
     if haskey(ENV, "TERM")
         env["TERM"] = ENV["TERM"]
@@ -143,7 +152,7 @@ function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/juli
     #       because some packages like to generate a lot of data during testing.
 
     config = SandboxConfig(read_only_maps, read_write_maps, env;
-                           uid, gid, pwd=homedir, persist=true,
+                           rootfs.uid, rootfs.gid, pwd=rootfs.home, persist=true,
                            stdin, stdout, stderr, verbose=isdebug(:sandbox))
 
     return config, `$cmd $args`
