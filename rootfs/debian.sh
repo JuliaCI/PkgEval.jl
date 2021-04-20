@@ -5,11 +5,21 @@ date=$(date +%Y%m%d)
 
 rootfs=$(mktemp --directory --tmpdir="/tmp")
 
-sudo debootstrap --variant=minbase --include=ssh,curl,libicu63,git,xz-utils,bzip2,unzip,p7zip,zstd,expect,locales,libgomp1,ca-certificates $version "$rootfs"
+packages=()
 
-# Set up the one true locale
-echo "en_US.UTF-8 UTF-8" | sudo tee "$rootfs"/etc/locale.gen
-sudo chroot "$rootfs" locale-gen
+# download engines
+packages+=(curl ca-certificates)
+# essential tools
+packages+=(git unzip)
+# toolchain
+packages+=(build-essential gfortran pkg-config)
+
+function join_by { local IFS="$1"; shift; echo "$*"; }
+package_list=$(join_by , ${packages[@]})
+
+sudo debootstrap --variant=minbase \
+                 --include=$package_list \
+                 $version "$rootfs"
 
 # Clean some files
 sudo chroot "$rootfs" apt-get clean
