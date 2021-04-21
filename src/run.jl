@@ -36,9 +36,6 @@ function prepare_rootfs(distro="debian"; uid=1000, user="pkgeval", gid=1000, gro
     end
 end
 
-# setting-up cgroups is messy, so let's try and use systemd for that
-const use_systemd = Ref{Union{Nothing,Bool}}(nothing)
-
 """
     run_sandboxed_julia(install::String, args=``; env=Dict(), mounts=Dict(),
                         wait=true, stdin=stdin, stdout=stdout, stderr=stderr,
@@ -53,78 +50,17 @@ Further customization is possible using the `env` arg, to set environment variab
 Julia is installed can be chosen.
 """
 function run_sandboxed_julia(install::String, args=``; wait=true,
-                             env::Dict{String,String}=Dict{String,String}(),
-                             memory_limit::Union{Nothing,Int}=nothing,
-                             cpu_limit::Union{Nothing,Int}=nothing, kwargs...)
-    # one-time systemd discovery
-    if use_systemd[] === nothing
-        @info "Checking availability of systemd"
-        use_systemd[] = false
-
-        if Sys.which("systemd-run") === nothing
-            @warn "systemd not available"
-        else
-            if !success(`systemd-run --quiet --user --scope /bin/true`)
-                # this might be systemd/systemd#3388
-                uid = ccall(:getuid, Cint, ())
-                path = "/sys/fs/cgroup/unified/user.slice/user-$(uid).slice/cgroup.procs"
-                try
-                    Base.run(`sudo chown $uid:root $path`)
-                    Base.run(`sudo chmod g+w       $path`)
-                catch err
-                    @warn "Could not work around potential systemd issue" exception=(err,catch_backtrace())
-                end
-            end
-
-            if success(`systemd-run --user --scope /bin/true`)
-                use_systemd[] = true
-            end
-        end
-    end
-
-    # JuliaLang/julia#35787: inform Julia about CPU restrictions
-    if cpu_limit !== nothing
-        env["JULIA_CPU_THREADS"] = string(cpu_limit)
-    end
-
-    config, cmd = runner_sandboxed_julia(install, args; env, kwargs...)
+                             mounts::Dict{String,String}=Dict{String,String}(),
+                             kwargs...)
+    config, cmd = runner_sandboxed_julia(install, args; kwargs...)
 
     # XXX: even when preferred_executor() returns UnprivilegedUserNamespacesExecutor,
     #      sometimes a stray sudo happens at run time? no idea how.
     exe_typ = UnprivilegedUserNamespacesExecutor
     exe = exe_typ()
-    proc = if use_systemd[] == false
-        Base.run(exe, config, cmd; wait)
-    else
-        sandbox_cmd = Sandbox.build_executor_command(exe, config, cmd)
-        systemd_cmd = let
-            cmd = ```systemd-run --quiet --user --scope --collect```
+    proc = Base.run(exe, config, cmd; wait)
 
-            # XXX: systemd-run needs env vars which Sandbox.jl removed from our environment
-            env = copy(sandbox_cmd.env)
-            for key in ["DBUS_SESSION_BUS_ADDRESS", "XDG_RUNTIME_DIR"]
-                haskey(ENV, key) && push!(env, "$key=$(ENV[key])")
-            end
-            # ensure those env vars don't leak into the container
-            cmd = `$cmd --setenv DBUS_SESSION_BUS_ADDRESS="" --setenv XDG_RUNTIME_DIR=""`
-
-            if memory_limit !== nothing
-                cmd = `$cmd --property MemoryMax=$memory_limit`
-            end
-            if cpu_limit !== nothing
-                cmd = `$cmd --property CPUQuota=$(100*cpu_limit)%`
-            end
-
-            # JuliaLang/julia#39282
-            Cmd(`$cmd $(sandbox_cmd.exec)`; env)
-        end
-        Base.run(pipeline(systemd_cmd; config.stdin, config.stdout, config.stderr); wait)
-
-        # instead of running every sandbox process in a new systemd scope, maybe we should
-        # spawn the PkgEval process itself in a new scope and handle cgroups ourselves?
-    end
-
-    # TODO: use systemd to report on CPU, network, ... usage
+    # TODO: introduce a --stats flag that has the sandbox trace and report on CPU, network, ... usage
 
     if wait
         cleanup(exe)
@@ -150,7 +86,7 @@ function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/juli
                                 stdin=stdin, stdout=stdout, stderr=stderr,
                                 env::Dict{String,String}=Dict{String,String}(),
                                 mounts::Dict{String,String}=Dict{String,String}(),
-                                xvfb::Bool=true)
+                                xvfb::Bool=true, cpus::Vector{Int}=Int[])
     julia_path = installed_julia_dir(install)
     rootfs = prepare_rootfs()
     read_only_maps = Dict(
@@ -205,6 +141,12 @@ function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/juli
 
     cmd = `$install_dir/bin/julia`
 
+    # restrict resource usage
+    if !isempty(cpus)
+        cmd = `/usr/bin/taskset --cpu-list $(join(cpus, ',')) $cmd`
+        env["JULIA_CPU_THREADS"] = string(length(cpus)) # JuliaLang/julia#35787
+    end
+
     # NOTE: we use persist=true so that modifications to the rootfs are backed by
     #       actual storage on the host, and not just the (1G hard-coded) tmpfs,
     #       because some packages like to generate a lot of data during testing.
@@ -245,7 +187,7 @@ end
 
 """
     run_sandboxed_test(install::String, pkg; do_depwarns=false,
-                       log_limit=2^20, time_limit=60*60, memory_limit = 5*2^30)
+                       log_limit=2^20, time_limit=60*60)
 
 Run the unit tests for a single package `pkg` inside of a sandbox using a Julia installation
 at `install`. If `do_depwarns` is `true`, deprecation warnings emitted while running the
@@ -259,8 +201,8 @@ directory.
 Refer to `run_sandboxed_julia`[@ref] for more possible `keyword arguments.
 """
 function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
-                            time_limit = 60*60, memory_limit = 5*2^30 #= 5 GB =#,
-                            do_depwarns=false, kwargs...)
+                            time_limit = 60*60, do_depwarns=false,
+                            kwargs...)
     # prepare for launching a container
     script = raw"""
         try
@@ -309,7 +251,7 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
 
     proc = run_sandboxed_julia(install, cmd; env, wait=false,
                                stdout=output, stderr=output, stdin=input,
-                               memory_limit, kwargs...)
+                               kwargs...)
     close(output.in)
 
     # pass the script over standard input to avoid exceeding max command line size,
@@ -458,8 +400,7 @@ end
 Base.broadcastable(x::Configuration) = Ref(x)
 
 function run(configs::Vector{Configuration}, pkgs::Vector;
-             ninstances::Integer=Sys.CPU_THREADS, cpu_limit::Int=1,
-             retries::Integer=2, kwargs...)
+             ninstances::Integer=Sys.CPU_THREADS, retries::Integer=2, kwargs...)
     # here we deal with managing execution: spawning workers, output, result I/O, etc
 
     # Julia installation
@@ -633,7 +574,7 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
 
                         # perform an initial run
                         pkg_version, status, reason, log =
-                            run_sandboxed_test(install, pkg; cpu_limit, kwargs...)
+                            run_sandboxed_test(install, pkg; cpus=[i-1], kwargs...)
 
                         # certain packages are known to have flaky tests; retry them
                         for j in 1:retries
@@ -641,7 +582,7 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
                                pkg.name in retry_lists[pkg.registry]
                                 times[i] = now()
                                 pkg_version, status, reason, log =
-                                    run_sandboxed_test(install, pkg; cpu_limit, kwargs...)
+                                    run_sandboxed_test(install, pkg; cpus=[i-1], kwargs...)
                             end
                         end
 
