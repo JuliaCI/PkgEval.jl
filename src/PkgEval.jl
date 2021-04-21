@@ -7,10 +7,8 @@ using Dates
 using ProgressMeter
 using DataFrames
 using Random
-using Libdl
-using Sockets
-using JSON
-using Printf
+using Sandbox
+using LazyArtifacts
 
 # immutable: in package directory
 versions_file() = joinpath(dirname(@__DIR__), "deps", "Versions.toml")

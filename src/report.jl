@@ -48,40 +48,44 @@ function print_status(io::IO, status, val=status)
     end
 end
 
-function compare(result, config_against, config)
+function compare(result; rev::Bool=false)
     pkg_names = unique(result.name)
 
-    builds    = result[result[!, :config] .== config, :]
-    reference = result[result[!, :config] .== config_against, :]
+    primary, against = groupby(result, [:julia])
+    if rev  # hack
+        primary, against = against, primary
+    end
 
     # overview
-    o = count(==(:ok),      builds[!, :status])
-    s = count(==(:skip),    builds[!, :status])
-    f = count(==(:fail),    builds[!, :status])
-    k = count(==(:kill),    builds[!, :status])
-    x = o + s + k + f
-    nrow(builds)
-    @assert x == nrow(builds)
-    print("On v$config, out of $x packages ")
-    print_status(:ok, o)
-    print(" passed, ")
-    print_status(:fail, f)
-    print(" failed, ")
-    print_status(:kill, k)
-    print(" got killed and ")
-    print_status(:skip, s)
-    println(" were skipped.")
+    for df in (primary, against)
+        o = count(==(:ok),      df[!, :status])
+        s = count(==(:skip),    df[!, :status])
+        f = count(==(:fail),    df[!, :status])
+        k = count(==(:kill),    df[!, :status])
+        x = o + s + k + f
+        @assert x == nrow(df)
+
+        print("On v$(first(df.julia)), out of $x packages ")
+        print_status(:ok, o)
+        print(" passed, ")
+        print_status(:fail, f)
+        print(" failed, ")
+        print_status(:kill, k)
+        print(" got killed and ")
+        print_status(:skip, s)
+        println(" were skipped.")
+    end
 
     println()
 
-    # summary of differences
-    println("Comparing against $(config_against):")
+    # list of differences
+    println("Comparing $(first(primary.julia)) against $(first(against.julia)):")
     new_failures = 0
     new_successes = 0
-    for current in eachrow(builds)
+    for current in eachrow(primary)
         pkg_name = current[:name]
 
-        previous = reference[reference[!, :name] .== pkg_name, :]
+        previous = against[against[!, :name] .== pkg_name, :]
         nrow(previous) == 0 && continue
         previous = first(previous)
 
@@ -99,6 +103,10 @@ function compare(result, config_against, config)
             end
         end
     end
+
+    println()
+
+    # summary of differences
     print("In summary, ")
     print_status(:ok, new_successes)
     print(" packages now succeed, while ")
