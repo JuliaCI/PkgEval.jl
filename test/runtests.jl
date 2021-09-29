@@ -36,6 +36,10 @@ const pkgnames = ["TimerOutputs", "Crayons", "Example", "Gtk"]
     # timeouts
     results = PkgEval.run([Configuration(julia=julia_version)], pkgs; time_limit = 0.1)
     @test all(results.status .== :kill) && all(results.reason .== :time_limit)
+
+    # log limit
+    results = PkgEval.run([Configuration(julia=julia_version)], pkgs; log_limit = 1)
+    @test all(results.status .== :kill) && all(results.reason .== :log_limit)
 end
 
 @testset "main entrypoint" begin
