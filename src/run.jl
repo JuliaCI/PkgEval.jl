@@ -203,6 +203,8 @@ Refer to `run_sandboxed_julia`[@ref] for more possible `keyword arguments.
 function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
                             time_limit = 60*60, do_depwarns=false,
                             kwargs...)
+    @assert log_limit > 0
+
     # prepare for launching a container
     script = raw"""
         try
@@ -316,8 +318,8 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     # collect output
     log_monitor = @async begin
         io = IOBuffer()
-        while isopen(output)
-            write(io, output)
+        while !eof(output)
+            print(io, readline(output; keep=true))
 
             # kill on too-large logs
             if io.size > log_limit
@@ -335,12 +337,11 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     close(timeout_monitor)
     close(inactivity_monitor)
     log = fetch(log_monitor)
-    @assert !isopen(output) && eof(output)
+
 
     if sizeof(log) > log_limit
-        # even though the monitor task should limit the log size,
-        # we've seen failures to upload due to the log being too large,
-        # https://github.com/JuliaLang/julia/pull/28666#issuecomment-929564036
+        # even though the monitor above should have limited the log size,
+        # a single line may still have exceeded the limit, so make sure we truncate.
         ind = prevind(log, log_limit)
         log = log[1:ind]
     end
