@@ -337,6 +337,13 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     log = fetch(log_monitor)
     @assert !isopen(output) && eof(output)
 
+    if sizeof(log) > log_limit
+        # even though the monitor task should limit the log size,
+        # we've seen failures to upload due to the log being too large,
+        # https://github.com/JuliaLang/julia/pull/28666#issuecomment-929564036
+        log = log[1:log_limit]
+    end
+
     # pick up the installed package version from the log
     version_match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
     version = if version_match !== nothing
