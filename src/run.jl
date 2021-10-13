@@ -300,7 +300,7 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
 
     # kill on inactivity (less than 1 second of CPU usage every minute)
     previous_cpu_time = nothing
-    inactivity_monitor = Timer(6; interval=30) do timer
+    inactivity_monitor = Timer(60; interval=30) do timer
         process_running(proc) || return
         pid = getpid(proc)
         current_cpu_time = cpu_time(pid)
