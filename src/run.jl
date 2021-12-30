@@ -390,6 +390,13 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
                 :abort
             elseif occursin("Unreachable reached", log)
                 :unreachable
+            elseif occursin("failed to clone from", log) ||
+                   occursin(r"HTTP/\d \d+ while requesting", log) ||
+                   occursin("Could not resolve host", log) ||
+                   occursin("Resolving timed out after", log) ||
+                   occursin("Could not download", log) ||
+                   occursin(r"Error: HTTP/\d \d+", log)
+                :network
             else
                 :unknown
             end

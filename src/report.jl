@@ -24,6 +24,7 @@ const reasons = Dict(
     :segfault               => "a segmentation fault happened",
     :abort                  => "the process was aborted",
     :unreachable            => "an unreachable instruction was executed",
+    :network                => "networking-related issues were detected",
     :unknown                => "there were unidentified errors",
     # kill
     :time_limit             => "test duration exceeded the time limit",
