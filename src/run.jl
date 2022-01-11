@@ -188,60 +188,23 @@ function cpu_time(pid)
 end
 
 """
-    run_sandboxed_test(install::String, pkg; do_depwarns=false,
-                       log_limit=2^20, time_limit=60*60)
+    run_sandboxed_script(install::String, script::String, args=``;
+                         log_limit=2^20, time_limit=60*60)
 
-Run the unit tests for a single package `pkg` inside of a sandbox using a Julia installation
-at `install`. If `do_depwarns` is `true`, deprecation warnings emitted while running the
-package's tests will cause the tests to fail. Test will be forcibly interrupted after
-`time_limit` seconds (defaults to 1h) or if the log becomes larger than `log_limit`
-(defaults to 1MB).
-
-A log for the tests is written to a version-specific directory in the PkgEval root
-directory.
+Run a Julia script `script` in non-interactive mode, returning the process status and a
+failure reason if any (both represented by a symbol), and the full log. Execution of the
+script will be forcibly interrupted after `time_limit` seconds (defaults to 1h) or if the
+log becomes larger than `log_limit` (defaults to 1MB).
 
 Refer to `run_sandboxed_julia`[@ref] for more possible `keyword arguments.
 """
-function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
-                            time_limit = 60*60, do_depwarns=false,
-                            kwargs...)
+function run_sandboxed_script(install::String, script::String, args=``;
+                              log_limit = 2^20 #= 1 MB =#,
+                              time_limit = 60*60,
+                              kwargs...)
     @assert log_limit > 0
 
-    # prepare for launching a container
-    script = raw"""
-        try
-            using Dates
-            print('#'^80, "\n# PkgEval set-up: $(now())\n#\n\n")
-
-            using InteractiveUtils
-            versioninfo()
-            println()
-
-
-            print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
-
-            using Pkg
-            Pkg.add(ARGS[1])
-
-
-            print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n")
-
-            Pkg.test(ARGS[1])
-
-            println("\nPkgEval succeeded")
-        catch err
-            print("\nPkgEval failed: ")
-            showerror(stdout, err)
-            Base.show_backtrace(stdout, catch_backtrace())
-            println()
-        finally
-            print("\n\n", '#'^80, "\n# PkgEval teardown: $(now())\n#\n\n")
-        end"""
-    cmd = do_depwarns ? `--depwarn=error` : ``
-    cmd = `$cmd --eval 'eval(Meta.parse(read(stdin,String)))' $(pkg.name)`
-
-    input = Pipe()
-    output = Pipe()
+    cmd = `--eval 'eval(Meta.parse(read(stdin,String)))' $args`
 
     env = Dict(
         "JULIA_PKG_PRECOMPILE_AUTO" => "0",
@@ -253,6 +216,8 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
         env["JULIA_PKG_SERVER"] = ENV["JULIA_PKG_SERVER"]
     end
 
+    input = Pipe()
+    output = Pipe()
     proc = run_sandboxed_julia(install, cmd; env, wait=false,
                                stdout=output, stderr=output, stdin=input,
                                kwargs...)
@@ -347,6 +312,61 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
         log = log[1:ind]
     end
 
+    return status, reason, log
+end
+
+"""
+    run_sandboxed_test(install::String, pkg; do_depwarns=false)
+
+Run the unit tests for a single package `pkg` inside of a sandbox using a Julia installation
+at `install`. If `do_depwarns` is `true`, deprecation warnings emitted while running the
+package's tests will cause the tests to fail. Test will be forcibly interrupted after
+`time_limit` seconds (defaults to 1h) or if the log becomes larger than `log_limit`
+(defaults to 1MB).
+
+A log for the tests is written to a version-specific directory in the PkgEval root
+directory.
+
+Refer to `run_sandboxed_script`[@ref] for more possible `keyword arguments.
+"""
+function run_sandboxed_test(install::String, pkg; do_depwarns=false, kwargs...)
+    script = raw"""
+        try
+            using Dates
+            print('#'^80, "\n# PkgEval set-up: $(now())\n#\n\n")
+
+            using InteractiveUtils
+            versioninfo()
+            println()
+
+
+            print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
+
+            using Pkg
+            Pkg.add(ARGS[1])
+
+
+            print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n")
+
+            Pkg.test(ARGS[1])
+
+            println("\nPkgEval succeeded")
+        catch err
+            print("\nPkgEval failed: ")
+            showerror(stdout, err)
+            Base.show_backtrace(stdout, catch_backtrace())
+            println()
+        finally
+            print("\n\n", '#'^80, "\n# PkgEval teardown: $(now())\n#\n\n")
+        end"""
+
+    args = `$(pkg.name)`
+    if do_depwarns
+        args = `--depwarn=error $args`
+    end
+
+    status, reason, log = run_sandboxed_script(install, script, args; kwargs...)
+
     # pick up the installed package version from the log
     version_match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
     version = if version_match !== nothing
@@ -419,7 +439,6 @@ is performed in an Arch Linux container.
 """
 function run_compiled_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
                            compile_time_limit=30*60, do_depwarns=false, kwargs...)
-    # prepare for launching a container
     script = raw"""
         try
             using Dates
@@ -454,89 +473,28 @@ function run_compiled_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
         finally
             print("\n\n", '#'^80, "\n# PackageCompiler teardown: $(now())\n#\n\n")
         end"""
+
     sysimage_path = "/sysimage/sysimg.so"
-    cmd = do_depwarns ? `--depwarn=error` : ``
-    cmd = `$cmd --eval 'eval(Meta.parse(read(stdin,String)))' $(pkg.name) $sysimage_path`
-
-    input = Pipe()
-    output = Pipe()
-
-    env = Dict(
-        "JULIA_PKG_PRECOMPILE_AUTO" => "0",
-        # package hacks
-        "PYTHON" => "",
-        "R_HOME" => "*"
-    )
-    if haskey(ENV, "JULIA_PKG_SERVER")
-        env["JULIA_PKG_SERVER"] = ENV["JULIA_PKG_SERVER"]
-    end
+    args = `$(pkg.name) $sysimage_path`
 
     sysimage_dir = mktempdir()
     mounts = Dict(dirname(sysimage_path) => sysimage_dir)
 
-    proc = run_sandboxed_julia(install, cmd; env, mounts, wait=false, xvfb=false,
-                               stdout=output, stderr=output, stdin=input,
-                               kwargs...)
-    close(output.in)
+    status, reason, log = run_sandboxed_script(install, script, args; mounts,
+                                               time_limit=compile_time_limit, kwargs...)
 
-    # pass the script over standard input to avoid exceeding max command line size,
-    # and keep the process listing somewhat clean
-    println(input, script)
-    close(input)
-
-    function stop()
-        if process_running(proc)
-            # FIXME: if we only kill proc, we sometimes only end up killing the sandbox.
-            #        shouldn't the sandbox handle this, e.g., by creating a process group?
-            function recursive_kill(proc, sig)
-                parent_pid = getpid(proc)
-                for pid in reverse([parent_pid; process_children(parent_pid)])
-                    ccall(:uv_kill, Cint, (Cint, Cint), pid, Base.SIGKILL)
-                end
-                return
-            end
-
-            recursive_kill(proc, Base.SIGINT)
-            terminator = Timer(5) do timer
-                recursive_kill(proc, Base.SIGTERM)
-            end
-            killer = Timer(10) do timer
-                recursive_kill(proc, Base.SIGKILL)
-            end
-            wait(proc)
-            close(terminator)
-            close(killer)
+    # try to figure out the failure reason
+    if status === nothing
+        if occursin("PackageCompiler succeeded", log)
+            status = :ok
+        else
+            status = :fail
+            reason = :uncompilable
         end
-        close(output)
     end
 
-    # kill on timeout
-    timeout_monitor = Timer(compile_time_limit) do timer
-        process_running(proc) || return
-        stop()
-    end
-
-    # collect output
-    log_monitor = @async begin
-        io = IOBuffer()
-        while !eof(output)
-            print(io, readline(output; keep=true))
-        end
-        return String(take!(io))
-    end
-
-    wait(proc)
-    close(timeout_monitor)
-    log = fetch(log_monitor)
-
-    # truncate the log
-    if sizeof(log) > log_limit
-        ind = prevind(log, log_limit)
-        log = log[1:ind]
-    end
-
-    if !success(proc)
-        return missing, :fail, :uncompilable, log
+    if status !== :ok
+        return missing, status, reason, log
     end
 
     # run the tests in an alternate environment (different OS, depot and Julia binaries
