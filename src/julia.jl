@@ -271,6 +271,10 @@ function get_julia_repoversion(spec, repo_name)
     # FIXME: no way to get the short hash with LibGit2? It just uses the length argument.
     #shorthash = LibGit2.GitShortHash(hash, 7)
     shorthash = LibGit2.GitShortHash(chomp(read(`git -C $(download_dir(repo_name)) rev-parse --short $hash`, String)))
+    # XXX: Julia's buildbot just takes the first 10 characters of the hash.
+    #      we need to match this behavior exactly, because it's been observed that
+    #      on different systems/checkouts/git versions the short hash can differ.
+    shorthash = LibGit2.GitShortHash(chomp(read(`git -C $(download_dir(repo_name)) rev-parse $hash`, String))[1:10])
     version = VersionNumber(string(version) * "-" * string(shorthash))
     # NOTE: we append the hash to differentiate commits with identical VERSION files
     #       (we can't only do this for -DEV versions because of backport branches)
