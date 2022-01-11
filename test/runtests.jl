@@ -52,6 +52,16 @@ end
     end
 end
 
+@testset "PackageCompiler" begin
+    results = PkgEval.run([Configuration(julia=julia_version, compiled=true)], ["Example"])
+    if !(julia_spec == "master" || julia_spec == "nightly")
+        @test all(results.status .== :ok)
+        for result in eachrow(results)
+            @test occursin("Testing $(result.name) tests passed", result.log)
+        end
+    end
+end
+
 @testset "reporting" begin
     lts = Configuration(julia=v"1.0.5")
     stable = Configuration(julia=v"1.2.0")

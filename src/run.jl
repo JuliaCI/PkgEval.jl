@@ -49,9 +49,7 @@ Further customization is possible using the `env` arg, to set environment variab
 `mounts` argument to mount additional directories. With `install_dir`, the directory where
 Julia is installed can be chosen.
 """
-function run_sandboxed_julia(install::String, args=``; wait=true,
-                             mounts::Dict{String,String}=Dict{String,String}(),
-                             kwargs...)
+function run_sandboxed_julia(install::String, args=``; wait=true, kwargs...)
     config, cmd = runner_sandboxed_julia(install, args; kwargs...)
 
     # XXX: even when preferred_executor() returns UnprivilegedUserNamespacesExecutor,
@@ -86,9 +84,9 @@ function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/juli
                                 stdin=stdin, stdout=stdout, stderr=stderr,
                                 env::Dict{String,String}=Dict{String,String}(),
                                 mounts::Dict{String,String}=Dict{String,String}(),
-                                xvfb::Bool=true, cpus::Vector{Int}=Int[])
+                                xvfb::Bool=true, cpus::Vector{Int}=Int[],
+                                sysimage=nothing, rootfs=prepare_rootfs())
     julia_path = installed_julia_dir(install)
-    rootfs = prepare_rootfs()
     read_only_maps = Dict(
         "/"                                 => rootfs.path,
         install_dir                         => julia_path,
@@ -154,6 +152,10 @@ function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/juli
     config = SandboxConfig(read_only_maps, read_write_maps, env;
                            rootfs.uid, rootfs.gid, pwd=rootfs.home, persist=true,
                            stdin, stdout, stderr, verbose=isdebug(:sandbox))
+
+    if sysimage !== nothing
+        args = `--sysimage=$sysimage $args`
+    end
 
     return config, `$cmd $args`
 end
@@ -338,7 +340,6 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     close(inactivity_monitor)
     log = fetch(log_monitor)
 
-
     if sizeof(log) > log_limit
         # even though the monitor above should have limited the log size,
         # a single line may still have exceeded the limit, so make sure we truncate.
@@ -406,8 +407,151 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     return version, status, reason, log
 end
 
+"""
+    run_compiled_test(install::String, pkg; compile_time_limit=30*60)
+
+Run the unit tests for a single package `pkg` (see `run_compiled_test`[@ref] for details and
+a list of supported keyword arguments), after first having compiled a system image that
+contains this package and its dependencies.
+
+To find incompatibilities, the compilation happens on an Ubuntu-based runner, while testing
+is performed in an Arch Linux container.
+"""
+function run_compiled_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
+                           compile_time_limit=30*60, do_depwarns=false, kwargs...)
+    # prepare for launching a container
+    script = raw"""
+        try
+            using Dates
+            print('#'^80, "\n# PackageCompiler set-up: $(now())\n#\n\n")
+
+            using InteractiveUtils
+            versioninfo()
+            println()
+
+
+            print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
+
+            using Pkg
+            Pkg.add(["PackageCompiler", ARGS[1]])
+
+
+            print("\n\n", '#'^80, "\n# Compiling: $(now())\n#\n\n")
+
+            using PackageCompiler
+
+            t = @elapsed create_sysimage(Symbol(ARGS[1]), sysimage_path=ARGS[2])
+            s = stat(ARGS[2]).size
+
+            println("Generated system image is ", Base.format_bytes(s), ", compilation took ", trunc(Int, t), " seconds")
+
+            println("\nPackageCompiler succeeded")
+        catch err
+            print("\nPackageCompiler failed: ")
+            showerror(stdout, err)
+            Base.show_backtrace(stdout, catch_backtrace())
+            println()
+        finally
+            print("\n\n", '#'^80, "\n# PackageCompiler teardown: $(now())\n#\n\n")
+        end"""
+    sysimage_path = "/sysimage/sysimg.so"
+    cmd = do_depwarns ? `--depwarn=error` : ``
+    cmd = `$cmd --eval 'eval(Meta.parse(read(stdin,String)))' $(pkg.name) $sysimage_path`
+
+    input = Pipe()
+    output = Pipe()
+
+    env = Dict(
+        "JULIA_PKG_PRECOMPILE_AUTO" => "0",
+        # package hacks
+        "PYTHON" => "",
+        "R_HOME" => "*"
+    )
+    if haskey(ENV, "JULIA_PKG_SERVER")
+        env["JULIA_PKG_SERVER"] = ENV["JULIA_PKG_SERVER"]
+    end
+
+    sysimage_dir = mktempdir()
+    mounts = Dict(dirname(sysimage_path) => sysimage_dir)
+
+    proc = run_sandboxed_julia(install, cmd; env, mounts, wait=false, xvfb=false,
+                               stdout=output, stderr=output, stdin=input,
+                               kwargs...)
+    close(output.in)
+
+    # pass the script over standard input to avoid exceeding max command line size,
+    # and keep the process listing somewhat clean
+    println(input, script)
+    close(input)
+
+    function stop()
+        if process_running(proc)
+            # FIXME: if we only kill proc, we sometimes only end up killing the sandbox.
+            #        shouldn't the sandbox handle this, e.g., by creating a process group?
+            function recursive_kill(proc, sig)
+                parent_pid = getpid(proc)
+                for pid in reverse([parent_pid; process_children(parent_pid)])
+                    ccall(:uv_kill, Cint, (Cint, Cint), pid, Base.SIGKILL)
+                end
+                return
+            end
+
+            recursive_kill(proc, Base.SIGINT)
+            terminator = Timer(5) do timer
+                recursive_kill(proc, Base.SIGTERM)
+            end
+            killer = Timer(10) do timer
+                recursive_kill(proc, Base.SIGKILL)
+            end
+            wait(proc)
+            close(terminator)
+            close(killer)
+        end
+        close(output)
+    end
+
+    # kill on timeout
+    timeout_monitor = Timer(compile_time_limit) do timer
+        process_running(proc) || return
+        stop()
+    end
+
+    # collect output
+    log_monitor = @async begin
+        io = IOBuffer()
+        while !eof(output)
+            print(io, readline(output; keep=true))
+        end
+        return String(take!(io))
+    end
+
+    wait(proc)
+    close(timeout_monitor)
+    log = fetch(log_monitor)
+
+    # truncate the log
+    if sizeof(log) > log_limit
+        ind = prevind(log, log_limit)
+        log = log[1:ind]
+    end
+
+    if !success(proc)
+        return missing, :fail, :uncompilable, log
+    end
+
+    # run the tests in an alternate environment (different OS, depot and Julia binaries
+    # in another path, etc)
+    rootfs = prepare_rootfs("arch"; user="user", group="group")
+    version, status, reason, test_log =
+        run_sandboxed_test(install, pkg; mounts, rootfs, do_depwarns, log_limit,
+                           sysimage=sysimage_path, install_dir="/usr/local/julia",
+                           kwargs...)
+    return version, status, reason, log * "\n" * test_log
+end
+
 Base.@kwdef struct Configuration
     julia::VersionNumber = Base.VERSION
+    compiled::Bool = false
     # TODO: depwarn, checkbounds, etc
     # TODO: also move buildflags here?
 end
@@ -536,6 +680,7 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
     end
 
     # Workers
+    # TODO: we don't want to do this for both. but rather one of the builds is compiled, the other not...
     try @sync begin
         for i = 1:ninstances
             push!(all_workers, @async begin
@@ -588,9 +733,11 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
                             continue
                         end
 
+                        runner = config.compiled ? run_compiled_test : run_sandboxed_test
+
                         # perform an initial run
                         pkg_version, status, reason, log =
-                            run_sandboxed_test(install, pkg; cpus=[i-1], kwargs...)
+                            runner(install, pkg; cpus=[i-1], kwargs...)
 
                         # certain packages are known to have flaky tests; retry them
                         for j in 1:retries
@@ -598,7 +745,7 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
                                pkg.name in retry_lists[pkg.registry]
                                 times[i] = now()
                                 pkg_version, status, reason, log =
-                                    run_sandboxed_test(install, pkg; cpus=[i-1], kwargs...)
+                                    runner(install, pkg; cpus=[i-1], kwargs...)
                             end
                         end
 
