@@ -49,9 +49,7 @@ Further customization is possible using the `env` arg, to set environment variab
 `mounts` argument to mount additional directories. With `install_dir`, the directory where
 Julia is installed can be chosen.
 """
-function run_sandboxed_julia(install::String, args=``; wait=true,
-                             mounts::Dict{String,String}=Dict{String,String}(),
-                             kwargs...)
+function run_sandboxed_julia(install::String, args=``; wait=true, kwargs...)
     config, cmd = runner_sandboxed_julia(install, args; kwargs...)
 
     # XXX: even when preferred_executor() returns UnprivilegedUserNamespacesExecutor,
@@ -86,9 +84,9 @@ function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/juli
                                 stdin=stdin, stdout=stdout, stderr=stderr,
                                 env::Dict{String,String}=Dict{String,String}(),
                                 mounts::Dict{String,String}=Dict{String,String}(),
-                                xvfb::Bool=true, cpus::Vector{Int}=Int[])
+                                xvfb::Bool=true, cpus::Vector{Int}=Int[],
+                                sysimage=nothing, rootfs=prepare_rootfs())
     julia_path = installed_julia_dir(install)
-    rootfs = prepare_rootfs()
     read_only_maps = Dict(
         "/"                                 => rootfs.path,
         install_dir                         => julia_path,
@@ -155,6 +153,10 @@ function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/juli
                            rootfs.uid, rootfs.gid, pwd=rootfs.home, persist=true,
                            stdin, stdout, stderr, verbose=isdebug(:sandbox))
 
+    if sysimage !== nothing
+        args = `--sysimage=$sysimage $args`
+    end
+
     return config, `$cmd $args`
 end
 
@@ -186,60 +188,23 @@ function cpu_time(pid)
 end
 
 """
-    run_sandboxed_test(install::String, pkg; do_depwarns=false,
-                       log_limit=2^20, time_limit=60*60)
+    run_sandboxed_script(install::String, script::String, args=``;
+                         log_limit=2^20, time_limit=60*60)
 
-Run the unit tests for a single package `pkg` inside of a sandbox using a Julia installation
-at `install`. If `do_depwarns` is `true`, deprecation warnings emitted while running the
-package's tests will cause the tests to fail. Test will be forcibly interrupted after
-`time_limit` seconds (defaults to 1h) or if the log becomes larger than `log_limit`
-(defaults to 1MB).
-
-A log for the tests is written to a version-specific directory in the PkgEval root
-directory.
+Run a Julia script `script` in non-interactive mode, returning the process status and a
+failure reason if any (both represented by a symbol), and the full log. Execution of the
+script will be forcibly interrupted after `time_limit` seconds (defaults to 1h) or if the
+log becomes larger than `log_limit` (defaults to 1MB).
 
 Refer to `run_sandboxed_julia`[@ref] for more possible `keyword arguments.
 """
-function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
-                            time_limit = 60*60, do_depwarns=false,
-                            kwargs...)
+function run_sandboxed_script(install::String, script::String, args=``;
+                              log_limit = 2^20 #= 1 MB =#,
+                              time_limit = 60*60,
+                              kwargs...)
     @assert log_limit > 0
 
-    # prepare for launching a container
-    script = raw"""
-        try
-            using Dates
-            print('#'^80, "\n# PkgEval set-up: $(now())\n#\n\n")
-
-            using InteractiveUtils
-            versioninfo()
-            println()
-
-
-            print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
-
-            using Pkg
-            Pkg.add(ARGS[1])
-
-
-            print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n")
-
-            Pkg.test(ARGS[1])
-
-            println("\nPkgEval succeeded")
-        catch err
-            print("\nPkgEval failed: ")
-            showerror(stdout, err)
-            Base.show_backtrace(stdout, catch_backtrace())
-            println()
-        finally
-            print("\n\n", '#'^80, "\n# PkgEval teardown: $(now())\n#\n\n")
-        end"""
-    cmd = do_depwarns ? `--depwarn=error` : ``
-    cmd = `$cmd --eval 'eval(Meta.parse(read(stdin,String)))' $(pkg.name)`
-
-    input = Pipe()
-    output = Pipe()
+    cmd = `--eval 'eval(Meta.parse(read(stdin,String)))' $args`
 
     env = Dict(
         "JULIA_PKG_PRECOMPILE_AUTO" => "0",
@@ -251,6 +216,8 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
         env["JULIA_PKG_SERVER"] = ENV["JULIA_PKG_SERVER"]
     end
 
+    input = Pipe()
+    output = Pipe()
     proc = run_sandboxed_julia(install, cmd; env, wait=false,
                                stdout=output, stderr=output, stdin=input,
                                kwargs...)
@@ -338,13 +305,67 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     close(inactivity_monitor)
     log = fetch(log_monitor)
 
-
     if sizeof(log) > log_limit
         # even though the monitor above should have limited the log size,
         # a single line may still have exceeded the limit, so make sure we truncate.
         ind = prevind(log, log_limit)
         log = log[1:ind]
     end
+
+    return status, reason, log
+end
+
+"""
+    run_sandboxed_test(install::String, pkg; do_depwarns=false)
+
+Run the unit tests for a single package `pkg` inside of a sandbox using a Julia installation
+at `install`. If `do_depwarns` is `true`, deprecation warnings emitted while running the
+package's tests will cause the tests to fail. Test will be forcibly interrupted after
+`time_limit` seconds (defaults to 1h) or if the log becomes larger than `log_limit`
+(defaults to 1MB).
+
+A log for the tests is written to a version-specific directory in the PkgEval root
+directory.
+
+Refer to `run_sandboxed_script`[@ref] for more possible `keyword arguments.
+"""
+function run_sandboxed_test(install::String, pkg; do_depwarns=false, kwargs...)
+    script = raw"""
+        try
+            using Dates
+            print('#'^80, "\n# PkgEval set-up: $(now())\n#\n\n")
+
+            using InteractiveUtils
+            versioninfo()
+            println()
+
+
+            print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
+
+            using Pkg
+            Pkg.add(ARGS[1])
+
+
+            print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n")
+
+            Pkg.test(ARGS[1])
+
+            println("\nPkgEval succeeded")
+        catch err
+            print("\nPkgEval failed: ")
+            showerror(stdout, err)
+            Base.show_backtrace(stdout, catch_backtrace())
+            println()
+        finally
+            print("\n\n", '#'^80, "\n# PkgEval teardown: $(now())\n#\n\n")
+        end"""
+
+    args = `$(pkg.name)`
+    if do_depwarns
+        args = `--depwarn=error $args`
+    end
+
+    status, reason, log = run_sandboxed_script(install, script, args; kwargs...)
 
     # pick up the installed package version from the log
     version_match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
@@ -406,8 +427,89 @@ function run_sandboxed_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     return version, status, reason, log
 end
 
+"""
+    run_compiled_test(install::String, pkg; compile_time_limit=30*60)
+
+Run the unit tests for a single package `pkg` (see `run_compiled_test`[@ref] for details and
+a list of supported keyword arguments), after first having compiled a system image that
+contains this package and its dependencies.
+
+To find incompatibilities, the compilation happens on an Ubuntu-based runner, while testing
+is performed in an Arch Linux container.
+"""
+function run_compiled_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
+                           compile_time_limit=30*60, do_depwarns=false, kwargs...)
+    script = raw"""
+        try
+            using Dates
+            print('#'^80, "\n# PackageCompiler set-up: $(now())\n#\n\n")
+
+            using InteractiveUtils
+            versioninfo()
+            println()
+
+
+            print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
+
+            using Pkg
+            Pkg.add(["PackageCompiler", ARGS[1]])
+
+
+            print("\n\n", '#'^80, "\n# Compiling: $(now())\n#\n\n")
+
+            using PackageCompiler
+
+            t = @elapsed create_sysimage(Symbol(ARGS[1]), sysimage_path=ARGS[2])
+            s = stat(ARGS[2]).size
+
+            println("Generated system image is ", Base.format_bytes(s), ", compilation took ", trunc(Int, t), " seconds")
+
+            println("\nPackageCompiler succeeded")
+        catch err
+            print("\nPackageCompiler failed: ")
+            showerror(stdout, err)
+            Base.show_backtrace(stdout, catch_backtrace())
+            println()
+        finally
+            print("\n\n", '#'^80, "\n# PackageCompiler teardown: $(now())\n#\n\n")
+        end"""
+
+    sysimage_path = "/sysimage/sysimg.so"
+    args = `$(pkg.name) $sysimage_path`
+
+    sysimage_dir = mktempdir()
+    mounts = Dict(dirname(sysimage_path) => sysimage_dir)
+
+    status, reason, log = run_sandboxed_script(install, script, args; mounts,
+                                               time_limit=compile_time_limit, kwargs...)
+
+    # try to figure out the failure reason
+    if status === nothing
+        if occursin("PackageCompiler succeeded", log)
+            status = :ok
+        else
+            status = :fail
+            reason = :uncompilable
+        end
+    end
+
+    if status !== :ok
+        return missing, status, reason, log
+    end
+
+    # run the tests in an alternate environment (different OS, depot and Julia binaries
+    # in another path, etc)
+    rootfs = prepare_rootfs("arch"; user="user", group="group")
+    version, status, reason, test_log =
+        run_sandboxed_test(install, pkg; mounts, rootfs, do_depwarns, log_limit,
+                           sysimage=sysimage_path, install_dir="/usr/local/julia",
+                           kwargs...)
+    return version, status, reason, log * "\n" * test_log
+end
+
 Base.@kwdef struct Configuration
     julia::VersionNumber = Base.VERSION
+    compiled::Bool = false
     # TODO: depwarn, checkbounds, etc
     # TODO: also move buildflags here?
 end
@@ -536,6 +638,7 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
     end
 
     # Workers
+    # TODO: we don't want to do this for both. but rather one of the builds is compiled, the other not...
     try @sync begin
         for i = 1:ninstances
             push!(all_workers, @async begin
@@ -588,9 +691,11 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
                             continue
                         end
 
+                        runner = config.compiled ? run_compiled_test : run_sandboxed_test
+
                         # perform an initial run
                         pkg_version, status, reason, log =
-                            run_sandboxed_test(install, pkg; cpus=[i-1], kwargs...)
+                            runner(install, pkg; cpus=[i-1], kwargs...)
 
                         # certain packages are known to have flaky tests; retry them
                         for j in 1:retries
@@ -598,7 +703,7 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
                                pkg.name in retry_lists[pkg.registry]
                                 times[i] = now()
                                 pkg_version, status, reason, log =
-                                    run_sandboxed_test(install, pkg; cpus=[i-1], kwargs...)
+                                    runner(install, pkg; cpus=[i-1], kwargs...)
                             end
                         end
 
