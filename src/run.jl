@@ -620,6 +620,7 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
 
     # NOTE: we expand the Configuration into separate columns
     result = DataFrame(julia = VersionNumber[],
+                       compiled = Bool[],
                        name = String[],
                        uuid = UUID[],
                        version = Union{Missing,VersionNumber}[],
@@ -660,19 +661,19 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
                             config.julia ∈ compat[Registry.JULIA_UUID]
                         end
                         if !supported
-                            push!(result, [config.julia,
+                            push!(result, [config.julia, config.compiled,
                                            pkg.name, pkg.uuid, missing,
                                            :skip, :unsupported, 0, missing])
                             running[i] = nothing
                             continue
                         elseif pkg.name in skip_lists[registry]
-                            push!(result, [config.julia,
+                            push!(result, [config.julia, config.compiled,
                                            pkg.name, pkg.uuid, missing,
                                            :skip, :explicit, 0, missing])
                             running[i] = nothing
                             continue
                         elseif endswith(pkg.name, "_jll")
-                            push!(result, [config.julia,
+                            push!(result, [config.julia, config.compiled,
                                            pkg.name, pkg.uuid, missing,
                                            :skip, :jll, 0, missing])
                             running[i] = nothing
@@ -696,7 +697,7 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
                         end
 
                         duration = (now()-times[i]) / Millisecond(1000)
-                        push!(result, [config.julia,
+                        push!(result, [config.julia, config.compiled,
                                        pkg.name, pkg.uuid, pkg_version,
                                        status, reason, duration, log])
                         running[i] = nothing
