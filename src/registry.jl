@@ -16,7 +16,8 @@ function prepare_registry(name=DEFAULT_REGISTRY; update::Bool=false)
     regspec = RegistrySpec(name = name, url = reg["url"], uuid = UUID(reg["uuid"]))
 
     # clone and update the registry
-    if !any(existing_regspec -> existing_regspec.name == name, Pkg.Types.collect_registries())
+    if !any(existing_regspec -> existing_regspec.name == name,
+            Pkg.Registry.reachable_registries())
         Pkg.Types.clone_or_cp_registries([regspec])
     elseif update
         Pkg.Registry.update(name)
@@ -41,20 +42,15 @@ function read_pkgs(pkg_names::Vector{String}=String[]; registry=DEFAULT_REGISTRY
     want_all = isempty(pkg_names)
 
     pkg_data = []
-    regpath = registry_dir(registry)
-    open(joinpath(regpath, "Registry.toml")) do io
-        for (_uuid, pkgdata) in Pkg.Types.read_registry(joinpath(regpath, "Registry.toml"))["packages"]
-            uuid = UUID(_uuid)
-            name = pkgdata["name"]
-
-            if !want_all
-                name in pkg_names || continue
-                delete!(pkg_names, name)
-            end
-
-            path = abspath(regpath, pkgdata["path"])
-            push!(pkg_data, (name=name, uuid=uuid, path=path, registry=registry))
+    registry_instance = only(filter(ri->ri.name == "General",
+                             Pkg.Registry.reachable_registries()))
+    for (uuid, pkg) in registry_instance
+        if !want_all
+            pkg.name in pkg_names || continue
+            delete!(pkg_names, pkg.name)
         end
+
+        push!(pkg_data, pkg)
     end
 
     if !want_all && !isempty(pkg_names)

@@ -518,7 +518,8 @@ end
 Base.broadcastable(x::Configuration) = Ref(x)
 
 function run(configs::Vector{Configuration}, pkgs::Vector;
-             ninstances::Integer=Sys.CPU_THREADS, retries::Integer=2, kwargs...)
+             ninstances::Integer=Sys.CPU_THREADS, retries::Integer=2,
+             registry::String=DEFAULT_REGISTRY, kwargs...)
     # here we deal with managing execution: spawning workers, output, result I/O, etc
 
     # Julia installation
@@ -649,27 +650,11 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
                         running[i] = (config, pkg)
 
                         # can we even test this package?
-                        julia_supported = Dict{VersionNumber,Bool}()
-                        ctx = Pkg.Types.Context()
-                        pkg_version_info = Pkg.Operations.load_versions(ctx, pkg.path)
-                        pkg_versions = sort!(collect(keys(pkg_version_info)))
-                        pkg_compat =
-                            Pkg.Operations.load_package_data(ctx, Pkg.Types.VersionSpec,
-                                                             joinpath(pkg.path,
-                                                                      "Compat.toml"),
-                                                             pkg_versions)
-                        for (pkg_version, bounds) in pkg_compat
-                            if haskey(bounds, "julia")
-                                julia_supported[pkg_version] =
-                                    config.julia ∈ bounds["julia"]
-                            end
-                        end
-                        if length(julia_supported) != length(pkg_version_info)
-                            # not all versions have a bound for Julia,
-                            # so we need to be conservative
-                            supported = true
-                        else
-                            supported = any(values(julia_supported))
+                        pkg_info = Registry.registry_info(pkg)
+                        pkg_compat = Registry.compat_info(pkg_info)
+                        supported = any(pkg_compat) do (version, compat)
+                            !haskey(compat, Registry.JULIA_UUID) ||
+                            config.julia ∈ compat[Registry.JULIA_UUID]
                         end
                         if !supported
                             push!(result, [config.julia,
@@ -677,7 +662,7 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
                                            :skip, :unsupported, 0, missing])
                             running[i] = nothing
                             continue
-                        elseif pkg.name in skip_lists[pkg.registry]
+                        elseif pkg.name in skip_lists[registry]
                             push!(result, [config.julia,
                                            pkg.name, pkg.uuid, missing,
                                            :skip, :explicit, 0, missing])
@@ -700,7 +685,7 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
                         # certain packages are known to have flaky tests; retry them
                         for j in 1:retries
                             if status == :fail && reason == :test_failures &&
-                               pkg.name in retry_lists[pkg.registry]
+                               pkg.name in retry_lists[registry]
                                 times[i] = now()
                                 pkg_version, status, reason, log =
                                     runner(install, pkg; cpus=[i-1], kwargs...)
@@ -752,7 +737,7 @@ function run(configs::Vector{Configuration}=[Configuration()],
     prepare_registry(registry; update=update_registry)
     pkgs = read_pkgs(pkg_names)
 
-    run(configs, pkgs; kwargs...)
+    run(configs, pkgs; registry, kwargs...)
 end
 
 # for backwards compatibility
