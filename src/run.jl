@@ -494,6 +494,7 @@ function run_compiled_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     end
 
     if status !== :ok
+        rm(sysimage_dir; recursive=true)
         return missing, status, reason, log
     end
 
@@ -504,6 +505,8 @@ function run_compiled_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
         run_sandboxed_test(install, pkg; mounts, rootfs, do_depwarns, log_limit,
                            sysimage=sysimage_path, install_dir="/usr/local/julia",
                            kwargs...)
+
+    rm(sysimage_dir; recursive=true)
     return version, status, reason, log * "\n" * test_log
 end
 
