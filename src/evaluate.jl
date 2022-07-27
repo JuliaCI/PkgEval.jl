@@ -507,7 +507,7 @@ end
 
 function evaluate(configs::Vector{Configuration}, pkgs::Vector;
                   ninstances::Integer=Sys.CPU_THREADS, retries::Integer=2,
-                  registry::String=DEFAULT_REGISTRY, kwargs...)
+                  registry::String=DEFAULT_REGISTRY)
     # here we deal with managing execution: spawning workers, output, result I/O, etc
 
     # Julia installation
@@ -672,7 +672,7 @@ function evaluate(configs::Vector{Configuration}, pkgs::Vector;
                         # perform an initial run
                         config′ = Configuration(config; cpus=[i-1])
                         pkg_version, status, reason, log =
-                            sandboxed_test(config′, julia_install, pkg; kwargs...)
+                            sandboxed_test(config′, julia_install, pkg)
 
                         # certain packages are known to have flaky tests; retry them
                         for j in 1:retries
@@ -680,7 +680,7 @@ function evaluate(configs::Vector{Configuration}, pkgs::Vector;
                                pkg.name in retry_lists[registry]
                                 times[i] = now()
                                 pkg_version, status, reason, log =
-                                    sandboxed_test(config′, julia_install, pkg; kwargs...)
+                                    sandboxed_test(config′, julia_install, pkg)
                             end
                         end
 
