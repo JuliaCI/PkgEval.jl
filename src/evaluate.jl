@@ -179,21 +179,16 @@ function cpu_time(pid)
 end
 
 """
-    sandboxed_script(config::Configuration, install::String, script::String, args=``;
-                     log_limit=2^20, time_limit=60*60)
+    sandboxed_script(config::Configuration, install::String, script::String, args=``)
 
 Run a Julia script `script` in non-interactive mode, returning the process status and a
-failure reason if any (both represented by a symbol), and the full log. Execution of the
-script will be forcibly interrupted after `time_limit` seconds (defaults to 1h) or if the
-log becomes larger than `log_limit` (defaults to 1MB).
+failure reason if any (both represented by a symbol), and the full log.
 
 Refer to `sandboxed_julia`[@ref] for more possible `keyword arguments.
 """
 function sandboxed_script(config::Configuration, install::String, script::String, args=``;
-                          log_limit = 2^20 #= 1 MB =#,
-                          time_limit = 60*60,
                           kwargs...)
-    @assert log_limit > 0
+    @assert config.log_limit > 0
 
     cmd = `--eval 'eval(Meta.parse(read(stdin,String)))' $args`
 
@@ -249,7 +244,7 @@ function sandboxed_script(config::Configuration, install::String, script::String
     reason = missing
 
     # kill on timeout
-    timeout_monitor = Timer(time_limit) do timer
+    timeout_monitor = Timer(config.time_limit) do timer
         process_running(proc) || return
         status = :kill
         reason = :time_limit
@@ -280,7 +275,7 @@ function sandboxed_script(config::Configuration, install::String, script::String
             print(io, readline(output; keep=true))
 
             # kill on too-large logs
-            if io.size > log_limit
+            if io.size > config.log_limit
                 process_running(proc) || break
                 status = :kill
                 reason = :log_limit
@@ -296,10 +291,10 @@ function sandboxed_script(config::Configuration, install::String, script::String
     close(inactivity_monitor)
     log = fetch(log_monitor)
 
-    if sizeof(log) > log_limit
+    if sizeof(log) > config.log_limit
         # even though the monitor above should have limited the log size,
         # a single line may still have exceeded the limit, so make sure we truncate.
-        ind = prevind(log, log_limit)
+        ind = prevind(log, config.log_limit)
         log = log[1:ind]
     end
 
@@ -417,7 +412,7 @@ function sandboxed_test(config::Configuration, install::String, pkg; kwargs...)
 end
 
 """
-    compiled_test(install::String, pkg; compile_time_limit=30*60)
+    compiled_test(install::String, pkg)
 
 Run the unit tests for a single package `pkg` (see `compiled_test`[@ref] for details and
 a list of supported keyword arguments), after first having compiled a system image that
@@ -426,8 +421,7 @@ contains this package and its dependencies.
 To find incompatibilities, the compilation happens on an Ubuntu-based runner, while testing
 is performed in an Arch Linux container.
 """
-function compiled_test(config::Configuration, install::String, pkg; log_limit = 2^20 #= 1 MB =#,
-                       compile_time_limit=30*60, do_depwarns=false, kwargs...)
+function compiled_test(config::Configuration, install::String, pkg; kwargs...)
     script = raw"""
         try
             using Dates
@@ -469,8 +463,11 @@ function compiled_test(config::Configuration, install::String, pkg; log_limit = 
     sysimage_dir = mktempdir()
     mounts = Dict(dirname(sysimage_path) => sysimage_dir)
 
-    status, reason, log = sandboxed_script(config, install, script, args; mounts,
-                                           time_limit=compile_time_limit, kwargs...)
+    compile_config = Configuration(config;
+        time_limit = config.compile_time_limit
+    )
+    status, reason, log = sandboxed_script(compile_config, install, script, args; mounts,
+                                           kwargs...)
 
     # try to figure out the failure reason
     if status === nothing
@@ -502,7 +499,7 @@ function compiled_test(config::Configuration, install::String, pkg; log_limit = 
         home="/home/user",
     )
     version, status, reason, test_log =
-        sandboxed_test(test_config, install, pkg; mounts, log_limit, kwargs...)
+        sandboxed_test(test_config, install, pkg; mounts, kwargs...)
 
     rm(sysimage_dir; recursive=true)
     return version, status, reason, log * "\n" * test_log

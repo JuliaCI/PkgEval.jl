@@ -19,10 +19,12 @@ export Configuration
 
 Base.@kwdef mutable struct Configuration
     julia::String = "nightly"
-    compiled::Bool = false
     buildflags::Vector{String} = String[]
     depwarn::Bool = false
-    # TODO: put even more here (rootfs, install_dir, limits, etc)
+    log_limit::Int = 2^20 # 1 MB
+    time_limit = 60*60 # 1 hour
+    compiled::Bool = false
+    compile_time_limit::Int = 30*60 # 30 mins
 
     # the directory where Julia is installed in the run-time environment
     julia_install_dir::String = "/opt/julia"
