@@ -36,6 +36,14 @@ Base.@kwdef mutable struct Configuration
 
     # additional Julia arguments to pass to the process
     julia_args::Cmd = ``
+
+    # rootfs properties
+    distro::String = "debian"
+    uid::Int = 1000
+    user::String = "pkgeval"
+    gid::Int = 1000
+    group::String = "pkgeval"
+    home::String = "/home/pkgeval"
 end
 
 # copy constructor that allows overriding specific fields

@@ -4,10 +4,10 @@ lazy_artifact(x) = @artifact_str(x)
 
 const rootfs_lock = ReentrantLock()
 const rootfs_cache = Dict()
-function prepare_rootfs(distro="debian"; uid=1000, user="pkgeval", gid=1000, group="pkgeval", home="/home/$user")
+function prepare_rootfs(config::Configuration)
     lock(rootfs_lock) do
-        get!(rootfs_cache, (distro, uid, user, gid, group, home)) do
-            base = lazy_artifact(distro)
+        get!(rootfs_cache, (config.distro, config.uid, config.user, config.gid, config.group, config.home)) do
+            base = lazy_artifact(config.distro)
 
             # a bare rootfs isn't usable out-of-the-box
             derived = mktempdir()
@@ -16,22 +16,22 @@ function prepare_rootfs(distro="debian"; uid=1000, user="pkgeval", gid=1000, gro
             # add a user and group
             chmod(joinpath(derived, "etc/passwd"), 0o644)
             open(joinpath(derived, "etc/passwd"), "a") do io
-                println(io, "$user:x:$uid:$gid::$home:/bin/bash")
+                println(io, "$(config.user):x:$(config.uid):$(config.gid)::$(config.home):/bin/bash")
             end
             chmod(joinpath(derived, "etc/group"), 0o644)
             open(joinpath(derived, "etc/group"), "a") do io
-                println(io, "$group:x:$gid:")
+                println(io, "$(config.group):x:$(config.gid):")
             end
             chmod(joinpath(derived, "etc/shadow"), 0o640)
             open(joinpath(derived, "etc/shadow"), "a") do io
-                println(io, "$user:*:::::::")
+                println(io, "$(config.user):*:::::::")
             end
 
             # replace resolv.conf
             rm(joinpath(derived, "etc/resolv.conf"); force=true)
             write(joinpath(derived, "etc/resolv.conf"), read("/etc/resolv.conf"))
 
-            return (path=derived, uid, user, gid, group, home)
+            return derived
         end
     end
 end
@@ -81,10 +81,10 @@ const xvfb_proc = Ref{Union{Base.Process,Nothing}}(nothing)
 
 function sandboxed_julia_cmd(config::Configuration, install::String, executor, args=``;
                              env::Dict{String,String}=Dict{String,String}(),
-                             mounts::Dict{String,String}=Dict{String,String}(),
-                             rootfs=prepare_rootfs())
+                             mounts::Dict{String,String}=Dict{String,String}())
+    rootfs = prepare_rootfs(config)
     read_only_maps = Dict(
-        "/"                                 => rootfs.path,
+        "/"                                 => rootfs,
         config.julia_install_dir            => install,
         "/usr/local/share/julia/registries" => joinpath(first(DEPOT_PATH), "registries"),
     )
@@ -92,7 +92,7 @@ function sandboxed_julia_cmd(config::Configuration, install::String, executor, a
     artifacts_path = joinpath(storage_dir, "artifacts")
     mkpath(artifacts_path)
     read_write_maps = merge(mounts, Dict(
-        joinpath(rootfs.home, ".julia/artifacts")   => artifacts_path
+        joinpath(config.home, ".julia/artifacts")   => artifacts_path
     ))
 
     env = merge(env, Dict(
@@ -108,7 +108,7 @@ function sandboxed_julia_cmd(config::Configuration, install::String, executor, a
 
         # some essential env vars (since we don't run from a shell)
         "PATH" => "/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin",
-        "HOME" => rootfs.home,
+        "HOME" => config.home,
     ))
     if haskey(ENV, "TERM")
         env["TERM"] = ENV["TERM"]
@@ -146,7 +146,7 @@ function sandboxed_julia_cmd(config::Configuration, install::String, executor, a
     #       because some packages like to generate a lot of data during testing.
 
     sandbox_config = SandboxConfig(read_only_maps, read_write_maps, env;
-                                   rootfs.uid, rootfs.gid, pwd=rootfs.home, persist=true,
+                                   config.uid, config.gid, pwd=config.home, persist=true,
                                    verbose=isdebug(:sandbox))
     Sandbox.build_executor_command(executor, sandbox_config, `$cmd $(config.julia_args) $args`)
 end
@@ -490,14 +490,19 @@ function compiled_test(config::Configuration, install::String, pkg; log_limit = 
     # run the tests in an alternate environment (different OS, depot and Julia binaries
     # in another path, etc)
     test_config = Configuration(config;
-        julia_install_dir="/usr/local/julia",
-        julia_args = `$(config.julia_args) --sysimage $sysimage_path`,
         compiled = false,
+        julia_args = `$(config.julia_args) --sysimage $sysimage_path`,
+        # install Julia at a different path
+        julia_install_dir="/usr/local/julia",
+        # use a different Linux distro
+        distro="arch",
+        # run as a different user
+        user="user",
+        group="group",
+        home="/home/user",
     )
-    rootfs = prepare_rootfs("arch"; user="user", group="group")
     version, status, reason, test_log =
-        sandboxed_test(test_config, install, pkg; mounts, rootfs, log_limit,
-                       kwargs...)
+        sandboxed_test(test_config, install, pkg; mounts, log_limit, kwargs...)
 
     rm(sysimage_dir; recursive=true)
     return version, status, reason, log * "\n" * test_log
