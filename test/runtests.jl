@@ -28,22 +28,21 @@ end
 
 const pkgnames = ["TimerOutputs", "Crayons", "Example", "Gtk"]
 
-@testset "low-level interface" begin
-    PkgEval.prepare_registry()
-
-    pkgs = PkgEval.read_pkgs(pkgnames)
-
+@testset "time and output limits" begin
     # timeouts
-    results = PkgEval.run([Configuration(julia=julia_version)], pkgs; time_limit = 0.1)
+    results = PkgEval.run([Configuration(julia=julia_version)], pkgnames;
+                          time_limit=0.1, update_registry=false)
     @test all(results.status .== :kill) && all(results.reason .== :time_limit)
 
     # log limit
-    results = PkgEval.run([Configuration(julia=julia_version)], pkgs; log_limit = 1)
+    results = PkgEval.run([Configuration(julia=julia_version)], pkgnames;
+                          log_limit=1, update_registry=false)
     @test all(results.status .== :kill) && all(results.reason .== :log_limit)
 end
 
 @testset "main entrypoint" begin
-    results = PkgEval.run([Configuration(julia=julia_version)], pkgnames)
+    results = PkgEval.run([Configuration(julia=julia_version)], pkgnames;
+                          update_registry=false)
     if !(julia_spec == "master" || julia_spec == "nightly")
         @test all(results.status .== :ok)
         for result in eachrow(results)
@@ -53,7 +52,8 @@ end
 end
 
 @testset "PackageCompiler" begin
-    results = PkgEval.run([Configuration(julia=julia_version, compiled=true)], ["Example"])
+    results = PkgEval.run([Configuration(julia=julia_version, compiled=true)], ["Example"];
+                          update_registry=false)
     if !(julia_spec == "master" || julia_spec == "nightly")
         @test all(results.status .== :ok)
         for result in eachrow(results)
@@ -65,7 +65,7 @@ end
 @testset "reporting" begin
     lts = Configuration(julia=v"1.0.5")
     stable = Configuration(julia=v"1.2.0")
-    results = PkgEval.run([lts, stable], ["Example"])
+    results = PkgEval.run([lts, stable], ["Example"]; update_registry=false)
     PkgEval.compare(results)
 end
 
