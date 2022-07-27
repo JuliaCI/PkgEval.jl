@@ -15,7 +15,7 @@ import Scratch: @get_scratch!
 download_dir = ""
 storage_dir = ""
 
-export Configuration
+export Configuration, evaluate
 
 Base.@kwdef mutable struct Configuration
     julia::String = "nightly"

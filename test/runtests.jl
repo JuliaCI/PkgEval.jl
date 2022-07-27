@@ -31,19 +31,18 @@ end
 
 @testset "time and output limits" begin
     # timeouts
-    results = PkgEval.evaluate([Configuration(; julia, time_limit=0.1)], pkgnames;
-                               update_registry=false)
+    results = evaluate([Configuration(; julia, time_limit=0.1)], pkgnames;
+                       update_registry=false)
     @test all(results.status .== :kill) && all(results.reason .== :time_limit)
 
     # log limit
-    results = PkgEval.evaluate([Configuration(; julia, log_limit=1)], pkgnames;
-                               update_registry=false)
+    results = evaluate([Configuration(; julia, log_limit=1)], pkgnames;
+                       update_registry=false)
     @test all(results.status .== :kill) && all(results.reason .== :log_limit)
 end
 
 @testset "main entrypoint" begin
-    results = PkgEval.evaluate([Configuration(; julia)], pkgnames;
-                               update_registry=false)
+    results = evaluate([Configuration(; julia)], pkgnames; update_registry=false)
     if !(julia == "master" || julia == "nightly")
         @test all(results.status .== :ok)
         for result in eachrow(results)
@@ -53,8 +52,8 @@ end
 end
 
 @testset "PackageCompiler" begin
-    results = PkgEval.evaluate([Configuration(; julia, compiled=true)], ["Example"];
-                               update_registry=false)
+    results = evaluate([Configuration(; julia, compiled=true)], ["Example"];
+                       update_registry=false)
     if !(julia == "master" || julia == "nightly")
         @test all(results.status .== :ok)
         for result in eachrow(results)
