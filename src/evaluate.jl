@@ -683,7 +683,7 @@ function evaluate(configs::Vector{Configuration}, pkgs::Vector;
                                pkg.name in retry_lists[registry]
                                 times[i] = now()
                                 pkg_version, status, reason, log =
-                                    sandboxed_test(julia_install, pkg; kwargs...)
+                                    sandboxed_test(config′, julia_install, pkg; kwargs...)
                             end
                         end
 
