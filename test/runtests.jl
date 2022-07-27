@@ -10,21 +10,23 @@ julia = get(ENV, "JULIA", string(VERSION))
     config = Configuration(; julia)
     install = PkgEval.prepare_julia(config)
 
-    mktemp() do path, io
-        try
-            PkgEval.sandboxed_julia(config, install, `-e 'print(1337)'`; stdout=io)
-            close(io)
-            @test read(path, String) == "1337"
-        catch
-            # if we failed to spawn a container, make sure to print the reason
-            flush(io)
-            @error read(path, String)
-            rethrow()
-        end
+    let
+        p = Pipe()
+        close(p.in)
+        PkgEval.sandboxed_julia(config, install, `-e 'print(1337)'`; stdout=p.out)
+        @test read(p.out, String) == "1337"
     end
 
-    # print versioninfo so we can verify in CI logs that the correct version is used
-    PkgEval.sandboxed_julia(config, install, `-e 'using InteractiveUtils; versioninfo()'`)
+    # try to compare the version info
+    let
+        p = Pipe()
+        PkgEval.sandboxed_julia(config, install, `-e 'println(VERSION)'`; stdout=p.out)
+        version_str = read(p.out, String)
+        requested_version = tryparse(VersionNumber, julia)
+        if requested_version !== nothing
+            @test parse(VersionNumber, version_str) == requested_version
+        end
+    end
 end
 
 @testset "time and output limits" begin
