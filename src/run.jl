@@ -399,10 +399,6 @@ function run_sandboxed_test(install::String, pkg; do_depwarns=false, kwargs...)
                 :missing_dependency
             elseif occursin(r"Package .+ not found in current path", log)
                 :missing_package
-            elseif occursin("Some tests did not pass", log) || occursin("Test Failed", log)
-                :test_failures
-            elseif occursin("ERROR: LoadError: syntax", log)
-                :syntax
             elseif occursin("GC error (probable corruption)", log)
                 :gc_corruption
             elseif occursin("signal (11): Segmentation fault", log)
@@ -418,6 +414,10 @@ function run_sandboxed_test(install::String, pkg; do_depwarns=false, kwargs...)
                    occursin("Could not download", log) ||
                    occursin(r"Error: HTTP/\d \d+", log)
                 :network
+            elseif occursin("ERROR: LoadError: syntax", log)
+                :syntax
+            elseif occursin("Some tests did not pass", log) || occursin("Test Failed", log)
+                :test_failures
             else
                 :unknown
             end
