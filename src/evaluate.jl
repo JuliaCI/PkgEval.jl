@@ -38,25 +38,24 @@ end
 
 """
     sandboxed_julia(config::Configuration, install::String, args=``; env=Dict(), mounts=Dict(),
-                    wait=true, stdin=stdin, stdout=stdout, stderr=stderr,
-                    install_dir="/opt/julia", kwargs...)
+                    wait=true, stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
 
 Run Julia inside of a sandbox, passing the given arguments `args` to it. The argument `wait`
 determines if the process will be waited on. Streams can be connected using the `stdin`,
 `stdout` and `sterr` arguments. Returns a `Process` object.
 
 Further customization is possible using the `env` arg, to set environment variables, and the
-`mounts` argument to mount additional directories. With `install_dir`, the directory where
-Julia is installed can be chosen.
+`mounts` argument to mount additional directories.
 """
-function sandboxed_julia(config::Configuration, install::String, args=``; wait=true, kwargs...)
-    sandbox_config, cmd = sandboxed_julia_cmd(install, args; kwargs...)
-
+function sandboxed_julia(config::Configuration, install::String, args=``; wait=true,
+                         stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
     # XXX: even when preferred_executor() returns UnprivilegedUserNamespacesExecutor,
     #      sometimes a stray sudo happens at run time? no idea how.
     exe_typ = UnprivilegedUserNamespacesExecutor
     exe = exe_typ()
-    proc = run(exe, sandbox_config, cmd; wait)
+
+    cmd = sandboxed_julia_cmd(config, install, exe, args; kwargs...)
+    proc = run(pipeline(cmd; stdin, stderr, stdout); wait)
 
     # TODO: introduce a --stats flag that has the sandbox trace and report on CPU, network, ... usage
 
@@ -80,15 +79,13 @@ end
 const xvfb_lock = ReentrantLock()
 const xvfb_proc = Ref{Union{Base.Process,Nothing}}(nothing)
 
-function sandboxed_julia_cmd(install::String, args=``; install_dir="/opt/julia",
-                             stdin=stdin, stdout=stdout, stderr=stderr,
+function sandboxed_julia_cmd(config::Configuration, install::String, executor, args=``;
                              env::Dict{String,String}=Dict{String,String}(),
                              mounts::Dict{String,String}=Dict{String,String}(),
-                             xvfb::Bool=true, cpus::Vector{Int}=Int[],
-                             sysimage=nothing, rootfs=prepare_rootfs())
+                             rootfs=prepare_rootfs())
     read_only_maps = Dict(
         "/"                                 => rootfs.path,
-        install_dir                         => install,
+        config.julia_install_dir            => install,
         "/usr/local/share/julia/registries" => joinpath(first(DEPOT_PATH), "registries"),
     )
 
@@ -117,7 +114,7 @@ function sandboxed_julia_cmd(install::String, args=``; install_dir="/opt/julia",
         env["TERM"] = ENV["TERM"]
     end
 
-    if xvfb
+    if config.xvfb
         lock(xvfb_lock) do
             if xvfb_proc[] === nothing || !process_running(xvfb_proc[])
                 proc = run(`Xvfb :1 -screen 0 1024x768x16`; wait=false)
@@ -136,12 +133,12 @@ function sandboxed_julia_cmd(install::String, args=``; install_dir="/opt/julia",
         read_write_maps["/tmp/.X11-unix"] = "/tmp/.X11-unix"
     end
 
-    cmd = `$install_dir/bin/julia`
+    cmd = `$(config.julia_install_dir)/bin/julia`
 
     # restrict resource usage
-    if !isempty(cpus)
-        cmd = `/usr/bin/taskset --cpu-list $(join(cpus, ',')) $cmd`
-        env["JULIA_CPU_THREADS"] = string(length(cpus)) # JuliaLang/julia#35787
+    if !isempty(config.cpus)
+        cmd = `/usr/bin/taskset --cpu-list $(join(config.cpus, ',')) $cmd`
+        env["JULIA_CPU_THREADS"] = string(length(config.cpus)) # JuliaLang/julia#35787
     end
 
     # NOTE: we use persist=true so that modifications to the rootfs are backed by
@@ -150,13 +147,8 @@ function sandboxed_julia_cmd(install::String, args=``; install_dir="/opt/julia",
 
     sandbox_config = SandboxConfig(read_only_maps, read_write_maps, env;
                                    rootfs.uid, rootfs.gid, pwd=rootfs.home, persist=true,
-                                   stdin, stdout, stderr, verbose=isdebug(:sandbox))
-
-    if sysimage !== nothing
-        args = `--sysimage=$sysimage $args`
-    end
-
-    return sandbox_config, `$cmd $args`
+                                   verbose=isdebug(:sandbox))
+    Sandbox.build_executor_command(executor, sandbox_config, `$cmd $(config.julia_args) $args`)
 end
 
 function process_children(pid)
@@ -497,15 +489,14 @@ function compiled_test(config::Configuration, install::String, pkg; log_limit = 
 
     # run the tests in an alternate environment (different OS, depot and Julia binaries
     # in another path, etc)
-    test_config = Configuration(
-        julia = config.julia,
-        depwarn = config.depwarn,
+    test_config = Configuration(config;
+        julia_install_dir="/usr/local/julia",
+        julia_args = `$(config.julia_args) --sysimage $sysimage_path`,
         compiled = false,
     )
     rootfs = prepare_rootfs("arch"; user="user", group="group")
     version, status, reason, test_log =
         sandboxed_test(test_config, install, pkg; mounts, rootfs, log_limit,
-                       sysimage=sysimage_path, install_dir="/usr/local/julia",
                        kwargs...)
 
     rm(sysimage_dir; recursive=true)
@@ -677,8 +668,9 @@ function evaluate(configs::Vector{Configuration}, pkgs::Vector;
                         end
 
                         # perform an initial run
+                        config′ = Configuration(config; cpus=[i-1])
                         pkg_version, status, reason, log =
-                            sandboxed_test(config, julia_install, pkg; cpus=[i-1], kwargs...)
+                            sandboxed_test(config′, julia_install, pkg; kwargs...)
 
                         # certain packages are known to have flaky tests; retry them
                         for j in 1:retries
@@ -686,7 +678,7 @@ function evaluate(configs::Vector{Configuration}, pkgs::Vector;
                                pkg.name in retry_lists[registry]
                                 times[i] = now()
                                 pkg_version, status, reason, log =
-                                    sandboxed_test(julia_install, pkg; cpus=[i-1], kwargs...)
+                                    sandboxed_test(julia_install, pkg; kwargs...)
                             end
                         end
 
