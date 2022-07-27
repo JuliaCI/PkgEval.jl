@@ -3,18 +3,26 @@ url = "https://github.com/JuliaRegistries/General.git"
 uuid = "23338594-aafe-5451-b93e-139f81909106"
 skip = [
     "julia",
-    "MATLAB", # Requires MATLAB
-    "MATLABDiffEq", # Requires MATLAB
-    "deSolveDiffEq", # Requires R
-    "FEniCS", # Requires Docker Installation
-    "NeuralNetDiffEq", # Deprecated
-    "DiffEqBiological", # Deprecated
-    "DiffEqMonteCarlo", # Deprecated
-    "DiffEqPDEBase", # Deprecated
-    "ClimateMachine", # Requires MPI
-    "MPI", # Requires MPI
-    "CUDAnative", # Deprecated
-    "BitemporalPostgres" # requires POSTGRES
+    "BugReporting", # nested rr is not supported
+
+    # deprecated
+    "NeuralNetDiffEq",
+    "DiffEqBiological",
+    "DiffEqMonteCarlo",
+    "DiffEqPDEBase",
+    "CUDAnative",
+    "CuArrays",
+    "CUDAdrv",
+    "CUDAapi",
+
+    # requires binaries
+    "MATLAB",               # MATLAB
+    "MATLABDiffEq",         # MATLAB
+    "deSolveDiffEq",        # R
+    "FEniCS",               # Docker
+    "ClimateMachine",       # MPI
+    "MPI",                  # MPI
+    "BitemporalPostgres",   # POSTGRES
 ]
 retry = [
     "EcologicalNetworks",
