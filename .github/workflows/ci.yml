@@ -24,7 +24,7 @@ jobs:
           - master                                   # directly from Git, likely built
     env:
       JULIA_DEBUG: PkgEval
-      JULIA_SPEC: ${{ matrix.build_spec }}
+      JULIA: ${{ matrix.build_spec }}
     steps:
       - uses: actions/checkout@v2
       - uses: julia-actions/setup-julia@v1

@@ -3,6 +3,7 @@ const DEFAULT_REGISTRY = "General"
 const skip_lists = Dict{String,Vector{String}}()
 const retry_lists = Dict{String,Vector{String}}()
 
+registries_file() = joinpath(dirname(@__DIR__), "deps", "Registries.toml")
 read_registries() = TOML.parsefile(registries_file())
 
 """
@@ -42,7 +43,7 @@ function read_pkgs(pkg_names::Vector{String}=String[]; registry=DEFAULT_REGISTRY
     want_all = isempty(pkg_names)
 
     pkg_data = []
-    registry_instance = only(filter(ri->ri.name == "General",
+    registry_instance = only(filter(ri->ri.name == registry,
                              Pkg.Registry.reachable_registries()))
     for (uuid, pkg) in registry_instance
         if !want_all

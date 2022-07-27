@@ -9,33 +9,39 @@ using DataFrames
 using Random
 using Sandbox
 using LazyArtifacts
+using JSON
 
-# immutable: in package directory
-versions_file() = joinpath(dirname(@__DIR__), "deps", "Versions.toml")
-releases_file() = joinpath(dirname(@__DIR__), "deps", "Releases.toml")
-registries_file() = joinpath(dirname(@__DIR__), "deps", "Registries.toml")
+import Scratch: @get_scratch!
+download_dir = ""
+storage_dir = ""
 
-# mutable: in .cache directory
-cache_dir() = joinpath(get(ENV, "XDG_CACHE_HOME", joinpath(homedir(), ".cache")), "PkgEval")
-download_dir(name) = joinpath(cache_dir(), "downloads", name)
-storage_dir() = joinpath(cache_dir(), "storage")
-extra_versions_file() = joinpath(cache_dir(), "Versions.toml")
+export Configuration
 
-# fixed locations
-registry_dir() = joinpath(first(DEPOT_PATH), "registries")
-registry_dir(name) = joinpath(registry_dir(), name)
+Base.@kwdef mutable struct Configuration
+    julia::String = "nightly"
+    compiled::Bool = false
+    buildflags::Vector{String} = String[]
+    depwarn::Bool = false
+    # TODO: put even more here (rootfs, install_dir, limits, etc)
+end
+
+# behave as a scalar in broadcast expressions
+Base.broadcastable(x::Configuration) = Ref(x)
 
 # utils
-isdebug(group) = Base.CoreLogging.current_logger_for_env(Base.CoreLogging.Debug, group, PkgEval) !== nothing
+isdebug(group) =
+    Base.CoreLogging.current_logger_for_env(Base.CoreLogging.Debug, group, PkgEval) !== nothing
 
 include("registry.jl")
 include("julia.jl")
-include("run.jl")
+include("evaluate.jl")
 include("report.jl")
 
 function __init__()
-    mkpath(cache_dir())
-    touch(extra_versions_file())
+    global download_dir = @get_scratch!("downloads")
+    mkpath(joinpath(download_dir, "srccache"))
+
+    global storage_dir = @get_scratch!("storage")
 end
 
 end # module

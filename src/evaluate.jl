@@ -37,9 +37,9 @@ function prepare_rootfs(distro="debian"; uid=1000, user="pkgeval", gid=1000, gro
 end
 
 """
-    run_sandboxed_julia(install::String, args=``; env=Dict(), mounts=Dict(),
-                        wait=true, stdin=stdin, stdout=stdout, stderr=stderr,
-                        install_dir="/opt/julia", kwargs...)
+    sandboxed_julia(config::Configuration, install::String, args=``; env=Dict(), mounts=Dict(),
+                    wait=true, stdin=stdin, stdout=stdout, stderr=stderr,
+                    install_dir="/opt/julia", kwargs...)
 
 Run Julia inside of a sandbox, passing the given arguments `args` to it. The argument `wait`
 determines if the process will be waited on. Streams can be connected using the `stdin`,
@@ -49,14 +49,14 @@ Further customization is possible using the `env` arg, to set environment variab
 `mounts` argument to mount additional directories. With `install_dir`, the directory where
 Julia is installed can be chosen.
 """
-function run_sandboxed_julia(install::String, args=``; wait=true, kwargs...)
-    config, cmd = runner_sandboxed_julia(install, args; kwargs...)
+function sandboxed_julia(config::Configuration, install::String, args=``; wait=true, kwargs...)
+    sandbox_config, cmd = sandboxed_julia_cmd(install, args; kwargs...)
 
     # XXX: even when preferred_executor() returns UnprivilegedUserNamespacesExecutor,
     #      sometimes a stray sudo happens at run time? no idea how.
     exe_typ = UnprivilegedUserNamespacesExecutor
     exe = exe_typ()
-    proc = Base.run(exe, config, cmd; wait)
+    proc = run(exe, sandbox_config, cmd; wait)
 
     # TODO: introduce a --stats flag that has the sandbox trace and report on CPU, network, ... usage
 
@@ -80,20 +80,19 @@ end
 const xvfb_lock = ReentrantLock()
 const xvfb_proc = Ref{Union{Base.Process,Nothing}}(nothing)
 
-function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/julia",
-                                stdin=stdin, stdout=stdout, stderr=stderr,
-                                env::Dict{String,String}=Dict{String,String}(),
-                                mounts::Dict{String,String}=Dict{String,String}(),
-                                xvfb::Bool=true, cpus::Vector{Int}=Int[],
-                                sysimage=nothing, rootfs=prepare_rootfs())
-    julia_path = installed_julia_dir(install)
+function sandboxed_julia_cmd(install::String, args=``; install_dir="/opt/julia",
+                             stdin=stdin, stdout=stdout, stderr=stderr,
+                             env::Dict{String,String}=Dict{String,String}(),
+                             mounts::Dict{String,String}=Dict{String,String}(),
+                             xvfb::Bool=true, cpus::Vector{Int}=Int[],
+                             sysimage=nothing, rootfs=prepare_rootfs())
     read_only_maps = Dict(
         "/"                                 => rootfs.path,
-        install_dir                         => julia_path,
-        "/usr/local/share/julia/registries" => registry_dir(),
+        install_dir                         => install,
+        "/usr/local/share/julia/registries" => joinpath(first(DEPOT_PATH), "registries"),
     )
 
-    artifacts_path = joinpath(storage_dir(), "artifacts")
+    artifacts_path = joinpath(storage_dir, "artifacts")
     mkpath(artifacts_path)
     read_write_maps = merge(mounts, Dict(
         joinpath(rootfs.home, ".julia/artifacts")   => artifacts_path
@@ -121,7 +120,7 @@ function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/juli
     if xvfb
         lock(xvfb_lock) do
             if xvfb_proc[] === nothing || !process_running(xvfb_proc[])
-                proc = Base.run(`Xvfb :1 -screen 0 1024x768x16`; wait=false)
+                proc = run(`Xvfb :1 -screen 0 1024x768x16`; wait=false)
                 sleep(1)
                 process_running(proc) || error("Could not start Xvfb")
 
@@ -149,15 +148,15 @@ function runner_sandboxed_julia(install::String, args=``; install_dir="/opt/juli
     #       actual storage on the host, and not just the (1G hard-coded) tmpfs,
     #       because some packages like to generate a lot of data during testing.
 
-    config = SandboxConfig(read_only_maps, read_write_maps, env;
-                           rootfs.uid, rootfs.gid, pwd=rootfs.home, persist=true,
-                           stdin, stdout, stderr, verbose=isdebug(:sandbox))
+    sandbox_config = SandboxConfig(read_only_maps, read_write_maps, env;
+                                   rootfs.uid, rootfs.gid, pwd=rootfs.home, persist=true,
+                                   stdin, stdout, stderr, verbose=isdebug(:sandbox))
 
     if sysimage !== nothing
         args = `--sysimage=$sysimage $args`
     end
 
-    return config, `$cmd $args`
+    return sandbox_config, `$cmd $args`
 end
 
 function process_children(pid)
@@ -188,20 +187,20 @@ function cpu_time(pid)
 end
 
 """
-    run_sandboxed_script(install::String, script::String, args=``;
-                         log_limit=2^20, time_limit=60*60)
+    sandboxed_script(config::Configuration, install::String, script::String, args=``;
+                     log_limit=2^20, time_limit=60*60)
 
 Run a Julia script `script` in non-interactive mode, returning the process status and a
 failure reason if any (both represented by a symbol), and the full log. Execution of the
 script will be forcibly interrupted after `time_limit` seconds (defaults to 1h) or if the
 log becomes larger than `log_limit` (defaults to 1MB).
 
-Refer to `run_sandboxed_julia`[@ref] for more possible `keyword arguments.
+Refer to `sandboxed_julia`[@ref] for more possible `keyword arguments.
 """
-function run_sandboxed_script(install::String, script::String, args=``;
-                              log_limit = 2^20 #= 1 MB =#,
-                              time_limit = 60*60,
-                              kwargs...)
+function sandboxed_script(config::Configuration, install::String, script::String, args=``;
+                          log_limit = 2^20 #= 1 MB =#,
+                          time_limit = 60*60,
+                          kwargs...)
     @assert log_limit > 0
 
     cmd = `--eval 'eval(Meta.parse(read(stdin,String)))' $args`
@@ -218,9 +217,9 @@ function run_sandboxed_script(install::String, script::String, args=``;
 
     input = Pipe()
     output = Pipe()
-    proc = run_sandboxed_julia(install, cmd; env, wait=false,
-                               stdout=output, stderr=output, stdin=input,
-                               kwargs...)
+    proc = sandboxed_julia(config, install, cmd; env, wait=false,
+                           stdout=output, stderr=output, stdin=input,
+                           kwargs...)
     close(output.in)
 
     # pass the script over standard input to avoid exceeding max command line size,
@@ -316,20 +315,18 @@ function run_sandboxed_script(install::String, script::String, args=``;
 end
 
 """
-    run_sandboxed_test(install::String, pkg; do_depwarns=false)
+    sandboxed_test(config::Configuration, install::String, pkg; kwargs...)
 
 Run the unit tests for a single package `pkg` inside of a sandbox using a Julia installation
-at `install`. If `do_depwarns` is `true`, deprecation warnings emitted while running the
-package's tests will cause the tests to fail. Test will be forcibly interrupted after
-`time_limit` seconds (defaults to 1h) or if the log becomes larger than `log_limit`
-(defaults to 1MB).
+at `install`.
 
-A log for the tests is written to a version-specific directory in the PkgEval root
-directory.
-
-Refer to `run_sandboxed_script`[@ref] for more possible `keyword arguments.
+Refer to `sandboxed_script`[@ref] for more possible `keyword arguments.
 """
-function run_sandboxed_test(install::String, pkg; do_depwarns=false, kwargs...)
+function sandboxed_test(config::Configuration, install::String, pkg; kwargs...)
+    if config.compiled
+        return compiled_test(config, install, pkg; kwargs...)
+    end
+
     script = raw"""
         try
             using Dates
@@ -361,11 +358,11 @@ function run_sandboxed_test(install::String, pkg; do_depwarns=false, kwargs...)
         end"""
 
     args = `$(pkg.name)`
-    if do_depwarns
+    if config.depwarn
         args = `--depwarn=error $args`
     end
 
-    status, reason, log = run_sandboxed_script(install, script, args; kwargs...)
+    status, reason, log = sandboxed_script(config, install, script, args; kwargs...)
 
     # pick up the installed package version from the log
     version_match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
@@ -428,17 +425,17 @@ function run_sandboxed_test(install::String, pkg; do_depwarns=false, kwargs...)
 end
 
 """
-    run_compiled_test(install::String, pkg; compile_time_limit=30*60)
+    compiled_test(install::String, pkg; compile_time_limit=30*60)
 
-Run the unit tests for a single package `pkg` (see `run_compiled_test`[@ref] for details and
+Run the unit tests for a single package `pkg` (see `compiled_test`[@ref] for details and
 a list of supported keyword arguments), after first having compiled a system image that
 contains this package and its dependencies.
 
 To find incompatibilities, the compilation happens on an Ubuntu-based runner, while testing
 is performed in an Arch Linux container.
 """
-function run_compiled_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
-                           compile_time_limit=30*60, do_depwarns=false, kwargs...)
+function compiled_test(config::Configuration, install::String, pkg; log_limit = 2^20 #= 1 MB =#,
+                       compile_time_limit=30*60, do_depwarns=false, kwargs...)
     script = raw"""
         try
             using Dates
@@ -480,8 +477,8 @@ function run_compiled_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
     sysimage_dir = mktempdir()
     mounts = Dict(dirname(sysimage_path) => sysimage_dir)
 
-    status, reason, log = run_sandboxed_script(install, script, args; mounts,
-                                               time_limit=compile_time_limit, kwargs...)
+    status, reason, log = sandboxed_script(config, install, script, args; mounts,
+                                           time_limit=compile_time_limit, kwargs...)
 
     # try to figure out the failure reason
     if status === nothing
@@ -500,36 +497,34 @@ function run_compiled_test(install::String, pkg; log_limit = 2^20 #= 1 MB =#,
 
     # run the tests in an alternate environment (different OS, depot and Julia binaries
     # in another path, etc)
+    test_config = Configuration(
+        julia = config.julia,
+        depwarn = config.depwarn,
+        compiled = false,
+    )
     rootfs = prepare_rootfs("arch"; user="user", group="group")
     version, status, reason, test_log =
-        run_sandboxed_test(install, pkg; mounts, rootfs, do_depwarns, log_limit,
-                           sysimage=sysimage_path, install_dir="/usr/local/julia",
-                           kwargs...)
+        sandboxed_test(test_config, install, pkg; mounts, rootfs, log_limit,
+                       sysimage=sysimage_path, install_dir="/usr/local/julia",
+                       kwargs...)
 
     rm(sysimage_dir; recursive=true)
     return version, status, reason, log * "\n" * test_log
 end
 
-Base.@kwdef struct Configuration
-    julia::VersionNumber = Base.VERSION
-    compiled::Bool = false
-    # TODO: depwarn, checkbounds, etc
-    # TODO: also move buildflags here?
-end
-
-# behave as a scalar in broadcast expressions
-Base.broadcastable(x::Configuration) = Ref(x)
-
-function run(configs::Vector{Configuration}, pkgs::Vector;
-             ninstances::Integer=Sys.CPU_THREADS, retries::Integer=2,
-             registry::String=DEFAULT_REGISTRY, kwargs...)
+function evaluate(configs::Vector{Configuration}, pkgs::Vector;
+                  ninstances::Integer=Sys.CPU_THREADS, retries::Integer=2,
+                  registry::String=DEFAULT_REGISTRY, kwargs...)
     # here we deal with managing execution: spawning workers, output, result I/O, etc
 
     # Julia installation
-    instantiated_configs = Dict{Configuration,String}()
+    instantiated_configs = Dict()
     for config in configs
-        install = prepare_julia(config.julia)
-        instantiated_configs[config] = install
+        install = prepare_julia(config)
+        # XXX: better get the version from a file in the tree
+        version_str = chomp(read(`$install/bin/julia --startup-file=no --eval "println(VERSION)"`, String))
+        version = parse(VersionNumber, version_str)
+        instantiated_configs[config] = (install, version)
     end
 
     jobs = vec(collect(Iterators.product(instantiated_configs, pkgs)))
@@ -619,7 +614,8 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
     end
 
     # NOTE: we expand the Configuration into separate columns
-    result = DataFrame(julia = VersionNumber[],
+    result = DataFrame(julia_spec = String[],
+                       julia_version = VersionNumber[],
                        compiled = Bool[],
                        name = String[],
                        uuid = UUID[],
@@ -649,7 +645,7 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
             push!(all_workers, @async begin
                 try
                     while !isempty(jobs) && !done
-                        (config, install), pkg = pop!(jobs)
+                        (config, (julia_install, julia_version)), pkg = pop!(jobs)
                         times[i] = now()
                         running[i] = (config, pkg)
 
@@ -658,33 +654,31 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
                         pkg_compat = Registry.compat_info(pkg_info)
                         supported = any(pkg_compat) do (version, compat)
                             !haskey(compat, Registry.JULIA_UUID) ||
-                            config.julia ∈ compat[Registry.JULIA_UUID]
+                            julia_version ∈ compat[Registry.JULIA_UUID]
                         end
                         if !supported
-                            push!(result, [config.julia, config.compiled,
+                            push!(result, [config.julia, julia_version, config.compiled,
                                            pkg.name, pkg.uuid, missing,
                                            :skip, :unsupported, 0, missing])
                             running[i] = nothing
                             continue
                         elseif pkg.name in skip_lists[registry]
-                            push!(result, [config.julia, config.compiled,
+                            push!(result, [config.julia, julia_version, config.compiled,
                                            pkg.name, pkg.uuid, missing,
                                            :skip, :explicit, 0, missing])
                             running[i] = nothing
                             continue
                         elseif endswith(pkg.name, "_jll")
-                            push!(result, [config.julia, config.compiled,
+                            push!(result, [config.julia, julia_version, config.compiled,
                                            pkg.name, pkg.uuid, missing,
                                            :skip, :jll, 0, missing])
                             running[i] = nothing
                             continue
                         end
 
-                        runner = config.compiled ? run_compiled_test : run_sandboxed_test
-
                         # perform an initial run
                         pkg_version, status, reason, log =
-                            runner(install, pkg; cpus=[i-1], kwargs...)
+                            sandboxed_test(config, julia_install, pkg; cpus=[i-1], kwargs...)
 
                         # certain packages are known to have flaky tests; retry them
                         for j in 1:retries
@@ -692,12 +686,12 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
                                pkg.name in retry_lists[registry]
                                 times[i] = now()
                                 pkg_version, status, reason, log =
-                                    runner(install, pkg; cpus=[i-1], kwargs...)
+                                    sandboxed_test(julia_install, pkg; cpus=[i-1], kwargs...)
                             end
                         end
 
                         duration = (now()-times[i]) / Millisecond(1000)
-                        push!(result, [config.julia, config.compiled,
+                        push!(result, [config.julia, julia_version, config.compiled,
                                        pkg.name, pkg.uuid, pkg_version,
                                        status, reason, duration, log])
                         running[i] = nothing
@@ -716,7 +710,7 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
         println()
 
         # clean-up
-        for (config, install) in instantiated_configs
+        for (config, (install,version)) in instantiated_configs
             rm(install; recursive=true)
         end
     end
@@ -725,27 +719,21 @@ function run(configs::Vector{Configuration}, pkgs::Vector;
 end
 
 """
-    run(configs::Vector{Configuration}=[Configuration()],
-        pkg_names::Vector{String}=[]]; registry=General, update_registry=true, kwargs...)
+    evaluate(configs::Vector{Configuration}=[Configuration()],
+             pkg_names::Vector{String}=[]]; registry=General, update_registry=true, kwargs...)
 
 Run all tests for all packages in the registry `registry`, or only for the packages as
 identified by their name in `pkgnames`, using the configurations from `configs`.
 The registry is first updated if `update_registry` is set to true.
 
-Refer to `run_sandboxed_test`[@ref] and `run_sandboxed_julia`[@ref] for more possible
+Refer to `sandboxed_test`[@ref] and `sandboxed_julia`[@ref] for more possible
 keyword arguments.
 """
-function run(configs::Vector{Configuration}=[Configuration()],
-             pkg_names::Vector{String}=String[];
-             registry::String=DEFAULT_REGISTRY, update_registry::Bool=true, kwargs...)
+function evaluate(configs::Vector{Configuration}=[Configuration()],
+                  pkg_names::Vector{String}=String[];
+                  registry::String=DEFAULT_REGISTRY, update_registry::Bool=true, kwargs...)
     prepare_registry(registry; update=update_registry)
     pkgs = read_pkgs(pkg_names)
 
-    run(configs, pkgs; registry, kwargs...)
+    evaluate(configs, pkgs; registry, kwargs...)
 end
-
-# for backwards compatibility
-run(julia_versions::Vector{VersionNumber}, args...; kwargs...) =
-    run([Configuration(julia=julia_version) for julia_version in julia_versions], args...;
-        kwargs...)
-prepare_runner() = return
