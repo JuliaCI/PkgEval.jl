@@ -18,7 +18,7 @@ storage_dir = ""
 skip_list = String[]
 retry_list = String[]
 
-export Configuration, Package, evaluate
+export Configuration, Package, evaluate, interactive_shell
 
 Base.@kwdef struct Configuration
     julia::String = "nightly"

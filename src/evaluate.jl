@@ -414,7 +414,7 @@ function sandboxed_test(config::Configuration, install::String, pkg::Package; kw
 end
 
 """
-    compiled_test(install::String, pkg)
+    compiled_test(install::String, pkg::Package)
 
 Run the unit tests for a single package `pkg` (see `compiled_test`[@ref] for details and
 a list of supported keyword arguments), after first having compiled a system image that
@@ -423,7 +423,7 @@ contains this package and its dependencies.
 To find incompatibilities, the compilation happens on an Ubuntu-based runner, while testing
 is performed in an Arch Linux container.
 """
-function compiled_test(config::Configuration, install::String, pkg; kwargs...)
+function compiled_test(config::Configuration, install::String, pkg::Package; kwargs...)
     script = raw"""
         try
             using Dates
@@ -508,16 +508,18 @@ function compiled_test(config::Configuration, install::String, pkg; kwargs...)
 end
 
 """
-    evaluate(configs::Vector{Configuration}, packages::Vector{String}=[]]; kwargs...)
+    evaluate(configs::Vector{Configuration}, [packages::Vector{String}];
+             ninstances=Sys.CPU_THREADS, kwargs...)
 
-Run all tests for all packages in the registry `registry`, or only for the packages as
-identified by their name in `pkgnames`, using the configurations from `configs`.
-The registry is first updated if `update_registry` is set to true.
+Run tests for `packages` using `configs`. If no packages are specified, default to testing
+all packages in the default registry.
 
+The `ninstances` keyword argument determines how many packages are tested in parallel.
 Refer to `sandboxed_test`[@ref] and `sandboxed_julia`[@ref] for more possible
 keyword arguments.
 """
-function evaluate(configs::Vector{Configuration}, packages::Vector{Package};
+function evaluate(configs::Vector{Configuration},
+                  packages::Vector{Package}=registry_packages();
                   ninstances::Integer=Sys.CPU_THREADS)
     # here we deal with managing execution: spawning workers, output, result I/O, etc
 
@@ -707,4 +709,15 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package};
     end
 
     return result
+end
+
+# TODO: make `install_julia` cache the returned directory so that we don't have to pass
+#       `install` around. This should make the inner functions directly usable again.
+function interactive_shell(config::Configuration)
+    install = install_julia(config)
+    try
+        PkgEval.sandboxed_julia(config, install)
+    finally
+        rm(install; recursive=true)
+    end
 end
