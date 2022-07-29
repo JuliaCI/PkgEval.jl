@@ -4,7 +4,7 @@ lazy_artifact(x) = @artifact_str(x)
 
 const rootfs_lock = ReentrantLock()
 const rootfs_cache = Dict()
-function prepare_rootfs(config::Configuration)
+function create_rootfs(config::Configuration)
     lock(rootfs_lock) do
         get!(rootfs_cache, (config.distro, config.uid, config.user, config.gid, config.group, config.home)) do
             base = lazy_artifact(config.distro)
@@ -82,7 +82,7 @@ const xvfb_proc = Ref{Union{Base.Process,Nothing}}(nothing)
 function sandboxed_julia_cmd(config::Configuration, install::String, executor, args=``;
                              env::Dict{String,String}=Dict{String,String}(),
                              mounts::Dict{String,String}=Dict{String,String}())
-    rootfs = prepare_rootfs(config)
+    rootfs = create_rootfs(config)
     read_only_maps = Dict(
         "/"                                 => rootfs,
         config.julia_install_dir            => install,
@@ -309,7 +309,7 @@ at `install`.
 
 Refer to `sandboxed_script`[@ref] for more possible `keyword arguments.
 """
-function sandboxed_test(config::Configuration, install::String, pkg; kwargs...)
+function sandboxed_test(config::Configuration, install::String, pkg::Package; kwargs...)
     if config.compiled
         return compiled_test(config, install, pkg; kwargs...)
     end
@@ -327,12 +327,13 @@ function sandboxed_test(config::Configuration, install::String, pkg; kwargs...)
             print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
 
             using Pkg
-            Pkg.add(ARGS[1])
+            package_spec = eval(Meta.parse(ARGS[1]))
+            Pkg.add(; package_spec...)
 
 
             print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n")
 
-            Pkg.test(ARGS[1])
+            Pkg.test(package_spec.name)
 
             println("\nPkgEval succeeded")
         catch err
@@ -344,7 +345,8 @@ function sandboxed_test(config::Configuration, install::String, pkg; kwargs...)
             print("\n\n", '#'^80, "\n# PkgEval teardown: $(now())\n#\n\n")
         end"""
 
-    args = `$(pkg.name)`
+    # generate a PackageSpec we'll use to install the package
+    args = `$(repr(package_spec_tuple(pkg)))`
     if config.depwarn
         args = `--depwarn=error $args`
     end
@@ -505,22 +507,31 @@ function compiled_test(config::Configuration, install::String, pkg; kwargs...)
     return version, status, reason, log * "\n" * test_log
 end
 
-function evaluate(configs::Vector{Configuration}, pkgs::Vector;
-                  ninstances::Integer=Sys.CPU_THREADS, retries::Integer=2,
-                  registry::String=DEFAULT_REGISTRY)
+"""
+    evaluate(configs::Vector{Configuration}, packages::Vector{String}=[]]; kwargs...)
+
+Run all tests for all packages in the registry `registry`, or only for the packages as
+identified by their name in `pkgnames`, using the configurations from `configs`.
+The registry is first updated if `update_registry` is set to true.
+
+Refer to `sandboxed_test`[@ref] and `sandboxed_julia`[@ref] for more possible
+keyword arguments.
+"""
+function evaluate(configs::Vector{Configuration}, packages::Vector{Package};
+                  ninstances::Integer=Sys.CPU_THREADS)
     # here we deal with managing execution: spawning workers, output, result I/O, etc
 
     # Julia installation
     instantiated_configs = Dict()
     for config in configs
-        install = prepare_julia(config)
+        install = install_julia(config)
         # XXX: better get the version from a file in the tree
         version_str = chomp(read(`$install/bin/julia --startup-file=no --eval "println(VERSION)"`, String))
         version = parse(VersionNumber, version_str)
         instantiated_configs[config] = (install, version)
     end
 
-    jobs = vec(collect(Iterators.product(instantiated_configs, pkgs)))
+    jobs = vec(collect(Iterators.product(instantiated_configs, packages)))
 
     # use a random test order to (hopefully) get a more reasonable ETA
     shuffle!(jobs)
@@ -611,7 +622,6 @@ function evaluate(configs::Vector{Configuration}, pkgs::Vector;
                        julia_version = VersionNumber[],
                        compiled = Bool[],
                        name = String[],
-                       uuid = UUID[],
                        version = Union{Missing,VersionNumber}[],
                        status = Symbol[],
                        reason = Union{Missing,Symbol}[],
@@ -642,28 +652,16 @@ function evaluate(configs::Vector{Configuration}, pkgs::Vector;
                         times[i] = now()
                         running[i] = (config, pkg)
 
-                        # can we even test this package?
-                        pkg_info = Registry.registry_info(pkg)
-                        pkg_compat = Registry.compat_info(pkg_info)
-                        supported = any(pkg_compat) do (version, compat)
-                            !haskey(compat, Registry.JULIA_UUID) ||
-                            julia_version ∈ compat[Registry.JULIA_UUID]
-                        end
-                        if !supported
+                        # should we even test this package?
+                        if pkg.name in skip_list
                             push!(result, [config.julia, julia_version, config.compiled,
-                                           pkg.name, pkg.uuid, missing,
-                                           :skip, :unsupported, 0, missing])
-                            running[i] = nothing
-                            continue
-                        elseif pkg.name in skip_lists[registry]
-                            push!(result, [config.julia, julia_version, config.compiled,
-                                           pkg.name, pkg.uuid, missing,
+                                           pkg.name, missing,
                                            :skip, :explicit, 0, missing])
                             running[i] = nothing
                             continue
                         elseif endswith(pkg.name, "_jll")
                             push!(result, [config.julia, julia_version, config.compiled,
-                                           pkg.name, pkg.uuid, missing,
+                                           pkg.name, missing,
                                            :skip, :jll, 0, missing])
                             running[i] = nothing
                             continue
@@ -675,9 +673,8 @@ function evaluate(configs::Vector{Configuration}, pkgs::Vector;
                             sandboxed_test(config′, julia_install, pkg)
 
                         # certain packages are known to have flaky tests; retry them
-                        for j in 1:retries
-                            if status == :fail && reason == :test_failures &&
-                               pkg.name in retry_lists[registry]
+                        for j in 1:pkg.retries
+                            if status == :fail && reason == :test_failures
                                 times[i] = now()
                                 pkg_version, status, reason, log =
                                     sandboxed_test(config′, julia_install, pkg)
@@ -686,7 +683,7 @@ function evaluate(configs::Vector{Configuration}, pkgs::Vector;
 
                         duration = (now()-times[i]) / Millisecond(1000)
                         push!(result, [config.julia, julia_version, config.compiled,
-                                       pkg.name, pkg.uuid, pkg_version,
+                                       pkg.name, pkg_version,
                                        status, reason, duration, log])
                         running[i] = nothing
                     end
@@ -710,24 +707,4 @@ function evaluate(configs::Vector{Configuration}, pkgs::Vector;
     end
 
     return result
-end
-
-"""
-    evaluate(configs::Vector{Configuration}=[Configuration()],
-             pkg_names::Vector{String}=[]]; registry=General, update_registry=true, kwargs...)
-
-Run all tests for all packages in the registry `registry`, or only for the packages as
-identified by their name in `pkgnames`, using the configurations from `configs`.
-The registry is first updated if `update_registry` is set to true.
-
-Refer to `sandboxed_test`[@ref] and `sandboxed_julia`[@ref] for more possible
-keyword arguments.
-"""
-function evaluate(configs::Vector{Configuration}=[Configuration()],
-                  pkg_names::Vector{String}=String[];
-                  registry::String=DEFAULT_REGISTRY, update_registry::Bool=true, kwargs...)
-    prepare_registry(registry; update=update_registry)
-    pkgs = read_pkgs(pkg_names)
-
-    evaluate(configs, pkgs; registry, kwargs...)
 end

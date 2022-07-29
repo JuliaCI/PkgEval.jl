@@ -15,9 +15,12 @@ import Scratch: @get_scratch!
 download_dir = ""
 storage_dir = ""
 
-export Configuration, evaluate
+skip_list = String[]
+retry_list = String[]
 
-Base.@kwdef mutable struct Configuration
+export Configuration, Package, evaluate
+
+Base.@kwdef struct Configuration
     julia::String = "nightly"
     buildflags::Vector{String} = String[]
     depwarn::Bool = false
@@ -48,6 +51,28 @@ Base.@kwdef mutable struct Configuration
     home::String = "/home/pkgeval"
 end
 
+Base.@kwdef struct Package
+    # source of the package; forwarded to PackageSpec
+    name::String
+    version::Union{Nothing,VersionNumber} = nothing
+    url::Union{Nothing,String} = nothing
+    rev::Union{Nothing,String} = nothing
+
+    retries::Int = 0
+end
+
+# convert a Package to a tuple that's Pkg.add'able
+function package_spec_tuple(pkg::Package)
+    spec = (;)
+    for field in (:name, :version, :url, :rev)
+        val = getfield(pkg, field)
+        if val !== nothing
+            spec = merge(spec, NamedTuple{(field,)}((val,)))
+        end
+    end
+    spec
+end
+
 # copy constructor that allows overriding specific fields
 function Configuration(cfg::Configuration; kwargs...)
     kwargs = Dict(kwargs...)
@@ -57,9 +82,6 @@ function Configuration(cfg::Configuration; kwargs...)
     end
     Configuration(; merged_kwargs...)
 end
-
-# behave as a scalar in broadcast expressions
-Base.broadcastable(x::Configuration) = Ref(x)
 
 # utils
 isdebug(group) =
@@ -75,6 +97,11 @@ function __init__()
     mkpath(joinpath(download_dir, "srccache"))
 
     global storage_dir = @get_scratch!("storage")
+
+    # read Packages.toml
+    packages = TOML.parsefile(joinpath(dirname(@__DIR__), "Packages.toml"))
+    global skip_list = get(packages, "skip", String[])
+    global retry_list = get(packages, "retry", String[])
 end
 
 end # module

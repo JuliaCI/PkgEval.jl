@@ -231,7 +231,7 @@ function build_julia(repo_path::String;
     return install_dir
 end
 
-function prepare_julia(config::Configuration)
+function install_julia(config::Configuration)
     if isempty(config.buildflags)
         # check if it's an official release
         dir = get_julia_release(config.julia)
