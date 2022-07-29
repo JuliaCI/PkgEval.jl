@@ -104,11 +104,21 @@ end
 @testset "PackageCompiler" begin
     results = evaluate([Configuration(; julia, compiled=true)],
                        [Package(; name="Example")])
+    @test size(results, 1) == 1
     if !(julia == "master" || julia == "nightly")
-        @test all(results.status .== :ok)
-        for result in eachrow(results)
-            @test occursin("Testing $(result.name) tests passed", result.log)
-        end
+        @test results[1, :status] == :ok
+        @test contains(results[1, :log], "Testing Example tests passed")
+    end
+end
+
+@testset "rr" begin
+    results = evaluate([Configuration(; julia, rr=true)],
+                       [Package(; name="Example")])
+    @test all(results.status .== :ok)
+    @test contains(results[1, :log], "BugReporting")
+    if !(julia == "master" || julia == "nightly")
+        @test results[1, :status] == :ok
+        @test contains(results[1, :log], "Testing Example tests passed")
     end
 end
 

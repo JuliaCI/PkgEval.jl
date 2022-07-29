@@ -335,25 +335,62 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
 
             print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n")
 
-            Pkg.test(package_spec.name)
+            if get(ENV, "PKGEVAL_RR", "false") == "true"
+                Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
+            else
+                Pkg.test(package_spec.name)
+            end
 
             println("\nPkgEval succeeded")
+
         catch err
             print("\nPkgEval failed: ")
             showerror(stdout, err)
             Base.show_backtrace(stdout, catch_backtrace())
             println()
+
+            if get(ENV, "PKGEVAL_RR", "false") == "true"
+                print("\n\n", '#'^80, "\n# BugReporting post-processing: $(now())\n#\n\n")
+
+                # pack-up our rr trace. this is expensive, so we only do it for failures.
+                # it also needs to happen in a clean environment, or BugReporting's deps
+                # could affect/be affected by the tested package's dependencies.
+                Pkg.activate(; temp=true)
+                Pkg.add("BugReporting")
+                try
+                    using BugReporting
+                    trace_dir = BugReporting.default_rr_trace_dir()
+                    trace = BugReporting.find_latest_trace(trace_dir)
+                    BugReporting.compress_trace(trace, "/traces/$(ARGS[1]).tar.zst")
+                    println("\nBugReporting succeeded")
+                catch err
+                    print("\nBugReporting failed: ")
+                    showerror(stdout, err)
+                    Base.show_backtrace(stdout, catch_backtrace())
+                    println()
+                end
+            end
         finally
             print("\n\n", '#'^80, "\n# PkgEval teardown: $(now())\n#\n\n")
         end"""
 
-    # generate a PackageSpec we'll use to install the package
     args = `$(repr(package_spec_tuple(pkg)))`
     if config.depwarn
         args = `--depwarn=error $args`
     end
 
-    status, reason, log = sandboxed_script(config, script, args; kwargs...)
+    mounts = Dict{String,String}()
+    env = Dict{String,String}()
+    if config.rr
+        trace_dir = mktempdir()
+        trace_file = joinpath(trace_dir, "$(pkg.name).tar.zst")
+        mounts["/traces"] = trace_dir
+        env["PKGEVAL_RR"] = "true"
+        haskey(ENV, "PKGEVAL_RR_BUCKET") ||
+            @warn maxlog=1 "PKGEVAL_RR_BUCKET not set; will not be uploading rr traces"
+    end
+
+    status, reason, log = sandboxed_script(config, script, args; mounts, env, kwargs...)
 
     # pick up the installed package version from the log
     version_match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
@@ -410,6 +447,28 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
                 :unknown
             end
         end
+    end
+
+    if config.rr
+        # upload an rr trace for interesting failures
+        # TODO: re-use BugReporting.jl
+        if status == :fail && reason in [:gc_corruption, :segfault, :abort, :unreachable] &&
+           haskey(ENV, "PKGEVAL_RR_BUCKET")
+            bucket = ENV["PKGEVAL_RR_BUCKET"]
+            unixtime = round(Int, datetime2unix(now()))
+            trace_unique_name = "$(pkg.name)-$(unixtime).tar.zst"
+            if isfile(trace_file)
+                f = retry(delays=Base.ExponentialBackOff(n=5, first_delay=5, max_delay=300)) do
+                    Base.run(`s3cmd put --quiet $trace_file s3://$(bucket)/$(trace_unique_name)`)
+                    Base.run(`s3cmd setacl --quiet --acl-public s3://$(bucket)/$(trace_unique_name)`)
+                end
+                f()
+                log *= "Uploaded rr trace to https://s3.amazonaws.com/$(bucket)/$(trace_unique_name)"
+            else
+                log *= "Testing did not produce an rr trace."
+            end
+        end
+        rm(trace_dir; recursive=true)
     end
 
     return version, status, reason, log

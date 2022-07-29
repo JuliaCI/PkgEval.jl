@@ -18,6 +18,7 @@ Base.@kwdef struct Configuration
     time_limit = 60*60 # 1 hour
     compiled::Bool = false
     compile_time_limit::Int = 30*60 # 30 mins
+    rr::Bool = false
 
     # the directory where Julia is installed in the run-time environment
     julia_install_dir::String = "/opt/julia"
