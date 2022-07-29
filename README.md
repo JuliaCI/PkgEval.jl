@@ -52,7 +52,7 @@ julia> using PkgEval
 
 julia> config = Configuration(; julia="1.7");
 
-julia> interactive_shell(config)
+julia> PkgEval.sandboxed_julia(config)
 
    _       _ _(_)_     |  Documentation: https://docs.julialang.org
   (_)     | (_) (_)    |

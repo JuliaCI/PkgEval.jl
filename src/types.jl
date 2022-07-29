@@ -1,8 +1,18 @@
 export Configuration, Package
 
 Base.@kwdef struct Configuration
+    # Julia properties
     julia::String = "nightly"
     buildflags::Vector{String} = String[]
+
+    # rootfs properties
+    distro::String = "debian"
+    uid::Int = 1000
+    user::String = "pkgeval"
+    gid::Int = 1000
+    group::String = "pkgeval"
+    home::String = "/home/pkgeval"
+
     depwarn::Bool = false
     log_limit::Int = 2^20 # 1 MB
     time_limit = 60*60 # 1 hour
@@ -21,14 +31,6 @@ Base.@kwdef struct Configuration
 
     # additional Julia arguments to pass to the process
     julia_args::Cmd = ``
-
-    # rootfs properties
-    distro::String = "debian"
-    uid::Int = 1000
-    user::String = "pkgeval"
-    gid::Int = 1000
-    group::String = "pkgeval"
-    home::String = "/home/pkgeval"
 end
 
 Base.@kwdef struct Package

@@ -1,51 +1,47 @@
-export evaluate, interactive_shell
+export evaluate
 
 using Dates
 using Random
 using DataFrames: DataFrame, nrow
-using LazyArtifacts: @artifact_str
 using ProgressMeter: Progress, update!
 using Sandbox: Sandbox, SandboxConfig, UnprivilegedUserNamespacesExecutor, cleanup
 
-lazy_artifact(x) = @artifact_str(x)
-
-const rootfs_lock = ReentrantLock()
-const rootfs_cache = Dict()
-function create_rootfs(config::Configuration)
-    lock(rootfs_lock) do
-        get!(rootfs_cache, (config.distro, config.uid, config.user, config.gid, config.group, config.home)) do
-            base = lazy_artifact(config.distro)
-
-            # a bare rootfs isn't usable out-of-the-box
-            derived = mktempdir()
-            cp(base, derived; force=true)
-
-            # add a user and group
-            chmod(joinpath(derived, "etc/passwd"), 0o644)
-            open(joinpath(derived, "etc/passwd"), "a") do io
-                println(io, "$(config.user):x:$(config.uid):$(config.gid)::$(config.home):/bin/bash")
-            end
-            chmod(joinpath(derived, "etc/group"), 0o644)
-            open(joinpath(derived, "etc/group"), "a") do io
-                println(io, "$(config.group):x:$(config.gid):")
-            end
-            chmod(joinpath(derived, "etc/shadow"), 0o640)
-            open(joinpath(derived, "etc/shadow"), "a") do io
-                println(io, "$(config.user):*:::::::")
-            end
-
-            # replace resolv.conf
-            rm(joinpath(derived, "etc/resolv.conf"); force=true)
-            write(joinpath(derived, "etc/resolv.conf"), read("/etc/resolv.conf"))
-
-            return derived
-        end
-    end
-end
+const statusses = Dict(
+    :ok     => "successful",
+    :skip   => "skipped",
+    :fail   => "unsuccessful",
+    :kill   => "interrupted",
+)
+const reasons = Dict(
+    missing                 => missing,
+    # skip
+    :explicit               => "package was blacklisted",
+    :jll                    => "package is a untestable wrapper package",
+    :unsupported            => "package is not supported by this Julia version",
+    # fail
+    :unsatisfiable          => "package could not be installed",
+    :untestable             => "package does not have any tests",
+    :binary_dependency      => "package requires a missing binary dependency",
+    :missing_dependency     => "package is missing a package dependency",
+    :missing_package        => "package is using an unknown package",
+    :test_failures          => "package has test failures",
+    :syntax                 => "package has syntax issues",
+    :gc_corruption          => "GC corruption detected",
+    :segfault               => "a segmentation fault happened",
+    :abort                  => "the process was aborted",
+    :unreachable            => "an unreachable instruction was executed",
+    :network                => "networking-related issues were detected",
+    :unknown                => "there were unidentified errors",
+    :uncompilable           => "compilation of the package failed",
+    # kill
+    :time_limit             => "test duration exceeded the time limit",
+    :log_limit              => "test log exceeded the size limit",
+    :inactivity             => "tests became inactive",
+)
 
 """
-    sandboxed_julia(config::Configuration, install::String, args=``; env=Dict(), mounts=Dict(),
-                    wait=true, stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
+    sandboxed_julia(config::Configuration, args=``; env=Dict(), mounts=Dict(), wait=true,
+                    stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
 
 Run Julia inside of a sandbox, passing the given arguments `args` to it. The argument `wait`
 determines if the process will be waited on. Streams can be connected using the `stdin`,
@@ -54,14 +50,14 @@ determines if the process will be waited on. Streams can be connected using the 
 Further customization is possible using the `env` arg, to set environment variables, and the
 `mounts` argument to mount additional directories.
 """
-function sandboxed_julia(config::Configuration, install::String, args=``; wait=true,
+function sandboxed_julia(config::Configuration, args=``; wait=true,
                          stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
     # XXX: even when preferred_executor() returns UnprivilegedUserNamespacesExecutor,
     #      sometimes a stray sudo happens at run time? no idea how.
     exe_typ = UnprivilegedUserNamespacesExecutor
     exe = exe_typ()
 
-    cmd = sandboxed_julia_cmd(config, install, exe, args; kwargs...)
+    cmd = sandboxed_julia_cmd(config, exe, args; kwargs...)
     proc = run(pipeline(cmd; stdin, stderr, stdout); wait)
 
     # TODO: introduce a --stats flag that has the sandbox trace and report on CPU, network, ... usage
@@ -86,10 +82,11 @@ end
 const xvfb_lock = ReentrantLock()
 const xvfb_proc = Ref{Union{Base.Process,Nothing}}(nothing)
 
-function sandboxed_julia_cmd(config::Configuration, install::String, executor, args=``;
+function sandboxed_julia_cmd(config::Configuration, executor, args=``;
                              env::Dict{String,String}=Dict{String,String}(),
                              mounts::Dict{String,String}=Dict{String,String}())
     rootfs = create_rootfs(config)
+    install = install_julia(config)
     read_only_maps = Dict(
         "/"                                 => rootfs,
         config.julia_install_dir            => install,
@@ -186,15 +183,14 @@ function cpu_time(pid)
 end
 
 """
-    sandboxed_script(config::Configuration, install::String, script::String, args=``)
+    sandboxed_script(config::Configuration, script::String, args=``)
 
 Run a Julia script `script` in non-interactive mode, returning the process status and a
 failure reason if any (both represented by a symbol), and the full log.
 
 Refer to `sandboxed_julia`[@ref] for more possible `keyword arguments.
 """
-function sandboxed_script(config::Configuration, install::String, script::String, args=``;
-                          kwargs...)
+function sandboxed_script(config::Configuration, script::String, args=``; kwargs...)
     @assert config.log_limit > 0
 
     cmd = `--eval 'eval(Meta.parse(read(stdin,String)))' $args`
@@ -211,7 +207,7 @@ function sandboxed_script(config::Configuration, install::String, script::String
 
     input = Pipe()
     output = Pipe()
-    proc = sandboxed_julia(config, install, cmd; env, wait=false,
+    proc = sandboxed_julia(config, cmd; env, wait=false,
                            stdout=output, stderr=output, stdin=input,
                            kwargs...)
     close(output.in)
@@ -309,16 +305,15 @@ function sandboxed_script(config::Configuration, install::String, script::String
 end
 
 """
-    sandboxed_test(config::Configuration, install::String, pkg; kwargs...)
+    sandboxed_test(config::Configuration, pkg; kwargs...)
 
-Run the unit tests for a single package `pkg` inside of a sandbox using a Julia installation
-at `install`.
+Run the unit tests for a single package `pkg` inside of a sandbox according to `config`.
 
 Refer to `sandboxed_script`[@ref] for more possible `keyword arguments.
 """
-function sandboxed_test(config::Configuration, install::String, pkg::Package; kwargs...)
+function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
     if config.compiled
-        return compiled_test(config, install, pkg; kwargs...)
+        return compiled_test(config, pkg; kwargs...)
     end
 
     script = raw"""
@@ -358,7 +353,7 @@ function sandboxed_test(config::Configuration, install::String, pkg::Package; kw
         args = `--depwarn=error $args`
     end
 
-    status, reason, log = sandboxed_script(config, install, script, args; kwargs...)
+    status, reason, log = sandboxed_script(config, script, args; kwargs...)
 
     # pick up the installed package version from the log
     version_match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
@@ -421,7 +416,7 @@ function sandboxed_test(config::Configuration, install::String, pkg::Package; kw
 end
 
 """
-    compiled_test(install::String, pkg::Package)
+    compiled_test(config::Configuration, pkg::Package)
 
 Run the unit tests for a single package `pkg` (see `compiled_test`[@ref] for details and
 a list of supported keyword arguments), after first having compiled a system image that
@@ -430,7 +425,7 @@ contains this package and its dependencies.
 To find incompatibilities, the compilation happens on an Ubuntu-based runner, while testing
 is performed in an Arch Linux container.
 """
-function compiled_test(config::Configuration, install::String, pkg::Package; kwargs...)
+function compiled_test(config::Configuration, pkg::Package; kwargs...)
     script = raw"""
         try
             using Dates
@@ -475,8 +470,7 @@ function compiled_test(config::Configuration, install::String, pkg::Package; kwa
     compile_config = Configuration(config;
         time_limit = config.compile_time_limit
     )
-    status, reason, log = sandboxed_script(compile_config, install, script, args; mounts,
-                                           kwargs...)
+    status, reason, log = sandboxed_script(compile_config, script, args; mounts, kwargs...)
 
     # try to figure out the failure reason
     if status === nothing
@@ -508,7 +502,7 @@ function compiled_test(config::Configuration, install::String, pkg::Package; kwa
         home="/home/user",
     )
     version, status, reason, test_log =
-        sandboxed_test(test_config, install, pkg; mounts, kwargs...)
+        sandboxed_test(test_config, pkg; mounts, kwargs...)
 
     rm(sysimage_dir; recursive=true)
     return version, status, reason, log * "\n" * test_log
@@ -530,17 +524,7 @@ function evaluate(configs::Vector{Configuration},
                   ninstances::Integer=Sys.CPU_THREADS)
     # here we deal with managing execution: spawning workers, output, result I/O, etc
 
-    # Julia installation
-    instantiated_configs = Dict()
-    for config in configs
-        install = install_julia(config)
-        # XXX: better get the version from a file in the tree
-        version_str = chomp(read(`$install/bin/julia --startup-file=no --eval "println(VERSION)"`, String))
-        version = parse(VersionNumber, version_str)
-        instantiated_configs[config] = (install, version)
-    end
-
-    jobs = vec(collect(Iterators.product(instantiated_configs, packages)))
+    jobs = vec(collect(Iterators.product(configs, packages)))
 
     # use a random test order to (hopefully) get a more reasonable ETA
     shuffle!(jobs)
@@ -627,8 +611,7 @@ function evaluate(configs::Vector{Configuration},
     end
 
     # NOTE: we expand the Configuration into separate columns
-    result = DataFrame(julia_spec = String[],
-                       julia_version = VersionNumber[],
+    result = DataFrame(julia = String[],
                        compiled = Bool[],
                        name = String[],
                        version = Union{Missing,VersionNumber}[],
@@ -657,19 +640,19 @@ function evaluate(configs::Vector{Configuration},
             push!(all_workers, @async begin
                 try
                     while !isempty(jobs) && !done
-                        (config, (julia_install, julia_version)), pkg = pop!(jobs)
+                        config, pkg = pop!(jobs)
                         times[i] = now()
                         running[i] = (config, pkg)
 
                         # should we even test this package?
                         if pkg.name in skip_list
-                            push!(result, [config.julia, julia_version, config.compiled,
+                            push!(result, [config.julia, config.compiled,
                                            pkg.name, missing,
                                            :skip, :explicit, 0, missing])
                             running[i] = nothing
                             continue
                         elseif endswith(pkg.name, "_jll")
-                            push!(result, [config.julia, julia_version, config.compiled,
+                            push!(result, [config.julia, config.compiled,
                                            pkg.name, missing,
                                            :skip, :jll, 0, missing])
                             running[i] = nothing
@@ -678,20 +661,19 @@ function evaluate(configs::Vector{Configuration},
 
                         # perform an initial run
                         config′ = Configuration(config; cpus=[i-1])
-                        pkg_version, status, reason, log =
-                            sandboxed_test(config′, julia_install, pkg)
+                        pkg_version, status, reason, log = sandboxed_test(config′, pkg)
 
                         # certain packages are known to have flaky tests; retry them
                         for j in 1:pkg.retries
                             if status == :fail && reason == :test_failures
                                 times[i] = now()
                                 pkg_version, status, reason, log =
-                                    sandboxed_test(config′, julia_install, pkg)
+                                    sandboxed_test(config′, pkg)
                             end
                         end
 
                         duration = (now()-times[i]) / Millisecond(1000)
-                        push!(result, [config.julia, julia_version, config.compiled,
+                        push!(result, [config.julia, config.compiled,
                                        pkg.name, pkg_version,
                                        status, reason, duration, log])
                         running[i] = nothing
@@ -708,23 +690,7 @@ function evaluate(configs::Vector{Configuration},
     finally
         stop_work()
         println()
-
-        # clean-up
-        for (config, (install,version)) in instantiated_configs
-            rm(install; recursive=true)
-        end
     end
 
     return result
-end
-
-# TODO: make `install_julia` cache the returned directory so that we don't have to pass
-#       `install` around. This should make the inner functions directly usable again.
-function interactive_shell(config::Configuration)
-    install = install_julia(config)
-    try
-        PkgEval.sandboxed_julia(config, install)
-    finally
-        rm(install; recursive=true)
-    end
 end

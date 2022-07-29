@@ -10,15 +10,12 @@ storage_dir = ""
 skip_list = String[]
 retry_list = String[]
 
-# utils
-isdebug(group) =
-    Base.CoreLogging.current_logger_for_env(Base.CoreLogging.Debug, group, PkgEval) !== nothing
-
 include("types.jl")
 include("registry.jl")
+include("rootfs.jl")
 include("julia.jl")
 include("evaluate.jl")
-include("report.jl")
+include("utils.jl")
 
 function __init__()
     global download_dir = @get_scratch!("downloads")

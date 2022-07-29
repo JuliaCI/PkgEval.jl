@@ -230,7 +230,7 @@ function build_julia(repo_path::String;
     return install_dir
 end
 
-function install_julia(config::Configuration)
+function _install_julia(config::Configuration)
     if isempty(config.buildflags)
         # check if it's an official release
         dir = get_julia_release(config.julia)
@@ -260,5 +260,18 @@ function install_julia(config::Configuration)
         build_julia(repo; flags=config.buildflags)
     finally
         rm(repo; recursive=true)
+    end
+end
+
+const julia_lock = ReentrantLock()
+const julia_cache = Dict()
+function install_julia(config::Configuration)
+    lock(julia_lock) do
+        key = (config.julia, config.buildflags)
+        dir = get(julia_cache, key, nothing)
+        if dir === nothing || !isdir(dir)
+            julia_cache[key] = _install_julia(config)
+        end
+        return julia_cache[key]
     end
 end

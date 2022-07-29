@@ -7,13 +7,21 @@ julia_version = tryparse(VersionNumber, julia)
 
 @testset "sandbox" begin
     config = Configuration(; julia)
-    install = PkgEval.install_julia(config)
 
     let
         p = Pipe()
         close(p.in)
-        PkgEval.sandboxed_julia(config, install, `-e 'print(1337)'`; stdout=p.out)
+        PkgEval.sandboxed_julia(config, `-e 'print(1337)'`; stdout=p.out)
         @test read(p.out, String) == "1337"
+    end
+
+    # try to compare the version info
+    if julia_version !== nothing
+        p = Pipe()
+        close(p.in)
+        PkgEval.sandboxed_julia(config, `-e 'println(VERSION)'`; stdout=p.out)
+        version_str = read(p.out, String)
+        @test parse(VersionNumber, version_str) == julia_version
     end
 end
 
@@ -21,10 +29,7 @@ end
     let results = evaluate([Configuration(; julia)],
                            [Package(; name="Example")])
         @test size(results, 1) == 1
-        @test results[1, :julia_spec] == julia
-        if julia_version !== nothing
-            @test results[1, :julia_version] == julia_version
-        end
+        @test results[1, :julia] == julia
     end
 end
 
@@ -106,5 +111,7 @@ end
         end
     end
 end
+
+PkgEval.purge()
 
 end
