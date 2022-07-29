@@ -190,17 +190,20 @@ failure reason if any (both represented by a symbol), and the full log.
 
 Refer to `sandboxed_julia`[@ref] for more possible `keyword arguments.
 """
-function sandboxed_script(config::Configuration, script::String, args=``; kwargs...)
+function sandboxed_script(config::Configuration, script::String, args=``;
+                          env::Dict{String,String}=Dict{String,String}(), kwargs...)
     @assert config.log_limit > 0
 
     cmd = `--eval 'eval(Meta.parse(read(stdin,String)))' $args`
 
-    env = Dict(
+    env = merge(env, Dict(
+        # we're likely running many instances, so avoid overusing the CPU
         "JULIA_PKG_PRECOMPILE_AUTO" => "0",
+
         # package hacks
         "PYTHON" => "",
         "R_HOME" => "*"
-    )
+    ))
     if haskey(ENV, "JULIA_PKG_SERVER")
         env["JULIA_PKG_SERVER"] = ENV["JULIA_PKG_SERVER"]
     end
