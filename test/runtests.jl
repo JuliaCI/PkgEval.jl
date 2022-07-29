@@ -111,7 +111,7 @@ end
     end
 end
 
-@testset "rr" begin
+haskey(ENV, "CI") || @testset "rr" begin
     results = evaluate([Configuration(; julia, rr=true)],
                        [Package(; name="Example")])
     @test all(results.status .== :ok)
