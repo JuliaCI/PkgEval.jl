@@ -1,41 +1,32 @@
 module PkgEval
 
-import Pkg.TOML
 using Pkg
-using Base: UUID
-using Dates
-using ProgressMeter
-using DataFrames
-using Random
-using Sandbox
-using LazyArtifacts
+import Pkg.TOML
 
-# immutable: in package directory
-versions_file() = joinpath(dirname(@__DIR__), "deps", "Versions.toml")
-releases_file() = joinpath(dirname(@__DIR__), "deps", "Releases.toml")
-registries_file() = joinpath(dirname(@__DIR__), "deps", "Registries.toml")
+import Scratch: @get_scratch!
+download_dir = ""
+storage_dir = ""
 
-# mutable: in .cache directory
-cache_dir() = joinpath(get(ENV, "XDG_CACHE_HOME", joinpath(homedir(), ".cache")), "PkgEval")
-download_dir(name) = joinpath(cache_dir(), "downloads", name)
-storage_dir() = joinpath(cache_dir(), "storage")
-extra_versions_file() = joinpath(cache_dir(), "Versions.toml")
+skip_list = String[]
+retry_list = String[]
 
-# fixed locations
-registry_dir() = joinpath(first(DEPOT_PATH), "registries")
-registry_dir(name) = joinpath(registry_dir(), name)
-
-# utils
-isdebug(group) = Base.CoreLogging.current_logger_for_env(Base.CoreLogging.Debug, group, PkgEval) !== nothing
-
+include("types.jl")
 include("registry.jl")
+include("rootfs.jl")
 include("julia.jl")
-include("run.jl")
-include("report.jl")
+include("evaluate.jl")
+include("utils.jl")
 
 function __init__()
-    mkpath(cache_dir())
-    touch(extra_versions_file())
+    global download_dir = @get_scratch!("downloads")
+    mkpath(joinpath(download_dir, "srccache"))
+
+    global storage_dir = @get_scratch!("storage")
+
+    # read Packages.toml
+    packages = TOML.parsefile(joinpath(dirname(@__DIR__), "Packages.toml"))
+    global skip_list = get(packages, "skip", String[])
+    global retry_list = get(packages, "retry", String[])
 end
 
 end # module

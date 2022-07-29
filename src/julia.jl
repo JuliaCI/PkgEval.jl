@@ -1,372 +1,187 @@
-using BinaryBuilder
-using Downloads
-using LibGit2
-import SHA: sha256
+import JSON
+import Downloads
+using Git: git
+using BinaryBuilder: DirectorySource, ExecutableProduct, build_tarballs
+using Base.BinaryPlatforms: Platform, triplet
 
+const VERSIONS_URL = "https://julialang-s3.julialang.org/bin/versions.json"
 
-#
-# Utilities
-#
+function get_julia_release(spec::String)
+    dirpath = mktempdir()
+   if spec == "nightly"
+        @debug "Downloading nightly build..."
 
-function purge()
-    # remove old builds
-    vers = TOML.parse(read(extra_versions_file(), String))
-    rm(extra_versions_file())
-    open(extra_versions_file(); append=true) do io
-        for (ver, data) in vers
-            @assert haskey(data, "file")
-            @assert !haskey(data, "url")
-
-            path = download_dir(data["file"])
-            if round(now() - unix2datetime(mtime(path)), Dates.Week) < Dates.Week(1)
-                println(io, "[\"$ver\"]")
-                for (key, value) in data
-                    println(io, "$key = $(repr(value))")
-                end
-                println(io)
-            else
-                rm(path)
-                rm(path * ".sha256"; force=true)
-            end
-        end
-    end
-end
-
-function hash_file(path)
-    open(path, "r") do f
-        bytes2hex(sha256(f))
-    end
-end
-
-function installed_julia_dir(jp)
-     jp_contents = readdir(jp)
-     # Allow the unpacked directory to either be insider another directory (as produced by
-     # the buildbots) or directly inside the mapped directory (as produced by the BB script)
-     if length(jp_contents) == 1
-         jp = joinpath(jp, first(jp_contents))
-     end
-     jp
-end
-
-
-#
-# Versions
-#
-
-# a version is identified by a specific unique version, includes a hash to verify, and
-# points to a local file or a remove resource.
-
-read_versions() = merge(TOML.parse(read(versions_file(), String)),
-                        TOML.parse(read(extra_versions_file(), String)))
-
-"""
-    prepare_julia(the_ver, dir=mktempdir())
-
-Download and extract the specified version of Julia using the information provided in
-`Versions.toml` to the directory `dir`.
-"""
-function prepare_julia(the_ver::VersionNumber, dir::String=mktempdir())
-    vers = read_versions()
-    for (ver, data) in vers
-        ver == string(the_ver) || continue
-        if haskey(data, "url")
-            url = data["url"]
-
-            file = get(data, "file", "julia-$ver.tar.gz")
-            @assert !isabspath(file)
-            file = download_dir(file)
-            mkpath(dirname(file))
-
-            Pkg.PlatformEngines.download_verify_unpack(url, data["sha"], dir;
-                                                       tarball_path=file, force=true,
-                                                       ignore_existence=true)
+        url = if Sys.islinux() && Sys.ARCH == :x86_64
+            "https://julialangnightlies-s3.julialang.org/bin/linux/x64/julia-latest-linux64.tar.gz"
+        elseif Sys.islinux() && Sys.ARCH == :i686
+            "https://julialangnightlies-s3.julialang.org/bin/linux/x86/julia-latest-linux32.tar.gz"
+        elseif Sys.islinux() && Sys.ARCH == :aarch64
+            "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/julia-latest-linuxaarch64.tar.gz"
         else
-            file = data["file"]
-            !isabspath(file) && (file = download_dir(file))
-            Pkg.PlatformEngines.verify(file, data["sha"])
-            Pkg.PlatformEngines.unpack(file, dir)
+            error("Don't know how to get nightly build for $(Sys.MACHINE)")
         end
 
-        # make sure the Julia installation is usable by the container user
-        Base.run(`chmod -R o=u $dir`)
+        # download and extract to a temporary directory, but don't keep the tarball
+        Pkg.PlatformEngines.download_verify_unpack(url, nothing, dirpath;
+                                                   ignore_existence=true)
+    else
+        @debug "Checking if '$spec' is an official release..."
 
-        return dir
-    end
-    error("Requested Julia version $the_ver not found")
-end
-
-function obtain_julia(spec::String)::VersionNumber
-    try
-        # maybe it's a named release
-        # NOTE: check this first, because "1.3" could otherwise be interpreted as v"1.3.0"
-        obtain_julia_release(spec)
-    catch
-        try
-            # maybe it already refers to a version in Versions.toml
-            version = VersionNumber(spec)
-            prepare_julia(version)
-            version
-        catch
-            # assume it points to something in our Git repository
-            obtain_julia_build(spec)
+        # the spec needs to be a valid version number
+        version_spec = tryparse(VersionNumber, spec)
+        if isnothing(version_spec)
+            @warn "Not a valid release name"
+            return nothing
         end
-    end
-end
 
-
-#
-# Releases
-#
-
-# a release is identified by name, points to an online resource, but does not have a version
-# number. it will be downloaded, probed, and added to Versions.toml.
-
-read_releases() = TOML.parsefile(releases_file())
-
-# get the Julia version and short hash from a Julia installation
-function get_julia_version(base)
-    version = VersionNumber(read(`$(installed_julia_dir(base))/bin/julia -e 'print(Base.VERSION_STRING)'`, String))
-    if version.prerelease != ()
-        shorthash = read(`$(installed_julia_dir(base))/bin/julia -e 'print(Base.GIT_VERSION_INFO.commit_short)'`, String)
-        if endswith(shorthash, '*')
-            # strip the dirty marker
-            shorthash = shorthash[1:end-1]
+        # download the versions.json and look up the version
+        versions = JSON.parse(sprint(io->Downloads.download(VERSIONS_URL, io)))
+        if !haskey(versions, string(version_spec))
+            @warn "Unknown release name '$spec'"
+            return nothing
         end
-        version = VersionNumber(string(version) * string("-", shorthash))
+        files = versions[string(version_spec)]["files"]
+
+        # find a file entry for our machine
+        platform = parse(Platform, Sys.MACHINE) # don't use Sys.MACHINE directly as it may
+                                                # contain unnecessary tags, like -pc-
+        i = findfirst(files) do file
+            file["triplet"] == triplet(platform)
+        end
+        if isnothing(i)
+            @error "Release unavailable for $(Sys.MACHINE)"
+            return nothing
+        end
+        file = files[i]
+
+        # download and extract to a temporary directory
+        filename = basename(file["url"])
+        filepath = joinpath(download_dir, filename)
+        Pkg.PlatformEngines.download_verify_unpack(file["url"], file["sha256"], dirpath;
+                                                   tarball_path=filepath, force=true,
+                                                   ignore_existence=true)
     end
-    return version
+    return dirpath
 end
 
-"""
-    version = obtain_julia_release(name::String)
+function get_julia_repo(spec)
+    # split the spec into the repository and commit (e.g. `maleadt/julia#master`)
+    parts = split(spec, '#')
+    repo_spec, commit_spec = if length(parts) == 2
+        parts
+    elseif length(parts) == 1
+        "JuliaLang/julia", spec
+    else
+        error("Invalid repository/commit specification $spec")
+        return nothing
+    end
 
-Download Julia from an on-line source listed in Releases.toml as identified by `name`.
-Returns the `version` (what other functions use to identify this build).
-This version will be added to Versions.toml.
-"""
-function obtain_julia_release(name::String)
-    releases = read_releases()
-    @assert haskey(releases, name) "Julia release $name is not registered in Releases.toml"
-    data = releases[name]
+    # perform a bare check-out of the repo
+    # TODO: check-out different repositories into a single bare check-out under different
+    #       remotes? most objects are going to be shared, so this would save time and space.
+    @debug "Cloning/updating $repo_spec..."
+    bare_checkout = joinpath(download_dir, repo_spec)
+    if ispath(joinpath(bare_checkout, "config"))
+        run(`$(git()) -C $bare_checkout fetch --quiet`)
+    else
+        run(`$(git()) clone --quiet --bare https://github.com/$(repo_spec).git $bare_checkout`)
+    end
 
-    # get the filename and extension from the url
-    url = data["url"]
+    # check-out the actual source code into a temporary directory
+    julia_checkout = mktempdir()
+    run(`$(git()) clone --quiet $bare_checkout $julia_checkout`)
+    run(`$(git()) -C $julia_checkout checkout --quiet $commit_spec`)
+    return julia_checkout
+end
+
+function get_repo_details(repo)
+    version = VersionNumber(read(joinpath(repo, "VERSION"), String))
+    hash = chomp(read(`$(git()) -C $repo rev-parse --verify HEAD`, String))
+    shorthash = hash[1:10]
+    return (; version, hash, shorthash)
+end
+
+function get_julia_build(repo)
+    @debug "Trying to download a Julia build..."
+    repo_details = get_repo_details(repo)
+    if Sys.islinux() && Sys.ARCH == :x86_64
+        url = "https://julialangnightlies.s3.amazonaws.com/bin/linux/x64/$(repo_details.version.major).$(repo_details.version.minor)/julia-$(repo_details.shorthash)-linux64.tar.gz"
+    else
+        @debug "Don't know how to get build for $(Sys.MACHINE)"
+        return nothing
+    end
+
+    # download and extract to a temporary directory
     filename = basename(url)
-    if endswith(filename, ".tar.gz")
-        ext = ".tar.gz"
-        base = filename[1:end-7]
-    else
-        base, ext = splitext(filename)
-    end
-
-    # download
-    filepath = download_dir(filename)
-    duplicates = 0
-    while ispath(filepath)
-        duplicates += 1
-        filepath = download_dir("$(base).$(duplicates)$(ext)")
-    end
-    mkpath(dirname(filepath))
-    Downloads.download(url, filepath)
-
-    # get version
-    version = mktempdir() do install
-        Pkg.PlatformEngines.unpack(filepath, install)
-        get_julia_version(install)
-    end
-
-    versions = read_versions()
-    if haskey(versions, string(version))
-        @info "Julia $name (version $version) already available"
-        rm(filepath)
-    else
-        # always use the hash of the downloaded file to force a check during `prepare_julia`
-        filehash = hash_file(filepath)
-
-        # rename to include the version
-        filename = "julia-$version$ext"
-        if ispath(download_dir(filename))
-            @warn "Destination file $filename already exists, assuming it matches"
-            rm(filepath)
-        else
-            mv(filepath, download_dir(filename))
-        end
-
-        # Update Versions.toml
-        version_stanza = """
-            ["$version"]
-            file = "$filename"
-            sha = "$filehash"
-            """
-        open(extra_versions_file(); append=true) do f
-            println(f, version_stanza)
-        end
-    end
-
-    return version
-end
-
-
-#
-# Builds
-#
-
-# get a repository handle, cloning or updating the repository along the way
-function get_repo(name)
-    repo_path = download_dir(name)
-    if !isdir(repo_path)
-        @debug "Cloning $name to $repo_path..."
-        repo = LibGit2.clone("https://github.com/$name", repo_path)
-    else
-        repo = LibGit2.GitRepo(repo_path)
-        LibGit2.fetch(repo)
-
-        # prune to get rid of nonexisting branches (like the pull/PR/merge ones)
-        remote = LibGit2.get(LibGit2.GitRemote, repo, "origin")
-        fo = LibGit2.FetchOptions(prune=true)
-        LibGit2.fetch(remote, String[]; options=fo)
-    end
-
-    return repo
-end
-
-# look up a refspec in a git repository
-function get_repo_commit(repo::LibGit2.GitRepo, spec)
+    filepath = joinpath(download_dir, filename)
+    dirpath = mktempdir()
     try
-        # maybe it's a remote branch
-        remote = LibGit2.get(LibGit2.GitRemote, repo, "origin")
-        LibGit2.GitCommit(repo, "refs/remotes/origin/$spec")
+        Pkg.PlatformEngines.download_verify_unpack(url, nothing, dirpath;
+                                                   tarball_path=filepath, force=true,
+                                                   ignore_existence=true)
+        return dirpath
     catch err
-        isa(err, LibGit2.GitError) || rethrow()
-        try
-            # maybe it's a version tag
-            LibGit2.GitCommit(repo, "refs/tags/v$spec")
-        catch err
-            isa(err, LibGit2.GitError) || rethrow()
-            try
-                # maybe it's a remote ref, and we need to fetch it first
-                remote = LibGit2.get(LibGit2.GitRemote, repo, "origin")
-                LibGit2.fetch(remote, ["+refs/$spec:refs/remotes/origin/$spec"])
-                LibGit2.GitCommit(repo, "refs/remotes/origin/$spec")
-            catch err
-                isa(err, LibGit2.GitError) || rethrow()
-
-                # give up and assume it's a commit or something
-                LibGit2.GitCommit(repo, spec)
-            end
-        end
-    end
-end
-
-# get the Julia version and short hash corresponding with a refspec in a Julia repo
-function get_julia_repoversion(spec, repo_name)
-    # get the Julia repo
-    repo = get_repo(repo_name)
-    commit = get_repo_commit(repo, spec)
-
-    # lookup the version number and commit hash
-    tree = LibGit2.peel(LibGit2.GitTree, commit)
-    version = VersionNumber(chomp(LibGit2.content(tree["VERSION"])))
-    hash = LibGit2.GitHash(commit)
-    # FIXME: no way to get the short hash with LibGit2? It just uses the length argument.
-    #shorthash = LibGit2.GitShortHash(hash, 7)
-    shorthash = LibGit2.GitShortHash(chomp(read(`git -C $(download_dir(repo_name)) rev-parse --short $hash`, String)))
-    # XXX: Julia's buildbot just takes the first 10 characters of the hash.
-    #      we need to match this behavior exactly, because it's been observed that
-    #      on different systems/checkouts/git versions the short hash can differ.
-    shorthash = LibGit2.GitShortHash(chomp(read(`git -C $(download_dir(repo_name)) rev-parse $hash`, String))[1:10])
-    version = VersionNumber(string(version) * "-" * string(shorthash))
-    # NOTE: we append the hash to differentiate commits with identical VERSION files
-    #       (we can't only do this for -DEV versions because of backport branches)
-
-    return version, string(hash), string(shorthash)
-end
-
-function obtain_julia_build(spec::String="master", repo_name::String="JuliaLang/julia")
-    version, hash, shorthash = get_julia_repoversion(spec, repo_name)
-    versions = read_versions()
-    if haskey(versions, string(version))
-        return version
-    end
-
-    # try downloading it from the build bots
-    url = "https://julialangnightlies.s3.amazonaws.com/bin/linux/x64/$(version.major).$(version.minor)/julia-$(shorthash)-linux64.tar.gz"
-    try
-        filename = basename(url)
-        filepath = download_dir(filename)
-        if ispath(filepath)
-            @warn "Destination file $filename already exists, assuming it matches"
-        else
-            Downloads.download(url, filepath)
-        end
-        filehash = hash_file(filepath)
-
-        # Update Versions.toml
-        version_stanza = """
-            ["$version"]
-            file = "$filename"
-            sha = "$filehash"
-            """
-        open(extra_versions_file(); append=true) do f
-            println(f, version_stanza)
-        end
-
-        return version
-    catch ex
-        # if this was a download failure, proceed to build Julia ourselves
-        isa(ex, Downloads.RequestError) || rethrow()
-        bt = catch_backtrace()
-        @error "Could not download Julia $spec (version $version), performing a build" exception=(ex,bt)
-        perform_julia_build(spec, repo_name)
+        @debug "Could not download build" exception=(err, catch_backtrace())
+        return nothing
     end
 end
 
 """
     version = perform_julia_build(spec::String="master";
-                                  binarybuilder_args::Vector{String}=String[]
-                                  buildflags::Vector{String}=String[])
+                                  flags::Vector{String}=String[])
 
 Check-out and build Julia at git reference `spec` using BinaryBuilder.
 Returns the `version` (what other functions use to identify this build).
 This version will be added to Versions.toml.
 """
-function perform_julia_build(spec::String="master", repo_name::String="JuliaLang/julia";
-                             binarybuilder_args::Vector{String}=String[],
-                             buildflags::Vector{String}=String[])
-    version, hash, shorthash = get_julia_repoversion(spec, repo_name)
-    if !isempty(buildflags)
-        version = VersionNumber(version.major, version.minor, version.patch,
-                                (version.prerelease...,
-                                 "build-$(string(Base.hash(buildflags), base=16))"))
-    end
-    versions = read_versions()
-    if haskey(versions, string(version))
-        return version
-    end
+function build_julia(repo_path::String;
+                     flags::Vector{String}=String[])
+    repo_details = get_repo_details(repo_path)
+    println("Building Julia...")
+
+    # NOTE: for simplicity, we don't cache the build (we'd need to include the flags, etc)
 
     # Define a Make.user
-    bundled = mktempdir()
-    open("$bundled/Make.user", "w") do io
-        println(io, "JULIA_CPU_TARGET=generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)")
-        for buildflag in buildflags
-            println(io, buildflag)
+    open("$repo_path/Make.user", "w") do io
+        cpu_target = if Sys.ARCH == :x86_64
+            "generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)"
+        elseif Sys.ARCH == :i686
+            "pentium4;sandybridge,-xsaveopt,clone_all"
+        elseif Sys.ARCH == :armv7l
+            "armv7-a;armv7-a,neon;armv7-a,neon,vfp4"
+        elseif Sys.ARCH == :aarch64
+            "generic;cortex-a57;thunderx2t99;carmel"
+        elseif Sys.ARCH == :powerpc64le
+            "pwr8"
+        else
+            @warn "Cannot determine JULIA_CPU_TARGET for unknown architecture $(Sys.ARCH)"
+            nothing
+        end
+        if cpu_target !== nothing
+            println(io, "JULIA_CPU_TARGET=$cpu_target")
+        end
+
+        for flag in flags
+            println(io, flag)
         end
     end
 
     # Collection of sources required to build julia
-    # NOTE: we need to check out Julia ourselves, because BinaryBuilder does not know how to
-    #       fetch and checkout remote refs.
-    repo = get_repo(repo_name)
-    LibGit2.checkout!(repo, hash)
-    repo_path = download_dir(repo_name)
     sources = [
         DirectorySource(repo_path),
-        DirectorySource(bundled),
     ]
 
-    # Pre-populate the srccache
+    # Pre-populate the srccache and save the downloaded files
+    srccache = joinpath(download_dir, "srccache")
+    repo_srccache = joinpath(repo_path, "deps", "srccache")
+    cp(srccache, repo_srccache)
     cd(repo_path) do
         Base.run(ignorestatus(`make -C deps getall NO_GIT=1`))
+    end
+    for file in readdir(repo_srccache)
+        if !ispath(joinpath(srccache, file))
+            cp(joinpath(repo_srccache, file), joinpath(srccache, file))
+        end
     end
 
     # Bash recipe for building across all platforms
@@ -391,54 +206,75 @@ function perform_julia_build(spec::String="master", repo_name::String="JuliaLang
     # These are the platforms we will build for by default, unless further
     # platforms are passed in on the command line
     platforms = [
-        Platform("x86_64", "linux")
+        Base.BinaryPlatforms.HostPlatform()
     ]
 
     # The products that we will ensure are always built
-    products = Product[
+    products = [
         ExecutableProduct("julia", :julia)
     ]
 
     # Dependencies that must be installed before this package can be built
     dependencies = []
 
-    # Build the tarballs
-    product_hashes = cd(joinpath(@__DIR__, "..", "deps")) do
-        build_tarballs(binarybuilder_args, "julia", version, sources, script, platforms,
-                       products, dependencies, preferred_gcc_version=v"7", skip_audit=true,
-                       verbose=isdebug(:binarybuilder))
-    end
-    filepath, filehash = product_hashes[platforms[1]]
-    filename = basename(filepath)
-    if endswith(filename, ".tar.gz")
-        ext = ".tar.gz"
-        base = filename[1:end-7]
-    else
-        base, ext = splitext(filename)
+    # Build the tarballs and extract to a temporary directory
+    install_dir = mktempdir()
+    mktempdir() do dir
+        product_hashes = cd(dir) do
+            build_tarballs([], "julia", repo_details.version, sources,
+                           script, platforms, products, dependencies,
+                           preferred_gcc_version=v"7", skip_audit=true,
+                           verbose=isdebug(:binarybuilder))
+        end
+        filepath, _ = product_hashes[platforms[1]]
+        Pkg.unpack(filepath, install_dir)
     end
 
-    # Copy the generated tarball to the downloads folder
-    new_filepath = download_dir(filename)
-    duplicates = 0
-    while ispath(new_filepath)
-        duplicates += 1
-        new_filepath = download_dir("$(base).$(duplicates)$(ext)")
-    end
-    mv(filepath, download_dir(filename))
+    return install_dir
+end
 
-    # Update Versions.toml
-    version_stanza = """
-        ["$version"]
-        file = "$filename"
-        sha = "$filehash"
-        """
-    open(extra_versions_file(); append=true) do f
-        println(f, version_stanza)
+function _install_julia(config::Configuration)
+    if isempty(config.buildflags)
+        # check if it's an official release
+        dir = get_julia_release(config.julia)
+        if dir !== nothing
+            return joinpath(dir, only(readdir(dir)))
+        end
     end
 
-    # clean-up
-    rm(joinpath(dirname(@__DIR__), "deps", "build"); recursive=true, force=true)
-    rm(joinpath(dirname(@__DIR__), "deps", "products"); recursive=true, force=true)
+    # try to resolve to a Julia repository and hash
+    repo = get_julia_repo(config.julia)
+    if repo === nothing
+        error("Could not check-out Julia repository for $(config.julia)")
+    end
+    try
+        repo_details = get_repo_details(repo)
+        @debug "Julia $config.julia resolved to v$(repo_details.version), Git SHA $(repo_details.hash)"
 
-    return version
+        if isempty(config.buildflags)
+            # see if we can download a build
+            dir = get_julia_build(repo)
+            if dir !== nothing
+                return joinpath(dir, only(readdir(dir)))
+            end
+        end
+
+        # perform a build
+        build_julia(repo; flags=config.buildflags)
+    finally
+        rm(repo; recursive=true)
+    end
+end
+
+const julia_lock = ReentrantLock()
+const julia_cache = Dict()
+function install_julia(config::Configuration)
+    lock(julia_lock) do
+        key = (config.julia, config.buildflags)
+        dir = get(julia_cache, key, nothing)
+        if dir === nothing || !isdir(dir)
+            julia_cache[key] = _install_julia(config)
+        end
+        return julia_cache[key]
+    end
 end

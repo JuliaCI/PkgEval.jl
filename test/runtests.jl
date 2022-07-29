@@ -1,50 +1,99 @@
 using PkgEval
 using Test
 
-# determine which Julia to use
-const julia_spec = get(ENV, "JULIA_SPEC", string(VERSION))
-@info "Testing with Julia $julia_spec"
-const julia_version = PkgEval.obtain_julia(julia_spec)::VersionNumber
-@info "Resolved to Julia v$julia_version"
-const julia_install = PkgEval.prepare_julia(julia_version)
+julia = get(ENV, "JULIA", string(VERSION))
+julia_version = tryparse(VersionNumber, julia)
+@testset "PkgEval using Julia $julia" begin
 
 @testset "sandbox" begin
-    mktemp() do path, io
-        try
-            PkgEval.run_sandboxed_julia(julia_install, `-e 'print(1337)'`; stdout=io)
-            close(io)
-            @test read(path, String) == "1337"
-        catch
-            # if we failed to spawn a container, make sure to print the reason
-            flush(io)
-            @error read(path, String)
-            rethrow()
-        end
+    config = Configuration(; julia)
+
+    let
+        p = Pipe()
+        close(p.in)
+        PkgEval.sandboxed_julia(config, `-e 'print(1337)'`; stdout=p.out)
+        @test read(p.out, String) == "1337"
     end
 
-    # print versioninfo so we can verify in CI logs that the correct version is used
-    PkgEval.run_sandboxed_julia(julia_install, `-e 'using InteractiveUtils; versioninfo()'`)
+    # try to compare the version info
+    if julia_version !== nothing
+        p = Pipe()
+        close(p.in)
+        PkgEval.sandboxed_julia(config, `-e 'println(VERSION)'`; stdout=p.out)
+        version_str = read(p.out, String)
+        @test parse(VersionNumber, version_str) == julia_version
+    end
 end
 
-const pkgnames = ["TimerOutputs", "Crayons", "Example", "Gtk"]
+@testset "julia installation" begin
+    let results = evaluate([Configuration(; julia)],
+                           [Package(; name="Example")])
+        @test size(results, 1) == 1
+        @test results[1, :julia] == julia
+    end
+end
 
-@testset "low-level interface" begin
-    PkgEval.prepare_registry()
+@testset "package installation" begin
+    # by name
+    let results = evaluate([Configuration(; julia)],
+                           [Package(; name="Example")])
+        @test size(results, 1) == 1
+        @test results[1, :name] == "Example"
+        @test results[1, :version] isa VersionNumber
+        @test results[1, :status] == :ok
+    end
 
-    pkgs = PkgEval.read_pkgs(pkgnames)
+    # specifying a version
+    let results = evaluate([Configuration(; julia)],
+                           [Package(; name="Example", version=v"0.5.3")])
+        @test size(results, 1) == 1
+        @test results[1, :name] == "Example"
+        @test results[1, :version] == v"0.5.3"
+        @test results[1, :status] == :ok
+    end
 
+    # specifying a revision
+    let results = evaluate([Configuration(; julia)],
+                           [Package(; name="Example", rev="master")])
+        @test size(results, 1) == 1
+        @test results[1, :name] == "Example"
+        @test results[1, :status] == :ok
+        @test contains(results[1, :log], "https://github.com/JuliaLang/Example.jl.git#master")
+    end
+
+    # specifying the URL
+    let results = evaluate([Configuration(; julia)],
+                           [Package(; name="Example", url="https://github.com/JuliaLang/Example.jl")])
+        @test size(results, 1) == 1
+        @test results[1, :name] == "Example"
+        @test results[1, :status] == :ok
+        @test contains(results[1, :log], "https://github.com/JuliaLang/Example.jl#master")
+    end
+end
+
+@testset "time and output limits" begin
     # timeouts
-    results = PkgEval.run([Configuration(julia=julia_version)], pkgs; time_limit = 0.1)
-    @test all(results.status .== :kill) && all(results.reason .== :time_limit)
+    let results = evaluate([Configuration(; julia, time_limit=0.1)],
+                           [Package(; name="Example")])
+        @test size(results, 1) == 1
+        @test results[1, :status] == :kill && results[1, :reason] == :time_limit
+    end
 
     # log limit
-    results = PkgEval.run([Configuration(julia=julia_version)], pkgs; log_limit = 1)
-    @test all(results.status .== :kill) && all(results.reason .== :log_limit)
+    let results = evaluate([Configuration(; julia, log_limit=1)],
+                           [Package(; name="Example")])
+        @test size(results, 1) == 1
+        @test results[1, :status] == :kill && results[1, :reason] == :log_limit
+    end
 end
 
-@testset "main entrypoint" begin
-    results = PkgEval.run([Configuration(julia=julia_version)], pkgnames)
-    if !(julia_spec == "master" || julia_spec == "nightly")
+@testset "complex packages" begin
+    # some more complicate packages that are all expected to pass tests
+    package_names = ["TimerOutputs", "Crayons", "Example", "Gtk"]
+    packages = [Package(; name) for name in package_names]
+
+    results = evaluate([Configuration(; julia)], packages)
+    if !(julia == "master" || julia == "nightly")
         @test all(results.status .== :ok)
         for result in eachrow(results)
             @test occursin("Testing $(result.name) tests passed", result.log)
@@ -53,8 +102,9 @@ end
 end
 
 @testset "PackageCompiler" begin
-    results = PkgEval.run([Configuration(julia=julia_version, compiled=true)], ["Example"])
-    if !(julia_spec == "master" || julia_spec == "nightly")
+    results = evaluate([Configuration(; julia, compiled=true)],
+                       [Package(; name="Example")])
+    if !(julia == "master" || julia == "nightly")
         @test all(results.status .== :ok)
         for result in eachrow(results)
             @test occursin("Testing $(result.name) tests passed", result.log)
@@ -62,12 +112,6 @@ end
     end
 end
 
-@testset "reporting" begin
-    lts = Configuration(julia=v"1.0.5")
-    stable = Configuration(julia=v"1.2.0")
-    results = PkgEval.run([lts, stable], ["Example"])
-    PkgEval.compare(results)
-end
-
 PkgEval.purge()
-rm(julia_install; recursive=true)
+
+end

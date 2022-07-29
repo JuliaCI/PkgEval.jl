@@ -18,13 +18,13 @@ jobs:
         arch:
           - x64
         build_spec:
-          - v1.5.0                                   # entry straight in Versions.toml
-          - nightly                                  # entry from Builds.toml
-          - 8cb458c6dcd8e067a3bd430b006efb0dfde56cf9 # directly from Git, never built
-          - master                                   # directly from Git, likely built
+          - v1.7.0      # release from versions.json
+          - nightly     # special release
+          - master      # directly from Git, likely built by CI
+          - master~500  # directly from Git, unlikely built by CI
     env:
       JULIA_DEBUG: PkgEval
-      JULIA_SPEC: ${{ matrix.build_spec }}
+      JULIA: ${{ matrix.build_spec }}
     steps:
       - uses: actions/checkout@v2
       - uses: julia-actions/setup-julia@v1

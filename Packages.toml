@@ -1,0 +1,35 @@
+skip = [
+    "julia",
+    "BugReporting", # nested rr is not supported
+
+    # deprecated
+    "NeuralNetDiffEq",
+    "DiffEqBiological",
+    "DiffEqMonteCarlo",
+    "DiffEqPDEBase",
+    "CUDAnative",
+    "CuArrays",
+    "CUDAdrv",
+    "CUDAapi",
+
+    # requires binaries
+    "MATLAB",               # MATLAB
+    "MATLABDiffEq",         # MATLAB
+    "deSolveDiffEq",        # R
+    "FEniCS",               # Docker
+    "ClimateMachine",       # MPI
+    "MPI",                  # MPI
+    "BitemporalPostgres",   # POSTGRES
+]
+retry = [
+    "EcologicalNetworks",
+    "FixedEffectModels",
+    "GLM",
+    "SpatialJackknife",
+    "StatsModels",
+    "UncertainData",
+    "StressTest",
+    "StateSpaceReconstruction",
+    "PolyChaos",
+    "RoME",
+]
