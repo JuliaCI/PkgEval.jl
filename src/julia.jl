@@ -1,8 +1,7 @@
-import Downloads
 import JSON
-import Pkg
-import Git: git
-import BinaryBuilder: DirectorySource, ExecutableProduct, build_tarballs
+import Downloads
+using Git: git
+using BinaryBuilder: DirectorySource, ExecutableProduct, build_tarballs
 
 const VERSIONS_URL = "https://julialang-s3.julialang.org/bin/versions.json"
 
