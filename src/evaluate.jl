@@ -39,6 +39,20 @@ const reasons = Dict(
     :inactivity             => "tests became inactive",
 )
 
+const compiled_lock = ReentrantLock()
+const compiled_cache = Dict()
+function get_compilecache(config::Configuration)
+    lock(compiled_lock) do
+        key = (config.julia, config.buildflags,
+               config.distro, config.uid, config.user, config.gid, config.group, config.home)
+        dir = get(compiled_cache, key, nothing)
+        if dir === nothing || !isdir(dir)
+            compiled_cache[key] = mktempdir()
+        end
+        return compiled_cache[key]
+    end
+end
+
 """
     sandboxed_julia(config::Configuration, args=``; env=Dict(), mounts=Dict(), wait=true,
                     stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
@@ -87,16 +101,20 @@ function sandboxed_julia_cmd(config::Configuration, executor, args=``;
                              mounts::Dict{String,String}=Dict{String,String}())
     rootfs = create_rootfs(config)
     install = install_julia(config)
+    registries = joinpath(first(DEPOT_PATH), "registries")
     read_only_maps = Dict(
-        "/"                                 => rootfs,
-        config.julia_install_dir            => install,
-        "/usr/local/share/julia/registries" => joinpath(first(DEPOT_PATH), "registries"),
+        "/"                                         => rootfs,
+        config.julia_install_dir                    => install,
+        "/usr/local/share/julia/registries"         => registries
     )
 
-    artifacts_path = joinpath(storage_dir, "artifacts")
-    mkpath(artifacts_path)
+    compiled = get_compilecache(config)
+    packages = joinpath(storage_dir, "packages")
+    artifacts = joinpath(storage_dir, "artifacts")
     read_write_maps = merge(mounts, Dict(
-        joinpath(config.home, ".julia/artifacts")   => artifacts_path
+        joinpath(config.home, ".julia", "compiled")     => compiled,
+        joinpath(config.home, ".julia", "packages")     => packages,
+        joinpath(config.home, ".julia", "artifacts")    => artifacts
     ))
 
     env = merge(env, Dict(
@@ -107,7 +125,7 @@ function sandboxed_julia_cmd(config::Configuration, executor, args=``;
 
         # use the provided registry
         # NOTE: putting a registry in a non-primary depot entry makes Pkg use it as-is,
-        #       without needingb to set Pkg.UPDATED_REGISTRY_THIS_SESSION.
+        #       without needing to set Pkg.UPDATED_REGISTRY_THIS_SESSION.
         "JULIA_DEPOT_PATH" => "::/usr/local/share/julia",
 
         # some essential env vars (since we don't run from a shell)
@@ -396,7 +414,7 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
     status, reason, log = sandboxed_script(config, script, args; mounts, env, kwargs...)
 
     # pick up the installed package version from the log
-    version_match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
+    version_match = match(Regex("\\+ $(pkg.name) v(\\S+)"), log)
     version = if version_match !== nothing
         try
             VersionNumber(version_match.captures[1])
