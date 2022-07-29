@@ -2,6 +2,7 @@ import JSON
 import Downloads
 using Git: git
 using BinaryBuilder: DirectorySource, ExecutableProduct, build_tarballs
+using Base.BinaryPlatforms: Platform, triplet
 
 const VERSIONS_URL = "https://julialang-s3.julialang.org/bin/versions.json"
 
@@ -42,8 +43,10 @@ function get_julia_release(spec::String)
         files = versions[string(version_spec)]["files"]
 
         # find a file entry for our machine
+        platform = parse(Platform, Sys.MACHINE) # don't use Sys.MACHINE directly as it may
+                                                # contain unnecessary tags, like -pc-
         i = findfirst(files) do file
-            file["triplet"] == Sys.MACHINE
+            file["triplet"] == triplet(platform)
         end
         if isnothing(i)
             @error "Release unavailable for $(Sys.MACHINE)"
@@ -101,7 +104,7 @@ end
 function get_julia_build(repo)
     @debug "Trying to download a Julia build..."
     repo_details = get_repo_details(repo)
-    if Sys.MACHINE == "x86_64-linux-gnu"
+    if Sys.islinux() && Sys.ARCH == :x86_64
         url = "https://julialangnightlies.s3.amazonaws.com/bin/linux/x64/$(repo_details.version.major).$(repo_details.version.minor)/julia-$(repo_details.shorthash)-linux64.tar.gz"
     else
         @debug "Don't know how to get build for $(Sys.MACHINE)"
@@ -218,7 +221,7 @@ function build_julia(repo_path::String;
     install_dir = mktempdir()
     mktempdir() do dir
         product_hashes = cd(dir) do
-            build_tarballs(binarybuilder_args, "julia", repo_details.version, sources,
+            build_tarballs([], "julia", repo_details.version, sources,
                            script, platforms, products, dependencies,
                            preferred_gcc_version=v"7", skip_audit=true,
                            verbose=isdebug(:binarybuilder))
