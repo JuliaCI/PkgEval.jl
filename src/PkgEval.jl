@@ -22,6 +22,8 @@ function __init__()
     mkpath(joinpath(download_dir, "srccache"))
 
     global storage_dir = @get_scratch!("storage")
+    mkpath(joinpath(storage_dir, "artifacts"))
+    mkpath(joinpath(storage_dir, "packages"))
 
     # read Packages.toml
     packages = TOML.parsefile(joinpath(dirname(@__DIR__), "Packages.toml"))

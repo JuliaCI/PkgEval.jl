@@ -39,6 +39,20 @@ const reasons = Dict(
     :inactivity             => "tests became inactive",
 )
 
+const compiled_lock = ReentrantLock()
+const compiled_cache = Dict()
+function get_compilecache(config::Configuration)
+    lock(compiled_lock) do
+        key = (config.julia, config.buildflags,
+               config.distro, config.uid, config.user, config.gid, config.group, config.home)
+        dir = get(compiled_cache, key, nothing)
+        if dir === nothing || !isdir(dir)
+            compiled_cache[key] = mktempdir()
+        end
+        return compiled_cache[key]
+    end
+end
+
 """
     sandboxed_julia(config::Configuration, args=``; env=Dict(), mounts=Dict(), wait=true,
                     stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
@@ -87,16 +101,20 @@ function sandboxed_julia_cmd(config::Configuration, executor, args=``;
                              mounts::Dict{String,String}=Dict{String,String}())
     rootfs = create_rootfs(config)
     install = install_julia(config)
+    registries = joinpath(first(DEPOT_PATH), "registries")
     read_only_maps = Dict(
-        "/"                                 => rootfs,
-        config.julia_install_dir            => install,
-        "/usr/local/share/julia/registries" => joinpath(first(DEPOT_PATH), "registries"),
+        "/"                                         => rootfs,
+        config.julia_install_dir                    => install,
+        "/usr/local/share/julia/registries"         => registries
     )
 
-    artifacts_path = joinpath(storage_dir, "artifacts")
-    mkpath(artifacts_path)
+    compiled = get_compilecache(config)
+    packages = joinpath(storage_dir, "packages")
+    artifacts = joinpath(storage_dir, "artifacts")
     read_write_maps = merge(mounts, Dict(
-        joinpath(config.home, ".julia/artifacts")   => artifacts_path
+        joinpath(config.home, ".julia", "compiled")     => compiled,
+        joinpath(config.home, ".julia", "packages")     => packages,
+        joinpath(config.home, ".julia", "artifacts")    => artifacts
     ))
 
     env = merge(env, Dict(
@@ -107,7 +125,7 @@ function sandboxed_julia_cmd(config::Configuration, executor, args=``;
 
         # use the provided registry
         # NOTE: putting a registry in a non-primary depot entry makes Pkg use it as-is,
-        #       without needingb to set Pkg.UPDATED_REGISTRY_THIS_SESSION.
+        #       without needing to set Pkg.UPDATED_REGISTRY_THIS_SESSION.
         "JULIA_DEPOT_PATH" => "::/usr/local/share/julia",
 
         # some essential env vars (since we don't run from a shell)
@@ -190,17 +208,20 @@ failure reason if any (both represented by a symbol), and the full log.
 
 Refer to `sandboxed_julia`[@ref] for more possible `keyword arguments.
 """
-function sandboxed_script(config::Configuration, script::String, args=``; kwargs...)
+function sandboxed_script(config::Configuration, script::String, args=``;
+                          env::Dict{String,String}=Dict{String,String}(), kwargs...)
     @assert config.log_limit > 0
 
     cmd = `--eval 'eval(Meta.parse(read(stdin,String)))' $args`
 
-    env = Dict(
+    env = merge(env, Dict(
+        # we're likely running many instances, so avoid overusing the CPU
         "JULIA_PKG_PRECOMPILE_AUTO" => "0",
+
         # package hacks
         "PYTHON" => "",
         "R_HOME" => "*"
-    )
+    ))
     if haskey(ENV, "JULIA_PKG_SERVER")
         env["JULIA_PKG_SERVER"] = ENV["JULIA_PKG_SERVER"]
     end
@@ -335,28 +356,65 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
 
             print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n")
 
-            Pkg.test(package_spec.name)
+            if get(ENV, "PKGEVAL_RR", "false") == "true"
+                Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
+            else
+                Pkg.test(package_spec.name)
+            end
 
             println("\nPkgEval succeeded")
+
         catch err
             print("\nPkgEval failed: ")
             showerror(stdout, err)
             Base.show_backtrace(stdout, catch_backtrace())
             println()
+
+            if get(ENV, "PKGEVAL_RR", "false") == "true"
+                print("\n\n", '#'^80, "\n# BugReporting post-processing: $(now())\n#\n\n")
+
+                # pack-up our rr trace. this is expensive, so we only do it for failures.
+                # it also needs to happen in a clean environment, or BugReporting's deps
+                # could affect/be affected by the tested package's dependencies.
+                Pkg.activate(; temp=true)
+                Pkg.add("BugReporting")
+                try
+                    using BugReporting
+                    trace_dir = BugReporting.default_rr_trace_dir()
+                    trace = BugReporting.find_latest_trace(trace_dir)
+                    BugReporting.compress_trace(trace, "/traces/$(ARGS[1]).tar.zst")
+                    println("\nBugReporting succeeded")
+                catch err
+                    print("\nBugReporting failed: ")
+                    showerror(stdout, err)
+                    Base.show_backtrace(stdout, catch_backtrace())
+                    println()
+                end
+            end
         finally
             print("\n\n", '#'^80, "\n# PkgEval teardown: $(now())\n#\n\n")
         end"""
 
-    # generate a PackageSpec we'll use to install the package
     args = `$(repr(package_spec_tuple(pkg)))`
     if config.depwarn
         args = `--depwarn=error $args`
     end
 
-    status, reason, log = sandboxed_script(config, script, args; kwargs...)
+    mounts = Dict{String,String}()
+    env = Dict{String,String}()
+    if config.rr
+        trace_dir = mktempdir()
+        trace_file = joinpath(trace_dir, "$(pkg.name).tar.zst")
+        mounts["/traces"] = trace_dir
+        env["PKGEVAL_RR"] = "true"
+        haskey(ENV, "PKGEVAL_RR_BUCKET") ||
+            @warn maxlog=1 "PKGEVAL_RR_BUCKET not set; will not be uploading rr traces"
+    end
+
+    status, reason, log = sandboxed_script(config, script, args; mounts, env, kwargs...)
 
     # pick up the installed package version from the log
-    version_match = match(Regex("Installed $(pkg.name) .+ v(.+)"), log)
+    version_match = match(Regex("\\+ $(pkg.name) v(\\S+)"), log)
     version = if version_match !== nothing
         try
             VersionNumber(version_match.captures[1])
@@ -410,6 +468,28 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
                 :unknown
             end
         end
+    end
+
+    if config.rr
+        # upload an rr trace for interesting failures
+        # TODO: re-use BugReporting.jl
+        if status == :fail && reason in [:gc_corruption, :segfault, :abort, :unreachable] &&
+           haskey(ENV, "PKGEVAL_RR_BUCKET")
+            bucket = ENV["PKGEVAL_RR_BUCKET"]
+            unixtime = round(Int, datetime2unix(now()))
+            trace_unique_name = "$(pkg.name)-$(unixtime).tar.zst"
+            if isfile(trace_file)
+                f = retry(delays=Base.ExponentialBackOff(n=5, first_delay=5, max_delay=300)) do
+                    Base.run(`s3cmd put --quiet $trace_file s3://$(bucket)/$(trace_unique_name)`)
+                    Base.run(`s3cmd setacl --quiet --acl-public s3://$(bucket)/$(trace_unique_name)`)
+                end
+                f()
+                log *= "Uploaded rr trace to https://s3.amazonaws.com/$(bucket)/$(trace_unique_name)"
+            else
+                log *= "Testing did not produce an rr trace."
+            end
+        end
+        rm(trace_dir; recursive=true)
     end
 
     return version, status, reason, log
