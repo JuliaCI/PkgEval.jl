@@ -591,20 +591,24 @@ end
 """
     evaluate(configs::Vector{Configuration}, [packages::Vector{String}];
              ninstances=Sys.CPU_THREADS, kwargs...)
+    evaluate(configs::Dict{String,Configuration}, [packages::Vector{String}];
+             ninstances=Sys.CPU_THREADS, kwargs...)
 
 Run tests for `packages` using `configs`. If no packages are specified, default to testing
-all packages in the default registry.
+all packages in the default registry. The configurations can be specified as an array,
+or as a dictionary where the key can be used to name the configuration (and more easily
+identify it in the output dataframe).
 
 The `ninstances` keyword argument determines how many packages are tested in parallel.
 Refer to `sandboxed_test`[@ref] and `sandboxed_julia`[@ref] for more possible
 keyword arguments.
 """
-function evaluate(configs::Vector{Configuration},
+function evaluate(configs::Dict{String,Configuration},
                   packages::Vector{Package}=registry_packages();
                   ninstances::Integer=Sys.CPU_THREADS)
     # here we deal with managing execution: spawning workers, output, result I/O, etc
 
-    jobs = vec(collect(Iterators.product(configs, packages)))
+    jobs = vec(collect(Iterators.product(keys(configs), packages)))
 
     # use a random test order to (hopefully) get a more reasonable ETA
     shuffle!(jobs)
@@ -690,10 +694,8 @@ function evaluate(configs::Vector{Configuration},
         end
     end
 
-    # NOTE: we expand the Configuration into separate columns
-    result = DataFrame(julia = String[],
-                       compiled = Bool[],
-                       name = String[],
+    result = DataFrame(configuration = String[],
+                       package = String[],
                        version = Union{Missing,VersionNumber}[],
                        status = Symbol[],
                        reason = Union{Missing,Symbol}[],
@@ -720,20 +722,19 @@ function evaluate(configs::Vector{Configuration},
             push!(all_workers, @async begin
                 try
                     while !isempty(jobs) && !done
-                        config, pkg = pop!(jobs)
+                        config_name, pkg = pop!(jobs)
+                        config = configs[config_name]
                         times[i] = now()
                         running[i] = (config, pkg)
 
                         # should we even test this package?
                         if pkg.name in skip_list
-                            push!(result, [config.julia, config.compiled,
-                                           pkg.name, missing,
+                            push!(result, [config_name, pkg.name, missing,
                                            :skip, :explicit, 0, missing])
                             running[i] = nothing
                             continue
                         elseif endswith(pkg.name, "_jll")
-                            push!(result, [config.julia, config.compiled,
-                                           pkg.name, missing,
+                            push!(result, [config_name, pkg.name, missing,
                                            :skip, :jll, 0, missing])
                             running[i] = nothing
                             continue
@@ -753,8 +754,7 @@ function evaluate(configs::Vector{Configuration},
                         end
 
                         duration = (now()-times[i]) / Millisecond(1000)
-                        push!(result, [config.julia, config.compiled,
-                                       pkg.name, pkg_version,
+                        push!(result, [config_name, pkg.name, pkg_version,
                                        status, reason, duration, log])
                         running[i] = nothing
                     end
@@ -773,4 +773,13 @@ function evaluate(configs::Vector{Configuration},
     end
 
     return result
+end
+
+function evaluate(configs::Vector{Configuration},
+                  packages::Vector{Package}=registry_packages(); kwargs...)
+    config_dict = Dict{String,Configuration}()
+    for (i,config) in enumerate(configs)
+        config_dict["config_$i"] = config
+    end
+    evaluate(config_dict, packages; kwargs...)
 end
