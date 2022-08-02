@@ -5,7 +5,7 @@ julia = get(ENV, "JULIA", string(VERSION))
 julia_version = tryparse(VersionNumber, julia)
 @testset "PkgEval using Julia $julia" begin
 
-@testset "sandbox" begin
+@testset "julia installation" begin
     config = Configuration(; julia)
 
     let
@@ -25,20 +25,12 @@ julia_version = tryparse(VersionNumber, julia)
     end
 end
 
-@testset "julia installation" begin
-    let results = evaluate([Configuration(; julia)],
-                           [Package(; name="Example")])
-        @test size(results, 1) == 1
-        @test results[1, :julia] == julia
-    end
-end
-
 @testset "package installation" begin
     # by name
     let results = evaluate([Configuration(; julia)],
                            [Package(; name="Example")])
         @test size(results, 1) == 1
-        @test results[1, :name] == "Example"
+        @test results[1, :package] == "Example"
         @test results[1, :version] isa VersionNumber
         @test results[1, :status] == :ok
     end
@@ -47,7 +39,7 @@ end
     let results = evaluate([Configuration(; julia)],
                            [Package(; name="Example", version=v"0.5.3")])
         @test size(results, 1) == 1
-        @test results[1, :name] == "Example"
+        @test results[1, :package] == "Example"
         @test results[1, :version] == v"0.5.3"
         @test results[1, :status] == :ok
     end
@@ -56,7 +48,7 @@ end
     let results = evaluate([Configuration(; julia)],
                            [Package(; name="Example", rev="master")])
         @test size(results, 1) == 1
-        @test results[1, :name] == "Example"
+        @test results[1, :package] == "Example"
         @test results[1, :status] == :ok
         @test contains(results[1, :log], "https://github.com/JuliaLang/Example.jl.git#master")
     end
@@ -65,7 +57,7 @@ end
     let results = evaluate([Configuration(; julia)],
                            [Package(; name="Example", url="https://github.com/JuliaLang/Example.jl")])
         @test size(results, 1) == 1
-        @test results[1, :name] == "Example"
+        @test results[1, :package] == "Example"
         @test results[1, :status] == :ok
         @test contains(results[1, :log], "https://github.com/JuliaLang/Example.jl#master")
     end
@@ -96,18 +88,27 @@ end
     if !(julia == "master" || julia == "nightly")
         @test all(results.status .== :ok)
         for result in eachrow(results)
-            @test occursin("Testing $(result.name) tests passed", result.log)
+            @test occursin("Testing $(result.package) tests passed", result.log)
         end
     end
 end
 
 @testset "PackageCompiler" begin
-    results = evaluate([Configuration(; julia, compiled=true)],
+    results = evaluate(Dict("regular"  => Configuration(; julia),
+                            "compiled" => Configuration(; julia, compiled=true)),
                        [Package(; name="Example")])
-    @test size(results, 1) == 1
-    if !(julia == "master" || julia == "nightly")
-        @test results[1, :status] == :ok
-        @test contains(results[1, :log], "Testing Example tests passed")
+    @test size(results, 1) == 2
+    for result in eachrow(results)
+        @test result.configuration in ["regular", "compiled"]
+        if result.configuration == "regular"
+            @test !contains(result.log, "PackageCompiler")
+        elseif result.configuration == "compiled"
+            @test contains(result.log, "PackageCompiler succeeded")
+        end
+        if !(julia == "master" || julia == "nightly")
+            @test result.status == :ok
+            @test contains(result.log, "Testing Example tests passed")
+        end
     end
 end
 
