@@ -18,10 +18,10 @@ jobs:
         arch:
           - x64
         build_spec:
-          - v1.7.0      # release from versions.json
-          - nightly     # special release
-          - master      # directly from Git, likely built by CI
-          - master~500  # directly from Git, unlikely built by CI
+          - v1.7.0                                    # release from versions.json
+          - nightly                                   # special release
+          - master                                    # directly from Git, likely built by CI
+          - 917b11e928612b5352c4e157b38759eb11aa9152  # directly from Git, unlikely built by CI
     env:
       JULIA_DEBUG: PkgEval
       JULIA: ${{ matrix.build_spec }}
