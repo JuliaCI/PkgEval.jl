@@ -35,7 +35,7 @@ const rootfs_cache = Dict()
 function create_rootfs(config::Configuration)
     lock(rootfs_lock) do
         key = (config.distro, config.uid, config.user, config.gid, config.group, config.home)
-        dir = get(julia_cache, key, nothing)
+        dir = get(rootfs_cache, key, nothing)
         if dir === nothing || !isdir(dir)
             rootfs_cache[key] = _create_rootfs(config)
         end
