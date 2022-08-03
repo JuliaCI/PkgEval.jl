@@ -81,16 +81,17 @@ function get_julia_repo(spec)
     #       remotes? most objects are going to be shared, so this would save time and space.
     @debug "Cloning/updating $repo_spec..."
     bare_checkout = joinpath(download_dir, repo_spec)
-    if ispath(joinpath(bare_checkout, "config"))
-        run(`$(git()) -C $bare_checkout fetch --quiet`)
-    else
+    if !ispath(joinpath(bare_checkout, "config"))
         run(`$(git()) clone --quiet --bare https://github.com/$(repo_spec).git $bare_checkout`)
     end
 
+    # explicitly fetch the requested commit from the remote and put it on the master branch.
+    # we need to do this as not all specs (e.g. `pull/42/merge`) might be available locally
+    run(`$(git()) -C $bare_checkout fetch --quiet --force origin $commit_spec:master`)
+
     # check-out the actual source code into a temporary directory
     julia_checkout = mktempdir()
-    run(`$(git()) clone --quiet $bare_checkout $julia_checkout`)
-    run(`$(git()) -C $julia_checkout checkout --quiet $commit_spec`)
+    run(`$(git()) clone --quiet --branch master $bare_checkout $julia_checkout`)
     return julia_checkout
 end
 
