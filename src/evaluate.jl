@@ -375,7 +375,7 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
     end
 
     script = raw"""
-        try
+        begin
             using Dates
             print('#'^80, "\n# PkgEval set-up: $(now())\n#\n\n")
 
@@ -383,52 +383,54 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
             versioninfo()
             println()
 
-
-            print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
-
             using Pkg
             package_spec = eval(Meta.parse(ARGS[1]))
-            Pkg.add(; package_spec...)
+
+            try
+                print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
+
+                Pkg.add(; package_spec...)
 
 
-            print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n")
+                print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n")
 
-            if get(ENV, "PKGEVAL_RR", "false") == "true"
-                Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
-            else
-                Pkg.test(package_spec.name)
-            end
+                if get(ENV, "PKGEVAL_RR", "false") == "true"
+                    Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
+                else
+                    Pkg.test(package_spec.name)
+                end
 
-            println("\nPkgEval succeeded")
+                println("\nPkgEval succeeded")
 
-        catch err
-            print("\nPkgEval failed: ")
-            showerror(stdout, err)
-            Base.show_backtrace(stdout, catch_backtrace())
-            println()
+            catch err
+                print("\nPkgEval failed: ")
+                showerror(stdout, err)
+                Base.show_backtrace(stdout, catch_backtrace())
+                println()
 
-            if get(ENV, "PKGEVAL_RR", "false") == "true"
-                print("\n\n", '#'^80, "\n# BugReporting post-processing: $(now())\n#\n\n")
+                if get(ENV, "PKGEVAL_RR", "false") == "true"
+                    print("\n\n", '#'^80, "\n# BugReporting post-processing: $(now())\n#\n\n")
 
-                # pack-up our rr trace. this is expensive, so we only do it for failures.
-                # it also needs to happen in a clean environment, or BugReporting's deps
-                # could affect/be affected by the tested package's dependencies.
-                Pkg.activate(; temp=true)
-                Pkg.add("BugReporting")
-                try
-                    using BugReporting
-                    trace_dir = BugReporting.default_rr_trace_dir()
-                    trace = BugReporting.find_latest_trace(trace_dir)
-                    BugReporting.compress_trace(trace, "/traces/$(ARGS[1]).tar.zst")
-                    println("\nBugReporting succeeded")
-                catch err
-                    print("\nBugReporting failed: ")
-                    showerror(stdout, err)
-                    Base.show_backtrace(stdout, catch_backtrace())
-                    println()
+                    # pack-up our rr trace. this is expensive, so we only do it for failures.
+                    # it also needs to happen in a clean environment, or BugReporting's deps
+                    # could affect/be affected by the tested package's dependencies.
+                    Pkg.activate(; temp=true)
+                    Pkg.add("BugReporting")
+                    try
+                        using BugReporting
+                        trace_dir = BugReporting.default_rr_trace_dir()
+                        trace = BugReporting.find_latest_trace(trace_dir)
+                        BugReporting.compress_trace(trace, "/traces/$(package_spec.name).tar.zst")
+                        println("\nBugReporting succeeded")
+                    catch err
+                        print("\nBugReporting failed: ")
+                        showerror(stdout, err)
+                        Base.show_backtrace(stdout, catch_backtrace())
+                        println()
+                    end
                 end
             end
-        finally
+
             print("\n\n", '#'^80, "\n# PkgEval teardown: $(now())\n#\n\n")
         end"""
 
