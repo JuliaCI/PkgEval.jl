@@ -13,21 +13,21 @@ or check-outs of Git repositories, are saved in scratch spaces instead.
 function purge()
     lock(rootfs_lock) do
         for dir in values(rootfs_cache)
-            rm(dir; recursive=true)
+            isdir(dir) && rm(dir; recursive=true)
         end
         empty!(rootfs_cache)
     end
 
     lock(julia_lock) do
         for dir in values(julia_cache)
-            rm(dir; recursive=true)
+            isdir(dir) && rm(dir; recursive=true)
         end
         empty!(julia_cache)
     end
 
     lock(compiled_lock) do
         for dir in values(compiled_cache)
-            rm(dir; recursive=true)
+            isdir(dir) && rm(dir; recursive=true)
         end
         empty!(compiled_cache)
     end
