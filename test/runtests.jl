@@ -2,7 +2,11 @@ using PkgEval
 using Test
 
 julia = get(ENV, "JULIA", string(VERSION))
-julia_version = tryparse(VersionNumber, julia)
+julia_release = if contains(julia, r"^v\d")
+    parse(VersionNumber, julia)
+else
+    nothing
+end
 @testset "PkgEval using Julia $julia" begin
 
 @testset "julia installation" begin
@@ -16,12 +20,12 @@ julia_version = tryparse(VersionNumber, julia)
     end
 
     # try to compare the version info
-    if julia_version !== nothing
+    if julia_release !== nothing
         p = Pipe()
         close(p.in)
         PkgEval.sandboxed_julia(config, `-e 'println(VERSION)'`; stdout=p.out)
         version_str = read(p.out, String)
-        @test parse(VersionNumber, version_str) == julia_version
+        @test parse(VersionNumber, version_str) == julia_release
     end
 end
 
@@ -85,7 +89,7 @@ end
     packages = [Package(; name) for name in package_names]
 
     results = evaluate([Configuration(; julia)], packages)
-    if !(julia == "master" || julia == "nightly")
+    if julia_release !== nothing
         @test all(results.status .== :ok)
         for result in eachrow(results)
             @test occursin("Testing $(result.package) tests passed", result.log)
@@ -105,7 +109,7 @@ end
         elseif result.configuration == "compiled"
             @test contains(result.log, "PackageCompiler succeeded")
         end
-        if !(julia == "master" || julia == "nightly")
+        if julia_release !== nothing
             @test result.status == :ok
             @test contains(result.log, "Testing Example tests passed")
         end
@@ -117,7 +121,7 @@ haskey(ENV, "CI") || @testset "rr" begin
                        [Package(; name="Example")])
     @test all(results.status .== :ok)
     @test contains(results[1, :log], "BugReporting")
-    if !(julia == "master" || julia == "nightly")
+    if julia_release !== nothing
         @test results[1, :status] == :ok
         @test contains(results[1, :log], "Testing Example tests passed")
     end
