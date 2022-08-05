@@ -607,7 +607,8 @@ function compiled_test(config::Configuration, pkg::Package; kwargs...)
 
     compile_config = Configuration(config;
         julia_args = `$(config.julia_args) --project=$project_path`,
-        time_limit = config.compile_time_limit
+        time_limit = config.compile_time_limit,
+        rr = false
     )
     status, reason, log = sandboxed_script(compile_config, script, args; mounts, kwargs...)
 
