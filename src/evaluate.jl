@@ -608,7 +608,16 @@ function compiled_test(config::Configuration, pkg::Package; kwargs...)
     compile_config = Configuration(config;
         julia_args = `$(config.julia_args) --project=$project_path`,
         time_limit = config.compile_time_limit,
-        rr = false
+        # don't record the compilation, only the test execution
+        rr = false,
+        # discover package relocatability issues by compiling in a different environment
+        julia_install_dir="/usr/local/julia",
+        distro="arch",
+        user="user",
+        group="group",
+        home="/home/user",
+        uid=2000,
+        gid=2000,
     )
     status, reason, log = sandboxed_script(compile_config, script, args; mounts, kwargs...)
 
@@ -627,19 +636,10 @@ function compiled_test(config::Configuration, pkg::Package; kwargs...)
         return missing, status, reason, log
     end
 
-    # run the tests in an alternate environment (different OS, depot and Julia binaries
-    # in another path, etc)
+    # run the tests in the regular environment
     test_config = Configuration(config;
         compiled = false,
         julia_args = `$(config.julia_args) --project=$project_path --sysimage $sysimage_path`,
-        # install Julia at a different path
-        julia_install_dir="/usr/local/julia",
-        # use a different Linux distro
-        distro="arch",
-        # run as a different user
-        user="user",
-        group="group",
-        home="/home/user",
     )
     version, status, reason, test_log =
         sandboxed_test(test_config, pkg; mounts, kwargs...)
