@@ -99,20 +99,29 @@ const xvfb_proc = Ref{Union{Base.Process,Nothing}}(nothing)
 function sandboxed_julia_cmd(config::Configuration, executor, args=``;
                              env::Dict{String,String}=Dict{String,String}(),
                              mounts::Dict{String,String}=Dict{String,String}())
+    # split mounts into read-only and read-write maps
+    read_only_maps = Dict{String,String}()
+    read_write_maps = Dict{String,String}()
+    for (dst, src) in mounts
+        if endswith(dst, ":ro")
+            read_only_maps[dst[begin:end-3]] = src
+        else
+            read_write_maps[dst] = src
+        end
+    end
+
     rootfs = create_rootfs(config)
     install = install_julia(config)
     registries = joinpath(first(DEPOT_PATH), "registries")
-    read_only_maps = Dict(
+    read_only_maps = merge(read_only_maps, Dict(
         "/"                                         => rootfs,
         config.julia_install_dir                    => install,
         "/usr/local/share/julia/registries"         => registries
-    )
+    ))
 
-    compiled = get_compilecache(config)
     packages = joinpath(storage_dir, "packages")
     artifacts = joinpath(storage_dir, "artifacts")
-    read_write_maps = merge(mounts, Dict(
-        joinpath(config.home, ".julia", "compiled")     => compiled,
+    read_write_maps = merge(read_write_maps, Dict(
         joinpath(config.home, ".julia", "packages")     => packages,
         joinpath(config.home, ".julia", "artifacts")    => artifacts
     ))
@@ -209,7 +218,8 @@ failure reason if any (both represented by a symbol), and the full log.
 Refer to `sandboxed_julia`[@ref] for more possible `keyword arguments.
 """
 function sandboxed_script(config::Configuration, script::String, args=``;
-                          env::Dict{String,String}=Dict{String,String}(), kwargs...)
+                          env::Dict{String,String}=Dict{String,String}(),
+                          mounts::Dict{String,String}=Dict{String,String}(), kwargs...)
     @assert config.log_limit > 0
 
     cmd = `--eval 'eval(Meta.parse(read(stdin,String)))' $args`
@@ -226,9 +236,18 @@ function sandboxed_script(config::Configuration, script::String, args=``;
         env["JULIA_PKG_SERVER"] = ENV["JULIA_PKG_SERVER"]
     end
 
+    # set-up a compile cache. because we may be running many instances, mount the
+    # shared cache read-only, and synchronize entries after we finish the script.
+    shared_compilecache = get_compilecache(config)
+    local_compilecache = mktempdir()
+    mounts = merge(mounts, Dict(
+        "/usr/local/share/julia/compiled:ro"            => shared_compilecache,
+        joinpath(config.home, ".julia", "compiled")     => local_compilecache
+    ))
+
     input = Pipe()
     output = Pipe()
-    proc = sandboxed_julia(config, cmd; env, wait=false,
+    proc = sandboxed_julia(config, cmd; env, mounts, wait=false,
                            stdout=output, stderr=output, stdin=input,
                            kwargs...)
     close(output.in)
@@ -322,6 +341,24 @@ function sandboxed_script(config::Configuration, script::String, args=``;
         log = log[1:ind]
     end
 
+    # copy new files from the local compilecache into the shared one
+    function copy_files(subpath=""; src, dst)
+        for entry in readdir(joinpath(src, subpath))
+            path = joinpath(subpath, entry)
+            srcpath = joinpath(src, path)
+            dstpath = joinpath(dst, path)
+
+            if isdir(srcpath)
+                isdir(dstpath) || mkdir(joinpath(dst, path))
+                copy_files(path; src, dst)
+            elseif !ispath(dstpath)
+                cp(srcpath, dstpath)
+            end
+        end
+    end
+    copy_files(src=local_compilecache, dst=shared_compilecache)
+    rm(local_compilecache; recursive=true)
+
     return status, reason, log
 end
 
@@ -338,7 +375,7 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
     end
 
     script = raw"""
-        try
+        begin
             using Dates
             print('#'^80, "\n# PkgEval set-up: $(now())\n#\n\n")
 
@@ -346,52 +383,54 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
             versioninfo()
             println()
 
-
-            print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
-
             using Pkg
             package_spec = eval(Meta.parse(ARGS[1]))
-            Pkg.add(; package_spec...)
+
+            try
+                print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
+
+                Pkg.add(; package_spec...)
 
 
-            print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n")
+                print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n")
 
-            if get(ENV, "PKGEVAL_RR", "false") == "true"
-                Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
-            else
-                Pkg.test(package_spec.name)
-            end
+                if get(ENV, "PKGEVAL_RR", "false") == "true"
+                    Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
+                else
+                    Pkg.test(package_spec.name)
+                end
 
-            println("\nPkgEval succeeded")
+                println("\nPkgEval succeeded")
 
-        catch err
-            print("\nPkgEval failed: ")
-            showerror(stdout, err)
-            Base.show_backtrace(stdout, catch_backtrace())
-            println()
+            catch err
+                print("\nPkgEval failed: ")
+                showerror(stdout, err)
+                Base.show_backtrace(stdout, catch_backtrace())
+                println()
 
-            if get(ENV, "PKGEVAL_RR", "false") == "true"
-                print("\n\n", '#'^80, "\n# BugReporting post-processing: $(now())\n#\n\n")
+                if get(ENV, "PKGEVAL_RR", "false") == "true"
+                    print("\n\n", '#'^80, "\n# BugReporting post-processing: $(now())\n#\n\n")
 
-                # pack-up our rr trace. this is expensive, so we only do it for failures.
-                # it also needs to happen in a clean environment, or BugReporting's deps
-                # could affect/be affected by the tested package's dependencies.
-                Pkg.activate(; temp=true)
-                Pkg.add("BugReporting")
-                try
-                    using BugReporting
-                    trace_dir = BugReporting.default_rr_trace_dir()
-                    trace = BugReporting.find_latest_trace(trace_dir)
-                    BugReporting.compress_trace(trace, "/traces/$(ARGS[1]).tar.zst")
-                    println("\nBugReporting succeeded")
-                catch err
-                    print("\nBugReporting failed: ")
-                    showerror(stdout, err)
-                    Base.show_backtrace(stdout, catch_backtrace())
-                    println()
+                    # pack-up our rr trace. this is expensive, so we only do it for failures.
+                    # it also needs to happen in a clean environment, or BugReporting's deps
+                    # could affect/be affected by the tested package's dependencies.
+                    Pkg.activate(; temp=true)
+                    Pkg.add("BugReporting")
+                    try
+                        using BugReporting
+                        trace_dir = BugReporting.default_rr_trace_dir()
+                        trace = BugReporting.find_latest_trace(trace_dir)
+                        BugReporting.compress_trace(trace, "/traces/$(package_spec.name).tar.zst")
+                        println("\nBugReporting succeeded")
+                    catch err
+                        print("\nBugReporting failed: ")
+                        showerror(stdout, err)
+                        Base.show_backtrace(stdout, catch_backtrace())
+                        println()
+                    end
                 end
             end
-        finally
+
             print("\n\n", '#'^80, "\n# PkgEval teardown: $(now())\n#\n\n")
         end"""
 
