@@ -387,9 +387,16 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
             package_spec = eval(Meta.parse(ARGS[1]))
 
             try
-                print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
+                # check if we even need to install the package
+                # (it might be available in the system image already)
+                try
+                    # XXX: use a Base API, by UUID?
+                    eval(:(using $(Symbol(package_spec.name))))
+                catch
+                    print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
 
-                Pkg.add(; package_spec...)
+                    Pkg.add(; package_spec...)
+                end
 
 
                 print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n")
@@ -415,7 +422,7 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
                     # it also needs to happen in a clean environment, or BugReporting's deps
                     # could affect/be affected by the tested package's dependencies.
                     Pkg.activate(; temp=true)
-                    Pkg.add("BugReporting")
+                    Pkg.add(name="BugReporting", uuid="bcf9a6e7-4020-453c-b88e-690564246bb8")
                     try
                         using BugReporting
                         trace_dir = BugReporting.default_rr_trace_dir()
@@ -546,7 +553,7 @@ is performed in an Arch Linux container.
 """
 function compiled_test(config::Configuration, pkg::Package; kwargs...)
     script = raw"""
-        try
+        begin
             using Dates
             print('#'^80, "\n# PackageCompiler set-up: $(now())\n#\n\n")
 
@@ -554,40 +561,63 @@ function compiled_test(config::Configuration, pkg::Package; kwargs...)
             versioninfo()
             println()
 
-
-            print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
-
             using Pkg
-            Pkg.add(["PackageCompiler", ARGS[1]])
+            package_spec = eval(Meta.parse(ARGS[1]))
 
-
-            print("\n\n", '#'^80, "\n# Compiling: $(now())\n#\n\n")
-
+            println("Installing PackageCompiler...")
+            project = Base.active_project()
+            Pkg.activate(; temp=true)
+            Pkg.add(name="PackageCompiler", uuid="9b87118b-4619-50d2-8e1e-99f35a4d4d9d")
             using PackageCompiler
+            Pkg.activate(project)
 
-            t = @elapsed create_sysimage(Symbol(ARGS[1]), sysimage_path=ARGS[2])
-            s = stat(ARGS[2]).size
+            try
+                print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
 
-            println("Generated system image is ", Base.format_bytes(s), ", compilation took ", trunc(Int, t), " seconds")
+                Pkg.add(; package_spec...)
 
-            println("\nPackageCompiler succeeded")
-        catch err
-            print("\nPackageCompiler failed: ")
-            showerror(stdout, err)
-            Base.show_backtrace(stdout, catch_backtrace())
-            println()
-        finally
+
+                print("\n\n", '#'^80, "\n# Compilation: $(now())\n#\n\n")
+
+                t = @elapsed create_sysimage([package_spec.name]; sysimage_path=ARGS[2])
+                s = stat(ARGS[2]).size
+
+                println("Generated system image is ", Base.format_bytes(s), ", compilation took ", trunc(Int, t), " seconds")
+
+                println("\nPackageCompiler succeeded")
+            catch err
+                print("\nPackageCompiler failed: ")
+                showerror(stdout, err)
+                Base.show_backtrace(stdout, catch_backtrace())
+                println()
+            end
+
             print("\n\n", '#'^80, "\n# PackageCompiler teardown: $(now())\n#\n\n")
         end"""
 
     sysimage_path = "/sysimage/sysimg.so"
-    args = `$(pkg.name) $sysimage_path`
+    args = `$(repr(package_spec_tuple(pkg))) $sysimage_path`
 
+    project_path="/project"
+    project_dir = mktempdir()
     sysimage_dir = mktempdir()
-    mounts = Dict(dirname(sysimage_path) => sysimage_dir)
+    mounts = Dict(
+        dirname(sysimage_path)  => sysimage_dir,
+        project_path            => project_dir)
 
     compile_config = Configuration(config;
-        time_limit = config.compile_time_limit
+        julia_args = `$(config.julia_args) --project=$project_path`,
+        time_limit = config.compile_time_limit,
+        # don't record the compilation, only the test execution
+        rr = false,
+        # discover package relocatability issues by compiling in a different environment
+        julia_install_dir="/usr/local/julia",
+        distro="arch",
+        user="user",
+        group="group",
+        home="/home/user",
+        uid=2000,
+        gid=2000,
     )
     status, reason, log = sandboxed_script(compile_config, script, args; mounts, kwargs...)
 
@@ -606,24 +636,16 @@ function compiled_test(config::Configuration, pkg::Package; kwargs...)
         return missing, status, reason, log
     end
 
-    # run the tests in an alternate environment (different OS, depot and Julia binaries
-    # in another path, etc)
+    # run the tests in the regular environment
     test_config = Configuration(config;
         compiled = false,
-        julia_args = `$(config.julia_args) --sysimage $sysimage_path`,
-        # install Julia at a different path
-        julia_install_dir="/usr/local/julia",
-        # use a different Linux distro
-        distro="arch",
-        # run as a different user
-        user="user",
-        group="group",
-        home="/home/user",
+        julia_args = `$(config.julia_args) --project=$project_path --sysimage $sysimage_path`,
     )
     version, status, reason, test_log =
         sandboxed_test(test_config, pkg; mounts, kwargs...)
 
     rm(sysimage_dir; recursive=true)
+    rm(project_dir; recursive=true)
     return version, status, reason, log * "\n" * test_log
 end
 
