@@ -334,6 +334,15 @@ function sandboxed_script(config::Configuration, script::String, args=``;
     close(inactivity_monitor)
     log = fetch(log_monitor)
 
+    # if we didn't kill the process, figure out the status from the exit code
+    if status === nothing
+        if success(proc)
+            status = :ok
+        else
+            status = :fail
+        end
+    end
+
     if sizeof(log) > config.log_limit
         # even though the monitor above should have limited the log size,
         # a single line may still have exceeded the limit, so make sure we truncate.
@@ -377,68 +386,81 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
     script = raw"""
         begin
             using Dates
-            print('#'^80, "\n# PkgEval set-up: $(now())\n#\n\n")
+            elapsed(t) = "$(round(time() - t; digits=2))s"
+
+            print('#'^80, "\n# PkgEval set-up\n#\n\n")
+            println("Started at ", now(UTC), "\n")
+            t0 = time()
 
             using InteractiveUtils
             versioninfo()
-            println()
 
             using Pkg
             package_spec = eval(Meta.parse(ARGS[1]))
 
+            println("\nCompleted after $(elapsed(t0))")
+
+
+            # check if we even need to install the package
+            # (it might be available in the system image already)
             try
-                # check if we even need to install the package
-                # (it might be available in the system image already)
-                try
-                    # XXX: use a Base API, by UUID?
-                    eval(:(using $(Symbol(package_spec.name))))
-                catch
-                    print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
+                # XXX: use a Base API, by UUID?
+                eval(:(using $(Symbol(package_spec.name))))
+            catch
+                print("\n\n", '#'^80, "\n# Installation\n#\n\n")
+                println("Started at ", now(UTC), "\n")
+                t1 = time()
 
-                    Pkg.add(; package_spec...)
-                end
+                Pkg.add(; package_spec...)
+
+                println("\nCompleted after $(elapsed(t1))")
+            end
 
 
-                print("\n\n", '#'^80, "\n# Testing: $(now())\n#\n\n")
-
+            print("\n\n", '#'^80, "\n# Testing\n#\n\n")
+            println("Started at ", now(UTC), "\n")
+            t2 = time()
+            try
                 if get(ENV, "PKGEVAL_RR", "false") == "true"
                     Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
                 else
                     Pkg.test(package_spec.name)
                 end
 
-                println("\nPkgEval succeeded")
-
+                println("\nCompleted after $(elapsed(t2))")
             catch err
-                print("\nPkgEval failed: ")
+                print("\nFAILED: ")
                 showerror(stdout, err)
                 Base.show_backtrace(stdout, catch_backtrace())
                 println()
 
                 if get(ENV, "PKGEVAL_RR", "false") == "true"
-                    print("\n\n", '#'^80, "\n# BugReporting post-processing: $(now())\n#\n\n")
+                    print("\n\n", '#'^80, "\n# BugReporting post-processing\n#\n\n")
+                    println("Started at ", now(UTC), "\n")
+                    t3 = time()
 
                     # pack-up our rr trace. this is expensive, so we only do it for failures.
-                    # it also needs to happen in a clean environment, or BugReporting's deps
-                    # could affect/be affected by the tested package's dependencies.
-                    Pkg.activate(; temp=true)
-                    Pkg.add(name="BugReporting", uuid="bcf9a6e7-4020-453c-b88e-690564246bb8")
                     try
+                        # use a clean environment, or BugReporting's deps could
+                        # affect/be affected by the tested package's dependencies.
+                        Pkg.activate(; temp=true)
+                        Pkg.add(name="BugReporting", uuid="bcf9a6e7-4020-453c-b88e-690564246bb8")
                         using BugReporting
+
                         trace_dir = BugReporting.default_rr_trace_dir()
                         trace = BugReporting.find_latest_trace(trace_dir)
                         BugReporting.compress_trace(trace, "/traces/$(package_spec.name).tar.zst")
-                        println("\nBugReporting succeeded")
+                        println("\nCompleted after $(elapsed(t3))")
                     catch err
-                        print("\nBugReporting failed: ")
+                        print("\nFAILED: ")
                         showerror(stdout, err)
                         Base.show_backtrace(stdout, catch_backtrace())
                         println()
                     end
                 end
-            end
 
-            print("\n\n", '#'^80, "\n# PkgEval teardown: $(now())\n#\n\n")
+                exit(1)
+            end
         end"""
 
     args = `$(repr(package_spec_tuple(pkg)))`
@@ -457,7 +479,60 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
             @warn maxlog=1 "PKGEVAL_RR_BUCKET not set; will not be uploading rr traces"
     end
 
+    t0 = time()
     status, reason, log = sandboxed_script(config, script, args; mounts, env, kwargs...)
+    elapsed = "$(round(time() - t0; digits=2))s"
+
+    log *= "\n\n$('#'^80)\n# PkgEval teardown\n#\n\n"
+    log *= "Started at $(now(UTC))\n\n"
+
+    # log the status and determine a more accurate reason from the log
+    @assert status in [:ok, :fail, :kill]
+    if status === :ok
+        log *= "PkgEval succeeded after $elapsed\n"
+    elseif status === :fail
+        log *= "PkgEval failed after $elapsed\n"
+
+        reason = if occursin("Unsatisfiable requirements detected for package", log)
+            # NOTE: might be the package itself, or one of its dependencies
+            :unsatisfiable
+        elseif occursin("Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
+            :untestable
+        elseif occursin("cannot open shared object file: No such file or directory", log)
+            :binary_dependency
+        elseif occursin(r"Package .+ does not have .+ in its dependencies", log)
+            :missing_dependency
+        elseif occursin(r"Package .+ not found in current path", log)
+            :missing_package
+        elseif occursin("GC error (probable corruption)", log)
+            :gc_corruption
+        elseif occursin("signal (11): Segmentation fault", log)
+            :segfault
+        elseif occursin("signal (6): Abort", log)
+            :abort
+        elseif occursin("Unreachable reached", log)
+            :unreachable
+        elseif occursin("failed to clone from", log) ||
+                occursin(r"HTTP/\d \d+ while requesting", log) ||
+                occursin("Could not resolve host", log) ||
+                occursin("Resolving timed out after", log) ||
+                occursin("Could not download", log) ||
+                occursin(r"Error: HTTP/\d \d+", log)
+            :network
+        elseif occursin("ERROR: LoadError: syntax", log)
+            :syntax
+        elseif occursin("Some tests did not pass", log) || occursin("Test Failed", log)
+            :test_failures
+        else
+            :unknown
+        end
+    elseif status === :kill
+        log *= "PkgEval terminated after $elapsed"
+        if reason !== nothing
+            log *= ": " * reasons[reason]
+        end
+        log *= "\n"
+    end
 
     # pick up the installed package version from the log
     version_match = match(Regex("\\+ $(pkg.name) v(\\S+)"), log)
@@ -470,50 +545,6 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
         end
     else
         missing
-    end
-
-    # try to figure out the failure reason
-    if status === nothing
-        if occursin("PkgEval succeeded", log)
-            status = :ok
-        else
-            status = :fail
-
-            # figure out a more accurate failure reason from the log
-            reason = if occursin("Unsatisfiable requirements detected for package", log)
-                # NOTE: might be the package itself, or one of its dependencies
-                :unsatisfiable
-            elseif occursin("Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
-                :untestable
-            elseif occursin("cannot open shared object file: No such file or directory", log)
-                :binary_dependency
-            elseif occursin(r"Package .+ does not have .+ in its dependencies", log)
-                :missing_dependency
-            elseif occursin(r"Package .+ not found in current path", log)
-                :missing_package
-            elseif occursin("GC error (probable corruption)", log)
-                :gc_corruption
-            elseif occursin("signal (11): Segmentation fault", log)
-                :segfault
-            elseif occursin("signal (6): Abort", log)
-                :abort
-            elseif occursin("Unreachable reached", log)
-                :unreachable
-            elseif occursin("failed to clone from", log) ||
-                   occursin(r"HTTP/\d \d+ while requesting", log) ||
-                   occursin("Could not resolve host", log) ||
-                   occursin("Resolving timed out after", log) ||
-                   occursin("Could not download", log) ||
-                   occursin(r"Error: HTTP/\d \d+", log)
-                :network
-            elseif occursin("ERROR: LoadError: syntax", log)
-                :syntax
-            elseif occursin("Some tests did not pass", log) || occursin("Test Failed", log)
-                :test_failures
-            else
-                :unknown
-            end
-        end
     end
 
     if config.rr
@@ -555,7 +586,11 @@ function compiled_test(config::Configuration, pkg::Package; kwargs...)
     script = raw"""
         begin
             using Dates
-            print('#'^80, "\n# PackageCompiler set-up: $(now())\n#\n\n")
+            elapsed(t) = "$(round(time() - t; digits=2))s"
+
+            print('#'^80, "\n# PackageCompiler set-up\n#\n\n")
+            println("Started at ", now(UTC), "\n")
+            t0 = time()
 
             using InteractiveUtils
             versioninfo()
@@ -571,28 +606,27 @@ function compiled_test(config::Configuration, pkg::Package; kwargs...)
             using PackageCompiler
             Pkg.activate(project)
 
-            try
-                print("\n\n", '#'^80, "\n# Installation: $(now())\n#\n\n")
-
-                Pkg.add(; package_spec...)
+            println("\nCompleted after $(elapsed(t0))")
 
 
-                print("\n\n", '#'^80, "\n# Compilation: $(now())\n#\n\n")
+            print("\n\n", '#'^80, "\n# Installation\n#\n\n")
+            println("Started at ", now(UTC), "\n")
+            t1 = time()
 
-                t = @elapsed create_sysimage([package_spec.name]; sysimage_path=ARGS[2])
-                s = stat(ARGS[2]).size
+            Pkg.add(; package_spec...)
 
-                println("Generated system image is ", Base.format_bytes(s), ", compilation took ", trunc(Int, t), " seconds")
+            println("\nCompleted after $(elapsed(t1))")
 
-                println("\nPackageCompiler succeeded")
-            catch err
-                print("\nPackageCompiler failed: ")
-                showerror(stdout, err)
-                Base.show_backtrace(stdout, catch_backtrace())
-                println()
-            end
 
-            print("\n\n", '#'^80, "\n# PackageCompiler teardown: $(now())\n#\n\n")
+            print("\n\n", '#'^80, "\n# Compilation\n#\n\n")
+            println("Started at ", now(UTC), "\n")
+            t2 = time()
+
+            create_sysimage([package_spec.name]; sysimage_path=ARGS[2])
+            s = stat(ARGS[2]).size
+
+            println("\nCompleted after $(elapsed(t2))")
+            println("Generated system image is ", Base.format_bytes(s))
         end"""
 
     sysimage_path = "/sysimage/sysimg.so"
@@ -619,20 +653,32 @@ function compiled_test(config::Configuration, pkg::Package; kwargs...)
         uid=2000,
         gid=2000,
     )
-    status, reason, log = sandboxed_script(compile_config, script, args; mounts, kwargs...)
 
-    # try to figure out the failure reason
-    if status === nothing
-        if occursin("PackageCompiler succeeded", log)
-            status = :ok
-        else
-            status = :fail
-            reason = :uncompilable
+    t0 = time()
+    status, reason, log = sandboxed_script(compile_config, script, args; mounts, kwargs...)
+    elapsed = "$(round(time() - t0; digits=2))s"
+
+    log *= "\n\n$('#'^80)\n# PackageCompiler teardown\n#\n\n"
+    log *= "Started at $(now(UTC))\n\n"
+
+    # log the status and determine a more accurate reason from the log
+    @assert status in [:ok, :fail, :kill]
+    if status === :ok
+        log *= "PackageCompiler succeeded after $elapsed\n"
+    elseif status === :fail
+        log *= "PackageCompiler failed after $elapsed\n"
+        reason = :uncompilable
+    elseif status === :kill
+        log *= "PackageCompiler terminated after $elapsed"
+        if reason !== nothing
+            log *= ": " * reasons[reason]
         end
+        log *= "\n"
     end
 
     if status !== :ok
         rm(sysimage_dir; recursive=true)
+        rm(project_dir; recursive=true)
         return missing, status, reason, log
     end
 
@@ -646,7 +692,7 @@ function compiled_test(config::Configuration, pkg::Package; kwargs...)
 
     rm(sysimage_dir; recursive=true)
     rm(project_dir; recursive=true)
-    return version, status, reason, log * "\n" * test_log
+    return version, status, reason, log * "\n\n" * test_log
 end
 
 """
