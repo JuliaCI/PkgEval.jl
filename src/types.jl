@@ -13,12 +13,12 @@ Base.@kwdef struct Configuration
     group::String = "pkgeval"
     home::String = "/home/pkgeval"
 
+    rr::Bool = false
     depwarn::Bool = false
     log_limit::Int = 2^20 # 1 MB
-    time_limit = 60*60 # 1 hour
+    time_limit = (rr ? 90*60 : 45*60) # 45 mins, or twice that under rr
     compiled::Bool = false
     compile_time_limit::Int = 30*60 # 30 mins
-    rr::Bool = false
 
     # the directory where Julia is installed in the run-time environment
     julia_install_dir::String = "/opt/julia"
