@@ -386,10 +386,11 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
     script = raw"""
         begin
             using Dates
+            elapsed(t) = "$(round(time() - t; digits=2))s"
+
             print('#'^80, "\n# PkgEval set-up\n#\n\n")
             println("Started at ", now(UTC), "\n")
             t0 = time()
-            elapsed(t) = "$(round(time() - t; digits=2))s"
 
             using InteractiveUtils
             versioninfo()
@@ -399,38 +400,36 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
 
             println("\nCompleted after $(elapsed(t0))")
 
-            t1 = nothing
+
+            # check if we even need to install the package
+            # (it might be available in the system image already)
             try
-                # check if we even need to install the package
-                # (it might be available in the system image already)
-                try
-                    # XXX: use a Base API, by UUID?
-                    eval(:(using $(Symbol(package_spec.name))))
-                catch
-                    print("\n\n", '#'^80, "\n# Installation\n#\n\n")
-                    println("Started at ", now(UTC), "\n")
-                    global t1 = time()
-
-                    Pkg.add(; package_spec...)
-
-                    println("\nCompleted after $(elapsed(t1))")
-                end
-
-
-                print("\n\n", '#'^80, "\n# Testing\n#\n\n")
+                # XXX: use a Base API, by UUID?
+                eval(:(using $(Symbol(package_spec.name))))
+            catch
+                print("\n\n", '#'^80, "\n# Installation\n#\n\n")
                 println("Started at ", now(UTC), "\n")
-                global t1 = time()
+                t1 = time()
 
+                Pkg.add(; package_spec...)
+
+                println("\nCompleted after $(elapsed(t1))")
+            end
+
+
+            print("\n\n", '#'^80, "\n# Testing\n#\n\n")
+            println("Started at ", now(UTC), "\n")
+            t2 = time()
+            try
                 if get(ENV, "PKGEVAL_RR", "false") == "true"
                     Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
                 else
                     Pkg.test(package_spec.name)
                 end
 
-                println("\nCompleted after $(elapsed(t1))")
-                exit(0)
+                println("\nCompleted after $(elapsed(t2))")
             catch err
-                print("\nFailed after $(elapsed(t1)): ")
+                print("\nFAILED: ")
                 showerror(stdout, err)
                 Base.show_backtrace(stdout, catch_backtrace())
                 println()
@@ -438,21 +437,22 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
                 if get(ENV, "PKGEVAL_RR", "false") == "true"
                     print("\n\n", '#'^80, "\n# BugReporting post-processing\n#\n\n")
                     println("Started at ", now(UTC), "\n")
-                    t2 = time()
+                    t3 = time()
 
                     # pack-up our rr trace. this is expensive, so we only do it for failures.
-                    # it also needs to happen in a clean environment, or BugReporting's deps
-                    # could affect/be affected by the tested package's dependencies.
-                    Pkg.activate(; temp=true)
-                    Pkg.add(name="BugReporting", uuid="bcf9a6e7-4020-453c-b88e-690564246bb8")
                     try
+                        # use a clean environment, or BugReporting's deps could
+                        # affect/be affected by the tested package's dependencies.
+                        Pkg.activate(; temp=true)
+                        Pkg.add(name="BugReporting", uuid="bcf9a6e7-4020-453c-b88e-690564246bb8")
                         using BugReporting
+
                         trace_dir = BugReporting.default_rr_trace_dir()
                         trace = BugReporting.find_latest_trace(trace_dir)
                         BugReporting.compress_trace(trace, "/traces/$(package_spec.name).tar.zst")
-                        println("\nCompleted after $(elapsed(t2))")
+                        println("\nCompleted after $(elapsed(t3))")
                     catch err
-                        print("\nFailed after $(elapsed(t2))")
+                        print("\nFAILED: ")
                         showerror(stdout, err)
                         Base.show_backtrace(stdout, catch_backtrace())
                         println()
@@ -586,10 +586,11 @@ function compiled_test(config::Configuration, pkg::Package; kwargs...)
     script = raw"""
         begin
             using Dates
+            elapsed(t) = "$(round(time() - t; digits=2))s"
+
             print('#'^80, "\n# PackageCompiler set-up\n#\n\n")
             println("Started at ", now(UTC), "\n")
             t0 = time()
-            elapsed(t) = "$(round(time() - t; digits=2))s"
 
             using InteractiveUtils
             versioninfo()
@@ -607,34 +608,25 @@ function compiled_test(config::Configuration, pkg::Package; kwargs...)
 
             println("\nCompleted after $(elapsed(t0))")
 
-            t1 = nothing
-            try
-                print("\n\n", '#'^80, "\n# Installation\n#\n\n")
-                println("Started at ", now(UTC), "\n")
-                global t1 = time()
 
-                Pkg.add(; package_spec...)
+            print("\n\n", '#'^80, "\n# Installation\n#\n\n")
+            println("Started at ", now(UTC), "\n")
+            t1 = time()
 
-                println("\nCompleted after $(elapsed(t1))")
+            Pkg.add(; package_spec...)
+
+            println("\nCompleted after $(elapsed(t1))")
 
 
-                print("\n\n", '#'^80, "\n# Compilation\n#\n\n")
-                println("Started at ", now(UTC), "\n")
-                global t1 = time()
+            print("\n\n", '#'^80, "\n# Compilation\n#\n\n")
+            println("Started at ", now(UTC), "\n")
+            t2 = time()
 
-                create_sysimage([package_spec.name]; sysimage_path=ARGS[2])
-                s = stat(ARGS[2]).size
+            create_sysimage([package_spec.name]; sysimage_path=ARGS[2])
+            s = stat(ARGS[2]).size
 
-                println("\nCompleted after $(elapsed(t1))")
-                println("Generated system image is ", Base.format_bytes(s))
-                exit(0)
-            catch err
-                print("\nFailed after $(elapsed(t1)): ")
-                showerror(stdout, err)
-                Base.show_backtrace(stdout, catch_backtrace())
-                println()
-                exit(1)
-            end
+            println("\nCompleted after $(elapsed(t2))")
+            println("Generated system image is ", Base.format_bytes(s))
         end"""
 
     sysimage_path = "/sysimage/sysimg.so"
