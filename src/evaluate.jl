@@ -245,6 +245,7 @@ function sandboxed_script(config::Configuration, script::String, args=``;
         joinpath(config.home, ".julia", "compiled")     => local_compilecache
     ))
 
+    t0 = time()
     input = Pipe()
     output = Pipe()
     proc = sandboxed_julia(config, cmd; env, mounts, wait=false,
@@ -333,6 +334,7 @@ function sandboxed_script(config::Configuration, script::String, args=``;
     close(timeout_monitor)
     close(inactivity_monitor)
     log = fetch(log_monitor)
+    t1 = time()
 
     # if we didn't kill the process, figure out the status from the exit code
     if status === nothing
@@ -368,7 +370,7 @@ function sandboxed_script(config::Configuration, script::String, args=``;
     copy_files(src=local_compilecache, dst=shared_compilecache)
     rm(local_compilecache; recursive=true)
 
-    return status, reason, log
+    return status, reason, log, t1 - t0
 end
 
 """
@@ -479,9 +481,9 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
             @warn maxlog=1 "PKGEVAL_RR_BUCKET not set; will not be uploading rr traces"
     end
 
-    t0 = time()
-    status, reason, log = sandboxed_script(config, script, args; mounts, env, kwargs...)
-    elapsed = "$(round(time() - t0; digits=2))s"
+    status, reason, log, elapsed =
+        sandboxed_script(config, script, args; mounts, env, kwargs...)
+    elapsed_str = "$(round(elapsed; digits=2))s"
 
     log *= "\n\n$('#'^80)\n# PkgEval teardown\n#\n\n"
     log *= "Started at $(now(UTC))\n\n"
@@ -489,9 +491,9 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
     # log the status and determine a more accurate reason from the log
     @assert status in [:ok, :fail, :kill]
     if status === :ok
-        log *= "PkgEval succeeded after $elapsed\n"
+        log *= "PkgEval succeeded after $elapsed_str\n"
     elseif status === :fail
-        log *= "PkgEval failed after $elapsed\n"
+        log *= "PkgEval failed after $elapsed_str\n"
 
         reason = if occursin("Unsatisfiable requirements detected for package", log)
             # NOTE: might be the package itself, or one of its dependencies
@@ -654,9 +656,9 @@ function compiled_test(config::Configuration, pkg::Package; kwargs...)
         gid=2000,
     )
 
-    t0 = time()
-    status, reason, log = sandboxed_script(compile_config, script, args; mounts, kwargs...)
-    elapsed = "$(round(time() - t0; digits=2))s"
+    status, reason, log, elapsed =
+        sandboxed_script(compile_config, script, args; mounts, kwargs...)
+    elapsed_str = "$(round(elapsed; digits=2))s"
 
     log *= "\n\n$('#'^80)\n# PackageCompiler teardown\n#\n\n"
     log *= "Started at $(now(UTC))\n\n"
@@ -664,12 +666,12 @@ function compiled_test(config::Configuration, pkg::Package; kwargs...)
     # log the status and determine a more accurate reason from the log
     @assert status in [:ok, :fail, :kill]
     if status === :ok
-        log *= "PackageCompiler succeeded after $elapsed\n"
+        log *= "PackageCompiler succeeded after $elapsed_str\n"
     elseif status === :fail
-        log *= "PackageCompiler failed after $elapsed\n"
+        log *= "PackageCompiler failed after $elapsed_str\n"
         reason = :uncompilable
     elseif status === :kill
-        log *= "PackageCompiler terminated after $elapsed"
+        log *= "PackageCompiler terminated after $elapsed_str"
         if reason !== nothing
             log *= ": " * reasons[reason]
         end
