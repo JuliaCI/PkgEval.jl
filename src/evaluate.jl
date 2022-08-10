@@ -112,11 +112,11 @@ function sandboxed_julia_cmd(config::Configuration, executor, args=``;
 
     rootfs = create_rootfs(config)
     install = install_julia(config)
-    registries = joinpath(first(DEPOT_PATH), "registries")
+    registry = get_registry(config)
     read_only_maps = merge(read_only_maps, Dict(
         "/"                                         => rootfs,
         config.julia_install_dir                    => install,
-        "/usr/local/share/julia/registries"         => registries
+        "/usr/local/share/julia/registries/General" => registry
     ))
 
     packages = joinpath(storage_dir, "packages")
@@ -698,13 +698,13 @@ function compiled_test(config::Configuration, pkg::Package; kwargs...)
 end
 
 """
-    evaluate(configs::Vector{Configuration}, [packages::Vector{String}];
+    evaluate(configs::Vector{Configuration}, [packages::Vector{Package}];
              ninstances=Sys.CPU_THREADS, kwargs...)
-    evaluate(configs::Dict{String,Configuration}, [packages::Vector{String}];
+    evaluate(configs::Dict{String,Configuration}, [packages::Vector{Package}];
              ninstances=Sys.CPU_THREADS, kwargs...)
 
 Run tests for `packages` using `configs`. If no packages are specified, default to testing
-all packages in the default registry. The configurations can be specified as an array,
+all packages in the configured registry. The configurations can be specified as an array,
 or as a dictionary where the key can be used to name the configuration (and more easily
 identify it in the output dataframe).
 
@@ -713,9 +713,14 @@ Refer to `sandboxed_test`[@ref] and `sandboxed_julia`[@ref] for more possible
 keyword arguments.
 """
 function evaluate(configs::Dict{String,Configuration},
-                  packages::Vector{Package}=registry_packages();
+                  packages::Vector{Package}=Package[];
                   ninstances::Integer=Sys.CPU_THREADS)
     # here we deal with managing execution: spawning workers, output, result I/O, etc
+
+    if isempty(packages)
+        registries = unique(config->config.registry, values(configs))
+        packages = intersect(map(registry_packages, registries)...)
+    end
 
     jobs = vec(collect(Iterators.product(keys(configs), packages)))
 
@@ -884,11 +889,10 @@ function evaluate(configs::Dict{String,Configuration},
     return result
 end
 
-function evaluate(configs::Vector{Configuration},
-                  packages::Vector{Package}=registry_packages(); kwargs...)
+function evaluate(configs::Vector{Configuration}, args...; kwargs...)
     config_dict = Dict{String,Configuration}()
     for (i,config) in enumerate(configs)
         config_dict["config_$i"] = config
     end
-    evaluate(config_dict, packages; kwargs...)
+    evaluate(config_dict, args...; kwargs...)
 end

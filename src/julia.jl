@@ -64,36 +64,8 @@ function get_julia_release(spec::String)
     return dirpath
 end
 
-function get_julia_repo(spec)
-    # split the spec into the repository and commit (e.g. `maleadt/julia#master`)
-    parts = split(spec, '#')
-    repo_spec, commit_spec = if length(parts) == 2
-        parts
-    elseif length(parts) == 1
-        "JuliaLang/julia", spec
-    else
-        error("Invalid repository/commit specification $spec")
-        return nothing
-    end
-
-    # perform a bare check-out of the repo
-    # TODO: check-out different repositories into a single bare check-out under different
-    #       remotes? most objects are going to be shared, so this would save time and space.
-    @debug "Cloning/updating $repo_spec..."
-    bare_checkout = joinpath(download_dir, repo_spec)
-    if !ispath(joinpath(bare_checkout, "config"))
-        run(`$(git()) clone --quiet --bare https://github.com/$(repo_spec).git $bare_checkout`)
-    end
-
-    # explicitly fetch the requested commit from the remote and put it on the master branch.
-    # we need to do this as not all specs (e.g. `pull/42/merge`) might be available locally
-    run(`$(git()) -C $bare_checkout fetch --quiet --force origin $commit_spec:master`)
-
-    # check-out the actual source code into a temporary directory
-    julia_checkout = mktempdir()
-    run(`$(git()) clone --quiet --branch master $bare_checkout $julia_checkout`)
-    return julia_checkout
-end
+# NOTE: Julia repo dir isn't cached, as it's only checked-out once and removed afterwards
+get_julia_repo(spec) = get_github_repo(spec, "JuliaLang/julia")
 
 function get_repo_details(repo)
     version = VersionNumber(read(joinpath(repo, "VERSION"), String))
