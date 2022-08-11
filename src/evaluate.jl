@@ -112,11 +112,11 @@ function sandboxed_julia_cmd(config::Configuration, executor, args=``;
 
     rootfs = create_rootfs(config)
     install = install_julia(config)
-    registries = joinpath(first(DEPOT_PATH), "registries")
+    registry = get_registry(config)
     read_only_maps = merge(read_only_maps, Dict(
         "/"                                         => rootfs,
         config.julia_install_dir                    => install,
-        "/usr/local/share/julia/registries"         => registries
+        "/usr/local/share/julia/registries/General" => registry
     ))
 
     packages = joinpath(storage_dir, "packages")
@@ -245,6 +245,7 @@ function sandboxed_script(config::Configuration, script::String, args=``;
         joinpath(config.home, ".julia", "compiled")     => local_compilecache
     ))
 
+    t0 = time()
     input = Pipe()
     output = Pipe()
     proc = sandboxed_julia(config, cmd; env, mounts, wait=false,
@@ -333,6 +334,7 @@ function sandboxed_script(config::Configuration, script::String, args=``;
     close(timeout_monitor)
     close(inactivity_monitor)
     log = fetch(log_monitor)
+    t1 = time()
 
     # if we didn't kill the process, figure out the status from the exit code
     if status === nothing
@@ -368,7 +370,7 @@ function sandboxed_script(config::Configuration, script::String, args=``;
     copy_files(src=local_compilecache, dst=shared_compilecache)
     rm(local_compilecache; recursive=true)
 
-    return status, reason, log
+    return status, reason, log, t1 - t0
 end
 
 """
@@ -479,9 +481,9 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
             @warn maxlog=1 "PKGEVAL_RR_BUCKET not set; will not be uploading rr traces"
     end
 
-    t0 = time()
-    status, reason, log = sandboxed_script(config, script, args; mounts, env, kwargs...)
-    elapsed = "$(round(time() - t0; digits=2))s"
+    status, reason, log, elapsed =
+        sandboxed_script(config, script, args; mounts, env, kwargs...)
+    elapsed_str = "$(round(elapsed; digits=2))s"
 
     log *= "\n\n$('#'^80)\n# PkgEval teardown\n#\n\n"
     log *= "Started at $(now(UTC))\n\n"
@@ -489,9 +491,9 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
     # log the status and determine a more accurate reason from the log
     @assert status in [:ok, :fail, :kill]
     if status === :ok
-        log *= "PkgEval succeeded after $elapsed\n"
+        log *= "PkgEval succeeded after $elapsed_str\n"
     elseif status === :fail
-        log *= "PkgEval failed after $elapsed\n"
+        log *= "PkgEval failed after $elapsed_str\n"
 
         reason = if occursin("Unsatisfiable requirements detected for package", log)
             # NOTE: might be the package itself, or one of its dependencies
@@ -654,9 +656,9 @@ function compiled_test(config::Configuration, pkg::Package; kwargs...)
         gid=2000,
     )
 
-    t0 = time()
-    status, reason, log = sandboxed_script(compile_config, script, args; mounts, kwargs...)
-    elapsed = "$(round(time() - t0; digits=2))s"
+    status, reason, log, elapsed =
+        sandboxed_script(compile_config, script, args; mounts, kwargs...)
+    elapsed_str = "$(round(elapsed; digits=2))s"
 
     log *= "\n\n$('#'^80)\n# PackageCompiler teardown\n#\n\n"
     log *= "Started at $(now(UTC))\n\n"
@@ -664,12 +666,12 @@ function compiled_test(config::Configuration, pkg::Package; kwargs...)
     # log the status and determine a more accurate reason from the log
     @assert status in [:ok, :fail, :kill]
     if status === :ok
-        log *= "PackageCompiler succeeded after $elapsed\n"
+        log *= "PackageCompiler succeeded after $elapsed_str\n"
     elseif status === :fail
-        log *= "PackageCompiler failed after $elapsed\n"
+        log *= "PackageCompiler failed after $elapsed_str\n"
         reason = :uncompilable
     elseif status === :kill
-        log *= "PackageCompiler terminated after $elapsed"
+        log *= "PackageCompiler terminated after $elapsed_str"
         if reason !== nothing
             log *= ": " * reasons[reason]
         end
@@ -696,13 +698,13 @@ function compiled_test(config::Configuration, pkg::Package; kwargs...)
 end
 
 """
-    evaluate(configs::Vector{Configuration}, [packages::Vector{String}];
+    evaluate(configs::Vector{Configuration}, [packages::Vector{Package}];
              ninstances=Sys.CPU_THREADS, kwargs...)
-    evaluate(configs::Dict{String,Configuration}, [packages::Vector{String}];
+    evaluate(configs::Dict{String,Configuration}, [packages::Vector{Package}];
              ninstances=Sys.CPU_THREADS, kwargs...)
 
 Run tests for `packages` using `configs`. If no packages are specified, default to testing
-all packages in the default registry. The configurations can be specified as an array,
+all packages in the configured registry. The configurations can be specified as an array,
 or as a dictionary where the key can be used to name the configuration (and more easily
 identify it in the output dataframe).
 
@@ -711,9 +713,14 @@ Refer to `sandboxed_test`[@ref] and `sandboxed_julia`[@ref] for more possible
 keyword arguments.
 """
 function evaluate(configs::Dict{String,Configuration},
-                  packages::Vector{Package}=registry_packages();
+                  packages::Vector{Package}=Package[];
                   ninstances::Integer=Sys.CPU_THREADS)
     # here we deal with managing execution: spawning workers, output, result I/O, etc
+
+    if isempty(packages)
+        registries = unique(config->config.registry, values(configs))
+        packages = intersect(map(registry_packages, registries)...)
+    end
 
     jobs = vec(collect(Iterators.product(keys(configs), packages)))
 
@@ -882,11 +889,10 @@ function evaluate(configs::Dict{String,Configuration},
     return result
 end
 
-function evaluate(configs::Vector{Configuration},
-                  packages::Vector{Package}=registry_packages(); kwargs...)
+function evaluate(configs::Vector{Configuration}, args...; kwargs...)
     config_dict = Dict{String,Configuration}()
     for (i,config) in enumerate(configs)
         config_dict["config_$i"] = config
     end
-    evaluate(config_dict, packages; kwargs...)
+    evaluate(config_dict, args...; kwargs...)
 end

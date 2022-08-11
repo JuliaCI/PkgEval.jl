@@ -5,6 +5,9 @@ Base.@kwdef struct Configuration
     julia::String = "nightly"
     buildflags::Vector{String} = String[]
 
+    # registry properties
+    registry::String = "master"
+
     # rootfs properties
     distro::String = "debian"
     uid::Int = 1000
