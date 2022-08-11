@@ -164,7 +164,17 @@ function sandboxed_julia_cmd(config::Configuration, executor, args=``;
         read_write_maps["/tmp/.X11-unix"] = "/tmp/.X11-unix"
     end
 
-    cmd = `$(config.julia_install_dir)/bin/julia`
+    julia_binaries = filter(["julia", "julia-debug"]) do name
+        ispath(joinpath(install, "bin", name))
+    end
+    julia_binary = if length(julia_binaries) == 0
+        error("No julia binaries found in install dir")
+    elseif length(julia_binaries) > 1
+        error("Multiple julia binaries found in install dir")
+    else
+        julia_binary = julia_binaries[1]
+    end
+    cmd = `$(config.julia_install_dir)/bin/$(julia_binary)`
 
     # restrict resource usage
     if !isempty(config.cpus)
