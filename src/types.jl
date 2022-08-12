@@ -26,6 +26,9 @@ Base.@kwdef struct Configuration
     # the directory where Julia is installed in the run-time environment
     julia_install_dir::String = "/opt/julia"
 
+    # the name of the Julia binary
+    julia_binary::String = "julia"
+
     # whether to launch Xvfb before starting Julia
     xvfb::Bool = true
 
