@@ -135,7 +135,7 @@ function build_julia(repo_path::String;
         end
 
         for flag in flags
-            println(io, flag)
+            println(io, "override $flag")
         end
     end
 
