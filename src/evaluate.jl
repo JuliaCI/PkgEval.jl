@@ -164,7 +164,7 @@ function sandboxed_julia_cmd(config::Configuration, executor, args=``;
         read_write_maps["/tmp/.X11-unix"] = "/tmp/.X11-unix"
     end
 
-    cmd = `$(config.julia_install_dir)/bin/julia`
+    cmd = `$(config.julia_install_dir)/bin/$(config.julia_binary)`
 
     # restrict resource usage
     if !isempty(config.cpus)

@@ -101,14 +101,17 @@ end
 
 """
     version = perform_julia_build(spec::String="master";
-                                  flags::Vector{String}=String[])
+                                  flags::Vector{String}=String[],
+                                  binary::String="julia")
 
-Check-out and build Julia at git reference `spec` using BinaryBuilder.
-Returns the `version` (what other functions use to identify this build).
-This version will be added to Versions.toml.
+Check-out and build Julia at git reference `spec` using BinaryBuilder. Returns the path to
+a temporary directory where the build will be installed.
+
+The `flags` keyword argument will be used to populate `Make.user`, and afer the build
+finishes `binary` is expected to be found in the installation prefix.
 """
 function build_julia(repo_path::String;
-                     flags::Vector{String}=String[])
+                     flags::Vector{String}=String[], binary::String="julia")
     repo_details = get_repo_details(repo_path)
     println("Building Julia...")
 
@@ -135,7 +138,7 @@ function build_julia(repo_path::String;
         end
 
         for flag in flags
-            println(io, flag)
+            println(io, "override $flag")
         end
     end
 
@@ -184,7 +187,7 @@ function build_julia(repo_path::String;
 
     # The products that we will ensure are always built
     products = [
-        ExecutableProduct("julia", :julia)
+        ExecutableProduct(binary, :julia)
     ]
 
     # Dependencies that must be installed before this package can be built
@@ -233,7 +236,7 @@ function _install_julia(config::Configuration)
         end
 
         # perform a build
-        build_julia(repo; flags=config.buildflags)
+        build_julia(repo; flags=config.buildflags, binary=config.julia_binary)
     finally
         rm(repo; recursive=true)
     end
