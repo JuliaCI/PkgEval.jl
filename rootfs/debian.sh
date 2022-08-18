@@ -34,17 +34,6 @@ sudo sed '/_apt:/d' -i "$rootfs"/etc/passwd
 sudo chown "$(id -u)":"$(id -g)" -R "$rootfs"
 pushd "$rootfs"
 
-# replace hardlinks with softlinks (working around JuliaIO/Tar.jl#101)
-target_inode=-1
-find . -type f -links +1 -printf "%i %p\n" | sort -nk1 | while read inode path; do
-    if [[ $target_inode != $inode ]]; then
-        target_inode=$inode
-        target_path=$path
-    else
-        ln -sf $target_path $path
-    fi
-done
-
 tar -cJf "/tmp/debian-$version-$date.tar.xz" .
 popd
 rm -rf "$rootfs"
