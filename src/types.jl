@@ -1,45 +1,87 @@
-export Configuration, Package
+export Configuration, ismodified, Package
+
+
+## individual settings, keeping track of modifications
+
+struct Setting{T}
+    val::T
+    modified::Bool
+end
+
+Base.getindex(x::Setting) = x.val
+
+# conversions from differently-typed settings
+Base.convert(::Type{Setting{T}}, setting::Setting{T}) where {T} = setting
+Base.convert(::Type{Setting{T}}, setting::Setting) where {T} =
+    Setting{T}(convert(T, setting.val), setting.modified)
+
+# conversions from values are marked as modified settings...
+Base.convert(::Type{Setting{T}}, val::T) where {T} = Setting{T}(val, true)
+
+# ... unless the Default constructor is used
+Default(val::T) where {T} = Setting{T}(val, false)
+
+
+## configuration: groups settings
 
 Base.@kwdef struct Configuration
     # Julia properties
-    julia::String = "nightly"
-    buildflags::Vector{String} = String[]
-    buildcommands::String="make install"
+    julia::Setting{String} = Default("nightly")
+    buildflags::Setting{Vector{String}} = Default(String[])
+    buildcommands::Setting{String} = Default("make install")
 
     # registry properties
-    registry::String = "master"
+    registry::Setting{String} = Default("master")
 
     # rootfs properties
-    distro::String = "debian"
-    uid::Int = 1000
-    user::String = "pkgeval"
-    gid::Int = 1000
-    group::String = "pkgeval"
-    home::String = "/home/pkgeval"
+    distro::Setting{String} = Default("debian")
+    uid::Setting{Int} = Default(1000)
+    user::Setting{String} = Default("pkgeval")
+    gid::Setting{Int} = Default(1000)
+    group::Setting{String} = Default("pkgeval")
+    home::Setting{String} = Default("/home/pkgeval")
 
-    rr::Bool = false
-    depwarn::Bool = false
-    log_limit::Int = 2^20 # 1 MB
-    time_limit = (rr ? 90*60 : 45*60) # 45 mins, or twice that under rr
-    compiled::Bool = false
-    compile_time_limit::Int = 30*60 # 30 mins
+    rr::Setting{Bool} = Default(false)
+    depwarn::Setting{Bool} = Default(false)
+    log_limit::Setting{Int} = Default(2^20) # 1 MB
+    time_limit::Setting{Float64} = Default(45*60) # 45 mins
+    compiled::Setting{Bool} = Default(false)
+    compile_time_limit::Setting{Float64} = Default(30*60) # 30 mins
 
     # the directory where Julia is installed in the run-time environment
-    julia_install_dir::String = "/opt/julia"
+    julia_install_dir::Setting{String} = Default("/opt/julia")
 
     # the name of the Julia binary
-    julia_binary::String = "julia"
+    julia_binary::Setting{String} = Default("julia")
 
     # whether to launch Xvfb before starting Julia
-    xvfb::Bool = true
+    xvfb::Setting{Bool} = Default(true)
 
     # a list of CPUs to restrict the Julia process to (or empty if unconstrained).
     # if set, JULIA_CPU_THREADS will also be set to a number equaling the number of CPUs.
-    cpus::Vector{Int} = Int[]
+    cpus::Setting{Vector{Int}} = Default(Int[])
 
     # additional Julia arguments to pass to the process
-    julia_args::Cmd = ``
+    julia_args::Setting{Cmd} = Default(``)
 end
+
+# when requested, return the underlying value
+Base.getproperty(x::Configuration, field::Symbol) = getfield(x, field)[]
+
+ismodified(x::Configuration, field::Symbol) = getfield(x, field).modified
+
+# copy constructor that allows overriding specific fields
+function Configuration(cfg::Configuration; kwargs...)
+    kwargs = Dict(kwargs...)
+    merged_kwargs = Dict()
+    for field in fieldnames(Configuration)
+        merged_kwargs[field] = get(kwargs, field, getfield(cfg, field))
+    end
+    Configuration(; merged_kwargs...)
+end
+
+
+## package selection
 
 Base.@kwdef struct Package
     # source of the package; forwarded to PackageSpec
@@ -61,14 +103,4 @@ function package_spec_tuple(pkg::Package)
         end
     end
     spec
-end
-
-# copy constructor that allows overriding specific fields
-function Configuration(cfg::Configuration; kwargs...)
-    kwargs = Dict(kwargs...)
-    merged_kwargs = Dict()
-    for field in fieldnames(Configuration)
-        merged_kwargs[field] = get(kwargs, field, getfield(cfg, field))
-    end
-    Configuration(; merged_kwargs...)
 end

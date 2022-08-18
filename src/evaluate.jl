@@ -480,17 +480,21 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
 
     mounts = Dict{String,String}()
     env = Dict{String,String}()
-    if config.rr
+
+    status, reason, log, elapsed = if config.rr
         trace_dir = mktempdir()
         trace_file = joinpath(trace_dir, "$(pkg.name).tar.zst")
         mounts["/traces:rw"] = trace_dir
         env["PKGEVAL_RR"] = "true"
         haskey(ENV, "PKGEVAL_RR_BUCKET") ||
             @warn maxlog=1 "PKGEVAL_RR_BUCKET not set; will not be uploading rr traces"
-    end
 
-    status, reason, log, elapsed =
+        # extend the timeout to account for the rr record overhead
+        rr_config = Configuration(config; time_limit=config.time_limit*2)
+        sandboxed_script(rr_config, script, args; mounts, env, kwargs...)
+    else
         sandboxed_script(config, script, args; mounts, env, kwargs...)
+    end
     elapsed_str = "$(round(elapsed; digits=2))s"
 
     log *= "\n\n$('#'^80)\n# PkgEval teardown\n#\n\n"

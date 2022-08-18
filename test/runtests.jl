@@ -9,6 +9,35 @@ else
 end
 @testset "PkgEval using Julia $julia" begin
 
+@testset "Configuration" begin
+    # default object: nothing modified
+    x = Configuration()
+    for field in fieldnames(Configuration)
+        @test !ismodified(x, field)
+    end
+
+    # setting a field
+    y = Configuration(rr=!x.rr)         # make sure we pick a different value
+    @test ismodified(y, :rr)
+    for field in fieldnames(Configuration)
+        if field in [:rr]
+            continue
+        end
+        @test !ismodified(y, field)
+    end
+
+    # deriving a Configuration object
+    z = Configuration(y; xvfb=x.xvfb)   # test that using the same value also works
+    @test ismodified(z, :rr)
+    @test ismodified(z, :xvfb)
+    for field in fieldnames(Configuration)
+        if field in [:rr, :xvfb]
+            continue
+        end
+        @test !ismodified(z, field)
+    end
+end
+
 @testset "julia installation" begin
     config = Configuration(; julia)
 
