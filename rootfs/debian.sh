@@ -12,7 +12,7 @@ packages+=(curl ca-certificates)
 # essential tools
 packages+=(git unzip)
 # toolchain
-packages+=(build-essential gfortran pkg-config)
+packages+=(build-essential libatomic1 python gfortran perl wget m4 cmake pkg-config curl)
 
 function join_by { local IFS="$1"; shift; echo "$*"; }
 package_list=$(join_by , ${packages[@]})
