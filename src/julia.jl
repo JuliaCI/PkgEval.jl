@@ -186,8 +186,7 @@ function build_julia(_repo_path::String, config::Configuration)
 end
 
 function _install_julia(config::Configuration)
-    # TODO: better way to detect custom config settings
-    if isempty(config.buildflags) && config.buildcommands == "make install"
+    if can_use_binaries(config)
         # check if it's an official release
         dir = get_julia_release(config.julia)
         if dir !== nothing
@@ -204,7 +203,7 @@ function _install_julia(config::Configuration)
         repo_details = get_repo_details(repo)
         @debug "Julia $config.julia resolved to v$(repo_details.version), Git SHA $(repo_details.hash)"
 
-        if isempty(config.buildflags) && config.buildcommands == "make install"
+        if can_use_binaries(config)
             # see if we can download a build
             dir = get_julia_build(repo)
             if dir !== nothing
