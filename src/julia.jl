@@ -1,7 +1,6 @@
 import JSON
 import Downloads
 using Git: git
-using BinaryBuilder: DirectorySource, ExecutableProduct, build_tarballs
 using Base.BinaryPlatforms: Platform, triplet
 
 const VERSIONS_URL = "https://julialang-s3.julialang.org/bin/versions.json"
@@ -100,22 +99,31 @@ function get_julia_build(repo)
 end
 
 """
-    version = perform_julia_build(spec::String="master";
-                                  flags::Vector{String}=String[],
-                                  binary::String="julia")
+    install_dir = build_julia(repo_path, config)
 
-Check-out and build Julia at git reference `spec` using BinaryBuilder. Returns the path to
-a temporary directory where the build will be installed.
-
-The `flags` keyword argument will be used to populate `Make.user`, and afer the build
-finishes `binary` is expected to be found in the installation prefix.
+Build the Julia check-out at `repo_path` with the properties (build flags, command, and
+resulting Julia binary) from `config`.
 """
-function build_julia(repo_path::String;
-                     flags::Vector{String}=String[], binary::String="julia")
-    repo_details = get_repo_details(repo_path)
+function build_julia(_repo_path::String, config::Configuration)
+    repo_details = get_repo_details(_repo_path)
     println("Building Julia...")
 
-    # NOTE: for simplicity, we don't cache the build (we'd need to include the flags, etc)
+    # copy the repository so that we can mutate it (add Make.user, build in-place, etc)
+    repo_path = mktempdir()
+    cp(_repo_path, repo_path; force=true)
+
+    # Pre-populate the srccache and save the downloaded files
+    srccache = joinpath(download_dir, "srccache")
+    repo_srccache = joinpath(repo_path, "deps", "srccache")
+    cp(srccache, repo_srccache)
+    cd(repo_path) do
+        Base.run(ignorestatus(`make -C deps getall NO_GIT=1`))
+    end
+    for file in readdir(repo_srccache)
+        if !ispath(joinpath(srccache, file))
+            cp(joinpath(repo_srccache, file), joinpath(srccache, file))
+        end
+    end
 
     # Define a Make.user
     open("$repo_path/Make.user", "w") do io
@@ -137,80 +145,49 @@ function build_julia(repo_path::String;
             println(io, "JULIA_CPU_TARGET=$cpu_target")
         end
 
-        for flag in flags
+        println(io, "prefix=/install")
+
+        for flag in config.buildflags
             println(io, "override $flag")
         end
     end
 
-    # Collection of sources required to build julia
-    sources = [
-        DirectorySource(repo_path),
-    ]
-
-    # Pre-populate the srccache and save the downloaded files
-    srccache = joinpath(download_dir, "srccache")
-    repo_srccache = joinpath(repo_path, "deps", "srccache")
-    cp(srccache, repo_srccache)
-    cd(repo_path) do
-        Base.run(ignorestatus(`make -C deps getall NO_GIT=1`))
-    end
-    for file in readdir(repo_srccache)
-        if !ispath(joinpath(srccache, file))
-            cp(joinpath(repo_srccache, file), joinpath(srccache, file))
-        end
-    end
-
-    # Bash recipe for building across all platforms
+    # build and install Julia
+    install_dir = mktempdir()
+    build_config = Configuration(; xvfb=false)
+    mounts = Dict(
+        "/source:rw"    => repo_path,
+        "/install:rw"   => install_dir
+    )
     script = raw"""
-        cd $WORKSPACE/srcdir
-        mount -t devpts -o newinstance jrunpts /dev/pts
-        mount -o bind /dev/pts/ptmx /dev/ptmx
-
-        make -j${nproc}
+        set -ue
+        cd /source
+        cp LICENSE.md /install
 
         # prevent building documentation
         mkdir -p doc/_build/html/en
         touch doc/_build/html/en/index.html
 
-        make install -j${nproc}
-
-        cp LICENSE.md ${prefix}
-        contrib/fixup-libgfortran.sh ${prefix}/lib/julia
-        contrib/fixup-libstdc++.sh ${prefix}/lib ${prefix}/lib/julia
+        export MAKEFLAGS="-j$(nproc)"
+    """ * config.buildcommands * "\n" * raw"""
+        contrib/fixup-libgfortran.sh /install/lib/julia
+        contrib/fixup-libstdc++.sh /install/lib /install/lib/julia
     """
-
-    # These are the platforms we will build for by default, unless further
-    # platforms are passed in on the command line
-    platforms = [
-        Base.BinaryPlatforms.HostPlatform()
-    ]
-
-    # The products that we will ensure are always built
-    products = [
-        ExecutableProduct(binary, :julia)
-    ]
-
-    # Dependencies that must be installed before this package can be built
-    dependencies = []
-
-    # Build the tarballs and extract to a temporary directory
-    install_dir = mktempdir()
-    mktempdir() do dir
-        product_hashes = cd(dir) do
-            build_tarballs([], "julia", repo_details.version, sources,
-                           script, platforms, products, dependencies,
-                           preferred_gcc_version=v"7", skip_audit=true,
-                           verbose=isdebug(:binarybuilder))
-        end
-        filepath, _ = product_hashes[platforms[1]]
-        Pkg.unpack(filepath, install_dir)
+    try
+        sandboxed_cmd(build_config, `/bin/bash -c $script`; mounts)
+    catch err
+        rm(install_dir; recursive=true)
+        rethrow()
+    finally
+        rm(repo_path; recursive=true)
     end
 
     return install_dir
 end
 
 function _install_julia(config::Configuration)
-    if isempty(config.buildflags)
+    # TODO: better way to detect custom config settings
+    if isempty(config.buildflags) && config.buildcommands == "make install"
         # check if it's an official release
         dir = get_julia_release(config.julia)
         if dir !== nothing
@@ -227,7 +204,7 @@ function _install_julia(config::Configuration)
         repo_details = get_repo_details(repo)
         @debug "Julia $config.julia resolved to v$(repo_details.version), Git SHA $(repo_details.hash)"
 
-        if isempty(config.buildflags)
+        if isempty(config.buildflags) && config.buildcommands == "make install"
             # see if we can download a build
             dir = get_julia_build(repo)
             if dir !== nothing
@@ -236,7 +213,7 @@ function _install_julia(config::Configuration)
         end
 
         # perform a build
-        build_julia(repo; flags=config.buildflags, binary=config.julia_binary)
+        build_julia(repo, config)
     finally
         rm(repo; recursive=true)
     end
@@ -246,7 +223,7 @@ const julia_lock = ReentrantLock()
 const julia_cache = Dict()
 function install_julia(config::Configuration)
     lock(julia_lock) do
-        key = (config.julia, config.buildflags)
+        key = (config.julia, config.buildflags, config.buildcommands)
         dir = get(julia_cache, key, nothing)
         if dir === nothing || !isdir(dir)
             julia_cache[key] = _install_julia(config)

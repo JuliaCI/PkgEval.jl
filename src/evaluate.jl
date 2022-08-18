@@ -53,26 +53,28 @@ function get_compilecache(config::Configuration)
     end
 end
 
-"""
-    sandboxed_julia(config::Configuration, args=``; env=Dict(), mounts=Dict(), wait=true,
-                    stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
+sandboxed_julia(config::Configuration, args...; kwargs...) =
+    run_sandbox(config, setup_julia_sandbox, args...; kwargs...)
+sandboxed_cmd(config::Configuration, args...; kwargs...) =
+    run_sandbox(config, setup_generic_sandbox, args...; kwargs...)
 
-Run Julia inside of a sandbox, passing the given arguments `args` to it. The argument `wait`
-determines if the process will be waited on. Streams can be connected using the `stdin`,
-`stdout` and `sterr` arguments. Returns a `Process` object.
-
-Further customization is possible using the `env` arg, to set environment variables, and the
-`mounts` argument to mount additional directories.
 """
-function sandboxed_julia(config::Configuration, args=``; wait=true,
-                         stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
+    run_sandbox(config::Configuration, setup, args...; wait=true,
+                stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
+
+Run stuff in a sandbox. The actual sandbox command is set-up by calling `setup`, passing
+along arguments and keyword arguments that are not processed by this function.
+"""
+function run_sandbox(config::Configuration, setup, args...; wait=true,
+                     stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
     # XXX: even when preferred_executor() returns UnprivilegedUserNamespacesExecutor,
     #      sometimes a stray sudo happens at run time? no idea how.
     exe_typ = UnprivilegedUserNamespacesExecutor
     exe = exe_typ()
 
-    cmd = sandboxed_julia_cmd(config, exe, args; kwargs...)
-    proc = run(pipeline(cmd; stdin, stderr, stdout); wait)
+    sandbox_config, cmd = setup(config, args...; kwargs...)
+    sandbox_cmd = Sandbox.build_executor_command(exe, sandbox_config, cmd)
+    proc = run(pipeline(sandbox_cmd; stdin, stderr, stdout); wait)
 
     # TODO: introduce a --stats flag that has the sandbox trace and report on CPU, network, ... usage
 
@@ -92,38 +94,18 @@ function sandboxed_julia(config::Configuration, args=``; wait=true,
     return proc
 end
 
-# global Xvfb process for use by all containers
-const xvfb_lock = ReentrantLock()
-const xvfb_proc = Ref{Union{Base.Process,Nothing}}(nothing)
-
-function sandboxed_julia_cmd(config::Configuration, executor, args=``;
+function setup_julia_sandbox(config::Configuration, args=``;
                              env::Dict{String,String}=Dict{String,String}(),
                              mounts::Dict{String,String}=Dict{String,String}())
-    # split mounts into read-only and read-write maps
-    read_only_maps = Dict{String,String}()
-    read_write_maps = Dict{String,String}()
-    for (dst, src) in mounts
-        if endswith(dst, ":ro")
-            read_only_maps[dst[begin:end-3]] = src
-        else
-            read_write_maps[dst] = src
-        end
-    end
-
-    rootfs = create_rootfs(config)
     install = install_julia(config)
     registry = get_registry(config)
-    read_only_maps = merge(read_only_maps, Dict(
-        "/"                                         => rootfs,
-        config.julia_install_dir                    => install,
-        "/usr/local/share/julia/registries/General" => registry
-    ))
-
     packages = joinpath(storage_dir, "packages")
     artifacts = joinpath(storage_dir, "artifacts")
-    read_write_maps = merge(read_write_maps, Dict(
-        joinpath(config.home, ".julia", "packages")     => packages,
-        joinpath(config.home, ".julia", "artifacts")    => artifacts
+    mounts = merge(mounts, Dict(
+        "$(config.julia_install_dir):ro"                    => install,
+        "/usr/local/share/julia/registries/General:ro"      => registry,
+        joinpath(config.home, ".julia", "packages")*":rw"   => packages,
+        joinpath(config.home, ".julia", "artifacts")*":rw"  => artifacts
     ))
 
     env = merge(env, Dict(
@@ -136,7 +118,43 @@ function sandboxed_julia_cmd(config::Configuration, executor, args=``;
         # NOTE: putting a registry in a non-primary depot entry makes Pkg use it as-is,
         #       without needing to set Pkg.UPDATED_REGISTRY_THIS_SESSION.
         "JULIA_DEPOT_PATH" => "::/usr/local/share/julia",
+    ))
 
+    cmd = `$(config.julia_install_dir)/bin/$(config.julia_binary)`
+
+    # restrict resource usage
+    if !isempty(config.cpus)
+        cmd = `/usr/bin/taskset --cpu-list $(join(config.cpus, ',')) $cmd`
+        env["JULIA_CPU_THREADS"] = string(length(config.cpus)) # JuliaLang/julia#35787
+    end
+
+    setup_generic_sandbox(config, `$cmd $(config.julia_args) $args`; env, mounts)
+end
+
+# global Xvfb process for use by all containers
+const xvfb_lock = ReentrantLock()
+const xvfb_proc = Ref{Union{Base.Process,Nothing}}(nothing)
+
+function setup_generic_sandbox(config::Configuration, cmd::Cmd;
+                               env::Dict{String,String}=Dict{String,String}(),
+                               mounts::Dict{String,String}=Dict{String,String}())
+    # split mounts into read-only and read-write maps
+    read_only_maps = Dict{String,String}()
+    read_write_maps = Dict{String,String}()
+    for (dst, src) in mounts
+        if endswith(dst, ":ro")
+            read_only_maps[dst[begin:end-3]] = src
+        elseif endswith(dst, ":rw")
+            read_write_maps[dst[begin:end-3]] = src
+        else
+            error("Unknown type of mount ('$dst' -> '$src'), please append :ro or :rw")
+        end
+    end
+
+    rootfs = create_rootfs(config)
+    read_only_maps["/"] = rootfs
+
+    env = merge(env, Dict(
         # some essential env vars (since we don't run from a shell)
         "PATH" => "/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin",
         "HOME" => config.home,
@@ -164,14 +182,6 @@ function sandboxed_julia_cmd(config::Configuration, executor, args=``;
         read_write_maps["/tmp/.X11-unix"] = "/tmp/.X11-unix"
     end
 
-    cmd = `$(config.julia_install_dir)/bin/$(config.julia_binary)`
-
-    # restrict resource usage
-    if !isempty(config.cpus)
-        cmd = `/usr/bin/taskset --cpu-list $(join(config.cpus, ',')) $cmd`
-        env["JULIA_CPU_THREADS"] = string(length(config.cpus)) # JuliaLang/julia#35787
-    end
-
     # NOTE: we use persist=true so that modifications to the rootfs are backed by
     #       actual storage on the host, and not just the (1G hard-coded) tmpfs,
     #       because some packages like to generate a lot of data during testing.
@@ -179,7 +189,7 @@ function sandboxed_julia_cmd(config::Configuration, executor, args=``;
     sandbox_config = SandboxConfig(read_only_maps, read_write_maps, env;
                                    config.uid, config.gid, pwd=config.home, persist=true,
                                    verbose=isdebug(:sandbox))
-    Sandbox.build_executor_command(executor, sandbox_config, `$cmd $(config.julia_args) $args`)
+    return sandbox_config, cmd
 end
 
 function process_children(pid)
@@ -222,8 +232,6 @@ function sandboxed_script(config::Configuration, script::String, args=``;
                           mounts::Dict{String,String}=Dict{String,String}(), kwargs...)
     @assert config.log_limit > 0
 
-    cmd = `--eval 'eval(Meta.parse(read(stdin,String)))' $args`
-
     env = merge(env, Dict(
         # we're likely running many instances, so avoid overusing the CPU
         "JULIA_PKG_PRECOMPILE_AUTO" => "0",
@@ -241,16 +249,16 @@ function sandboxed_script(config::Configuration, script::String, args=``;
     shared_compilecache = get_compilecache(config)
     local_compilecache = mktempdir()
     mounts = merge(mounts, Dict(
-        "/usr/local/share/julia/compiled:ro"            => shared_compilecache,
-        joinpath(config.home, ".julia", "compiled")     => local_compilecache
+        "/usr/local/share/julia/compiled:ro"                => shared_compilecache,
+        joinpath(config.home, ".julia", "compiled")*":rw"   => local_compilecache
     ))
 
     t0 = time()
     input = Pipe()
     output = Pipe()
-    proc = sandboxed_julia(config, cmd; env, mounts, wait=false,
-                           stdout=output, stderr=output, stdin=input,
-                           kwargs...)
+    proc = sandboxed_julia(config,`--eval 'eval(Meta.parse(read(stdin,String)))' $args`;
+                           wait=false, stdout=output, stderr=output, stdin=input,
+                           env, mounts, kwargs...)
     close(output.in)
 
     # pass the script over standard input to avoid exceeding max command line size,
@@ -475,7 +483,7 @@ function sandboxed_test(config::Configuration, pkg::Package; kwargs...)
     if config.rr
         trace_dir = mktempdir()
         trace_file = joinpath(trace_dir, "$(pkg.name).tar.zst")
-        mounts["/traces"] = trace_dir
+        mounts["/traces:rw"] = trace_dir
         env["PKGEVAL_RR"] = "true"
         haskey(ENV, "PKGEVAL_RR_BUCKET") ||
             @warn maxlog=1 "PKGEVAL_RR_BUCKET not set; will not be uploading rr traces"
@@ -638,8 +646,8 @@ function compiled_test(config::Configuration, pkg::Package; kwargs...)
     project_dir = mktempdir()
     sysimage_dir = mktempdir()
     mounts = Dict(
-        dirname(sysimage_path)  => sysimage_dir,
-        project_path            => project_dir)
+        dirname(sysimage_path)*":rw"    => sysimage_dir,
+        project_path*":rw"              => project_dir)
 
     compile_config = Configuration(config;
         julia_args = `$(config.julia_args) --project=$project_path`,
