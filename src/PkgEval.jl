@@ -14,6 +14,7 @@ include("types.jl")
 include("registry.jl")
 include("rootfs.jl")
 include("julia.jl")
+include("sandbox.jl")
 include("evaluate.jl")
 include("utils.jl")
 
