@@ -66,9 +66,11 @@ Base.@kwdef struct Configuration
 end
 
 # when requested, return the underlying value
-Base.getproperty(x::Configuration, field::Symbol) = getfield(x, field)[]
+Base.getproperty(cfg::Configuration, field::Symbol) = getfield(cfg, field)[]
 
-ismodified(x::Configuration, field::Symbol) = getfield(x, field).modified
+ismodified(cfg::Configuration, field::Symbol) = getfield(cfg, field).modified
+can_use_binaries(cfg::Configuration) =
+    !ismodified(cfg, :buildflags) && !ismodified(cfg, :buildcommands)
 
 # copy constructor that allows overriding specific fields
 function Configuration(cfg::Configuration; kwargs...)
