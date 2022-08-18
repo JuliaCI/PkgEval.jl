@@ -100,18 +100,12 @@ function get_julia_build(repo)
 end
 
 """
-    version = perform_julia_build(spec::String="master";
-                                  flags::Vector{String}=String[],
-                                  binary::String="julia")
+    install_dir = build_julia(repo_path, config)
 
-Check-out and build Julia at git reference `spec` using BinaryBuilder. Returns the path to
-a temporary directory where the build will be installed.
-
-The `flags` keyword argument will be used to populate `Make.user`, and afer the build
-finishes `binary` is expected to be found in the installation prefix.
+Build the Julia check-out at `repo_path` with the properties (build flags, command, and
+resulting Julia binary) from `config`.
 """
-function build_julia(repo_path::String;
-                     flags::Vector{String}=String[], binary::String="julia")
+function build_julia(repo_path::String, config::Configuration)
     repo_details = get_repo_details(repo_path)
     println("Building Julia...")
 
@@ -137,7 +131,7 @@ function build_julia(repo_path::String;
             println(io, "JULIA_CPU_TARGET=$cpu_target")
         end
 
-        for flag in flags
+        for flag in config.buildflags
             println(io, "override $flag")
         end
     end
@@ -160,21 +154,21 @@ function build_julia(repo_path::String;
         end
     end
 
-    # Bash recipe for building across all platforms
+    # Bash recipe for building Julia
     script = raw"""
         cd $WORKSPACE/srcdir
+        cp LICENSE.md ${prefix}
+
+        # set-up a pseudo terminal
         mount -t devpts -o newinstance jrunpts /dev/pts
         mount -o bind /dev/pts/ptmx /dev/ptmx
-
-        make -j${nproc}
 
         # prevent building documentation
         mkdir -p doc/_build/html/en
         touch doc/_build/html/en/index.html
 
-        make install -j${nproc}
-
-        cp LICENSE.md ${prefix}
+        export MAKEFLAGS="-j${nproc}"
+    """ * config.buildcommands * "\n" * raw"""
         contrib/fixup-libgfortran.sh ${prefix}/lib/julia
         contrib/fixup-libstdc++.sh ${prefix}/lib ${prefix}/lib/julia
     """
@@ -187,7 +181,7 @@ function build_julia(repo_path::String;
 
     # The products that we will ensure are always built
     products = [
-        ExecutableProduct(binary, :julia)
+        ExecutableProduct(config.julia_binary, :julia)
     ]
 
     # Dependencies that must be installed before this package can be built
@@ -210,7 +204,8 @@ function build_julia(repo_path::String;
 end
 
 function _install_julia(config::Configuration)
-    if isempty(config.buildflags)
+    # TODO: better way to detect custom config settings
+    if isempty(config.buildflags) && config.buildcommands == "make install"
         # check if it's an official release
         dir = get_julia_release(config.julia)
         if dir !== nothing
@@ -227,7 +222,7 @@ function _install_julia(config::Configuration)
         repo_details = get_repo_details(repo)
         @debug "Julia $config.julia resolved to v$(repo_details.version), Git SHA $(repo_details.hash)"
 
-        if isempty(config.buildflags)
+        if isempty(config.buildflags) && config.buildcommands == "make install"
             # see if we can download a build
             dir = get_julia_build(repo)
             if dir !== nothing
@@ -236,7 +231,7 @@ function _install_julia(config::Configuration)
         end
 
         # perform a build
-        build_julia(repo; flags=config.buildflags, binary=config.julia_binary)
+        build_julia(repo, config)
     finally
         rm(repo; recursive=true)
     end
@@ -246,7 +241,7 @@ const julia_lock = ReentrantLock()
 const julia_cache = Dict()
 function install_julia(config::Configuration)
     lock(julia_lock) do
-        key = (config.julia, config.buildflags)
+        key = (config.julia, config.buildflags, config.buildcommands)
         dir = get(julia_cache, key, nothing)
         if dir === nothing || !isdir(dir)
             julia_cache[key] = _install_julia(config)

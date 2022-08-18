@@ -4,6 +4,7 @@ Base.@kwdef struct Configuration
     # Julia properties
     julia::String = "nightly"
     buildflags::Vector{String} = String[]
+    buildcommands::String="make install"
 
     # registry properties
     registry::String = "master"
