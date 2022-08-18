@@ -1,6 +1,6 @@
 #!/bin/bash -uxe
 
-version="buster"
+version="bullseye"
 date=$(date +%Y%m%d)
 
 rootfs=$(mktemp --directory --tmpdir="/tmp")
@@ -12,7 +12,7 @@ packages+=(curl ca-certificates)
 # essential tools
 packages+=(git unzip)
 # toolchain
-packages+=(build-essential libatomic1 python gfortran perl wget m4 cmake pkg-config curl)
+packages+=(build-essential libatomic1 python3 gfortran perl wget m4 cmake pkg-config curl patchelf)
 
 function join_by { local IFS="$1"; shift; echo "$*"; }
 package_list=$(join_by , ${packages[@]})
