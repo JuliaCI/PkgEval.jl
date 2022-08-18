@@ -1,6 +1,6 @@
 module PkgEval
 
-using Pkg
+using Pkg, LazyArtifacts
 import Pkg.TOML
 
 import Scratch: @get_scratch!
