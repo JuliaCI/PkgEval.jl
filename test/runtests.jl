@@ -1,7 +1,7 @@
 using PkgEval
 using Test
 
-julia = get(ENV, "JULIA", string(VERSION))
+julia = get(ENV, "JULIA", "v"*string(VERSION))
 julia_release = if contains(julia, r"^v\d")
     parse(VersionNumber, julia)
 else
@@ -39,9 +39,9 @@ buildflags = get(ENV, "BUILDFLAGS", "")
     end
 end
 
-config_kwargs = Dict(:julia => julia)
+config_kwargs = Dict{Symbol,Any}(:julia => julia)
 if !isempty(buildflags)
-    config_kwargs[:buildflags] = split(buildflags)
+    config_kwargs[:buildflags] = String[split(buildflags)...]
 end
 config = Configuration(; config_kwargs...)
 
