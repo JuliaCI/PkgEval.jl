@@ -50,7 +50,10 @@ shell:
 ```julia
 julia> using PkgEval
 
-julia> config = Configuration(; julia="1.7");
+julia> config = Configuration()
+PkgEval configuration(
+  ...
+)
 
 julia> PkgEval.sandboxed_julia(config)
 
@@ -58,11 +61,20 @@ julia> PkgEval.sandboxed_julia(config)
   (_)     | (_) (_)    |
    _ _   _| |_  __ _   |  Type "?" for help, "]?" for Pkg help.
   | | | | | | |/ _` |  |
-  | | |_| | | | (_| |  |  Version 1.7.0 (2021-11-30)
- _/ |\__'_|_|_|\__'_|  |  Official https://julialang.org/ release
+  | | |_| | | | (_| |  |  Version 1.9.0-DEV.1163 (2022-08-21)
+ _/ |\__'_|_|_|\__'_|  |  Commit 696f7d3dfe1 (1 day old master)
 |__/                   |
 
 julia> # we're in the PkgEval sandbox here
 ```
 
-Now you can install, load and test your package.
+Now you can install, load and test your package. This will, by default, use a nightly build
+of Julia. If you want PkgEval.jl to compile Julia, e.g. to test a specific version, create
+a Configuration instance as such:
+
+```julia
+julia> config = Configuration(julia="master",
+                              buildflags=["JULIA_CPU_TARGET=native", "JULIA_PRECOMPILE=0"])
+
+# NOTE: buildflags are specified to speed-up the build
+```
