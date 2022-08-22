@@ -7,6 +7,7 @@ julia_release = if contains(julia, r"^v\d")
 else
     nothing
 end
+buildflags = get(ENV, "BUILDFLAGS", nothing)
 @testset "PkgEval using Julia $julia" begin
 
 @testset "Configuration" begin
@@ -38,9 +39,13 @@ end
     end
 end
 
-@testset "julia installation" begin
-    config = Configuration(; julia)
+config_kwargs = Dict(:julia => julia)
+if buildflags !== nothing
+    config_kwargs[:buildflags] = split(buildflags)
+end
+config = Configuration(; config_kwargs...)
 
+@testset "julia installation" begin
     let
         p = Pipe()
         close(p.in)
@@ -60,7 +65,7 @@ end
 
 @testset "package installation" begin
     # by name
-    let results = evaluate([Configuration(; julia)],
+    let results = evaluate([config],
                            [Package(; name="Example")])
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
@@ -69,7 +74,7 @@ end
     end
 
     # specifying a version
-    let results = evaluate([Configuration(; julia)],
+    let results = evaluate([config],
                            [Package(; name="Example", version=v"0.5.3")])
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
@@ -78,7 +83,7 @@ end
     end
 
     # specifying a revision
-    let results = evaluate([Configuration(; julia)],
+    let results = evaluate([config],
                            [Package(; name="Example", rev="master")])
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
@@ -87,7 +92,7 @@ end
     end
 
     # specifying the URL
-    let results = evaluate([Configuration(; julia)],
+    let results = evaluate([config],
                            [Package(; name="Example", url="https://github.com/JuliaLang/Example.jl")])
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
@@ -98,14 +103,14 @@ end
 
 @testset "time and output limits" begin
     # timeouts
-    let results = evaluate([Configuration(; julia, time_limit=0.1)],
+    let results = evaluate([Configuration(; time_limit=0.1, config_kwargs...)],
                            [Package(; name="Example")])
         @test size(results, 1) == 1
         @test results[1, :status] == :kill && results[1, :reason] == :time_limit
     end
 
     # log limit
-    let results = evaluate([Configuration(; julia, log_limit=1)],
+    let results = evaluate([Configuration(; log_limit=1, config_kwargs...)],
                            [Package(; name="Example")])
         @test size(results, 1) == 1
         @test results[1, :status] == :kill && results[1, :reason] == :log_limit
@@ -117,7 +122,7 @@ end
     package_names = ["TimerOutputs", "Crayons", "Example", "Gtk"]
     packages = [Package(; name) for name in package_names]
 
-    results = evaluate([Configuration(; julia)], packages)
+    results = evaluate([config], packages)
     if julia_release !== nothing
         @test all(results.status .== :ok)
         for result in eachrow(results)
@@ -127,8 +132,8 @@ end
 end
 
 @testset "PackageCompiler" begin
-    results = evaluate(Dict("regular"  => Configuration(; julia),
-                            "compiled" => Configuration(; julia, compiled=true)),
+    results = evaluate(Dict("regular"  => Configuration(; config_kwargs...),
+                            "compiled" => Configuration(; config_kwargs..., compiled=true)),
                        [Package(; name="Example")])
     @test size(results, 1) == 2
     for result in eachrow(results)
@@ -146,7 +151,7 @@ end
 end
 
 haskey(ENV, "CI") || @testset "rr" begin
-    results = evaluate([Configuration(; julia, rr=true)],
+    results = evaluate([Configuration(; rr=true, config_kwargs...)],
                        [Package(; name="Example")])
     @test all(results.status .== :ok)
     @test contains(results[1, :log], "BugReporting")

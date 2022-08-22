@@ -6,7 +6,7 @@ on:
   pull_request:
 jobs:
   test:
-    name: Julia ${{ matrix.version }} - ${{ matrix.build_spec }}
+    name: Julia ${{ matrix.version }} - ${{ matrix.test_julia }} ${{ matrix.test_buildflags }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -17,14 +17,15 @@ jobs:
           - ubuntu-latest
         arch:
           - x64
-        build_spec:
-          - v1.7.0                                    # release from versions.json
-          - nightly                                   # special release
-          - master                                    # directly from Git, likely built by CI
-          - 917b11e928612b5352c4e157b38759eb11aa9152  # directly from Git, unlikely built by CI
+        include:
+          - test_julia: "v1.7.0"    # release from versions.json
+          - test_julia: "nightly"   # special release
+          - test_julia: "master"    # directly from Git, forcing a build
+            test_buildflags: "JULIA_PRECOMPILE=0 JULIA_CPU_TARGET=native"
     env:
       JULIA_DEBUG: PkgEval
-      JULIA: ${{ matrix.build_spec }}
+      JULIA: ${{ matrix.test_julia }}
+      BUILDFLAGS: ${{ matrix.test_buildflags }}
     steps:
       - uses: actions/checkout@v2
       - uses: julia-actions/setup-julia@v1
