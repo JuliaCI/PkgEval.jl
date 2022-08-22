@@ -29,6 +29,10 @@ Base.@kwdef struct Configuration
     julia::Setting{String} = Default("nightly")
     buildflags::Setting{Vector{String}} = Default(String[])
     buildcommands::Setting{String} = Default("make install")
+    julia_install_dir::Setting{String} = Default("/opt/julia")
+    julia_binary::Setting{String} = Default("julia")
+    ## additional Julia arguments to pass to the process
+    julia_args::Setting{Cmd} = Default(``)
 
     # registry properties
     registry::Setting{String} = Default("master")
@@ -41,6 +45,11 @@ Base.@kwdef struct Configuration
     group::Setting{String} = Default("pkgeval")
     home::Setting{String} = Default("/home/pkgeval")
 
+    # execution properties
+    ## a list of CPUs to restrict the Julia process to (or empty if unconstrained).
+    ## if set, JULIA_CPU_THREADS will also be set to a number equaling the number of CPUs.
+    cpus::Setting{Vector{Int}} = Default(Int[])
+    xvfb::Setting{Bool} = Default(true)
     rr::Setting{Bool} = Default(false)
     depwarn::Setting{Bool} = Default(false)
     log_limit::Setting{Int} = Default(2^20) # 1 MB
@@ -48,21 +57,37 @@ Base.@kwdef struct Configuration
     compiled::Setting{Bool} = Default(false)
     compile_time_limit::Setting{Float64} = Default(30*60) # 30 mins
 
-    # the directory where Julia is installed in the run-time environment
-    julia_install_dir::Setting{String} = Default("/opt/julia")
+end
 
-    # the name of the Julia binary
-    julia_binary::Setting{String} = Default("julia")
+function Base.show(io::IO, cfg::Configuration)
+    function show_setting(field)
+        setting = getfield(cfg, Symbol(field))
+        print(io, "  - $field: ")
+        if get(io, :color, false)
+            Base.printstyled(io, setting[]; color=setting.modified ? :red : :green)
+        else
+            print(io, setting[], " (", setting.modified ? "modified" : "default", ")")
+        end
+        println(io)
+    end
+    println(io, "PkgEval configuration(")
 
-    # whether to launch Xvfb before starting Julia
-    xvfb::Setting{Bool} = Default(true)
+    println(io, "  # Julia properties")
+    show_setting.(["julia", "buildflags", "buildcommands", "julia_install_dir", "julia_binary", "julia_args"])
+    println(io)
 
-    # a list of CPUs to restrict the Julia process to (or empty if unconstrained).
-    # if set, JULIA_CPU_THREADS will also be set to a number equaling the number of CPUs.
-    cpus::Setting{Vector{Int}} = Default(Int[])
+    println(io, "  # Registry properties")
+    show_setting.(["registry"])
+    println(io)
 
-    # additional Julia arguments to pass to the process
-    julia_args::Setting{Cmd} = Default(``)
+    println(io, "  # Rootfs properties")
+    show_setting.(["distro", "uid", "user", "gid", "group", "home"])
+    println(io)
+
+    println(io, "  # Execution properties")
+    show_setting.(["cpus", "xvfb", "rr", "depwarn", "log_limit", "time_limit", "compiled", "compile_time_limit"])
+
+    print(io, ")")
 end
 
 # when requested, return the underlying value
