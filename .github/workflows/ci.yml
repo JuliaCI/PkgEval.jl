@@ -18,10 +18,12 @@ jobs:
           - ubuntu-latest
         arch:
           - x64
+        test_julia:
+          - "v1.8.0"              # release from versions.json
+          - "nightly"             # special release
+          - "master"              # directly from Git
         include:
-          - test_julia: "v1.8.0"    # release from versions.json
-          - test_julia: "nightly"   # special release
-          - test_julia: "master"    # directly from Git, forcing a build
+          - test_julia: "master"  # force a build
             test_buildflags: "JULIA_PRECOMPILE=0 JULIA_CPU_TARGET=native"
     env:
       JULIA_DEBUG: PkgEval
