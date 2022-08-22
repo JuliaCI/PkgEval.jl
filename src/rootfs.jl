@@ -3,7 +3,7 @@ using LazyArtifacts: @artifact_str
 lazy_artifact(x) = @artifact_str(x)
 
 function _create_rootfs(config::Configuration)
-    base = lazy_artifact(config.distro)
+    base = lazy_artifact(config.rootfs)
 
     # a bare rootfs isn't usable out-of-the-box
     derived = mktempdir()
@@ -34,7 +34,7 @@ const rootfs_lock = ReentrantLock()
 const rootfs_cache = Dict()
 function create_rootfs(config::Configuration)
     lock(rootfs_lock) do
-        key = (config.distro, config.uid, config.user, config.gid, config.group, config.home)
+        key = (config.rootfs, config.uid, config.user, config.gid, config.group, config.home)
         dir = get(rootfs_cache, key, nothing)
         if dir === nothing || !isdir(dir)
             rootfs_cache[key] = _create_rootfs(config)

@@ -38,7 +38,7 @@ Base.@kwdef struct Configuration
     registry::Setting{String} = Default("master")
 
     # rootfs properties
-    distro::Setting{String} = Default("debian")
+    rootfs::Setting{String} = Default("debian")
     uid::Setting{Int} = Default(1000)
     user::Setting{String} = Default("pkgeval")
     gid::Setting{Int} = Default(1000)
@@ -81,7 +81,7 @@ function Base.show(io::IO, cfg::Configuration)
     println(io)
 
     println(io, "  # Rootfs properties")
-    show_setting.(["distro", "uid", "user", "gid", "group", "home"])
+    show_setting.(["rootfs", "uid", "user", "gid", "group", "home"])
     println(io)
 
     println(io, "  # Execution properties")
