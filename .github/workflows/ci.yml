@@ -24,7 +24,7 @@ jobs:
           - "master"              # directly from Git
         include:
           - test_julia: "master"  # force a build
-            test_buildflags: "JULIA_PRECOMPILE=0 JULIA_CPU_TARGET=native"
+            test_buildflags: "JULIA_CPU_TARGET=native"
     env:
       JULIA_DEBUG: PkgEval
       JULIA: ${{ matrix.test_julia }}
