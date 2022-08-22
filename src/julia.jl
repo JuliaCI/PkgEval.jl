@@ -98,6 +98,22 @@ function get_julia_build(repo)
     end
 end
 
+# to get closer to CI-generated binaries, use a multiversioned build
+const default_cpu_target = if Sys.ARCH == :x86_64
+    "generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)"
+elseif Sys.ARCH == :i686
+    "pentium4;sandybridge,-xsaveopt,clone_all"
+elseif Sys.ARCH == :armv7l
+    "armv7-a;armv7-a,neon;armv7-a,neon,vfp4"
+elseif Sys.ARCH == :aarch64
+    "generic;cortex-a57;thunderx2t99;carmel"
+elseif Sys.ARCH == :powerpc64le
+    "pwr8"
+else
+    @warn "Cannot determine JULIA_CPU_TARGET for unknown architecture $(Sys.ARCH)"
+    ""
+end
+
 """
     install_dir = build_julia(repo_path, config)
 
@@ -127,28 +143,14 @@ function build_julia(_repo_path::String, config::Configuration)
 
     # Define a Make.user
     open("$repo_path/Make.user", "w") do io
-        cpu_target = if Sys.ARCH == :x86_64
-            "generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)"
-        elseif Sys.ARCH == :i686
-            "pentium4;sandybridge,-xsaveopt,clone_all"
-        elseif Sys.ARCH == :armv7l
-            "armv7-a;armv7-a,neon;armv7-a,neon,vfp4"
-        elseif Sys.ARCH == :aarch64
-            "generic;cortex-a57;thunderx2t99;carmel"
-        elseif Sys.ARCH == :powerpc64le
-            "pwr8"
-        else
-            @warn "Cannot determine JULIA_CPU_TARGET for unknown architecture $(Sys.ARCH)"
-            nothing
-        end
-        if cpu_target !== nothing
-            println(io, "JULIA_CPU_TARGET=$cpu_target")
-        end
-
         println(io, "prefix=/install")
 
         for flag in config.buildflags
             println(io, "override $flag")
+        end
+
+        if !any(startswith("JULIA_CPU_TARGET"), config.buildflags)
+            println(io, "JULIA_CPU_TARGET=$default_cpu_target")
         end
     end
 
