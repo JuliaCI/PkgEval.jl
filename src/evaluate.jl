@@ -43,7 +43,7 @@ const compiled_cache = Dict()
 function get_compilecache(config::Configuration)
     lock(compiled_lock) do
         key = (config.julia, config.buildflags,
-               config.distro, config.uid, config.user, config.gid, config.group, config.home)
+               config.rootfs, config.uid, config.user, config.gid, config.group, config.home)
         dir = get(compiled_cache, key, nothing)
         if dir === nothing || !isdir(dir)
             compiled_cache[key] = mktempdir()
@@ -520,7 +520,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package; kwargs...)
         rr = false,
         # discover package relocatability issues by compiling in a different environment
         julia_install_dir="/usr/local/julia",
-        distro="arch",
+        rootfs="arch",
         user="user",
         group="group",
         home="/home/user",
