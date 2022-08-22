@@ -7,7 +7,7 @@ julia_release = if contains(julia, r"^v\d")
 else
     nothing
 end
-buildflags = get(ENV, "BUILDFLAGS", nothing)
+buildflags = get(ENV, "BUILDFLAGS", "")
 @testset "PkgEval using Julia $julia" begin
 
 @testset "Configuration" begin
@@ -40,7 +40,7 @@ buildflags = get(ENV, "BUILDFLAGS", nothing)
 end
 
 config_kwargs = Dict(:julia => julia)
-if buildflags !== nothing
+if !isempty(buildflags)
     config_kwargs[:buildflags] = split(buildflags)
 end
 config = Configuration(; config_kwargs...)
