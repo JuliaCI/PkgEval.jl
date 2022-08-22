@@ -44,6 +44,7 @@ if !isempty(buildflags)
     config_kwargs[:buildflags] = String[split(buildflags)...]
 end
 config = Configuration(; config_kwargs...)
+@info sprint(io->print(io, config))
 
 @testset "julia installation" begin
     let
