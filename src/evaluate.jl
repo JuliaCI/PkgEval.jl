@@ -391,7 +391,8 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
                 occursin("Could not resolve host", log) ||
                 occursin("Resolving timed out after", log) ||
                 occursin("Could not download", log) ||
-                occursin(r"Error: HTTP/\d \d+", log)
+                occursin(r"Error: HTTP/\d \d+", log) ||
+                occursin("Temporary failure in name resolution", log)
             :network
         elseif occursin("ERROR: LoadError: syntax", log)
             :syntax
