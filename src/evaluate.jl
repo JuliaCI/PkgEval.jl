@@ -767,18 +767,9 @@ function _evaluate(jobs; ninstances::Integer=Sys.CPU_THREADS)
                             continue
                         end
 
-                        # perform an initial run
+                        # test the package
                         config′ = Configuration(config; cpus=[i-1])
                         pkg_version, status, reason, log = evaluate_test(config′, pkg)
-
-                        # certain packages are known to have flaky tests; retry them
-                        for j in 1:pkg.retries
-                            if status == :fail && reason == :test_failures
-                                times[i] = now()
-                                pkg_version, status, reason, log =
-                                    evaluate_test(config′, pkg)
-                            end
-                        end
 
                         duration = (now()-times[i]) / Millisecond(1000)
                         push!(result, [config_name, pkg.name, pkg_version,

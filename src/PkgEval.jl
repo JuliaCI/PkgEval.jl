@@ -8,7 +8,6 @@ download_dir = ""
 storage_dir = ""
 
 skip_list = String[]
-retry_list = String[]
 
 include("types.jl")
 include("registry.jl")
@@ -29,7 +28,6 @@ function __init__()
     # read Packages.toml
     packages = TOML.parsefile(joinpath(dirname(@__DIR__), "Packages.toml"))
     global skip_list = get(packages, "skip", String[])
-    global retry_list = get(packages, "retry", String[])
 end
 
 end # module

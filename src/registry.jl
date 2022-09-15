@@ -1,9 +1,9 @@
 """
-    registry_packages(config::Configuration; [retries::Integer=2])::Vector{Package}
+    registry_packages(config::Configuration)::Vector{Package}
 
 Read all packages from a registry and return them as a vector of Package structs.
 """
-function registry_packages(config::Configuration; retries::Integer=2)
+function registry_packages(config::Configuration)
     packages = Package[]
 
     # NOTE: we handle Registry check-outs ourselves, so can't use Pkg APIs
@@ -13,9 +13,7 @@ function registry_packages(config::Configuration; retries::Integer=2)
         path = joinpath(registry, string(char), entry)
         isdir(path) || continue
         # TODO: read package compat info so that we can avoid testing uninstallable packages
-        push!(packages,
-              Package(name=entry,
-                      retries=(entry in retry_list ? retries : 0)))
+        push!(packages, Package(name=entry))
     end
     return packages
 end
