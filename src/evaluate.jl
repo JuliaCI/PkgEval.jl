@@ -585,20 +585,61 @@ The `ninstances` keyword argument determines how many packages are tested in par
 Refer to `evaluate_test`[@ref] and `sandboxed_julia`[@ref] for more possible
 keyword arguments.
 """
-function evaluate(configs::Dict{String,Configuration},
-                  packages::Vector{Package}=Package[];
-                  ninstances::Integer=Sys.CPU_THREADS)
-    # here we deal with managing execution: spawning workers, output, result I/O, etc
+function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}=Package[];
+                  ninstances::Integer=Sys.CPU_THREADS, retry::Bool=true)
 
     if isempty(packages)
         registries = unique(config->config.registry, values(configs))
         packages = intersect(map(registry_packages, registries)...)
     end
 
-    jobs = vec(collect(Iterators.product(keys(configs), packages)))
-
+    jobs = Any[]
+    for (config_name, config) in configs, package in packages
+        push!(jobs, (config_name, config, package))
+    end
     # use a random test order to (hopefully) get a more reasonable ETA
     shuffle!(jobs)
+
+    results = _evaluate(jobs)
+
+    # if requested, retry failures
+    if retry
+        failed_results = filter(results) do row
+            row.status == :fail || row.status == :kill
+        end
+        other_results = filter(results) do row
+            row.status != :fail && row.status != :kill
+        end
+
+        # determine jobs to retry
+        retry_jobs = Any[]
+        for package in packages
+            failures = failed_results[failed_results.package .== package.name, :]
+            isempty(failures) && continue
+
+            # in case of a single config, we have nothing to compare again, so retry all
+            # failures. if we have multiple configs, only retry failures that didn't
+            # occur on all configurations.
+            if length(configs) == 1 || nrow(failures) != length(configs)
+                for row in eachrow(failures)
+                    push!(retry_jobs, (row.configuration, configs[row.configuration], package))
+                end
+            end
+        end
+
+        # retry and merge results
+        if length(retry_jobs) > 0
+            println("\nRetrying $(length(retry_jobs)) failed jobs...")
+            retry_results = _evaluate(retry_jobs)
+            results = vcat(other_results, retry_results)
+        end
+    end
+
+    return results
+end
+
+function _evaluate(jobs; ninstances::Integer=Sys.CPU_THREADS)
+    # here we deal with managing execution: spawning workers, output, result I/O, etc
 
     njobs = length(jobs)
     ninstances = min(njobs, ninstances)
@@ -663,8 +704,8 @@ function evaluate(configs::Dict{String,Configuration},
                 str = if job === nothing
                     " #$i: -------"
                 else
-                    config, pkg = job
-                    " #$i: $(pkg.name) @ $(config.julia) ($(runtimestr(times[i])))"
+                    config_name, pkg = job
+                    " #$i: $(pkg.name) @ $(config_name) ($(runtimestr(times[i])))"
                 end
                 if i%2 == 1 && i < ninstances
                     print(io, rpad(str, 50))
@@ -709,10 +750,9 @@ function evaluate(configs::Dict{String,Configuration},
             push!(all_workers, @async begin
                 try
                     while !isempty(jobs) && !done
-                        config_name, pkg = pop!(jobs)
-                        config = configs[config_name]
+                        config_name, config, pkg = pop!(jobs)
                         times[i] = now()
-                        running[i] = (config, pkg)
+                        running[i] = (config_name, pkg)
 
                         # should we even test this package?
                         if pkg.name in skip_list
