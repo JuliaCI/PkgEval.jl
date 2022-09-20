@@ -116,8 +116,6 @@ Base.@kwdef struct Package
     version::Union{Nothing,VersionNumber} = nothing
     url::Union{Nothing,String} = nothing
     rev::Union{Nothing,String} = nothing
-
-    retries::Int = 0
 end
 
 # convert a Package to a tuple that's Pkg.add'able
