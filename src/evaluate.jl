@@ -624,6 +624,9 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
                 for row in eachrow(failures)
                     push!(retry_jobs, (row.configuration, configs[row.configuration], package))
                 end
+            else
+                # don't lose track of this failure
+                append!(other_results, failures)
             end
         end
 
