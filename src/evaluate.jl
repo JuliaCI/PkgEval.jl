@@ -245,12 +245,9 @@ function evaluate_script(config::Configuration, script::String, args=``;
 
     # copy new local resources (packages, artifacts, ...) to shared storage
     lock(storage_lock) do
-        # make sure the installed packages are valid
-        fsck_failures = PkgFsck.fsck(depot_path=[storage_dir])
-        for fsck_failure in fsck_failures
-            @warn "Downloaded package is invalid" fsck_failure
-            rm(fsck_failure.local_path; recursive=true)
-        end
+        # we only want to cache absolutely clean package files
+        # (i.e., no build artifacts, possibly broken check-outs, etc)
+        clean_packages(registry, local_packages)
 
         rsync() do path
             for (src, dst) in [(local_packages, shared_packages),
@@ -265,6 +262,24 @@ function evaluate_script(config::Configuration, script::String, args=``;
     rm(local_compilecache; recursive=true)
 
     return status, reason, log, t1 - t0
+end
+
+function clean_packages(registry, packages)
+    registry_instance = Pkg.Registry.RegistryInstance(registry)
+    for (_, pkg) in registry_instance
+        pkginfo = Registry.registry_info(pkg)
+        for (v, vinfo) in pkginfo.version_info
+            tree_hash = vinfo.git_tree_sha1
+            for slug in (Base.version_slug(pkg.uuid, tree_hash),
+                         Base.version_slug(pkg.uuid, tree_hash, 4))
+                path = joinpath(packages, pkg.name, slug)
+                if ispath(path) && Base.SHA1(Pkg.GitTools.tree_hash(path)) != tree_hash
+                    println("\n\n\nremoving dirty package: $path\n\n\n")
+                    rm(path; recursive=true)
+                end
+            end
+        end
+    end
 end
 
 """

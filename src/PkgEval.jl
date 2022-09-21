@@ -10,8 +10,6 @@ const storage_lock = ReentrantLock()
 
 using rsync_jll: rsync
 
-import PkgFsck
-
 skip_list = String[]
 
 include("types.jl")
