@@ -274,7 +274,6 @@ function clean_packages(registry, packages)
                          Base.version_slug(pkg.uuid, tree_hash, 4))
                 path = joinpath(packages, pkg.name, slug)
                 if ispath(path) && Base.SHA1(Pkg.GitTools.tree_hash(path)) != tree_hash
-                    println("\n\n\nremoving dirty package: $path\n\n\n")
                     rm(path; recursive=true)
                 end
             end
