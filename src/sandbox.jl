@@ -110,14 +110,8 @@ function setup_julia_sandbox(config::Configuration, args=``;
                              env::Dict{String,String}=Dict{String,String}(),
                              mounts::Dict{String,String}=Dict{String,String}())
     install = install_julia(config)
-    registry = get_registry(config)
-    packages = joinpath(storage_dir, "packages")
-    artifacts = joinpath(storage_dir, "artifacts")
     mounts = merge(mounts, Dict(
-        "$(config.julia_install_dir):ro"                    => install,
-        "/usr/local/share/julia/registries/General:ro"      => registry,
-        joinpath(config.home, ".julia", "packages")*":rw"   => packages,
-        joinpath(config.home, ".julia", "artifacts")*":rw"  => artifacts
+        "$(config.julia_install_dir):ro" => install
     ))
 
     env = merge(env, Dict(
@@ -125,11 +119,6 @@ function setup_julia_sandbox(config::Configuration, args=``;
         "CI" => "true",
         "PKGEVAL" => "true",
         "JULIA_PKGEVAL" => "true",
-
-        # use the provided registry
-        # NOTE: putting a registry in a non-primary depot entry makes Pkg use it as-is,
-        #       without needing to set Pkg.UPDATED_REGISTRY_THIS_SESSION.
-        "JULIA_DEPOT_PATH" => "::/usr/local/share/julia",
     ))
 
     cmd = `$(config.julia_install_dir)/bin/$(config.julia_binary)`
