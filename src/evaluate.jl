@@ -245,10 +245,17 @@ function evaluate_script(config::Configuration, script::String, args=``;
 
     # copy new local resources (packages, artifacts, ...) to shared storage
     lock(storage_lock) do
-     for (src, dst) in [(local_packages, shared_packages),
-                        (local_artifacts, shared_artifacts),
-                        (local_compilecache, shared_compilecache)]
-            rsync() do path
+        # make sure the installed packages are valid
+        fsck_failures = PkgFsck.fsck(depot_path=[storage_dir])
+        for fsck_failure in fsck_failures
+            @warn "Downloaded package is invalid" fsck_failure
+            rm(fsck_failure.local_path; recursive=true)
+        end
+
+        rsync() do path
+            for (src, dst) in [(local_packages, shared_packages),
+                               (local_artifacts, shared_artifacts),
+                               (local_compilecache, shared_compilecache)]
                 run(`$path --archive --no-times $(src)/ $(dst)/`)
             end
         end
