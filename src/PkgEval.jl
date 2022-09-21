@@ -6,6 +6,9 @@ import Pkg.TOML
 import Scratch: @get_scratch!
 download_dir = ""
 storage_dir = ""
+const storage_lock = ReentrantLock()
+
+using rsync_jll: rsync
 
 skip_list = String[]
 

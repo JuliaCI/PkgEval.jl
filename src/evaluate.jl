@@ -96,6 +96,11 @@ function evaluate_script(config::Configuration, script::String, args=``;
         # we're likely running many instances, so avoid overusing the CPU
         "JULIA_PKG_PRECOMPILE_AUTO" => "0",
 
+        # where to find shared resources
+        # NOTE: putting a registry in a non-primary depot entry makes Pkg use it as-is,
+        #       without needing to set Pkg.UPDATED_REGISTRY_THIS_SESSION.
+        "JULIA_DEPOT_PATH" => "::/usr/local/share/julia",
+
         # package hacks
         "PYTHON" => "",
         "R_HOME" => "*"
@@ -104,13 +109,31 @@ function evaluate_script(config::Configuration, script::String, args=``;
         env["JULIA_PKG_SERVER"] = ENV["JULIA_PKG_SERVER"]
     end
 
-    # set-up a compile cache. because we may be running many instances, mount the
-    # shared cache read-only, and synchronize entries after we finish the script.
+    registry = get_registry(config)
+
+    # resources that are shared across runs or even sessions
+    shared_packages = joinpath(storage_dir, "packages")
+    shared_artifacts = joinpath(storage_dir, "artifacts")
     shared_compilecache = get_compilecache(config)
+
+    # locally modifiable directories for the above resources.
+    # afterwards, we'll sync changes in these to the shared versions
+    # (we cannot do this directly because of races and other issues in Pkg).
+    local_packages = mktempdir()
+    local_artifacts = mktempdir()
     local_compilecache = mktempdir()
+
     mounts = merge(mounts, Dict(
+        "/usr/local/share/julia/registries/General:ro"      => registry,
+
+        "/usr/local/share/julia/packages:ro"                => shared_packages,
+        joinpath(config.home, ".julia", "packages")*":rw"   => local_packages,
+
+        "/usr/local/share/julia/artifacts:ro"               => shared_artifacts,
+        joinpath(config.home, ".julia", "artifacts")*":rw"  => local_artifacts,
+
         "/usr/local/share/julia/compiled:ro"                => shared_compilecache,
-        joinpath(config.home, ".julia", "compiled")*":rw"   => local_compilecache
+        joinpath(config.home, ".julia", "compiled")*":rw"   => local_compilecache,
     ))
 
     t0 = time()
@@ -220,25 +243,43 @@ function evaluate_script(config::Configuration, script::String, args=``;
         log = log[1:ind]
     end
 
-    # copy new files from the local compilecache into the shared one
-    function copy_files(subpath=""; src, dst)
-        for entry in readdir(joinpath(src, subpath))
-            path = joinpath(subpath, entry)
-            srcpath = joinpath(src, path)
-            dstpath = joinpath(dst, path)
+    # copy new local resources (packages, artifacts, ...) to shared storage
+    lock(storage_lock) do
+        # we only want to cache absolutely clean package files
+        # (i.e., no build artifacts, possibly broken check-outs, etc)
+        clean_packages(registry, local_packages)
 
-            if isdir(srcpath)
-                isdir(dstpath) || mkdir(joinpath(dst, path))
-                copy_files(path; src, dst)
-            elseif !ispath(dstpath)
-                cp(srcpath, dstpath)
+        rsync() do path
+            for (src, dst) in [(local_packages, shared_packages),
+                               (local_artifacts, shared_artifacts),
+                               (local_compilecache, shared_compilecache)]
+                run(`$path --archive --no-times $(src)/ $(dst)/`)
             end
         end
     end
-    copy_files(src=local_compilecache, dst=shared_compilecache)
+    rm(local_packages; recursive=true)
+    rm(local_artifacts; recursive=true)
     rm(local_compilecache; recursive=true)
 
     return status, reason, log, t1 - t0
+end
+
+function clean_packages(registry, packages)
+    registry_instance = Pkg.Registry.RegistryInstance(registry)
+    for (_, pkg) in registry_instance
+        pkginfo = Registry.registry_info(pkg)
+        for (v, vinfo) in pkginfo.version_info
+            tree_hash = vinfo.git_tree_sha1
+            for slug in (Base.version_slug(pkg.uuid, tree_hash),
+                         Base.version_slug(pkg.uuid, tree_hash, 4))
+                path = joinpath(packages, pkg.name, slug)
+                if ispath(path) && Base.SHA1(Pkg.GitTools.tree_hash(path)) != tree_hash
+                    println("\n\n\nremoving dirty package: $path\n\n\n")
+                    rm(path; recursive=true)
+                end
+            end
+        end
+    end
 end
 
 """
