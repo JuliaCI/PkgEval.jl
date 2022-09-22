@@ -243,18 +243,16 @@ function evaluate_script(config::Configuration, script::String, args=``;
         log = log[1:ind]
     end
 
+    # verify local resources
+    verify_artifacts(local_artifacts)
+    remove_uncacheable_packages(registry, local_packages)
+
     # copy new local resources (packages, artifacts, ...) to shared storage
     lock(storage_lock) do
-        # we only want to cache absolutely clean package files
-        # (i.e., no build artifacts, possibly broken check-outs, etc)
-        remove_uncacheable_packages(registry, local_packages)
-
-        rsync() do path
-            for (src, dst) in [(local_packages, shared_packages),
-                               (local_artifacts, shared_artifacts),
-                               (local_compilecache, shared_compilecache)]
-                run(`$path --archive --no-times $(src)/ $(dst)/`)
-            end
+        for (src, dst) in [(local_packages, shared_packages),
+                           (local_artifacts, shared_artifacts),
+                           (local_compilecache, shared_compilecache)]
+            run(`$(rsync()) --archive --no-times $(src)/ $(dst)/`)
         end
     end
     rm(local_packages; recursive=true)
@@ -262,6 +260,24 @@ function evaluate_script(config::Configuration, script::String, args=``;
     rm(local_compilecache; recursive=true)
 
     return status, reason, log, t1 - t0
+end
+
+function verify_artifacts(artifacts)
+    for entry in readdir(artifacts)
+        path = joinpath(artifacts, entry)
+        remove = false
+
+        tree_hash = tryparse(Base.SHA1, entry)
+        if tree_hash === nothing
+            # remove directory entries that do not look like a valid artifact
+            remove = true
+        elseif tree_hash != Base.SHA1(Pkg.GitTools.tree_hash(path))
+            # remove corrupt artifacts
+            remove = true
+        end
+
+        remove && rm(path; recursive=true)
+    end
 end
 
 function remove_uncacheable_packages(registry, packages)
