@@ -354,6 +354,18 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
 
                 Pkg.add(; package_spec...)
 
+                # make sure that the package we're testing resides in the primary depot.
+                # otherwise it may not be writable, which many packages (sadly) require.
+                package_info = Pkg.dependencies()[package_spec.uuid]
+                if !startswith(package_info.source, DEPOT_PATH[1])
+                    slug = basename(package_info.source)
+                    new_source = joinpath(DEPOT_PATH[1], "packages", package_info.name, slug)
+                    mkpath(dirname(new_source))
+                    cp(package_info.source, new_source)
+                    package_info = Pkg.dependencies()[package_spec.uuid]
+                    @assert startswith(package_info.source, DEPOT_PATH[1])
+                end
+
                 println("\nCompleted after $(elapsed(t1))")
             end
 
