@@ -294,19 +294,19 @@ function remove_uncacheable_packages(registry, packages)
                 ispath(path) || continue
                 remove = false
 
-                # we cannot cache packages that have a build script,
-                # because that would result in the build script not being run.
                 if ispath(joinpath(path, "deps", "build.jl"))
+                    # we cannot cache packages that have a build script,
+                    # because that would result in the build script not being run.
+                    remove = true
+                elseif Base.SHA1(Pkg.GitTools.tree_hash(path)) != tree_hash
+                    # the contents of the package should match what's in the registry,
+                    # so that we don't cache broken checkouts or other weirdness.
                     remove = true
                 end
 
-                # the contents of the package should match exactly what is in the registry,
-                # so that we don't cache broken checkouts or other weirdness.
-                if Base.SHA1(Pkg.GitTools.tree_hash(path)) != tree_hash
-                    remove = true
+                if remove
+                    rm(path; recursive=true)
                 end
-
-                remove && rm(path; recursive=true)
             end
         end
     end
