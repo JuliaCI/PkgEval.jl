@@ -6,14 +6,11 @@ Read all packages from a registry and return them as a vector of Package structs
 function registry_packages(config::Configuration)
     packages = Package[]
 
-    # NOTE: we handle Registry check-outs ourselves, so can't use Pkg APIs
-    #       (since they do not accept an argument to point to a custom Registry)
     registry = get_registry(config)
-    for char in 'A':'Z', entry in readdir(joinpath(registry, string(char)))
-        path = joinpath(registry, string(char), entry)
-        isdir(path) || continue
+    registry_instance = Pkg.Registry.RegistryInstance(registry)
+    for (_, pkg) in registry_instance
         # TODO: read package compat info so that we can avoid testing uninstallable packages
-        push!(packages, Package(name=entry))
+        push!(packages, Package(name=pkg.name, uuid=pkg.uuid))
     end
     return packages
 end
