@@ -270,9 +270,11 @@ function verify_artifacts(artifacts)
         tree_hash = tryparse(Base.SHA1, entry)
         if tree_hash === nothing
             # remove directory entries that do not look like a valid artifact
+            @warn "An invalid artifact was found: $entry"
             remove = true
         elseif tree_hash != Base.SHA1(Pkg.GitTools.tree_hash(path))
             # remove corrupt artifacts
+            @warn "A broken artifact was found: $entry"
             remove = true
         end
 
