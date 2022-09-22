@@ -247,7 +247,7 @@ function evaluate_script(config::Configuration, script::String, args=``;
     lock(storage_lock) do
         # we only want to cache absolutely clean package files
         # (i.e., no build artifacts, possibly broken check-outs, etc)
-        clean_packages(registry, local_packages)
+        remove_uncacheable_packages(registry, local_packages)
 
         rsync() do path
             for (src, dst) in [(local_packages, shared_packages),
@@ -264,7 +264,7 @@ function evaluate_script(config::Configuration, script::String, args=``;
     return status, reason, log, t1 - t0
 end
 
-function clean_packages(registry, packages)
+function remove_uncacheable_packages(registry, packages)
     registry_instance = Pkg.Registry.RegistryInstance(registry)
     for (_, pkg) in registry_instance
         pkginfo = Registry.registry_info(pkg)
@@ -273,9 +273,22 @@ function clean_packages(registry, packages)
             for slug in (Base.version_slug(pkg.uuid, tree_hash),
                          Base.version_slug(pkg.uuid, tree_hash, 4))
                 path = joinpath(packages, pkg.name, slug)
-                if ispath(path) && Base.SHA1(Pkg.GitTools.tree_hash(path)) != tree_hash
-                    rm(path; recursive=true)
+                ispath(path) || continue
+                remove = false
+
+                # we cannot cache packages that have a build script,
+                # because that would result in the build script not being run.
+                if ispath(joinpath(path, "deps", "build.jl"))
+                    remove = true
                 end
+
+                # the contents of the package should match exactly what is in the registry,
+                # so that we don't cache broken checkouts or other weirdness.
+                if Base.SHA1(Pkg.GitTools.tree_hash(path)) != tree_hash
+                    remove = true
+                end
+
+                remove && rm(path; recursive=true)
             end
         end
     end
