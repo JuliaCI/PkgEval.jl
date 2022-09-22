@@ -113,15 +113,29 @@ end
 Base.@kwdef struct Package
     # source of the package; forwarded to PackageSpec
     name::String
+    uuid::Base.UUID = find_package_uuid(name)
     version::Union{Nothing,VersionNumber} = nothing
     url::Union{Nothing,String} = nothing
     rev::Union{Nothing,String} = nothing
 end
 
+function find_package_uuid(name)
+    # TODO: if this is performance sensitive, build a map on first use
+    registries = Pkg.Registry.reachable_registries()
+    for reg in registries
+        for (_, pkg) in reg
+            if name == pkg.name
+                return pkg.uuid
+            end
+        end
+    end
+    error("Package $name not found in any reachable registry")
+end
+
 # convert a Package to a tuple that's Pkg.add'able
 function package_spec_tuple(pkg::Package)
     spec = (;)
-    for field in (:name, :version, :url, :rev)
+    for field in (:name, :uuid, :version, :url, :rev)
         val = getfield(pkg, field)
         if val !== nothing
             spec = merge(spec, NamedTuple{(field,)}((val,)))

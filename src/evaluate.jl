@@ -337,6 +337,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             versioninfo()
 
             using Pkg
+            using Base: UUID
             package_spec = eval(Meta.parse(ARGS[1]))
 
             println("\nCompleted after $(elapsed(t0))")
@@ -543,6 +544,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package; kwargs...)
             println()
 
             using Pkg
+            using Base: UUID
             package_spec = eval(Meta.parse(ARGS[1]))
 
             println("Installing PackageCompiler...")
