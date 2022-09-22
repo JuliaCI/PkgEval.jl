@@ -270,9 +270,11 @@ function verify_artifacts(artifacts)
         tree_hash = tryparse(Base.SHA1, entry)
         if tree_hash === nothing
             # remove directory entries that do not look like a valid artifact
+            @warn "An invalid artifact was found: $entry"
             remove = true
         elseif tree_hash != Base.SHA1(Pkg.GitTools.tree_hash(path))
             # remove corrupt artifacts
+            @warn "A broken artifact was found: $entry"
             remove = true
         end
 
@@ -292,19 +294,19 @@ function remove_uncacheable_packages(registry, packages)
                 ispath(path) || continue
                 remove = false
 
-                # we cannot cache packages that have a build script,
-                # because that would result in the build script not being run.
                 if ispath(joinpath(path, "deps", "build.jl"))
+                    # we cannot cache packages that have a build script,
+                    # because that would result in the build script not being run.
+                    remove = true
+                elseif Base.SHA1(Pkg.GitTools.tree_hash(path)) != tree_hash
+                    # the contents of the package should match what's in the registry,
+                    # so that we don't cache broken checkouts or other weirdness.
                     remove = true
                 end
 
-                # the contents of the package should match exactly what is in the registry,
-                # so that we don't cache broken checkouts or other weirdness.
-                if Base.SHA1(Pkg.GitTools.tree_hash(path)) != tree_hash
-                    remove = true
+                if remove
+                    rm(path; recursive=true)
                 end
-
-                remove && rm(path; recursive=true)
             end
         end
     end
@@ -335,6 +337,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             versioninfo()
 
             using Pkg
+            using Base: UUID
             package_spec = eval(Meta.parse(ARGS[1]))
 
             println("\nCompleted after $(elapsed(t0))")
@@ -351,6 +354,18 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
                 t1 = time()
 
                 Pkg.add(; package_spec...)
+
+                # make sure that the package we're testing resides in the primary depot.
+                # otherwise it may not be writable, which many packages (sadly) require.
+                package_info = Pkg.dependencies()[package_spec.uuid]
+                if !startswith(package_info.source, DEPOT_PATH[1])
+                    slug = basename(package_info.source)
+                    new_source = joinpath(DEPOT_PATH[1], "packages", package_info.name, slug)
+                    mkpath(dirname(new_source))
+                    cp(package_info.source, new_source)
+                    package_info = Pkg.dependencies()[package_spec.uuid]
+                    @assert startswith(package_info.source, DEPOT_PATH[1])
+                end
 
                 println("\nCompleted after $(elapsed(t1))")
             end
@@ -541,6 +556,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package; kwargs...)
             println()
 
             using Pkg
+            using Base: UUID
             package_spec = eval(Meta.parse(ARGS[1]))
 
             println("Installing PackageCompiler...")
