@@ -344,16 +344,20 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             println("\nCompleted after $(elapsed(t0))")
 
 
+            print("\n\n", '#'^80, "\n# Installation\n#\n\n")
+            println("Started at ", now(UTC), "\n")
+            t1 = time()
+
             # check if we even need to install the package
-            # (it might be available in the system image already)
+            # (we might have a pre-populated environment)
+            if haskey(Pkg.dependencies(), package_spec.uuid)
+                println("Package already installed.")
+            else
+                Pkg.add(; package_spec...)
+            end
+
             package_id = PkgId(package_spec.uuid, package_spec.name)
             if !Base.root_module_exists(package_id)
-                print("\n\n", '#'^80, "\n# Installation\n#\n\n")
-                println("Started at ", now(UTC), "\n")
-                t1 = time()
-
-                Pkg.add(; package_spec...)
-
                 # make sure that the package we're testing resides in the primary depot.
                 # otherwise it may not be writable, which many packages (sadly) require.
                 package_info = Pkg.dependencies()[package_spec.uuid]
@@ -366,8 +370,10 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
                     @assert startswith(package_info.source, DEPOT_PATH[1])
                 end
 
-                println("\nCompleted after $(elapsed(t1))")
+                # XXX: this doesn't work for stdlibs, or compiled packages.
             end
+
+            println("\nCompleted after $(elapsed(t1))")
 
 
             print("\n\n", '#'^80, "\n# Testing\n#\n\n")
