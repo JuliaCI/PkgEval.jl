@@ -268,6 +268,9 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             using Pkg
             package_spec = eval(Meta.parse(ARGS[1]))
 
+            bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true" &&
+                           package_spec.name != "BugReporting"
+
             println("\nCompleted after $(elapsed(t0))")
 
 
@@ -291,7 +294,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             println("Started at ", now(UTC), "\n")
             t2 = time()
             try
-                if get(ENV, "PKGEVAL_RR", "false") == "true"
+                if bugreporting
                     Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
                 else
                     Pkg.test(package_spec.name)
@@ -304,7 +307,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
                 Base.show_backtrace(stdout, catch_backtrace())
                 println()
 
-                if get(ENV, "PKGEVAL_RR", "false") == "true"
+                if bugreporting
                     print("\n\n", '#'^80, "\n# BugReporting post-processing\n#\n\n")
                     println("Started at ", now(UTC), "\n")
                     t3 = time()
