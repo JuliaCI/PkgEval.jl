@@ -434,11 +434,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             unixtime = round(Int, datetime2unix(now()))
             trace_unique_name = "$(pkg.name)-$(unixtime).tar.zst"
             if isfile(trace_file)
-                f = retry(delays=Base.ExponentialBackOff(n=5, first_delay=5, max_delay=300)) do
-                    Base.run(`s3cmd put --quiet $trace_file s3://$(bucket)/$(trace_unique_name)`)
-                    Base.run(`s3cmd setacl --quiet --acl-public s3://$(bucket)/$(trace_unique_name)`)
-                end
-                f()
+                Base.run(`$(s5cmd) --log error cp -acl public-read $trace_file s3://$(bucket)/$(trace_unique_name)`)
                 log *= "Uploaded rr trace to https://s3.amazonaws.com/$(bucket)/$(trace_unique_name)"
             else
                 log *= "Testing did not produce an rr trace."

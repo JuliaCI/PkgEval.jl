@@ -7,6 +7,8 @@ import Scratch: @get_scratch!
 download_dir = ""
 storage_dir = ""
 
+using s5cmd_jll: s5cmd
+
 skip_list = String[]
 
 include("types.jl")
