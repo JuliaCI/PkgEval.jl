@@ -29,6 +29,7 @@ const reasons = Dict(
     :segfault               => "a segmentation fault happened",
     :abort                  => "the process was aborted",
     :unreachable            => "an unreachable instruction was executed",
+    :internal               => "an internal error was encountered",
     :network                => "networking-related issues were detected",
     :unknown                => "there were unidentified errors",
     :uncompilable           => "compilation of the package failed",
@@ -93,9 +94,6 @@ function evaluate_script(config::Configuration, script::String, args=``;
     @assert config.log_limit > 0
 
     env = merge(env, Dict(
-        # we're likely running many instances, so avoid overusing the CPU
-        "JULIA_PKG_PRECOMPILE_AUTO" => "0",
-
         # where to find shared resources
         # NOTE: putting a registry in a non-primary depot entry makes Pkg use it as-is,
         #       without needing to set Pkg.UPDATED_REGISTRY_THIS_SESSION.
@@ -340,6 +338,9 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             using Base: UUID
             package_spec = eval(Meta.parse(ARGS[1]))
 
+            bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true" &&
+                           package_spec.name != "BugReporting"
+
             println("\nCompleted after $(elapsed(t0))")
 
 
@@ -375,7 +376,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             println("Started at ", now(UTC), "\n")
             t2 = time()
             try
-                if get(ENV, "PKGEVAL_RR", "false") == "true"
+                if bugreporting
                     Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
                 else
                     Pkg.test(package_spec.name)
@@ -388,7 +389,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
                 Base.show_backtrace(stdout, catch_backtrace())
                 println()
 
-                if get(ENV, "PKGEVAL_RR", "false") == "true"
+                if bugreporting
                     print("\n\n", '#'^80, "\n# BugReporting post-processing\n#\n\n")
                     println("Started at ", now(UTC), "\n")
                     t3 = time()
@@ -470,6 +471,10 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             :abort
         elseif occursin("Unreachable reached", log)
             :unreachable
+        elseif occursin("Internal error: encountered unexpected error in runtime", log) ||
+               occursin("Internal error: stack overflow in type inference", log) ||
+               occursin("Internal error: encountered unexpected error during compilation", log)
+            :internal
         elseif occursin("failed to clone from", log) ||
                 occursin(r"HTTP/\d \d+ while requesting", log) ||
                 occursin("Could not resolve host", log) ||
@@ -509,17 +514,13 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
     if config.rr
         # upload an rr trace for interesting failures
         # TODO: re-use BugReporting.jl
-        if status == :fail && reason in [:gc_corruption, :segfault, :abort, :unreachable] &&
+        if status == :fail && reason in [:gc_corruption, :segfault, :abort, :unreachable, :internal] &&
            haskey(ENV, "PKGEVAL_RR_BUCKET")
             bucket = ENV["PKGEVAL_RR_BUCKET"]
             unixtime = round(Int, datetime2unix(now()))
             trace_unique_name = "$(pkg.name)-$(unixtime).tar.zst"
             if isfile(trace_file)
-                f = retry(delays=Base.ExponentialBackOff(n=5, first_delay=5, max_delay=300)) do
-                    Base.run(`s3cmd put --quiet $trace_file s3://$(bucket)/$(trace_unique_name)`)
-                    Base.run(`s3cmd setacl --quiet --acl-public s3://$(bucket)/$(trace_unique_name)`)
-                end
-                f()
+                run(`$(s5cmd) --log error cp -acl public-read $trace_file s3://$(bucket)/$(trace_unique_name)`)
                 log *= "Uploaded rr trace to https://s3.amazonaws.com/$(bucket)/$(trace_unique_name)"
             else
                 log *= "Testing did not produce an rr trace."

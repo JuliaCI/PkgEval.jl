@@ -10,6 +10,8 @@ const storage_lock = ReentrantLock()
 
 using rsync_jll: rsync
 
+using s5cmd_jll: s5cmd
+
 skip_list = String[]
 
 include("types.jl")
