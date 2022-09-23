@@ -335,7 +335,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             versioninfo()
 
             using Pkg
-            using Base: UUID
+            using Base: UUID, PkgId
             package_spec = eval(Meta.parse(ARGS[1]))
 
             bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true" &&
@@ -346,10 +346,8 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
 
             # check if we even need to install the package
             # (it might be available in the system image already)
-            try
-                # XXX: use a Base API, by UUID?
-                eval(:(using $(Symbol(package_spec.name))))
-            catch
+            package_id = PkgId(package_spec.uuid, package_spec.name)
+            if !Base.root_module_exists(package_id)
                 print("\n\n", '#'^80, "\n# Installation\n#\n\n")
                 println("Started at ", now(UTC), "\n")
                 t1 = time()
