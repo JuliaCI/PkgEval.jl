@@ -94,9 +94,6 @@ function evaluate_script(config::Configuration, script::String, args=``;
     @assert config.log_limit > 0
 
     env = merge(env, Dict(
-        # we're likely running many instances, so avoid overusing the CPU
-        "JULIA_PKG_PRECOMPILE_AUTO" => "0",
-
         # where to find shared resources
         # NOTE: putting a registry in a non-primary depot entry makes Pkg use it as-is,
         #       without needing to set Pkg.UPDATED_REGISTRY_THIS_SESSION.
