@@ -334,9 +334,21 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             using InteractiveUtils
             versioninfo()
 
-            using Pkg
-            using Base: UUID, PkgId
-            package_spec = eval(Meta.parse(ARGS[1]))
+            using Pkg, UUIDs
+            package_spec = PackageSpec(; eval(Meta.parse(ARGS[1]))...)
+
+            # determine some properties of the package
+            package_in_project = haskey(Pkg.dependencies(), package_spec.uuid)
+            package_id = Base.PkgId(package_spec.uuid, package_spec.name)
+            package_loaded = Base.root_module_exists(package_id)
+
+            # if the package is already loaded, and it exists in the current project,
+            # we assume that's intentional and we continue testing the loaded version.
+            # if the package isn't listed in the project, we assume it's a stdlib
+            # and we'll test it by modifying its UUID and force loading a different copy.
+            #
+            # there's a remaining corner case: using compiled mode with an stdlib.
+            stdlib = package_loaded && !package_in_project
 
             bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true" &&
                            package_spec.name != "BugReporting"
@@ -350,27 +362,41 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
 
             # check if we even need to install the package
             # (we might have a pre-populated environment)
-            if haskey(Pkg.dependencies(), package_spec.uuid)
+            if package_in_project
                 println("Package already installed.")
             else
-                Pkg.add(; package_spec...)
+                Pkg.add(package_spec)
             end
+            package_info = Pkg.dependencies()[package_spec.uuid]
 
-            package_id = PkgId(package_spec.uuid, package_spec.name)
-            if !Base.root_module_exists(package_id)
-                # make sure that the package we're testing resides in the primary depot.
-                # otherwise it may not be writable, which many packages (sadly) require.
-                package_info = Pkg.dependencies()[package_spec.uuid]
-                if !startswith(package_info.source, DEPOT_PATH[1])
-                    slug = basename(package_info.source)
-                    new_source = joinpath(DEPOT_PATH[1], "packages", package_info.name, slug)
-                    mkpath(dirname(new_source))
-                    cp(package_info.source, new_source)
-                    package_info = Pkg.dependencies()[package_spec.uuid]
-                    @assert startswith(package_info.source, DEPOT_PATH[1])
+            # standard libraries need to be patched so that we can test a different version
+            import TOML
+            if stdlib
+                println("\nThis package seems like a standard library; patching its UUID.")
+                dev_dir = joinpath(DEPOT_PATH[1], "dev", package_spec.name)
+                mkpath(dirname(dev_dir))
+                cp(package_info.source, dev_dir)
+                project_file = joinpath(dev_dir, "Project.toml")
+                project_data = TOML.parsefile(project_file)
+                project_data["uuid"] = string(uuid4())
+                open(project_file, "w") do io
+                    TOML.print(io, project_data)
                 end
 
-                # XXX: this doesn't work for stdlibs, or compiled packages.
+                # replace the package with its patched version
+                Pkg.rm(package_spec.name)
+                Pkg.develop(package_spec.name)
+            end
+
+            # make sure that the package we're testing resides in the primary depot.
+            # otherwise it may not be writable, which many packages (sadly) require.
+            if !startswith(package_info.source, DEPOT_PATH[1]) && !stdlib
+                slug = basename(package_info.source)
+                new_source = joinpath(DEPOT_PATH[1], "packages", package_info.name, slug)
+                mkpath(dirname(new_source))
+                cp(package_info.source, new_source)
+                package_info = Pkg.dependencies()[package_spec.uuid]
+                @assert startswith(package_info.source, DEPOT_PATH[1])
             end
 
             println("\nCompleted after $(elapsed(t1))")
@@ -560,8 +586,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package; kwargs...)
             versioninfo()
             println()
 
-            using Pkg
-            using Base: UUID
+            using Pkg, UUIDs
             package_spec = eval(Meta.parse(ARGS[1]))
 
             println("Installing PackageCompiler...")
