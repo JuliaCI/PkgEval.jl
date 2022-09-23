@@ -520,7 +520,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             unixtime = round(Int, datetime2unix(now()))
             trace_unique_name = "$(pkg.name)-$(unixtime).tar.zst"
             if isfile(trace_file)
-                run(`$(s5cmd) --log error cp -acl public-read $trace_file s3://$(bucket)/$(trace_unique_name)`)
+                run(`$(s5cmd()) --log error cp -acl public-read $trace_file s3://$(bucket)/$(trace_unique_name)`)
                 log *= "Uploaded rr trace to https://s3.amazonaws.com/$(bucket)/$(trace_unique_name)"
             else
                 log *= "Testing did not produce an rr trace."
