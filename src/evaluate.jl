@@ -29,6 +29,7 @@ const reasons = Dict(
     :segfault               => "a segmentation fault happened",
     :abort                  => "the process was aborted",
     :unreachable            => "an unreachable instruction was executed",
+    :internal               => "an internal error was encountered",
     :network                => "networking-related issues were detected",
     :unknown                => "there were unidentified errors",
     :uncompilable           => "compilation of the package failed",
@@ -386,6 +387,10 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             :abort
         elseif occursin("Unreachable reached", log)
             :unreachable
+        elseif occursin("Internal error: encountered unexpected error in runtime", log) ||
+               occursin("Internal error: stack overflow in type inference", log) ||
+               occursin("Internal error: encountered unexpected error during compilation", log)
+            :internal
         elseif occursin("failed to clone from", log) ||
                 occursin(r"HTTP/\d \d+ while requesting", log) ||
                 occursin("Could not resolve host", log) ||
@@ -425,7 +430,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
     if config.rr
         # upload an rr trace for interesting failures
         # TODO: re-use BugReporting.jl
-        if status == :fail && reason in [:gc_corruption, :segfault, :abort, :unreachable] &&
+        if status == :fail && reason in [:gc_corruption, :segfault, :abort, :unreachable, :internal] &&
            haskey(ENV, "PKGEVAL_RR_BUCKET")
             bucket = ENV["PKGEVAL_RR_BUCKET"]
             unixtime = round(Int, datetime2unix(now()))
