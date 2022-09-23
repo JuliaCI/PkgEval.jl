@@ -133,7 +133,7 @@ function build_julia(_repo_path::String, config::Configuration)
     repo_srccache = joinpath(repo_path, "deps", "srccache")
     cp(srccache, repo_srccache)
     cd(repo_path) do
-        Base.run(ignorestatus(`make -C deps getall NO_GIT=1`))
+        run(ignorestatus(`make -C deps getall NO_GIT=1`))
     end
     for file in readdir(repo_srccache)
         if !ispath(joinpath(srccache, file))
