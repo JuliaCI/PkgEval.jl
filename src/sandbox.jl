@@ -138,6 +138,7 @@ function setup_julia_sandbox(config::Configuration, args=``;
     if !isempty(config.cpus)
         cmd = `/usr/bin/taskset --cpu-list $(join(config.cpus, ',')) $cmd`
         env["JULIA_CPU_THREADS"] = string(length(config.cpus)) # JuliaLang/julia#35787
+        env["JULIA_NUM_PRECOMPILE_TASKS"] = string(length(config.cpus)) # deafults to Sys.CPU_THREADS
     end
 
     setup_generic_sandbox(config, `$cmd $(config.julia_args) $args`; env, mounts)
