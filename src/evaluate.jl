@@ -477,8 +477,27 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
 
     # log the status and determine a more accurate reason from the log
     @assert status in [:ok, :fail, :kill]
-    if status === :ok
-        log *= "PkgEval succeeded after $elapsed_str\n"
+    ## some errors are so bad we should disregard the status
+    override_reason = if occursin("GC error (probable corruption)", log)
+        :gc_corruption
+    elseif occursin("signal (11): Segmentation fault", log)
+        :segfault
+    elseif occursin("signal (6): Abort", log)
+        :abort
+    elseif occursin("Unreachable reached", log)
+        :unreachable
+    elseif occursin("Internal error: encountered unexpected error in runtime", log) ||
+           occursin("Internal error: stack overflow in type inference", log) ||
+           occursin("Internal error: encountered unexpected error during compilation", log)
+        :internal
+    else
+        nothing
+    end
+    if override_reason !== nothing
+        log *= "PkgEval succeeded after $elapsed_str, but the test output contains suspicious errors\n"
+        status = :fail
+        reason = override_reason
+    ## others we only look for when the test failed
     elseif status === :fail
         log *= "PkgEval failed after $elapsed_str\n"
 
@@ -493,18 +512,6 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             :missing_dependency
         elseif occursin(r"Package .+ not found in current path", log)
             :missing_package
-        elseif occursin("GC error (probable corruption)", log)
-            :gc_corruption
-        elseif occursin("signal (11): Segmentation fault", log)
-            :segfault
-        elseif occursin("signal (6): Abort", log)
-            :abort
-        elseif occursin("Unreachable reached", log)
-            :unreachable
-        elseif occursin("Internal error: encountered unexpected error in runtime", log) ||
-               occursin("Internal error: stack overflow in type inference", log) ||
-               occursin("Internal error: encountered unexpected error during compilation", log)
-            :internal
         elseif occursin("failed to clone from", log) ||
                 occursin(r"HTTP/\d \d+ while requesting", log) ||
                 occursin("Could not resolve host", log) ||
@@ -526,6 +533,8 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             log *= ": " * reasons[reason]
         end
         log *= "\n"
+    elseif status === :ok
+        log *= "PkgEval succeeded after $elapsed_str\n"
     end
 
     # pick up the installed package version from the log
