@@ -58,9 +58,25 @@ config = Configuration(; config_kwargs...)
     if julia_release !== nothing
         p = Pipe()
         close(p.in)
-        PkgEval.sandboxed_julia(config, `-e 'println(VERSION)'`; stdout=p.out)
+        PkgEval.sandboxed_julia(config, `-e 'print(VERSION)'`; stdout=p.out)
         version_str = read(p.out, String)
         @test parse(VersionNumber, version_str) == julia_release
+    end
+end
+
+@testset "environment flags" begin
+    let
+        p = Pipe()
+        close(p.in)
+        PkgEval.sandboxed_julia(config, `-e 'print(get(ENV, "FOO", nothing))'`; stdout=p.out)
+        @test read(p.out, String) == "nothing"
+    end
+
+    let config = Configuration(; environment=["FOO=bar"], config_kwargs...)
+        p = Pipe()
+        close(p.in)
+        PkgEval.sandboxed_julia(config, `-e 'print(get(ENV, "FOO", nothing))'`; stdout=p.out)
+        @test read(p.out, String) == "bar"
     end
 end
 
