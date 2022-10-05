@@ -29,6 +29,7 @@ Base.@kwdef struct Configuration
     julia::Setting{String} = Default("nightly")
     buildflags::Setting{Vector{String}} = Default(String[])
     buildcommands::Setting{String} = Default("make install")
+    environment::Setting{Vector{String}} = Default(String[])
     julia_install_dir::Setting{String} = Default("/opt/julia")
     julia_binary::Setting{String} = Default("julia")
     ## additional Julia arguments to pass to the process
@@ -73,7 +74,7 @@ function Base.show(io::IO, cfg::Configuration)
     println(io, "PkgEval configuration(")
 
     println(io, "  # Julia properties")
-    show_setting.(["julia", "buildflags", "buildcommands", "julia_install_dir", "julia_binary", "julia_args"])
+    show_setting.(["julia", "buildflags", "buildcommands", "environment", "julia_install_dir", "julia_binary", "julia_args"])
     println(io)
 
     println(io, "  # Registry properties")

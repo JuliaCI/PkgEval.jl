@@ -71,6 +71,14 @@ function setup_generic_sandbox(config::Configuration, cmd::Cmd;
         env["TERM"] = ENV["TERM"]
     end
 
+    for flag in config.environment
+        key, value = split(flag, '='; limit=2)
+        if (value[begin] == value[end] == '"') || (value[begin] == value[end] == '\'')
+            value = value[2:end-1]
+        end
+        env[key] = value
+    end
+
     if config.xvfb
         lock(xvfb_lock) do
             if xvfb_proc[] === nothing || !process_running(xvfb_proc[])
