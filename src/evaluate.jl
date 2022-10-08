@@ -11,33 +11,53 @@ const statusses = Dict(
     :fail   => "unsuccessful",
     :kill   => "interrupted",
 )
-const reasons = Dict(
+
+function status_message(status)
+    return statusses[status]
+end
+
+# NOTE: within each status group, reasons are sorted in order of reporting priority
+const reasons = [
     missing                 => missing,
     # skip
-    :explicit               => "package was blacklisted",
-    :jll                    => "package is a untestable wrapper package",
     :unsupported            => "package is not supported by this Julia version",
+    :jll                    => "package is a untestable wrapper package",
+    :explicit               => "package was blacklisted",
     # fail
-    :unsatisfiable          => "package could not be installed",
+    :abort                  => "the process was aborted",
+    :internal               => "an internal error was encountered",
+    :unreachable            => "an unreachable instruction was executed",
+    :gc_corruption          => "GC corruption was detected",
+    :segfault               => "a segmentation fault happened",
+    :syntax                 => "package has syntax issues",
+    :uncompilable           => "compilation of the package failed",
+    :test_failures          => "package has test failures",
     :untestable             => "package does not have any tests",
+    :unsatisfiable          => "package could not be installed",
     :binary_dependency      => "package requires a missing binary dependency",
     :missing_dependency     => "package is missing a package dependency",
     :missing_package        => "package is using an unknown package",
-    :test_failures          => "package has test failures",
-    :syntax                 => "package has syntax issues",
-    :gc_corruption          => "GC corruption detected",
-    :segfault               => "a segmentation fault happened",
-    :abort                  => "the process was aborted",
-    :unreachable            => "an unreachable instruction was executed",
-    :internal               => "an internal error was encountered",
     :network                => "networking-related issues were detected",
     :unknown                => "there were unidentified errors",
-    :uncompilable           => "compilation of the package failed",
     # kill
+    :inactivity             => "tests became inactive",
     :time_limit             => "test duration exceeded the time limit",
     :log_limit              => "test log exceeded the size limit",
-    :inactivity             => "tests became inactive",
-)
+]
+
+function reason_message(reason)
+    i = findfirst(x -> x[1] === reason, reasons)
+    if i === nothing
+        return "unknown reason"
+    else
+        return reasons[i][2]
+    end
+end
+
+function reason_severity(reason)
+    i = findfirst(x -> x[1] === reason, reasons)
+    return something(i, typemax(Int))
+end
 
 const compiled_lock = ReentrantLock()
 const compiled_cache = Dict()
@@ -415,7 +435,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
     elseif status === :kill
         log *= "PkgEval terminated after $elapsed"
         if reason !== nothing
-            log *= ": " * reasons[reason]
+            log *= ": " * reason_message(reason)
         end
         log *= "\n"
     elseif status === :ok
@@ -560,7 +580,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package; kwargs...)
     elseif status === :kill
         log *= "PackageCompiler terminated after $elapsed_str"
         if reason !== nothing
-            log *= ": " * reasons[reason]
+            log *= ": " * reason_message(reason)
         end
         log *= "\n"
     end
