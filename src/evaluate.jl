@@ -398,15 +398,13 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
     else
         nothing
     end
-    if override_reason !== nothing
-        log *= "PkgEval succeeded after $elapsed_str, but the test output contains suspicious errors\n"
-        status = :fail
-        reason = override_reason
     ## others we only look for when the test failed
-    elseif status === :fail
+    if status === :fail
         log *= "PkgEval failed after $elapsed_str\n"
 
-        reason = if occursin("Unsatisfiable requirements detected for package", log)
+        reason = if override_reason !== nothing
+            override_reason
+        elseif occursin("Unsatisfiable requirements detected for package", log)
             # NOTE: might be the package itself, or one of its dependencies
             :unsatisfiable
         elseif occursin("Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
@@ -432,8 +430,12 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
         else
             :unknown
         end
+    elseif override_reason !== nothing
+        log *= "PkgEval succeeded after $elapsed_str, but the test output contains suspicious errors\n"
+        status = :fail
+        reason = override_reason
     elseif status === :kill
-        log *= "PkgEval terminated after $elapsed"
+        log *= "PkgEval terminated after $elapsed_str"
         if reason !== nothing
             log *= ": " * reason_message(reason)
         end
