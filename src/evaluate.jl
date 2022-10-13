@@ -290,6 +290,9 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             using Base: UUID, PkgId
             package_spec = eval(Meta.parse(ARGS[1]))
 
+            bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true" &&
+                           package_spec.name != "BugReporting"
+
             println("\nCompleted after $(elapsed(t0))")
 
 
@@ -311,7 +314,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             println("Started at ", now(UTC), "\n")
             t2 = time()
             try
-                if get(ENV, "PKGEVAL_RR", "false") == "true"
+                if bugreporting
                     Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
                 else
                     Pkg.test(package_spec.name)
@@ -324,7 +327,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
                 Base.show_backtrace(stdout, catch_backtrace())
                 println()
 
-                if get(ENV, "PKGEVAL_RR", "false") == "true"
+                if bugreporting
                     print("\n\n", '#'^80, "\n# BugReporting post-processing\n#\n\n")
                     println("Started at ", now(UTC), "\n")
                     t3 = time()
@@ -464,11 +467,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             unixtime = round(Int, datetime2unix(now()))
             trace_unique_name = "$(pkg.name)-$(unixtime).tar.zst"
             if isfile(trace_file)
-                f = retry(delays=Base.ExponentialBackOff(n=5, first_delay=5, max_delay=300)) do
-                    Base.run(`s3cmd put --quiet $trace_file s3://$(bucket)/$(trace_unique_name)`)
-                    Base.run(`s3cmd setacl --quiet --acl-public s3://$(bucket)/$(trace_unique_name)`)
-                end
-                f()
+                run(`$(s5cmd()) --log error cp -acl public-read $trace_file s3://$(bucket)/$(trace_unique_name)`)
                 log *= "Uploaded rr trace to https://s3.amazonaws.com/$(bucket)/$(trace_unique_name)"
             else
                 log *= "Testing did not produce an rr trace."
