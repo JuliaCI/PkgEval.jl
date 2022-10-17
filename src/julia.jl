@@ -78,6 +78,8 @@ function get_julia_build(repo)
     repo_details = get_repo_details(repo)
     if Sys.islinux() && Sys.ARCH == :x86_64
         url = "https://julialangnightlies.s3.amazonaws.com/bin/linux/x64/$(repo_details.version.major).$(repo_details.version.minor)/julia-$(repo_details.shorthash)-linux64.tar.gz"
+    elseif Sys.islinux() && Sys.ARCH == :aarch64
+        url = "https://julialangnightlies.s3.amazonaws.com/bin/linux/aarch64/$(repo_details.version.major).$(repo_details.version.minor)/julia-$(repo_details.shorthash)-linuxaarch64.tar.gz"
     else
         @debug "Don't know how to get build for $(Sys.MACHINE)"
         return nothing
