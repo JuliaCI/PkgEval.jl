@@ -158,7 +158,7 @@ function build_julia(_repo_path::String, config::Configuration)
 
     # build and install Julia
     install_dir = mktempdir()
-    build_config = Configuration(; rootfs="package_linux_x86_64", xvfb=false)
+    build_config = Configuration(; rootfs="package_linux.x86_64", xvfb=false)
     mounts = Dict(
         "/source:rw"    => repo_path,
         "/install:rw"   => install_dir
