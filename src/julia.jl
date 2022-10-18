@@ -156,9 +156,17 @@ function build_julia(_repo_path::String, config::Configuration)
         end
     end
 
+    rootfs = if Sys.islinux() && Sys.ARCH == :x86_64
+        "package_linux.x86_64"
+    elseif  Sys.islinux() && Sys.ARCH == :aarch64
+        "package_linux.aarch64"
+    else
+        error("This OS and arch is not supported for PkgEval runs")
+    end
+
     # build and install Julia
     install_dir = mktempdir()
-    build_config = Configuration(; rootfs="package_linux.x86_64", xvfb=false)
+    build_config = Configuration(; rootfs, xvfb=false)
     mounts = Dict(
         "/source:rw"    => repo_path,
         "/install:rw"   => install_dir
