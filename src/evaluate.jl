@@ -768,22 +768,8 @@ function _evaluate(jobs; ninstances::Integer=Sys.CPU_THREADS)
                        duration = Float64[],
                        log = Union{Missing,String}[])
 
-    # Printer
-    @async begin
-        try
-            while (!isempty(jobs) || !all(==(nothing), running)) && !done
-                update_output()
-            end
-            stop_work()
-        catch e
-            stop_work()
-            isa(e, InterruptException) || rethrow(e)
-        end
-    end
-
-    # Workers
-    # TODO: we don't want to do this for both. but rather one of the builds is compiled, the other not...
     try @sync begin
+        # Workers
         for i = 1:ninstances
             push!(all_workers, @async begin
                 try
@@ -814,15 +800,30 @@ function _evaluate(jobs; ninstances::Integer=Sys.CPU_THREADS)
                                        status, reason, duration, log])
                         running[i] = nothing
                     end
-                catch e
+                catch err
                     stop_work()
-                    isa(e, InterruptException) || rethrow(e)
+                    isa(err, InterruptException) || rethrow(err)
                 end
             end)
         end
+
+        # Printer
+        @async begin
+            try
+                while (!isempty(jobs) || !all(==(nothing), running)) && !done
+                    update_output()
+                end
+            catch err
+                isa(err, InterruptException) || rethrow(err)
+            finally
+                stop_work()
+            end
+        end
     end
-    catch e
-        isa(e, InterruptException) || rethrow(e)
+    catch err
+        # XXX: why doesn't it suffice just catching the the InterruptException
+        #      (unwrapped from CompositeException) here?
+        isa(err, InterruptException) || rethrow(err)
     finally
         stop_work()
         println()
