@@ -127,6 +127,11 @@ function evaluate_script(config::Configuration, script::String, args=``;
 
     # set-up a compile cache. because we may be running many instances, mount the
     # shared cache read-only, and synchronize entries after we finish the script.
+    #
+    # in principle, we'd have to do this too for the package cache, but because the
+    # compilecache header contains full paths we can't ever move packages from the
+    # local to the global cache. instead, we verify the package cache before retrying.
+    # for consistency, we do the same for artifacts (although we could split that cache).
     shared_compilecache = get_compilecache(config)
     local_compilecache = mktempdir()
     mounts = merge(mounts, Dict(
@@ -605,6 +610,58 @@ function evaluate_compiled_test(config::Configuration, pkg::Package; kwargs...)
     return version, status, reason, log * "\n\n" * test_log
 end
 
+function verify_artifacts(artifacts)
+    for entry in readdir(artifacts)
+        path = joinpath(artifacts, entry)
+        remove = false
+
+        tree_hash = tryparse(Base.SHA1, entry)
+        if tree_hash === nothing
+            # remove directory entries that do not look like a valid artifact
+            @warn "An invalid artifact was found: $entry"
+            remove = true
+        elseif tree_hash != Base.SHA1(Pkg.GitTools.tree_hash(path))
+            # remove corrupt artifacts
+            @warn "A broken artifact was found: $entry"
+            remove = true
+        end
+
+        remove && rm(path; recursive=true)
+    end
+end
+
+function remove_uncacheable_packages(registry, packages)
+    registry_instance = Pkg.Registry.RegistryInstance(registry)
+    for (_, pkg) in registry_instance
+        pkginfo = Registry.registry_info(pkg)
+        for (v, vinfo) in pkginfo.version_info
+            tree_hash = vinfo.git_tree_sha1
+            for slug in (Base.version_slug(pkg.uuid, tree_hash),
+                         Base.version_slug(pkg.uuid, tree_hash, 4))
+                path = joinpath(packages, pkg.name, slug)
+                ispath(path) || continue
+                remove = false
+
+                if ispath(joinpath(path, "deps", "build.jl"))
+                    # we cannot cache packages that have a build script,
+                    # because that would result in the build script not being run.
+                    @warn "Package $(pkg.name) has a build script, and cannot be cached"
+                    remove = true
+                elseif Base.SHA1(Pkg.GitTools.tree_hash(path)) != tree_hash
+                    # the contents of the package should match what's in the registry,
+                    # so that we don't cache broken checkouts or other weirdness.
+                    @warn "Package $(pkg.name) has been modified, and cannot be cached"
+                    remove = true
+                end
+
+                if remove
+                    rm(path; recursive=true)
+                end
+            end
+        end
+    end
+end
+
 """
     evaluate(configs::Vector{Configuration}, [packages::Vector{Package}];
              ninstances=Sys.CPU_THREADS, kwargs...)
@@ -622,10 +679,9 @@ keyword arguments.
 """
 function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}=Package[];
                   ninstances::Integer=Sys.CPU_THREADS, retry::Bool=true)
-
     if isempty(packages)
-        registries = unique(config->config.registry, values(configs))
-        packages = intersect(map(registry_packages, registries)...)
+        registry_configs = unique(config->config.registry, values(configs))
+        packages = intersect(map(registry_packages, registry_configs)...)
     end
 
     jobs = Any[]
@@ -636,6 +692,13 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
     shuffle!(jobs)
 
     results = _evaluate(jobs)
+
+    # validate the package and artifact caches (which persist across evaluations)
+    registry_dir = get_registry(first(values(configs)))
+    package_dir = joinpath(storage_dir, "packages")
+    remove_uncacheable_packages(registry_dir, package_dir)
+    artifact_dir = joinpath(storage_dir, "artifacts")
+    verify_artifacts(artifact_dir)
 
     # if requested, retry failures
     if retry
