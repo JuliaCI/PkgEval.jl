@@ -114,9 +114,6 @@ function evaluate_script(config::Configuration, script::String, args=``;
     @assert config.log_limit > 0
 
     env = merge(env, Dict(
-        # we're likely running many instances, so avoid overusing the CPU
-        "JULIA_PKG_PRECOMPILE_AUTO" => "0",
-
         # package hacks
         "PYTHON" => "",
         "R_HOME" => "*"
