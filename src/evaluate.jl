@@ -298,7 +298,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true" &&
                            package_spec.name != "BugReporting"
 
-            println("\nCompleted after $(elapsed(t0))")
+            println("\nSet-up completed after $(elapsed(t0))")
 
 
             # check if we even need to install the package
@@ -311,7 +311,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
 
                 Pkg.add(; package_spec...)
 
-                println("\nCompleted after $(elapsed(t1))")
+                println("\nInstallation completed after $(elapsed(t1))")
             end
 
 
@@ -325,9 +325,9 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
                     Pkg.test(package_spec.name)
                 end
 
-                println("\nCompleted after $(elapsed(t2))")
+                println("\nTesting completed after $(elapsed(t2))")
             catch err
-                print("\nFAILED: ")
+                println("\nTesting failed after $(elapsed(t2))")
                 showerror(stdout, err)
                 Base.show_backtrace(stdout, catch_backtrace())
                 println()
@@ -348,9 +348,9 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
                         trace_dir = BugReporting.default_rr_trace_dir()
                         trace = BugReporting.find_latest_trace(trace_dir)
                         BugReporting.compress_trace(trace, "/traces/$(package_spec.name).tar.zst")
-                        println("\nCompleted after $(elapsed(t3))")
+                        println("\nBugReporting completed after $(elapsed(t3))")
                     catch err
-                        print("\nFAILED: ")
+                        println("\nBugReporting failed after $(elapsed(t3))")
                         showerror(stdout, err)
                         Base.show_backtrace(stdout, catch_backtrace())
                         println()
@@ -459,10 +459,23 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             VersionNumber(version_match.captures[1])
         catch
             @error "Could not parse installed package version number '$(version_match.captures[1])'"
-            v"0"
+            missing
         end
     else
         missing
+    end
+
+    # pick up the test duration from the log
+    duration_match = match(r"Testing (completed|failed) after (\S+)s", log)
+    duration = if duration_match !== nothing
+        try
+            parse(Float64, duration_match.captures[2])
+        catch
+            @error "Could not parse test duration '$(duration_match.captures[2])'"
+            0.0
+        end
+    else
+        0.0
     end
 
     if config.rr
@@ -483,7 +496,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
         rm(trace_dir; recursive=true)
     end
 
-    return version, status, reason, log
+    return version, status, reason, duration, log
 end
 
 """
@@ -602,12 +615,12 @@ function evaluate_compiled_test(config::Configuration, pkg::Package; kwargs...)
         compiled = false,
         julia_args = `$(config.julia_args) --project=$project_path --sysimage $sysimage_path`,
     )
-    version, status, reason, test_log =
+    version, status, reason, duration, test_log =
         evaluate_test(test_config, pkg; mounts, kwargs...)
 
     rm(sysimage_dir; recursive=true)
     rm(project_dir; recursive=true)
-    return version, status, reason, log * "\n\n" * test_log
+    return version, status, reason, duration, log * "\n\n" * test_log
 end
 
 function verify_artifacts(artifacts)
@@ -856,9 +869,9 @@ function _evaluate(jobs; ninstances::Integer=Sys.CPU_THREADS)
 
                         # test the package
                         config′ = Configuration(config; cpus=[i-1])
-                        pkg_version, status, reason, log = evaluate_test(config′, pkg)
+                        pkg_version, status, reason, duration, log =
+                            evaluate_test(config′, pkg)
 
-                        duration = (now()-times[i]) / Millisecond(1000)
                         push!(result, [config_name, pkg.name, pkg_version,
                                        status, reason, duration, log])
                         running[i] = nothing
