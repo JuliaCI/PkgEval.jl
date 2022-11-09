@@ -3,7 +3,8 @@ export evaluate
 using Dates
 using Random
 using DataFrames: DataFrame, nrow
-using ProgressMeter: Progress, update!
+using ProgressMeter: Progress, update!, next!
+using Base.Threads: @threads
 
 const statusses = Dict(
     :ok     => "successful",
@@ -621,26 +622,48 @@ function evaluate_compiled_test(config::Configuration, pkg::Package; kwargs...)
 end
 
 function verify_artifacts(artifacts)
+    removals = []
+    removals_lock = ReentrantLock()
+
+    # collect directories we need to check
+    jobs = []
     for entry in readdir(artifacts)
         path = joinpath(artifacts, entry)
-        remove = false
 
         tree_hash = tryparse(Base.SHA1, entry)
         if tree_hash === nothing
             # remove directory entries that do not look like a valid artifact
-            @warn "An invalid artifact was found: $entry"
-            remove = true
-        elseif tree_hash != Base.SHA1(Pkg.GitTools.tree_hash(path))
+            @debug "An invalid artifact was found: $entry"
+            push!(removals, path)
+        else
+            push!(jobs, (path, tree_hash))
+        end
+    end
+
+    # determine which ones need to be removed.
+    # this is expensive, so use multiple threads.
+    p = Progress(length(jobs); desc="Verifying artifacts: ")
+    @threads for (path, tree_hash) in jobs
+        if tree_hash != Base.SHA1(Pkg.GitTools.tree_hash(path))
             # remove corrupt artifacts
-            @warn "A broken artifact was found: $entry"
-            remove = true
+            @debug "A broken artifact was found: $entry"
+            lock(removals_lock) do
+                push!(removals, path)
+            end
         end
 
-        remove && rm(path; recursive=true)
+        next!(p)
+    end
+
+    # remove the directories
+    for path in removals
+        rm(path; recursive=true)
     end
 end
 
 function remove_uncacheable_packages(registry, packages)
+    # collect directories we need to check
+    jobs = []
     registry_instance = Pkg.Registry.RegistryInstance(registry)
     for (_, pkg) in registry_instance
         pkginfo = Registry.registry_info(pkg)
@@ -650,25 +673,43 @@ function remove_uncacheable_packages(registry, packages)
                          Base.version_slug(pkg.uuid, tree_hash, 4))
                 path = joinpath(packages, pkg.name, slug)
                 ispath(path) || continue
-                remove = false
-
-                if ispath(joinpath(path, "deps", "build.jl"))
-                    # we cannot cache packages that have a build script,
-                    # because that would result in the build script not being run.
-                    @warn "Package $(pkg.name) has a build script, and cannot be cached"
-                    remove = true
-                elseif Base.SHA1(Pkg.GitTools.tree_hash(path)) != tree_hash
-                    # the contents of the package should match what's in the registry,
-                    # so that we don't cache broken checkouts or other weirdness.
-                    @warn "Package $(pkg.name) has been modified, and cannot be cached"
-                    remove = true
-                end
-
-                if remove
-                    rm(path; recursive=true)
-                end
+                push!(jobs, (path, pkg.name, tree_hash))
             end
         end
+    end
+
+    # determine which ones need to be removed.
+    # this is expensive, so use multiple threads.
+    removals = []
+    removals_lock = ReentrantLock()
+    p = Progress(length(jobs); desc="Verifying packages: ")
+    @threads for (path, name, tree_hash) in jobs
+        remove = false
+
+        if ispath(joinpath(path, "deps", "build.jl"))
+            # we cannot cache packages that have a build script,
+            # because that would result in the build script not being run.
+            @debug "Package $(name) has a build script, and cannot be cached"
+            remove = true
+        elseif Base.SHA1(Pkg.GitTools.tree_hash(path)) != tree_hash
+            # the contents of the package should match what's in the registry,
+            # so that we don't cache broken checkouts or other weirdness.
+            @debug "Package $(name) has been modified, and cannot be cached"
+            remove = true
+        end
+
+        if remove
+            lock(removals_lock) do
+                push!(removals, path)
+            end
+        end
+
+        next!(p)
+    end
+
+    # remove the directories
+    for path in removals
+        rm(path; recursive=true)
     end
 end
 
