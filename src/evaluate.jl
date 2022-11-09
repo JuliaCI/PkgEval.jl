@@ -393,10 +393,10 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
     if occursin("GC error (probable corruption)", log)
         status = :crash
         reason = :gc_corruption
-    elseif occursin("signal (11): Segmentation fault", log)
+    elseif occursin(r"signal \(.+\): Segmentation fault", log)
         status = :crash
         reason = :segfault
-    elseif occursin("signal (6): Abort", log)
+    elseif occursin(r"signal \(.+\): Abort", log)
         status = :crash
         reason = :abort
     elseif occursin("Unreachable reached", log)
