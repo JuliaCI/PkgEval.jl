@@ -10,6 +10,7 @@ const statusses = Dict(
     :skip   => "skipped",
     :fail   => "unsuccessful",
     :kill   => "interrupted",
+    :crash  => "crashed",
 )
 
 function status_message(status)
@@ -19,16 +20,13 @@ end
 # NOTE: within each status group, reasons are sorted in order of reporting priority
 const reasons = [
     missing                 => missing,
-    # skip
-    :unsupported            => "package is not supported by this Julia version",
-    :jll                    => "package is a untestable wrapper package",
-    :explicit               => "package was blacklisted",
-    # fail
+    # crash
     :abort                  => "the process was aborted",
     :internal               => "an internal error was encountered",
     :unreachable            => "an unreachable instruction was executed",
     :gc_corruption          => "GC corruption was detected",
     :segfault               => "a segmentation fault happened",
+    # fail
     :syntax                 => "package has syntax issues",
     :uncompilable           => "compilation of the package failed",
     :test_failures          => "package has test failures",
@@ -43,6 +41,10 @@ const reasons = [
     :inactivity             => "tests became inactive",
     :time_limit             => "test duration exceeded the time limit",
     :log_limit              => "test log exceeded the size limit",
+    # skip
+    :unsupported            => "package is not supported by this Julia version",
+    :jll                    => "package is a untestable wrapper package",
+    :explicit               => "package was blacklisted",
 ]
 
 function reason_message(reason)
@@ -387,29 +389,30 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
 
     # log the status and determine a more accurate reason from the log
     @assert status in [:ok, :fail, :kill]
-    ## some errors are so bad we should disregard the status
-    override_reason = if occursin("GC error (probable corruption)", log)
-        :gc_corruption
-    elseif occursin("signal (11): Segmentation fault", log)
-        :segfault
-    elseif occursin("signal (6): Abort", log)
-        :abort
+    ## crashes so bad we override the status
+    if occursin("GC error (probable corruption)", log)
+        status = :crash
+        reason = :gc_corruption
+    elseif occursin(r"signal \(.+\): Segmentation fault", log)
+        status = :crash
+        reason = :segfault
+    elseif occursin(r"signal \(.+\): Abort", log)
+        status = :crash
+        reason = :abort
     elseif occursin("Unreachable reached", log)
-        :unreachable
+        status = :crash
+        reason = :unreachable
     elseif occursin("Internal error: encountered unexpected error in runtime", log) ||
            occursin("Internal error: stack overflow in type inference", log) ||
            occursin("Internal error: encountered unexpected error during compilation", log)
-        :internal
-    else
-        nothing
+        status = :crash
+        reason = :internal
     end
     ## others we only look for when the test failed
     if status === :fail
-        log *= "PkgEval failed after $elapsed_str\n"
+        log *= "PkgEval failed after $elapsed_str"
 
-        reason = if override_reason !== nothing
-            override_reason
-        elseif occursin("Unsatisfiable requirements detected for package", log)
+        reason = if occursin("Unsatisfiable requirements detected for package", log)
             # NOTE: might be the package itself, or one of its dependencies
             :unsatisfiable
         elseif occursin("Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
@@ -435,19 +438,17 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
         else
             :unknown
         end
-    elseif override_reason !== nothing
-        log *= "PkgEval succeeded after $elapsed_str, but the test output contains suspicious errors\n"
-        status = :fail
-        reason = override_reason
     elseif status === :kill
         log *= "PkgEval terminated after $elapsed_str"
-        if reason !== nothing
-            log *= ": " * reason_message(reason)
-        end
-        log *= "\n"
+    elseif status === :crash
+        log *= "PkgEval crashed after $elapsed_str"
     elseif status === :ok
-        log *= "PkgEval succeeded after $elapsed_str\n"
+        log *= "PkgEval succeeded after $elapsed_str"
     end
+    if reason !== missing
+        log *= ": " * reason_message(reason)
+    end
+    log *= "\n"
 
     # pick up the installed package version from the log
     version_match = match(Regex("\\+ $(pkg.name) v(\\S+)"), log)
@@ -478,8 +479,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
     if config.rr
         # upload an rr trace for interesting failures
         # TODO: re-use BugReporting.jl
-        if status == :fail && reason in [:gc_corruption, :segfault, :abort, :unreachable, :internal] &&
-           haskey(ENV, "PKGEVAL_RR_BUCKET")
+        if status == :crash && haskey(ENV, "PKGEVAL_RR_BUCKET")
             bucket = ENV["PKGEVAL_RR_BUCKET"]
             unixtime = round(Int, datetime2unix(now()))
             trace_unique_name = "$(pkg.name)-$(unixtime).tar.zst"
@@ -713,10 +713,10 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
     # if requested, retry failures
     if retry
         failed_results = filter(results) do row
-            row.status == :fail || row.status == :kill
+            row.status in [:fail, :kill, :crash]
         end
         other_results = filter(results) do row
-            row.status != :fail && row.status != :kill
+            !(row.status in [:fail, :kill, :crash])
         end
 
         # determine jobs to retry
@@ -783,6 +783,7 @@ function _evaluate(jobs; ninstances::Integer=Sys.CPU_THREADS)
         o = count(==(:ok),      result[!, :status])
         s = count(==(:skip),    result[!, :status])
         f = count(==(:fail),    result[!, :status])
+        c = count(==(:crash),   result[!, :status])
         k = count(==(:kill),    result[!, :status])
         # remaining
         x = njobs - nrow(result)
@@ -798,7 +799,7 @@ function _evaluate(jobs; ninstances::Integer=Sys.CPU_THREADS)
         end
 
         if !isinteractive()
-            println("$x combinations to test ($o succeeded, $f failed, $k killed, $s skipped, $(runtimestr(start)))")
+            println("$x combinations to test ($o succeeded, $f failed, $k killed, $c crashed, $s skipped, $(runtimestr(start)))")
             sleep(10)
         else
             print(io, "Success: ")
@@ -807,6 +808,8 @@ function _evaluate(jobs; ninstances::Integer=Sys.CPU_THREADS)
             printstyled(io, f; color = Base.error_color())
             print(io, "\tKilled: ")
             printstyled(io, k; color = Base.error_color())
+            print(io, "\tCrashed: ")
+            printstyled(io, c; color = Base.error_color())
             print(io, "\tSkipped: ")
             printstyled(io, s; color = Base.warn_color())
             println(io, "\tRemaining: ", x)
