@@ -605,7 +605,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package; kwargs...)
     if status !== :ok
         rm(sysimage_dir; recursive=true)
         rm(project_dir; recursive=true)
-        return missing, status, reason, log
+        return missing, status, reason, 0.0, log
     end
 
     # run the tests in the regular environment
