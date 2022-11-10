@@ -3,7 +3,7 @@ export evaluate
 using Dates
 using Random
 using DataFrames: DataFrame, nrow, combine, groupby
-using ProgressMeter: Progress, update!, next!, finish!
+using ProgressMeter: Progress, update!, next!, finish!, durationstring
 using Base.Threads: @threads
 
 const statusses = Dict(
@@ -642,6 +642,7 @@ function verify_artifacts(artifacts)
 
     # determine which ones need to be removed.
     # this is expensive, so use multiple threads.
+    isinteractive() || println("Verifying artifacts...")
     p = Progress(length(jobs); desc="Verifying artifacts: ", enabled=isinteractive())
     @threads for (path, tree_hash) in jobs
         if tree_hash != Base.SHA1(Pkg.GitTools.tree_hash(path))
@@ -686,6 +687,7 @@ function remove_uncacheable_packages(registry, packages)
     # this is expensive, so use multiple threads.
     removals = []
     removals_lock = ReentrantLock()
+    isinteractive() || println("Verifying packages...")
     p = Progress(length(jobs); desc="Verifying packages: ", enabled=isinteractive())
     @threads for (path, name, tree_hash) in jobs
         remove = false
@@ -841,7 +843,8 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
 
                                 # XXX: this needs a proper API in ProgressMeter.jl
                                 #      (maybe an additional argument to `update!`)
-                                p.n += nrow(failures)
+                                njobs += nrow(failures)
+                                p.n = njobs
                             end
                         end
                     end
@@ -854,21 +857,43 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
 
         # Printer
         @async begin
-            function showvalues()
-                # known statuses
-                # NOTE: we filtered skips, so don't need to report them here
-                o = count(==(:ok),      result[!, :status])
-                f = count(==(:fail),    result[!, :status])
-                c = count(==(:crash),   result[!, :status])
-                k = count(==(:kill),    result[!, :status])
-
-                [(:success, o), (:failed, f), (:crashed, c), (:killed, k)]
-            end
-
             try
+                start = time()
+                sleep_time = 1
                 while (!isempty(jobs) || !all(==(nothing), running)) && !done
-                    update!(p, nrow(result); showvalues)
-                    sleep(1)
+                    if isinteractive()
+                        function showvalues()
+                            # known statuses
+                            # NOTE: we filtered skips, so don't need to report them here
+                            o = count(==(:ok),      result[!, :status])
+                            f = count(==(:fail),    result[!, :status])
+                            c = count(==(:crash),   result[!, :status])
+                            k = count(==(:kill),    result[!, :status])
+
+                            [(:success, o), (:failed, f), (:crashed, c), (:killed, k)]
+                        end
+                        update!(p, nrow(result); showvalues)
+                        sleep(sleep_time)
+                    else
+                        remaining_jobs = njobs - nrow(result)   # `jobs` doesn't include running
+                        print("Running tests: $remaining_jobs remaining")
+
+                        elapsed_time = time() - start
+                        est_total_time = njobs * elapsed_time / nrow(result)
+                        if 0 <= est_total_time <= typemax(Int)
+                            eta_sec = round(Int, est_total_time - elapsed_time )
+                            eta = durationstring(eta_sec)
+                            print(" (ETA: $eta)")
+                        end
+
+                        println()
+                        sleep(sleep_time)
+
+                        # don't flood the logs
+                        if sleep_time < 300
+                            sleep_time *= 1.5
+                        end
+                    end
                 end
             catch err
                 isa(err, InterruptException) || rethrow(err)
