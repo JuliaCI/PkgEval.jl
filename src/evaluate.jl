@@ -657,7 +657,11 @@ function verify_artifacts(artifacts)
 
     # remove the directories
     for path in removals
-        rm(path; recursive=true)
+        try
+            rm(path; recursive=true)
+        catch err
+            @error "Failed to remove $path" exception=(err, catch_backtrace())
+        end
     end
 end
 
@@ -709,7 +713,11 @@ function remove_uncacheable_packages(registry, packages)
 
     # remove the directories
     for path in removals
-        rm(path; recursive=true)
+        try
+            rm(path; recursive=true)
+        catch err
+            @error "Failed to remove $path" exception=(err, catch_backtrace())
+        end
     end
 end
 
