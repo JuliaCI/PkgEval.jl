@@ -743,15 +743,6 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
         packages = intersect(map(registry_packages, registry_configs)...)
     end
 
-    jobs = Any[]
-    for (config_name, config) in configs, package in packages
-        push!(jobs, (config_name, config, package))
-    end
-    # use a random test order to (hopefully) get a more reasonable ETA
-    shuffle!(jobs)
-
-    results = _evaluate(configs, jobs; ninstances, retry)
-
     # validate the package and artifact caches (which persist across evaluations)
     registry_dir = get_registry(first(values(configs)))
     package_dir = joinpath(storage_dir, "packages")
@@ -759,11 +750,13 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
     artifact_dir = joinpath(storage_dir, "artifacts")
     verify_artifacts(artifact_dir)
 
-    return results
-end
-
-function _evaluate(configs, jobs; ninstances::Integer=Sys.CPU_THREADS, retry::Bool=true)
-    # here we deal with managing execution: spawning workers, output, result I/O, etc
+    # determine the jobs to run
+    jobs = Any[]
+    for (config_name, config) in configs, package in packages
+        push!(jobs, (config_name, config, package))
+    end
+    ## use a random test order to (hopefully) get a more reasonable ETA
+    shuffle!(jobs)
 
     njobs = length(jobs)
     ninstances = min(njobs, ninstances)
