@@ -3,7 +3,7 @@ export evaluate
 using Dates
 using Random
 using DataFrames: DataFrame, nrow, combine, groupby
-using ProgressMeter: Progress, update!, next!
+using ProgressMeter: Progress, update!, next!, finish!, durationstring
 using Base.Threads: @threads
 
 const statusses = Dict(
@@ -375,7 +375,7 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
         mounts["/traces:rw"] = trace_dir
         env["PKGEVAL_RR"] = "true"
         haskey(ENV, "PKGEVAL_RR_BUCKET") ||
-            @warn maxlog=1 "PKGEVAL_RR_BUCKET not set; will not be uploading rr traces"
+            @warn "PKGEVAL_RR_BUCKET not set; will not be uploading rr traces" maxlog=1
 
         # extend the timeout to account for the rr record overhead
         rr_config = Configuration(config; time_limit=config.time_limit*2)
@@ -642,7 +642,8 @@ function verify_artifacts(artifacts)
 
     # determine which ones need to be removed.
     # this is expensive, so use multiple threads.
-    p = Progress(length(jobs); desc="Verifying artifacts: ")
+    isinteractive() || println("Verifying artifacts...")
+    p = Progress(length(jobs); desc="Verifying artifacts: ", enabled=isinteractive())
     @threads for (path, tree_hash) in jobs
         if tree_hash != Base.SHA1(Pkg.GitTools.tree_hash(path))
             # remove corrupt artifacts
@@ -686,7 +687,8 @@ function remove_uncacheable_packages(registry, packages)
     # this is expensive, so use multiple threads.
     removals = []
     removals_lock = ReentrantLock()
-    p = Progress(length(jobs); desc="Verifying packages: ")
+    isinteractive() || println("Verifying packages...")
+    p = Progress(length(jobs); desc="Verifying packages: ", enabled=isinteractive())
     @threads for (path, name, tree_hash) in jobs
         remove = false
 
@@ -758,6 +760,30 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
     ## use a random test order to (hopefully) get a more reasonable ETA
     shuffle!(jobs)
 
+    result = DataFrame(configuration = String[],
+                       package = String[],
+                       version = Union{Missing,VersionNumber}[],
+                       status = Symbol[],
+                       reason = Union{Missing,Symbol}[],
+                       duration = Float64[],
+                       log = Union{Missing,String}[])
+
+    # pre-filter the jobs for packages we'll skip to get a better ETA
+    skips = similar(result)
+    jobs = filter(jobs) do (config_name, config, pkg)
+        if pkg.name in skip_list
+            push!(skips, [config_name, pkg.name, missing,
+                          :skip, :explicit, 0, missing])
+            return false
+        elseif endswith(pkg.name, "_jll")
+            push!(skips, [config_name, pkg.name, missing,
+                          :skip, :jll, 0, missing])
+            return false
+        else
+            return true
+        end
+    end
+
     njobs = length(jobs)
     ninstances = min(njobs, ninstances)
     running = Vector{Any}(nothing, ninstances)
@@ -781,79 +807,7 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
         end
     end
 
-    start = now()
-    io = IOContext(IOBuffer(), :color=>true)
-    p = Progress(njobs; barlen=50, color=:normal)
-    function update_output()
-        # known statuses
-        o = count(==(:ok),      result[!, :status])
-        s = count(==(:skip),    result[!, :status])
-        f = count(==(:fail),    result[!, :status])
-        c = count(==(:crash),   result[!, :status])
-        k = count(==(:kill),    result[!, :status])
-        # remaining
-        x = njobs - nrow(result)
-
-        function runtimestr(start)
-            time = Dates.canonicalize(Dates.CompoundPeriod(now() - start))
-            if isempty(time.periods) || first(time.periods) isa Millisecond
-                "just started"
-            else
-                # be coarse in the name of brevity
-                string(first(time.periods))
-            end
-        end
-
-        if !isinteractive()
-            println("$x combinations to test ($o succeeded, $f failed, $k killed, $c crashed, $s skipped, $(runtimestr(start)))")
-            sleep(10)
-        else
-            print(io, "Success: ")
-            printstyled(io, o; color = :green)
-            print(io, "\tFailed: ")
-            printstyled(io, f; color = Base.error_color())
-            print(io, "\tKilled: ")
-            printstyled(io, k; color = Base.error_color())
-            print(io, "\tCrashed: ")
-            printstyled(io, c; color = Base.error_color())
-            print(io, "\tSkipped: ")
-            printstyled(io, s; color = Base.warn_color())
-            println(io, "\tRemaining: ", x)
-            for i = 1:ninstances
-                job = running[i]
-                str = if job === nothing
-                    " #$i: -------"
-                else
-                    config_name, pkg = job
-                    " #$i: $(pkg.name) @ $(config_name) ($(runtimestr(times[i])))"
-                end
-                if i%2 == 1 && i < ninstances
-                    print(io, rpad(str, 50))
-                else
-                    println(io, str)
-                end
-            end
-            print(String(take!(io.io)))
-            p.tlast = 0
-            if p.n < nrow(result)
-                # XXX: proper API
-                p.n = nrow(result)
-            end
-            update!(p, nrow(result))
-            sleep(1)
-            CSI = "\e["
-            print(io, "$(CSI)$(ceil(Int, ninstances/2)+1)A$(CSI)1G$(CSI)0J")
-        end
-    end
-
-    result = DataFrame(configuration = String[],
-                       package = String[],
-                       version = Union{Missing,VersionNumber}[],
-                       status = Symbol[],
-                       reason = Union{Missing,Symbol}[],
-                       duration = Float64[],
-                       log = Union{Missing,String}[])
-
+    p = Progress(njobs; desc="Running tests: ", enabled=isinteractive())
     try @sync begin
         # Workers
         for i = 1:ninstances
@@ -863,19 +817,6 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
                         config_name, config, pkg = pop!(jobs)
                         times[i] = now()
                         running[i] = (config_name, pkg)
-
-                        # should we even test this package?
-                        if pkg.name in skip_list
-                            push!(result, [config_name, pkg.name, missing,
-                                           :skip, :explicit, 0, missing])
-                            running[i] = nothing
-                            continue
-                        elseif endswith(pkg.name, "_jll")
-                            push!(result, [config_name, pkg.name, missing,
-                                           :skip, :jll, 0, missing])
-                            running[i] = nothing
-                            continue
-                        end
 
                         # test the package
                         config′ = Configuration(config; cpus=[i-1])
@@ -899,6 +840,11 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
                                 for row in eachrow(failures)
                                     push!(jobs, (row.configuration, configs[row.configuration], pkg))
                                 end
+
+                                # XXX: this needs a proper API in ProgressMeter.jl
+                                #      (maybe an additional argument to `update!`)
+                                njobs += nrow(failures)
+                                p.n = njobs
                             end
                         end
                     end
@@ -912,8 +858,42 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
         # Printer
         @async begin
             try
+                start = time()
+                sleep_time = 1
                 while (!isempty(jobs) || !all(==(nothing), running)) && !done
-                    update_output()
+                    if isinteractive()
+                        function showvalues()
+                            # known statuses
+                            # NOTE: we filtered skips, so don't need to report them here
+                            o = count(==(:ok),      result[!, :status])
+                            f = count(==(:fail),    result[!, :status])
+                            c = count(==(:crash),   result[!, :status])
+                            k = count(==(:kill),    result[!, :status])
+
+                            [(:success, o), (:failed, f), (:crashed, c), (:killed, k)]
+                        end
+                        update!(p, nrow(result); showvalues)
+                        sleep(sleep_time)
+                    else
+                        remaining_jobs = njobs - nrow(result)   # `jobs` doesn't include running
+                        print("Running tests: $remaining_jobs remaining")
+
+                        elapsed_time = time() - start
+                        est_total_time = njobs * elapsed_time / nrow(result)
+                        if 0 <= est_total_time <= typemax(Int)
+                            eta_sec = round(Int, est_total_time - elapsed_time )
+                            eta = durationstring(eta_sec)
+                            print(" (ETA: $eta)")
+                        end
+
+                        println()
+                        sleep(sleep_time)
+
+                        # don't flood the logs
+                        if sleep_time < 300
+                            sleep_time *= 1.5
+                        end
+                    end
                 end
             catch err
                 isa(err, InterruptException) || rethrow(err)
@@ -928,12 +908,13 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
         isa(err, InterruptException) || rethrow(err)
     finally
         stop_work()
-        println()
+        finish!(p)
     end
 
     # remove duplicates from retrying, keeping only the last result
     result = combine(groupby(result, [:configuration, :package]), last)
 
+    append!(result, skips)
     return result
 end
 
