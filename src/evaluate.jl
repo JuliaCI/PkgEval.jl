@@ -2,7 +2,7 @@ export evaluate
 
 using Dates
 using Random
-using DataFrames: DataFrame, nrow
+using DataFrames: DataFrame, nrow, combine, groupby
 using ProgressMeter: Progress, update!, next!
 using Base.Threads: @threads
 
@@ -605,7 +605,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package; kwargs...)
     if status !== :ok
         rm(sysimage_dir; recursive=true)
         rm(project_dir; recursive=true)
-        return missing, status, reason, log
+        return missing, status, reason, 0.0, log
     end
 
     # run the tests in the regular environment
@@ -743,15 +743,6 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
         packages = intersect(map(registry_packages, registry_configs)...)
     end
 
-    jobs = Any[]
-    for (config_name, config) in configs, package in packages
-        push!(jobs, (config_name, config, package))
-    end
-    # use a random test order to (hopefully) get a more reasonable ETA
-    shuffle!(jobs)
-
-    results = _evaluate(jobs)
-
     # validate the package and artifact caches (which persist across evaluations)
     registry_dir = get_registry(first(values(configs)))
     package_dir = joinpath(storage_dir, "packages")
@@ -759,47 +750,13 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
     artifact_dir = joinpath(storage_dir, "artifacts")
     verify_artifacts(artifact_dir)
 
-    # if requested, retry failures
-    if retry
-        failed_results = filter(results) do row
-            row.status in [:fail, :kill, :crash]
-        end
-        other_results = filter(results) do row
-            !(row.status in [:fail, :kill, :crash])
-        end
-
-        # determine jobs to retry
-        retry_jobs = Any[]
-        for package in packages
-            failures = failed_results[failed_results.package .== package.name, :]
-            isempty(failures) && continue
-
-            # in case of a single config, we have nothing to compare again, so retry all
-            # failures. if we have multiple configs, only retry failures that didn't
-            # occur on all configurations.
-            if length(configs) == 1 || nrow(failures) != length(configs)
-                for row in eachrow(failures)
-                    push!(retry_jobs, (row.configuration, configs[row.configuration], package))
-                end
-            else
-                # don't lose track of this failure
-                append!(other_results, failures)
-            end
-        end
-
-        # retry and merge results
-        if length(retry_jobs) > 0
-            println("\nRetrying $(length(retry_jobs)) failed jobs...")
-            retry_results = _evaluate(retry_jobs)
-            results = vcat(other_results, retry_results)
-        end
+    # determine the jobs to run
+    jobs = Any[]
+    for (config_name, config) in configs, package in packages
+        push!(jobs, (config_name, config, package))
     end
-
-    return results
-end
-
-function _evaluate(jobs; ninstances::Integer=Sys.CPU_THREADS)
-    # here we deal with managing execution: spawning workers, output, result I/O, etc
+    ## use a random test order to (hopefully) get a more reasonable ETA
+    shuffle!(jobs)
 
     njobs = length(jobs)
     ninstances = min(njobs, ninstances)
@@ -878,6 +835,10 @@ function _evaluate(jobs; ninstances::Integer=Sys.CPU_THREADS)
             end
             print(String(take!(io.io)))
             p.tlast = 0
+            if p.n < nrow(result)
+                # XXX: proper API
+                p.n = nrow(result)
+            end
             update!(p, nrow(result))
             sleep(1)
             CSI = "\e["
@@ -924,6 +885,22 @@ function _evaluate(jobs; ninstances::Integer=Sys.CPU_THREADS)
                         push!(result, [config_name, pkg.name, pkg_version,
                                        status, reason, duration, log])
                         running[i] = nothing
+
+                        if retry
+                            # if we're done testing this package, consider retrying failures
+                            package_results = result[result.package .== pkg.name, :]
+                            nrow(package_results) == length(configs) || continue
+                            # NOTE: this check also prevents retrying multiple times
+
+                            failures = filter(package_results) do row
+                                row.status in [:fail, :kill, :crash]
+                            end
+                            if length(configs) == 1 || nrow(failures) != length(configs)
+                                for row in eachrow(failures)
+                                    push!(jobs, (row.configuration, configs[row.configuration], pkg))
+                                end
+                            end
+                        end
                     end
                 catch err
                     stop_work()
@@ -953,6 +930,9 @@ function _evaluate(jobs; ninstances::Integer=Sys.CPU_THREADS)
         stop_work()
         println()
     end
+
+    # remove duplicates from retrying, keeping only the last result
+    result = combine(groupby(result, [:configuration, :package]), last)
 
     return result
 end
