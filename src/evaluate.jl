@@ -78,15 +78,19 @@ end
 
 function process_children(pid)
     pids = Int[]
-    for tid in readdir("/proc/$pid/task")
-        children = read("/proc/$pid/task/$tid/children", String)
-        append!(pids, parse.(Int, split(children)))
+    if isdir("/proc/$pid/task")
+        for tid in readdir("/proc/$pid/task")
+            children = read("/proc/$pid/task/$tid/children", String)
+            append!(pids, parse.(Int, split(children)))
+        end
     end
     pids
 end
 
 function cpu_time(pid)
+    isfile("/proc/$pid/stat") || return missing
     stats = read("/proc/$pid/stat", String)
+
     m = match(r"^(\d+) \((.+)\) (.+)", stats)
     @assert m !== nothing
     fields = [[m.captures[1], m.captures[2]]; split(m.captures[3])]
@@ -195,6 +199,7 @@ function evaluate_script(config::Configuration, script::String, args=``;
         process_running(proc) || return
         pid = getpid(proc)
         current_cpu_time = cpu_time(pid)
+        current_cpu_time === missing && return
         if current_cpu_time > 0 && previous_cpu_time !== nothing
             cpu_time_diff = current_cpu_time - previous_cpu_time
             if 0 <= cpu_time_diff < 1
