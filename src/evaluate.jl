@@ -912,7 +912,11 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
     end
 
     # remove duplicates from retrying, keeping only the last result
+    nresults = nrow(result)
     result = combine(groupby(result, [:configuration, :package]), last)
+    if nrow(result) != nresults
+        println("Removed $(nresults - nrow(result)) duplicate evaluations that resulted from retrying tests.")
+    end
 
     append!(result, skips)
     return result
