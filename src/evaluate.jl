@@ -730,32 +730,37 @@ end
 
 """
     evaluate(configs::Vector{Configuration}, [packages::Vector{Package}];
-             ninstances=Sys.CPU_THREADS, kwargs...)
+             ninstances=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true, kwargs...)
     evaluate(configs::Dict{String,Configuration}, [packages::Vector{Package}];
-             ninstances=Sys.CPU_THREADS, kwargs...)
+             ninstances=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true, kwargs...)
 
 Run tests for `packages` using `configs`. If no packages are specified, default to testing
-all packages in the configured registry. The configurations can be specified as an array,
-or as a dictionary where the key can be used to name the configuration (and more easily
+all packages in the configured registry. The configurations can be specified as an array, or
+as a dictionary where the key can be used to name the configuration (and more easily
 identify it in the output dataframe).
 
-The `ninstances` keyword argument determines how many packages are tested in parallel.
-Refer to `evaluate_test`[@ref] and `sandboxed_julia`[@ref] for more possible
-keyword arguments.
+The `ninstances` keyword argument determines how many packages are tested in parallel;
+`retry` determines whether packages that did not fail on all configurations are retries;
+`validate` enables validation of artifact and package caches before running tests.
+
+Refer to `evaluate_test`[@ref] and `sandboxed_julia`[@ref] for more possible keyword
+arguments.
 """
 function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}=Package[];
-                  ninstances::Integer=Sys.CPU_THREADS, retry::Bool=true)
+                  ninstances::Integer=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true)
     if isempty(packages)
         registry_configs = unique(config->config.registry, values(configs))
         packages = intersect(map(registry_packages, registry_configs)...)
     end
 
     # validate the package and artifact caches (which persist across evaluations)
-    registry_dir = get_registry(first(values(configs)))
-    package_dir = joinpath(storage_dir, "packages")
-    remove_uncacheable_packages(registry_dir, package_dir)
-    artifact_dir = joinpath(storage_dir, "artifacts")
-    verify_artifacts(artifact_dir)
+    if validate
+        registry_dir = get_registry(first(values(configs)))
+        package_dir = joinpath(storage_dir, "packages")
+        remove_uncacheable_packages(registry_dir, package_dir)
+        artifact_dir = joinpath(storage_dir, "artifacts")
+        verify_artifacts(artifact_dir)
+    end
 
     # determine the jobs to run
     jobs = Any[]
