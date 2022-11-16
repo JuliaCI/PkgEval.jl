@@ -497,6 +497,9 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             end
         end
         rm(trace_dir; recursive=true)
+
+        # remove inaccurate rr errors (rr-debugger/rr/#3346)
+        log = replace(log, r"\[ERROR .* Metadata of .* changed: .*\n" => "")
     end
 
     return version, status, reason, duration, log
