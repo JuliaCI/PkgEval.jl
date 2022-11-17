@@ -119,14 +119,11 @@ function setup_julia_sandbox(config::Configuration, args=``;
                              mounts::Dict{String,String}=Dict{String,String}())
     install = install_julia(config)
     registry = get_registry(config)
-    packages = joinpath(storage_dir, "packages")
-    artifacts = joinpath(storage_dir, "artifacts")
     mounts = merge(mounts, Dict(
         "$(config.julia_install_dir):ro"                    => install,
         "/usr/local/share/julia/registries/General:ro"      => registry,
-        joinpath(config.home, ".julia", "packages")*":rw"   => packages,
-        joinpath(config.home, ".julia", "artifacts")*":rw"  => artifacts
     ))
+    # NOTE: we only mount immutable data here that cannot be broken by the sandbox.
 
     env = merge(env, Dict(
         # PkgEval detection

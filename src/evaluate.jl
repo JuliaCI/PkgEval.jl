@@ -373,7 +373,15 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
         args = `--depwarn=error $args`
     end
 
-    mounts = Dict{String,String}()
+    packages = joinpath(storage_dir, "packages")
+    artifacts = joinpath(storage_dir, "artifacts")
+    mounts = Dict{String,String}(
+        joinpath(config.home, ".julia", "packages")*":rw"   => packages,
+        joinpath(config.home, ".julia", "artifacts")*":rw"  => artifacts
+        # NOTE: the packages and artifacts directories are mutable, so they can break.
+        #       hence we only mount them here, and not in `sandboxed_julia`, because
+        #       we know we'll have validated the caches before entering here.
+    )
     env = Dict{String,String}()
 
     status, reason, log, elapsed = if config.rr
