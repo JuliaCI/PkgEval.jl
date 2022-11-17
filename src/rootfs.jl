@@ -27,6 +27,15 @@ function _create_rootfs(config::Configuration)
     rm(joinpath(derived, "etc/resolv.conf"); force=true)
     write(joinpath(derived, "etc/resolv.conf"), read("/etc/resolv.conf"))
 
+    # create and populate the home directory
+    homedir = joinpath(derived, relpath(config.home, "/"))
+    mkpath(homedir)
+    ## provide at least a single simple font so that Cairo can work
+    fontdir = joinpath(homedir, ".local/share/fonts")
+    mkpath(fontdir)
+    font = "droid-sans-subset.ttf"
+    cp(joinpath(@__DIR__, "..", "res", font), joinpath(fontdir, font));
+
     return derived
 end
 
