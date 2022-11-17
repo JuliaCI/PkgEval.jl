@@ -77,14 +77,16 @@ function get_compilecache(config::Configuration)
 end
 
 function process_children(pid)
+    isdir("/proc/$pid/task") || return Int[]
     pids = Int[]
-    if isdir("/proc/$pid/task")
-        for tid in readdir("/proc/$pid/task")
+    for tid in readdir("/proc/$pid/task")
+        path = "/proc/$pid/task/$tid/children"
+        if ispath(path)
             children = read("/proc/$pid/task/$tid/children", String)
             append!(pids, parse.(Int, split(children)))
         end
     end
-    pids
+    return pids
 end
 
 function cpu_time(pid)
