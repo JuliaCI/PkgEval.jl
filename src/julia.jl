@@ -133,7 +133,7 @@ function build_julia(_repo_path::String, config::Configuration)
     repo_srccache = joinpath(repo_path, "deps", "srccache")
     cp(srccache, repo_srccache)
     cd(repo_path) do
-        run(ignorestatus(`make -C deps getall NO_GIT=1`))
+        run(ignorestatus(`make -C deps getall NO_GIT=1`), devnull, devnull, devnull)
     end
     for file in readdir(repo_srccache)
         if !ispath(joinpath(srccache, file))
@@ -175,16 +175,34 @@ function build_julia(_repo_path::String, config::Configuration)
         contrib/fixup-libgfortran.sh /install/lib/julia
         contrib/fixup-libstdc++.sh /install/lib /install/lib/julia
     """
-    try
-        sandboxed_cmd(build_config, `/bin/bash -c $script`; mounts)
-    catch err
-        rm(install_dir; recursive=true)
-        rethrow()
-    finally
-        rm(repo_path; recursive=true)
+
+    output = Pipe()
+    proc = sandboxed_cmd(build_config, `/bin/bash -c $script`; wait=false, mounts,
+                         stdin=devnull, stdout=output, stderr=output)
+    close(output.in)
+
+    # collect output
+    log_monitor = @async begin
+        io = IOBuffer()
+        while !eof(output)
+            print(io, readline(output; keep=true))
+        end
+        return String(take!(io))
     end
 
-    return install_dir
+    wait(proc)
+    close(output)
+    log = fetch(log_monitor)
+
+    rm(repo_path; recursive=true)
+    if success(proc)
+        @debug "Successfully build Julia:\n$log"
+        return install_dir
+    else
+        @error "Error building Julia:\n$log"
+        rm(install_dir; recursive=true)
+        error("Error building Julia")
+    end
 end
 
 function _install_julia(config::Configuration)
