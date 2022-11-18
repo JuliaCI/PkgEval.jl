@@ -25,6 +25,8 @@ Default(val::T) where {T} = Setting{T}(val, false)
 ## configuration: groups settings
 
 Base.@kwdef struct Configuration
+    name::String = "unnamed"
+
     # Julia properties
     julia::Setting{String} = Default("nightly")
     buildflags::Setting{Vector{String}} = Default(String[])
@@ -71,7 +73,7 @@ function Base.show(io::IO, cfg::Configuration)
         end
         println(io)
     end
-    println(io, "PkgEval configuration(")
+    println(io, "PkgEval configuration '$(cfg.name)' (")
 
     println(io, "  # Julia properties")
     show_setting.(["julia", "buildflags", "buildcommands", "environment", "julia_install_dir", "julia_binary", "julia_args"])
@@ -92,9 +94,23 @@ function Base.show(io::IO, cfg::Configuration)
 end
 
 # when requested, return the underlying value
-Base.getproperty(cfg::Configuration, field::Symbol) = getfield(cfg, field)[]
+function Base.getproperty(cfg::Configuration, field::Symbol)
+    val = getfield(cfg, field)
+    if val isa Setting
+        return val[]
+    else
+        return val
+    end
+end
 
-ismodified(cfg::Configuration, field::Symbol) = getfield(cfg, field).modified
+function ismodified(cfg::Configuration, field::Symbol)
+    val = getfield(cfg, field)
+    if val isa Setting
+        return val.modified
+    else
+        return false
+    end
+end
 can_use_binaries(cfg::Configuration) =
     !ismodified(cfg, :buildflags) && !ismodified(cfg, :buildcommands)
 
@@ -150,7 +166,6 @@ end
 
 struct Job
     config::Configuration
-    config_name::String
     package::Package
     cache::Bool
 end

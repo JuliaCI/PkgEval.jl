@@ -149,8 +149,8 @@ end
 end
 
 @testset "PackageCompiler" begin
-    results = evaluate(Dict("regular"  => Configuration(; config_kwargs...),
-                            "compiled" => Configuration(; config_kwargs..., compiled=true)),
+    results = evaluate([Configuration(; name="regular", config_kwargs...),
+                        Configuration(; name="compiled", compiled=true, config_kwargs...)],
                        [Package(; name="Example")])
     @test size(results, 1) == 2
     for result in eachrow(results)

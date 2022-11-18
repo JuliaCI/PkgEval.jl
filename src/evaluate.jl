@@ -749,8 +749,6 @@ end
 """
     evaluate(configs::Vector{Configuration}, [packages::Vector{Package}];
              ninstances=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true, kwargs...)
-    evaluate(configs::Dict{String,Configuration}, [packages::Vector{Package}];
-             ninstances=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true, kwargs...)
 
 Run tests for `packages` using `configs`. If no packages are specified, default to testing
 all packages in the configured registry. The configurations can be specified as an array, or
@@ -764,11 +762,17 @@ The `ninstances` keyword argument determines how many packages are tested in par
 Refer to `evaluate_test`[@ref] and `sandboxed_julia`[@ref] for more possible keyword
 arguments.
 """
-function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}=Package[];
+function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Package[];
                   ninstances::Integer=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true)
     if isempty(packages)
         registry_configs = unique(config->config.registry, values(configs))
         packages = intersect(map(registry_packages, registry_configs)...)
+    end
+
+    # ensure the configurations have unique names
+    config_names = map(config->config.name, configs) |> unique
+    if length(config_names) != length(configs)
+        error("Configurations must have unique names; got $(length(configs)) configurations, but only $(length(config_names)) name(s): $(join(config_names, ", "))")
     end
 
     # validate the package and artifact caches (which persist across evaluations)
@@ -782,8 +786,8 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
 
     # determine the jobs to run
     jobs = Job[]
-    for (config_name, config) in configs, package in packages
-        push!(jobs, Job(config, config_name, package, true))
+    for config in configs, package in packages
+        push!(jobs, Job(config, package, true))
     end
     ## use a random test order to (hopefully) get a more reasonable ETA
     shuffle!(jobs)
@@ -800,11 +804,11 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
     skips = similar(result)
     jobs = filter(jobs) do job
         if job.package.name in skip_list
-            push!(skips, [job.config_name, job.package.name, missing,
+            push!(skips, [job.config.name, job.package.name, missing,
                           :skip, :explicit, 0, missing])
             return false
         elseif endswith(job.package.name, "_jll")
-            push!(skips, [job.config_name, job.package.name, missing,
+            push!(skips, [job.config.name, job.package.name, missing,
                           :skip, :jll, 0, missing])
             return false
         else
@@ -844,15 +848,15 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
                     while !isempty(jobs) && !done
                         job = pop!(jobs)
                         times[i] = now()
-                        running[i] = (job.config_name, job.package)
+                        running[i] = (job.config.name, job.package)
 
                         # test the package
                         config′ = Configuration(job.config; cpus=[i-1])
                         pkg_version, status, reason, duration, log =
                             evaluate_test(config′, job.package; job.cache)
 
-                        push!(result, [job.config_name, job.package.name, pkg_version,
-                                       status, reason, duration, log])
+                        push!(result, [job.config.name, job.package.name,
+                                       pkg_version, status, reason, duration, log])
                         running[i] = nothing
 
                         if retry
@@ -867,7 +871,8 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
                             if length(configs) == 1 || nrow(failures) != length(configs)
                                 for row in eachrow(failures)
                                     # retry the failed job in a pristine environment
-                                    push!(jobs, Job(configs[row.configuration], row.configuration, job.package, false))
+                                    config = findfirst(config->config.name == row.configuration, configs)
+                                    push!(jobs, Job(configs[config], job.package, false))
                                 end
 
                                 # XXX: this needs a proper API in ProgressMeter.jl
@@ -949,12 +954,4 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
 
     append!(result, skips)
     return result
-end
-
-function evaluate(configs::Vector{Configuration}, args...; kwargs...)
-    config_dict = Dict{String,Configuration}()
-    for (i,config) in enumerate(configs)
-        config_dict["config_$i"] = config
-    end
-    evaluate(config_dict, args...; kwargs...)
 end
