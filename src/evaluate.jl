@@ -275,17 +275,17 @@ function evaluate_script(config::Configuration, script::String, args=``;
 end
 
 """
-    evaluate_test(config::Configuration, pkg; pristine=false, kwargs...)
+    evaluate_test(config::Configuration, pkg; cache=true, kwargs...)
 
 Run the unit tests for a single package `pkg` inside of a sandbox according to `config`.
-The `pristine` argument determines whether the package is installed in a pristine
-environment, i.e., without using global caches for packages and artifacts.
+The `cache` argument determines whether the package can use the shared package and artifact
+cache.
 
 Refer to `evaluate_script`[@ref] for more possible `keyword arguments.
 """
-function evaluate_test(config::Configuration, pkg::Package; pristine::Bool=false, kwargs...)
+function evaluate_test(config::Configuration, pkg::Package; cache::Bool=true, kwargs...)
     if config.compiled
-        return evaluate_compiled_test(config, pkg; pristine, kwargs...)
+        return evaluate_compiled_test(config, pkg; cache, kwargs...)
     end
 
     script = raw"""
@@ -378,7 +378,7 @@ function evaluate_test(config::Configuration, pkg::Package; pristine::Bool=false
     mounts = Dict{String,String}()
     env = Dict{String,String}()
 
-    if !pristine
+    if cache
         # NOTE: the packages and artifacts directories are mutable, so they can break.
         #       hence we only mount them here, and not in `sandboxed_julia`, because
         #       we know we'll have validated the caches before entering here.
@@ -530,7 +530,7 @@ To find incompatibilities, the compilation happens on an Ubuntu-based runner, wh
 is performed in an Arch Linux container.
 """
 function evaluate_compiled_test(config::Configuration, pkg::Package;
-                                pristine::Bool=false, kwargs...)
+                                cache::Bool=true, kwargs...)
     script = raw"""
         begin
             using Dates
@@ -637,7 +637,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
         julia_args = `$(config.julia_args) --project=$project_path --sysimage $sysimage_path`,
     )
     version, status, reason, duration, test_log =
-        evaluate_test(test_config, pkg; mounts, pristine, kwargs...)
+        evaluate_test(test_config, pkg; mounts, cache, kwargs...)
 
     rm(sysimage_dir; recursive=true)
     rm(project_dir; recursive=true)
@@ -783,7 +783,7 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
     # determine the jobs to run
     jobs = Any[]
     for (config_name, config) in configs, package in packages
-        push!(jobs, (config_name, config, package, false))
+        push!(jobs, (config_name, config, package, true))
     end
     ## use a random test order to (hopefully) get a more reasonable ETA
     shuffle!(jobs)
@@ -842,14 +842,14 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
             push!(all_workers, @async begin
                 try
                     while !isempty(jobs) && !done
-                        config_name, config, pkg, pristine = pop!(jobs)
+                        config_name, config, pkg, cache = pop!(jobs)
                         times[i] = now()
                         running[i] = (config_name, pkg)
 
                         # test the package
                         config′ = Configuration(config; cpus=[i-1])
                         pkg_version, status, reason, duration, log =
-                            evaluate_test(config′, pkg; pristine)
+                            evaluate_test(config′, pkg; cache)
 
                         push!(result, [config_name, pkg.name, pkg_version,
                                        status, reason, duration, log])
@@ -867,7 +867,7 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
                             if length(configs) == 1 || nrow(failures) != length(configs)
                                 for row in eachrow(failures)
                                     # retry the failed job in a pristine environment
-                                    push!(jobs, (row.configuration, configs[row.configuration], pkg, true))
+                                    push!(jobs, (row.configuration, configs[row.configuration], pkg, false))
                                 end
 
                                 # XXX: this needs a proper API in ProgressMeter.jl
