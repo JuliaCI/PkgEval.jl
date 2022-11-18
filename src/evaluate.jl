@@ -889,9 +889,16 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                                 for row in eachrow(failures)
                                     # retry the failed job in a pristine environment
                                     config = configs[findfirst(config->config.name == row.configuration, configs)]
-                                    ## disabling rr here is a bit of a hack (it's just not
-                                    ## what was requested) but improves reliability a lot.
-                                    config′ = Configuration(config; rr=false)
+                                    config′ = if row.status !== :crash
+                                        # if the package failed, retry without rr, as it
+                                        # may have caused the failure. this is a bit of a
+                                        # hack, but improves retry reliability a lot.
+                                        Configuration(config; rr=false)
+                                    else
+                                        # however, do not disable rr if the failure involved
+                                        # a crash, for which rr traces are very important.
+                                        config
+                                    end
                                     push!(jobs, Job(config′, job.package, false))
                                 end
 
