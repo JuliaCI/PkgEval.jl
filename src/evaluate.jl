@@ -131,20 +131,6 @@ function evaluate_script(config::Configuration, script::String, args=``;
         env["JULIA_PKG_SERVER"] = ENV["JULIA_PKG_SERVER"]
     end
 
-    # set-up a compile cache. because we may be running many instances, mount the
-    # shared cache read-only, and synchronize entries after we finish the script.
-    #
-    # in principle, we'd have to do this too for the package cache, but because the
-    # compilecache header contains full paths we can't ever move packages from the
-    # local to the global cache. instead, we verify the package cache before retrying.
-    # for consistency, we do the same for artifacts (although we could split that cache).
-    shared_compilecache = get_compilecache(config)
-    local_compilecache = mktempdir()
-    mounts = merge(mounts, Dict(
-        "/usr/local/share/julia/compiled:ro"                => shared_compilecache,
-        joinpath(config.home, ".julia", "compiled")*":rw"   => local_compilecache
-    ))
-
     t0 = time()
     input = Pipe()
     output = Pipe()
@@ -253,37 +239,21 @@ function evaluate_script(config::Configuration, script::String, args=``;
         log = log[1:ind]
     end
 
-    # copy new files from the local compilecache into the shared one
-    function copy_files(subpath=""; src, dst)
-        for entry in readdir(joinpath(src, subpath))
-            path = joinpath(subpath, entry)
-            srcpath = joinpath(src, path)
-            dstpath = joinpath(dst, path)
-
-            if isdir(srcpath)
-                isdir(dstpath) || mkdir(joinpath(dst, path))
-                copy_files(path; src, dst)
-            elseif !ispath(dstpath)
-                cp(srcpath, dstpath)
-            end
-        end
-    end
-    copy_files(src=local_compilecache, dst=shared_compilecache)
-    rm(local_compilecache; recursive=true)
-
     return status, reason, log, t1 - t0
 end
 
 """
-    evaluate_test(config::Configuration, pkg; kwargs...)
+    evaluate_test(config::Configuration, pkg; use_cache=true, kwargs...)
 
 Run the unit tests for a single package `pkg` inside of a sandbox according to `config`.
+The `use_cache` argument determines whether the package can use the caches shared across
+jobs (which may be a cause of issues).
 
 Refer to `evaluate_script`[@ref] for more possible `keyword arguments.
 """
-function evaluate_test(config::Configuration, pkg::Package; kwargs...)
+function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true, kwargs...)
     if config.compiled
-        return evaluate_compiled_test(config, pkg; kwargs...)
+        return evaluate_compiled_test(config, pkg; use_cache, kwargs...)
     end
 
     script = raw"""
@@ -301,9 +271,6 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
             using Pkg
             using Base: UUID, PkgId
             package_spec = eval(Meta.parse(ARGS[1]))
-
-            bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true" &&
-                           package_spec.name != "BugReporting"
 
             println("\nSet-up completed after $(elapsed(t0))")
 
@@ -324,6 +291,12 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
 
             print("\n\n", '#'^80, "\n# Testing\n#\n\n")
             println("Started at ", now(UTC), "\n")
+
+            bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true"
+            if bugreporting
+                println("Tests will be executed under rr.\n")
+            end
+
             t2 = time()
             try
                 if bugreporting
@@ -373,16 +346,32 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
         args = `--depwarn=error $args`
     end
 
-    packages = joinpath(storage_dir, "packages")
-    artifacts = joinpath(storage_dir, "artifacts")
-    mounts = Dict{String,String}(
-        joinpath(config.home, ".julia", "packages")*":rw"   => packages,
-        joinpath(config.home, ".julia", "artifacts")*":rw"  => artifacts
-        # NOTE: the packages and artifacts directories are mutable, so they can break.
-        #       hence we only mount them here, and not in `sandboxed_julia`, because
-        #       we know we'll have validated the caches before entering here.
-    )
+    mounts = Dict{String,String}()
     env = Dict{String,String}()
+
+    # caches are mutable, so they can get corrupted during a run. that's why it's possible
+    # to run without them (in case of a retry), and is also why we set them up here rather
+    # than in `sandboxed_julia` (because we know we've verified caches before enterint here)
+    if use_cache
+        # we can split the compile cache in a global and local part, copying over changes
+        # after the test completes to avoid races.
+        shared_compilecache = get_compilecache(config)
+        local_compilecache = mktempdir()
+        mounts = merge(mounts, Dict(
+            "/usr/local/share/julia/compiled:ro"                => shared_compilecache,
+            joinpath(config.home, ".julia", "compiled")*":rw"   => local_compilecache
+        ))
+
+        # in principle, we'd have to do this too for the package cache, but because the
+        # compilecache header contains full paths we can't ever move packages from the
+        # local to the global cache. instead, we verify the package cache before retrying.
+        packages = joinpath(storage_dir, "packages")
+        mounts[joinpath(config.home, ".julia", "packages")*":rw"] = packages
+
+        # for consistency, we do the same for artifacts (although we could split that cache).
+        artifacts = joinpath(storage_dir, "artifacts")
+        mounts[joinpath(config.home, ".julia", "artifacts")*":rw"] = artifacts
+    end
 
     status, reason, log, elapsed = if config.rr
         trace_dir = mktempdir()
@@ -402,6 +391,26 @@ function evaluate_test(config::Configuration, pkg::Package; kwargs...)
 
     log *= "\n\n$('#'^80)\n# PkgEval teardown\n#\n\n"
     log *= "Started at $(now(UTC))\n\n"
+
+    if use_cache
+        # copy new files from the local compilecache into the shared one
+        function copy_files(subpath=""; src, dst)
+            for entry in readdir(joinpath(src, subpath))
+                path = joinpath(subpath, entry)
+                srcpath = joinpath(src, path)
+                dstpath = joinpath(dst, path)
+
+                if isdir(srcpath)
+                    isdir(dstpath) || mkdir(joinpath(dst, path))
+                    copy_files(path; src, dst)
+                elseif !ispath(dstpath)
+                    cp(srcpath, dstpath)
+                end
+            end
+        end
+        copy_files(src=local_compilecache, dst=shared_compilecache)
+        rm(local_compilecache; recursive=true)
+    end
 
     # log the status and determine a more accurate reason from the log
     @assert status in [:ok, :fail, :kill]
@@ -525,7 +534,8 @@ contains this package and its dependencies.
 To find incompatibilities, the compilation happens on an Ubuntu-based runner, while testing
 is performed in an Arch Linux container.
 """
-function evaluate_compiled_test(config::Configuration, pkg::Package; kwargs...)
+function evaluate_compiled_test(config::Configuration, pkg::Package;
+                                use_cache::Bool=true, kwargs...)
     script = raw"""
         begin
             using Dates
@@ -632,7 +642,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package; kwargs...)
         julia_args = `$(config.julia_args) --project=$project_path --sysimage $sysimage_path`,
     )
     version, status, reason, duration, test_log =
-        evaluate_test(test_config, pkg; mounts, kwargs...)
+        evaluate_test(test_config, pkg; mounts, use_cache, kwargs...)
 
     rm(sysimage_dir; recursive=true)
     rm(project_dir; recursive=true)
@@ -744,8 +754,6 @@ end
 """
     evaluate(configs::Vector{Configuration}, [packages::Vector{Package}];
              ninstances=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true, kwargs...)
-    evaluate(configs::Dict{String,Configuration}, [packages::Vector{Package}];
-             ninstances=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true, kwargs...)
 
 Run tests for `packages` using `configs`. If no packages are specified, default to testing
 all packages in the configured registry. The configurations can be specified as an array, or
@@ -759,11 +767,17 @@ The `ninstances` keyword argument determines how many packages are tested in par
 Refer to `evaluate_test`[@ref] and `sandboxed_julia`[@ref] for more possible keyword
 arguments.
 """
-function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}=Package[];
+function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Package[];
                   ninstances::Integer=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true)
     if isempty(packages)
         registry_configs = unique(config->config.registry, values(configs))
         packages = intersect(map(registry_packages, registry_configs)...)
+    end
+
+    # ensure the configurations have unique names
+    config_names = map(config->config.name, configs) |> unique
+    if length(config_names) != length(configs)
+        error("Configurations must have unique names; got $(length(configs)) configurations, but only $(length(config_names)) name(s): $(join(config_names, ", "))")
     end
 
     # validate the package and artifact caches (which persist across evaluations)
@@ -776,9 +790,9 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
     end
 
     # determine the jobs to run
-    jobs = Any[]
-    for (config_name, config) in configs, package in packages
-        push!(jobs, (config_name, config, package))
+    jobs = Job[]
+    for config in configs, package in packages
+        push!(jobs, Job(config, package, true))
     end
     ## use a random test order to (hopefully) get a more reasonable ETA
     shuffle!(jobs)
@@ -793,13 +807,13 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
 
     # pre-filter the jobs for packages we'll skip to get a better ETA
     skips = similar(result)
-    jobs = filter(jobs) do (config_name, config, pkg)
-        if pkg.name in skip_list
-            push!(skips, [config_name, pkg.name, missing,
+    jobs = filter(jobs) do job
+        if job.package.name in skip_list
+            push!(skips, [job.config.name, job.package.name, missing,
                           :skip, :explicit, 0, missing])
             return false
-        elseif endswith(pkg.name, "_jll")
-            push!(skips, [config_name, pkg.name, missing,
+        elseif endswith(job.package.name, "_jll")
+            push!(skips, [job.config.name, job.package.name, missing,
                           :skip, :jll, 0, missing])
             return false
         else
@@ -837,22 +851,22 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
             push!(all_workers, @async begin
                 try
                     while !isempty(jobs) && !done
-                        config_name, config, pkg = pop!(jobs)
+                        job = pop!(jobs)
                         times[i] = now()
-                        running[i] = (config_name, pkg)
+                        running[i] = (job.config.name, job.package)
 
                         # test the package
-                        config′ = Configuration(config; cpus=[i-1])
+                        config′ = Configuration(job.config; cpus=[i-1])
                         pkg_version, status, reason, duration, log =
-                            evaluate_test(config′, pkg)
+                            evaluate_test(config′, job.package; job.use_cache)
 
-                        push!(result, [config_name, pkg.name, pkg_version,
-                                       status, reason, duration, log])
+                        push!(result, [job.config.name, job.package.name,
+                                       pkg_version, status, reason, duration, log])
                         running[i] = nothing
 
                         if retry
                             # if we're done testing this package, consider retrying failures
-                            package_results = result[result.package .== pkg.name, :]
+                            package_results = result[result.package .== job.package.name, :]
                             nrow(package_results) == length(configs) || continue
                             # NOTE: this check also prevents retrying multiple times
 
@@ -861,7 +875,12 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
                             end
                             if length(configs) == 1 || nrow(failures) != length(configs)
                                 for row in eachrow(failures)
-                                    push!(jobs, (row.configuration, configs[row.configuration], pkg))
+                                    # retry the failed job in a pristine environment
+                                    config = configs[findfirst(config->config.name == row.configuration, configs)]
+                                    ## disabling rr here is a bit of a hack (it's just not
+                                    ## what was requested) but improves reliability a lot.
+                                    config′ = Configuration(config; rr=false)
+                                    push!(jobs, Job(config′, job.package, false))
                                 end
 
                                 # XXX: this needs a proper API in ProgressMeter.jl
@@ -943,12 +962,4 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
 
     append!(result, skips)
     return result
-end
-
-function evaluate(configs::Vector{Configuration}, args...; kwargs...)
-    config_dict = Dict{String,Configuration}()
-    for (i,config) in enumerate(configs)
-        config_dict["config_$i"] = config
-    end
-    evaluate(config_dict, args...; kwargs...)
 end
