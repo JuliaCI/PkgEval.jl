@@ -1,34 +1,40 @@
 using Sandbox: Sandbox, SandboxConfig, UnprivilegedUserNamespacesExecutor, cleanup
 
 """
-    run_sandbox(config::Configuration, setup, args...; wait=true,
+    run_sandbox(config::Configuration, setup, args...; wait=true, executor=nothiong,
                 stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
 
 Run stuff in a sandbox. The actual sandbox command is set-up by calling `setup`, passing
 along arguments and keyword arguments that are not processed by this function.
+If no `executor` is passed, one will be created and cleaned-up after the sandbox completes.
 """
-function run_sandbox(config::Configuration, setup, args...; wait=true,
+function run_sandbox(config::Configuration, setup, args...; executor=nothing, wait=true,
                      stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
-    # XXX: even when preferred_executor() returns UnprivilegedUserNamespacesExecutor,
-    #      sometimes a stray sudo happens at run time? no idea how.
-    exe_typ = UnprivilegedUserNamespacesExecutor
-    exe = exe_typ()
+    do_cleanup = false
+    if executor === nothing
+        # XXX: even when preferred_executor() returns UnprivilegedUserNamespacesExecutor,
+        #      sometimes a stray sudo happens at run time? no idea how.
+        executor = UnprivilegedUserNamespacesExecutor()
+        do_cleanup = true
+    end
 
     sandbox_config, cmd = setup(config, args...; kwargs...)
-    sandbox_cmd = Sandbox.build_executor_command(exe, sandbox_config, cmd)
+    sandbox_cmd = Sandbox.build_executor_command(executor, sandbox_config, cmd)
     proc = run(pipeline(sandbox_cmd; stdin, stderr, stdout); wait)
 
     # TODO: introduce a --stats flag that has the sandbox trace and report on CPU, network, ... usage
 
-    if wait
-        cleanup(exe)
-    else
-        @async begin
-            try
-                Base.wait(proc)
-                cleanup(exe)
-            catch err
-                @error "Unexpected error while cleaning up process" exception=(err, catch_backtrace())
+    if do_cleanup
+        if wait
+            cleanup(executor)
+        else
+            @async begin
+                try
+                    Base.wait(proc)
+                    cleanup(executor)
+                catch err
+                    @error "Unexpected error while cleaning up process" exception=(err, catch_backtrace())
+                end
             end
         end
     end
