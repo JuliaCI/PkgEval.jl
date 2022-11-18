@@ -167,5 +167,6 @@ end
 struct Job
     config::Configuration
     package::Package
-    cache::Bool
+
+    use_cache::Bool
 end

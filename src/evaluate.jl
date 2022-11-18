@@ -131,20 +131,6 @@ function evaluate_script(config::Configuration, script::String, args=``;
         env["JULIA_PKG_SERVER"] = ENV["JULIA_PKG_SERVER"]
     end
 
-    # set-up a compile cache. because we may be running many instances, mount the
-    # shared cache read-only, and synchronize entries after we finish the script.
-    #
-    # in principle, we'd have to do this too for the package cache, but because the
-    # compilecache header contains full paths we can't ever move packages from the
-    # local to the global cache. instead, we verify the package cache before retrying.
-    # for consistency, we do the same for artifacts (although we could split that cache).
-    shared_compilecache = get_compilecache(config)
-    local_compilecache = mktempdir()
-    mounts = merge(mounts, Dict(
-        "/usr/local/share/julia/compiled:ro"                => shared_compilecache,
-        joinpath(config.home, ".julia", "compiled")*":rw"   => local_compilecache
-    ))
-
     t0 = time()
     input = Pipe()
     output = Pipe()
@@ -253,39 +239,21 @@ function evaluate_script(config::Configuration, script::String, args=``;
         log = log[1:ind]
     end
 
-    # copy new files from the local compilecache into the shared one
-    function copy_files(subpath=""; src, dst)
-        for entry in readdir(joinpath(src, subpath))
-            path = joinpath(subpath, entry)
-            srcpath = joinpath(src, path)
-            dstpath = joinpath(dst, path)
-
-            if isdir(srcpath)
-                isdir(dstpath) || mkdir(joinpath(dst, path))
-                copy_files(path; src, dst)
-            elseif !ispath(dstpath)
-                cp(srcpath, dstpath)
-            end
-        end
-    end
-    copy_files(src=local_compilecache, dst=shared_compilecache)
-    rm(local_compilecache; recursive=true)
-
     return status, reason, log, t1 - t0
 end
 
 """
-    evaluate_test(config::Configuration, pkg; cache=true, kwargs...)
+    evaluate_test(config::Configuration, pkg; use_cache=true, kwargs...)
 
 Run the unit tests for a single package `pkg` inside of a sandbox according to `config`.
-The `cache` argument determines whether the package can use the shared package and artifact
-cache.
+The `use_cache` argument determines whether the package can use the caches shared across
+jobs (which may be a cause of issues).
 
 Refer to `evaluate_script`[@ref] for more possible `keyword arguments.
 """
-function evaluate_test(config::Configuration, pkg::Package; cache::Bool=true, kwargs...)
+function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true, kwargs...)
     if config.compiled
-        return evaluate_compiled_test(config, pkg; cache, kwargs...)
+        return evaluate_compiled_test(config, pkg; use_cache, kwargs...)
     end
 
     script = raw"""
@@ -378,13 +346,27 @@ function evaluate_test(config::Configuration, pkg::Package; cache::Bool=true, kw
     mounts = Dict{String,String}()
     env = Dict{String,String}()
 
-    if cache
-        # NOTE: the packages and artifacts directories are mutable, so they can break.
-        #       hence we only mount them here, and not in `sandboxed_julia`, because
-        #       we know we'll have validated the caches before entering here.
+    # caches are mutable, so they can get corrupted during a run. that's why it's possible
+    # to run without them (in case of a retry), and is also why we set them up here rather
+    # than in `sandboxed_julia` (because we know we've verified caches before enterint here)
+    if use_cache
+        # we can split the compile cache in a global and local part, copying over changes
+        # after the test completes to avoid races.
+        shared_compilecache = get_compilecache(config)
+        local_compilecache = mktempdir()
+        mounts = merge(mounts, Dict(
+            "/usr/local/share/julia/compiled:ro"                => shared_compilecache,
+            joinpath(config.home, ".julia", "compiled")*":rw"   => local_compilecache
+        ))
+
+        # in principle, we'd have to do this too for the package cache, but because the
+        # compilecache header contains full paths we can't ever move packages from the
+        # local to the global cache. instead, we verify the package cache before retrying.
         packages = joinpath(storage_dir, "packages")
-        artifacts = joinpath(storage_dir, "artifacts")
         mounts[joinpath(config.home, ".julia", "packages")*":rw"] = packages
+
+        # for consistency, we do the same for artifacts (although we could split that cache).
+        artifacts = joinpath(storage_dir, "artifacts")
         mounts[joinpath(config.home, ".julia", "artifacts")*":rw"] = artifacts
     end
 
@@ -406,6 +388,26 @@ function evaluate_test(config::Configuration, pkg::Package; cache::Bool=true, kw
 
     log *= "\n\n$('#'^80)\n# PkgEval teardown\n#\n\n"
     log *= "Started at $(now(UTC))\n\n"
+
+    if use_cache
+        # copy new files from the local compilecache into the shared one
+        function copy_files(subpath=""; src, dst)
+            for entry in readdir(joinpath(src, subpath))
+                path = joinpath(subpath, entry)
+                srcpath = joinpath(src, path)
+                dstpath = joinpath(dst, path)
+
+                if isdir(srcpath)
+                    isdir(dstpath) || mkdir(joinpath(dst, path))
+                    copy_files(path; src, dst)
+                elseif !ispath(dstpath)
+                    cp(srcpath, dstpath)
+                end
+            end
+        end
+        copy_files(src=local_compilecache, dst=shared_compilecache)
+        rm(local_compilecache; recursive=true)
+    end
 
     # log the status and determine a more accurate reason from the log
     @assert status in [:ok, :fail, :kill]
@@ -530,7 +532,7 @@ To find incompatibilities, the compilation happens on an Ubuntu-based runner, wh
 is performed in an Arch Linux container.
 """
 function evaluate_compiled_test(config::Configuration, pkg::Package;
-                                cache::Bool=true, kwargs...)
+                                use_cache::Bool=true, kwargs...)
     script = raw"""
         begin
             using Dates
@@ -637,7 +639,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
         julia_args = `$(config.julia_args) --project=$project_path --sysimage $sysimage_path`,
     )
     version, status, reason, duration, test_log =
-        evaluate_test(test_config, pkg; mounts, cache, kwargs...)
+        evaluate_test(test_config, pkg; mounts, use_cache, kwargs...)
 
     rm(sysimage_dir; recursive=true)
     rm(project_dir; recursive=true)
@@ -853,7 +855,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                         # test the package
                         config′ = Configuration(job.config; cpus=[i-1])
                         pkg_version, status, reason, duration, log =
-                            evaluate_test(config′, job.package; job.cache)
+                            evaluate_test(config′, job.package; job.use_cache)
 
                         push!(result, [job.config.name, job.package.name,
                                        pkg_version, status, reason, duration, log])
