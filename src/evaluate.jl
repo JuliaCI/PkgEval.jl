@@ -272,9 +272,6 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             using Base: UUID, PkgId
             package_spec = eval(Meta.parse(ARGS[1]))
 
-            bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true" &&
-                           package_spec.name != "BugReporting"
-
             println("\nSet-up completed after $(elapsed(t0))")
 
 
@@ -294,6 +291,12 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
             print("\n\n", '#'^80, "\n# Testing\n#\n\n")
             println("Started at ", now(UTC), "\n")
+
+            bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true"
+            if bugreporting
+                println("Tests will be executed under rr.\n")
+            end
+
             t2 = time()
             try
                 if bugreporting
@@ -873,8 +876,11 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                             if length(configs) == 1 || nrow(failures) != length(configs)
                                 for row in eachrow(failures)
                                     # retry the failed job in a pristine environment
-                                    config = findfirst(config->config.name == row.configuration, configs)
-                                    push!(jobs, Job(configs[config], job.package, false))
+                                    config = configs[findfirst(config->config.name == row.configuration, configs)]
+                                    ## disabling rr here is a bit of a hack (it's just not
+                                    ## what was requested) but improves reliability a lot.
+                                    config′ = Configuration(config; rr=false)
+                                    push!(jobs, Job(config′, job.package, false))
                                 end
 
                                 # XXX: this needs a proper API in ProgressMeter.jl
