@@ -256,90 +256,69 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         return evaluate_compiled_test(config, pkg; use_cache, kwargs...)
     end
 
-    script = raw"""
-        begin
-            using Dates
-            elapsed(t) = "$(round(time() - t; digits=2))s"
+    # we create our own executor so that we can reuse it (this assumes that the
+    # SandboxConfig will have persist=true; maybe this should be a kwarg too?)
+    executor = UnprivilegedUserNamespacesExecutor()
 
-            print('#'^80, "\n# PkgEval set-up\n#\n\n")
+    common_script = raw"""
+        using Dates
+        elapsed(t) = "$(round(time() - t; digits=2))s"
+
+        using Pkg
+        using Base: UUID, PkgId
+        package_spec = eval(Meta.parse(ARGS[1]))
+    """
+
+    script = "begin\n" * common_script * raw"""
+        print('#'^80, "\n# PkgEval set-up\n#\n\n")
+        println("Started at ", now(UTC), "\n")
+        t0 = time()
+
+        using InteractiveUtils
+        versioninfo()
+
+        println("\nSet-up completed after $(elapsed(t0))")
+
+
+        # check if we even need to install the package
+        # (it might be available in the system image already)
+        package_id = PkgId(package_spec.uuid, package_spec.name)
+        if !Base.root_module_exists(package_id)
+            print("\n\n", '#'^80, "\n# Installation\n#\n\n")
             println("Started at ", now(UTC), "\n")
-            t0 = time()
+            t1 = time()
 
-            using InteractiveUtils
-            versioninfo()
+            Pkg.add(; package_spec...)
 
-            using Pkg
-            using Base: UUID, PkgId
-            package_spec = eval(Meta.parse(ARGS[1]))
-
-            println("\nSet-up completed after $(elapsed(t0))")
+            println("\nInstallation completed after $(elapsed(t1))")
+        end
 
 
-            # check if we even need to install the package
-            # (it might be available in the system image already)
-            package_id = PkgId(package_spec.uuid, package_spec.name)
-            if !Base.root_module_exists(package_id)
-                print("\n\n", '#'^80, "\n# Installation\n#\n\n")
-                println("Started at ", now(UTC), "\n")
-                t1 = time()
+        print("\n\n", '#'^80, "\n# Testing\n#\n\n")
+        println("Started at ", now(UTC), "\n")
 
-                Pkg.add(; package_spec...)
+        bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true"
+        if bugreporting
+            println("Tests will be executed under rr.\n")
+        end
 
-                println("\nInstallation completed after $(elapsed(t1))")
-            end
-
-
-            print("\n\n", '#'^80, "\n# Testing\n#\n\n")
-            println("Started at ", now(UTC), "\n")
-
-            bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true"
+        t2 = time()
+        try
             if bugreporting
-                println("Tests will be executed under rr.\n")
+                Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
+            else
+                Pkg.test(package_spec.name)
             end
 
-            t2 = time()
-            try
-                if bugreporting
-                    Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
-                else
-                    Pkg.test(package_spec.name)
-                end
+            println("\nTesting completed after $(elapsed(t2))")
+        catch err
+            println("\nTesting failed after $(elapsed(t2))")
+            showerror(stdout, err)
+            Base.show_backtrace(stdout, catch_backtrace())
+            println()
 
-                println("\nTesting completed after $(elapsed(t2))")
-            catch err
-                println("\nTesting failed after $(elapsed(t2))")
-                showerror(stdout, err)
-                Base.show_backtrace(stdout, catch_backtrace())
-                println()
-
-                if bugreporting
-                    print("\n\n", '#'^80, "\n# BugReporting post-processing\n#\n\n")
-                    println("Started at ", now(UTC), "\n")
-                    t3 = time()
-
-                    # pack-up our rr trace. this is expensive, so we only do it for failures.
-                    try
-                        # use a clean environment, or BugReporting's deps could
-                        # affect/be affected by the tested package's dependencies.
-                        Pkg.activate(; temp=true)
-                        Pkg.add(name="BugReporting", uuid="bcf9a6e7-4020-453c-b88e-690564246bb8")
-                        using BugReporting
-
-                        trace_dir = BugReporting.default_rr_trace_dir()
-                        trace = BugReporting.find_latest_trace(trace_dir)
-                        BugReporting.compress_trace(trace, "/traces/$(package_spec.name).tar.zst")
-                        println("\nBugReporting completed after $(elapsed(t3))")
-                    catch err
-                        println("\nBugReporting failed after $(elapsed(t3))")
-                        showerror(stdout, err)
-                        Base.show_backtrace(stdout, catch_backtrace())
-                        println()
-                    end
-                end
-
-                exit(1)
-            end
-        end"""
+            exit(1)
+        end""" * "\nend"
 
     args = `$(repr(package_spec_tuple(pkg)))`
     if config.depwarn
@@ -373,19 +352,15 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         mounts[joinpath(config.home, ".julia", "artifacts")*":rw"] = artifacts
     end
 
+    # TODO: perform the status/reason analysis here
     status, reason, log, elapsed = if config.rr
-        trace_dir = mktempdir()
-        trace_file = joinpath(trace_dir, "$(pkg.name).tar.zst")
-        mounts["/traces:rw"] = trace_dir
-        env["PKGEVAL_RR"] = "true"
-        haskey(ENV, "PKGEVAL_RR_BUCKET") ||
-            @warn "PKGEVAL_RR_BUCKET not set; will not be uploading rr traces" maxlog=1
-
         # extend the timeout to account for the rr record overhead
         rr_config = Configuration(config; time_limit=config.time_limit*2)
-        evaluate_script(rr_config, script, args; mounts, env, kwargs...)
+
+        rr_env = merge(env, Dict("PKGEVAL_RR" => "true"))
+        evaluate_script(rr_config, script, args; mounts, env=rr_env, executor, kwargs...)
     else
-        evaluate_script(config, script, args; mounts, env, kwargs...)
+        evaluate_script(config, script, args; mounts, env, executor, kwargs...)
     end
     elapsed_str = "$(round(elapsed; digits=2))s"
 
@@ -501,25 +476,62 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         0.0
     end
 
-    if config.rr
-        # upload an rr trace for interesting failures
+    # pack-up our rr trace. this is expensive, so we only do it for failures.
+    if config.rr && status == :crash
+        rr_script = "begin\n" * common_script * raw"""
+            print("\n\n", '#'^80, "\n# BugReporting post-processing\n#\n\n")
+            println("Started at ", now(UTC), "\n")
+            t3 = time()
+
+            try
+                # use a clean environment, or BugReporting's deps could
+                # affect/be affected by the tested package's dependencies.
+                Pkg.activate(; temp=true)
+                Pkg.add(name="BugReporting", uuid="bcf9a6e7-4020-453c-b88e-690564246bb8")
+                using BugReporting
+
+                trace_dir = BugReporting.default_rr_trace_dir()
+                trace = BugReporting.find_latest_trace(trace_dir)
+                BugReporting.compress_trace(trace, "/traces/$(package_spec.name).tar.zst")
+                println("\nBugReporting completed after $(elapsed(t3))")
+            catch err
+                println("\nBugReporting failed after $(elapsed(t3))")
+                showerror(stdout, err)
+                Base.show_backtrace(stdout, catch_backtrace())
+                println()
+            end""" * "\nend"
+
+        trace_dir = mktempdir()
+        trace_file = joinpath(trace_dir, "$(pkg.name).tar.zst")
+        rr_mounts = merge(env, Dict("/traces:rw" => trace_dir))
+
+        rr_config = Configuration(config; time_limit=config.time_limit*2)
+        _, _, rr_log, _ = evaluate_script(rr_config, rr_script, args;
+                                          mounts=rr_mounts, env, executor, kwargs...)
+
+        # upload the trace
         # TODO: re-use BugReporting.jl
-        if status == :crash && haskey(ENV, "PKGEVAL_RR_BUCKET")
+        if haskey(ENV, "PKGEVAL_RR_BUCKET")
             bucket = ENV["PKGEVAL_RR_BUCKET"]
             unixtime = round(Int, datetime2unix(now()))
             trace_unique_name = "$(pkg.name)-$(unixtime).tar.zst"
             if isfile(trace_file)
                 run(`$(s5cmd()) --log error cp -acl public-read $trace_file s3://$(bucket)/$(trace_unique_name)`)
-                log *= "Uploaded rr trace to https://s3.amazonaws.com/$(bucket)/$(trace_unique_name)"
+                rr_log *= "Uploaded rr trace to https://s3.amazonaws.com/$(bucket)/$(trace_unique_name)"
             else
-                log *= "Testing did not produce an rr trace."
+                rr_log *= "Testing did not produce an rr trace."
             end
+        else
+            rr_log *= "Testing produced an rr trace, but PkgEval.jl was not configured to upload rr traces."
         end
         rm(trace_dir; recursive=true)
 
         # remove inaccurate rr errors (rr-debugger/rr/#3346)
-        log = replace(log, r"\[ERROR .* Metadata of .* changed: .*\n" => "")
+        rr_log = replace(rr_log, r"\[ERROR .* Metadata of .* changed: .*\n" => "")
+        log *= rr_log
     end
+
+    cleanup(executor)
 
     return version, status, reason, duration, log
 end
@@ -877,9 +889,16 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                                 for row in eachrow(failures)
                                     # retry the failed job in a pristine environment
                                     config = configs[findfirst(config->config.name == row.configuration, configs)]
-                                    ## disabling rr here is a bit of a hack (it's just not
-                                    ## what was requested) but improves reliability a lot.
-                                    config′ = Configuration(config; rr=false)
+                                    config′ = if row.status !== :crash
+                                        # if the package failed, retry without rr, as it
+                                        # may have caused the failure. this is a bit of a
+                                        # hack, but improves retry reliability a lot.
+                                        Configuration(config; rr=false)
+                                    else
+                                        # however, do not disable rr if the failure involved
+                                        # a crash, for which rr traces are very important.
+                                        config
+                                    end
                                     push!(jobs, Job(config′, job.package, false))
                                 end
 
