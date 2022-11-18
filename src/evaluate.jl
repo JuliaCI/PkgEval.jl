@@ -781,9 +781,9 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
     end
 
     # determine the jobs to run
-    jobs = Any[]
+    jobs = Job[]
     for (config_name, config) in configs, package in packages
-        push!(jobs, (config_name, config, package, true))
+        push!(jobs, Job(config, config_name, package, true))
     end
     ## use a random test order to (hopefully) get a more reasonable ETA
     shuffle!(jobs)
@@ -798,13 +798,13 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
 
     # pre-filter the jobs for packages we'll skip to get a better ETA
     skips = similar(result)
-    jobs = filter(jobs) do (config_name, config, pkg)
-        if pkg.name in skip_list
-            push!(skips, [config_name, pkg.name, missing,
+    jobs = filter(jobs) do job
+        if job.package.name in skip_list
+            push!(skips, [job.config_name, job.package.name, missing,
                           :skip, :explicit, 0, missing])
             return false
-        elseif endswith(pkg.name, "_jll")
-            push!(skips, [config_name, pkg.name, missing,
+        elseif endswith(job.package.name, "_jll")
+            push!(skips, [job.config_name, job.package.name, missing,
                           :skip, :jll, 0, missing])
             return false
         else
@@ -842,22 +842,22 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
             push!(all_workers, @async begin
                 try
                     while !isempty(jobs) && !done
-                        config_name, config, pkg, cache = pop!(jobs)
+                        job = pop!(jobs)
                         times[i] = now()
-                        running[i] = (config_name, pkg)
+                        running[i] = (job.config_name, job.package)
 
                         # test the package
-                        config′ = Configuration(config; cpus=[i-1])
+                        config′ = Configuration(job.config; cpus=[i-1])
                         pkg_version, status, reason, duration, log =
-                            evaluate_test(config′, pkg; cache)
+                            evaluate_test(config′, job.package; job.cache)
 
-                        push!(result, [config_name, pkg.name, pkg_version,
+                        push!(result, [job.config_name, job.package.name, pkg_version,
                                        status, reason, duration, log])
                         running[i] = nothing
 
                         if retry
                             # if we're done testing this package, consider retrying failures
-                            package_results = result[result.package .== pkg.name, :]
+                            package_results = result[result.package .== job.package.name, :]
                             nrow(package_results) == length(configs) || continue
                             # NOTE: this check also prevents retrying multiple times
 
@@ -867,7 +867,7 @@ function evaluate(configs::Dict{String,Configuration}, packages::Vector{Package}
                             if length(configs) == 1 || nrow(failures) != length(configs)
                                 for row in eachrow(failures)
                                     # retry the failed job in a pristine environment
-                                    push!(jobs, (row.configuration, configs[row.configuration], pkg, false))
+                                    push!(jobs, Job(configs[row.configuration], row.configuration, job.package, false))
                                 end
 
                                 # XXX: this needs a proper API in ProgressMeter.jl

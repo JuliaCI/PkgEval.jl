@@ -144,3 +144,13 @@ function package_spec_tuple(pkg::Package)
     end
     spec
 end
+
+
+## test job
+
+struct Job
+    config::Configuration
+    config_name::String
+    package::Package
+    cache::Bool
+end
