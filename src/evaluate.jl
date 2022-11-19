@@ -336,10 +336,8 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         # after the test completes to avoid races.
         shared_compilecache = get_compilecache(config)
         local_compilecache = mktempdir()
-        mounts = merge(mounts, Dict(
-            "/usr/local/share/julia/compiled:ro"                => shared_compilecache,
-            joinpath(config.home, ".julia", "compiled")*":rw"   => local_compilecache
-        ))
+        mounts["/usr/local/share/julia/compiled:ro"] = shared_compilecache
+        mounts[joinpath(config.home, ".julia", "compiled")*":rw"] = local_compilecache
 
         # in principle, we'd have to do this too for the package cache, but because the
         # compilecache header contains full paths we can't ever move packages from the
@@ -503,7 +501,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
         trace_dir = mktempdir()
         trace_file = joinpath(trace_dir, "$(pkg.name).tar.zst")
-        rr_mounts = merge(env, Dict("/traces:rw" => trace_dir))
+        rr_mounts = merge(mounts, Dict("/traces:rw" => trace_dir))
 
         rr_config = Configuration(config; time_limit=config.time_limit*2)
         _, _, rr_log, _ = evaluate_script(rr_config, rr_script, args;
