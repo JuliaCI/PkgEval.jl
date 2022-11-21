@@ -55,13 +55,16 @@ function setup_generic_sandbox(config::Configuration, cmd::Cmd;
     # split mounts into read-only and read-write maps
     read_only_maps = Dict{String,String}()
     read_write_maps = Dict{String,String}()
+    overlay_maps = Dict{String,String}()
     for (dst, src) in mounts
         if endswith(dst, ":ro")
             read_only_maps[dst[begin:end-3]] = src
         elseif endswith(dst, ":rw")
             read_write_maps[dst[begin:end-3]] = src
+        elseif endswith(dst, ":overlay")
+            overlay_maps[dst[begin:end-8]] = src
         else
-            error("Unknown type of mount ('$dst' -> '$src'), please append :ro or :rw")
+            error("Unknown type of mount ('$dst' -> '$src'), please append :ro, :rw or :overlay")
         end
     end
 
@@ -108,7 +111,7 @@ function setup_generic_sandbox(config::Configuration, cmd::Cmd;
     #       actual storage on the host, and not just the (1G hard-coded) tmpfs,
     #       because some packages like to generate a lot of data during testing.
 
-    sandbox_config = SandboxConfig(read_only_maps, read_write_maps, env;
+    sandbox_config = SandboxConfig(read_only_maps, read_write_maps, env; overlay_maps,
                                    config.uid, config.gid, pwd=config.home, persist=true,
                                    verbose=isdebug(:sandbox))
     return sandbox_config, cmd

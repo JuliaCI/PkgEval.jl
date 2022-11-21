@@ -330,24 +330,28 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
     # caches are mutable, so they can get corrupted during a run. that's why it's possible
     # to run without them (in case of a retry), and is also why we set them up here rather
-    # than in `sandboxed_julia` (because we know we've verified caches before enterint here)
+    # than in `sandboxed_julia` (because we know we've verified caches before entering here)
     if use_cache
-        # we can split the compile cache in a global and local part, copying over changes
-        # after the test completes to avoid races.
         shared_compilecache = get_compilecache(config)
-        local_compilecache = mktempdir()
-        mounts["/usr/local/share/julia/compiled:ro"] = shared_compilecache
-        mounts[joinpath(config.home, ".julia", "compiled")*":rw"] = local_compilecache
+        shared_packages = joinpath(storage_dir, "packages")
+        shared_artifacts = joinpath(storage_dir, "artifacts")
+        mounts = merge(mounts, Dict(
+            "$(config.home)/.julia/compiled:ro"         => shared_compilecache,
+            "$(config.home)/.julia/packages:ro"         => shared_packages,
+            "$(config.home)/.julia/artifacts:ro"        => shared_artifacts,
+        ))
 
-        # in principle, we'd have to do this too for the package cache, but because the
-        # compilecache header contains full paths we can't ever move packages from the
-        # local to the global cache. instead, we verify the package cache before retrying.
-        packages = joinpath(storage_dir, "packages")
-        mounts[joinpath(config.home, ".julia", "packages")*":rw"] = packages
-
-        # for consistency, we do the same for artifacts (although we could split that cache).
-        artifacts = joinpath(storage_dir, "artifacts")
-        mounts[joinpath(config.home, ".julia", "artifacts")*":rw"] = artifacts
+        local_depot = mktempdir()
+        local_compilecache = joinpath(local_depot, "compiled")
+        local_packages = joinpath(local_depot, "packages")
+        local_artifacts = joinpath(local_depot, "artifacts")
+        mounts = merge(mounts, Dict(
+            "$(config.home)/.julia/compiled:overlay"    => local_compilecache,
+            "$(config.home)/.julia/packages:overlay"    => local_packages,
+            "$(config.home)/.julia/artifacts:overlay"   => local_artifacts,
+        ))
+        # XXX: why isn't it possible to provide a single overlay for local_depot?
+        #      this seems like a Linux restriction.
     end
 
     # TODO: perform the status/reason analysis here
@@ -366,23 +370,32 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     log *= "Started at $(now(UTC))\n\n"
 
     if use_cache
-        # copy new files from the local compilecache into the shared one
-        function copy_files(subpath=""; src, dst)
-            for entry in readdir(joinpath(src, subpath))
-                path = joinpath(subpath, entry)
-                srcpath = joinpath(src, path)
-                dstpath = joinpath(dst, path)
+        # look into the overlayfs upper layer. note that it's possible that the sandbox
+        # failed to launch, so we aren't sure that these directories exist.
+        local_compilecache = joinpath(local_compilecache, "upper")
+        local_packages = joinpath(local_packages, "upper")
+        local_artifacts = joinpath(local_artifacts, "upper")
 
-                if isdir(srcpath)
-                    isdir(dstpath) || mkdir(joinpath(dst, path))
-                    copy_files(path; src, dst)
-                elseif !ispath(dstpath)
-                    cp(srcpath, dstpath)
+        # verify local resources
+        registry_dir = get_registry(config)
+        isdir(local_packages) &&
+            remove_uncacheable_packages(registry_dir, local_packages; show_status=false)
+        isdir(local_artifacts) &&
+            verify_artifacts(local_artifacts; show_status=false)
+
+        # copy new local resources (packages, artifacts, ...) to shared storage
+        lock(storage_lock) do
+            for (src, dst) in [(local_packages, shared_packages),
+                               (local_artifacts, shared_artifacts),
+                               (local_compilecache, shared_compilecache)]
+                if isdir(src)
+                    run(`$(rsync()) --archive $(src) $(dst)/`)
                 end
             end
         end
-        copy_files(src=local_compilecache, dst=shared_compilecache)
-        rm(local_compilecache; recursive=true)
+
+        chmod(local_depot, 0o700; recursive=true) # JuliaLang/julia#47650
+        rm(local_depot; recursive=true)
     end
 
     # log the status and determine a more accurate reason from the log
@@ -618,6 +631,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
         gid=2000,
     )
 
+    # XXX: put the cache handling in evaluate_script so that we benefit from it here too
     status, reason, log, elapsed =
         evaluate_script(compile_config, script, args; mounts, kwargs...)
     elapsed_str = "$(round(elapsed; digits=2))s"
@@ -659,7 +673,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
     return version, status, reason, duration, log * "\n\n" * test_log
 end
 
-function verify_artifacts(artifacts)
+function verify_artifacts(artifacts; show_status::Bool=true)
     removals = []
     removals_lock = ReentrantLock()
 
@@ -680,8 +694,10 @@ function verify_artifacts(artifacts)
 
     # determine which ones need to be removed.
     # this is expensive, so use multiple threads.
-    isinteractive() || println("Verifying artifacts...")
-    p = Progress(length(jobs); desc="Verifying artifacts: ", enabled=isinteractive())
+    if show_status
+        isinteractive() || println("Verifying artifacts...")
+    end
+    p = Progress(length(jobs); desc="Verifying artifacts: ", enabled=show_status && isinteractive())
     @threads for (path, tree_hash) in jobs
         if tree_hash != Base.SHA1(Pkg.GitTools.tree_hash(path))
             # remove corrupt artifacts
@@ -704,7 +720,7 @@ function verify_artifacts(artifacts)
     end
 end
 
-function remove_uncacheable_packages(registry, packages)
+function remove_uncacheable_packages(registry, packages; show_status::Bool=true)
     # collect directories we need to check
     jobs = []
     registry_instance = Pkg.Registry.RegistryInstance(registry)
@@ -725,8 +741,10 @@ function remove_uncacheable_packages(registry, packages)
     # this is expensive, so use multiple threads.
     removals = []
     removals_lock = ReentrantLock()
-    isinteractive() || println("Verifying packages...")
-    p = Progress(length(jobs); desc="Verifying packages: ", enabled=isinteractive())
+    if show_status
+        isinteractive() || println("Verifying packages...")
+    end
+    p = Progress(length(jobs); desc="Verifying packages: ", enabled=show_status && isinteractive())
     @threads for (path, name, tree_hash) in jobs
         remove = false
 
