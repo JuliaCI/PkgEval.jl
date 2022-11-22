@@ -2,6 +2,7 @@ module PkgEval
 
 using Pkg, LazyArtifacts
 import Pkg.TOML
+import GitHub
 
 import Scratch: @get_scratch!
 download_dir = ""
@@ -14,6 +15,7 @@ skip_list = String[]
 include("types.jl")
 include("registry.jl")
 include("rootfs.jl")
+include("buildkite.jl")
 include("julia.jl")
 include("sandbox.jl")
 include("evaluate.jl")

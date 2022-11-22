@@ -1,9 +1,15 @@
 name: CI
+
 on:
   push:
     branches:
     - master
   pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     name: Julia ${{ matrix.version }} - Running ${{ matrix.test_julia }} ${{ matrix.test_buildflags }}
@@ -21,21 +27,22 @@ jobs:
         test_julia:
           - "v1.8.0"              # release from versions.json
           - "nightly"             # special release
-          - "master"              # directly from Git
+          - "master~10"           # directly from Git, likely built by CI
+          - "master"              # directly from Git, force a build (see below)
         include:
-          - test_julia: "master"  # force a build
+          - test_julia: "master"
             test_buildflags: "JULIA_CPU_TARGET=native"
     env:
       JULIA_DEBUG: PkgEval
       JULIA: ${{ matrix.test_julia }}
       BUILDFLAGS: ${{ matrix.test_buildflags }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: julia-actions/setup-julia@v1
         with:
           version: ${{ matrix.version }}
           arch: ${{ matrix.arch }}
-      - uses: actions/cache@v1
+      - uses: actions/cache@v3
         env:
           cache-name: cache-artifacts
         with:
@@ -47,3 +54,5 @@ jobs:
             ${{ runner.os }}-
       - uses: julia-actions/julia-buildpkg@v1
       - uses: julia-actions/julia-runtest@v1
+        env:
+          BUILDKITE_TOKEN: ${{ secrets.BUILDKITE_TOKEN }}
