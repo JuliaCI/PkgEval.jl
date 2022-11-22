@@ -151,7 +151,7 @@ function evaluate_script(config::Configuration, script::String, args=``;
             function recursive_kill(proc, sig)
                 parent_pid = getpid(proc)
                 for pid in reverse([parent_pid; process_children(parent_pid)])
-                    ccall(:uv_kill, Cint, (Cint, Cint), pid, Base.SIGKILL)
+                    ccall(:uv_kill, Cint, (Cint, Cint), pid, sig)
                 end
                 return
             end
