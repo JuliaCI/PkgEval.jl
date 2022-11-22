@@ -21,9 +21,10 @@ jobs:
         test_julia:
           - "v1.8.0"              # release from versions.json
           - "nightly"             # special release
-          - "master"              # directly from Git
+          - "master~10"           # directly from Git, likely built by CI
+          - "master"              # directly from Git, force a build (see below)
         include:
-          - test_julia: "master"  # force a build
+          - test_julia: "master"
             test_buildflags: "JULIA_CPU_TARGET=native"
     env:
       JULIA_DEBUG: PkgEval
@@ -47,3 +48,5 @@ jobs:
             ${{ runner.os }}-
       - uses: julia-actions/julia-buildpkg@v1
       - uses: julia-actions/julia-runtest@v1
+        env:
+          BUILDKITE_TOKEN: ${{ secrets.BUILDKITE_TOKEN }}

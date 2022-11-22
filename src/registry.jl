@@ -15,15 +15,14 @@ function registry_packages(config::Configuration)
     return packages
 end
 
-get_registry_repo(spec) = get_github_repo(spec, "JuliaRegistries/general")
-
 const registry_lock = ReentrantLock()
 const registry_cache = Dict()
 function get_registry(config::Configuration)
     lock(registry_lock) do
         dir = get(registry_cache, config.registry, nothing)
         if dir === nothing || !isdir(dir)
-            registry_cache[config.registry] = get_registry_repo(config.registry)
+            repo, ref = parse_repo_spec(config.registry, "JuliaRegistries/General")
+            registry_cache[config.registry] = get_github_checkout(repo, ref)
         end
         return registry_cache[config.registry]
     end

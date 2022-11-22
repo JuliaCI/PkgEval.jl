@@ -1,101 +1,127 @@
-import JSON
+import JSON3
 import Downloads
 using Git: git
 using Base.BinaryPlatforms: Platform, triplet
 
 const VERSIONS_URL = "https://julialang-s3.julialang.org/bin/versions.json"
 
-function get_julia_release(spec::String)
-    dirpath = mktempdir()
-   if spec == "nightly"
-        @debug "Downloading nightly build..."
+function get_julia_nightly()
+    @debug "Downloading nightly build..."
 
-        url = if Sys.islinux() && Sys.ARCH == :x86_64
-            "https://julialangnightlies-s3.julialang.org/bin/linux/x64/julia-latest-linux64.tar.gz"
-        elseif Sys.islinux() && Sys.ARCH == :i686
-            "https://julialangnightlies-s3.julialang.org/bin/linux/x86/julia-latest-linux32.tar.gz"
-        elseif Sys.islinux() && Sys.ARCH == :aarch64
-            "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/julia-latest-linuxaarch64.tar.gz"
-        else
-            error("Don't know how to get nightly build for $(Sys.MACHINE)")
-        end
-
-        # download and extract to a temporary directory, but don't keep the tarball
-        Pkg.PlatformEngines.download_verify_unpack(url, nothing, dirpath;
-                                                   ignore_existence=true)
+    url = if Sys.islinux() && Sys.ARCH == :x86_64
+        "https://julialangnightlies-s3.julialang.org/bin/linux/x64/julia-latest-linux64.tar.gz"
+    elseif Sys.islinux() && Sys.ARCH == :i686
+        "https://julialangnightlies-s3.julialang.org/bin/linux/x86/julia-latest-linux32.tar.gz"
+    elseif Sys.islinux() && Sys.ARCH == :aarch64
+        "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/julia-latest-linuxaarch64.tar.gz"
     else
-        @debug "Checking if '$spec' is an official release..."
-
-        # the spec needs to be a valid version number
-        version_spec = tryparse(VersionNumber, spec)
-        if isnothing(version_spec)
-            @debug "Not a valid release name"
-            return nothing
-        end
-
-        # download the versions.json and look up the version
-        versions = JSON.parse(sprint(io->Downloads.download(VERSIONS_URL, io)))
-        if !haskey(versions, string(version_spec))
-            @debug "Unknown release name '$spec'"
-            return nothing
-        end
-        files = versions[string(version_spec)]["files"]
-
-        # find a file entry for our machine
-        platform = parse(Platform, Sys.MACHINE) # don't use Sys.MACHINE directly as it may
-                                                # contain unnecessary tags, like -pc-
-        i = findfirst(files) do file
-            file["triplet"] == triplet(platform)
-        end
-        if isnothing(i)
-            @error "Release unavailable for $(Sys.MACHINE)"
-            return nothing
-        end
-        file = files[i]
-
-        # download and extract to a temporary directory
-        filename = basename(file["url"])
-        filepath = joinpath(download_dir, filename)
-        Pkg.PlatformEngines.download_verify_unpack(file["url"], file["sha256"], dirpath;
-                                                   tarball_path=filepath, force=true,
-                                                   ignore_existence=true)
+        error("Don't know how to get nightly build for $(Sys.MACHINE)")
     end
-    return dirpath
+
+    # download and extract to a temporary directory, but don't keep the tarball
+    dir = mktempdir()
+    Pkg.PlatformEngines.download_verify_unpack(url, nothing, dir;
+                                               ignore_existence=true)
+    return only(readdir(dir; join=true))
 end
 
-# NOTE: Julia repo dir isn't cached, as it's only checked-out once and removed afterwards
-get_julia_repo(spec) = get_github_repo(spec, "JuliaLang/julia")
+function get_julia_release(config::Configuration)
+    can_use_binaries(config) || return
 
-function get_repo_details(repo)
-    version = VersionNumber(read(joinpath(repo, "VERSION"), String))
-    hash = chomp(read(`$(git()) -C $repo rev-parse --verify HEAD`, String))
-    shorthash = hash[1:10]
-    return (; version, hash, shorthash)
-end
+    @debug "Checking if '$(config.julia)' is an official release..."
 
-function get_julia_build(repo)
-    @debug "Trying to download a Julia build..."
-    repo_details = get_repo_details(repo)
-    if Sys.islinux() && Sys.ARCH == :x86_64
-        url = "https://julialangnightlies.s3.amazonaws.com/bin/linux/x64/$(repo_details.version.major).$(repo_details.version.minor)/julia-$(repo_details.shorthash)-linux64.tar.gz"
-    else
-        @debug "Don't know how to get build for $(Sys.MACHINE)"
+    # special case: nightly
+    if config.julia == "nightly"
+        return get_julia_nightly()
+    end
+
+    # in all other cases, the spec needs to be a valid version number
+    version_spec = tryparse(VersionNumber, config.julia)
+    if isnothing(version_spec)
+        @debug "Not a valid release name"
         return nothing
     end
+
+    # download the versions.json and look up the version
+    versions = JSON3.read(sprint(io->Downloads.download(VERSIONS_URL, io)))
+    if !haskey(versions, string(version_spec))
+        @debug "Unknown release name '$(config.julia)'"
+        return nothing
+    end
+    files = versions[string(version_spec)]["files"]
+
+    # find a file entry for our machine
+    platform = parse(Platform, Sys.MACHINE) # don't use Sys.MACHINE directly as it may
+                                            # contain unnecessary tags, like -pc-
+    i = findfirst(files) do file
+        file["triplet"] == triplet(platform)
+    end
+    if isnothing(i)
+        @debug "Release unavailable for $(Sys.MACHINE)"
+        return nothing
+    end
+    file = files[i]
 
     # download and extract to a temporary directory
-    filename = basename(url)
+    @debug "Found a matching release for '$(config.julia)': $(file["url"])"
+    filename = basename(file["url"])
     filepath = joinpath(download_dir, filename)
-    dirpath = mktempdir()
-    try
-        Pkg.PlatformEngines.download_verify_unpack(url, nothing, dirpath;
-                                                   tarball_path=filepath, force=true,
-                                                   ignore_existence=true)
-        return dirpath
-    catch err
-        @debug "Could not download build" exception=(err, catch_backtrace())
+    dir = mktempdir()
+    Pkg.PlatformEngines.download_verify_unpack(file["url"], file["sha256"], dir;
+                                                tarball_path=filepath, force=true,
+                                                ignore_existence=true)
+    return only(readdir(dir; join=true))
+end
+
+function get_julia_build(config)
+    can_use_binaries(config) || return
+    repo, ref = parse_repo_spec(config.julia, "JuliaLang/julia")
+
+    if !haskey(ENV, "BUILDKITE_TOKEN")
+        @debug "No Buildkite token found, skipping..."
         return nothing
     end
+
+    # get statuses
+    statuses = first(GitHub.statuses(repo, ref; auth=github_auth()))
+    status_idx = findfirst(status->status.context == "Build", statuses)
+    if status_idx === nothing
+        @debug "No build status found for $repo@$ref"
+        return nothing
+    end
+    status = statuses[status_idx]
+
+    # get Buildkite job
+    job = BuildkiteJob(string(status.target_url))
+    ## navigate to the relevant build
+    job = if Sys.islinux() && Sys.ARCH == :x86_64
+        PkgEval.find_sibling_buildkite_job(job, "build_x86_64-linux-gnu")
+    elseif Sys.islinux() && Sys.ARCH == :i686
+        PkgEval.find_sibling_buildkite_job(job, "build_i686-linux-gnu")
+    elseif Sys.islinux() && Sys.ARCH == :aarch64
+        PkgEval.find_sibling_buildkite_job(job, "build_aarch64-linux-gnu")
+    else
+        @debug "No Buildkite job found for $repo#$ref on $(Sys.MACHINE)"
+        nothing
+    end
+    if job === nothing
+        return nothing
+    end
+
+    # get Buildkite artifacts
+    artifacts = get_buildkite_job_artifacts(job)
+    if isempty(artifacts)
+        @debug "No artifacts found for $repo@$ref"
+        return nothing
+    end
+    artifact = first(artifacts)
+
+    # download and extract to a temporary directory
+    @debug "Found a matching artifact for $repo#$ref: $(artifact.url)"
+    filepath = download(artifact)
+    dir = mktempdir()
+    Pkg.PlatformEngines.unpack(filepath, dir)
+    return only(readdir(dir; join=true))
 end
 
 # to get closer to CI-generated binaries, use a multiversioned build
@@ -115,24 +141,32 @@ else
 end
 
 """
-    install_dir = build_julia(repo_path, config)
+    install_dir = build_julia(config)
 
-Build the Julia check-out at `repo_path` with the properties (build flags, command, and
-resulting Julia binary) from `config`.
+Build Julia from the given `config` and return the path to the installation directory.
 """
-function build_julia(_repo_path::String, config::Configuration)
-    repo_details = get_repo_details(_repo_path)
-    println("Building Julia...")
+function build_julia(config::Configuration)
+    repo, ref = parse_repo_spec(config.julia, "JuliaLang/julia")
+    checkout = get_github_checkout(repo, ref)
 
-    # copy the repository so that we can mutate it (add Make.user, build in-place, etc)
-    repo_path = mktempdir()
-    cp(_repo_path, repo_path; force=true)
+    if checkout === nothing
+        error("Could not check-out Julia repository for $(config.julia)")
+    end
 
+    try
+        # perform a build
+        println("Building Julia...")
+        build_julia!(config, checkout)
+    finally
+        rm(checkout; recursive=true)
+    end
+end
+function build_julia!(config::Configuration, checkout::String)
     # Pre-populate the srccache and save the downloaded files
     srccache = joinpath(download_dir, "srccache")
-    repo_srccache = joinpath(repo_path, "deps", "srccache")
+    repo_srccache = joinpath(checkout, "deps", "srccache")
     cp(srccache, repo_srccache)
-    cd(repo_path) do
+    cd(checkout) do
         run(ignorestatus(`make -C deps getall NO_GIT=1`), devnull, devnull, devnull)
     end
     for file in readdir(repo_srccache)
@@ -142,7 +176,7 @@ function build_julia(_repo_path::String, config::Configuration)
     end
 
     # Define a Make.user
-    open("$repo_path/Make.user", "w") do io
+    open("$checkout/Make.user", "w") do io
         println(io, "prefix=/install")
 
         for flag in config.buildflags
@@ -158,13 +192,12 @@ function build_julia(_repo_path::String, config::Configuration)
     install_dir = mktempdir()
     build_config = Configuration(; rootfs="package_linux", xvfb=false)
     mounts = Dict(
-        "/source:rw"    => repo_path,
+        "/source:rw"    => checkout,
         "/install:rw"   => install_dir
     )
     script = raw"""
         set -ue
         cd /source
-        cp LICENSE.md /install
 
         # prevent building documentation
         mkdir -p doc/_build/html/en
@@ -185,7 +218,9 @@ function build_julia(_repo_path::String, config::Configuration)
     log_monitor = @async begin
         io = IOBuffer()
         while !eof(output)
-            print(io, readline(output; keep=true))
+            line = readline(output; keep=true)
+            isdebug(:sandbox) && print(line)
+            print(io, line)
         end
         return String(take!(io))
     end
@@ -194,7 +229,6 @@ function build_julia(_repo_path::String, config::Configuration)
     close(output)
     log = fetch(log_monitor)
 
-    rm(repo_path; recursive=true)
     if success(proc)
         @debug "Successfully build Julia:\n$log"
         return install_dir
@@ -206,36 +240,20 @@ function build_julia(_repo_path::String, config::Configuration)
 end
 
 function _install_julia(config::Configuration)
-    if can_use_binaries(config)
-        # check if it's an official release
-        dir = get_julia_release(config.julia)
-        if dir !== nothing
-            return joinpath(dir, only(readdir(dir)))
-        end
+    # check if it's an official release
+    dir = get_julia_release(config)
+    if dir !== nothing
+        return dir
     end
 
-    # try to resolve to a Julia repository and hash
-    repo = get_julia_repo(config.julia)
-    if repo === nothing
-        error("Could not check-out Julia repository for $(config.julia)")
+     # try to download a Buildkite artifact
+    dir = get_julia_build(config)
+    if dir !== nothing
+        return dir
     end
-    try
-        repo_details = get_repo_details(repo)
-        @debug "Julia $config.julia resolved to v$(repo_details.version), Git SHA $(repo_details.hash)"
 
-        if can_use_binaries(config)
-            # see if we can download a build
-            dir = get_julia_build(repo)
-            if dir !== nothing
-                return joinpath(dir, only(readdir(dir)))
-            end
-        end
-
-        # perform a build
-        build_julia(repo, config)
-    finally
-        rm(repo; recursive=true)
-    end
+    # finally, just build Julia
+    return build_julia(config)
 end
 
 const julia_lock = ReentrantLock()
