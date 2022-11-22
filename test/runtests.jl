@@ -122,7 +122,7 @@ end
 
 @testset "time and output limits" begin
     # timeouts
-    let results = evaluate([Configuration(config; time_limit=0.1)],
+    let results = evaluate([Configuration(config; time_limit=1.)],
                            [Package(; name="Example")])
         @test size(results, 1) == 1
         @test results[1, :status] == :kill && results[1, :reason] == :time_limit
