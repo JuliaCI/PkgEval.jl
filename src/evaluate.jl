@@ -388,23 +388,26 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     # log the status and determine a more accurate reason from the log
     @assert status in [:ok, :fail, :kill]
     ## crashes so bad we override the status
-    if occursin("GC error (probable corruption)", log)
-        status = :crash
-        reason = :gc_corruption
-    elseif occursin(r"signal \(.+\): Segmentation fault", log)
-        status = :crash
-        reason = :segfault
-    elseif occursin(r"signal \(.+\): Abort", log)
-        status = :crash
-        reason = :abort
-    elseif occursin("Unreachable reached", log)
-        status = :crash
-        reason = :unreachable
-    elseif occursin("Internal error: encountered unexpected error in runtime", log) ||
-           occursin("Internal error: stack overflow in type inference", log) ||
-           occursin("Internal error: encountered unexpected error during compilation", log)
-        status = :crash
-        reason = :internal
+    if status !== :kill
+        # ... but not in the case of a kill, as a badly-timed signal may cause crashes
+        if occursin("GC error (probable corruption)", log)
+            status = :crash
+            reason = :gc_corruption
+        elseif occursin(r"signal \(.+\): Segmentation fault", log)
+            status = :crash
+            reason = :segfault
+        elseif occursin(r"signal \(.+\): Abort", log)
+            status = :crash
+            reason = :abort
+        elseif occursin("Unreachable reached", log)
+            status = :crash
+            reason = :unreachable
+        elseif occursin("Internal error: encountered unexpected error in runtime", log) ||
+            occursin("Internal error: stack overflow in type inference", log) ||
+            occursin("Internal error: encountered unexpected error during compilation", log)
+            status = :crash
+            reason = :internal
+        end
     end
     ## others we only look for when the test failed
     if status === :fail
