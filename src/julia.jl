@@ -29,14 +29,14 @@ function get_julia_release(spec::String)
         # the spec needs to be a valid version number
         version_spec = tryparse(VersionNumber, spec)
         if isnothing(version_spec)
-            @warn "Not a valid release name"
+            @debug "Not a valid release name"
             return nothing
         end
 
         # download the versions.json and look up the version
         versions = JSON.parse(sprint(io->Downloads.download(VERSIONS_URL, io)))
         if !haskey(versions, string(version_spec))
-            @warn "Unknown release name '$spec'"
+            @debug "Unknown release name '$spec'"
             return nothing
         end
         files = versions[string(version_spec)]["files"]

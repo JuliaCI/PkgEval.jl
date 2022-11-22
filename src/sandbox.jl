@@ -12,8 +12,6 @@ function run_sandbox(config::Configuration, setup, args...; executor=nothing, wa
                      stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
     do_cleanup = false
     if executor === nothing
-        # XXX: even when preferred_executor() returns UnprivilegedUserNamespacesExecutor,
-        #      sometimes a stray sudo happens at run time? no idea how.
         executor = UnprivilegedUserNamespacesExecutor()
         do_cleanup = true
     end
