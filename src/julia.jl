@@ -78,6 +78,8 @@ function get_julia_build(repo)
     repo_details = get_repo_details(repo)
     if Sys.islinux() && Sys.ARCH == :x86_64
         url = "https://julialangnightlies.s3.amazonaws.com/bin/linux/x64/$(repo_details.version.major).$(repo_details.version.minor)/julia-$(repo_details.shorthash)-linux64.tar.gz"
+    elseif Sys.islinux() && Sys.ARCH == :aarch64
+        url = "https://julialangnightlies.s3.amazonaws.com/bin/linux/aarch64/$(repo_details.version.major).$(repo_details.version.minor)/julia-$(repo_details.shorthash)-linuxaarch64.tar.gz"
     else
         @debug "Don't know how to get build for $(Sys.MACHINE)"
         return nothing
@@ -154,9 +156,17 @@ function build_julia(_repo_path::String, config::Configuration)
         end
     end
 
+    rootfs = if Sys.islinux() && Sys.ARCH == :x86_64
+        "package_linux.x86_64"
+    elseif  Sys.islinux() && Sys.ARCH == :aarch64
+        "package_linux.aarch64"
+    else
+        error("This OS and arch is not supported for PkgEval runs")
+    end
+
     # build and install Julia
     install_dir = mktempdir()
-    build_config = Configuration(; rootfs="package_linux", xvfb=false)
+    build_config = Configuration(; rootfs, xvfb=false)
     mounts = Dict(
         "/source:rw"    => repo_path,
         "/install:rw"   => install_dir
