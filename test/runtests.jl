@@ -39,11 +39,13 @@ buildflags = get(ENV, "BUILDFLAGS", "")
     end
 end
 
-config_kwargs = Dict{Symbol,Any}(:julia => julia)
-if !isempty(buildflags)
-    config_kwargs[:buildflags] = String[split(buildflags)...]
+config = let
+    config_kwargs = Dict{Symbol,Any}(:julia => julia)
+    if !isempty(buildflags)
+        config_kwargs[:buildflags] = String[split(buildflags)...]
+    end
+    Configuration(; config_kwargs...)
 end
-config = Configuration(; config_kwargs...)
 @info sprint(io->print(io, config))
 
 @testset "julia installation" begin
@@ -72,7 +74,7 @@ end
         @test read(p.out, String) == "nothing"
     end
 
-    let config = Configuration(; environment=["FOO=bar"], config_kwargs...)
+    let config = Configuration(config; environment=["FOO=bar"])
         p = Pipe()
         close(p.in)
         PkgEval.sandboxed_julia(config, `-e 'print(get(ENV, "FOO", nothing))'`; stdout=p.out)
@@ -120,14 +122,14 @@ end
 
 @testset "time and output limits" begin
     # timeouts
-    let results = evaluate([Configuration(; time_limit=0.1, config_kwargs...)],
+    let results = evaluate([Configuration(config; time_limit=0.1)],
                            [Package(; name="Example")])
         @test size(results, 1) == 1
         @test results[1, :status] == :kill && results[1, :reason] == :time_limit
     end
 
     # log limit
-    let results = evaluate([Configuration(; log_limit=1, config_kwargs...)],
+    let results = evaluate([Configuration(config; log_limit=1)],
                            [Package(; name="Example")])
         @test size(results, 1) == 1
         @test results[1, :status] == :kill && results[1, :reason] == :log_limit
@@ -149,8 +151,8 @@ end
 end
 
 @testset "PackageCompiler" begin
-    results = evaluate([Configuration(; name="regular", config_kwargs...),
-                        Configuration(; name="compiled", compiled=true, config_kwargs...)],
+    results = evaluate([Configuration(config; name="regular"),
+                        Configuration(config; name="compiled", compiled=true)],
                        [Package(; name="Example")])
     @test size(results, 1) == 2
     for result in eachrow(results)
@@ -168,7 +170,7 @@ end
 end
 
 haskey(ENV, "CI") || @testset "rr" begin
-    results = evaluate([Configuration(; rr=true, config_kwargs...)],
+    results = evaluate([Configuration(config; rr=true)],
                        [Package(; name="Example")])
     @test all(results.status .== :ok)
     @test contains(results[1, :log], "BugReporting")
