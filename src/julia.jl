@@ -166,9 +166,8 @@ function build_julia!(config::Configuration, checkout::String)
     srccache = joinpath(download_dir, "srccache")
     repo_srccache = joinpath(checkout, "deps", "srccache")
     cp(srccache, repo_srccache)
-    cd(checkout) do
-        run(ignorestatus(`make -C deps getall NO_GIT=1`), devnull, devnull, devnull)
-    end
+    run(ignorestatus(setenv(`make -C deps getall NO_GIT=1`; dir=checkout)),
+        devnull, devnull, devnull)
     for file in readdir(repo_srccache)
         if !ispath(joinpath(srccache, file))
             cp(joinpath(repo_srccache, file), joinpath(srccache, file))
