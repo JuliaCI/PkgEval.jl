@@ -18,7 +18,7 @@ Determine the packages that we can test for a given configuration.
 """
 function get_packages(config::Configuration)
     lock(packages_lock) do
-        key = config.julia
+        key = (config.julia, config.compiled)
         val = get(packages_cache, key, nothing)
         if val === nothing
             packages_cache[key] = _get_packages(config)
@@ -57,6 +57,11 @@ function _get_packages(config::Configuration)
         packages[name] = Package(; name, uuid=UUID(uuid), stdlib=true)
     end
     success(proc) || error("Failed to list standard libraries")
+
+    # it doesn't make sense to test stdlibs in compiled mode
+    if config.compiled
+        filter!(item->!item.second.stdlib, packages)
+    end
 
     return packages
 end

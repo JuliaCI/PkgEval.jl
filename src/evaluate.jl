@@ -552,6 +552,7 @@ is performed in an Arch Linux container.
 """
 function evaluate_compiled_test(config::Configuration, pkg::Package;
                                 use_cache::Bool=true, kwargs...)
+    @assert !pkg.stdlib
     script = raw"""
         begin
             using Dates
