@@ -144,23 +144,26 @@ end
 Base.@kwdef struct Package
     # source of the package; forwarded to PackageSpec
     name::String
-    uuid::Base.UUID = find_package_uuid(name)
+    uuid::Union{Nothing,Base.UUID} = nothing
     version::Union{Nothing,VersionNumber} = nothing
     url::Union{Nothing,String} = nothing
     rev::Union{Nothing,String} = nothing
+
+    stdlib::Bool = false
 end
 
-function find_package_uuid(name)
-    # TODO: if this is performance sensitive, build a map on first use
-    registries = Pkg.Registry.reachable_registries()
-    for reg in registries
-        for (_, pkg) in reg
-            if name == pkg.name
-                return pkg.uuid
-            end
-        end
+# copy constructor that allows overriding specific fields
+function Package(cfg::Package; kwargs...)
+    kwargs = Dict(kwargs...)
+    merged_kwargs = Dict()
+    for field in fieldnames(Package)
+        merged_kwargs[field] = get(kwargs, field, getfield(cfg, field))
+        delete!(kwargs, field)
     end
-    error("Package $name not found in any reachable registry")
+    if !isempty(kwargs)
+        throw(ArgumentError("unknown keyword arguments: $(join(keys(kwargs), ", "))"))
+    end
+    Package(; merged_kwargs...)
 end
 
 # convert a Package to a tuple that's Pkg.add'able

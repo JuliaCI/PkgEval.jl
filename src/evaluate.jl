@@ -252,6 +252,12 @@ jobs (which may be a cause of issues).
 Refer to `evaluate_script`[@ref] for more possible `keyword arguments.
 """
 function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true, kwargs...)
+    # at this point, we need to know the UUID of the package
+    if pkg.uuid === nothing
+        pkg′ = get_packages(config)[pkg.name]
+        pkg = Package(pkg; pkg′.uuid)
+    end
+
     if config.compiled
         return evaluate_compiled_test(config, pkg; use_cache, kwargs...)
     end
@@ -781,7 +787,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                   ninstances::Integer=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true)
     if isempty(packages)
         registry_configs = unique(config->config.registry, values(configs))
-        packages = intersect(map(registry_packages, registry_configs)...)
+        packages = intersect(map(get_packages, registry_configs)...)
     end
 
     # ensure the configurations have unique names
@@ -801,7 +807,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
 
     # determine the jobs to run
     jobs = Job[]
-    for config in configs, package in packages
+    for config in configs, package in values(packages)
         push!(jobs, Job(config, package, true))
     end
     ## use a random test order to (hopefully) get a more reasonable ETA
