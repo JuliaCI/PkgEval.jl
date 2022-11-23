@@ -5,6 +5,8 @@ julia = get(ENV, "JULIA", "v"*string(VERSION))
 julia_release = if contains(julia, r"^v\d")
     parse(VersionNumber, julia)
 else
+    # this is used to skip testing of actual packages,
+    # which generally aren't supported on unreleased Julia versions.
     nothing
 end
 buildflags = get(ENV, "BUILDFLAGS", "")
@@ -177,6 +179,22 @@ haskey(ENV, "CI") || @testset "rr" begin
     if julia_release !== nothing
         @test results[1, :status] == :ok
         @test contains(results[1, :log], "Testing Example tests passed")
+    end
+end
+
+@testset "stdlibs" begin
+    stdlibs = ["UUIDs"]
+    non_stdlibs = ["Example"]
+    packages = [Package(; name) for name in [stdlibs; non_stdlibs]]
+
+    results = evaluate([config], packages)
+    @test all(results.status .== :ok)
+    for result in eachrow(results)
+        if result.package in stdlibs
+            @test contains(result.log, "is a standard library")
+        else
+            @test !contains(result.log, "is a standard library")
+        end
     end
 end
 

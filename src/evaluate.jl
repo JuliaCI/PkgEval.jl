@@ -252,10 +252,18 @@ jobs (which may be a cause of issues).
 Refer to `evaluate_script`[@ref] for more possible `keyword arguments.
 """
 function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true, kwargs...)
-    # at this point, we need to know the UUID of the package
+    # determine if the package is an stdlib for this version of Julia
+    pkg′ = get_packages(config)[pkg.name]
+    pkg = Package(pkg; stdlib=pkg′.stdlib)
+
+    # at this point, we also need to know the UUID of the package
     if pkg.uuid === nothing
-        pkg′ = get_packages(config)[pkg.name]
         pkg = Package(pkg; pkg′.uuid)
+    end
+
+    # we currently only support testing the stdlibs that are embedded in the Julia sysimg
+    if pkg.stdlib
+        @assert pkg.version === nothing && pkg.url === nothing && pkg.rev === nothing
     end
 
     if config.compiled
@@ -273,6 +281,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         using Pkg
         using Base: UUID, PkgId
         package_spec = eval(Meta.parse(ARGS[1]))
+        package_stdlib = eval(Meta.parse(ARGS[2]))
     """
 
     script = "begin\n" * common_script * raw"""
@@ -283,13 +292,17 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         using InteractiveUtils
         versioninfo()
 
+        if package_stdlib
+            println("\n$(package_spec.name) is a standard library in this Julia build.")
+        end
+
         println("\nSet-up completed after $(elapsed(t0))")
 
 
-        # check if we even need to install the package
-        # (it might be available in the system image already)
+        # check if we even need to install the package, as it might be available in the
+        # system image already. standard libraries we still have to add to the environment.
         package_id = PkgId(package_spec.uuid, package_spec.name)
-        if !Base.root_module_exists(package_id)
+        if package_stdlib || !Base.root_module_exists(package_id)
             print("\n\n", '#'^80, "\n# Installation\n#\n\n")
             println("Started at ", now(UTC), "\n")
             t1 = time()
@@ -326,7 +339,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             exit(1)
         end""" * "\nend"
 
-    args = `$(repr(package_spec_tuple(pkg)))`
+    args = `$(repr(package_spec_tuple(pkg))) $(pkg.stdlib)`
 
     mounts = Dict{String,String}()
     env = Dict{String,String}()
