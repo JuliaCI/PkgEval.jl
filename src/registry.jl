@@ -39,5 +39,24 @@ function _get_packages(config::Configuration)
         packages[pkg.name] = Package(; pkg.name, pkg.uuid)
     end
 
+    # standard libraries are generally not registered, and even if they are,
+    # installing and loading them will always use the embedded version.
+    # so iterate them using the target Julia, and overwrite any existing entries
+    stdlib_script = raw"""begin
+            using Pkg
+            for (uuid, (name,version)) in Pkg.Types.stdlibs()
+                println("$(uuid) $(name)")
+            end
+        end"""
+    p = Pipe()
+    close(p.in)
+    proc = sandboxed_julia(config, `-e $stdlib_script`; stdout=p.out)
+    while !eof(p.out)
+        line = readline(p.out)
+        uuid, name = split(line, ' ')
+        packages[name] = Package(; name, uuid=UUID(uuid), stdlib=true)
+    end
+    success(proc) || error("Failed to list standard libraries")
+
     return packages
 end
