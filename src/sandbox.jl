@@ -45,7 +45,8 @@ end
 
 # global Xvfb process for use by all containers
 const xvfb_lock = ReentrantLock()
-const xvfb_proc = Ref{Union{Base.Process,Nothing}}(nothing)
+const xvfb_proc = Ref{Base.Process}()
+const xvfb_display = Ref{Int}()
 
 function setup_generic_sandbox(config::Configuration, cmd::Cmd;
                                env::Dict{String,String}=Dict{String,String}(),
@@ -84,21 +85,38 @@ function setup_generic_sandbox(config::Configuration, cmd::Cmd;
     end
 
     if config.xvfb
-        lock(xvfb_lock) do
-            if xvfb_proc[] === nothing || !process_running(xvfb_proc[])
-                proc = run(`Xvfb :1 -screen 0 1024x768x16`; wait=false)
-                sleep(1)
-                process_running(proc) || error("Could not start Xvfb")
+        if !isassigned(xvfb_proc) || !process_running(xvfb_proc[])
+            lock(xvfb_lock) do
+                if !isassigned(xvfb_proc) || !process_running(xvfb_proc[])
+                    # make sure to kill any Xvfb server we launch
+                    if !isassigned(xvfb_proc)
+                        atexit() do
+                            if process_running(xvfb_proc[])
+                                kill(xvfb_proc[])
+                                wait(xvfb_proc[])
+                            end
+                        end
+                    end
 
-                xvfb_proc[] === nothing && atexit() do
-                    kill(xvfb_proc[])
-                    wait(xvfb_proc[])
+                    # find a free display number and launch a server
+                    for display in 1:10
+                        proc = run(`Xvfb :$display -screen 0 1024x768x16`; wait=false)
+                        sleep(1)
+                        if process_running(proc)
+                            xvfb_proc[] = proc
+                            xvfb_display[] = display
+                            break
+                        end
+                    end
+
+                    if !isassigned(xvfb_proc)
+                        error("Failed to start Xvfb")
+                    end
                 end
-                xvfb_proc[] = proc
             end
         end
 
-        env["DISPLAY"] = ":1"
+        env["DISPLAY"] = ":$(xvfb_display[])"
         read_write_maps["/tmp/.X11-unix"] = "/tmp/.X11-unix"
     end
 
