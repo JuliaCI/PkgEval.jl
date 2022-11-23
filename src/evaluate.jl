@@ -255,15 +255,14 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     # determine if the package is an stdlib for this version of Julia
     pkg′ = get_packages(config)[pkg.name]
     pkg = Package(pkg; stdlib=pkg′.stdlib)
+    ## we currently only support testing stdlibs that are embedded in the Julia sysimg
+    if pkg.stdlib
+        @assert pkg.version === nothing && pkg.url === nothing && pkg.rev === nothing
+    end
 
     # at this point, we also need to know the UUID of the package
     if pkg.uuid === nothing
         pkg = Package(pkg; pkg′.uuid)
-    end
-
-    # we currently only support testing the stdlibs that are embedded in the Julia sysimg
-    if pkg.stdlib
-        @assert pkg.version === nothing && pkg.url === nothing && pkg.rev === nothing
     end
 
     if config.compiled
@@ -281,7 +280,6 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         using Pkg
         using Base: UUID, PkgId
         package_spec = eval(Meta.parse(ARGS[1]))
-        package_stdlib = eval(Meta.parse(ARGS[2]))
     """
 
     script = "begin\n" * common_script * raw"""
@@ -292,25 +290,20 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         using InteractiveUtils
         versioninfo()
 
-        if package_stdlib
+        if haskey(Pkg.Types.stdlibs(), package_spec.uuid)
             println("\n$(package_spec.name) is a standard library in this Julia build.")
         end
 
         println("\nSet-up completed after $(elapsed(t0))")
 
 
-        # check if we even need to install the package, as it might be available in the
-        # system image already. standard libraries we still have to add to the environment.
-        package_id = PkgId(package_spec.uuid, package_spec.name)
-        if package_stdlib || !Base.root_module_exists(package_id)
-            print("\n\n", '#'^80, "\n# Installation\n#\n\n")
-            println("Started at ", now(UTC), "\n")
-            t1 = time()
+        print("\n\n", '#'^80, "\n# Installation\n#\n\n")
+        println("Started at ", now(UTC), "\n")
+        t1 = time()
 
-            Pkg.add(; package_spec...)
+        Pkg.add(; package_spec...)
 
-            println("\nInstallation completed after $(elapsed(t1))")
-        end
+        println("\nInstallation completed after $(elapsed(t1))")
 
 
         print("\n\n", '#'^80, "\n# Testing\n#\n\n")
@@ -339,7 +332,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             exit(1)
         end""" * "\nend"
 
-    args = `$(repr(package_spec_tuple(pkg))) $(pkg.stdlib)`
+    args = `$(repr(package_spec_tuple(pkg)))`
 
     mounts = Dict{String,String}()
     env = Dict{String,String}()
@@ -616,15 +609,13 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
     sysimage_path = "/sysimage/sysimg.so"
     args = `$(repr(package_spec_tuple(pkg))) $sysimage_path`
 
-    project_path="/project"
-    project_dir = mktempdir()
     sysimage_dir = mktempdir()
     mounts = Dict(
         dirname(sysimage_path)*":rw"    => sysimage_dir,
-        project_path*":rw"              => project_dir)
+    )
 
     compile_config = Configuration(config;
-        julia_args = `$(config.julia_args) --project=$project_path`,
+        julia_args = `$(config.julia_args)`,
         time_limit = config.compile_time_limit,
         # don't record the compilation, only the test execution
         rr = false,
@@ -662,20 +653,18 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
 
     if status !== :ok
         rm(sysimage_dir; recursive=true)
-        rm(project_dir; recursive=true)
         return missing, status, reason, 0.0, log
     end
 
     # run the tests in the regular environment
     test_config = Configuration(config;
         compiled = false,
-        julia_args = `$(config.julia_args) --project=$project_path --sysimage $sysimage_path`,
+        julia_args = `$(config.julia_args) --sysimage $sysimage_path`,
     )
     version, status, reason, duration, test_log =
         evaluate_test(test_config, pkg; mounts, use_cache, kwargs...)
 
     rm(sysimage_dir; recursive=true)
-    rm(project_dir; recursive=true)
     return version, status, reason, duration, log * "\n\n" * test_log
 end
 
