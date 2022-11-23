@@ -618,7 +618,6 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
     )
 
     compile_config = Configuration(config;
-        julia_args = `$(config.julia_args)`,
         time_limit = config.compile_time_limit,
         # don't record the compilation, only the test execution
         rr = false,
