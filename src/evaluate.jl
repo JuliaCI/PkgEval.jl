@@ -252,16 +252,9 @@ jobs (which may be a cause of issues).
 Refer to `evaluate_script`[@ref] for more possible `keyword arguments.
 """
 function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true, kwargs...)
-    # determine if the package is an stdlib for this version of Julia
-    pkg′ = get_packages(config)[pkg.name]
-    pkg = Package(pkg; stdlib=pkg′.stdlib)
-    ## we currently only support testing stdlibs that are embedded in the Julia sysimg
-    if pkg.stdlib
-        @assert pkg.version === nothing && pkg.url === nothing && pkg.rev === nothing
-    end
-
-    # at this point, we also need to know the UUID of the package
+    # at this point, we need to know the UUID of the package
     if pkg.uuid === nothing
+        pkg′ = get_packages(config)[pkg.name]
         pkg = Package(pkg; pkg′.uuid)
     end
 
@@ -292,6 +285,11 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
         if haskey(Pkg.Types.stdlibs(), package_spec.uuid)
             println("\n$(package_spec.name) is a standard library in this Julia build.")
+
+            # we currently only support testing the embedded version of stdlib packages
+            @assert !haskey(package_spec, :version)
+            @assert !haskey(package_spec, :url)
+            @assert !haskey(package_spec, :ref)
         end
 
         println("\nSet-up completed after $(elapsed(t0))")
@@ -558,7 +556,6 @@ is performed in an Arch Linux container.
 """
 function evaluate_compiled_test(config::Configuration, pkg::Package;
                                 use_cache::Bool=true, kwargs...)
-    @assert !pkg.stdlib
     script = raw"""
         begin
             using Dates
@@ -575,6 +572,10 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
             using Pkg
             using Base: UUID
             package_spec = eval(Meta.parse(ARGS[1]))
+
+            if haskey(Pkg.Types.stdlibs(), package_spec.uuid)
+                error("Compiling stdlibs does not make sense.")
+            end
 
             println("Installing PackageCompiler...")
             project = Base.active_project()

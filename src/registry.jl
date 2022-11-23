@@ -30,18 +30,9 @@ const packages_lock = ReentrantLock()
 const packages_cache = Dict()
 
 function _get_packages(config::Configuration)
-    packages = Dict{String,Package}()
-
-    registry = get_registry(config)
-    registry_instance = Pkg.Registry.RegistryInstance(registry)
-    for (_, pkg) in registry_instance
-        # TODO: read package compat info so that we can avoid testing uninstallable packages
-        packages[pkg.name] = Package(; pkg.name, pkg.uuid)
-    end
-
     # standard libraries are generally not registered, and even if they are,
     # installing and loading them will always use the embedded version.
-    # so iterate them using the target Julia, and overwrite any existing entries
+    stdlibs = Dict{String,Package}()
     stdlib_script = raw"""begin
             using Pkg
             for (uuid, (name,version)) in Pkg.Types.stdlibs()
@@ -54,13 +45,27 @@ function _get_packages(config::Configuration)
     while !eof(p.out)
         line = readline(p.out)
         uuid, name = split(line, ' ')
-        packages[name] = Package(; name, uuid=UUID(uuid), stdlib=true)
+        stdlibs[name] = Package(; name, uuid=UUID(uuid))
     end
     success(proc) || error("Failed to list standard libraries")
 
-    # it doesn't make sense to test stdlibs in compiled mode
-    if config.compiled
-        filter!(item->!item.second.stdlib, packages)
+    # iterate packages from the registry
+    packages = Dict{String,Package}()
+    registry = get_registry(config)
+    registry_instance = Pkg.Registry.RegistryInstance(registry)
+    for (_, pkg) in registry_instance
+        # TODO: read package compat info so that we can avoid testing uninstallable packages
+        packages[pkg.name] = Package(; pkg.name, pkg.uuid)
+    end
+
+    # merge both, preferring stdlib versions
+    for (uuid, package) in stdlibs
+        # ... unless we're compiling, in which case it doesn't make sense to test stdlibs
+        if config.compiled
+            delete!(packages, uuid)
+        else
+            packages[uuid] = package
+        end
     end
 
     return packages

@@ -148,8 +148,6 @@ Base.@kwdef struct Package
     version::Union{Nothing,VersionNumber} = nothing
     url::Union{Nothing,String} = nothing
     rev::Union{Nothing,String} = nothing
-
-    stdlib::Bool = false
 end
 
 # copy constructor that allows overriding specific fields
