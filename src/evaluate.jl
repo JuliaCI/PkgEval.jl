@@ -252,6 +252,12 @@ jobs (which may be a cause of issues).
 Refer to `evaluate_script`[@ref] for more possible `keyword arguments.
 """
 function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true, kwargs...)
+    # at this point, we need to know the UUID of the package
+    if pkg.uuid === nothing
+        pkg′ = get_packages(config)[pkg.name]
+        pkg = Package(pkg; pkg′.uuid)
+    end
+
     if config.compiled
         return evaluate_compiled_test(config, pkg; use_cache, kwargs...)
     end
@@ -277,21 +283,27 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         using InteractiveUtils
         versioninfo()
 
+        if haskey(Pkg.Types.stdlibs(), package_spec.uuid)
+            println("\n$(package_spec.name) is a standard library in this Julia build.")
+
+            # we currently only support testing the embedded version of stdlib packages
+            if haskey(package_spec, :version) ||
+               haskey(package_spec, :url) ||
+               haskey(package_spec, :ref)
+                error("Packages that are standard libraries can only be tested using the embedded version.")
+            end
+        end
+
         println("\nSet-up completed after $(elapsed(t0))")
 
 
-        # check if we even need to install the package
-        # (it might be available in the system image already)
-        package_id = PkgId(package_spec.uuid, package_spec.name)
-        if !Base.root_module_exists(package_id)
-            print("\n\n", '#'^80, "\n# Installation\n#\n\n")
-            println("Started at ", now(UTC), "\n")
-            t1 = time()
+        print("\n\n", '#'^80, "\n# Installation\n#\n\n")
+        println("Started at ", now(UTC), "\n")
+        t1 = time()
 
-            Pkg.add(; package_spec...)
+        Pkg.add(; package_spec...)
 
-            println("\nInstallation completed after $(elapsed(t1))")
-        end
+        println("\nInstallation completed after $(elapsed(t1))")
 
 
         print("\n\n", '#'^80, "\n# Testing\n#\n\n")
@@ -563,6 +575,10 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
             using Base: UUID
             package_spec = eval(Meta.parse(ARGS[1]))
 
+            if haskey(Pkg.Types.stdlibs(), package_spec.uuid)
+                error("Packages that are standard libraries cannot be compiled again.")
+            end
+
             println("Installing PackageCompiler...")
             project = Base.active_project()
             Pkg.activate(; temp=true)
@@ -596,15 +612,12 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
     sysimage_path = "/sysimage/sysimg.so"
     args = `$(repr(package_spec_tuple(pkg))) $sysimage_path`
 
-    project_path="/project"
-    project_dir = mktempdir()
     sysimage_dir = mktempdir()
     mounts = Dict(
         dirname(sysimage_path)*":rw"    => sysimage_dir,
-        project_path*":rw"              => project_dir)
+    )
 
     compile_config = Configuration(config;
-        julia_args = `$(config.julia_args) --project=$project_path`,
         time_limit = config.compile_time_limit,
         # don't record the compilation, only the test execution
         rr = false,
@@ -642,20 +655,18 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
 
     if status !== :ok
         rm(sysimage_dir; recursive=true)
-        rm(project_dir; recursive=true)
         return missing, status, reason, 0.0, log
     end
 
     # run the tests in the regular environment
     test_config = Configuration(config;
         compiled = false,
-        julia_args = `$(config.julia_args) --project=$project_path --sysimage $sysimage_path`,
+        julia_args = `$(config.julia_args) --sysimage $sysimage_path`,
     )
     version, status, reason, duration, test_log =
         evaluate_test(test_config, pkg; mounts, use_cache, kwargs...)
 
     rm(sysimage_dir; recursive=true)
-    rm(project_dir; recursive=true)
     return version, status, reason, duration, log * "\n\n" * test_log
 end
 
@@ -781,7 +792,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                   ninstances::Integer=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true)
     if isempty(packages)
         registry_configs = unique(config->config.registry, values(configs))
-        packages = intersect(map(registry_packages, registry_configs)...)
+        packages = intersect(map(get_packages, registry_configs)...)
     end
 
     # ensure the configurations have unique names
@@ -801,7 +812,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
 
     # determine the jobs to run
     jobs = Job[]
-    for config in configs, package in packages
+    for config in configs, package in values(packages)
         push!(jobs, Job(config, package, true))
     end
     ## use a random test order to (hopefully) get a more reasonable ETA
