@@ -287,9 +287,11 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             println("\n$(package_spec.name) is a standard library in this Julia build.")
 
             # we currently only support testing the embedded version of stdlib packages
-            @assert !haskey(package_spec, :version)
-            @assert !haskey(package_spec, :url)
-            @assert !haskey(package_spec, :ref)
+            if haskey(package_spec, :version) ||
+               haskey(package_spec, :url) ||
+               haskey(package_spec, :ref)
+                error("Packages that are standard libraries can only be tested using the embedded version.")
+            end
         end
 
         println("\nSet-up completed after $(elapsed(t0))")
@@ -574,7 +576,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
             package_spec = eval(Meta.parse(ARGS[1]))
 
             if haskey(Pkg.Types.stdlibs(), package_spec.uuid)
-                error("Compiling stdlibs does not make sense.")
+                error("Packages that are standard libraries cannot be compiled again.")
             end
 
             println("Installing PackageCompiler...")
