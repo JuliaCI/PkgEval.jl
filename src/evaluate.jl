@@ -321,9 +321,6 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         end""" * "\nend"
 
     args = `$(repr(package_spec_tuple(pkg)))`
-    if config.depwarn
-        args = `--depwarn=error $args`
-    end
 
     mounts = Dict{String,String}()
     env = Dict{String,String}()

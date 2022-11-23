@@ -75,7 +75,7 @@ function setup_generic_sandbox(config::Configuration, cmd::Cmd;
         env["TERM"] = ENV["TERM"]
     end
 
-    for flag in config.environment
+    for flag in config.env
         key, value = split(flag, '='; limit=2)
         if (value[begin] == value[end] == '"') || (value[begin] == value[end] == '\'')
             value = value[2:end-1]

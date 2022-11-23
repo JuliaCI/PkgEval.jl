@@ -74,7 +74,7 @@ end
         @test read(p.out, String) == "nothing"
     end
 
-    let config = Configuration(config; environment=["FOO=bar"])
+    let config = Configuration(config; env=["FOO=bar"])
         p = Pipe()
         close(p.in)
         PkgEval.sandboxed_julia(config, `-e 'print(get(ENV, "FOO", nothing))'`; stdout=p.out)
