@@ -792,7 +792,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                   ninstances::Integer=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true)
     if isempty(packages)
         registry_configs = unique(config->config.registry, values(configs))
-        packages = intersect(map(get_packages, registry_configs)...)
+        packages = intersect(values.(map(get_packages, registry_configs))...)::Vector{Package}
     end
 
     # ensure the configurations have unique names
@@ -812,7 +812,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
 
     # determine the jobs to run
     jobs = Job[]
-    for config in configs, package in values(packages)
+    for config in configs, package in packages
         push!(jobs, Job(config, package, true))
     end
     ## use a random test order to (hopefully) get a more reasonable ETA
