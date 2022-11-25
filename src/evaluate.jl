@@ -131,7 +131,6 @@ function evaluate_script(config::Configuration, script::String, args=``;
         env["JULIA_PKG_SERVER"] = ENV["JULIA_PKG_SERVER"]
     end
 
-    t0 = time()
     input = Pipe()
     output = Pipe()
     proc = sandboxed_julia(config,`--eval 'eval(Meta.parse(read(stdin,String)))' $args`;
@@ -221,7 +220,6 @@ function evaluate_script(config::Configuration, script::String, args=``;
     close(timeout_monitor)
     close(inactivity_monitor)
     log = fetch(log_monitor)
-    t1 = time()
 
     # if we didn't kill the process, figure out the status from the exit code
     if status === nothing
@@ -239,7 +237,7 @@ function evaluate_script(config::Configuration, script::String, args=``;
         log = log[1:ind]
     end
 
-    return status, reason, log, t1 - t0
+    return status, reason, log
 end
 
 """
@@ -265,72 +263,6 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     # we create our own executor so that we can reuse it (this assumes that the
     # SandboxConfig will have persist=true; maybe this should be a kwarg too?)
     executor = UnprivilegedUserNamespacesExecutor()
-
-    common_script = raw"""
-        using Dates
-        elapsed(t) = "$(round(time() - t; digits=2))s"
-
-        using Pkg
-        using Base: UUID, PkgId
-        package_spec = eval(Meta.parse(ARGS[1]))
-    """
-
-    script = "begin\n" * common_script * raw"""
-        print('#'^80, "\n# PkgEval set-up\n#\n\n")
-        println("Started at ", now(UTC), "\n")
-        t0 = time()
-
-        using InteractiveUtils
-        versioninfo()
-
-        if haskey(Pkg.Types.stdlibs(), package_spec.uuid)
-            println("\n$(package_spec.name) is a standard library in this Julia build.")
-
-            # we currently only support testing the embedded version of stdlib packages
-            if haskey(package_spec, :version) ||
-               haskey(package_spec, :url) ||
-               haskey(package_spec, :ref)
-                error("Packages that are standard libraries can only be tested using the embedded version.")
-            end
-        end
-
-        println("\nSet-up completed after $(elapsed(t0))")
-
-
-        print("\n\n", '#'^80, "\n# Installation\n#\n\n")
-        println("Started at ", now(UTC), "\n")
-        t1 = time()
-
-        Pkg.add(; package_spec...)
-
-        println("\nInstallation completed after $(elapsed(t1))")
-
-
-        print("\n\n", '#'^80, "\n# Testing\n#\n\n")
-        println("Started at ", now(UTC), "\n")
-
-        bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true"
-        if bugreporting
-            println("Tests will be executed under rr.\n")
-        end
-
-        t2 = time()
-        try
-            if bugreporting
-                Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
-            else
-                Pkg.test(package_spec.name)
-            end
-
-            println("\nTesting completed after $(elapsed(t2))")
-        catch err
-            println("\nTesting failed after $(elapsed(t2))")
-            showerror(stdout, err)
-            Base.show_backtrace(stdout, catch_backtrace())
-            println()
-
-            exit(1)
-        end""" * "\nend"
 
     args = `$(repr(package_spec_tuple(pkg)))`
 
@@ -359,8 +291,67 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         mounts[joinpath(config.home, ".julia", "artifacts")*":rw"] = artifacts
     end
 
-    # TODO: perform the status/reason analysis here
-    status, reason, log, elapsed = if config.rr
+    common_script = raw"""
+        using Dates
+        elapsed(t) = "$(round(time() - t; digits=2))s"
+
+        using Pkg
+        using Base: UUID, PkgId
+        package_spec = eval(Meta.parse(ARGS[1]))
+    """
+
+    script = "begin\n" * common_script * raw"""
+        println("Package evaluation started at ", now(UTC))
+
+        println()
+        using InteractiveUtils
+        versioninfo()
+
+        print("\n\n", '#'^80, "\n# Installation\n#\n\n")
+        t0 = time()
+
+        Pkg.add(; package_spec...)
+
+        if haskey(Pkg.Types.stdlibs(), package_spec.uuid)
+            println("\n$(package_spec.name) is a standard library in this Julia build.")
+
+            # we currently only support testing the embedded version of stdlib packages
+            if haskey(package_spec, :version) ||
+               haskey(package_spec, :url) ||
+               haskey(package_spec, :ref)
+                error("Packages that are standard libraries can only be tested using the embedded version.")
+            end
+        end
+
+        println("\nInstallation completed after $(elapsed(t0))")
+
+
+        print("\n\n", '#'^80, "\n# Testing\n#\n\n")
+
+        bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true"
+        if bugreporting
+            println("Tests will be executed under rr.\n")
+        end
+
+        t1 = time()
+        try
+            if bugreporting
+                Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
+            else
+                Pkg.test(package_spec.name)
+            end
+
+            println("\nTesting completed after $(elapsed(t1))")
+        catch err
+            println("\nTesting failed after $(elapsed(t1))\n")
+            showerror(stdout, err)
+            Base.show_backtrace(stdout, catch_backtrace())
+            println()
+
+            exit(1)
+        end""" * "\nend"
+
+    status, reason, log = if config.rr
         # extend the timeout to account for the rr record overhead
         rr_config = Configuration(config; time_limit=config.time_limit*2)
 
@@ -369,10 +360,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     else
         evaluate_script(config, script, args; mounts, env, executor, kwargs...)
     end
-    elapsed_str = "$(round(elapsed; digits=2))s"
-
-    log *= "\n\n$('#'^80)\n# PkgEval teardown\n#\n\n"
-    log *= "Started at $(now(UTC))\n\n"
+    log *= "\n"
 
     # log the status and determine a more accurate reason from the log
     @assert status in [:ok, :fail, :kill]
@@ -400,7 +388,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     end
     ## others we only look for when the test failed
     if status === :fail
-        log *= "PkgEval failed after $elapsed_str"
+        log *= "PkgEval failed"
 
         reason = if occursin("Unsatisfiable requirements detected for package", log)
             # NOTE: might be the package itself, or one of its dependencies
@@ -429,11 +417,11 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             :unknown
         end
     elseif status === :kill
-        log *= "PkgEval terminated after $elapsed_str"
+        log *= "PkgEval terminated"
     elseif status === :crash
-        log *= "PkgEval crashed after $elapsed_str"
+        log *= "PkgEval crashed"
     elseif status === :ok
-        log *= "PkgEval succeeded after $elapsed_str"
+        log *= "PkgEval succeeded"
     end
     if reason !== missing
         log *= ": " * reason_message(reason)
@@ -454,10 +442,10 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     end
 
     # pick up the test duration from the log
-    duration_match = match(r"Testing (completed|failed) after (\S+)s", log)
+    duration_match = match(r"Testing \w+ after (\S+)s", log)
     duration = if duration_match !== nothing
         try
-            parse(Float64, duration_match.captures[2])
+            parse(Float64, duration_match.captures[1])
         catch
             @error "Could not parse test duration '$(duration_match.captures[2])'"
             0.0
@@ -469,9 +457,8 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     # pack-up our rr trace. this is expensive, so we only do it for failures.
     if config.rr && status == :crash
         rr_script = "begin\n" * common_script * raw"""
-            print("\n\n", '#'^80, "\n# BugReporting post-processing\n#\n\n")
-            println("Started at ", now(UTC), "\n")
-            t3 = time()
+            print("\n\n", '#'^80, "\n# Bug reporting\n#\n\n")
+            t2 = time()
 
             try
                 # use a clean environment, or BugReporting's deps could
@@ -483,9 +470,9 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
                 trace_dir = BugReporting.default_rr_trace_dir()
                 trace = BugReporting.find_latest_trace(trace_dir)
                 BugReporting.compress_trace(trace, "/traces/$(package_spec.name).tar.zst")
-                println("\nBugReporting completed after $(elapsed(t3))")
+                println("\nBugReporting completed after $(elapsed(t2))")
             catch err
-                println("\nBugReporting failed after $(elapsed(t3))")
+                println("\nBugReporting failed after $(elapsed(t2))")
                 showerror(stdout, err)
                 Base.show_backtrace(stdout, catch_backtrace())
                 println()
@@ -558,56 +545,52 @@ is performed in an Arch Linux container.
 """
 function evaluate_compiled_test(config::Configuration, pkg::Package;
                                 use_cache::Bool=true, kwargs...)
-    script = raw"""
-        begin
-            using Dates
-            elapsed(t) = "$(round(time() - t; digits=2))s"
+    common_script = raw"""
+        using Dates
+        elapsed(t) = "$(round(time() - t; digits=2))s"
 
-            print('#'^80, "\n# PackageCompiler set-up\n#\n\n")
-            println("Started at ", now(UTC), "\n")
-            t0 = time()
+        using Pkg
+        using Base: UUID, PkgId
+        package_spec = eval(Meta.parse(ARGS[1]))
+        sysimage_path = ARGS[2]
+    """
 
-            using InteractiveUtils
-            versioninfo()
-            println()
+    script = "begin\n" * common_script * raw"""
+        println("Package compilation started at ", now(UTC))
 
-            using Pkg
-            using Base: UUID
-            package_spec = eval(Meta.parse(ARGS[1]))
+        println()
+        using InteractiveUtils
+        versioninfo()
 
-            if haskey(Pkg.Types.stdlibs(), package_spec.uuid)
-                error("Packages that are standard libraries cannot be compiled again.")
-            end
-
-            println("Installing PackageCompiler...")
-            project = Base.active_project()
-            Pkg.activate(; temp=true)
-            Pkg.add(name="PackageCompiler", uuid="9b87118b-4619-50d2-8e1e-99f35a4d4d9d")
-            using PackageCompiler
-            Pkg.activate(project)
-
-            println("\nCompleted after $(elapsed(t0))")
+        println("\nInstalling PackageCompiler...")
+        project = Base.active_project()
+        Pkg.activate(; temp=true)
+        Pkg.add(name="PackageCompiler", uuid="9b87118b-4619-50d2-8e1e-99f35a4d4d9d")
+        using PackageCompiler
+        Pkg.activate(project)
 
 
-            print("\n\n", '#'^80, "\n# Installation\n#\n\n")
-            println("Started at ", now(UTC), "\n")
-            t1 = time()
+        print("\n\n", '#'^80, "\n# Installation\n#\n\n")
+        t0 = time()
 
-            Pkg.add(; package_spec...)
+        if haskey(Pkg.Types.stdlibs(), package_spec.uuid)
+            error("Packages that are standard libraries cannot be compiled again.")
+        end
 
-            println("\nCompleted after $(elapsed(t1))")
+        Pkg.add(; package_spec...)
+
+        println("\nCompleted after $(elapsed(t0))")
 
 
-            print("\n\n", '#'^80, "\n# Compilation\n#\n\n")
-            println("Started at ", now(UTC), "\n")
-            t2 = time()
+        print("\n\n", '#'^80, "\n# Compilation\n#\n\n")
+        t1 = time()
 
-            create_sysimage([package_spec.name]; sysimage_path=ARGS[2])
-            s = stat(ARGS[2]).size
+        create_sysimage([package_spec.name]; sysimage_path)
+        println("\nCompleted after $(elapsed(t1))")
 
-            println("\nCompleted after $(elapsed(t2))")
-            println("Generated system image is ", Base.format_bytes(s))
-        end"""
+        s = stat(sysimage_path).size
+        println("Generated system image is ", Base.format_bytes(s))
+    """ * "\nend"
 
     sysimage_path = "/sysimage/sysimg.so"
     args = `$(repr(package_spec_tuple(pkg))) $sysimage_path`
@@ -631,27 +614,24 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
         gid=2000,
     )
 
-    status, reason, log, elapsed =
+    status, reason, log =
         evaluate_script(compile_config, script, args; mounts, kwargs...)
-    elapsed_str = "$(round(elapsed; digits=2))s"
-
-    log *= "\n\n$('#'^80)\n# PackageCompiler teardown\n#\n\n"
-    log *= "Started at $(now(UTC))\n\n"
+    log *= "\n"
 
     # log the status and determine a more accurate reason from the log
     @assert status in [:ok, :fail, :kill]
     if status === :ok
-        log *= "PackageCompiler succeeded after $elapsed_str\n"
+        log *= "PackageCompiler succeeded"
     elseif status === :fail
-        log *= "PackageCompiler failed after $elapsed_str\n"
+        log *= "PackageCompiler failed"
         reason = :uncompilable
     elseif status === :kill
-        log *= "PackageCompiler terminated after $elapsed_str"
-        if reason !== nothing
-            log *= ": " * reason_message(reason)
-        end
-        log *= "\n"
+        log *= "PackageCompiler terminated"
     end
+    if reason !== missing
+        log *= ": " * reason_message(reason)
+    end
+    log *= "\n"
 
     if status !== :ok
         rm(sysimage_dir; recursive=true)
@@ -667,7 +647,8 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
         evaluate_test(test_config, pkg; mounts, use_cache, kwargs...)
 
     rm(sysimage_dir; recursive=true)
-    return version, status, reason, duration, log * "\n\n" * test_log
+    return version, status, reason, duration,
+           log * "\n\n" * '#'^80 * "\n" * '#'^80 * "\n\n\n" * test_log
 end
 
 function verify_artifacts(artifacts)
