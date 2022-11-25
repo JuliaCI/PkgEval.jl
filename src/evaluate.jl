@@ -438,7 +438,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
     # parse structured output
     output = Dict()
-    for (entry, type, default) in [("version", VersionNumber, missing),
+    for (entry, type, default) in [("version", Union{Nothing,VersionNumber}, missing),
                                    ("duration", Float64, 0.0)]
         file = joinpath(output_dir, entry)
         output[entry] = if isfile(file)
@@ -446,12 +446,16 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             try
                 eval(Meta.parse(str))::type
             catch
-                @error "Could not parse $entry (got '$str', expected a $type)"
+                @warn "Could not parse $entry of $(pkg.name) on $(config.name) (got '$str', expected a $type)"
                 default
             end
         else
             default
         end
+    end
+    if output["version"] === nothing
+        # this happens with unversioned stdlibs
+        output["version"] = missing
     end
 
     # pack-up our rr trace. this is expensive, so we only do it for failures.
