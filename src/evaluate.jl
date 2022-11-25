@@ -560,13 +560,6 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
         using InteractiveUtils
         versioninfo()
 
-        println("\nInstalling PackageCompiler...")
-        project = Base.active_project()
-        Pkg.activate(; temp=true)
-        Pkg.add(name="PackageCompiler", uuid="9b87118b-4619-50d2-8e1e-99f35a4d4d9d")
-        using PackageCompiler
-        Pkg.activate(project)
-
 
         print("\n\n", '#'^80, "\n# Installation\n#\n\n")
         t0 = time()
@@ -575,6 +568,14 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
             error("Packages that are standard libraries cannot be compiled again.")
         end
 
+        println("Installing PackageCompiler...")
+        project = Base.active_project()
+        Pkg.activate(; temp=true)
+        Pkg.add(name="PackageCompiler", uuid="9b87118b-4619-50d2-8e1e-99f35a4d4d9d")
+        using PackageCompiler
+        Pkg.activate(project)
+
+        println("\nInstalling $(package_spec.name)...")
         Pkg.add(; package_spec...)
 
         println("\nCompleted after $(elapsed(t0))")
