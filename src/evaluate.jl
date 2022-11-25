@@ -237,7 +237,7 @@ function evaluate_script(config::Configuration, script::String, args=``;
         log = log[1:ind]
     end
 
-    return status, reason, log
+    return (; log, status, reason)
 end
 
 """
@@ -351,7 +351,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             exit(1)
         end""" * "\nend"
 
-    status, reason, log = if config.rr
+    (; log, status, reason) = if config.rr
         # extend the timeout to account for the rr record overhead
         rr_config = Configuration(config; time_limit=config.time_limit*2)
 
@@ -483,8 +483,8 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         rr_mounts = merge(mounts, Dict("/traces:rw" => trace_dir))
 
         rr_config = Configuration(config; time_limit=config.time_limit*2)
-        _, _, rr_log, _ = evaluate_script(rr_config, rr_script, args;
-                                          mounts=rr_mounts, env, executor, kwargs...)
+        rr_log = evaluate_script(rr_config, rr_script, args;
+                                 mounts=rr_mounts, env, executor, kwargs...).log
 
         # upload the trace
         # TODO: re-use BugReporting.jl
@@ -530,7 +530,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     end
     cleanup(executor)
 
-    return version, status, reason, duration, log
+    return (; log, status, reason, version, duration)
 end
 
 """
@@ -614,7 +614,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
         gid=2000,
     )
 
-    status, reason, log =
+    (; status, reason, log) =
         evaluate_script(compile_config, script, args; mounts, kwargs...)
     log *= "\n"
 
@@ -635,20 +635,22 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
 
     if status !== :ok
         rm(sysimage_dir; recursive=true)
-        return missing, status, reason, 0.0, log
+        return (; log, status, reason, version=missing, duration=0.0)
     end
 
     # run the tests in the regular environment
+    compile_log = log
     test_config = Configuration(config;
         compiled = false,
         julia_args = `$(config.julia_args) --sysimage $sysimage_path`,
     )
-    version, status, reason, duration, test_log =
+    (; log, status, reason, version, duration) =
         evaluate_test(test_config, pkg; mounts, use_cache, kwargs...)
+    log = compile_log * "\n\n" * '#'^80 * "\n" * '#'^80 * "\n\n\n" * log
 
     rm(sysimage_dir; recursive=true)
-    return version, status, reason, duration,
-           log * "\n\n" * '#'^80 * "\n" * '#'^80 * "\n\n\n" * test_log
+    return (; log, status, reason, version, duration)
+
 end
 
 function verify_artifacts(artifacts)
@@ -859,11 +861,11 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
 
                         # test the package
                         config′ = Configuration(job.config; cpus=[i-1])
-                        pkg_version, status, reason, duration, log =
+                        (; log, status, reason, version, duration) =
                             evaluate_test(config′, job.package; job.use_cache)
 
                         push!(result, [job.config.name, job.package.name,
-                                       pkg_version, status, reason, duration, log])
+                                       version, status, reason, duration, log])
                         running[i] = nothing
 
                         if retry
