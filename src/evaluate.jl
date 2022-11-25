@@ -374,26 +374,6 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     log *= "\n\n$('#'^80)\n# PkgEval teardown\n#\n\n"
     log *= "Started at $(now(UTC))\n\n"
 
-    if use_cache
-        # copy new files from the local compilecache into the shared one
-        function copy_files(subpath=""; src, dst)
-            for entry in readdir(joinpath(src, subpath))
-                path = joinpath(subpath, entry)
-                srcpath = joinpath(src, path)
-                dstpath = joinpath(dst, path)
-
-                if isdir(srcpath)
-                    isdir(dstpath) || mkdir(joinpath(dst, path))
-                    copy_files(path; src, dst)
-                elseif !ispath(dstpath)
-                    cp(srcpath, dstpath)
-                end
-            end
-        end
-        copy_files(src=local_compilecache, dst=shared_compilecache)
-        rm(local_compilecache; recursive=true)
-    end
-
     # log the status and determine a more accurate reason from the log
     @assert status in [:ok, :fail, :kill]
     ## crashes so bad we override the status
@@ -541,6 +521,26 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         log *= rr_log
     end
 
+    # cache and clean-up files used by this package
+    if use_cache
+        # copy new files from the local compilecache into the shared one
+        function copy_files(subpath=""; src, dst)
+            for entry in readdir(joinpath(src, subpath))
+                path = joinpath(subpath, entry)
+                srcpath = joinpath(src, path)
+                dstpath = joinpath(dst, path)
+
+                if isdir(srcpath)
+                    isdir(dstpath) || mkdir(joinpath(dst, path))
+                    copy_files(path; src, dst)
+                elseif !ispath(dstpath)
+                    cp(srcpath, dstpath)
+                end
+            end
+        end
+        copy_files(src=local_compilecache, dst=shared_compilecache)
+        rm(local_compilecache; recursive=true)
+    end
     cleanup(executor)
 
     return version, status, reason, duration, log
