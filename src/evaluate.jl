@@ -31,8 +31,6 @@ const reasons = [
     :syntax                 => "package has syntax issues",
     :uncompilable           => "compilation of the package failed",
     :test_failures          => "package has test failures",
-    :untestable             => "package does not have any tests",
-    :unsatisfiable          => "package could not be installed",
     :binary_dependency      => "package requires a missing binary dependency",
     :missing_dependency     => "package is missing a package dependency",
     :missing_package        => "package is using an unknown package",
@@ -43,6 +41,8 @@ const reasons = [
     :time_limit             => "test duration exceeded the time limit",
     :log_limit              => "test log exceeded the size limit",
     # skip
+    :untestable             => "package does not have any tests",
+    :unsatisfiable          => "package could not be installed",
     :unsupported            => "package is not supported by this Julia version",
     :jll                    => "package is a untestable wrapper package",
     :explicit               => "package was blacklisted",
@@ -351,8 +351,9 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             end
 
             println("\nTesting completed after $(elapsed(t1))")
-        catch err
+        catch
             println("\nTesting failed after $(elapsed(t1))\n")
+            rethrow()
         finally
             write("/output/duration", repr(t1-t0))
         end""" * "\nend"
@@ -372,6 +373,15 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
     # log the status and determine a more accurate reason from the log
     @assert status in [:ok, :fail, :kill]
+    ## special cases that indicated we couldn't test at all
+    if occursin("Unsatisfiable requirements detected for package", log)
+        # NOTE: might be the package itself, or one of its dependencies
+        status = :skip
+        reason = :unsatisfiable
+    elseif occursin("Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
+        status = :skip
+        reason = :untestable
+    end
     ## crashes so bad we override the status
     if status !== :kill
         # ... but not in the case of a kill, as a badly-timed signal may cause crashes
@@ -398,12 +408,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     if status === :fail
         log *= "PkgEval failed"
 
-        reason = if occursin("Unsatisfiable requirements detected for package", log)
-            # NOTE: might be the package itself, or one of its dependencies
-            :unsatisfiable
-        elseif occursin("Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
-            :untestable
-        elseif occursin("cannot open shared object file: No such file or directory", log)
+        reason = if occursin("cannot open shared object file: No such file or directory", log)
             :binary_dependency
         elseif occursin(r"Package .+ does not have .+ in its dependencies", log)
             :missing_dependency
@@ -428,6 +433,8 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         log *= "PkgEval terminated"
     elseif status === :crash
         log *= "PkgEval crashed"
+    elseif status === :skip
+        log *= "PkgEval skipped"
     elseif status === :ok
         log *= "PkgEval succeeded"
     end
@@ -815,13 +822,12 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
     # pre-filter the jobs for packages we'll skip to get a better ETA
     skips = similar(result)
     jobs = filter(jobs) do job
-        if job.package.name in skip_list
+        if endswith(job.package.name, "_jll")
+            # JLLs we ignore completely; it's not useful to include them in the skip count
+            return false
+        elseif job.package.name in skip_list
             push!(skips, [job.config.name, job.package.name, missing,
                           :skip, :explicit, 0, missing])
-            return false
-        elseif endswith(job.package.name, "_jll")
-            push!(skips, [job.config.name, job.package.name, missing,
-                          :skip, :jll, 0, missing])
             return false
         else
             return true
