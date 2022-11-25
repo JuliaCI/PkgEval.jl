@@ -296,7 +296,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         elapsed(t) = "$(round(time() - t; digits=2))s"
 
         using Pkg
-        using Base: UUID, PkgId
+        using Base: UUID
         package_spec = eval(Meta.parse(ARGS[1]))
     """
 
@@ -550,7 +550,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
         elapsed(t) = "$(round(time() - t; digits=2))s"
 
         using Pkg
-        using Base: UUID, PkgId
+        using Base: UUID
         package_spec = eval(Meta.parse(ARGS[1]))
         sysimage_path = ARGS[2]
     """
