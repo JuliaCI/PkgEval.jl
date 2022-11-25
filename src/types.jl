@@ -37,7 +37,7 @@ Base.@kwdef struct Configuration
     julia_install_dir::Setting{String} = Default("/opt/julia")
     julia_binary::Setting{String} = Default("julia")
     ## additional Julia arguments to pass to the process
-    julia_args::Setting{Cmd} = Default(`--color=no`)
+    julia_args::Setting{Cmd} = Default(`--color=$(isinteractive() ? "yes" : "no")`)
 
     # registry properties
     registry::Setting{String} = Default("master")
