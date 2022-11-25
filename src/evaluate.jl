@@ -822,13 +822,12 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
     # pre-filter the jobs for packages we'll skip to get a better ETA
     skips = similar(result)
     jobs = filter(jobs) do job
-        if job.package.name in skip_list
+        if endswith(job.package.name, "_jll")
+            # JLLs we ignore completely; it's not useful to include them in the skip count
+            return false
+        elseif job.package.name in skip_list
             push!(skips, [job.config.name, job.package.name, missing,
                           :skip, :explicit, 0, missing])
-            return false
-        elseif endswith(job.package.name, "_jll")
-            push!(skips, [job.config.name, job.package.name, missing,
-                          :skip, :jll, 0, missing])
             return false
         else
             return true
