@@ -33,8 +33,9 @@ skip = [
     "SeisPDF",
     # intentionally throwing a segfault
     "Run",
-    # artifacts unsuited for unreleased Julia
-    "ConnectFourSolver",
+    # crashes not caused by Julia
+    "ConnectFourSolver",    # artifact unsuited for julia#master
+    "CDDLib",               # segfault in called library
     
     # requires specific environment
     "AWSS3",                # AWS secrets
