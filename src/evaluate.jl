@@ -351,8 +351,9 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             end
 
             println("\nTesting completed after $(elapsed(t1))")
-        catch err
+        catch
             println("\nTesting failed after $(elapsed(t1))\n")
+            rethrow()
         finally
             write("/output/duration", repr(t1-t0))
         end""" * "\nend"
