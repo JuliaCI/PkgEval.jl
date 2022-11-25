@@ -249,7 +249,12 @@ jobs (which may be a cause of issues).
 
 Refer to `evaluate_script`[@ref] for more possible `keyword arguments.
 """
-function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true, kwargs...)
+function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true,
+                       mounts::Dict{String,String}=Dict{String,String}(),
+                       env::Dict{String,String}=Dict{String,String}(), kwargs...)
+    mounts = copy(mounts)
+    env = copy(env)
+
     # at this point, we need to know the UUID of the package
     if pkg.uuid === nothing
         pkg′ = get_packages(config)[pkg.name]
@@ -263,11 +268,6 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     # we create our own executor so that we can reuse it (this assumes that the
     # SandboxConfig will have persist=true; maybe this should be a kwarg too?)
     executor = UnprivilegedUserNamespacesExecutor()
-
-    args = `$(repr(package_spec_tuple(pkg)))`
-
-    mounts = Dict{String,String}()
-    env = Dict{String,String}()
 
     # caches are mutable, so they can get corrupted during a run. that's why it's possible
     # to run without them (in case of a retry), and is also why we set them up here rather
@@ -290,6 +290,12 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         artifacts = joinpath(storage_dir, "artifacts")
         mounts[joinpath(config.home, ".julia", "artifacts")*":rw"] = artifacts
     end
+
+    # structured output will be written to the /output directory. this is to avoid having to
+    # parse log output, which is fragile. a simple pipe would be sufficient, but Julia
+    # doesn't export those, and named pipes aren't portable to all platforms.
+    output_dir = mktempdir()
+    mounts["/output:rw"] = output_dir
 
     common_script = raw"""
         using Dates
@@ -323,6 +329,9 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             end
         end
 
+        version = Pkg.dependencies()[package_spec.uuid].version
+        write("/output/version", repr(version))
+
         println("\nInstallation completed after $(elapsed(t0))")
 
 
@@ -344,19 +353,18 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             println("\nTesting completed after $(elapsed(t1))")
         catch err
             println("\nTesting failed after $(elapsed(t1))\n")
-            showerror(stdout, err)
-            Base.show_backtrace(stdout, catch_backtrace())
-            println()
-
-            exit(1)
+        finally
+            write("/output/duration", repr(t1-t0))
         end""" * "\nend"
+
+    args = `$(repr(package_spec_tuple(pkg)))`
 
     (; log, status, reason) = if config.rr
         # extend the timeout to account for the rr record overhead
         rr_config = Configuration(config; time_limit=config.time_limit*2)
 
-        rr_env = merge(env, Dict("PKGEVAL_RR" => "true"))
-        evaluate_script(rr_config, script, args; mounts, env=rr_env, executor, kwargs...)
+        env["PKGEVAL_RR"] = "true"
+        evaluate_script(rr_config, script, args; mounts, env, executor, kwargs...)
     else
         evaluate_script(config, script, args; mounts, env, executor, kwargs...)
     end
@@ -428,30 +436,22 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     end
     log *= "\n"
 
-    # pick up the installed package version from the log
-    version_match = match(Regex("\\+ $(pkg.name) v(\\S+)"), log)
-    version = if version_match !== nothing
-        try
-            VersionNumber(version_match.captures[1])
-        catch
-            @error "Could not parse installed package version number '$(version_match.captures[1])'"
-            missing
+    # parse structured output
+    output = Dict()
+    for (entry, type, default) in [("version", VersionNumber, missing),
+                                   ("duration", Float64, 0.0)]
+        file = joinpath(output_dir, entry)
+        output[entry] = if isfile(file)
+            str = read(file, String)
+            try
+                eval(Meta.parse(str))::type
+            catch
+                @error "Could not parse $entry (got '$str', expected a $type)"
+                default
+            end
+        else
+            default
         end
-    else
-        missing
-    end
-
-    # pick up the test duration from the log
-    duration_match = match(r"Testing \w+ after (\S+)s", log)
-    duration = if duration_match !== nothing
-        try
-            parse(Float64, duration_match.captures[1])
-        catch
-            @error "Could not parse test duration '$(duration_match.captures[2])'"
-            0.0
-        end
-    else
-        0.0
     end
 
     # pack-up our rr trace. this is expensive, so we only do it for failures.
@@ -469,7 +469,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
                 trace_dir = BugReporting.default_rr_trace_dir()
                 trace = BugReporting.find_latest_trace(trace_dir)
-                BugReporting.compress_trace(trace, "/traces/$(package_spec.name).tar.zst")
+                BugReporting.compress_trace(trace, "/output/$(package_spec.name).tar.zst")
                 println("\nBugReporting completed after $(elapsed(t2))")
             catch err
                 println("\nBugReporting failed after $(elapsed(t2))")
@@ -478,13 +478,11 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
                 println()
             end""" * "\nend"
 
-        trace_dir = mktempdir()
-        trace_file = joinpath(trace_dir, "$(pkg.name).tar.zst")
-        rr_mounts = merge(mounts, Dict("/traces:rw" => trace_dir))
+        trace = joinpath(output_dir, "$(pkg.name).tar.zst")
 
         rr_config = Configuration(config; time_limit=config.time_limit*2)
         rr_log = evaluate_script(rr_config, rr_script, args;
-                                 mounts=rr_mounts, env, executor, kwargs...).log
+                                 mounts, env, executor, kwargs...).log
 
         # upload the trace
         # TODO: re-use BugReporting.jl
@@ -492,8 +490,8 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             bucket = ENV["PKGEVAL_RR_BUCKET"]
             unixtime = round(Int, datetime2unix(now()))
             trace_unique_name = "$(pkg.name)-$(unixtime).tar.zst"
-            if isfile(trace_file)
-                run(`$(s5cmd()) --log error cp -acl public-read $trace_file s3://$(bucket)/$(trace_unique_name)`)
+            if isfile(trace)
+                run(`$(s5cmd()) --log error cp -acl public-read $trace s3://$(bucket)/$(trace_unique_name)`)
                 rr_log *= "Uploaded rr trace to https://s3.amazonaws.com/$(bucket)/$(trace_unique_name)"
             else
                 rr_log *= "Testing did not produce an rr trace."
@@ -501,14 +499,13 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         else
             rr_log *= "Testing produced an rr trace, but PkgEval.jl was not configured to upload rr traces."
         end
-        rm(trace_dir; recursive=true)
 
         # remove inaccurate rr errors (rr-debugger/rr/#3346)
         rr_log = replace(rr_log, r"\[ERROR .* Metadata of .* changed: .*\n" => "")
         log *= rr_log
     end
 
-    # cache and clean-up files used by this package
+    # (cache and) clean-up output created by this package
     if use_cache
         # copy new files from the local compilecache into the shared one
         function copy_files(subpath=""; src, dst)
@@ -528,9 +525,10 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         copy_files(src=local_compilecache, dst=shared_compilecache)
         rm(local_compilecache; recursive=true)
     end
+    rm(output_dir; recursive=true)
     cleanup(executor)
 
-    return (; log, status, reason, version, duration)
+    return (; log, status, reason, version=output["version"], duration=output["duration"])
 end
 
 """
