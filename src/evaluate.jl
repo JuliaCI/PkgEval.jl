@@ -133,7 +133,7 @@ function evaluate_script(config::Configuration, script::String, args=``;
 
     input = Pipe()
     output = Pipe()
-    proc = sandboxed_julia(config,`--eval 'eval(Meta.parse(read(stdin,String)))' $args`;
+    proc = sandboxed_julia(config, `--eval 'eval(Meta.parse(read(stdin,String)))' $args`;
                            wait=false, stdout=output, stderr=output, stdin=input,
                            env, mounts, kwargs...)
     close(output.in)
