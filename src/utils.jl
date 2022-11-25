@@ -27,6 +27,15 @@ function get_github_checkout(repo, ref)
         run(`$(git()) clone --quiet --bare https://github.com/$(repo).git $clone`)
     end
 
+    # we'd like to be able to use tildes and carets (e.g. `master~10`), but those aren't
+    # valid refspecs... so split those off and we'll deal with them later
+    m = match(r"^(.*?)([~^].*)?$", ref)
+    ref, mod = if m !== nothing
+        m.captures
+    else
+        ref, nothing
+    end
+
     # explicitly fetch the requested commit from the remote and put it on the master branch.
     # we need to do this as not all specs (e.g. `pull/42/merge`) might be available locally
     run(`$(git()) -C $clone fetch --quiet --force origin $ref:master`)
@@ -34,6 +43,9 @@ function get_github_checkout(repo, ref)
     # check-out the actual source code into a temporary directory
     checkout = mktempdir()
     run(`$(git()) clone --quiet --branch master $clone $checkout`)
+    if mod !== nothing
+        run(`$(git()) -C $checkout reset --quiet --hard HEAD$mod`)
+    end
     return checkout
 end
 

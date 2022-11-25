@@ -172,5 +172,9 @@ function setup_julia_sandbox(config::Configuration, args=``;
     setup_generic_sandbox(config, `$cmd $(config.julia_args) $args`; env, mounts)
 end
 
-sandboxed_julia(config::Configuration, args...; kwargs...) =
-    run_sandbox(config, setup_julia_sandbox, args...; kwargs...)
+function sandboxed_julia(config::Configuration, args=``; stdout=stdout, kwargs...)
+    if stdout != stdout
+        args = `--color=no $args`
+    end
+    run_sandbox(config, setup_julia_sandbox, args; stdout, kwargs...)
+end
