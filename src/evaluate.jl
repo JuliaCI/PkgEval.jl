@@ -42,7 +42,7 @@ const reasons = [
     :log_limit              => "test log exceeded the size limit",
     # skip
     :untestable             => "package does not have any tests",
-    :unsatisfiable          => "package could not be installed",
+    :uninstallable          => "package could not be installed",
     :unsupported            => "package is not supported by this Julia version",
     :jll                    => "package is a untestable wrapper package",
     :explicit               => "package was blacklisted",
@@ -307,16 +307,31 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     """
 
     script = "begin\n" * common_script * raw"""
-        println("Package evaluation started at ", now(UTC))
+        println("Package evaluation of $(package_spec.name) started at ", now(UTC))
 
         println()
         using InteractiveUtils
         versioninfo()
 
         print("\n\n", '#'^80, "\n# Installation\n#\n\n")
-        t0 = time()
 
-        Pkg.add(; package_spec...)
+        t0 = time()
+        try
+            Pkg.add(; package_spec...)
+
+            println("\nInstallation completed after $(elapsed(t0))")
+            write("/output/installed", repr(true))
+        catch
+            println("\nInstallation failed after $(elapsed(t0))\n")
+            write("/output/false", repr(true))
+            rethrow()
+        end
+
+        version = Pkg.dependencies()[package_spec.uuid].version
+        write("/output/version", repr(version))
+
+
+        print("\n\n", '#'^80, "\n# Testing\n#\n\n")
 
         if haskey(Pkg.Types.stdlibs(), package_spec.uuid)
             println("\n$(package_spec.name) is a standard library in this Julia build.")
@@ -328,14 +343,6 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
                 error("Packages that are standard libraries can only be tested using the embedded version.")
             end
         end
-
-        version = Pkg.dependencies()[package_spec.uuid].version
-        write("/output/version", repr(version))
-
-        println("\nInstallation completed after $(elapsed(t0))")
-
-
-        print("\n\n", '#'^80, "\n# Testing\n#\n\n")
 
         bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true"
         if bugreporting
@@ -371,20 +378,42 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     end
     log *= "\n"
 
-    # log the status and determine a more accurate reason from the log
-    @assert status in [:ok, :fail, :kill]
-    ## special cases that indicated we couldn't test at all
-    if occursin("Unsatisfiable requirements detected for package", log)
-        # NOTE: might be the package itself, or one of its dependencies
-        status = :skip
-        reason = :unsatisfiable
-    elseif occursin("Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
-        status = :skip
-        reason = :untestable
+    # parse structured output
+    output = Dict()
+    for (entry, type, default) in [("installed", Bool, false),
+                                   ("version", Union{Nothing,VersionNumber}, missing),
+                                   ("duration", Float64, 0.0)]
+        file = joinpath(output_dir, entry)
+        output[entry] = if isfile(file)
+            str = read(file, String)
+            try
+                eval(Meta.parse(str))::type
+            catch
+                @warn "Could not parse $entry of $(pkg.name) on $(config.name) (got '$str', expected a $type)"
+                default
+            end
+        else
+            default
+        end
     end
-    ## crashes so bad we override the status
+    if output["version"] === nothing
+        # this happens with unversioned stdlibs
+        output["version"] = missing
+    end
+
+    # log the status and reason
+    @assert status in [:ok, :fail, :kill]
+    ## special cases where we override the status (if we didn't actively kill the process)
     if status !== :kill
-        # ... but not in the case of a kill, as a badly-timed signal may cause crashes
+        ## e.g. testing might have failed because we couldn't install the package
+        if !output["installed"]
+            status = :skip
+            reason = :uninstallable
+        elseif occursin("Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
+            status = :skip
+            reason = :untestable
+        end
+        ## e.g. testing might have succeeded but there may have been an internal error
         if occursin("GC error (probable corruption)", log)
             status = :crash
             reason = :gc_corruption
@@ -404,7 +433,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             reason = :internal
         end
     end
-    ## others we only look for when the test failed
+    ## in other cases we look at the log to determine a failure reason
     if status === :fail
         log *= "PkgEval failed"
 
@@ -442,28 +471,6 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         log *= ": " * reason_message(reason)
     end
     log *= "\n"
-
-    # parse structured output
-    output = Dict()
-    for (entry, type, default) in [("version", Union{Nothing,VersionNumber}, missing),
-                                   ("duration", Float64, 0.0)]
-        file = joinpath(output_dir, entry)
-        output[entry] = if isfile(file)
-            str = read(file, String)
-            try
-                eval(Meta.parse(str))::type
-            catch
-                @warn "Could not parse $entry of $(pkg.name) on $(config.name) (got '$str', expected a $type)"
-                default
-            end
-        else
-            default
-        end
-    end
-    if output["version"] === nothing
-        # this happens with unversioned stdlibs
-        output["version"] = missing
-    end
 
     # pack-up our rr trace. this is expensive, so we only do it for failures.
     if config.rr && status == :crash
@@ -565,7 +572,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
     """
 
     script = "begin\n" * common_script * raw"""
-        println("Package compilation started at ", now(UTC))
+        println("Package compilation of $(package_spec.name) started at ", now(UTC))
 
         println()
         using InteractiveUtils
