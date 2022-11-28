@@ -18,8 +18,36 @@ cd PkgEval.jl
 julia --project -e 'import Pkg; Pkg.instantiate()'
 ```
 
-Then start Julia with `julia --project` and use the following commands to run the tests of a
-list of packages on a selection of Julia configurations:
+To quickly test a package, a script has been provided under the `bin/` folder:
+
+```shell
+$ julia --project bin/test_package.jl --name=Example
+Package evaluation of Example started at 2022-11-27T09:30:27.777
+...
+Testing completed after 1.04s
+```
+
+This script can also be used to test specific versions of a package by setting any of the
+`--version`, `--rev`, or `--url` arguments. To test a version of a package you only have
+locally, e.g., a development version, use the `--path` argument instead:
+
+```shell
+$ julia --project bin/test_package.jl --name Example --path=~/.julia/dev/Example
+```
+
+By default, this will use the latest `nightly` version of Julia, which is what PkgEval
+uses. To use another version, use the `--julia` argument, e.g., `--julia=1.8`.
+
+
+## API
+
+To use PkgEval programmatically, there are three main interfaces do deal with:
+
+- `Configuration` objects to determine how to execute tests (which Julia version, build
+  flags, any environment variables, ...)
+- `Package` objects to select packages to test
+- the `evaluate` function to evaluate every package on each provieded configuration,
+  returning the results in a DataFrame
 
 ```julia
 julia> using PkgEval

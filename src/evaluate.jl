@@ -119,7 +119,8 @@ Refer to `sandboxed_julia`[@ref] for more possible `keyword arguments.
 """
 function evaluate_script(config::Configuration, script::String, args=``;
                          env::Dict{String,String}=Dict{String,String}(),
-                         mounts::Dict{String,String}=Dict{String,String}(), kwargs...)
+                         mounts::Dict{String,String}=Dict{String,String}(),
+                         echo::Bool=false, kwargs...)
     @assert config.log_limit > 0
 
     env = merge(env, Dict(
@@ -202,7 +203,9 @@ function evaluate_script(config::Configuration, script::String, args=``;
     log_monitor = @async begin
         io = IOBuffer()
         while !eof(output)
-            print(io, readline(output; keep=true))
+            line = readline(output; keep=true)
+            echo && print(stdout, line)
+            print(io, line)
 
             # kill on too-large logs
             if io.size > config.log_limit
