@@ -1,5 +1,6 @@
 using PkgEval
 using Test
+using Git
 
 julia = get(ENV, "JULIA", "v"*string(VERSION))
 julia_release = if contains(julia, r"^v\d")
@@ -194,6 +195,42 @@ end
             @test contains(result.log, "is a standard library")
         else
             @test !contains(result.log, "is a standard library")
+        end
+    end
+end
+
+@testset "scripts" begin
+    function julia_exec(args::Cmd, env...)
+        cmd = Base.julia_cmd()
+        cmd = `$cmd --project=$(Base.active_project()) --color=no $args`
+
+        out = Pipe()
+        err = Pipe()
+        proc = run(pipeline(addenv(cmd, env...), stdout=out, stderr=err), wait=false)
+        close(out.in)
+        close(err.in)
+        wait(proc)
+        proc, read(out, String), read(err, String)
+    end
+
+    scripts_dir = joinpath(@__DIR__, "..", "bin")
+
+    # NOTE: we're not using the Julia version configured here,
+    #       because custom builds and nightlies aren't cached.
+    @testset "test_package(released package)" begin
+        script = joinpath(scripts_dir, "test_package.jl")
+        proc, out, err = julia_exec(`$script --julia=1.8 --name=Example`)
+        isempty(err) || println(err)
+        @test success(proc)
+    end
+    @testset "test_package(local package)" begin
+        mktempdir() do dir
+            run(`$(git()) clone --quiet https://github.com/JuliaLang/Example.jl $dir`)
+            script = joinpath(scripts_dir, "test_package.jl")
+            proc, out, err = julia_exec(`$script --julia=1.8 --name=Example --path=$dir`)
+            isempty(err) || println(err)
+            @test success(proc)
+            @test contains(out, r"Example.*#master")
         end
     end
 end
