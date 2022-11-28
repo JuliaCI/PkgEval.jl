@@ -894,7 +894,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                             # NOTE: this check also prevents retrying multiple times
 
                             failures = filter(package_results) do row
-                                row.status in [:fail, :kill, :crash]
+                                row.status !== :ok
                             end
                             if length(configs) == 1 || nrow(failures) != length(configs)
                                 for row in eachrow(failures)
