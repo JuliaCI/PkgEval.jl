@@ -15,6 +15,9 @@ Base.@kwdef struct Sandbox
     runtime::Symbol=:crun
     env::Dict{String,String}=Dict{String,String}()
     mounts::Array{Pair{String,AbstractMount}}=Pair{String,AbstractMount}[]
+    cpus::Vector{Int}=String[]
+    memory::Int=0
+    pids::Int=0
     cwd::String="/root"
     uid::Int=0
     gid::Int=0
@@ -118,10 +121,22 @@ function build_oci_config(sandbox::Sandbox, cmd::Cmd; terminal::Bool)
     config["hostname"] = sandbox.name
 
     # Linux platform configuration
+    # https://github.com/opencontainers/runtime-spec/blob/main/config-linux.md
     linux = Dict()
-    linux["resources"] = (
-        devices = (allow=false, access="rwm")
-    )
+    linux["resources"] = Dict()
+    linux["resources"]["devices"] = [
+        (allow=false, access="rwm")
+    ]
+    if !isempty(sandbox.cpus)
+        linux["resources"]["cpu"] = (; cpus=join(sandbox.cpus, ","))
+    end
+    if sandbox.memory != 0
+        # the swap limit is memory+swap, so we disable swap by setting both identically
+        linux["resources"]["memory"] = (; limit=sandbox.memory, swap=sandbox.memory)
+    end
+    if sandbox.pids != 0
+        linux["resources"]["pids"] = (; limit=sandbox.pids)
+    end
     linux["namespaces"] = [
         (type="pid",),
         (type="ipc",),
@@ -322,7 +337,9 @@ function setup_generic_sandbox(config::Configuration, cmd::Cmd; workdir::String,
 
     sandbox_config = Sandbox(; name, rootfs,
                              env, mounts=sandbox_mounts,
-                             config.uid, config.gid, cwd=config.home)
+                             config.uid, config.gid, cwd=config.home,
+                             config.cpus, memory=config.memory_limit,
+                             pids=config.process_limit)
 
     return sandbox_config, cmd
 end
@@ -360,7 +377,6 @@ function setup_julia_sandbox(config::Configuration, args=``;
 
     # restrict resource usage
     if !isempty(config.cpus)
-        cmd = `/usr/bin/taskset --cpu-list $(join(config.cpus, ',')) $cmd`
         env["JULIA_CPU_THREADS"] = string(length(config.cpus)) # JuliaLang/julia#35787
         env["OPENBLAS_NUM_THREADS"] = string(length(config.cpus)) # defaults to Sys.CPU_THREADS
         env["JULIA_NUM_PRECOMPILE_TASKS"] = string(length(config.cpus)) # defaults to Sys.CPU_THREADS

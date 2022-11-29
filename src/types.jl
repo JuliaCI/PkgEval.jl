@@ -64,8 +64,10 @@ Base.@kwdef struct Configuration
     ## additionally need to set PKGEVAL_RR_BUCKET and some S3 authentication env vars.
     rr::Setting{Bool} = Default(false)
     ## limits imposed on the test process
-    log_limit::Setting{Int} = Default(2^20) # 1 MB
+    log_limit::Setting{Int} = Default(2^20) # 1 MiB
     time_limit::Setting{Float64} = Default(45*60) # 45 mins
+    memory_limit::Setting{Int} = Default(32*2^30) # 32 GiB
+    process_limit::Setting{Int} = Default(512)
     ## compiled mode: first generating a system image containing each package under test,
     ##                then running tests using that system image.
     compiled::Setting{Bool} = Default(false)
@@ -73,13 +75,15 @@ Base.@kwdef struct Configuration
 end
 
 function Base.show(io::IO, cfg::Configuration)
-    function show_setting(field)
+    function show_setting(field, renderer=identity)
         setting = getfield(cfg, Symbol(field))
+        value_str = renderer(setting[])
+
         print(io, "  - $field: ")
         if get(io, :color, false)
-            Base.printstyled(io, setting[]; color=setting.modified ? :red : :green)
+            Base.printstyled(io, value_str; color=setting.modified ? :red : :green)
         else
-            print(io, setting[], " (", setting.modified ? "modified" : "default", ")")
+            print(io, value_str, " (", setting.modified ? "modified" : "default", ")")
         end
         println(io)
     end
@@ -98,7 +102,9 @@ function Base.show(io::IO, cfg::Configuration)
     println(io)
 
     println(io, "  # Execution properties")
-    show_setting.(["env", "cpus", "xvfb", "rr", "log_limit", "time_limit", "compiled", "compile_time_limit"])
+    show_setting.(["env", "cpus", "xvfb", "rr", "compiled", "process_limit"])
+    show_setting.(["log_limit", "memory_limit"], Base.format_bytes)
+    show_setting.(["time_limit", "compile_time_limit"], durationstring)
 
     print(io, ")")
 end

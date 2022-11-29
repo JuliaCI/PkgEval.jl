@@ -41,6 +41,7 @@ const reasons = [
     :inactivity             => "tests became inactive",
     :time_limit             => "test duration exceeded the time limit",
     :log_limit              => "test log exceeded the size limit",
+    :resource_limit         => "test process exceeded a resource limit",
     # skip
     :untestable             => "package does not have any tests",
     :uninstallable          => "package could not be installed",
@@ -204,6 +205,10 @@ function evaluate_script(config::Configuration, script::String, args=``;
         elseif proc.exitcode == 139 # SIGSEGV
             status = :crash
             reason = :segfault
+        elseif proc.exitcode == 137
+            # SIGKILLs typically indicate a cgroup resource exhaustion
+            status = :kill
+            reason = :resource_limit
         else
             status = :fail
         end
