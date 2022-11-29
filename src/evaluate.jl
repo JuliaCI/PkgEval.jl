@@ -265,9 +265,10 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         return evaluate_compiled_test(config, pkg; use_cache, kwargs...)
     end
 
-    # we create our own executor so that we can reuse it (this assumes that the
-    # SandboxConfig will have persist=true; maybe this should be a kwarg too?)
-    executor = UnprivilegedUserNamespacesExecutor()
+    name = "$(pkg.name)-$(config.name)"
+
+    # we create our own workdir so that we can reuse it
+    workdir = mktempdir()
 
     # caches are mutable, so they can get corrupted during a run. that's why it's possible
     # to run without them (in case of a retry), and is also why we set them up here rather
@@ -370,8 +371,8 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         env["PKGEVAL_RR"] = "true"
     end
 
-    (; log, status, reason) = evaluate_script(config, script, args;
-                                              mounts, env, executor, kwargs...)
+    (; log, status, reason) = evaluate_script(config, script, args; name, workdir,
+                                              mounts, env, kwargs...)
     log *= "\n"
 
     # parse structured output
@@ -501,7 +502,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
         rr_config = Configuration(config; time_limit=config.time_limit*2)
         rr_log = evaluate_script(rr_config, rr_script, args;
-                                 mounts, env, executor, kwargs...).log
+                                 name, workdir, mounts, env, kwargs...).log
 
         # upload the trace
         # TODO: re-use BugReporting.jl
@@ -546,7 +547,10 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         rm(local_compilecache; recursive=true)
     end
     rm(output_dir; recursive=true)
-    cleanup(executor)
+    if VERSION < v"1.9-"    # JuliaLang/julia#47650
+        chmod_recursive(workdir, 0o777)
+    end
+    rm(workdir; recursive=true)
 
     return (; log, status, reason, version=output["version"], duration=output["duration"])
 end
