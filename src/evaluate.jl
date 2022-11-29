@@ -282,28 +282,22 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     end
 
     # we create our own workdir so that we can reuse it
-    workdir = mktempdir()
+    workdir = mktempdir(prefix="pkgeval_$(pkg.name)_")
 
     # caches are mutable, so they can get corrupted during a run. that's why it's possible
     # to run without them (in case of a retry), and is also why we set them up here rather
-    # than in `sandboxed_julia` (because we know we've verified caches before enterint here)
+    # than in `sandboxed_julia` (because we know we've verified caches before entering here)
     if use_cache
-        # we can split the compile cache in a global and local part, copying over changes
-        # after the test completes to avoid races.
+        depot_dir = joinpath(config.home, ".julia")
+
         shared_compilecache = get_compilecache(config)
-        local_compilecache = mktempdir(prefix="pkgeval_$(pkg.name)_compilecache_")
-        mounts["/usr/local/share/julia/compiled:ro"] = shared_compilecache
-        mounts[joinpath(config.home, ".julia", "compiled")*":rw"] = local_compilecache
+        mounts[joinpath(depot_dir, "compiled")]        = shared_compilecache
 
-        # in principle, we'd have to do this too for the package cache, but because the
-        # compilecache header contains full paths we can't ever move packages from the
-        # local to the global cache. instead, we verify the package cache before retrying.
-        packages = joinpath(storage_dir, "packages")
-        mounts[joinpath(config.home, ".julia", "packages")*":rw"] = packages
+        shared_packages = joinpath(storage_dir, "packages")
+        mounts[joinpath(depot_dir, "packages")*":rw"]  = shared_packages
 
-        # for consistency, we do the same for artifacts (although we could split that cache).
-        artifacts = joinpath(storage_dir, "artifacts")
-        mounts[joinpath(config.home, ".julia", "artifacts")*":rw"] = artifacts
+        shared_artifacts = joinpath(storage_dir, "artifacts")
+        mounts[joinpath(depot_dir, "artifacts")*":rw"] = shared_artifacts
     end
 
     # structured output will be written to the /output directory. this is to avoid having to
@@ -623,24 +617,31 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
     # (cache and) clean-up output created by this package
     if use_cache
-        # copy new files from the local compilecache into the shared one
-        function copy_files(subpath=""; src, dst)
-            for entry in readdir(joinpath(src, subpath))
-                path = joinpath(subpath, entry)
-                srcpath = joinpath(src, path)
-                dstpath = joinpath(dst, path)
+        depot_dir = joinpath(workdir, "upper", "home", "pkgeval", ".julia")
+        local_compilecache = joinpath(depot_dir, "compiled")
+        local_packages = joinpath(depot_dir, "packages")
+        local_artifacts = joinpath(depot_dir, "artifacts")
 
-                if isdir(srcpath)
-                    isdir(dstpath) || mkdir(joinpath(dst, path))
-                    copy_files(path; src, dst)
-                elseif !ispath(dstpath)
-                    cp(srcpath, dstpath)
+        # verify local resources
+        registry_dir = get_registry(config)
+        isdir(local_packages) &&
+            remove_uncacheable_packages(registry_dir, local_packages; show_status=false)
+        isdir(local_artifacts) &&
+            verify_artifacts(local_artifacts; show_status=false)
+        isdir(local_compilecache) &&
+            verify_compilecache(local_compilecache; show_status=false)
+
+        # copy new local resources (packages, artifacts, ...) to shared storage
+        lock(storage_lock) do
+            for (src, dst) in [(local_packages, shared_packages),
+                               (local_artifacts, shared_artifacts),
+                               (local_compilecache, shared_compilecache)]
+                if isdir(src)
+                    # NOTE: removals (whiteouts) are represented as char devices
+                    run(`$(rsync()) --no-specials --no-devices --archive --quiet $(src)/ $(dst)/`)
                 end
             end
         end
-        verify_compilecache(local_compilecache; show_status=false)
-        copy_files(src=local_compilecache, dst=shared_compilecache)
-        rm(local_compilecache; recursive=true)
     end
     rm(output_dir; recursive=true)
     if VERSION < v"1.9-"    # JuliaLang/julia#47650
