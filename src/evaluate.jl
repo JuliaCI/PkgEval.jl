@@ -228,6 +228,12 @@ function evaluate_script(config::Configuration, script::String, args=``;
     if status === nothing
         if success(proc)
             status = :ok
+        elseif proc.exitcode == 134 # SIGABRT
+            status = :crash
+            reason = :abort
+        elseif proc.exitcode == 139 # SIGSEGV
+            status = :crash
+            reason = :segfault
         else
             status = :fail
         end
