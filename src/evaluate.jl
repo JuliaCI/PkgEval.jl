@@ -365,7 +365,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             println("\nTesting failed after $(elapsed(t1))\n")
             rethrow()
         finally
-            write("/output/duration", repr(t1-t0))
+            write("/output/duration", repr(time()-t1))
         end""" * "\nend"
 
     args = `$(repr(package_spec_tuple(pkg)))`
