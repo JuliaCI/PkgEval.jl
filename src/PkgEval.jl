@@ -7,6 +7,9 @@ import GitHub
 import Scratch: @get_scratch!
 download_dir = ""
 storage_dir = ""
+const storage_lock = ReentrantLock()
+
+using rsync_jll: rsync
 
 using s5cmd_jll: s5cmd
 
