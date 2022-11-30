@@ -146,8 +146,7 @@ function evaluate_script(config::Configuration, script::String, args=``;
 
     function stop()
         if process_running(proc)
-            # FIXME: if we only kill proc, we sometimes only end up killing the sandbox.
-            #        shouldn't the sandbox handle this, e.g., by creating a process group?
+            # we need to be careful we don't end up killing only the sandbox process
             function recursive_kill(proc, sig)
                 parent_pid = getpid(proc)
                 for pid in reverse([parent_pid; process_children(parent_pid)])
@@ -156,16 +155,12 @@ function evaluate_script(config::Configuration, script::String, args=``;
                 return
             end
 
-            recursive_kill(proc, Base.SIGINT)
-            terminator = Timer(5) do timer
-                recursive_kill(proc, Base.SIGTERM)
-            end
-            killer = Timer(10) do timer
+            recursive_kill(proc, Base.SIGTERM)
+            t = Timer(10) do timer
                 recursive_kill(proc, Base.SIGKILL)
             end
             wait(proc)
-            close(terminator)
-            close(killer)
+            close(t)
         end
         close(output)
     end
