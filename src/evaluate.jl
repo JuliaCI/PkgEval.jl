@@ -856,12 +856,10 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
     tasks = Task[]
 
     done = false
-    p = Progress(njobs; desc="Running tests: ", enabled=isinteractive())
     function stop_work()
         if !done
             done = true
-            finish!(p)
-            for (i, task) in enumerate(tasks)
+            for task in tasks
                 task == current_task() && continue
                 Base.istaskdone(task) && continue
                 try; schedule(task, InterruptException(); error=true); catch; end
@@ -870,6 +868,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
     end
 
     # Workers
+    p = Progress(njobs; desc="Running tests: ", enabled=isinteractive())
     for i = 1:ninstances
         push!(tasks, @async begin
             try
@@ -928,7 +927,10 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                     end
                 end
             catch err
-                stop_work()
+                # XXX: why do we still need to catch InterruptException here?
+                #      it should be handled by the manual @sync below.
+                #      removing this results in exceptions in unrelated code,
+                #      e.g., during the `combine` at the end.
                 isa(err, InterruptException) || rethrow(err)
             end
         end)
@@ -1014,6 +1016,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
         # in case the sleep got interrupted
         isa(err, InterruptException) || rethrow()
     finally
+        finish!(p)
         stop_work()
     end
     ## `wait()` to actually catch any exceptions
