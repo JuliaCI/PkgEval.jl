@@ -851,7 +851,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
 
     njobs = length(jobs)
     ninstances = min(njobs, ninstances)
-    running = Vector{Any}(nothing, ninstances)
+    running = Vector{Any}(missing, ninstances)
     times = DateTime[now() for i = 1:ninstances]
     tasks = Task[]
 
@@ -1005,7 +1005,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
             if any(istaskfailed, tasks)
                 println("Caught an error, stopping...")
                 break
-            elseif all(istaskdone, tasks)
+            elseif all(istaskdone, tasks) || all(isnothing, running)
                 break
             end
             sleep(1)
