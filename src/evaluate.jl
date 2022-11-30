@@ -102,9 +102,9 @@ function evaluate_script(config::Configuration, script::String, args=``;
 
     input = Pipe()
     output = Pipe()
-    proc = sandboxed_julia(config, `-e 'include_string(Main, read(stdin,String))' $args`;
-                           wait=false, stdout=output, stderr=output, stdin=input,
-                           env, mounts, kwargs...)
+    args = `-e 'include_string(Main, read(stdin,String))' --color=no $args`
+    proc = sandboxed_julia(config, args; stdout=output, stderr=output, stdin=input,
+                           wait=false, env, mounts, kwargs...)
     close(output.in)
 
     # pass the script over standard input to avoid exceeding max command line size,
