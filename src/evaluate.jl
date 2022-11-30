@@ -219,7 +219,11 @@ function evaluate_script(config::Configuration, script::String, args=``;
         return String(take!(io))
     end
 
-    wait(proc)
+    try
+        wait(proc)
+    finally
+        stop()
+    end
     close(timeout_monitor)
     close(inactivity_monitor)
     log = fetch(log_monitor)
@@ -991,10 +995,12 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
     end
 
     # remove duplicates from retrying, keeping only the last result
-    nresults = nrow(result)
-    result = combine(groupby(result, [:configuration, :package]), last)
-    if nrow(result) != nresults
-        println("Removed $(nresults - nrow(result)) duplicate evaluations that resulted from retrying tests.")
+    if !isempty(result)
+        nresults = nrow(result)
+        result = combine(groupby(result, [:configuration, :package]), last)
+        if nrow(result) != nresults
+            println("Removed $(nresults - nrow(result)) duplicate evaluations that resulted from retrying tests.")
+        end
     end
 
     append!(result, skips)
