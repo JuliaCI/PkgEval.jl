@@ -294,7 +294,8 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     # structured output will be written to the /output directory. this is to avoid having to
     # parse log output, which is fragile. a simple pipe would be sufficient, but Julia
     # doesn't export those, and named pipes aren't portable to all platforms.
-    output_dir = mktempdir(prefix="pkgeval_$(pkg.name)_output_")
+    output_dir = joinpath(workdir, "output")
+    mkdir(output_dir)
     mounts["/output:rw"] = output_dir
 
     script = "begin\n" * common_script * raw"""
@@ -552,7 +553,6 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             end
         end
     end
-    rm(output_dir; recursive=true)
     if VERSION < v"1.9-"    # JuliaLang/julia#47650
         chmod_recursive(workdir, 0o777)
     end
