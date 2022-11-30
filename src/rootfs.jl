@@ -6,7 +6,7 @@ function _create_rootfs(config::Configuration)
     base = lazy_artifact(config.rootfs)
 
     # a bare rootfs isn't usable out-of-the-box
-    derived = mktempdir()
+    derived = mktempdir(prefix="pkgeval_rootfs_")
     cp(base, derived; force=true)
 
     # add a user and group

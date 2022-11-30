@@ -41,7 +41,7 @@ function get_github_checkout(repo, ref)
     run(`$(git()) -C $clone fetch --quiet --force origin $ref:master`)
 
     # check-out the actual source code into a temporary directory
-    checkout = mktempdir()
+    checkout = mktempdir(prefix="pkgeval_checkout_")
     run(`$(git()) clone --quiet --branch master $clone $checkout`)
     if mod !== nothing
         run(`$(git()) -C $checkout reset --quiet --hard HEAD$mod`)
