@@ -755,11 +755,11 @@ function verify_compilecache(compilecache; show_status::Bool=true)
         end
     end
 
-    # below that, we should only have .ji files
+    # below that, we should only have specific files
     for package_path in package_paths
         for file in readdir(package_path)
             path = joinpath(package_path, file)
-            if !isfile(path) || !endswith(file, ".ji")
+            if !isfile(path) || !endswith(file, r"\.(ji|so)"i)
                 @debug "A broken file was found: $path"
                 push!(removals, path)
             end
