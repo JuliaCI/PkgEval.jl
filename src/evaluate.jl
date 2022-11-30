@@ -5,6 +5,7 @@ using Random
 using DataFrames: DataFrame, nrow, combine, groupby
 using ProgressMeter: Progress, update!, next!, finish!, durationstring
 using Base.Threads: @threads
+import REPL
 
 const statusses = Dict(
     :ok     => "successful",
@@ -855,23 +856,20 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
     all_workers = Task[]
 
     done = false
-    did_signal_workers = false
+    p = Progress(njobs; desc="Running tests: ", enabled=isinteractive())
     function stop_work()
         if !done
             done = true
-            if !did_signal_workers
-                for (i, task) in enumerate(all_workers)
-                    task == current_task() && continue
-                    Base.istaskdone(task) && continue
-                    try; schedule(task, InterruptException(); error=true); catch; end
-                    running[i] = nothing
-                end
-                did_signal_workers = true
+            finish!(p)
+            for (i, task) in enumerate(all_workers)
+                task == current_task() && continue
+                Base.istaskdone(task) && continue
+                try; schedule(task, InterruptException(); error=true); catch; end
+                running[i] = nothing
             end
         end
     end
 
-    p = Progress(njobs; desc="Running tests: ", enabled=isinteractive())
     try @sync begin
         # Workers
         for i = 1:ninstances
@@ -880,7 +878,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                     while !isempty(jobs) && !done
                         job = pop!(jobs)
                         times[i] = now()
-                        running[i] = (job.config.name, job.package)
+                        running[i] = (; job.config, job.package)
 
                         # test the package
                         config′ = Configuration(job.config; cpus=[i-1])
@@ -940,58 +938,70 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
 
         # Printer
         @async begin
-            try
-                start = time()
-                sleep_time = 1
-                while (!isempty(jobs) || !all(==(nothing), running)) && !done
-                    if isinteractive()
-                        function showvalues()
-                            # known statuses
-                            # NOTE: we filtered skips, so don't need to report them here
-                            o = count(==(:ok),      result[!, :status])
-                            f = count(==(:fail),    result[!, :status])
-                            c = count(==(:crash),   result[!, :status])
-                            k = count(==(:kill),    result[!, :status])
+            start = time()
+            sleep_time = 1
+            while !done
+                if isinteractive()
+                    function showvalues()
+                        # known statuses
+                        # NOTE: we filtered skips, so don't need to report them here
+                        o = count(==(:ok),      result[!, :status])
+                        f = count(==(:fail),    result[!, :status])
+                        c = count(==(:crash),   result[!, :status])
+                        k = count(==(:kill),    result[!, :status])
 
-                            [(:success, o), (:failed, f), (:crashed, c), (:killed, k)]
-                        end
-                        update!(p, nrow(result); showvalues)
-                        sleep(sleep_time)
-                    else
-                        remaining_jobs = njobs - nrow(result)   # `jobs` doesn't include running
-                        print("Running tests: $remaining_jobs remaining")
+                        [(:success, o), (:failed, f), (:crashed, c), (:killed, k)]
+                    end
+                    update!(p, nrow(result); showvalues)
+                    sleep(sleep_time)
+                else
+                    remaining_jobs = njobs - nrow(result)   # `jobs` doesn't include running
+                    print("Running tests: $remaining_jobs remaining")
 
-                        elapsed_time = time() - start
-                        est_total_time = njobs * elapsed_time / nrow(result)
-                        if 0 <= est_total_time <= typemax(Int)
-                            eta_sec = round(Int, est_total_time - elapsed_time )
-                            eta = durationstring(eta_sec)
-                            print(" (ETA: $eta)")
-                        end
+                    elapsed_time = time() - start
+                    est_total_time = njobs * elapsed_time / nrow(result)
+                    if 0 <= est_total_time <= typemax(Int)
+                        eta_sec = round(Int, est_total_time - elapsed_time )
+                        eta = durationstring(eta_sec)
+                        print(" (ETA: $eta)")
+                    end
 
-                        println()
-                        sleep(sleep_time)
+                    println()
+                    sleep(sleep_time)
 
-                        # don't flood the logs
-                        if sleep_time < 300
-                            sleep_time *= 1.5
-                        end
+                    # don't flood the logs
+                    if sleep_time < 300
+                        sleep_time *= 1.5
                     end
                 end
-            catch err
-                isa(err, InterruptException) || rethrow(err)
-            finally
-                stop_work()
+            end
+        end
+
+        # Keyboard monitor (for more reliable CTRL-C handling)
+        if isa(stdin, Base.TTY)
+            @async begin
+                term = REPL.Terminals.TTYTerminal("xterm", stdin, stdout, stderr)
+                REPL.Terminals.raw!(term, true)
+                try
+                    while !done
+                        c = read(term, Char)
+                        if c == '\x3'
+                            println("Caught Ctrl-C, stopping...")
+                            stop_work()
+                            break
+                        elseif c == '?'
+                            println("Currently running: ",
+                                    join(map(x->x.package.name, filter(!isnothing, running)), ", "))
+                        end
+                    end
+                finally
+                    REPL.Terminals.raw!(term, false)
+                end
             end
         end
     end
-    catch err
-        # XXX: why doesn't it suffice just catching the the InterruptException
-        #      (unwrapped from CompositeException) here?
-        isa(err, InterruptException) || rethrow(err)
     finally
         stop_work()
-        finish!(p)
     end
 
     # remove duplicates from retrying, keeping only the last result
