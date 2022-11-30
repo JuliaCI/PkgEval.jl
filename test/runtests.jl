@@ -97,7 +97,8 @@ end
 
     # specifying a version
     let results = evaluate([config],
-                           [Package(; name="Example", version=v"0.5.3")])
+                           [Package(; name="Example", version=v"0.5.3")];
+                           validate=false)
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
         @test results[1, :version] == v"0.5.3"
@@ -106,7 +107,8 @@ end
 
     # specifying a revision
     let results = evaluate([config],
-                           [Package(; name="Example", rev="master")])
+                           [Package(; name="Example", rev="master")];
+                           validate=false)
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
         @test results[1, :status] == :ok
@@ -115,7 +117,8 @@ end
 
     # specifying the URL
     let results = evaluate([config],
-                           [Package(; name="Example", url="https://github.com/JuliaLang/Example.jl")])
+                           [Package(; name="Example", url="https://github.com/JuliaLang/Example.jl")];
+                           validate=false)
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
         @test results[1, :status] == :ok
@@ -126,14 +129,16 @@ end
 @testset "time and output limits" begin
     # timeouts
     let results = evaluate([Configuration(config; time_limit=1.)],
-                           [Package(; name="Example")])
+                           [Package(; name="Example")];
+                           validate=false, retry=false)
         @test size(results, 1) == 1
         @test results[1, :status] == :kill && results[1, :reason] == :time_limit
     end
 
     # log limit
     let results = evaluate([Configuration(config; log_limit=1)],
-                           [Package(; name="Example")])
+                           [Package(; name="Example")];
+                           validate=false, retry=false)
         @test size(results, 1) == 1
         @test results[1, :status] == :kill && results[1, :reason] == :log_limit
     end
@@ -144,7 +149,7 @@ end
     package_names = ["TimerOutputs", "Crayons", "Example", "Gtk"]
     packages = [Package(; name) for name in package_names]
 
-    results = evaluate([config], packages)
+    results = evaluate([config], packages; validate=false)
     if julia_release !== nothing
         @test all(results.status .== :ok)
         for result in eachrow(results)
@@ -156,7 +161,8 @@ end
 @testset "PackageCompiler" begin
     results = evaluate([Configuration(config; name="regular"),
                         Configuration(config; name="compiled", compiled=true)],
-                       [Package(; name="Example")])
+                       [Package(; name="Example")];
+                       validate=false)
     @test size(results, 1) == 2
     for result in eachrow(results)
         @test result.configuration in ["regular", "compiled"]
@@ -174,7 +180,8 @@ end
 
 haskey(ENV, "CI") || @testset "rr" begin
     results = evaluate([Configuration(config; rr=true)],
-                       [Package(; name="Example")])
+                       [Package(; name="Example")];
+                       validate=false)
     @test all(results.status .== :ok)
     @test contains(results[1, :log], "BugReporting")
     if julia_release !== nothing
@@ -188,7 +195,7 @@ end
     non_stdlibs = ["Example"]
     packages = [Package(; name) for name in [stdlibs; non_stdlibs]]
 
-    results = evaluate([config], packages)
+    results = evaluate([config], packages; validate=false)
     @test all(results.status .== :ok)
     for result in eachrow(results)
         if result.package in stdlibs
