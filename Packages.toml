@@ -24,7 +24,7 @@ skip = [
     "ClimateMachine",       # MPI
     "MPI",                  # MPI
     "BitemporalPostgres",   # POSTGRES
-    
+
     # doing bad things
     ## global package operations (JuliaCI/PkgEval.jl#159)
     "ClimateEasy",
@@ -40,7 +40,7 @@ skip = [
     "Elemental",            #
     "ArchGDAL",             #
     "Starlight",            #
-    
+
     # requires specific environment
     "AWSS3",                # AWS secrets
     "AWSCRT",               #
@@ -55,4 +55,9 @@ skip = [
     "oneAPI",               # oneAPI hardware
     "AMDGPU",               # AMD GPU hardware
     "HSARuntime",
+]
+
+# packages that are incompatible with running under rr
+skip_rr = [
+    "Plots"
 ]
