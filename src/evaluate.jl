@@ -931,7 +931,8 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                         ## (to double-check those configurations introduced the failure)
                         retry |= nrow(failures) != length(configs)
                         ## also retry if the kind of failure is different across configs
-                        retry |= length(unique(failures.reason)) > 1
+                        retry |= length(unique(failures.status)) > 1 ||
+                                 length(unique(failures.reason)) > 1
                         if retry
                             for row in eachrow(failures)
                                 # retry the failed job in a pristine environment
