@@ -508,6 +508,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
                 end
             end
         end
+        verify_compilecache(local_compilecache; show_status=false)
         copy_files(src=local_compilecache, dst=shared_compilecache)
         rm(local_compilecache; recursive=true)
     end
@@ -638,7 +639,8 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
 
 end
 
-function verify_artifacts(artifacts)
+
+function verify_artifacts(artifacts; show_status::Bool=true)
     removals = []
     removals_lock = ReentrantLock()
 
@@ -659,8 +661,11 @@ function verify_artifacts(artifacts)
 
     # determine which ones need to be removed.
     # this is expensive, so use multiple threads.
-    isinteractive() || println("Verifying artifacts...")
-    p = Progress(length(jobs); desc="Verifying artifacts: ", enabled=isinteractive())
+    if show_status
+        isinteractive() || println("Verifying artifacts...")
+    end
+    p = Progress(length(jobs); desc="Verifying artifacts: ",
+                 enabled=isinteractive() && show_status)
     @threads for (path, tree_hash) in jobs
         if tree_hash != Base.SHA1(Pkg.GitTools.tree_hash(path))
             # remove corrupt artifacts
@@ -683,7 +688,58 @@ function verify_artifacts(artifacts)
     end
 end
 
-function remove_uncacheable_packages(registry, packages)
+function verify_compilecache(compilecache; show_status::Bool=true)
+    if show_status
+        isinteractive() || println("Verifying compilecache...")
+    end
+    removals = String[]
+
+    # only direct entries in the compilecache are version dirs
+    version_paths = String[]
+    for version in readdir(compilecache)
+        path = joinpath(compilecache, version)
+        if isdir(path) && contains(version, r"^v\d+\.\d+$")
+            push!(version_paths, path)
+        else
+            @debug "A broken version directory was found: $path"
+            push!(removals, path)
+        end
+    end
+
+    # below that, we should only have packages
+    package_paths = String[]
+    for version_path in version_paths, package in readdir(version_path)
+        path = joinpath(version_path, package)
+        if isdir(path)
+            push!(package_paths, path)
+        else
+            @debug "A broken package directory was found: $path"
+            push!(removals, path)
+        end
+    end
+
+    # below that, we should only have specific files
+    for package_path in package_paths
+        for file in readdir(package_path)
+            path = joinpath(package_path, file)
+            if !isfile(path) || !endswith(file, r"\.(ji|so)"i)
+                @debug "A broken file was found: $path"
+                push!(removals, path)
+            end
+        end
+    end
+
+    # remove the directories
+    for path in removals
+        try
+            rm(path; recursive=true)
+        catch err
+            @error "Failed to remove $path" exception=(err, catch_backtrace())
+        end
+    end
+end
+
+function remove_uncacheable_packages(registry, packages; show_status::Bool=true)
     # collect directories we need to check
     jobs = []
     registry_instance = Pkg.Registry.RegistryInstance(registry)
@@ -704,8 +760,11 @@ function remove_uncacheable_packages(registry, packages)
     # this is expensive, so use multiple threads.
     removals = []
     removals_lock = ReentrantLock()
-    isinteractive() || println("Verifying packages...")
-    p = Progress(length(jobs); desc="Verifying packages: ", enabled=isinteractive())
+    if show_status
+        isinteractive() || println("Verifying packages...")
+    end
+    p = Progress(length(jobs); desc="Verifying packages: ",
+                 enabled=isinteractive() && show_status)
     @threads for (path, name, tree_hash) in jobs
         remove = false
 
@@ -739,6 +798,7 @@ function remove_uncacheable_packages(registry, packages)
         end
     end
 end
+
 
 """
     evaluate(configs::Vector{Configuration}, [packages::Vector{Package}];
