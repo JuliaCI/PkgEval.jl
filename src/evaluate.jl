@@ -896,7 +896,14 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                             failures = filter(package_results) do row
                                 row.status !== :ok
                             end
-                            if length(configs) == 1 || nrow(failures) != length(configs)
+                            ## if we only have a single configuration, retry every failure
+                            retry = length(configs) == 1
+                            ## otherwise only retry if we didn't fail all configurations
+                            ## (to double-check those configurations introduced the failure)
+                            retry |= nrow(failures) != length(configs)
+                            ## also retry if the kind of failure is different across configs
+                            retry |= length(unique(failures.reason)) > 1
+                            if retry
                                 for row in eachrow(failures)
                                     # retry the failed job in a pristine environment
                                     config = configs[findfirst(config->config.name == row.configuration, configs)]
