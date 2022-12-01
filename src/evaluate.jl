@@ -176,6 +176,10 @@ function evaluate_script(config::Configuration, script::String, args=``;
 
     try
         wait(proc)
+    catch err
+        isa(err, InterruptException) || rethrow()
+        # this is a Julia-level interrupt, probably because of a CTRL-C.
+        status = :kill
     finally
         stop()
     end
