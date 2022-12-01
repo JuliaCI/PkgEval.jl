@@ -77,39 +77,6 @@ function get_compilecache(config::Configuration)
     end
 end
 
-function process_children(pid)
-    isdir("/proc/$pid/task") || return Int[]
-    pids = Int[]
-    for tid in readdir("/proc/$pid/task")
-        path = "/proc/$pid/task/$tid/children"
-        if ispath(path)
-            children = read("/proc/$pid/task/$tid/children", String)
-            append!(pids, parse.(Int, split(children)))
-        end
-    end
-    return pids
-end
-
-function cpu_time(pid)
-    isfile("/proc/$pid/stat") || return missing
-    stats = read("/proc/$pid/stat", String)
-
-    m = match(r"^(\d+) \((.+)\) (.+)", stats)
-    @assert m !== nothing
-    fields = [[m.captures[1], m.captures[2]]; split(m.captures[3])]
-    utime = parse(Int, fields[14])
-    stime = parse(Int, fields[15])
-    cutime = parse(Int, fields[16])
-    cstime = parse(Int, fields[17])
-    total_time = (utime + stime + cutime + cstime) / Sys.SC_CLK_TCK
-
-    # cutime and cstime are only updated when the child exits,
-    # so recursively scan all known children
-    total_time += sum(cpu_time, process_children(pid); init=0.0)
-
-    return total_time
-end
-
 """
     evaluate_script(config::Configuration, script::String, args=``)
 
@@ -148,14 +115,6 @@ function evaluate_script(config::Configuration, script::String, args=``;
     function stop()
         if process_running(proc)
             # we need to be careful we don't end up killing only the sandbox process
-            function recursive_kill(proc, sig)
-                parent_pid = getpid(proc)
-                for pid in reverse([parent_pid; process_children(parent_pid)])
-                    ccall(:uv_kill, Cint, (Cint, Cint), pid, sig)
-                end
-                return
-            end
-
             recursive_kill(proc, Base.SIGTERM)
             t = Timer(10) do timer
                 recursive_kill(proc, Base.SIGKILL)

@@ -101,3 +101,89 @@ function github_auth()
     end
     return _github_auth[]
 end
+
+
+# list the children of a process.
+# note that this may return processes that have already exited, so beware of TOCTOU.
+function process_children(pid)
+    tids = try
+        readdir("/proc/$pid/task")
+    catch err # TOCTOU
+        if (isa(err, SystemError)  && err.code == Libc.ENOENT) ||
+           (isa(err, Base.IOError) && err.code == Base.UV_ENOENT)
+            # the process has already exited
+            return Int[]
+        else
+            rethrow()
+        end
+    end
+
+    pids = Int[]
+    for tid in tids
+        try
+            children = read("/proc/$pid/task/$tid/children", String)
+            append!(pids, parse.(Int, split(children)))
+        catch err # TOCTOU
+            if (isa(err, SystemError)  && err.code == Libc.ENOENT) ||
+               (isa(err, Base.IOError) && err.code == Base.UV_ENOENT)
+                # the task has already exited
+            else
+                rethrow()
+            end
+        end
+    end
+    return pids
+end
+
+
+# kill a process and all of its children
+function recursive_kill(proc, sig)
+    parent_pid = try
+        getpid(proc)
+    catch err # TOCTOU
+        if (isa(err, SystemError)  && err.code == Libc.ESRCH) ||
+           (isa(err, Base.IOError) && err.code == Base.UV_ESRCH)
+            # the process has already exited
+            return
+        else
+            rethrow(err)
+        end
+    end
+    for pid in reverse([parent_pid; process_children(parent_pid)])
+        ccall(:uv_kill, Cint, (Cint, Cint), pid, sig)
+    end
+    return
+end
+
+
+# look up the CPU time consumed by a process and its children
+function cpu_time(pid)
+    stats = try
+        read("/proc/$pid/stat", String)
+    catch err # TOCTOU
+        if (isa(err, SystemError)  && err.code == Libc.ENOENT) ||
+           (isa(err, Base.IOError) && err.code == Base.UV_ENOENT)
+            # the process has already exited
+            return missing
+        else
+            rethrow(err)
+        end
+    end
+
+    m = match(r"^(\d+) \((.+)\) (.+)", stats)
+    if m === nothing
+        throw(ArgumentError("Invalid contents for /proc/$pid/stat: $stats"))
+    end
+    fields = [[m.captures[1], m.captures[2]]; split(m.captures[3])]
+    utime = parse(Int, fields[14])
+    stime = parse(Int, fields[15])
+    cutime = parse(Int, fields[16])
+    cstime = parse(Int, fields[17])
+    total_time = (utime + stime + cutime + cstime) / Sys.SC_CLK_TCK
+
+    # cutime and cstime are only updated when the child exits,
+    # so recursively scan all known children
+    total_time += sum(cpu_time, process_children(pid); init=0.0)
+
+    return total_time
+end
