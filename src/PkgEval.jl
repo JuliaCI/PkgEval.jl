@@ -11,6 +11,7 @@ storage_dir = ""
 using s5cmd_jll: s5cmd
 
 skip_list = String[]
+skip_rr_list = String[]
 
 include("types.jl")
 include("registry.jl")
@@ -32,6 +33,7 @@ function __init__()
     # read Packages.toml
     packages = TOML.parsefile(joinpath(dirname(@__DIR__), "Packages.toml"))
     global skip_list = get(packages, "skip", String[])
+    global skip_rr_list = get(packages, "skip_rr", String[])
 end
 
 end # module

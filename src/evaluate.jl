@@ -845,7 +845,13 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
     # determine the jobs to run
     jobs = Job[]
     for config in configs, package in packages
-        push!(jobs, Job(config, package, true))
+        job = if package.name in skip_rr_list
+            config′ = Configuration(config; rr=false)
+            Job(config′, package, true)
+        else
+            Job(config, package, true)
+        end
+        push!(jobs, job)
     end
     ## use a random test order to (hopefully) get a more reasonable ETA
     shuffle!(jobs)
