@@ -228,6 +228,7 @@ end
         script = joinpath(scripts_dir, "test_package.jl")
         proc, out, err = julia_exec(`$script --julia=1.8 --name=Example`)
         isempty(err) || println(err)
+        success(proc) || println(out)
         @test success(proc)
     end
     @testset "test_package(local package)" begin
@@ -236,6 +237,7 @@ end
             script = joinpath(scripts_dir, "test_package.jl")
             proc, out, err = julia_exec(`$script --julia=1.8 --name=Example --path=$dir`)
             isempty(err) || println(err)
+            success(proc) || println(out)
             @test success(proc)
             @test contains(out, r"Example.*#master")
         end
