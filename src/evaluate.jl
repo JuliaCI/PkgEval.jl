@@ -5,6 +5,7 @@ using Random
 using DataFrames: DataFrame, nrow, combine, groupby
 using ProgressMeter: Progress, update!, next!, finish!, durationstring
 using Base.Threads: @threads
+import REPL
 
 const statusses = Dict(
     :ok     => "successful",
@@ -214,7 +215,11 @@ function evaluate_script(config::Configuration, script::String, args=``;
         return String(take!(io))
     end
 
-    wait(proc)
+    try
+        wait(proc)
+    finally
+        stop()
+    end
     close(timeout_monitor)
     close(inactivity_monitor)
     log = fetch(log_monitor)
@@ -847,155 +852,193 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
 
     njobs = length(jobs)
     ninstances = min(njobs, ninstances)
-    running = Vector{Any}(nothing, ninstances)
+    running = Vector{Any}(missing, ninstances)
     times = DateTime[now() for i = 1:ninstances]
-    all_workers = Task[]
+    tasks = Task[]
 
     done = false
-    did_signal_workers = false
     function stop_work()
         if !done
             done = true
-            if !did_signal_workers
-                for (i, task) in enumerate(all_workers)
-                    task == current_task() && continue
-                    Base.istaskdone(task) && continue
-                    try; schedule(task, InterruptException(); error=true); catch; end
-                    running[i] = nothing
-                end
-                did_signal_workers = true
+            for task in tasks
+                task == current_task() && continue
+                Base.istaskdone(task) && continue
+                try; schedule(task, InterruptException(); error=true); catch; end
             end
         end
     end
 
+    # Workers
     p = Progress(njobs; desc="Running tests: ", enabled=isinteractive())
-    try @sync begin
-        # Workers
-        for i = 1:ninstances
-            push!(all_workers, @async begin
-                try
-                    while !isempty(jobs) && !done
-                        job = pop!(jobs)
-                        times[i] = now()
-                        running[i] = (job.config.name, job.package)
-
-                        # test the package
-                        config′ = Configuration(job.config; cpus=[i-1])
-                        (; log, status, reason, version, duration) =
-                            evaluate_test(config′, job.package; job.use_cache)
-
-                        push!(result, [job.config.name, job.package.name,
-                                       version, status, reason, duration, log])
-                        running[i] = nothing
-
-                        if retry
-                            # if we're done testing this package, consider retrying failures
-                            package_results = result[result.package .== job.package.name, :]
-                            nrow(package_results) == length(configs) || continue
-                            # NOTE: this check also prevents retrying multiple times
-
-                            failures = filter(package_results) do row
-                                row.status !== :ok
-                            end
-                            ## if we only have a single configuration, retry every failure
-                            retry = length(configs) == 1
-                            ## otherwise only retry if we didn't fail all configurations
-                            ## (to double-check those configurations introduced the failure)
-                            retry |= nrow(failures) != length(configs)
-                            ## also retry if the kind of failure is different across configs
-                            retry |= length(unique(failures.reason)) > 1
-                            if retry
-                                for row in eachrow(failures)
-                                    # retry the failed job in a pristine environment
-                                    config = configs[findfirst(config->config.name == row.configuration, configs)]
-                                    config′ = if row.status !== :crash
-                                        # if the package failed, retry without rr, as it
-                                        # may have caused the failure. this is a bit of a
-                                        # hack, but improves retry reliability a lot.
-                                        Configuration(config; rr=false)
-                                    else
-                                        # however, do not disable rr if the failure involved
-                                        # a crash, for which rr traces are very important.
-                                        config
-                                    end
-                                    push!(jobs, Job(config′, job.package, false))
-                                end
-
-                                # XXX: this needs a proper API in ProgressMeter.jl
-                                #      (maybe an additional argument to `update!`)
-                                njobs += nrow(failures)
-                                p.n = njobs
-                            end
-                        end
-                    end
-                catch err
-                    stop_work()
-                    isa(err, InterruptException) || rethrow(err)
-                end
-            end)
-        end
-
-        # Printer
-        @async begin
+    for i = 1:ninstances
+        push!(tasks, @async begin
             try
-                start = time()
-                sleep_time = 1
-                while (!isempty(jobs) || !all(==(nothing), running)) && !done
-                    if isinteractive()
-                        function showvalues()
-                            # known statuses
-                            # NOTE: we filtered skips, so don't need to report them here
-                            o = count(==(:ok),      result[!, :status])
-                            f = count(==(:fail),    result[!, :status])
-                            c = count(==(:crash),   result[!, :status])
-                            k = count(==(:kill),    result[!, :status])
+                while !isempty(jobs) && !done
+                    job = pop!(jobs)
+                    times[i] = now()
+                    running[i] = (; job.config, job.package)
 
-                            [(:success, o), (:failed, f), (:crashed, c), (:killed, k)]
+                    # test the package
+                    config′ = Configuration(job.config; cpus=[i-1])
+                    (; log, status, reason, version, duration) =
+                        evaluate_test(config′, job.package; job.use_cache)
+
+                    push!(result, [job.config.name, job.package.name,
+                                    version, status, reason, duration, log])
+                    running[i] = nothing
+
+                    if retry
+                        # if we're done testing this package, consider retrying failures
+                        package_results = result[result.package .== job.package.name, :]
+                        nrow(package_results) == length(configs) || continue
+                        # NOTE: this check also prevents retrying multiple times
+
+                        failures = filter(package_results) do row
+                            row.status !== :ok
                         end
-                        update!(p, nrow(result); showvalues)
-                        sleep(sleep_time)
-                    else
-                        remaining_jobs = njobs - nrow(result)   # `jobs` doesn't include running
-                        print("Running tests: $remaining_jobs remaining")
+                        ## if we only have a single configuration, retry every failure
+                        retry = length(configs) == 1
+                        ## otherwise only retry if we didn't fail all configurations
+                        ## (to double-check those configurations introduced the failure)
+                        retry |= nrow(failures) != length(configs)
+                        ## also retry if the kind of failure is different across configs
+                        retry |= length(unique(failures.reason)) > 1
+                        if retry
+                            for row in eachrow(failures)
+                                # retry the failed job in a pristine environment
+                                config = configs[findfirst(config->config.name == row.configuration, configs)]
+                                config′ = if row.status !== :crash
+                                    # if the package failed, retry without rr, as it
+                                    # may have caused the failure. this is a bit of a
+                                    # hack, but improves retry reliability a lot.
+                                    Configuration(config; rr=false)
+                                else
+                                    # however, do not disable rr if the failure involved
+                                    # a crash, for which rr traces are very important.
+                                    config
+                                end
+                                push!(jobs, Job(config′, job.package, false))
+                            end
 
-                        elapsed_time = time() - start
-                        est_total_time = njobs * elapsed_time / nrow(result)
-                        if 0 <= est_total_time <= typemax(Int)
-                            eta_sec = round(Int, est_total_time - elapsed_time )
-                            eta = durationstring(eta_sec)
-                            print(" (ETA: $eta)")
-                        end
-
-                        println()
-                        sleep(sleep_time)
-
-                        # don't flood the logs
-                        if sleep_time < 300
-                            sleep_time *= 1.5
+                            # XXX: this needs a proper API in ProgressMeter.jl
+                            #      (maybe an additional argument to `update!`)
+                            njobs += nrow(failures)
+                            p.n = njobs
                         end
                     end
                 end
             catch err
+                # XXX: why do we still need to catch InterruptException here?
+                #      it should be handled by the manual @sync below.
+                #      removing this results in exceptions in unrelated code,
+                #      e.g., during the `combine` at the end.
                 isa(err, InterruptException) || rethrow(err)
-            finally
-                stop_work()
+            end
+        end)
+    end
+
+    # Printer
+    push!(tasks, @async begin
+        start = time()
+        sleep_time = 1
+        while !done
+            if isinteractive()
+                function showvalues()
+                    # known statuses
+                    # NOTE: we filtered skips, so don't need to report them here
+                    o = count(==(:ok),      result[!, :status])
+                    f = count(==(:fail),    result[!, :status])
+                    c = count(==(:crash),   result[!, :status])
+                    k = count(==(:kill),    result[!, :status])
+
+                    [(:success, o), (:failed, f), (:crashed, c), (:killed, k)]
+                end
+                update!(p, nrow(result); showvalues)
+                sleep(sleep_time)
+            else
+                remaining_jobs = njobs - nrow(result)   # `jobs` doesn't include running
+                print("Running tests: $remaining_jobs remaining")
+
+                elapsed_time = time() - start
+                est_total_time = njobs * elapsed_time / nrow(result)
+                if 0 <= est_total_time <= typemax(Int)
+                    eta_sec = round(Int, est_total_time - elapsed_time )
+                    eta = durationstring(eta_sec)
+                    print(" (ETA: $eta)")
+                end
+
+                println()
+                sleep(sleep_time)
+
+                # don't flood the logs
+                if sleep_time < 300
+                    sleep_time *= 1.5
+                end
             end
         end
+    end)
+
+    # Keyboard monitor (for more reliable CTRL-C handling)
+    if isa(stdin, Base.TTY)
+        # NOTE: `pushfirst!` since we **really** want this task to complete
+        pushfirst!(tasks, @async begin
+            term = REPL.Terminals.TTYTerminal("xterm", stdin, stdout, stderr)
+            REPL.Terminals.raw!(term, true)
+            try
+                while !done
+                    c = read(term, Char)
+                    if c == '\x3'
+                        println("Caught Ctrl-C, stopping...")
+                        stop_work()
+                        break
+                    elseif c == '?'
+                        println("Currently running: ",
+                                join(map(x->x.package.name, filter(!isnothing, running)), ", "))
+                    end
+                end
+            finally
+                REPL.Terminals.raw!(term, false)
+            end
+        end)
     end
+
+    # monitor tasks for failure so that each one doesn't need a try/catch + stop_work()
+    try
+        while true
+            if any(istaskfailed, tasks)
+                println("Caught an error, stopping...")
+                break
+            elseif all(istaskdone, tasks) || all(isnothing, running)
+                break
+            end
+            sleep(1)
+        end
     catch err
-        # XXX: why doesn't it suffice just catching the the InterruptException
-        #      (unwrapped from CompositeException) here?
-        isa(err, InterruptException) || rethrow(err)
+        # in case the sleep got interrupted
+        isa(err, InterruptException) || rethrow()
     finally
-        stop_work()
         finish!(p)
+        stop_work()
+    end
+    ## `wait()` to actually catch any exceptions
+    for task in tasks
+        try
+            wait(task)
+        catch err
+            if isa(err, TaskFailedException)
+                err = current_exceptions(err.task)[1].exception
+            end
+            isa(err, InterruptException) || rethrow()
+        end
     end
 
     # remove duplicates from retrying, keeping only the last result
-    nresults = nrow(result)
-    result = combine(groupby(result, [:configuration, :package]), last)
-    if nrow(result) != nresults
-        println("Removed $(nresults - nrow(result)) duplicate evaluations that resulted from retrying tests.")
+    if !isempty(result)
+        nresults = nrow(result)
+        result = combine(groupby(result, [:configuration, :package]), last)
+        if nrow(result) != nresults
+            println("Removed $(nresults - nrow(result)) duplicate evaluations that resulted from retrying tests.")
+        end
     end
 
     append!(result, skips)
