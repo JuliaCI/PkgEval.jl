@@ -109,7 +109,7 @@ function process_children(pid)
     tids = try
         readdir("/proc/$pid/task")
     catch err # TOCTOU
-        if (isa(err, SystemError)  && err.code == Libc.ENOENT) ||
+        if (isa(err, SystemError)  && err.errnum == Libc.ENOENT) ||
            (isa(err, Base.IOError) && err.code == Base.UV_ENOENT)
             # the process has already exited
             return Int[]
@@ -124,7 +124,7 @@ function process_children(pid)
             children = read("/proc/$pid/task/$tid/children", String)
             append!(pids, parse.(Int, split(children)))
         catch err # TOCTOU
-            if (isa(err, SystemError)  && err.code == Libc.ENOENT) ||
+            if (isa(err, SystemError)  && err.errnum == Libc.ENOENT) ||
                (isa(err, Base.IOError) && err.code == Base.UV_ENOENT)
                 # the task has already exited
             else
@@ -141,7 +141,7 @@ function recursive_kill(proc, sig)
     parent_pid = try
         getpid(proc)
     catch err # TOCTOU
-        if (isa(err, SystemError)  && err.code == Libc.ESRCH) ||
+        if (isa(err, SystemError)  && err.errnum == Libc.ESRCH) ||
            (isa(err, Base.IOError) && err.code == Base.UV_ESRCH)
             # the process has already exited
             return
@@ -161,7 +161,7 @@ function cpu_time(pid)
     stats = try
         read("/proc/$pid/stat", String)
     catch err # TOCTOU
-        if (isa(err, SystemError)  && err.code == Libc.ENOENT) ||
+        if (isa(err, SystemError)  && err.errnum == Libc.ENOENT) ||
            (isa(err, Base.IOError) && err.code == Base.UV_ENOENT)
             # the process has already exited
             return missing
