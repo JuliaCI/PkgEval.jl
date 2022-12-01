@@ -19,7 +19,7 @@ function get_julia_nightly()
     end
 
     # download and extract to a temporary directory, but don't keep the tarball
-    dir = mktempdir()
+    dir = mktempdir(prefix="pkgeval_julia_")
     Pkg.PlatformEngines.download_verify_unpack(url, nothing, dir;
                                                ignore_existence=true)
     return only(readdir(dir; join=true))
@@ -66,7 +66,7 @@ function get_julia_release(config::Configuration)
     @debug "Found a matching release for '$(config.julia)': $(file["url"])"
     filename = basename(file["url"])
     filepath = joinpath(download_dir, filename)
-    dir = mktempdir()
+    dir = mktempdir(prefix="pkgeval_julia_")
     Pkg.PlatformEngines.download_verify_unpack(file["url"], file["sha256"], dir;
                                                 tarball_path=filepath, force=true,
                                                 ignore_existence=true)
@@ -119,7 +119,7 @@ function get_julia_build(config)
     # download and extract to a temporary directory
     @debug "Found a matching artifact for $repo#$ref: $(artifact.url)"
     filepath = download(artifact)
-    dir = mktempdir()
+    dir = mktempdir(prefix="pkgeval_julia_")
     Pkg.PlatformEngines.unpack(filepath, dir)
     return only(readdir(dir; join=true))
 end
@@ -188,7 +188,7 @@ function build_julia!(config::Configuration, checkout::String)
     end
 
     # build and install Julia
-    install_dir = mktempdir()
+    install_dir = mktempdir(prefix="pkgeval_julia_")
     build_config = Configuration(; rootfs="package_linux", xvfb=false)
     mounts = Dict(
         "/source:rw"    => checkout,

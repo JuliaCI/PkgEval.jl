@@ -71,7 +71,7 @@ function get_compilecache(config::Configuration)
                config.rootfs, config.uid, config.user, config.gid, config.group, config.home)
         dir = get(compiled_cache, key, nothing)
         if dir === nothing || !isdir(dir)
-            compiled_cache[key] = mktempdir()
+            compiled_cache[key] = mktempdir(prefix="pkgeval_$(config.name)_compilecache_")
         end
         return compiled_cache[key]
     end
@@ -244,7 +244,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         # we can split the compile cache in a global and local part, copying over changes
         # after the test completes to avoid races.
         shared_compilecache = get_compilecache(config)
-        local_compilecache = mktempdir()
+        local_compilecache = mktempdir(prefix="pkgeval_$(pkg.name)_compilecache_")
         mounts["/usr/local/share/julia/compiled:ro"] = shared_compilecache
         mounts[joinpath(config.home, ".julia", "compiled")*":rw"] = local_compilecache
 
@@ -262,7 +262,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     # structured output will be written to the /output directory. this is to avoid having to
     # parse log output, which is fragile. a simple pipe would be sufficient, but Julia
     # doesn't export those, and named pipes aren't portable to all platforms.
-    output_dir = mktempdir()
+    output_dir = mktempdir(prefix="pkgeval_$(pkg.name)_output_")
     mounts["/output:rw"] = output_dir
 
     common_script = raw"""
@@ -581,7 +581,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
     sysimage_path = "/sysimage/sysimg.so"
     args = `$(repr(package_spec_tuple(pkg))) $sysimage_path`
 
-    sysimage_dir = mktempdir()
+    sysimage_dir = mktempdir(prefix="pkgeval_$(pkg.name)_sysimage_")
     mounts = Dict(
         dirname(sysimage_path)*":rw"    => sysimage_dir,
     )
