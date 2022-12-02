@@ -1,9 +1,11 @@
 #!/bin/bash -uxe
 
+DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 version="bullseye"
 date=$(date +%Y%m%d)
 
-rootfs=$(mktemp --directory --tmpdir="/tmp")
+rootfs=$(mktemp --directory --tmpdir="$DIR")
 
 packages=()
 
@@ -32,8 +34,9 @@ sudo rm -rf "$rootfs"/dev/*
 sudo sed '/_apt:/d' -i "$rootfs"/etc/passwd
 
 sudo chown "$(id -u)":"$(id -g)" -R "$rootfs"
-pushd "$rootfs"
 
-tar -cJf "/tmp/debian-$version-$date.tar.xz" .
+pushd "$rootfs"
+tar -cJf "$DIR/debian-$version-$date.tar.xz" .
 popd
+
 rm -rf "$rootfs"
