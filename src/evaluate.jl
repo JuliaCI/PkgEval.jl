@@ -186,11 +186,10 @@ function evaluate_script(config::Configuration, script::String, args=``;
     try
         wait(proc)
     catch err
+        stop()
         isa(err, InterruptException) || rethrow()
         # this is a Julia-level interrupt, probably because of a CTRL-C.
         status = :kill
-    finally
-        stop()
     end
     close(timeout_monitor)
     close(inactivity_monitor)
@@ -918,7 +917,6 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
 
                     push!(result, [job.config.name, job.package.name,
                                     version, status, reason, duration, log])
-                    running[i] = nothing
 
                     if retry
                         # if we're done testing this package, consider retrying failures
@@ -930,14 +928,14 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                             row.status !== :ok
                         end
                         ## if we only have a single configuration, retry every failure
-                        retry = length(configs) == 1
+                        retry_worthy = length(configs) == 1
                         ## otherwise only retry if we didn't fail all configurations
                         ## (to double-check those configurations introduced the failure)
-                        retry |= nrow(failures) != length(configs)
+                        retry_worthy |= nrow(failures) != length(configs)
                         ## also retry if the kind of failure is different across configs
-                        retry |= length(unique(failures.status)) > 1 ||
+                        retry_worthy |= length(unique(failures.status)) > 1 ||
                                  length(unique(failures.reason)) > 1
-                        if retry
+                        if retry_worthy
                             for row in eachrow(failures)
                                 # retry the failed job in a pristine environment
                                 config = configs[findfirst(config->config.name == row.configuration, configs)]
@@ -967,6 +965,8 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                 #      removing this results in exceptions in unrelated code,
                 #      e.g., during the `combine` at the end.
                 isa(err, InterruptException) || rethrow(err)
+            finally
+                running[i] = nothing
             end
         end)
     end
