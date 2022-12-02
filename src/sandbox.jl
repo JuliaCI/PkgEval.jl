@@ -290,7 +290,7 @@ function setup_generic_sandbox(config::Configuration, cmd::Cmd; workdir::String,
     #      it may also be unwanted for packages to be able to write to the rootfs.
     mounts = [
         "/tmp"      => joinpath(rootfs, "tmp"),
-        "/var/tmp"  => joinpath(rootfs, "var/tmp"),
+        "/var"      => joinpath(rootfs, "var"),
         config.home => joinpath(rootfs, abs2rel(config.home)),
         mounts...]
 
