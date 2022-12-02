@@ -5,7 +5,7 @@ function usage(error=nothing)
         println(stderr, "ERROR: $error")
     end
     println(stderr, """
-        Usage: julia test_package.jl [--julia=nightly]
+        Usage: julia test_package.jl [--julia=nightly] [--rr=false]
                                      [--name=...] [--version=...] [--rev=...] [--url=...] [--path=...]
 
         This script can be used to quickly test a package against a specific version of Julia.
@@ -13,7 +13,8 @@ function usage(error=nothing)
         The `--name`, `--url`, `--rev`, etc flags can be used to specify the package to test.
         To test a local development version, use the `--path` flag.
 
-        The `--julia` flag can be used to specify the version of Julia to test with, and defaults to `nightly`.""")
+        The `--julia` flag can be used to specify the version of Julia to test with, and defaults to `nightly`.
+        With the `--rr` flag you can enable running under `rr`, as used by daily PkgEval runs.""")
     exit(error === nothing ? 0 : 1)
 end
 
@@ -32,12 +33,20 @@ for arg in ARGS
     args[Symbol(option[3:end])] = String(value)
 end
 
-config = if haskey(args, :julia)
-    Configuration(; julia=args[:julia])
-else
-    Configuration()
+# create the Configuration object
+config_flags = [(:julia => String), (:rr => Bool)]
+config_args = Dict()
+for (flag, typ) in config_flags
+    if haskey(args, flag)
+        config_args[flag] = if typ === String
+            args[flag]
+        else
+            parse(typ, args[flag])
+        end
+        delete!(args, flag)
+    end
 end
-delete!(args, :julia)
+config = Configuration(; config_args...)
 
 result = if haskey(args, :path)
     path = expanduser(args[:path])
