@@ -185,15 +185,15 @@ function run_sandbox(config::Configuration, setup, args...; workdir=nothing, wai
     end
 
     sandbox_cmd = if sandbox.runtime === :crun
-        `$(crun()) --systemd-cgroup run`
+        `$(crun()) --systemd-cgroup`
     elseif sandbox.runtime === :runc
         # runc always wants to create its own cgroups, so requires delegation:
         # $ systemd-run --user --scope -p Delegate=yes julia ...
-        `$(runc()) run`
+        `$(runc())`
     else
         error("Unknown runtime: $(sandbox.runtime)")
     end
-    proc = run(pipeline(`$sandbox_cmd --bundle $bundle_path $(sandbox.name)`;
+    proc = run(pipeline(`$sandbox_cmd --root $(container_root) run --bundle $bundle_path $(sandbox.name)`;
                         stdin, stderr, stdout); wait)
 
     # XXX: once `crun` support `stats` like `runc`, use that for resource usage reporting
