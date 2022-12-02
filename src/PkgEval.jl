@@ -40,6 +40,8 @@ function __init__()
     global skip_list = get(packages, "skip", String[])
     global skip_rr_list = get(packages, "skip_rr", String[])
     global slow_list = get(packages, "slow", String[])
+
+    global container_root = mktempdir(prefix="pkgeval_containers_")
 end
 
 end # module
