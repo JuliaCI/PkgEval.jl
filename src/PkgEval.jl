@@ -25,6 +25,7 @@ include("utils.jl")
 function __init__()
     global download_dir = @get_scratch!("downloads")
     mkpath(joinpath(download_dir, "srccache"))
+    mkpath(joinpath(download_dir, "rootfs"))
 
     global storage_dir = @get_scratch!("storage")
     mkpath(joinpath(storage_dir, "artifacts"))

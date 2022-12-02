@@ -1,13 +1,45 @@
 using LazyArtifacts: @artifact_str
-
 lazy_artifact(x) = @artifact_str(x)
 
-function _create_rootfs(config::Configuration)
-    base = lazy_artifact(config.rootfs)
+using Tar: extract
+using CodecZlib: GzipDecompressorStream
+using CodecXz: XzDecompressorStream
+using CodecZstd: ZstdDecompressorStream
 
+function _create_rootfs(config::Configuration)
     # a bare rootfs isn't usable out-of-the-box
     derived = mktempdir(prefix="pkgeval_rootfs_")
-    cp(base, derived; force=true)
+
+    # BUG: Pkg installs our artifacts with wrong permissions (JuliaLang/Pkg.jl#/3269)
+    if false
+        base = lazy_artifact(config.rootfs)
+        cp(base, derived; force=true)
+    else
+        artifacts_toml = TOML.parsefile(joinpath(dirname(@__DIR__), "Artifacts.toml"))
+        rootfs_toml = artifacts_toml[config.rootfs]
+
+        # download
+        url = rootfs_toml["download"][1]["url"]
+        hash = rootfs_toml["download"][1]["sha256"]
+        tarball = joinpath(download_dir, "rootfs", basename(url))
+        if !isfile(tarball)
+            Pkg.PlatformEngines.download_verify(url, hash, tarball)
+        end
+
+        # extract
+        open(tarball) do io
+            stream = if endswith(tarball, ".xz")
+                XzDecompressorStream(io)
+            elseif endswith(tarball, ".gz")
+                GzipDecompressorStream(io)
+            elseif endswith(tarball, ".zst")
+                ZstdDecompressorStream(io)
+            else
+                error("Unknown file extension")
+            end
+            extract(stream, derived)
+        end
+    end
 
     # add a user and group
     chmod(joinpath(derived, "etc/passwd"), 0o644)
