@@ -41,12 +41,41 @@ function run_sandbox(config::Configuration, setup, args...; executor=nothing, wa
 end
 
 
-## generic sandbox
+## X server
 
 # global Xvfb process for use by all containers
 const xvfb_lock = ReentrantLock()
 const xvfb_proc = Ref{Base.Process}()
-const xvfb_display = Ref{Int}()
+const xvfb_sock = Ref{String}()
+
+function setup_xvfb()
+    if !isassigned(xvfb_proc) || !process_running(xvfb_proc[])
+        lock(xvfb_lock) do
+            if !isassigned(xvfb_proc) || !process_running(xvfb_proc[])
+                sock = mktempdir(prefix="pkgeval_xvfb_")
+                mounts = Dict(
+                    "/tmp/.X11-unix:rw" => sock,
+                )
+                config = Configuration(; rootfs="xvfb", xvfb=false, uid=0, gid=0)
+                proc = sandboxed_cmd(config, `/usr/bin/Xvfb :0 -screen 0 1024x768x16`;
+                                     mounts, wait=false, stdin=devnull)
+                sleep(1)
+                @assert process_running(proc)
+                atexit() do
+                    recursive_kill(proc, Base.SIGTERM)
+                end
+
+                xvfb_proc[] = proc
+                xvfb_sock[] = sock
+            end
+        end
+    end
+
+    return xvfb_sock[]
+end
+
+
+## generic sandbox
 
 function setup_generic_sandbox(config::Configuration, cmd::Cmd;
                                env::Dict{String,String}=Dict{String,String}(),
@@ -85,39 +114,8 @@ function setup_generic_sandbox(config::Configuration, cmd::Cmd;
     end
 
     if config.xvfb
-        if !isassigned(xvfb_proc) || !process_running(xvfb_proc[])
-            lock(xvfb_lock) do
-                if !isassigned(xvfb_proc) || !process_running(xvfb_proc[])
-                    # make sure to kill any Xvfb server we launch
-                    if !isassigned(xvfb_proc)
-                        atexit() do
-                            if process_running(xvfb_proc[])
-                                kill(xvfb_proc[])
-                                wait(xvfb_proc[])
-                            end
-                        end
-                    end
-
-                    # find a free display number and launch a server
-                    for display in 1:10
-                        proc = run(`Xvfb :$display -screen 0 1024x768x16`; wait=false)
-                        sleep(1)
-                        if process_running(proc)
-                            xvfb_proc[] = proc
-                            xvfb_display[] = display
-                            break
-                        end
-                    end
-
-                    if !isassigned(xvfb_proc)
-                        error("Failed to start Xvfb")
-                    end
-                end
-            end
-        end
-
-        env["DISPLAY"] = ":$(xvfb_display[])"
-        read_write_maps["/tmp/.X11-unix"] = "/tmp/.X11-unix"
+        env["DISPLAY"] = ":0"
+        read_write_maps["/tmp/.X11-unix"] = setup_xvfb()
     end
 
     # NOTE: we use persist=true so that modifications to the rootfs are backed by
