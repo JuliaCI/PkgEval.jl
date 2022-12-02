@@ -77,6 +77,15 @@ function get_compilecache(config::Configuration)
     end
 end
 
+function effective_time_limit(config::Configuration)
+    if config.rr
+        # extend the timeout to account for the rr record overhead
+        return config.time_limit[] * 2
+    else
+        return config.time_limit[]
+    end
+end
+
 """
     evaluate_script(config::Configuration, script::String, args=``)
 
@@ -129,7 +138,7 @@ function evaluate_script(config::Configuration, script::String, args=``;
     reason = missing
 
     # kill on timeout
-    timeout_monitor = Timer(config.time_limit) do timer
+    timeout_monitor = Timer(effective_time_limit(config)) do timer
         process_running(proc) || return
         status = :kill
         reason = :time_limit
@@ -339,15 +348,12 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
     args = `$(repr(package_spec_tuple(pkg)))`
 
-    (; log, status, reason) = if config.rr
-        # extend the timeout to account for the rr record overhead
-        rr_config = Configuration(config; time_limit=config.time_limit*2)
-
+    if config.rr
         env["PKGEVAL_RR"] = "true"
-        evaluate_script(rr_config, script, args; mounts, env, executor, kwargs...)
-    else
-        evaluate_script(config, script, args; mounts, env, executor, kwargs...)
     end
+
+    (; log, status, reason) = evaluate_script(config, script, args;
+                                              mounts, env, executor, kwargs...)
     log *= "\n"
 
     # parse structured output
@@ -882,7 +888,6 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
     njobs = length(jobs)
     ninstances = min(njobs, ninstances)
     running = Vector{Any}(missing, ninstances)
-    times = DateTime[now() for i = 1:ninstances]
     tasks = Task[]
 
     done = false
@@ -904,8 +909,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
             try
                 while !isempty(jobs) && !done
                     job = pop!(jobs)
-                    times[i] = now()
-                    running[i] = (; job.config, job.package)
+                    running[i] = (; job.config, job.package, time=time())
 
                     # test the package
                     config′ = Configuration(job.config; cpus=[i-1])
@@ -989,8 +993,19 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                 remaining_jobs = njobs - nrow(result)   # `jobs` doesn't include running
                 print("Running tests: $remaining_jobs remaining")
 
+                # for a more truthful ETA, we assume packages that are running will time out
+                actually_running = filter(x->x !== nothing && x !== missing, running)
+                ## calculate an ETA based on the jobs that aren't currently running
                 elapsed_time = time() - start
-                est_total_time = njobs * elapsed_time / nrow(result)
+                idle_jobs = njobs - length(actually_running)
+                est_total_time = idle_jobs * elapsed_time / nrow(result)
+                ## add the time it takes to run the latest job until it times out
+                if !isempty(actually_running)
+                    latest_job = actually_running[findmax(x->x.time, actually_running)[2]]
+                    est_total_time += effective_time_limit(latest_job.config) -
+                                      (time() - latest_job.time)
+                end
+
                 if 0 <= est_total_time <= typemax(Int)
                     eta_sec = round(Int, est_total_time - elapsed_time )
                     eta = durationstring(eta_sec)
