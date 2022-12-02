@@ -47,31 +47,47 @@ end
 const xvfb_lock = ReentrantLock()
 const xvfb_proc = Ref{Base.Process}()
 const xvfb_sock = Ref{String}()
+const xvfb_disp = Ref{Int}()
 
 function setup_xvfb()
     if !isassigned(xvfb_proc) || !process_running(xvfb_proc[])
         lock(xvfb_lock) do
+            # temporary directory to put the Xvfb socket in
+            if !isassigned(xvfb_sock)
+                xvfb_sock[] = mktempdir(prefix="pkgeval_xvfb_")
+            end
+
+            # launch an Xvfb container
             if !isassigned(xvfb_proc) || !process_running(xvfb_proc[])
-                sock = mktempdir(prefix="pkgeval_xvfb_")
                 mounts = Dict(
-                    "/tmp/.X11-unix:rw" => sock,
+                    "/tmp/.X11-unix:rw" => xvfb_sock[],
                 )
                 config = Configuration(; rootfs="xvfb", xvfb=false, uid=0, gid=0)
-                proc = sandboxed_cmd(config, `/usr/bin/Xvfb :0 -screen 0 1024x768x16`;
-                                     mounts, wait=false, stdin=devnull)
-                sleep(1)
-                @assert process_running(proc)
-                atexit() do
-                    recursive_kill(proc, Base.SIGTERM)
+
+                # find a free display number and launch a server
+                # (UNIX sockets aren't unique across containers)
+                for disp in 1:10
+                    proc = sandboxed_cmd(config, `/usr/bin/Xvfb :$disp -screen 0 1024x768x16`;
+                                         mounts, wait=false, stdin=devnull)
+                    sleep(1)
+                    if process_running(proc)
+                        atexit() do
+                            recursive_kill(proc, Base.SIGTERM)
+                        end
+                        xvfb_proc[] = proc
+                        xvfb_disp[] = disp
+                        break
+                    end
                 end
 
-                xvfb_proc[] = proc
-                xvfb_sock[] = sock
+                if !isassigned(xvfb_proc)
+                    error("Failed to start Xvfb")
+                end
             end
         end
     end
 
-    return xvfb_sock[]
+    return (; socket=xvfb_sock[], display=xvfb_disp[])
 end
 
 
@@ -114,8 +130,9 @@ function setup_generic_sandbox(config::Configuration, cmd::Cmd;
     end
 
     if config.xvfb
-        env["DISPLAY"] = ":0"
-        read_write_maps["/tmp/.X11-unix"] = setup_xvfb()
+        xvfb = setup_xvfb()
+        env["DISPLAY"] = ":$(xvfb.display)"
+        read_write_maps["/tmp/.X11-unix"] = xvfb.socket
     end
 
     # NOTE: we use persist=true so that modifications to the rootfs are backed by
