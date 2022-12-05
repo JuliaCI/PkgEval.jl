@@ -2,7 +2,7 @@
 
 DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-version="bullseye"
+version="bookworm"
 date=$(date +%Y%m%d)
 
 rootfs=$(mktemp --directory --tmpdir="$DIR")
