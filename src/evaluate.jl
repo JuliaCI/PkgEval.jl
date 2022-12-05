@@ -270,7 +270,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         return evaluate_compiled_test(config, pkg; use_cache, kwargs...)
     end
 
-    name = "$(pkg.name)-$(config.name)"
+    name = "$(pkg.name)-$(config.name)-$(randstring())"
 
     # we create our own workdir so that we can reuse it
     workdir = mktempdir(prefix="pkgeval_$(pkg.name)_")
