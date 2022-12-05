@@ -4,8 +4,11 @@
 
 PkgEval.jl is a package to test one or more Julia versions against the Julia
 package ecosystem, and is used by Nanosoldier.jl for keeping track of package
-compatibility of upcoming Julia versions. Note that for now, **PkgEval.jl is
-Linux-only**.
+compatibility of upcoming Julia versions.
+
+Note that for now, **PkgEval.jl is Linux-only**, and even requires a
+sufficiently recent kernel (at least 5.11, or a distribution like Ubuntu that
+has back-ported support for unprivileged overlayfs mounts in user namespaces).
 
 
 ## Quick start
