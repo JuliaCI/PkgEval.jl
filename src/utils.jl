@@ -109,8 +109,8 @@ function process_children(pid)
     tids = try
         readdir("/proc/$pid/task")
     catch err # TOCTOU
-        if (isa(err, SystemError)  && err.errnum == Libc.ENOENT) ||
-           (isa(err, Base.IOError) && err.code == Base.UV_ENOENT)
+        if (isa(err, SystemError)  && err.errnum in [Libc.ENOENT, Libc.ESRCH]) ||
+           (isa(err, Base.IOError) && err.code in [Base.UV_ENOENT, Base.UV_ESRCH])
             # the process has already exited
             return Int[]
         else
@@ -124,8 +124,8 @@ function process_children(pid)
             children = read("/proc/$pid/task/$tid/children", String)
             append!(pids, parse.(Int, split(children)))
         catch err # TOCTOU
-            if (isa(err, SystemError)  && err.errnum == Libc.ENOENT) ||
-               (isa(err, Base.IOError) && err.code == Base.UV_ENOENT)
+            if (isa(err, SystemError)  && err.errnum in [Libc.ENOENT, Libc.ESRCH]) ||
+               (isa(err, Base.IOError) && err.code in [Base.UV_ENOENT, Base.UV_ESRCH])
                 # the task has already exited
             else
                 rethrow()
@@ -161,8 +161,8 @@ function cpu_time(pid)
     stats = try
         read("/proc/$pid/stat", String)
     catch err # TOCTOU
-        if (isa(err, SystemError)  && err.errnum == Libc.ENOENT) ||
-           (isa(err, Base.IOError) && err.code == Base.UV_ENOENT)
+        if (isa(err, SystemError)  && err.errnum in [Libc.ENOENT, Libc.ESRCH]) ||
+           (isa(err, Base.IOError) && err.code in [Base.UV_ENOENT, Base.UV_ESRCH])
             # the process has already exited
             return missing
         else
