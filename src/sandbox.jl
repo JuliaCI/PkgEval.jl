@@ -178,7 +178,7 @@ function run_sandbox(config::Configuration, setup, args...; workdir=nothing, wai
     sandbox_config = build_oci_config(sandbox, cmd; terminal=isa(stdin, Base.TTY))
 
     bundle_path = joinpath(workdir, "bundle")
-    mkdir(bundle_path)
+    mkpath(bundle_path)
     config_path = joinpath(bundle_path, "config.json")
     open(config_path, "w") do io
         JSON3.write(io, sandbox_config)
