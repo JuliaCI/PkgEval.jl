@@ -144,6 +144,14 @@ end
     end
 end
 
+@testset "blacklist" begin
+    let results = evaluate([config], [Package(; name="Example")];
+                           validate=false, retry=false, blacklist=["Example"])
+        @test size(results, 1) == 1
+        @test results[1, :status] == :skip && results[1, :reason] == :blacklist
+    end
+end
+
 @testset "complex packages" begin
     # some more complicate packages that are all expected to pass tests
     package_names = ["TimerOutputs", "Crayons", "Example", "Gtk"]
