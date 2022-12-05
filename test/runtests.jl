@@ -148,7 +148,7 @@ end
     let results = evaluate([config], [Package(; name="Example")];
                            validate=false, retry=false, blacklist=["Example"])
         @test size(results, 1) == 1
-        @test results[1, :status] == :skip && results[1, :reason] == :blacklist
+        @test results[1, :status] == :skip && results[1, :reason] == :blacklisted
     end
 end
 

@@ -45,7 +45,7 @@ const reasons = [
     :untestable             => "package does not have any tests",
     :uninstallable          => "package could not be installed",
     :unsupported            => "package is not supported by this Julia version",
-    :blacklist              => "package was blacklisted",
+    :blacklisted            => "package was blacklisted",
 ]
 
 function reason_message(reason)
@@ -885,7 +885,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
             return false
         elseif job.package.name in blacklist || job.package.name in skip_list
             push!(skips, [job.config.name, job.package.name, missing,
-                          :skip, :blacklist, 0, missing])
+                          :skip, :blacklisted, 0, missing])
             return false
         else
             return true
