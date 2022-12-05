@@ -45,8 +45,7 @@ const reasons = [
     :untestable             => "package does not have any tests",
     :uninstallable          => "package could not be installed",
     :unsupported            => "package is not supported by this Julia version",
-    :jll                    => "package is a untestable wrapper package",
-    :explicit               => "package was blacklisted",
+    :blacklist              => "package was blacklisted",
 ]
 
 function reason_message(reason)
@@ -811,7 +810,8 @@ end
 
 """
     evaluate(configs::Vector{Configuration}, [packages::Vector{Package}];
-             ninstances=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true, kwargs...)
+             ninstances=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true,
+             blacklist::Vector{String}, kwargs...)
 
 Run tests for `packages` using `configs`. If no packages are specified, default to testing
 all packages in the configured registry. The configurations can be specified as an array, or
@@ -822,11 +822,15 @@ The `ninstances` keyword argument determines how many packages are tested in par
 `retry` determines whether packages that did not fail on all configurations are retries;
 `validate` enables validation of artifact and package caches before running tests.
 
+The `blacklist` keyword argument can be used to skip testing of packages, specified by name.
+The blacklist is always extended with a hard-coded set of packages known to be problematic.
+
 Refer to `evaluate_test`[@ref] and `sandboxed_julia`[@ref] for more possible keyword
 arguments.
 """
 function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Package[];
-                  ninstances::Integer=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true)
+                  ninstances::Integer=Sys.CPU_THREADS, retry::Bool=true,
+                  validate::Bool=true, blacklist::Vector{String}=String[])
     if isempty(packages)
         registry_configs = unique(config->config.registry, values(configs))
         packages = intersect(values.(map(get_packages, registry_configs))...)::Vector{Package}
@@ -875,9 +879,9 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
         if endswith(job.package.name, "_jll")
             # JLLs we ignore completely; it's not useful to include them in the skip count
             return false
-        elseif job.package.name in skip_list
+        elseif job.package.name in blacklist || job.package.name in skip_list
             push!(skips, [job.config.name, job.package.name, missing,
-                          :skip, :explicit, 0, missing])
+                          :skip, :blacklist, 0, missing])
             return false
         else
             return true
