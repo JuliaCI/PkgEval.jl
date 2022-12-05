@@ -272,3 +272,16 @@ function chmod_recursive(root::String, perms)
     end
 end
 
+
+const kernel_version = Ref{Union{VersionNumber,Missing}}()
+function get_kernel_version()
+    if !isassigned(kernel_version)
+        kver_str = readchomp(`/bin/uname -r`)
+        kver = tryparse(VersionNumber, kver_str)
+        if kver === nothing
+            @warn "Failed to parse kernel version '$kver_str'"
+        end
+        kernel_version[] = something(kver, missing)
+    end
+    return kernel_version[]
+end

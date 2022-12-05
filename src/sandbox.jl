@@ -42,13 +42,15 @@ function build_oci_config(sandbox::Sandbox, cmd::Cmd; terminal::Bool)
                              options=["bind", mount.writable ? "rw" : "ro", mount_options...]))
         elseif mount isa OverlayMount
             extra_options = [
-                # needed for unprivileged use
-                "userxattr",
                 # needed for off-line access to the lower dir
                 "xino=off",
                 "metacopy=off",
                 "index=off"
             ]
+            if get_kernel_version() >= v"5.11-"
+                # needed for unprivileged use
+                push!(extra_options, "userxattr")
+            end
             if !haskey(ENV, "GITHUB_ACTIONS")
                 # XXX: for some reason, this option results in mount failure (EINVAL) when
                 #      running on GitHub Actions, and we lack permission to check dmesg...
