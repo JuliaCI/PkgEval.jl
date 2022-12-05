@@ -303,12 +303,16 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             write("/output/installed", repr(true))
         catch
             println("\nInstallation failed after $(elapsed(t0))\n")
-            write("/output/false", repr(true))
+            write("/output/installed", repr(false))
             rethrow()
+        finally
+            # even if a package fails to install, it may have been resolved
+            # (e.g., when the build phase errors)
+            if haskey(Pkg.dependencies(), package_spec.uuid)
+                version = Pkg.dependencies()[package_spec.uuid].version
+                write("/output/version", repr(version))
+            end
         end
-
-        version = Pkg.dependencies()[package_spec.uuid].version
-        write("/output/version", repr(version))
 
 
         print("\n\n", '#'^80, "\n# Testing\n#\n\n")
