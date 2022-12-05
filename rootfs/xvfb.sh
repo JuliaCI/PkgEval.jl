@@ -2,25 +2,13 @@
 
 DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-version="bullseye"
+version="bookworm"
 date=$(date +%Y%m%d)
 
 rootfs=$(mktemp --directory --tmpdir="$DIR")
 
-packages=()
-
-# download engines
-packages+=(curl ca-certificates)
-# essential tools
-packages+=(git unzip)
-# toolchain
-packages+=(build-essential libatomic1 python3 gfortran perl wget m4 cmake pkg-config curl patchelf)
-
-function join_by { local IFS="$1"; shift; echo "$*"; }
-package_list=$(join_by , ${packages[@]})
-
 sudo debootstrap --variant=minbase \
-                 --include=$package_list \
+                 --include=xvfb \
                  $version "$rootfs"
 
 # Clean some files
@@ -36,7 +24,7 @@ sudo sed '/_apt:/d' -i "$rootfs"/etc/passwd
 sudo chown "$(id -u)":"$(id -g)" -R "$rootfs"
 
 pushd "$rootfs"
-tar -cJf "$DIR/debian-$version-$date.tar.xz" .
+tar -cJf "$DIR/xvfb-$version-$date.tar.xz" .
 popd
 
 rm -rf "$rootfs"

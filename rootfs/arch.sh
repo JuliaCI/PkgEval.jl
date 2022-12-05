@@ -1,33 +1,25 @@
 #!/bin/bash -uxe
 
+DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 version="devel"
 date=$(date +%Y%m%d)
 
-rootfs=$(mktemp --directory --tmpdir="/tmp")
+rootfs=$(mktemp --directory --tmpdir="$DIR")
 
 # download from https://gitlab.archlinux.org/archlinux/archlinux-docker/-/packages
-# pass as argumnent
+# pass as argument
 archive=$1
 
 sudo tar -xvf $archive -C $rootfs
 
 sudo chown "$(id -u)":"$(id -g)" -R "$rootfs"
-pushd "$rootfs"
-
-# replace hardlinks with softlinks (working around JuliaIO/Tar.jl#101)
-target_inode=-1
-find . -type f -links +1 -printf "%i %p\n" | sort -nk1 | while read inode path; do
-    if [[ $target_inode != $inode ]]; then
-        target_inode=$inode
-        target_path=$path
-    else
-        ln -sf $target_path $path
-    fi
-done
 
 # Sandbox.jl is picky about directories in the rootfs, so create them
-mkdir proc dev
+mkdir $rootfs/proc $rootfs/dev
 
-tar -cJf "/tmp/arch-$version-$date.tar.xz" .
+pushd "$rootfs"
+tar -cJf "$DIR/arch-$version-$date.tar.xz" .
 popd
+
 rm -rf "$rootfs"
