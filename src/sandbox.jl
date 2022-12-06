@@ -76,14 +76,8 @@ function build_oci_config(sandbox::Sandbox, cmd::Cmd; terminal::Bool)
                    options=["nosuid", "noexec", "nodev", "mode=1777", "size=65536k"]))
     push!(mounts, (destination="/dev/mqueue", type="mqueue", source="mqueue",
                    options=["nosuid", "noexec", "nodev"]))
-    if sandbox.runtime === :runc
-        # XXX: runc cannot mount sysfs in rootless mode (opencontainers/runc#3672)
-        push!(mounts, (destination="/sys", type="none", source="/sys",
-                       options=["rbind", "nosuid", "noexec", "nodev", "ro"]))
-    else
-        push!(mounts, (destination="/sys", type="sysfs", source="sysfs",
-                       options=["nosuid", "noexec", "nodev"]))
-    end
+    push!(mounts, (destination="/sys", type="none", source="/sys",
+                   options=["rbind", "nosuid", "noexec", "nodev", "ro"]))
     push!(mounts, (destination="/sys/fs/cgroup", type="cgroup", source="cgroup",
                    options=["nosuid", "noexec", "nodev", "relatime", "ro"]))
     config["mounts"] = mounts
