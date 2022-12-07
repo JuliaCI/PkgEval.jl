@@ -281,3 +281,35 @@ function get_kernel_version()
     end
     return kernel_version[]
 end
+
+
+const cgroup_controllers = Ref{Union{Vector{String},Missing}}()
+function _get_cgroup_controllers()
+    if !ispath("/proc/self/cgroup")
+        return missing
+    end
+
+    # we only support cgroupv2, with a single unified controller
+    # (i.e. not the hybrid cgroupv1/cgroupv2 set-up)
+    cgroup_path = let
+        controllers = split(readchomp("/proc/self/cgroup"), '\n')
+        length(controllers) == 1 || return missing
+        unified_controller = split(controllers[1], ':')
+        unified_controller[1] == "0" || return missing
+        unified_controller[3]
+    end
+
+    # find out which controllers are delegated to our cgroup
+    controllers_path = joinpath("/sys/fs/cgroup", cgroup_path[2:end], "cgroup.controllers")
+    if !ispath(controllers_path)
+        controllers_path = joinpath("/sys/fs/cgroup/unified", cgroup_mount[2:end], "cgroup.controllers")
+    end
+    ispath(controllers_path) || return missing
+    return split(readchomp(controllers_path))
+end
+function get_cgroup_controllers()
+    if !isassigned(cgroup_controllers)
+        cgroup_controllers[] = coalesce(_get_cgroup_controllers(), [])
+    end
+    return cgroup_controllers[]
+end

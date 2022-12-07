@@ -123,14 +123,14 @@ function build_oci_config(sandbox::Sandbox, cmd::Cmd; terminal::Bool)
     linux["resources"]["devices"] = [
         (allow=false, access="rwm")
     ]
-    if !isempty(sandbox.cpus)
+    if !isempty(sandbox.cpus) && "cpuset" in get_cgroup_controllers()
         linux["resources"]["cpu"] = (; cpus=join(sandbox.cpus, ","))
     end
-    if sandbox.memory != 0
+    if sandbox.memory != 0 && "memory" in get_cgroup_controllers()
         # the swap limit is memory+swap, so we disable swap by setting both identically
         linux["resources"]["memory"] = (; limit=sandbox.memory, swap=sandbox.memory)
     end
-    if sandbox.pids != 0
+    if sandbox.pids != 0 && "pids" in get_cgroup_controllers()
         linux["resources"]["pids"] = (; limit=sandbox.pids)
     end
     linux["namespaces"] = [
