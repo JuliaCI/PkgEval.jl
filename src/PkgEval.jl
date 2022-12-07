@@ -42,6 +42,28 @@ function __init__()
     global slow_list = get(packages, "slow", String[])
 
     global container_root = mktempdir(prefix="pkgeval_containers_")
+
+    # we only support unified cgroupv2
+    if isdir("/sys/fs/cgroup/unified")
+        @error "Unsupported hybdir cgroup v1/v2 setup detected; resource limits will not be enforced"
+    elseif isdir("/sys/fs/cgroup")
+        minfo = mount_info("/sys/fs/cgroup")
+        if minfo === nothing
+            @error "Failed to determine cgroup filesystem type; resource limits will not be enforced"
+        elseif minfo.type != "cgroup2"
+            @error "Unsupported cgroup type, only unified cgroupv2 is supported; resource limits will not be enforced"
+        else
+            controllers = get_cgroup_controllers()
+            "cpuset" in controllers ||
+                @error "No access to cpuset cgroup controller; CPU resource limits will not be enforced"
+            "memory" in controllers ||
+                @error "No access to memory cgroup controller; memory resource limits will not be enforced"
+            "pids" in controllers ||
+                @error "No access to pids cgroup controller; process limits will not be enforced"
+        end
+    else
+        @error "No cgroup set-up detected; resource limits will not be enforced"
+    end
 end
 
 end # module

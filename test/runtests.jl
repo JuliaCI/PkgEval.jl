@@ -13,6 +13,9 @@ end
 buildflags = get(ENV, "BUILDFLAGS", "")
 @testset "PkgEval using Julia $julia" begin
 
+cgroup_controllers = PkgEval.get_cgroup_controllers()
+@info "Available cgroup controllers: $(isempty(cgroup_controllers) ? "none" : join(cgroup_controllers, ", "))"
+
 @testset "Configuration" begin
     # default object: nothing modified
     x = Configuration()
