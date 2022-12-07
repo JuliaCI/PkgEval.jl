@@ -766,26 +766,35 @@ function verify_compilecache(compilecache; show_status::Bool=true)
     end
 end
 
-function remove_uncacheable_packages(registry, packages; show_status::Bool=true)
-    # collect directories we need to check
-    jobs = []
-    registry_instance = Pkg.Registry.RegistryInstance(registry)
-    for (_, pkg) in registry_instance
-        pkginfo = Registry.registry_info(pkg)
-        for (v, vinfo) in pkginfo.version_info
-            tree_hash = vinfo.git_tree_sha1
-            for slug in (Base.version_slug(pkg.uuid, tree_hash),
-                         Base.version_slug(pkg.uuid, tree_hash, 4))
-                path = joinpath(packages, pkg.name, slug)
-                ispath(path) || continue
-                push!(jobs, (path, pkg.name, tree_hash))
-            end
+function remove_uncacheable_packages(registry, package_dir; show_status::Bool=true)
+    removals = String[]
+
+    # only direct entries in the package cache are package directories
+    packages = String[]
+    for package in readdir(package_dir)
+        path = joinpath(package_dir, package)
+        if isdir(path)
+            push!(packages, package)
+        else
+            @debug "A broken package entry was found: $path"
+            push!(removals, path)
         end
     end
 
-    # determine which ones need to be removed.
-    # this is expensive, so use multiple threads.
-    removals = []
+    # below that, we should only have directories that are 4 or 5-char slugs
+    jobs = []
+    for package in packages, slug in readdir(joinpath(package_dir, package))
+        path = joinpath(package_dir, package, slug)
+        tree_hash = lookup_package_slug(registry, package, slug)
+        if isdir(path) && 4 <= length(slug) <= 5 && tree_hash !== nothing
+            push!(jobs, (path, package, tree_hash))
+        else
+            @debug "A broken slug directory was found: $path"
+            push!(removals, path)
+        end
+    end
+
+    # now verify the tree hashes of each package/slug directory
     removals_lock = ReentrantLock()
     if show_status
         isinteractive() || println("Verifying packages...")
