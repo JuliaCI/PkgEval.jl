@@ -219,6 +219,27 @@ function evaluate_script(config::Configuration, script::String, args=``;
     return (; log, status, reason)
 end
 
+const common_script = raw"""
+    # simplified version of cpu_time in utils.jl (doesn't need to
+    # scan for children, as we use this from the parent when idle)
+    function cpu_time(pid=getpid())
+        stats = read("/proc/$pid/stat", String)
+
+        m = match(r"^(\d+) \((.+)\) (.+)", stats)
+        @assert m !== nothing "Invalid contents for /proc/$pid/stat: $stats"
+        fields = [[m.captures[1], m.captures[2]]; split(m.captures[3])]
+        utime = parse(Int, fields[14])
+        stime = parse(Int, fields[15])
+        cutime = parse(Int, fields[16])
+        cstime = parse(Int, fields[17])
+
+        return (utime + stime + cutime + cstime) / Sys.SC_CLK_TCK
+    end
+
+    using Dates
+    elapsed(t) = "$(round(cpu_time() - t; digits=2))s"
+"""
+
 """
     evaluate_test(config::Configuration, pkg; use_cache=true, kwargs...)
 
@@ -276,16 +297,11 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     output_dir = mktempdir(prefix="pkgeval_$(pkg.name)_output_")
     mounts["/output:rw"] = output_dir
 
-    common_script = raw"""
-        using Dates
-        elapsed(t) = "$(round(time() - t; digits=2))s"
-
+    script = "begin\n" * common_script * raw"""
         using Pkg
         using Base: UUID
         package_spec = eval(Meta.parse(ARGS[1]))
-    """
 
-    script = "begin\n" * common_script * raw"""
         println("Package evaluation of $(package_spec.name) started at ", now(UTC))
 
         println()
@@ -294,7 +310,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
         print("\n\n", '#'^80, "\n# Installation\n#\n\n")
 
-        t0 = time()
+        t0 = cpu_time()
         try
             Pkg.add(; package_spec...)
 
@@ -332,7 +348,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             println("Tests will be executed under rr.\n")
         end
 
-        t1 = time()
+        t1 = cpu_time()
         try
             if bugreporting
                 Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
@@ -345,7 +361,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             println("\nTesting failed after $(elapsed(t1))\n")
             rethrow()
         finally
-            write("/output/duration", repr(time()-t1))
+            write("/output/duration", repr(cpu_time()-t1))
         end""" * "\nend"
 
     args = `$(repr(package_spec_tuple(pkg)))`
@@ -455,8 +471,12 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     # pack-up our rr trace. this is expensive, so we only do it for failures.
     if config.rr && status == :crash
         rr_script = "begin\n" * common_script * raw"""
+            using Pkg
+            using Base: UUID
+            package_spec = eval(Meta.parse(ARGS[1]))
+
             print("\n\n", '#'^80, "\n# Bug reporting\n#\n\n")
-            t2 = time()
+            t0 = cpu_time()
 
             try
                 # use a clean environment, or BugReporting's deps could
@@ -468,9 +488,9 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
                 trace_dir = BugReporting.default_rr_trace_dir()
                 trace = BugReporting.find_latest_trace(trace_dir)
                 BugReporting.compress_trace(trace, "/output/$(package_spec.name).tar.zst")
-                println("\nBugReporting completed after $(elapsed(t2))")
+                println("\nBugReporting completed after $(elapsed(t0))")
             catch err
-                println("\nBugReporting failed after $(elapsed(t2))")
+                println("\nBugReporting failed after $(elapsed(t0))")
                 showerror(stdout, err)
                 Base.show_backtrace(stdout, catch_backtrace())
                 println()
@@ -542,17 +562,12 @@ is performed in an Arch Linux container.
 """
 function evaluate_compiled_test(config::Configuration, pkg::Package;
                                 use_cache::Bool=true, kwargs...)
-    common_script = raw"""
-        using Dates
-        elapsed(t) = "$(round(time() - t; digits=2))s"
-
+    script = "begin\n" * common_script * raw"""
         using Pkg
         using Base: UUID
         package_spec = eval(Meta.parse(ARGS[1]))
         sysimage_path = ARGS[2]
-    """
 
-    script = "begin\n" * common_script * raw"""
         println("Package compilation of $(package_spec.name) started at ", now(UTC))
 
         println()
