@@ -70,3 +70,31 @@ function _get_packages(config::Configuration)
 
     return packages
 end
+
+# look up the tree hash of a package/slug combination.
+# this is useful for verifying the package store on disk.
+# returns nothing if the combination wasn't found in the registry.
+function lookup_package_slug(registry::String, package::String, slug::String)
+    if haskey(registry_package_slug_cache, registry)
+        cache = registry_package_slug_cache[registry]
+    else
+        cache = Dict{Tuple{String,String}, Base.SHA1}()
+
+        registry_instance = Pkg.Registry.RegistryInstance(registry)
+        for (_, pkg) in registry_instance
+            pkginfo = Registry.registry_info(pkg)
+            for (v, vinfo) in pkginfo.version_info
+                tree_hash = vinfo.git_tree_sha1
+                for slug in (Base.version_slug(pkg.uuid, tree_hash),
+                             Base.version_slug(pkg.uuid, tree_hash, 4))
+                    cache[(pkg.name, slug)] = tree_hash
+                end
+            end
+        end
+
+        registry_package_slug_cache[registry] = cache
+    end
+
+    get(cache, (package, slug), nothing)
+end
+const registry_package_slug_cache = Dict()
