@@ -309,7 +309,14 @@ function _get_cgroup_controllers()
         controllers_path = joinpath("/sys/fs/cgroup/unified", cgroup_mount[2:end], "cgroup.controllers")
     end
     ispath(controllers_path) || return missing
-    return split(readchomp(controllers_path))
+    controllers = split(readchomp(controllers_path))
+
+    # XXX: on GH:A, we fail access the cpuset cgroup, even though it looks available
+    if haskey(ENV, "GITHUB_ACTIONS")
+        filter!(!isequal("cpuset"), controllers)
+    end
+
+    return controllers
 end
 function get_cgroup_controllers()
     if !isassigned(cgroup_controllers)
