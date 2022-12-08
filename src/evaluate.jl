@@ -291,13 +291,13 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         depot_dir = joinpath(config.home, ".julia")
 
         shared_compilecache = get_compilecache(config)
-        mounts[joinpath(depot_dir, "compiled")]        = shared_compilecache
+        mounts[joinpath(depot_dir, "compiled")] = shared_compilecache
 
         shared_packages = joinpath(storage_dir, "packages")
-        mounts[joinpath(depot_dir, "packages")*":rw"]  = shared_packages
+        mounts[joinpath(depot_dir, "packages")] = shared_packages
 
         shared_artifacts = joinpath(storage_dir, "artifacts")
-        mounts[joinpath(depot_dir, "artifacts")*":rw"] = shared_artifacts
+        mounts[joinpath(depot_dir, "artifacts")] = shared_artifacts
     end
 
     # structured output will be written to the /output directory. this is to avoid having to
