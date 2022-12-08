@@ -123,7 +123,8 @@ function build_oci_config(sandbox::Sandbox, cmd::Cmd; terminal::Bool)
     linux["resources"]["devices"] = [
         (allow=false, access="rwm")
     ]
-    if !isempty(sandbox.cpus) && "cpuset" in get_cgroup_controllers()
+    if !isempty(sandbox.cpus) && "cpuset" in get_cgroup_controllers() && !haskey(ENV, "GITHUB_ACTIONS")
+        # XXX: on GH:A, we fail access the cpuset cgroup, even though it looks available
         linux["resources"]["cpu"] = (; cpus=join(sandbox.cpus, ","))
     end
     if sandbox.memory != 0 && "memory" in get_cgroup_controllers()
