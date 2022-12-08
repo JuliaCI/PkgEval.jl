@@ -1102,7 +1102,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
         try
             wait(task)
         catch err
-            if isa(err, TaskFailedException)
+            while isa(err, TaskFailedException)
                 err = current_exceptions(err.task)[1].exception
             end
             isa(err, InterruptException) || rethrow()
