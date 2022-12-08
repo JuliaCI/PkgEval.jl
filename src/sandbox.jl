@@ -249,7 +249,7 @@ function setup_xvfb()
                 for disp in 1:10
                     proc = sandboxed_cmd(config, `/usr/bin/Xvfb :$disp -screen 0 1024x768x16`;
                                          stdin=devnull, stdout=devnull, stderr=devnull,
-                                         mounts, wait=false, name="xvfb-$(randstring())")
+                                         mounts, wait=false, name="xvfb-$(randstring(rng))")
                     sleep(1)
                     if process_running(proc)
                         atexit() do
@@ -279,7 +279,7 @@ abs2rel(path) = path[1] == '/' ? path[2:end] : path
 function setup_generic_sandbox(config::Configuration, cmd::Cmd; workdir::String,
                                env::Dict{String,String}=Dict{String,String}(),
                                mounts::Dict{String,String}=Dict{String,String}(),
-                               name::String=randstring(32))
+                               name::String=randstring(rng, 32))
     rootfs = create_rootfs(config)
 
     # make sure certain common directories are writable
