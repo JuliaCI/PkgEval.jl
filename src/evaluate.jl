@@ -274,7 +274,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         return evaluate_compiled_test(config, pkg; use_cache, kwargs...)
     end
 
-    name = "$(pkg.name)-$(config.name)-$(randstring())"
+    name = "$(pkg.name)-$(config.name)-$(randstring(rng))"
 
     # grant some packages more test time
     if pkg.name in slow_list

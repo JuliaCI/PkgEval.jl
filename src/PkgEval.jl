@@ -1,6 +1,6 @@
 module PkgEval
 
-using Pkg, LazyArtifacts
+using Pkg, LazyArtifacts, Random
 import Pkg.TOML
 import GitHub
 using Base: UUID
@@ -16,6 +16,10 @@ using s5cmd_jll: s5cmd
 
 skip_list = String[]
 skip_rr_list = String[]
+
+# due to containers/crun#1092, we really need to use unique container names,
+# and not reuse, e.g., when running in a testset
+const rng = MersenneTwister()
 
 include("types.jl")
 include("registry.jl")
@@ -64,6 +68,8 @@ function __init__()
     else
         @error "No cgroup set-up detected; resource limits will not be enforced"
     end
+
+    Random.seed!(rng)
 end
 
 end # module
