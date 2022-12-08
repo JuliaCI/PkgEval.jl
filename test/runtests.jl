@@ -129,21 +129,57 @@ end
     end
 end
 
-@testset "time and output limits" begin
-    # timeouts
-    let results = evaluate([Configuration(config; time_limit=1.)],
+@testset "execution limits" begin
+    @testset "time limit" begin
+        results = evaluate([Configuration(config; time_limit=1.)],
                            [Package(; name="Example")];
                            validate=false, retry=false)
         @test size(results, 1) == 1
         @test results[1, :status] == :kill && results[1, :reason] == :time_limit
     end
 
-    # log limit
-    let results = evaluate([Configuration(config; log_limit=1)],
+    @testset "log limit" begin
+        results = evaluate([Configuration(config; log_limit=1)],
                            [Package(; name="Example")];
                            validate=false, retry=false)
         @test size(results, 1) == 1
         @test results[1, :status] == :kill && results[1, :reason] == :log_limit
+    end
+
+    if "cpuset" in PkgEval.get_cgroup_controllers() && Sys.CPU_THREADS > 1
+    @testset "cpu" begin
+        let config = Configuration(config; cpus=[0])
+            cpu_threads = parse(Int, chomp(sprint(stdout->PkgEval.evaluate_script(config, "println(Sys.CPU_THREADS)"; stdout))))
+            @test cpu_threads == 1
+        end
+    end
+    end
+
+    if "pids" in PkgEval.get_cgroup_controllers()
+    @testset "process" begin
+        let config = Configuration(config; process_limit=1)
+            str = chomp(sprint(stdout->PkgEval.sandboxed_cmd(config, `/bin/sh -c "echo foo"`; stdout)))
+            @test str == "foo"
+
+            str = sprint() do stderr
+                proc = PkgEval.sandboxed_cmd(config, `/bin/sh -c "/bin/sh -c 'echo bar'"`; stderr, wait=false)
+                @test !success(proc)
+            end |> chomp
+            @test contains(str, "Cannot fork")
+        end
+    end
+    end
+
+    if "memory" in PkgEval.get_cgroup_controllers()
+    @testset "memory" begin
+        let config = Configuration(config; memory_limit=64*2^20)
+            result = PkgEval.evaluate_script(config, """begin
+                    x = Vector{UInt8}(undef, 128*2^20)
+                    x .= 1  # linux overcommits
+                end""")
+            @test result.status == :kill && result.reason == :resource_limit
+        end
+    end
     end
 end
 
