@@ -12,7 +12,6 @@ end
 Base.@kwdef struct Sandbox
     name::String
     rootfs::String
-    runtime::Symbol=:crun
     env::Dict{String,String}=Dict{String,String}()
     mounts::Array{Pair{String,AbstractMount}}=Pair{String,AbstractMount}[]
     cpus::Vector{Int}=String[]
@@ -91,14 +90,7 @@ function build_oci_config(sandbox::Sandbox, cmd::Cmd; terminal::Bool)
     process["env"] = cmd′.env
     process["args"] = cmd′.exec
     process["cwd"] = isempty(cmd.dir) ? sandbox.cwd : cmd.dir
-    process["user"] = if sandbox.runtime == :runc
-        @warn "runc does not support non-root users in rootless sandboxes" maxlog=1
-        # XXX: this also breaks building Julia, as tar-as-root tries to chown files.
-        #      workaround: TAR_OPTIONS="--no-same-owner --no-same-permissions"
-        (; uid=0, gid=0)
-    else
-        (; sandbox.uid, sandbox.gid)
-    end
+    process["user"] = (; sandbox.uid, sandbox.gid)
     ## POSIX stuff
     process["rlimits"] = [
         (type="RLIMIT_NOFILE", hard=1024, soft=1024),
@@ -179,16 +171,7 @@ function run_sandbox(config::Configuration, setup, args...; workdir=nothing, wai
         JSON3.write(io, sandbox_config)
     end
 
-    sandbox_cmd = if sandbox.runtime === :crun
-        `$(crun()) --systemd-cgroup`
-    elseif sandbox.runtime === :runc
-        # runc always wants to create its own cgroups, so requires delegation:
-        # $ systemd-run --user --scope -p Delegate=yes julia ...
-        `$(runc())`
-    else
-        error("Unknown runtime: $(sandbox.runtime)")
-    end
-    proc = run(pipeline(`$sandbox_cmd --root $(container_root) run --bundle $bundle_path $(sandbox.name)`;
+    proc = run(pipeline(`$(crun()) --systemd-cgroup --root $(container_root) run --bundle $bundle_path $(sandbox.name)`;
                         stdin, stderr, stdout); wait)
 
     # XXX: once `crun` support `stats` like `runc`, use that for resource usage reporting
@@ -389,43 +372,4 @@ end
 
 function sandboxed_julia(config::Configuration, args=``; stdout=stdout, kwargs...)
     run_sandbox(config, setup_julia_sandbox, args; stdout, kwargs...)
-end
-
-
-## dependencies
-
-# TODO: replace with JLLs
-
-function crun()
-    version = v"1.7.2"
-    filename = if Sys.islinux() && Sys.ARCH == :x86_64
-        "crun-$(version)-linux-amd64"
-    elseif Sys.islinux() && Sys.ARCH == :aarch64
-        "crun-$(version)-linux-arm64"
-    else
-        error("Unsupported platform")
-    end
-    path = joinpath(download_dir, filename)
-    if !isfile(path)
-        Downloads.download("https://github.com/containers/crun/releases/download/$version/$filename", path)
-        chmod(path, 0o755)
-    end
-    `$(path)`
-end
-
-function runc()
-    version = v"1.1.4"
-    filename = if Sys.islinux() && Sys.ARCH == :x86_64
-        "runc.amd64"
-    elseif Sys.islinux() && Sys.ARCH == :aarch64
-        "runc.arm64"
-    else
-        error("Unsupported platform")
-    end
-    path = joinpath(download_dir, filename)
-    if !isfile(path)
-        Downloads.download("https://github.com/opencontainers/runc/releases/download/v$version/$filename", path)
-        chmod(path, 0o755)
-    end
-    `$(path)`
 end

@@ -10,9 +10,9 @@ download_dir = ""
 storage_dir = ""
 const storage_lock = ReentrantLock()
 
-using rsync_jll: rsync
-
-using s5cmd_jll: s5cmd
+using rsync_jll
+using s5cmd_jll
+using crun_jll
 
 skip_list = String[]
 skip_rr_list = String[]
