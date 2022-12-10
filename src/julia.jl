@@ -5,15 +5,15 @@ using Base.BinaryPlatforms: Platform, triplet
 
 const VERSIONS_URL = "https://julialang-s3.julialang.org/bin/versions.json"
 
-function get_julia_nightly()
+function get_julia_nightly(config::Configuration)
     @debug "Downloading nightly build..."
 
-    url = if Sys.islinux() && Sys.ARCH == :x86_64
+    url = if Sys.islinux() && config.arch == "x86_64"
         "https://julialangnightlies-s3.julialang.org/bin/linux/x64/julia-latest-linux64.tar.gz"
-    elseif Sys.islinux() && Sys.ARCH == :i686
+    elseif Sys.islinux() && config.arch == "i686"
         "https://julialangnightlies-s3.julialang.org/bin/linux/x86/julia-latest-linux32.tar.gz"
-    elseif Sys.islinux() && Sys.ARCH == :aarch64
-        "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/julia-latest-linuxaarch64.tar.gz"
+    elseif Sys.islinux() && config.arch == "aarch64"
+        "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/julia-latest-linux-aarch64.tar.gz"
     else
         error("Don't know how to get nightly build for $(Sys.MACHINE)")
     end
@@ -32,7 +32,7 @@ function get_julia_release(config::Configuration)
 
     # special case: nightly
     if config.julia == "nightly"
-        return get_julia_nightly()
+        return get_julia_nightly(config)
     end
 
     # in all other cases, the spec needs to be a valid version number
@@ -51,10 +51,8 @@ function get_julia_release(config::Configuration)
     files = versions[string(version_spec)]["files"]
 
     # find a file entry for our machine
-    platform = parse(Platform, Sys.MACHINE) # don't use Sys.MACHINE directly as it may
-                                            # contain unnecessary tags, like -pc-
     i = findfirst(files) do file
-        file["triplet"] == triplet(platform)
+        file["triplet"] == "$(config.arch)-linux-gnu"
     end
     if isnothing(i)
         @debug "Release unavailable for $(Sys.MACHINE)"
@@ -82,6 +80,11 @@ function get_julia_build(config)
         return nothing
     end
 
+    if config.arch != String(Sys.ARCH)
+        @error "Cross compilation of Julia has not been implemented yet"
+        return nothing
+    end
+
     # get statuses
     statuses = first(GitHub.statuses(repo, ref; auth=github_auth()))
     status_idx = findfirst(status->status.context == "Build", statuses)
@@ -94,11 +97,11 @@ function get_julia_build(config)
     # get Buildkite job
     job = BuildkiteJob(string(status.target_url))
     ## navigate to the relevant build
-    job = if Sys.islinux() && Sys.ARCH == :x86_64
+    job = if Sys.islinux() && config.arch == "x86_64"
         PkgEval.find_sibling_buildkite_job(job, "build_x86_64-linux-gnu")
-    elseif Sys.islinux() && Sys.ARCH == :i686
+    elseif Sys.islinux() && config.arch == "i686"
         PkgEval.find_sibling_buildkite_job(job, "build_i686-linux-gnu")
-    elseif Sys.islinux() && Sys.ARCH == :aarch64
+    elseif Sys.islinux() && config.arch == "aarch64"
         PkgEval.find_sibling_buildkite_job(job, "build_aarch64-linux-gnu")
     else
         @debug "No Buildkite job found for $repo#$ref on $(Sys.MACHINE)"
@@ -125,19 +128,21 @@ function get_julia_build(config)
 end
 
 # to get closer to CI-generated binaries, use a multiversioned build
-const default_cpu_target = if Sys.ARCH == :x86_64
-    "generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)"
-elseif Sys.ARCH == :i686
-    "pentium4;sandybridge,-xsaveopt,clone_all"
-elseif Sys.ARCH == :armv7l
-    "armv7-a;armv7-a,neon;armv7-a,neon,vfp4"
-elseif Sys.ARCH == :aarch64
-    "generic;cortex-a57;thunderx2t99;carmel"
-elseif Sys.ARCH == :powerpc64le
-    "pwr8"
-else
-    @warn "Cannot determine JULIA_CPU_TARGET for unknown architecture $(Sys.ARCH)"
-    ""
+function get_cpu_target(config)
+    if config.arch == "x86_64"
+        "generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)"
+    elseif config.arch == "i686"
+        "pentium4;sandybridge,-xsaveopt,clone_all"
+    elseif config.arch == "armv7l"
+        "armv7-a;armv7-a,neon;armv7-a,neon,vfp4"
+    elseif config.arch == "aarch64"
+        "generic;cortex-a57;thunderx2t99;carmel"
+    elseif config.arch == "powerpc64le"
+        "pwr8"
+    else
+        @warn "Cannot determine JULIA_CPU_TARGET for unknown architecture $(config.arch)"
+        ""
+    end
 end
 
 """
@@ -183,7 +188,7 @@ function build_julia!(config::Configuration, checkout::String)
         end
 
         if !any(startswith("JULIA_CPU_TARGET"), config.buildflags)
-            println(io, "JULIA_CPU_TARGET=$default_cpu_target")
+            println(io, "JULIA_CPU_TARGET=$(get_cpu_target(config))")
         end
     end
 
@@ -259,7 +264,7 @@ const julia_lock = ReentrantLock()
 const julia_cache = Dict()
 function install_julia(config::Configuration)
     lock(julia_lock) do
-        key = (config.julia, config.buildflags, config.buildcommands)
+        key = (config.julia, config.arch, config.buildflags, config.buildcommands)
         dir = get(julia_cache, key, nothing)
         if dir === nothing || !isdir(dir)
             julia_cache[key] = _install_julia(config)

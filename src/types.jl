@@ -43,8 +43,10 @@ Base.@kwdef struct Configuration
     registry::Setting{String} = Default("master")
 
     # rootfs properties
-    ## the name of the rootfs artifact to use (needs to be available from Artifacts.toml)
+    ## the name and architecture of the rootfs artifact to use
+    ## (needs to be available from Artifacts.toml)
     rootfs::Setting{String} = Default("debian")
+    arch::Setting{String} = Default(String(Sys.ARCH))
     ## properties of the environment wherein the tests are run
     uid::Setting{Int} = Default(1000)
     user::Setting{String} = Default("pkgeval")
@@ -98,7 +100,7 @@ function Base.show(io::IO, cfg::Configuration)
     println(io)
 
     println(io, "  # Rootfs properties")
-    show_setting.(["rootfs", "uid", "user", "gid", "group", "home"])
+    show_setting.(["rootfs", "arch", "uid", "user", "gid", "group", "home"])
     println(io)
 
     println(io, "  # Execution properties")

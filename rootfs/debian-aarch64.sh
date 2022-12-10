@@ -4,7 +4,7 @@ DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 version="bullseye"
 date=$(date +%Y%m%d)
-arch=$(uname -m)
+arch="aarch64"
 
 rootfs=$(mktemp --directory --tmpdir="$DIR")
 
@@ -22,11 +22,16 @@ package_list=$(join_by , ${packages[@]})
 
 sudo debootstrap --variant=minbase \
                  --include=$package_list \
+                 --arch=arm64 \
+                 --foreign \
                  $version "$rootfs"
+sudo cp /usr/bin/qemu-aarch64-static "$rootfs"/usr/bin
+sudo chroot "$rootfs" /debootstrap/debootstrap --second-stage
 
 # Clean some files
 sudo chroot "$rootfs" apt-get clean
 sudo rm -rf "$rootfs"/var/lib/apt/lists/*
+sudo rm "$rootfs"/usr/bin/qemu-aarch64-static
 
 # Remove special `dev` files
 sudo rm -rf "$rootfs"/dev/*
