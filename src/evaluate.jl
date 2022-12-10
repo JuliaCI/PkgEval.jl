@@ -445,7 +445,8 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
                 occursin("Resolving timed out after", log) ||
                 occursin("Could not download", log) ||
                 occursin(r"Error: HTTP/\d \d+", log) ||
-                occursin("Temporary failure in name resolution", log)
+                occursin("Temporary failure in name resolution", log) ||
+                occursin("listen: address already in use", log)
             :network
         elseif occursin("ERROR: LoadError: syntax", log)
             :syntax
