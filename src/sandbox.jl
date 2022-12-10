@@ -68,7 +68,8 @@ function setup_xvfb()
                 # (UNIX sockets aren't unique across containers)
                 for disp in 1:10
                     proc = sandboxed_cmd(config, `/usr/bin/Xvfb :$disp -screen 0 1024x768x16`;
-                                         mounts, wait=false, stdin=devnull)
+                                         stdin=devnull, stdout=devnull, stderr=devnull,
+                                         mounts, wait=false)
                     sleep(1)
                     if process_running(proc)
                         atexit() do
