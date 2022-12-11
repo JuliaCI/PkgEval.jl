@@ -321,6 +321,7 @@ function setup_generic_sandbox(config::Configuration, cmd::Cmd; workdir::String,
         isfile(joinpath(Qemu_static_jll.artifact_dir, "bin", "qemu-$(config.arch)")) ||
             error("QEMU is not available for target platform $(config.arch)")
         push!(sandbox_mounts, "/opt/qemu" => BindMount(Qemu_static_jll.artifact_dir, false))
+        env["QEMU"] = "true"
         cmd = `/opt/qemu/bin/qemu-$(config.arch) --execve $cmd`
     end
 

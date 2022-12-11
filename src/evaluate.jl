@@ -228,7 +228,13 @@ const common_script = raw"""
     # simplified version of cpu_time in utils.jl (doesn't need to
     # scan for children, as we use this from the parent when idle)
     function cpu_time()
-        stats = read("/proc/self/stat", String)
+        stats = if !haskey(ENV, "QEMU")
+            read("/proc/self/stat", String)
+        else
+            # HACK: qemu hijacks openat("/proc/self/stat"), returning mostly zeros.
+            # that doesn't apply to other processes reading our stats, though...
+            read(`cat /proc/1/stat`, String)
+        end
 
         m = match(r"^(\d+) \((.+)\) (.+)", stats)
         @assert m !== nothing "Invalid contents for /proc/self/stat: $stats"
