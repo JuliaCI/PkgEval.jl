@@ -291,6 +291,25 @@ end
     end
 end
 
+@testset "emulation" begin
+    arch = Sys.ARCH == :aarch64 ? "x86_64" : "aarch64"
+    config′ = Configuration(config; arch)
+
+    let
+        p = Pipe()
+        close(p.in)
+        PkgEval.sandboxed_julia(config′, `-e 'print(Sys.ARCH)'`; stdout=p.out)
+        @test read(p.out, String) == arch
+    end
+
+    let results = evaluate([config′], [Package(; name="Example")]; validate=false)
+        @test size(results, 1) == 1
+        @test results[1, :package] == "Example"
+        @test results[1, :version] isa VersionNumber
+        @test results[1, :status] == :ok
+    end
+end
+
 PkgEval.purge()
 
 end
