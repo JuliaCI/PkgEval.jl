@@ -315,6 +315,15 @@ function setup_generic_sandbox(config::Configuration, cmd::Cmd; workdir::String,
         push!(sandbox_mounts, "/tmp/.X11-unix" => BindMount(xvfb.socket, true))
     end
 
+    if config.arch != String(Sys.ARCH)
+        Qemu_static_jll.is_available() ||
+            error("QEMU is not available for host platform $(Sys.ARCH)")
+        isfile(joinpath(Qemu_static_jll.artifact_dir, "bin", "qemu-$(config.arch)")) ||
+            error("QEMU is not available for target platform $(config.arch)")
+        push!(sandbox_mounts, "/opt/qemu" => BindMount(Qemu_static_jll.artifact_dir, false))
+        cmd = `/opt/qemu/bin/qemu-$(config.arch) --execve $cmd`
+    end
+
     sandbox_config = Sandbox(; name, rootfs,
                              env, mounts=sandbox_mounts,
                              config.uid, config.gid, cwd=config.home,

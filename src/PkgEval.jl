@@ -12,6 +12,7 @@ const storage_lock = ReentrantLock()
 using rsync_jll
 using s5cmd_jll
 using crun_jll
+using Qemu_static_jll
 
 skip_list = String[]
 skip_rr_list = String[]
