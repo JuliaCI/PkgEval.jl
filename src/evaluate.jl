@@ -222,11 +222,11 @@ end
 const common_script = raw"""
     # simplified version of cpu_time in utils.jl (doesn't need to
     # scan for children, as we use this from the parent when idle)
-    function cpu_time(pid=getpid())
-        stats = read("/proc/$pid/stat", String)
+    function cpu_time()
+        stats = read("/proc/self/stat", String)
 
         m = match(r"^(\d+) \((.+)\) (.+)", stats)
-        @assert m !== nothing "Invalid contents for /proc/$pid/stat: $stats"
+        @assert m !== nothing "Invalid contents for /proc/self/stat: $stats"
         fields = [[m.captures[1], m.captures[2]]; split(m.captures[3])]
         utime = parse(Int, fields[14])
         stime = parse(Int, fields[15])
