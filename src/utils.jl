@@ -170,6 +170,9 @@ function cpu_time(pid)
         end
     end
 
+    # this shouldn't happen, but it does occasionally
+    isempty(stats) && return missing
+
     m = match(r"^(\d+) \((.+)\) (.+)", stats)
     if m === nothing
         throw(ArgumentError("Invalid contents for /proc/$pid/stat: $stats"))
