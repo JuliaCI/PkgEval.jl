@@ -17,6 +17,17 @@ function _create_rootfs(config::Configuration)
     else
         artifacts_toml = TOML.parsefile(joinpath(dirname(@__DIR__), "Artifacts.toml"))
         rootfs_toml = artifacts_toml[config.rootfs]
+        if rootfs_toml isa Vector
+            filter!(rootfs_toml) do toml
+                toml["arch"] == config.arch
+            end
+            if isempty(rootfs_toml)
+                error("No compatible No $(config.rootfs) rootfs found: None match architecture $(config.arch)")
+            end
+            rootfs_toml = only(rootfs_toml)
+        elseif rootfs_toml["arch"] != config.arch
+            error("No compatible No $(config.rootfs) rootfs found: Only available artifact is for architecture $(rootfs_toml["arch"]), not $(config.arch)")
+        end
 
         # download
         url = rootfs_toml["download"][1]["url"]
@@ -75,7 +86,7 @@ const rootfs_lock = ReentrantLock()
 const rootfs_cache = Dict()
 function create_rootfs(config::Configuration)
     lock(rootfs_lock) do
-        key = (config.rootfs, config.uid, config.user, config.gid, config.group, config.home)
+        key = (config.rootfs, config.arch, config.uid, config.user, config.gid, config.group, config.home)
         dir = get(rootfs_cache, key, nothing)
         if dir === nothing || !isdir(dir)
             rootfs_cache[key] = _create_rootfs(config)

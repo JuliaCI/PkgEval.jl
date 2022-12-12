@@ -1,28 +1,37 @@
-[alpine]
-git-tree-sha1 = "562768a40e93d27b79fbedf9cfa7883409d494ea"
-lazy = true
-
-    [[alpine.download]]
-    sha256 = "5a588162779446d8e5235bf6fc97588d1e197f44cf64e3a1f88ae828270456a7"
-    url = "https://github.com/alpinelinux/docker-alpine/raw/2f3c3015951938c521e752899a92ecd618e0c05b/x86_64/alpine-minirootfs-3.12.4-x86_64.tar.gz"
-
 [arch]
 git-tree-sha1 = "795db6086ddceb415b9dbd8a1f257836d05ac757"
+arch = "x86_64"
+os = "linux"
+lazy = true
 
     [[arch.download]]
     sha256 = "bcb82fb312f9bb92afd58c46835279370714b968010bacb5c6e42c1eab138f3e"
     url = "https://github.com/JuliaCI/PkgEval.jl/releases/download/v0.1/arch-devel-20220628.tar.xz"
 
-[debian]
-git-tree-sha1 = "db0b80b8f274edfbd13651cceb308df81925e974"
+[[debian]]
+git-tree-sha1 = "f1c48bc20862e2316594b2675e1851eb8a39b83a"
+arch = "x86_64"
+os = "linux"
 lazy = true
 
     [[debian.download]]
-    sha256 = "a5a1c9c7ea94e2036634978413a919fe97591c09983c45eb9ce5936b05e1c1c4"
-    url = "https://github.com/JuliaCI/PkgEval.jl/releases/download/v0.1/debian-bullseye-20221202.tar.xz"
+    sha256 = "3db856a6fcdbac490f51c26865b83d999b5bcaa69448533484928b2330e6dbef"
+    url = "https://github.com/JuliaCI/PkgEval.jl/releases/download/v0.1/debian_bullseye-x86_64-20221210.tar.xz"
+
+[[debian]]
+git-tree-sha1 = "28c33ef9a29d6c90a2508cdc5e21dc921d70597d"
+arch = "aarch64"
+os = "linux"
+lazy = true
+
+    [[debian.download]]
+    sha256 = "63d74a14aa97aac70b85279edd2a20d16f4f55fa004cdd113aef2fa9cf5fbfec"
+    url = "https://github.com/JuliaCI/PkgEval.jl/releases/download/v0.1/debian_bullseye-aarch64-20221210.tar.xz"
 
 [package_linux]
 git-tree-sha1 = "104eaa2e0f648fd5de41697329b544a92f3edabf"
+arch = "x86_64"
+os = "linux"
 lazy = true
 
     [[package_linux.download]]
@@ -31,6 +40,8 @@ lazy = true
 
 [xvfb]
 git-tree-sha1 = "01e9afe5832f719641deccb6ef0f707c03cd23c3"
+arch = "x86_64"
+os = "linux"
 lazy = true
 
     [[xvfb.download]]
