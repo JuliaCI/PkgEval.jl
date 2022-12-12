@@ -59,6 +59,7 @@ skip = [
 
 # packages that are incompatible with running under rr
 skip_rr = [
-    "Plots",                # hangs
-    "BinaryBuilderBase"     # requires 32-bit rr
+    "Plots",                        # hangs
+    "BinaryBuilderBase",            # requires 32-bit rr
+    "InterProcessCommunication",    # clock_settime unsupported by rr
 ]
