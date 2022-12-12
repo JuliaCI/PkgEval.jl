@@ -15,7 +15,8 @@ function get_julia_nightly(config::Configuration)
     elseif Sys.islinux() && config.arch == "aarch64"
         "https://julialangnightlies-s3.julialang.org/bin/linux/aarch64/julia-latest-linux-aarch64.tar.gz"
     else
-        error("Don't know how to get nightly build for $(Sys.MACHINE)")
+        @debug "Don't know how to get nightly build for $(config.arch)"
+        return nothing
     end
 
     # download and extract to a temporary directory, but don't keep the tarball
@@ -80,11 +81,6 @@ function get_julia_build(config)
         return nothing
     end
 
-    if config.arch != String(Sys.ARCH)
-        @error "Cross compilation of Julia has not been implemented yet"
-        return nothing
-    end
-
     # get statuses
     statuses = first(GitHub.statuses(repo, ref; auth=github_auth()))
     status_idx = findfirst(status->status.context == "Build", statuses)
@@ -104,7 +100,7 @@ function get_julia_build(config)
     elseif Sys.islinux() && config.arch == "aarch64"
         PkgEval.find_sibling_buildkite_job(job, "build_aarch64-linux-gnu")
     else
-        @debug "No Buildkite job found for $repo#$ref on $(Sys.MACHINE)"
+        @debug "No Buildkite job found for $repo#$ref on $(config.arch)"
         nothing
     end
     if job === nothing
@@ -167,6 +163,11 @@ function build_julia(config::Configuration)
     end
 end
 function build_julia!(config::Configuration, checkout::String)
+    if config.arch != String(Sys.ARCH)
+        @error "Cross compilation of Julia has not been implemented yet"
+        return nothing
+    end
+
     # Pre-populate the srccache and save the downloaded files
     srccache = joinpath(download_dir, "srccache")
     repo_srccache = joinpath(checkout, "deps", "srccache")
@@ -189,6 +190,10 @@ function build_julia!(config::Configuration, checkout::String)
 
         if !any(startswith("JULIA_CPU_TARGET"), config.buildflags)
             println(io, "JULIA_CPU_TARGET=$(get_cpu_target(config))")
+        end
+
+        if config.arch != String(Sys.ARCH)
+            println(io, "ARCH=$(config.arch)")
         end
     end
 

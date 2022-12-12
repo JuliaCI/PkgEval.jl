@@ -291,6 +291,8 @@ end
     end
 end
 
+if julia_release !== nothing
+# we don't suppot cross-compilation yet
 @testset "emulation" begin
     arch = Sys.ARCH == :aarch64 ? "x86_64" : "aarch64"
     config′ = Configuration(config; arch)
@@ -308,6 +310,7 @@ end
         @test results[1, :version] isa VersionNumber
         @test results[1, :status] == :ok
     end
+end
 end
 
 PkgEval.purge()
