@@ -355,10 +355,17 @@ function setup_julia_sandbox(config::Configuration, args=``;
 
     # restrict resource usage
     if !isempty(config.cpus)
-        env["JULIA_CPU_THREADS"] = string(length(config.cpus)) # JuliaLang/julia#35787
-        env["OPENBLAS_NUM_THREADS"] = string(length(config.cpus)) # defaults to Sys.CPU_THREADS
-        env["JULIA_NUM_PRECOMPILE_TASKS"] = string(length(config.cpus)) # defaults to Sys.CPU_THREADS
+        # we might not always have CPU limiting capabilities (e.g. JuliaLang/julia#35787),
+        # so also instruct Julia to limit the number of threads it thinks are available
+        env["JULIA_CPU_THREADS"] = string(length(config.cpus))
+
+        # these should default to Sys.CPU_THREADS, but it can't hurt to be explicit
+        env["OPENBLAS_NUM_THREADS"] = string(length(config.cpus))
+        env["JULIA_NUM_PRECOMPILE_TASKS"] = string(length(config.cpus))
     end
+
+    # configure threads
+    env["JULIA_NUM_THREADS"] = string(config.threads)
 
     setup_generic_sandbox(config, `$cmd $(Cmd(config.julia_flags)) $args`;
                           env, mounts, kwargs...)

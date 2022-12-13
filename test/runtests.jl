@@ -170,13 +170,31 @@ end
         @test results[1, :status] == :kill && results[1, :reason] == :log_limit
     end
 
-    if "cpuset" in PkgEval.get_cgroup_controllers() && Sys.CPU_THREADS > 1
+    if "cpuset" in PkgEval.get_cgroup_controllers()
     @testset "cpu" begin
         let config = Configuration(config; cpus=[0])
-            cpu_threads = parse(Int, chomp(sprint(stdout->PkgEval.evaluate_script(config, "println(Sys.CPU_THREADS)"; stdout))))
+            cpu_threads = parse(Int, chomp(sprint(stdout->PkgEval.sandboxed_cmd(config, `/bin/sh -c "nproc"`; stdout))))
             @test cpu_threads == 1
         end
     end
+    end
+
+    # not really a cgroup resource constraint, but it fits here nicely
+    @testset "threads" begin
+        let config = Configuration(config; cpus=[0])
+            cpu_threads = parse(Int, chomp(sprint(stdout->PkgEval.evaluate_script(config, "println(Sys.CPU_THREADS)"; stdout))))
+            @test cpu_threads == 1
+
+            julia_threads = parse(Int, chomp(sprint(stdout->PkgEval.evaluate_script(config, "println(Threads.nthreads())"; stdout))))
+            @test julia_threads == 1
+        end
+        let config = Configuration(config; cpus=[0], threads=8)
+            cpu_threads = parse(Int, chomp(sprint(stdout->PkgEval.evaluate_script(config, "println(Sys.CPU_THREADS)"; stdout))))
+            @test cpu_threads == 1
+
+            julia_threads = parse(Int, chomp(sprint(stdout->PkgEval.evaluate_script(config, "println(Threads.nthreads())"; stdout))))
+            @test julia_threads == 8
+        end
     end
 
     if "pids" in PkgEval.get_cgroup_controllers()

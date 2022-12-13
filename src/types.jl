@@ -69,8 +69,9 @@ Base.@kwdef struct Configuration
     ## a list of environment variables to set in the sandbox
     env::Setting{Vector{String}} = Default(String[])
     ## a list of CPUs to restrict the Julia process to (or empty if unconstrained).
-    ## if set, JULIA_CPU_THREADS will also be set to a number equaling the number of CPUs.
     cpus::Setting{Vector{Int}} = Default(Int[])
+    ## how many threads the Julia process should use
+    threads::Setting{Int} = Default(1)
     ## whether to spawn a virtual X server and expose that to the sandbox
     xvfb::Setting{Bool} = Default(true)
     ## whether to run under record-replay (rr). traces will be uploaded to AWS S3, so you
@@ -118,7 +119,7 @@ function Base.show(io::IO, cfg::Configuration)
     println(io)
 
     println(io, "  # Execution properties")
-    show_setting.(["env", "cpus", "xvfb", "rr", "precompile", "compiled", "process_limit"])
+    show_setting.(["env", "cpus", "threads", "xvfb", "rr", "precompile", "compiled", "process_limit"])
     show_setting.(["log_limit", "memory_limit"], Base.format_bytes)
     show_setting.(["time_limit", "compile_time_limit"], durationstring)
 
