@@ -413,20 +413,22 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         if occursin("GC error (probable corruption)", log)
             status = :crash
             reason = :gc_corruption
-        elseif occursin(r"signal \(.+\): Segmentation fault", log)
-            status = :crash
-            reason = :segfault
-        elseif occursin(r"signal \(.+\): Abort", log)
-            status = :crash
-            reason = :abort
         elseif occursin("Unreachable reached", log)
             status = :crash
             reason = :unreachable
         elseif occursin("Internal error: encountered unexpected error in runtime", log) ||
-            occursin("Internal error: stack overflow in type inference", log) ||
-            occursin("Internal error: encountered unexpected error during compilation", log)
+               occursin("Internal error: stack overflow in type inference", log) ||
+               occursin("Internal error: encountered unexpected error during compilation", log)
             status = :crash
             reason = :internal
+        elseif occursin(r"signal \(.+\): Abort", log) ||                # sigdie handler
+               occursin("(received signal: 6)", log)                    # Pkg log
+            status = :crash
+            reason = :abort
+        elseif occursin(r"signal \(.+\): Segmentation fault", log) ||   # sigdie handler
+               occursin("(received signal: 11)", log)                   # Pkg log
+            status = :crash
+            reason = :segfault
         end
     end
     ## in other cases we look at the log to determine a failure reason
