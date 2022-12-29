@@ -308,14 +308,12 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         using InteractiveUtils
         versioninfo()
 
+
         print("\n\n", '#'^80, "\n# Installation\n#\n\n")
 
         t0 = cpu_time()
         try
-            # disable precompilation to avoid precompiling with the wrong options
-            withenv("JULIA_PKG_PRECOMPILE_AUTO" => false) do
-                Pkg.add(; package_spec...)
-            end
+            Pkg.add(; package_spec...)
 
             println("\nInstallation completed after $(elapsed(t0))")
             write("/output/installed", repr(true))
@@ -330,6 +328,31 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
                 version = Pkg.dependencies()[package_spec.uuid].version
                 write("/output/version", repr(version))
             end
+        end
+
+
+        print("\n\n", '#'^80, "\n# Precompilation\n#\n\n")
+
+        # we run with JULIA_PKG_PRECOMPILE_AUTO=0 to avoid precompiling on Pkg.add,
+        # because we can't use the generated images for Pkg.test which uses different
+        # options (i.e., --check-bounds=yes). however, to get accurate test timings,
+        # we *should* precompile before running tests, so we do that here manually.
+
+        t0 = cpu_time()
+        try
+            run(```$(Base.julia_cmd())
+                   --check-bounds=yes
+                   -e 'using Pkg
+                       Pkg.activate(; temp=true)
+                       Pkg.add("TestEnv")
+                       using TestEnv
+                       Pkg.activate()
+                       TestEnv.activate(ARGS[1])
+                       Pkg.precompile()' $(package_spec.name)```)
+
+            println("\nPrecompilation completed after $(elapsed(t0))")
+        catch
+            println("\nPrecompilation failed after $(elapsed(t0))\n")
         end
 
 
@@ -351,7 +374,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             println("Tests will be executed under rr.\n")
         end
 
-        t1 = cpu_time()
+        t0 = cpu_time()
         try
             if bugreporting
                 Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
@@ -359,12 +382,12 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
                 Pkg.test(package_spec.name)
             end
 
-            println("\nTesting completed after $(elapsed(t1))")
+            println("\nTesting completed after $(elapsed(t0))")
         catch
-            println("\nTesting failed after $(elapsed(t1))\n")
+            println("\nTesting failed after $(elapsed(t0))\n")
             rethrow()
         finally
-            write("/output/duration", repr(cpu_time()-t1))
+            write("/output/duration", repr(cpu_time()-t0))
         end""" * "\nend"
 
     args = `$(repr(package_spec_tuple(pkg)))`
@@ -597,10 +620,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
 
         println("\nInstalling $(package_spec.name)...")
 
-        # disable precompilation to avoid precompiling with the wrong options
-        withenv("JULIA_PKG_PRECOMPILE_AUTO" => false) do
-            Pkg.add(; package_spec...)
-        end
+        Pkg.add(; package_spec...)
 
         println("\nCompleted after $(elapsed(t0))")
 

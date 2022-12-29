@@ -60,12 +60,15 @@ end
     end
 
     # try to compare the version info
-    if julia_release !== nothing
+    global julia_version
+    julia_version = let
         p = Pipe()
         close(p.in)
         PkgEval.sandboxed_julia(config, `-e 'print(VERSION)'`; stdout=p.out)
-        version_str = read(p.out, String)
-        @test parse(VersionNumber, version_str) == julia_release
+        VersionNumber(read(p.out, String))
+    end
+    if julia_release !== nothing
+        @test julia_version == julia_release
     end
 end
 
@@ -124,6 +127,20 @@ end
         @test results[1, :status] == :ok
         @test contains(results[1, :log], "https://github.com/JuliaLang/Example.jl#master")
     end
+end
+
+julia_version >= v"1.9-beta2" && @testset "package precompilation" begin
+    # find out where Example.jl will be precompiled
+    verstr = "v$(julia_version.major).$(julia_version.minor)"
+    compilecache = joinpath(PkgEval.get_compilecache(config), verstr, "Example")
+
+    # wipe the cache and evaluate Example.jl
+    rm(compilecache, recursive=true, force=true)
+    PkgEval.evaluate_test(config, Package(; name="Example"))
+
+    # make sure we only generated one package image
+    @test isdir(compilecache)
+    @test length(filter(endswith(".so"), readdir(compilecache))) == 1
 end
 
 @testset "time and output limits" begin
