@@ -343,11 +343,16 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             run(```$(Base.julia_cmd())
                    --check-bounds=yes
                    -e 'using Pkg
-                       Pkg.activate(; temp=true)
-                       Pkg.add("TestEnv")
-                       using TestEnv
-                       Pkg.activate()
-                       TestEnv.activate(ARGS[1])
+                       try
+                         Pkg.activate(; temp=true)
+                         Pkg.add("TestEnv")
+                         using TestEnv
+                         Pkg.activate()
+                         TestEnv.activate(ARGS[1])
+                       catch err
+                         @error "Failed to use TestEnv.jl; test dependencies will not be precompiled" exception=(err, catch_backtrace())
+                         Pkg.activate()
+                       end
                        Pkg.precompile()' $(package_spec.name)```)
 
             println("\nPrecompilation completed after $(elapsed(t0))")
