@@ -5,10 +5,48 @@ function get_registry(config::Configuration)
         dir = get(registry_cache, config.registry, nothing)
         if dir === nothing || !isdir(dir)
             repo, ref = parse_repo_spec(config.registry, "JuliaRegistries/General")
-            registry_cache[config.registry] = get_github_checkout(repo, ref)
+            registry_cache[config.registry] = if haskey(known_registries, repo) && ref == "master"
+                # if this is a known registry, try to get it from the configured pkg server
+                try
+                    uuid = known_registries[repo]
+                    get_pkgserver_registry(uuid)
+                catch err
+                    @error "Failed to get $repo registry from package server" exception=(err, catch_backtrace())
+                    get_github_checkout(repo, ref)
+                end
+            else
+                # otherwise, just grab it from GitHub directly
+                get_github_checkout(repo, ref)
+            end
         end
         return registry_cache[config.registry]
     end
+end
+
+# NOTE: we keep a list of known registries and their UUID so that we can defer to the
+#       package server without having to query the Registry.toml. This also makes it
+#       possible to fork a registry and run PkgEval on it without having to modify the UUID.
+const known_registries = Dict{String,UUID}(
+    "JuliaRegistries/General" => UUID("23338594-aafe-5451-b93e-139f81909106"),
+)
+
+function get_pkgserver_registry(requested_uuid)
+    pkgserver = get(ENV, "JULIA_PKG_SERVER", "pkg.julialang.org")
+
+    registries_url = "https://$pkgserver/registries"
+    registries = Dict(map(split(sprint(io->Downloads.download(registries_url, io)))) do url
+        _, prefix, uuid, hash = split(url, '/')
+        UUID(uuid) => String(url)
+    end)
+    haskey(registries, requested_uuid) || error("Configured package server does not host requested registry $requested_uuid")
+    registry = registries[requested_uuid]
+
+    registry_url = "https://$pkgserver/$(registry)"
+    dir = mktempdir(prefix="pkgeval_registry_")
+    Pkg.PlatformEngines.download_verify_unpack(registry_url, nothing, dir;
+                                               ignore_existence=true)
+
+    return dir
 end
 
 """
