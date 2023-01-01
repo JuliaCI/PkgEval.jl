@@ -302,11 +302,46 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         using Base: UUID
         package_spec = eval(Meta.parse(ARGS[1]))
 
+        bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true"
+
         println("Package evaluation of $(package_spec.name) started at ", now(UTC))
 
         println()
         using InteractiveUtils
         versioninfo()
+
+
+        print("\n\n", '#'^80, "\n# Set-up\n#\n\n")
+
+        # we install PkgEval dependencies in a separate environment
+        Pkg.activate("pkgeval"; shared=true)
+
+        deps = ["TestEnv"]
+
+        if bugreporting
+            push!(deps, "BugReporting")
+
+            # instead of using --bug-report, we'll load BugReporting manually, because
+            # by default we can't access any unrelated package from within the sandbox
+            # created by Pkg, resulting in re-installation and compilation of BugReporting.
+            open("bugreport.jl", "w") do io
+                # loading an unrelated package like this is normally a bad thing to do,
+                # because the versions of BugReporting.jl's dependencies may conflict with
+                # the dependencies of the package under evaluation. However, in the session
+                # where we load BugReporting.jl we'll never actually load the package we
+                # want to test, only re-start Julia under rr, so this should be fine.
+                println(io, "pushfirst!(LOAD_PATH, $(repr(Base.ACTIVE_PROJECT[])))")
+
+                # this code is essentially what --bug-report from InteractiveUtils does
+                println(io, "using BugReporting")
+                println(io, "println(\\"Re-executing tests under rr\\")")
+                println(io, "BugReporting.make_interactive_report(\\"rr-local\\", ARGS)")
+            end
+        end
+
+        Pkg.add(deps)
+
+        Pkg.activate()
 
 
         print("\n\n", '#'^80, "\n# Installation\n#\n\n")
@@ -343,9 +378,14 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             run(```$(Base.julia_cmd())
                    --check-bounds=yes
                    -e 'using Pkg
+
+                       Pkg.activate("pkgeval"; shared=true)
+
+                       # precompile PkgEval run-time dependencies (notably BugReporting.jl)
+                       Pkg.precompile()
+
+                       # try to use TestEnv to precompile the package test dependencies
                        try
-                         Pkg.activate(; temp=true)
-                         Pkg.add("TestEnv")
                          using TestEnv
                          Pkg.activate()
                          TestEnv.activate(ARGS[1])
@@ -374,15 +414,10 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             end
         end
 
-        bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true"
-        if bugreporting
-            println("Tests will be executed under rr.\n")
-        end
-
         t0 = cpu_time()
         try
             if bugreporting
-                Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
+                Pkg.test(package_spec.name; julia_args=`--load bugreport.jl`)
             else
                 Pkg.test(package_spec.name)
             end
