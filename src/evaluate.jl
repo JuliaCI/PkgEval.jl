@@ -302,20 +302,53 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         using Base: UUID
         package_spec = eval(Meta.parse(ARGS[1]))
 
+        bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true"
+
         println("Package evaluation of $(package_spec.name) started at ", now(UTC))
 
         println()
         using InteractiveUtils
         versioninfo()
 
+
+        print("\n\n", '#'^80, "\n# Set-up\n#\n\n")
+
+        # we install PkgEval dependencies in a separate environment
+        Pkg.activate("pkgeval"; shared=true)
+
+        deps = ["TestEnv"]
+
+        if bugreporting
+            push!(deps, "BugReporting")
+
+            # instead of using --bug-report, we'll load BugReporting manually, because
+            # by default we can't access any unrelated package from within the sandbox
+            # created by Pkg, resulting in re-installation and compilation of BugReporting.
+            open("bugreport.jl", "w") do io
+                # loading an unrelated package like this is normally a bad thing to do,
+                # because the versions of BugReporting.jl's dependencies may conflict with
+                # the dependencies of the package under evaluation. However, in the session
+                # where we load BugReporting.jl we'll never actually load the package we
+                # want to test, only re-start Julia under rr, so this should be fine.
+                println(io, "pushfirst!(LOAD_PATH, $(repr(Base.ACTIVE_PROJECT[])))")
+
+                # this code is essentially what --bug-report from InteractiveUtils does
+                println(io, "using BugReporting")
+                println(io, "println(\\"Re-executing tests under rr\\")")
+                println(io, "BugReporting.make_interactive_report(\\"rr-local\\", ARGS)")
+            end
+        end
+
+        Pkg.add(deps)
+
+        Pkg.activate()
+
+
         print("\n\n", '#'^80, "\n# Installation\n#\n\n")
 
         t0 = cpu_time()
         try
-            # disable precompilation to avoid precompiling with the wrong options
-            withenv("JULIA_PKG_PRECOMPILE_AUTO" => false) do
-                Pkg.add(; package_spec...)
-            end
+            Pkg.add(; package_spec...)
 
             println("\nInstallation completed after $(elapsed(t0))")
             write("/output/installed", repr(true))
@@ -333,6 +366,41 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         end
 
 
+        print("\n\n", '#'^80, "\n# Precompilation\n#\n\n")
+
+        # we run with JULIA_PKG_PRECOMPILE_AUTO=0 to avoid precompiling on Pkg.add,
+        # because we can't use the generated images for Pkg.test which uses different
+        # options (i.e., --check-bounds=yes). however, to get accurate test timings,
+        # we *should* precompile before running tests, so we do that here manually.
+
+        t0 = cpu_time()
+        try
+            run(```$(Base.julia_cmd())
+                   --check-bounds=yes
+                   -e 'using Pkg
+
+                       Pkg.activate("pkgeval"; shared=true)
+
+                       # precompile PkgEval run-time dependencies (notably BugReporting.jl)
+                       Pkg.precompile()
+
+                       # try to use TestEnv to precompile the package test dependencies
+                       try
+                         using TestEnv
+                         Pkg.activate()
+                         TestEnv.activate(ARGS[1])
+                       catch err
+                         @error "Failed to use TestEnv.jl; test dependencies will not be precompiled" exception=(err, catch_backtrace())
+                         Pkg.activate()
+                       end
+                       Pkg.precompile()' $(package_spec.name)```)
+
+            println("\nPrecompilation completed after $(elapsed(t0))")
+        catch
+            println("\nPrecompilation failed after $(elapsed(t0))\n")
+        end
+
+
         print("\n\n", '#'^80, "\n# Testing\n#\n\n")
 
         if haskey(Pkg.Types.stdlibs(), package_spec.uuid)
@@ -346,25 +414,20 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             end
         end
 
-        bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true"
-        if bugreporting
-            println("Tests will be executed under rr.\n")
-        end
-
-        t1 = cpu_time()
+        t0 = cpu_time()
         try
             if bugreporting
-                Pkg.test(package_spec.name; julia_args=`--bug-report=rr-local`)
+                Pkg.test(package_spec.name; julia_args=`--load bugreport.jl`)
             else
                 Pkg.test(package_spec.name)
             end
 
-            println("\nTesting completed after $(elapsed(t1))")
+            println("\nTesting completed after $(elapsed(t0))")
         catch
-            println("\nTesting failed after $(elapsed(t1))\n")
+            println("\nTesting failed after $(elapsed(t0))\n")
             rethrow()
         finally
-            write("/output/duration", repr(cpu_time()-t1))
+            write("/output/duration", repr(cpu_time()-t0))
         end""" * "\nend"
 
     args = `$(repr(package_spec_tuple(pkg)))`
@@ -597,10 +660,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
 
         println("\nInstalling $(package_spec.name)...")
 
-        # disable precompilation to avoid precompiling with the wrong options
-        withenv("JULIA_PKG_PRECOMPILE_AUTO" => false) do
-            Pkg.add(; package_spec...)
-        end
+        Pkg.add(; package_spec...)
 
         println("\nCompleted after $(elapsed(t0))")
 

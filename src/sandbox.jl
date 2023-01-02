@@ -169,6 +169,10 @@ function setup_julia_sandbox(config::Configuration, args=``;
         "PKGEVAL" => "true",
         "JULIA_PKGEVAL" => "true",
 
+        # disable automatic precompilation on Pkg.add, because the generated images
+        # aren't usable for testing anyway (which runs with different options)
+        "JULIA_PKG_PRECOMPILE_AUTO" => "0",
+
         # use the provided registry
         # NOTE: putting a registry in a non-primary depot entry makes Pkg use it as-is,
         #       without needing to set Pkg.UPDATED_REGISTRY_THIS_SESSION.
