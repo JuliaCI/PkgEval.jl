@@ -922,6 +922,7 @@ The `ninstances` keyword argument determines how many packages are tested in par
 
 The `blacklist` keyword argument can be used to skip testing of packages, specified by name.
 The blacklist is always extended with a hard-coded set of packages known to be problematic.
+It is only used when no explicit list of packages is given.
 
 Refer to `evaluate_test`[@ref] and `sandboxed_julia`[@ref] for more possible keyword
 arguments.
@@ -932,6 +933,9 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
     if isempty(packages)
         registry_configs = unique(config->config.registry, values(configs))
         packages = intersect(values.(map(get_packages, registry_configs))...)::Vector{Package}
+    else
+        # if we are given an explicit list of packages, ignore the blacklist
+        blacklist = String[]
     end
 
     # ensure the configurations have unique names
