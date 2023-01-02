@@ -3,6 +3,7 @@ module PkgEval
 using Pkg, LazyArtifacts
 import Pkg.TOML
 import GitHub
+using Base: UUID
 
 import Scratch: @get_scratch!
 download_dir = ""

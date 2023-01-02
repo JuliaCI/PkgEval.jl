@@ -144,7 +144,7 @@ end
 Base.@kwdef struct Package
     # source of the package; forwarded to PackageSpec
     name::String
-    uuid::Union{Nothing,Base.UUID} = nothing
+    uuid::Union{Nothing,UUID} = nothing
     version::Union{Nothing,String,VersionNumber} = nothing
     url::Union{Nothing,String} = nothing
     rev::Union{Nothing,String} = nothing
