@@ -3,7 +3,7 @@ isdebug(group) =
 
 # split the spec into the repository and the name of the commit/branch/tag
 # (e.g. `maleadt/julia#master` -> `("maleadt/julia", "master")`)
-function parse_repo_spec(spec, default_repo)
+function parse_repo_spec(spec, default_repo=nothing)
     parts = split(spec, '#')
     repo, ref = if length(parts) == 2
         parts
