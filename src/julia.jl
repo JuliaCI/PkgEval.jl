@@ -258,6 +258,10 @@ end
 const julia_lock = ReentrantLock()
 const julia_cache = Dict()
 function install_julia(config::Configuration)
+    if ispath(config.julia)
+        return config.julia
+    end
+
     lock(julia_lock) do
         key = (config.julia, config.buildflags, config.buildcommands)
         dir = get(julia_cache, key, nothing)

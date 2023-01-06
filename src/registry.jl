@@ -1,6 +1,10 @@
 const registry_lock = ReentrantLock()
 const registry_cache = Dict()
 function get_registry(config::Configuration)
+    if ispath(config.registry)
+        return config.registry
+    end
+
     lock(registry_lock) do
         dir = get(registry_cache, config.registry, nothing)
         if dir === nothing || !isdir(dir)

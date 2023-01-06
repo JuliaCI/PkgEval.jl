@@ -27,8 +27,13 @@ Default(val::T) where {T} = Setting{T}(val, false)
 Base.@kwdef struct Configuration
     name::String = "unnamed"
 
+    # when a setting below is documented to be a repo spec, that means it can be either a
+    # branch name (e.g. "master"), optionally prefixed by the GitHub repo (e.g.
+    # "JuliaLang/General#master"), or a path to a local check-out of said repository.
+
     # Julia properties
-    ## the name of the Julia release to test, or a repo#ref string to check-out from GitHub
+    ## the name of the Julia release to test (from versions.toml), or a repo spec.
+    ## in addition, the special "nightly" release name is supported ad well
     julia::Setting{String} = Default("nightly")
     ## flags and commands to use to build Julia (this disables use of prebuilt binaries)
     buildflags::Setting{Vector{String}} = Default(String[])
@@ -40,6 +45,7 @@ Base.@kwdef struct Configuration
     julia_args::Setting{Cmd} = Default(``)
 
     # registry properties
+    ## the repo spec of the registry to use
     registry::Setting{String} = Default("master")
 
     # rootfs properties
