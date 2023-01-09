@@ -77,7 +77,8 @@ function _get_packages(config::Configuration)
     stdlibs = Dict{String,Package}()
     stdlib_script = raw"""begin
             using Pkg
-            for (uuid, (name,version)) in Pkg.Types.stdlibs()
+            for (uuid, pkg) in Pkg.Types.stdlibs()
+                name = isa(pkg, String) ? pkg : first(pkg)
                 println("$(uuid) $(name)")
             end
         end"""
