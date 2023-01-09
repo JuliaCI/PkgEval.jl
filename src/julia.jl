@@ -35,20 +35,33 @@ function get_julia_release(config::Configuration)
         return get_julia_nightly()
     end
 
+    # download the versions.json
+    version_db = JSON3.read(sprint(io->Downloads.download(VERSIONS_URL, io)))
+
+    # special case: stable
+    if config.julia == "stable"
+        versions = VersionNumber.(String.(keys(version_db)))
+        filter!(versions) do version
+            isempty(version.prerelease)
+        end
+        version_spec = maximum(versions)
+
     # in all other cases, the spec needs to be a valid version number
-    version_spec = tryparse(VersionNumber, config.julia)
-    if isnothing(version_spec)
-        @debug "Not a valid release name"
-        return nothing
+    else
+        version_spec = tryparse(VersionNumber, config.julia)
+        if isnothing(version_spec)
+            @debug "Not a valid release name"
+            return nothing
+        end
     end
 
-    # download the versions.json and look up the version
-    versions = JSON3.read(sprint(io->Downloads.download(VERSIONS_URL, io)))
-    if !haskey(versions, string(version_spec))
+    # look up the version
+    version_db = JSON3.read(sprint(io->Downloads.download(VERSIONS_URL, io)))
+    if !haskey(version_db, string(version_spec))
         @debug "Unknown release name '$(config.julia)'"
         return nothing
     end
-    files = versions[string(version_spec)]["files"]
+    files = version_db[string(version_spec)]["files"]
 
     # find a file entry for our machine
     platform = parse(Platform, Sys.MACHINE) # don't use Sys.MACHINE directly as it may
@@ -258,6 +271,10 @@ end
 const julia_lock = ReentrantLock()
 const julia_cache = Dict()
 function install_julia(config::Configuration)
+    if ispath(config.julia)
+        return config.julia
+    end
+
     lock(julia_lock) do
         key = (config.julia, config.buildflags, config.buildcommands)
         dir = get(julia_cache, key, nothing)
