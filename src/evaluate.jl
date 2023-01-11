@@ -264,12 +264,6 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     mounts = copy(mounts)
     env = copy(env)
 
-    # at this point, we need to know the UUID of the package
-    if pkg.uuid === nothing
-        pkg′ = get_packages(config)[pkg.name]
-        pkg = Package(pkg; pkg′.uuid)
-    end
-
     if config.compiled
         return evaluate_compiled_test(config, pkg; use_cache, kwargs...)
     end
@@ -368,9 +362,11 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         finally
             # even if a package fails to install, it may have been resolved
             # (e.g., when the build phase errors)
-            if haskey(Pkg.dependencies(), package_spec.uuid)
-                version = Pkg.dependencies()[package_spec.uuid].version
-                write("/output/version", repr(version))
+            for package_info in values(Pkg.dependencies())
+                if package_info.name == package_spec.name
+                    write("/output/version", repr(package_info.version))
+                    break
+                end
             end
         end
 
@@ -412,7 +408,11 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
         print("\n\n", '#'^80, "\n# Testing\n#\n\n")
 
-        if haskey(Pkg.Types.stdlibs(), package_spec.uuid)
+        is_stdlib = any(Pkg.Types.stdlibs()) do (uuid,pkg)
+            name = isa(pkg, String) ? pkg : first(pkg)
+            name == package_spec.name
+        end
+        if is_stdlib
             println("\n$(package_spec.name) is a standard library in this Julia build.")
 
             # we currently only support testing the embedded version of stdlib packages
@@ -656,9 +656,11 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
         print("\n\n", '#'^80, "\n# Installation\n#\n\n")
         t0 = time()
 
-        if haskey(Pkg.Types.stdlibs(), package_spec.uuid)
-            error("Packages that are standard libraries cannot be compiled again.")
+        is_stdlib = any(Pkg.Types.stdlibs()) do (uuid,pkg)
+            name = isa(pkg, String) ? pkg : first(pkg)
+            name == package_spec.name
         end
+        is_stdlib && error("Packages that are standard libraries cannot be compiled again.")
 
         println("Installing PackageCompiler...")
         project = Base.active_project()
