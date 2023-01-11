@@ -42,7 +42,7 @@ Base.@kwdef struct Configuration
     julia_install_dir::Setting{String} = Default("/opt/julia")
     julia_binary::Setting{String} = Default("julia")
     ## additional Julia arguments to pass to the process
-    julia_args::Setting{Cmd} = Default(``)
+    julia_flags::Setting{Vector{String}} = Default(String[])
 
     # registry properties
     ## the repo spec of the registry to use
@@ -92,7 +92,7 @@ function Base.show(io::IO, cfg::Configuration)
     println(io, "PkgEval configuration '$(cfg.name)' (")
 
     println(io, "  # Julia properties")
-    show_setting.(["julia", "buildflags", "buildcommands", "julia_install_dir", "julia_binary", "julia_args"])
+    show_setting.(["julia", "buildflags", "buildcommands", "julia_install_dir", "julia_binary", "julia_flags"])
     println(io)
 
     println(io, "  # Registry properties")

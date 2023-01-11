@@ -112,8 +112,9 @@ function evaluate_script(config::Configuration, script::String, args=``;
     if version >= v"1.10.0-DEV.204" || v"1.9.0-alpha1.55" <= version < v"1.10-"
         # package images are really expensive, and significantly regress PkgEval time.
         # for now, disable them (unless the user specifically requested them).
-        if !any(startswith("--pkgimages"), config.julia_args.exec)
-            config = Configuration(config; julia_args=`$(config.julia_args) --pkgimages=no`)
+        if !any(startswith("--pkgimages"), config.julia_flags)
+            config =
+                Configuration(config; julia_flags=[config.julia_flags..., "--pkgimages=no"])
         end
     end
 
@@ -742,7 +743,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
     compile_log = log
     test_config = Configuration(config;
         compiled = false,
-        julia_args = `$(config.julia_args) --sysimage $sysimage_path`,
+        julia_flags = [config.julia_flags..., "--sysimage", sysimage_path],
     )
     (; log, status, reason, version, duration) =
         evaluate_test(test_config, pkg; mounts, use_cache, kwargs...)
