@@ -108,6 +108,15 @@ function evaluate_script(config::Configuration, script::String, args=``;
         env["JULIA_PKG_SERVER"] = ENV["JULIA_PKG_SERVER"]
     end
 
+    version = julia_version(config)
+    if version >= v"1.10.0-DEV.204" || v"1.9.0-alpha1.55" <= version < v"1.10-"
+        # package images are really expensive, and significantly regress PkgEval time.
+        # for now, disable them (unless the user specifically requested them).
+        if !any(startswith("--pkgimages"), config.julia_args.exec)
+            config = Configuration(config; julia_args=`$(config.julia_args) --pkgimages=no`)
+        end
+    end
+
     input = Pipe()
     output = Pipe()
     args = `-e 'include_string(Main, read(stdin,String))' --color=no $args`
