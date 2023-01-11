@@ -116,7 +116,7 @@ function _get_packages(config::Configuration)
         end
         compat || continue
 
-        packages[pkg.name] = Package(; pkg.name, pkg.uuid)
+        packages[pkg.name] = Package(; pkg.name, pkg.uuid, version)
     end
 
     # merge both, preferring stdlib versions
