@@ -311,7 +311,8 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         using Base: UUID
         package_spec = eval(Meta.parse(ARGS[1]))
 
-        bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true"
+        bugreporting = parse(Bool, ENV["PKGEVAL_RR"])
+        precompile = parse(Bool, ENV["PKGEVAL_PRECOMPILE"])
 
         println("Package evaluation of $(package_spec.name) started at ", now(UTC))
 
@@ -377,6 +378,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         end
 
 
+        if precompile
         print("\n\n", '#'^80, "\n# Precompilation\n#\n\n")
 
         # we run with JULIA_PKG_PRECOMPILE_AUTO=0 to avoid precompiling on Pkg.add,
@@ -409,6 +411,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             println("\nPrecompilation completed after $(elapsed(t0))")
         catch
             println("\nPrecompilation failed after $(elapsed(t0))\n")
+        end
         end
 
 
@@ -447,9 +450,9 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
     args = `$(repr(package_spec_tuple(pkg)))`
 
-    if config.rr
-        env["PKGEVAL_RR"] = "true"
-    end
+    # forward arguments to the test script
+    env["PKGEVAL_RR"] = string(config.rr)
+    env["PKGEVAL_PRECOMPILE"] = string(config.precompile)
 
     (; log, status, reason) = evaluate_script(config, script, args;
                                               mounts, env, executor, kwargs...)

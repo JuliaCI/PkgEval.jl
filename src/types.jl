@@ -69,6 +69,9 @@ Base.@kwdef struct Configuration
     ## whether to run under record-replay (rr). traces will be uploaded to AWS S3, so you
     ## additionally need to set PKGEVAL_RR_BUCKET and some S3 authentication env vars.
     rr::Setting{Bool} = Default(false)
+    ## whether to separately precompile packages before testing.
+    ## disabling this can be useful to trap precompilation-related issues under rr.
+    precompile::Setting{Bool} = Default(true)
     ## limits imposed on the test process
     log_limit::Setting{Int} = Default(2^20) # 1 MB
     time_limit::Setting{Float64} = Default(45*60) # 45 mins
@@ -104,7 +107,7 @@ function Base.show(io::IO, cfg::Configuration)
     println(io)
 
     println(io, "  # Execution properties")
-    show_setting.(["env", "cpus", "xvfb", "rr", "log_limit", "time_limit", "compiled", "compile_time_limit"])
+    show_setting.(["env", "cpus", "xvfb", "rr", "precompile", "log_limit", "time_limit", "compiled", "compile_time_limit"])
 
     print(io, ")")
 end
