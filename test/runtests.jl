@@ -129,18 +129,22 @@ end
     end
 end
 
-julia_version >= v"1.9-beta2" && @testset "package precompilation" begin
-    # find out where Example.jl will be precompiled
-    verstr = "v$(julia_version.major).$(julia_version.minor)"
-    compilecache = joinpath(PkgEval.get_compilecache(config), verstr, "Example")
+if julia_version >= v"1.10.0-DEV.204" || v"1.9.0-alpha1.55" <= julia_version < v"1.10-"
+@testset "package precompilation" begin
+    let config = Configuration(config; julia_args=`--pkgimages=yes`)
+        # find out where Example.jl will be precompiled
+        verstr = "v$(julia_version.major).$(julia_version.minor)"
+        compilecache = joinpath(PkgEval.get_compilecache(config), verstr, "Example")
 
-    # wipe the cache and evaluate Example.jl
-    rm(compilecache, recursive=true, force=true)
-    PkgEval.evaluate_test(config, Package(; name="Example"))
+        # wipe the cache and evaluate Example.jl
+        rm(compilecache, recursive=true, force=true)
+        PkgEval.evaluate_test(config, Package(; name="Example"))
 
-    # make sure we only generated one package image
-    @test isdir(compilecache)
-    @test length(filter(endswith(".so"), readdir(compilecache))) == 1
+        # make sure we only generated one package image
+        @test isdir(compilecache)
+        @test length(filter(endswith(".so"), readdir(compilecache))) == 1
+    end
+end
 end
 
 @testset "time and output limits" begin

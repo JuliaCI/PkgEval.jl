@@ -284,3 +284,26 @@ function install_julia(config::Configuration)
         return julia_cache[key]
     end
 end
+
+
+## version identification
+
+# normally we'd look at VERSION + commit and do something like commit-name.sh,
+# but we don't necessarily have a source tree so need to run the actual binary.
+
+function _julia_version(config::Configuration)
+    p = Pipe()
+    close(p.in)
+    PkgEval.sandboxed_julia(config, `-e 'print(VERSION)'`; stdout=p.out)
+    VersionNumber(read(p.out, String))
+end
+
+const julia_version_lock = ReentrantLock()
+const julia_version_cache = Dict()
+function julia_version(config::Configuration)
+    lock(julia_version_lock) do
+        get!(julia_version_cache, config.julia) do
+            _julia_version(config)
+        end
+    end
+end

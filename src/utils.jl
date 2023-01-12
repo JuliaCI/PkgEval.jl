@@ -66,6 +66,10 @@ function purge()
         empty!(julia_cache)
     end
 
+    lock(julia_version_lock) do
+        empty!(julia_version_cache)
+    end
+
     lock(registry_lock) do
         for dir in values(registry_cache)
             isdir(dir) && rm(dir; recursive=true)
