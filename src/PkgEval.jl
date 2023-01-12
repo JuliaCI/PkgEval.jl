@@ -36,6 +36,7 @@ function __init__()
     packages = TOML.parsefile(joinpath(dirname(@__DIR__), "Packages.toml"))
     global skip_list = get(packages, "skip", String[])
     global skip_rr_list = get(packages, "skip_rr", String[])
+    global slow_list = get(packages, "slow", String[])
 end
 
 end # module

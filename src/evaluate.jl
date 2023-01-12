@@ -274,6 +274,11 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         return evaluate_compiled_test(config, pkg; use_cache, kwargs...)
     end
 
+    # grant some packages more test time
+    if pkg.name in slow_list
+        config = Configuration(config;  time_limit=config.time_limit*2)
+    end
+
     # we create our own executor so that we can reuse it (this assumes that the
     # SandboxConfig will have persist=true; maybe this should be a kwarg too?)
     executor = UnprivilegedUserNamespacesExecutor()
