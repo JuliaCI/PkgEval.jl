@@ -97,8 +97,26 @@ function _get_packages(config::Configuration)
     registry = get_registry(config)
     registry_instance = Pkg.Registry.RegistryInstance(registry)
     for (_, pkg) in registry_instance
-        # TODO: read package compat info so that we can avoid testing uninstallable packages
-        packages[pkg.name] = Package(; pkg.name, pkg.uuid)
+        # for simplicity, we only consider the latest version of each package.
+        # this ensures we'll always test the same version across configurations.
+        #
+        # we could be smarter here and intersect the known versions of a package
+        # with each Julia version, but that's a lot more complicated.
+        info = Pkg.Registry.registry_info(pkg)
+        version = maximum(keys(info.version_info))
+
+        # check if this package is compatible with the current Julia version
+        compat = true
+        for (version_range, bounds) in info.compat
+            version in version_range || continue
+            if haskey(bounds, "julia") && julia_version(config) ∉ bounds["julia"]
+                compat = false
+                break
+            end
+        end
+        compat || continue
+
+        packages[pkg.name] = Package(; pkg.name, pkg.uuid, version)
     end
 
     # merge both, preferring stdlib versions

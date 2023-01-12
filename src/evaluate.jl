@@ -264,12 +264,6 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     mounts = copy(mounts)
     env = copy(env)
 
-    # at this point, we need to know the UUID of the package
-    if pkg.uuid === nothing
-        pkg′ = get_packages(config)[pkg.name]
-        pkg = Package(pkg; pkg′.uuid)
-    end
-
     if config.compiled
         return evaluate_compiled_test(config, pkg; use_cache, kwargs...)
     end
@@ -373,9 +367,11 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         finally
             # even if a package fails to install, it may have been resolved
             # (e.g., when the build phase errors)
-            if haskey(Pkg.dependencies(), package_spec.uuid)
-                version = Pkg.dependencies()[package_spec.uuid].version
-                write("/output/version", repr(version))
+            for package_info in values(Pkg.dependencies())
+                if package_info.name == package_spec.name
+                    write("/output/version", repr(package_info.version))
+                    break
+                end
             end
         end
 
@@ -417,7 +413,11 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
         print("\n\n", '#'^80, "\n# Testing\n#\n\n")
 
-        if haskey(Pkg.Types.stdlibs(), package_spec.uuid)
+        is_stdlib = any(Pkg.Types.stdlibs()) do (uuid,pkg)
+            name = isa(pkg, String) ? pkg : first(pkg)
+            name == package_spec.name
+        end
+        if is_stdlib
             println("\n$(package_spec.name) is a standard library in this Julia build.")
 
             # we currently only support testing the embedded version of stdlib packages
@@ -662,9 +662,11 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
         print("\n\n", '#'^80, "\n# Installation\n#\n\n")
         t0 = time()
 
-        if haskey(Pkg.Types.stdlibs(), package_spec.uuid)
-            error("Packages that are standard libraries cannot be compiled again.")
+        is_stdlib = any(Pkg.Types.stdlibs()) do (uuid,pkg)
+            name = isa(pkg, String) ? pkg : first(pkg)
+            name == package_spec.name
         end
+        is_stdlib && error("Packages that are standard libraries cannot be compiled again.")
 
         println("Installing PackageCompiler...")
         project = Base.active_project()
@@ -945,10 +947,41 @@ arguments.
 function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Package[];
                   ninstances::Integer=Sys.CPU_THREADS, retry::Bool=true,
                   validate::Bool=true, blacklist::Vector{String}=String[])
+    result = DataFrame(configuration = String[],
+                       package = String[],
+                       version = Union{Missing,VersionNumber}[],
+                       status = Symbol[],
+                       reason = Union{Missing,Symbol}[],
+                       duration = Float64[],
+                       log = Union{Missing,String}[])
+    skips = similar(result)
+
+    # determine the packages to test
+    registry_configs = unique(config->config.registry, values(configs))
+    compatible_packages = intersect(values.(map(get_packages, registry_configs))...)
     if isempty(packages)
-        registry_configs = unique(config->config.registry, values(configs))
-        packages = intersect(values.(map(get_packages, registry_configs))...)::Vector{Package}
+        # only test packages for which the latest version is compatible with all configs
+        packages = compatible_packages
     else
+        # augment the packages with a version to ensure we test the same thing everywhere
+        package_map = Dict(package.name => package for package in compatible_packages)
+        packages = map(packages) do package
+            if package.version !== nothing || package.rev !== nothing || package.url !== nothing
+                # don't discard an explicitly-requested version
+                package
+            elseif haskey(package_map, package.name)
+                Package(package; version=package_map[package.name].version)
+            else
+                # couldn't find a compatible version in the registry...
+                for config in configs
+                    push!(skips, [config.name, package.name, missing,
+                                  :skip, :uninstallable, 0, missing])
+                end
+                nothing
+            end
+        end
+        packages = filter(!isnothing, packages)
+
         # if we are given an explicit list of packages, ignore the blacklist
         blacklist = String[]
     end
@@ -982,16 +1015,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
     ## use a random test order to (hopefully) get a more reasonable ETA
     shuffle!(jobs)
 
-    result = DataFrame(configuration = String[],
-                       package = String[],
-                       version = Union{Missing,VersionNumber}[],
-                       status = Symbol[],
-                       reason = Union{Missing,Symbol}[],
-                       duration = Float64[],
-                       log = Union{Missing,String}[])
-
     # pre-filter the jobs for packages we'll skip to get a better ETA
-    skips = similar(result)
     jobs = filter(jobs) do job
         if endswith(job.package.name, "_jll")
             # JLLs we ignore completely; it's not useful to include them in the skip count
