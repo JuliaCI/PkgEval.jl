@@ -189,7 +189,7 @@ function setup_julia_sandbox(config::Configuration, args=``;
         env["JULIA_NUM_PRECOMPILE_TASKS"] = string(length(config.cpus)) # defaults to Sys.CPU_THREADS
     end
 
-    setup_generic_sandbox(config, `$cmd $(config.julia_args) $args`; env, mounts)
+    setup_generic_sandbox(config, `$cmd $(Cmd(config.julia_flags)) $args`; env, mounts)
 end
 
 function sandboxed_julia(config::Configuration, args=``; stdout=stdout, kwargs...)

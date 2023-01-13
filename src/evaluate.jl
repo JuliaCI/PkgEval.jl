@@ -112,8 +112,9 @@ function evaluate_script(config::Configuration, script::String, args=``;
     if version >= v"1.10.0-DEV.204" || v"1.9.0-alpha1.55" <= version < v"1.10-"
         # package images are really expensive, and significantly regress PkgEval time.
         # for now, disable them (unless the user specifically requested them).
-        if !any(startswith("--pkgimages"), config.julia_args.exec)
-            config = Configuration(config; julia_args=`$(config.julia_args) --pkgimages=no`)
+        if !any(startswith("--pkgimages"), config.julia_flags)
+            config =
+                Configuration(config; julia_flags=[config.julia_flags..., "--pkgimages=no"])
         end
     end
 
@@ -310,7 +311,8 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         using Base: UUID
         package_spec = eval(Meta.parse(ARGS[1]))
 
-        bugreporting = get(ENV, "PKGEVAL_RR", "false") == "true"
+        bugreporting = parse(Bool, ENV["PKGEVAL_RR"])
+        precompile = parse(Bool, ENV["PKGEVAL_PRECOMPILE"])
 
         println("Package evaluation of $(package_spec.name) started at ", now(UTC))
 
@@ -376,6 +378,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         end
 
 
+        if precompile
         print("\n\n", '#'^80, "\n# Precompilation\n#\n\n")
 
         # we run with JULIA_PKG_PRECOMPILE_AUTO=0 to avoid precompiling on Pkg.add,
@@ -408,6 +411,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             println("\nPrecompilation completed after $(elapsed(t0))")
         catch
             println("\nPrecompilation failed after $(elapsed(t0))\n")
+        end
         end
 
 
@@ -446,9 +450,9 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
     args = `$(repr(package_spec_tuple(pkg)))`
 
-    if config.rr
-        env["PKGEVAL_RR"] = "true"
-    end
+    # forward arguments to the test script
+    env["PKGEVAL_RR"] = string(config.rr)
+    env["PKGEVAL_PRECOMPILE"] = string(config.precompile)
 
     total_duration = @elapsed begin
         (; log, status, reason) = evaluate_script(config, script, args;
@@ -745,7 +749,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
     compile_log = log
     test_config = Configuration(config;
         compiled = false,
-        julia_args = `$(config.julia_args) --sysimage $sysimage_path`,
+        julia_flags = [config.julia_flags..., "--sysimage", sysimage_path],
     )
     (; log, status, reason, version, duration) =
         evaluate_test(test_config, pkg; mounts, use_cache, kwargs...)
