@@ -450,8 +450,10 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         env["PKGEVAL_RR"] = "true"
     end
 
-    (; log, status, reason) = evaluate_script(config, script, args;
-                                              mounts, env, executor, kwargs...)
+    total_duration = @elapsed begin
+        (; log, status, reason) = evaluate_script(config, script, args;
+                                                  mounts, env, executor, kwargs...)
+    end
     log *= "\n"
 
     # parse structured output
@@ -547,6 +549,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     elseif status === :ok
         log *= "PkgEval succeeded"
     end
+    log *= " after $(round(total_duration, digits=2))s"
     if reason !== missing
         log *= ": " * reason_message(reason)
     end
