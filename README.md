@@ -111,3 +111,26 @@ julia> config = Configuration(julia="master",
 
 # NOTE: buildflags are specified to speed-up the build
 ```
+
+
+## Resource constraints
+
+PkgEval uses cgroups for restricting the resources each package can use. By default however,
+non-root users can control the `memory` and `pids` cgroup controllers. To enable PkgEval
+to control more resources, run the following commands:
+
+```
+$ sudo mkdir -p /etc/systemd/system/user@.service.d
+$ cat <<EOF | sudo tee /etc/systemd/system/user@.service.d/delegate.conf
+[Service]
+Delegate=cpu cpuset io memory pids
+EOF
+$ sudo systemctl daemon-reload
+```
+
+In addition, some container runtimes (i.e. `runc`) want full control over the current
+cgroup, which can be done by launching Julia as a scoped service:
+
+```
+systemd-run --user --scope -p Delegate=yes julia ...
+```
