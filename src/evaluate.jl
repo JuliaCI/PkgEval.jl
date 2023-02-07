@@ -269,14 +269,15 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         return evaluate_compiled_test(config, pkg; use_cache, kwargs...)
     end
 
+    name = "$(pkg.name)-$(config.name)"
+
     # grant some packages more test time
     if pkg.name in slow_list
         config = Configuration(config;  time_limit=config.time_limit*2)
     end
 
-    # we create our own executor so that we can reuse it (this assumes that the
-    # SandboxConfig will have persist=true; maybe this should be a kwarg too?)
-    executor = UnprivilegedUserNamespacesExecutor()
+    # we create our own workdir so that we can reuse it
+    workdir = mktempdir()
 
     # caches are mutable, so they can get corrupted during a run. that's why it's possible
     # to run without them (in case of a retry), and is also why we set them up here rather
@@ -456,7 +457,8 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
     total_duration = @elapsed begin
         (; log, status, reason) = evaluate_script(config, script, args;
-                                                  mounts, env, executor, kwargs...)
+                                                  name, workdir, mounts, env,
+                                                  kwargs...)
     end
     log *= "\n"
 
@@ -591,7 +593,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
         rr_config = Configuration(config; time_limit=config.time_limit*2)
         rr_log = evaluate_script(rr_config, rr_script, args;
-                                 mounts, env, executor, kwargs...).log
+                                 name, workdir, mounts, env, kwargs...).log
 
         # upload the trace
         # TODO: re-use BugReporting.jl
@@ -636,7 +638,10 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         rm(local_compilecache; recursive=true)
     end
     rm(output_dir; recursive=true)
-    cleanup(executor)
+    if VERSION < v"1.9-"    # JuliaLang/julia#47650
+        chmod_recursive(workdir, 0o777)
+    end
+    rm(workdir; recursive=true)
 
     return (; log, status, reason, version=output["version"], duration=output["duration"])
 end

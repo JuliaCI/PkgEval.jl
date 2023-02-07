@@ -194,3 +194,81 @@ function cpu_time(pid)
 
     return total_time
 end
+
+
+getuid() = ccall(:getuid, Cint, ())
+getgid() = ccall(:getgid, Cint, ())
+
+
+struct mntent
+    fsname::Cstring # name of mounted filesystem
+    dir::Cstring    # filesystem path prefix
+    type::Cstring   # mount type (see mntent.h)
+    opts::Cstring   # mount options (see mntent.h)
+    freq::Cint      # dump frequency in days
+    passno::Cint    # pass number on parallel fsck
+end
+
+function mount_info(path::String)
+    found = nothing
+    path_stat = stat(path)
+
+    stream = ccall(:setmntent, Ptr{Nothing}, (Cstring, Cstring), "/etc/mtab", "r")
+    while true
+        # get the next mtab entry
+        entry = ccall(:getmntent, Ptr{mntent}, (Ptr{Nothing},), stream)
+        entry == C_NULL && break
+
+        # convert it to something usable
+        entry = unsafe_load(entry)
+        entry = (;
+            fsname  = unsafe_string(entry.fsname),
+            dir     = unsafe_string(entry.dir),
+            type    = unsafe_string(entry.type),
+            opts    = split(unsafe_string(entry.opts), ","),
+            entry.freq,
+            entry.passno,
+        )
+
+        mnt_stat = try
+            stat(entry.dir)
+        catch
+            continue
+        end
+
+        if mnt_stat.device == path_stat.device
+            found = entry
+            break
+        end
+    end
+    ccall(:endmntent, Cint, (Ptr{Nothing},), stream)
+
+    return found
+end
+
+
+# A version of `chmod()` that hides all of its errors.
+function chmod_recursive(root::String, perms)
+    files = String[]
+    try
+        files = readdir(root)
+    catch e
+        if !isa(e, Base.IOError)
+            rethrow(e)
+        end
+    end
+    for f in files
+        path = joinpath(root, f)
+        try
+            chmod(path, perms)
+        catch e
+            if !isa(e, Base.IOError)
+                rethrow(e)
+            end
+        end
+        if isdir(path) && !islink(path)
+            chmod_recursive(path, perms)
+        end
+    end
+end
+
