@@ -44,16 +44,12 @@ function build_oci_config(sandbox::Sandbox, cmd::Cmd; terminal::Bool)
                 # needed for off-line access to the lower dir
                 "xino=off",
                 "metacopy=off",
-                "index=off"
+                "index=off",
+                "redirect_dir=nofollow"
             ]
             if get_kernel_version() >= v"5.11-"
                 # needed for unprivileged use
                 push!(extra_options, "userxattr")
-            end
-            if !haskey(ENV, "GITHUB_ACTIONS")
-                # XXX: for some reason, this option results in mount failure (EINVAL) when
-                #      running on GitHub Actions, and we lack permission to check dmesg...
-                push!(extra_options, "redirect_dir=off")
             end
             push!(mounts, (; destination, type="overlay",
                              options=["lowerdir=$(mount.lower)",
