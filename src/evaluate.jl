@@ -772,6 +772,28 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
 end
 
 
+# check for entries that GitTools.tree_hash doesn't handle (Pkg.jl#3365).
+# chardev entries indicate a whiteout file, which isn't cacheable anyway.
+function is_hasheable(path)
+    try
+        if islink(path)
+            # we accept symlinks, but don't follow them (avoiding -ELOOP)
+        elseif isdir(path)
+            for entry in readdir(path; join=true)
+                if !is_hasheable(entry)
+                    return false
+                end
+            end
+        elseif !isfile(path)
+            return false
+        end
+        return true
+    catch err
+        @error "Encountered broken filesystem entry '$path'" exception=(err,catch_backtrace())
+        return false
+    end
+end
+
 function verify_artifacts(artifacts; show_status::Bool=true)
     removals = []
     removals_lock = ReentrantLock()
@@ -799,7 +821,7 @@ function verify_artifacts(artifacts; show_status::Bool=true)
     p = Progress(length(jobs); desc="Verifying artifacts: ",
                  enabled=isinteractive() && show_status)
     @threads for (path, tree_hash) in jobs
-        if tree_hash != Base.SHA1(Pkg.GitTools.tree_hash(path))
+        if !is_hasheable(path) || Base.SHA1(Pkg.GitTools.tree_hash(path)) != tree_hash
             # remove corrupt artifacts
             @debug "A broken artifact was found: $entry"
             lock(removals_lock) do
@@ -914,7 +936,7 @@ function remove_uncacheable_packages(registry, package_dir; show_status::Bool=tr
             # because that would result in the build script not being run.
             @debug "Package $(name) has a build script, and cannot be cached"
             remove = true
-        elseif Base.SHA1(Pkg.GitTools.tree_hash(path)) != tree_hash
+        elseif !is_hasheable(path) || Base.SHA1(Pkg.GitTools.tree_hash(path)) != tree_hash
             # the contents of the package should match what's in the registry,
             # so that we don't cache broken checkouts or other weirdness.
             @debug "Package $(name) has been modified, and cannot be cached"

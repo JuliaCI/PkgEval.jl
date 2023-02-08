@@ -164,7 +164,7 @@ function run_sandbox(config::Configuration, setup, args...; workdir=nothing, wai
     mkpath(bundle_path)
     config_path = joinpath(bundle_path, "config.json")
     open(config_path, "w") do io
-        JSON3.write(io, sandbox_config)
+        JSON3.pretty(io, JSON3.write(sandbox_config))
     end
 
     proc = run(pipeline(`$(crun()) --systemd-cgroup --root $(container_root) run --bundle $bundle_path $(sandbox.name)`;
