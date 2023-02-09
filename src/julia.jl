@@ -242,7 +242,7 @@ function build_julia!(config::Configuration, checkout::String)
     log = fetch(log_monitor)
 
     if success(proc)
-        @debug "Successfully build Julia:\n$log"
+        @debug "Successfully built Julia:\n$log"
         return install_dir
     else
         @error "Error building Julia:\n$log"

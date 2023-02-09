@@ -75,6 +75,9 @@ end
     end
 end
 
+@isdefined(julia_version) || error("Failed to build Julia")
+if @isdefined(julia_version)    # to prevent other tests from failing
+
 @testset "environment flags" begin
     let
         p = Pipe()
@@ -302,6 +305,8 @@ end
             @test contains(out, r"Example.*#master")
         end
     end
+end
+
 end
 
 PkgEval.purge()
