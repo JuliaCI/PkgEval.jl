@@ -41,6 +41,7 @@ const reasons = [
     :inactivity             => "tests became inactive",
     :time_limit             => "test duration exceeded the time limit",
     :log_limit              => "test log exceeded the size limit",
+    :resource_limit         => "test process exceeded a resource limit",
     # skip
     :untestable             => "package does not have any tests",
     :uninstallable          => "package could not be installed",
@@ -214,6 +215,10 @@ function evaluate_script(config::Configuration, script::String, args=``;
         elseif proc.exitcode == 139 # SIGSEGV
             status = :crash
             reason = :segfault
+        elseif proc.exitcode == 137
+            # SIGKILLs typically indicate a cgroup resource exhaustion
+            status = :kill
+            reason = :resource_limit
         else
             status = :fail
         end
@@ -269,41 +274,37 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         return evaluate_compiled_test(config, pkg; use_cache, kwargs...)
     end
 
+    name = "$(pkg.name)-$(config.name)-$(randstring(rng))"
+
     # grant some packages more test time
     if pkg.name in slow_list
         config = Configuration(config;  time_limit=config.time_limit*2)
     end
 
-    # we create our own executor so that we can reuse it (this assumes that the
-    # SandboxConfig will have persist=true; maybe this should be a kwarg too?)
-    executor = UnprivilegedUserNamespacesExecutor()
+    # we create our own workdir so that we can reuse it
+    workdir = mktempdir(prefix="pkgeval_$(pkg.name)_")
 
     # caches are mutable, so they can get corrupted during a run. that's why it's possible
     # to run without them (in case of a retry), and is also why we set them up here rather
-    # than in `sandboxed_julia` (because we know we've verified caches before enterint here)
+    # than in `sandboxed_julia` (because we know we've verified caches before entering here)
     if use_cache
-        # we can split the compile cache in a global and local part, copying over changes
-        # after the test completes to avoid races.
+        depot_dir = joinpath(config.home, ".julia")
+
         shared_compilecache = get_compilecache(config)
-        local_compilecache = mktempdir(prefix="pkgeval_$(pkg.name)_compilecache_")
-        mounts["/usr/local/share/julia/compiled:ro"] = shared_compilecache
-        mounts[joinpath(config.home, ".julia", "compiled")*":rw"] = local_compilecache
+        mounts[joinpath(depot_dir, "compiled")] = shared_compilecache
 
-        # in principle, we'd have to do this too for the package cache, but because the
-        # compilecache header contains full paths we can't ever move packages from the
-        # local to the global cache. instead, we verify the package cache before retrying.
-        packages = joinpath(storage_dir, "packages")
-        mounts[joinpath(config.home, ".julia", "packages")*":rw"] = packages
+        shared_packages = joinpath(storage_dir, "packages")
+        mounts[joinpath(depot_dir, "packages")] = shared_packages
 
-        # for consistency, we do the same for artifacts (although we could split that cache).
-        artifacts = joinpath(storage_dir, "artifacts")
-        mounts[joinpath(config.home, ".julia", "artifacts")*":rw"] = artifacts
+        shared_artifacts = joinpath(storage_dir, "artifacts")
+        mounts[joinpath(depot_dir, "artifacts")] = shared_artifacts
     end
 
     # structured output will be written to the /output directory. this is to avoid having to
     # parse log output, which is fragile. a simple pipe would be sufficient, but Julia
     # doesn't export those, and named pipes aren't portable to all platforms.
-    output_dir = mktempdir(prefix="pkgeval_$(pkg.name)_output_")
+    output_dir = joinpath(workdir, "output")
+    mkdir(output_dir)
     mounts["/output:rw"] = output_dir
 
     script = "begin\n" * common_script * raw"""
@@ -456,7 +457,8 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
     total_duration = @elapsed begin
         (; log, status, reason) = evaluate_script(config, script, args;
-                                                  mounts, env, executor, kwargs...)
+                                                  name, workdir, mounts, env,
+                                                  kwargs...)
     end
     log *= "\n"
 
@@ -591,7 +593,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
         rr_config = Configuration(config; time_limit=config.time_limit*2)
         rr_log = evaluate_script(rr_config, rr_script, args;
-                                 mounts, env, executor, kwargs...).log
+                                 name, workdir, mounts, env, kwargs...).log
 
         # upload the trace
         # TODO: re-use BugReporting.jl
@@ -616,27 +618,36 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
     # (cache and) clean-up output created by this package
     if use_cache
-        # copy new files from the local compilecache into the shared one
-        function copy_files(subpath=""; src, dst)
-            for entry in readdir(joinpath(src, subpath))
-                path = joinpath(subpath, entry)
-                srcpath = joinpath(src, path)
-                dstpath = joinpath(dst, path)
+        depot_dir = joinpath(workdir, "upper", "home", "pkgeval", ".julia")
+        local_compilecache = joinpath(depot_dir, "compiled")
+        local_packages = joinpath(depot_dir, "packages")
+        local_artifacts = joinpath(depot_dir, "artifacts")
 
-                if isdir(srcpath)
-                    isdir(dstpath) || mkdir(joinpath(dst, path))
-                    copy_files(path; src, dst)
-                elseif !ispath(dstpath)
-                    cp(srcpath, dstpath)
+        # verify local resources
+        registry_dir = get_registry(config)
+        isdir(local_packages) &&
+            remove_uncacheable_packages(registry_dir, local_packages; show_status=false)
+        isdir(local_artifacts) &&
+            verify_artifacts(local_artifacts; show_status=false)
+        isdir(local_compilecache) &&
+            verify_compilecache(local_compilecache; show_status=false)
+
+        # copy new local resources (packages, artifacts, ...) to shared storage
+        lock(storage_lock) do
+            for (src, dst) in [(local_packages, shared_packages),
+                               (local_artifacts, shared_artifacts),
+                               (local_compilecache, shared_compilecache)]
+                if isdir(src)
+                    # NOTE: removals (whiteouts) are represented as char devices
+                    run(`$(rsync()) --no-specials --no-devices --archive --quiet $(src)/ $(dst)/`)
                 end
             end
         end
-        verify_compilecache(local_compilecache; show_status=false)
-        copy_files(src=local_compilecache, dst=shared_compilecache)
-        rm(local_compilecache; recursive=true)
     end
-    rm(output_dir; recursive=true)
-    cleanup(executor)
+    if VERSION < v"1.9-"    # JuliaLang/julia#47650
+        chmod_recursive(workdir, 0o777)
+    end
+    rm(workdir; recursive=true)
 
     return (; log, status, reason, version=output["version"], duration=output["duration"])
 end
@@ -761,6 +772,28 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
 end
 
 
+# check for entries that GitTools.tree_hash doesn't handle (Pkg.jl#3365).
+# chardev entries indicate a whiteout file, which isn't cacheable anyway.
+function is_hasheable(path)
+    try
+        if islink(path)
+            # we accept symlinks, but don't follow them (avoiding -ELOOP)
+        elseif isdir(path)
+            for entry in readdir(path; join=true)
+                if !is_hasheable(entry)
+                    return false
+                end
+            end
+        elseif !isfile(path)
+            return false
+        end
+        return true
+    catch err
+        @error "Encountered broken filesystem entry '$path'" exception=(err,catch_backtrace())
+        return false
+    end
+end
+
 function verify_artifacts(artifacts; show_status::Bool=true)
     removals = []
     removals_lock = ReentrantLock()
@@ -788,7 +821,7 @@ function verify_artifacts(artifacts; show_status::Bool=true)
     p = Progress(length(jobs); desc="Verifying artifacts: ",
                  enabled=isinteractive() && show_status)
     @threads for (path, tree_hash) in jobs
-        if tree_hash != Base.SHA1(Pkg.GitTools.tree_hash(path))
+        if !is_hasheable(path) || Base.SHA1(Pkg.GitTools.tree_hash(path)) != tree_hash
             # remove corrupt artifacts
             @debug "A broken artifact was found: $entry"
             lock(removals_lock) do
@@ -903,7 +936,7 @@ function remove_uncacheable_packages(registry, package_dir; show_status::Bool=tr
             # because that would result in the build script not being run.
             @debug "Package $(name) has a build script, and cannot be cached"
             remove = true
-        elseif Base.SHA1(Pkg.GitTools.tree_hash(path)) != tree_hash
+        elseif !is_hasheable(path) || Base.SHA1(Pkg.GitTools.tree_hash(path)) != tree_hash
             # the contents of the package should match what's in the registry,
             # so that we don't cache broken checkouts or other weirdness.
             @debug "Package $(name) has been modified, and cannot be cached"

@@ -4,8 +4,11 @@
 
 PkgEval.jl is a package to test one or more Julia versions against the Julia
 package ecosystem, and is used by Nanosoldier.jl for keeping track of package
-compatibility of upcoming Julia versions. Note that for now, **PkgEval.jl is
-Linux-only**.
+compatibility of upcoming Julia versions.
+
+Note that for now, **PkgEval.jl is Linux-only**, and even requires a
+sufficiently recent kernel (at least 5.11, or a distribution like Ubuntu that
+has back-ported support for unprivileged overlayfs mounts in user namespaces).
 
 
 ## Quick start
@@ -110,4 +113,27 @@ julia> config = Configuration(julia="master",
                               buildflags=["JULIA_CPU_TARGET=native", "JULIA_PRECOMPILE=0"])
 
 # NOTE: buildflags are specified to speed-up the build
+```
+
+
+## Resource constraints
+
+PkgEval uses cgroups for restricting the resources each package can use. By default however,
+non-root users can control the `memory` and `pids` cgroup controllers. To enable PkgEval
+to control more resources, run the following commands:
+
+```
+$ sudo mkdir -p /etc/systemd/system/user@.service.d
+$ cat <<EOF | sudo tee /etc/systemd/system/user@.service.d/delegate.conf
+[Service]
+Delegate=cpu cpuset io memory pids
+EOF
+$ sudo systemctl daemon-reload
+```
+
+In addition, some container runtimes (i.e. `runc`) want full control over the current
+cgroup, which can be done by launching Julia as a scoped service:
+
+```
+systemd-run --user --scope -p Delegate=yes julia ...
 ```

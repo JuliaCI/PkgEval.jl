@@ -194,3 +194,133 @@ function cpu_time(pid)
 
     return total_time
 end
+
+
+getuid() = ccall(:getuid, Cint, ())
+getgid() = ccall(:getgid, Cint, ())
+
+
+struct mntent
+    fsname::Cstring # name of mounted filesystem
+    dir::Cstring    # filesystem path prefix
+    type::Cstring   # mount type (see mntent.h)
+    opts::Cstring   # mount options (see mntent.h)
+    freq::Cint      # dump frequency in days
+    passno::Cint    # pass number on parallel fsck
+end
+
+function mount_info(path::String)
+    found = nothing
+    path_stat = stat(path)
+
+    stream = ccall(:setmntent, Ptr{Nothing}, (Cstring, Cstring), "/etc/mtab", "r")
+    while true
+        # get the next mtab entry
+        entry = ccall(:getmntent, Ptr{mntent}, (Ptr{Nothing},), stream)
+        entry == C_NULL && break
+
+        # convert it to something usable
+        entry = unsafe_load(entry)
+        entry = (;
+            fsname  = unsafe_string(entry.fsname),
+            dir     = unsafe_string(entry.dir),
+            type    = unsafe_string(entry.type),
+            opts    = split(unsafe_string(entry.opts), ","),
+            entry.freq,
+            entry.passno,
+        )
+
+        mnt_stat = try
+            stat(entry.dir)
+        catch
+            continue
+        end
+
+        if mnt_stat.device == path_stat.device
+            found = entry
+            break
+        end
+    end
+    ccall(:endmntent, Cint, (Ptr{Nothing},), stream)
+
+    return found
+end
+
+
+# A version of `chmod()` that hides all of its errors.
+function chmod_recursive(root::String, perms)
+    files = String[]
+    try
+        files = readdir(root)
+    catch e
+        if !isa(e, Base.IOError)
+            rethrow(e)
+        end
+    end
+    for f in files
+        path = joinpath(root, f)
+        try
+            chmod(path, perms)
+        catch e
+            if !isa(e, Base.IOError)
+                rethrow(e)
+            end
+        end
+        if isdir(path) && !islink(path)
+            chmod_recursive(path, perms)
+        end
+    end
+end
+
+
+const kernel_version = Ref{Union{VersionNumber,Missing}}()
+function get_kernel_version()
+    if !isassigned(kernel_version)
+        kver_str = readchomp(`/bin/uname -r`)
+        kver = tryparse(VersionNumber, kver_str)
+        if kver === nothing
+            @warn "Failed to parse kernel version '$kver_str'"
+        end
+        kernel_version[] = something(kver, missing)
+    end
+    return kernel_version[]
+end
+
+
+const cgroup_controllers = Ref{Union{Vector{String},Missing}}()
+function _get_cgroup_controllers()
+    if !ispath("/proc/self/cgroup")
+        return missing
+    end
+
+    # we only support cgroupv2, with a single unified controller
+    # (i.e. not the hybrid cgroupv1/cgroupv2 set-up)
+    cgroup_path = let
+        controllers = split(readchomp("/proc/self/cgroup"), '\n')
+        length(controllers) == 1 || return missing
+        unified_controller = split(controllers[1], ':')
+        unified_controller[1] == "0" || return missing
+        unified_controller[3]
+    end
+
+    # find out which controllers are delegated to our cgroup
+    controllers_path = joinpath("/sys/fs/cgroup", cgroup_path[2:end], "cgroup.controllers")
+    if !ispath(controllers_path)
+        controllers_path = joinpath("/sys/fs/cgroup/unified", cgroup_mount[2:end], "cgroup.controllers")
+    end
+    ispath(controllers_path) || return missing
+    controllers = split(readchomp(controllers_path))
+
+    # XXX: on GH:A, we fail access the cpuset cgroup, even though it looks available
+    if haskey(ENV, "GITHUB_ACTIONS")
+        filter!(!isequal("cpuset"), controllers)
+    end
+
+    return controllers
+end
+function get_cgroup_controllers()
+    if !isassigned(cgroup_controllers)
+        cgroup_controllers[] = coalesce(_get_cgroup_controllers(), [])
+    end
+    return cgroup_controllers[]
+end
