@@ -1096,9 +1096,23 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                     running[i] = (; job.config, job.package, time=time())
 
                     # test the package
-                    config′ = Configuration(job.config; cpus=[i-1])
+                    main_config = Configuration(job.config; cpus=[i-1])
                     (; log, status, reason, version, duration) =
-                        evaluate_test(config′, job.package; job.use_cache)
+                        evaluate_test(main_config, job.package; job.use_cache)
+
+                    # if the test crashed, and we didn't already run under rr,
+                    # retry it to see if we can get a trace for the crash.
+                    # it's fine to do so separately here, because the
+                    # retry block below will never retry crashes.
+                    if !job.config.rr && retry && status === :crash
+                        rr_config = Configuration(main_config; rr=true)
+                        rr_results = evaluate_test(rr_config, job.package; job.use_cache)
+
+                        # if the rr test crashed in the same way, use that evaluation
+                        if rr_results.status === status && rr_results.reason === reason
+                            (; log, status, reason, version, duration) = rr_results
+                        end
+                    end
 
                     push!(result, [job.config.name, job.package.name,
                                     version, status, reason, duration, log])
