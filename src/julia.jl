@@ -189,7 +189,7 @@ function build_julia!(config::Configuration, checkout::String)
 
     # Define a Make.user
     open("$checkout/Make.user", "w") do io
-        println(io, "prefix=/install")
+        println(io, "JULIA_BINARYDIST_FILENAME=julia")
 
         for flag in config.buildflags
             println(io, "override $flag")
@@ -201,25 +201,20 @@ function build_julia!(config::Configuration, checkout::String)
     end
 
     # build and install Julia
-    install_dir = mktempdir(prefix="pkgeval_julia_")
     build_config = Configuration(; rootfs="package_linux", xvfb=false)
     mounts = Dict(
-        "/source:rw"    => checkout,
-        "/install:rw"   => install_dir
+        "/source:rw"    => checkout
     )
     script = raw"""
         set -ue
         cd /source
 
-        # prevent building documentation
-        mkdir -p doc/_build/html/en
-        touch doc/_build/html/en/index.html
+        # prevent building docs
+        echo "default:" > doc/Makefile
+        mkdir -p doc/_build/html
 
         export MAKEFLAGS="-j$(nproc)"
-    """ * config.buildcommands * "\n" * raw"""
-        contrib/fixup-libgfortran.sh /install/lib/julia
-        contrib/fixup-libstdc++.sh /install/lib /install/lib/julia
-    """
+    """ * config.buildcommands
 
     output = Pipe()
     proc = sandboxed_cmd(build_config, `/bin/bash -c $script`; wait=false, mounts,
@@ -241,14 +236,22 @@ function build_julia!(config::Configuration, checkout::String)
     close(output)
     log = fetch(log_monitor)
 
-    if success(proc)
-        @debug "Successfully built Julia:\n$log"
-        return install_dir
-    else
-        @error "Error building Julia:\n$log"
-        rm(install_dir; recursive=true)
-        error("Error building Julia")
+    if !success(proc)
+        @error "Compilation failed:\n$log"
+        error("Error building Julia: Compilation failed")
     end
+
+    tarball = joinpath(checkout, "julia.tar.gz")
+    if !isfile(tarball)
+        @error "binary-dist tarball missing:\n$log"
+        error("Error building Julia: binary-dist tarball missing")
+    end
+
+    install_dir = mktempdir(prefix="pkgeval_julia_")
+    Pkg.PlatformEngines.unpack(tarball, install_dir)
+
+    @debug "Successfully built Julia"
+    return only(readdir(install_dir; join=true))
 end
 
 function _install_julia(config::Configuration)
