@@ -1104,7 +1104,8 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                     # retry it to see if we can get a trace for the crash.
                     # it's fine to do so separately here, because the
                     # retry block below will never retry crashes.
-                    if !job.config.rr && retry && status === :crash
+                    if status === :crash && haskey(ENV, "PKGEVAL_RR_BUCKET") &&
+                       !job.config.rr && retry
                         rr_config = Configuration(main_config; rr=true)
                         rr_results = evaluate_test(rr_config, job.package; job.use_cache)
 
