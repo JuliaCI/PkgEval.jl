@@ -24,10 +24,10 @@ cgroup_controllers = PkgEval.get_cgroup_controllers()
     end
 
     # setting a field
-    y = Configuration(rr=!x.rr)         # make sure we pick a different value
-    @test ismodified(y, :rr)
+    y = Configuration(precompile=!x.precompile)         # make sure we pick a different value
+    @test ismodified(y, :precompile)
     for field in fieldnames(Configuration)
-        if field in [:rr]
+        if field in [:precompile]
             continue
         end
         @test !ismodified(y, field)
@@ -35,10 +35,10 @@ cgroup_controllers = PkgEval.get_cgroup_controllers()
 
     # deriving a Configuration object
     z = Configuration(y; xvfb=x.xvfb)   # test that using the same value also works
-    @test ismodified(z, :rr)
+    @test ismodified(z, :precompile)
     @test ismodified(z, :xvfb)
     for field in fieldnames(Configuration)
-        if field in [:rr, :xvfb]
+        if field in [:precompile, :xvfb]
             continue
         end
         @test !ismodified(z, field)
@@ -242,7 +242,7 @@ end
 end
 
 haskey(ENV, "CI") || @testset "rr" begin
-    results = evaluate([Configuration(config; rr=true)],
+    results = evaluate([Configuration(config; rr=PkgEval.RREnabled)],
                        [Package(; name="Example")];
                        validate=false)
     @test all(results.status .== :ok)

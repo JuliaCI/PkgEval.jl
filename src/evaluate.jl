@@ -78,7 +78,7 @@ function get_compilecache(config::Configuration)
 end
 
 function effective_time_limit(config::Configuration)
-    if config.rr
+    if config.rr == RREnabled
         # extend the timeout to account for the rr record overhead
         return config.time_limit[] * 2
     else
@@ -267,6 +267,9 @@ Refer to `evaluate_script`[@ref] for more possible `keyword arguments.
 function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true,
                        mounts::Dict{String,String}=Dict{String,String}(),
                        env::Dict{String,String}=Dict{String,String}(), kwargs...)
+    # some options should have been handled already
+    @assert config.rr in [RREnabled, RRDisabled]
+
     mounts = copy(mounts)
     env = copy(env)
 
@@ -452,7 +455,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     args = `$(repr(package_spec_tuple(pkg)))`
 
     # forward arguments to the test script
-    env["PKGEVAL_RR"] = string(config.rr)
+    env["PKGEVAL_RR"] = string(config.rr == RREnabled)
     env["PKGEVAL_PRECOMPILE"] = string(config.precompile)
 
     total_duration = @elapsed begin
@@ -562,7 +565,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     log *= "\n"
 
     # pack-up our rr trace. this is expensive, so we only do it for failures.
-    if config.rr && status == :crash
+    if config.rr == RREnabled && status == :crash
         rr_script = "begin\n" * common_script * raw"""
             using Pkg
             using Base: UUID
@@ -1045,7 +1048,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
     jobs = Job[]
     for config in configs, package in packages
         job = if package.name in skip_rr_list
-            config′ = Configuration(config; rr=false)
+            config′ = Configuration(config; rr=RRDisabled)
             Job(config′, package, true)
         else
             Job(config, package, true)
@@ -1100,18 +1103,16 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                     (; log, status, reason, version, duration) =
                         evaluate_test(main_config, job.package; job.use_cache)
 
-                    # if the test crashed, and we didn't already run under rr,
-                    # retry it to see if we can get a trace for the crash.
-                    # it's fine to do so separately here, because the
-                    # retry block below will never retry crashes.
-                    if status === :crash && haskey(ENV, "PKGEVAL_RR_BUCKET") &&
-                       !job.config.rr && retry
-                        rr_config = Configuration(main_config; rr=true)
-                        rr_results = evaluate_test(rr_config, job.package; job.use_cache)
+                    if retry
+                        # early retry: rerun crashes under rr to see if we can get a trace
+                        if status === :crash && job.config.rr == RREnabledOnRetry
+                            rr_config = Configuration(main_config; rr=true)
+                            rr_results = evaluate_test(rr_config, job.package; job.use_cache)
 
-                        # if the rr test crashed in the same way, use that evaluation
-                        if rr_results.status === status && rr_results.reason === reason
-                            (; log, status, reason, version, duration) = rr_results
+                            # if the rr test crashed in the same way, use that evaluation
+                            if rr_results.status === status && rr_results.reason === reason
+                                (; log, status, reason, version, duration) = rr_results
+                            end
                         end
                     end
 
@@ -1119,43 +1120,35 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                                     version, status, reason, duration, log])
 
                     if retry
-                        # if we're done testing this package, consider retrying failures
+                        # late retry: when done testing a package, re-test failures.
                         package_results = result[result.package .== job.package.name, :]
-                        nrow(package_results) == length(configs) || continue
-                        # NOTE: this check also prevents retrying multiple times
-
-                        failures = filter(package_results) do row
-                            row.status !== :ok
-                        end
-                        ## if we only have a single configuration, retry every failure
-                        retry_worthy = length(configs) == 1
-                        ## otherwise only retry if we didn't fail all configurations
-                        ## (to double-check those configurations introduced the failure)
-                        retry_worthy |= nrow(failures) != length(configs)
-                        ## also retry if the kind of failure is different across configs
-                        retry_worthy |= length(unique(failures.status)) > 1 ||
-                                 length(unique(failures.reason)) > 1
-                        if retry_worthy
-                            for row in eachrow(failures)
-                                # retry the failed job in a pristine environment
-                                config = configs[findfirst(config->config.name == row.configuration, configs)]
-                                config′ = if row.status !== :crash
-                                    # if the package failed, retry without rr, as it
-                                    # may have caused the failure. this is a bit of a
-                                    # hack, but improves retry reliability a lot.
-                                    Configuration(config; rr=false)
-                                else
-                                    # however, do not disable rr if the failure involved
-                                    # a crash, for which rr traces are very important.
-                                    config
-                                end
-                                push!(jobs, Job(config′, job.package, false))
+                        if nrow(package_results) == length(configs)
+                            failures = filter(package_results) do row
+                                row.status === :fail
+                                # we don't retry crashes, because their errors are valuable.
+                                # we also don't consider kills (i.e., timeouts or stalls)
+                                # because those are too expensive to retry.
                             end
+                            ## if we only have a single configuration, retry every failure
+                            retry_worthy = length(configs) == 1
+                            ## otherwise only retry if we didn't fail all configurations
+                            ## (to double-check those configurations introduced the failure)
+                            retry_worthy |= nrow(failures) != length(configs)
+                            ## also retry if the kind of failure is different across configs
+                            retry_worthy |= length(unique(failures.status)) > 1 ||
+                                            length(unique(failures.reason)) > 1
+                            if retry_worthy
+                                for row in eachrow(failures)
+                                    # retry the failed job in a pristine environment
+                                    config = configs[findfirst(config->config.name == row.configuration, configs)]
+                                    push!(jobs, Job(config, job.package, false))
+                                end
 
-                            # XXX: this needs a proper API in ProgressMeter.jl
-                            #      (maybe an additional argument to `update!`)
-                            njobs += nrow(failures)
-                            p.n = njobs
+                                # XXX: this needs a proper API in ProgressMeter.jl
+                                #      (maybe an additional argument to `update!`)
+                                njobs += nrow(failures)
+                                p.n = njobs
+                            end
                         end
                     end
                 end
