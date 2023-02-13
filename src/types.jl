@@ -37,7 +37,7 @@ Base.@kwdef struct Configuration
     julia::Setting{String} = Default("nightly")
     ## flags and commands to use to build Julia (this disables use of prebuilt binaries)
     buildflags::Setting{Vector{String}} = Default(String[])
-    buildcommands::Setting{String} = Default("make install")
+    buildcommands::Setting{String} = Default("make binary-dist")
     ## where to install Julia, and what the name of the generated binary is
     julia_install_dir::Setting{String} = Default("/opt/julia")
     julia_binary::Setting{String} = Default("julia")
