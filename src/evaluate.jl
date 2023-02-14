@@ -1099,7 +1099,8 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                     running[i] = (; job.config, job.package, time=time())
 
                     # test the package
-                    main_config = Configuration(job.config; cpus=[i-1])
+                    main_config = Configuration(job.config; cpus=[i-1],
+                                                rr=(job.config.rr==RREnabled))
                     (; log, status, reason, version, duration) =
                         evaluate_test(main_config, job.package; job.use_cache)
 
