@@ -16,13 +16,20 @@ Base.convert(::Type{Setting{T}}, setting::Setting) where {T} =
     Setting{T}(convert(T, setting.val), setting.modified)
 
 # conversions from values are marked as modified settings...
-Base.convert(::Type{Setting{T}}, val::T) where {T} = Setting{T}(val, true)
+Base.convert(::Type{Setting{T}}, val) where {T} = Setting{T}(convert(T, val), true)
 
 # ... unless the Default constructor is used
 Default(val::T) where {T} = Setting{T}(val, false)
 
 
 ## configuration: groups settings
+
+@enum RecordReplayMode begin
+    RREnabled
+    RREnabledOnRetry
+    RRDisabled
+end
+Base.convert(::Type{RecordReplayMode}, x::Bool) = x ? RREnabled : RRDisabled
 
 Base.@kwdef struct Configuration
     name::String = "unnamed"
@@ -68,7 +75,7 @@ Base.@kwdef struct Configuration
     xvfb::Setting{Bool} = Default(true)
     ## whether to run under record-replay (rr). traces will be uploaded to AWS S3, so you
     ## additionally need to set PKGEVAL_RR_BUCKET and some S3 authentication env vars.
-    rr::Setting{Bool} = Default(false)
+    rr::Setting{RecordReplayMode} = Default(RRDisabled)
     ## whether to separately precompile packages before testing.
     ## disabling this can be useful to trap precompilation-related issues under rr.
     precompile::Setting{Bool} = Default(true)
