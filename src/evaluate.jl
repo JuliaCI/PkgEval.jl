@@ -647,9 +647,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             end
         end
     end
-    if VERSION < v"1.9-"    # JuliaLang/julia#47650
-        chmod_recursive(workdir, 0o777)
-    end
+    chmod_recursive(workdir, 0o777) # JuliaLang/julia#47650
     rm(workdir; recursive=true)
 
     return (; log, status, reason, version=output["version"], duration=output["duration"])

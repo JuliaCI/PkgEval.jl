@@ -176,9 +176,7 @@ function run_sandbox(config::Configuration, setup, args...; workdir=nothing, wai
     if do_cleanup
         function cleanup()
             try
-                if VERSION < v"1.9-"    # JuliaLang/julia#47650
-                    chmod_recursive(workdir, 0o777)
-                end
+                chmod_recursive(workdir, 0o777) # JuliaLang/julia#47650
                 rm(workdir; recursive=true)
             catch err
                 @error "Unexpected error while cleaning up process" exception=(err, catch_backtrace())
