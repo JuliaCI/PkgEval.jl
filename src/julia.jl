@@ -201,7 +201,8 @@ function build_julia!(config::Configuration, checkout::String)
     end
 
     # build and install Julia
-    build_config = Configuration(; rootfs="package_linux", xvfb=false)
+    build_config = Configuration(; rootfs="package_linux", xvfb=false,
+                                   process_limit = 0, memory_limit = 0)
     mounts = Dict(
         "/source:rw"    => checkout
     )
