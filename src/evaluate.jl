@@ -200,9 +200,11 @@ function evaluate_script(config::Configuration, script::String, args=``;
         isa(err, InterruptException) || rethrow()
         # this is a Julia-level interrupt, probably because of a CTRL-C.
         status = :kill
+    finally
+        # make sure we don't leave any stray timers running
+        close(timeout_monitor)
+        close(inactivity_monitor)
     end
-    close(timeout_monitor)
-    close(inactivity_monitor)
     log = fetch(log_monitor)
 
     # if we didn't kill the process, figure out the status from the exit code
