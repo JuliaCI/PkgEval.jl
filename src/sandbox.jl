@@ -153,7 +153,7 @@ function run_sandbox(config::Configuration, setup, args...; workdir=nothing, wai
                      stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
     do_cleanup = false
     if workdir === nothing
-        workdir = mktempdir(prefix="pkgeval_sandbox_")
+        workdir = mktempdir(prefix="pkgeval_sandbox_"; cleanup=false)
         do_cleanup = true
     end
 
