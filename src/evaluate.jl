@@ -152,6 +152,12 @@ function evaluate_script(config::Configuration, script::String, args=``;
         process_running(proc) || return
         status = :kill
         reason = :time_limit
+
+        # first, send SIGUSR1 to trigger a profile dump
+        kill(proc, #=SIGUSR1=# 10)
+        sleep(10)
+
+        # then kill the process
         stop()
     end
 
@@ -167,6 +173,12 @@ function evaluate_script(config::Configuration, script::String, args=``;
             if 0 <= cpu_time_diff < 1
                 status = :kill
                 reason = :inactivity
+
+                # first, send SIGUSR1 to trigger a profile dump
+                kill(proc, #=SIGUSR1=# 10)
+                sleep(10)
+
+                # then kill the process
                 stop()
             end
         end
