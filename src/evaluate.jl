@@ -504,6 +504,19 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
     # log the status and reason
     @assert status in [:ok, :fail, :kill]
+    ## HACK: sometimes Julia (or the container) fails to exit, even though we finished
+    ##       testing, resulting in an inactivity kill. detect and override such cases.
+    if status === :kill && reason === :inactivity
+        if occursin("Testing completed after", log)
+            status = :ok
+            reason = missing
+            log *= "PkgEval terminated, but testing had completed; overriding.\n"
+        elseif occursin("Testing failed after", log)
+            status = :fail
+            reason = missing
+            log *= "PkgEval terminated, but testing had completed; overriding.\n"
+        end
+    end
     ## special cases where we override the status (if we didn't actively kill the process)
     if status !== :kill
         ## e.g. testing might have failed because we couldn't install the package
