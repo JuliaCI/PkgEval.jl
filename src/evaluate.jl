@@ -152,6 +152,12 @@ function evaluate_script(config::Configuration, script::String, args=``;
         process_running(proc) || return
         status = :kill
         reason = :time_limit
+
+        # first, send SIGUSR1 to trigger a profile dump
+        kill(proc, #=SIGUSR1=# 10)
+        sleep(10)
+
+        # then kill the process
         stop()
     end
 
@@ -167,6 +173,12 @@ function evaluate_script(config::Configuration, script::String, args=``;
             if 0 <= cpu_time_diff < 1
                 status = :kill
                 reason = :inactivity
+
+                # first, send SIGUSR1 to trigger a profile dump
+                kill(proc, #=SIGUSR1=# 10)
+                sleep(10)
+
+                # then kill the process
                 stop()
             end
         end
@@ -200,9 +212,11 @@ function evaluate_script(config::Configuration, script::String, args=``;
         isa(err, InterruptException) || rethrow()
         # this is a Julia-level interrupt, probably because of a CTRL-C.
         status = :kill
+    finally
+        # make sure we don't leave any stray timers running
+        close(timeout_monitor)
+        close(inactivity_monitor)
     end
-    close(timeout_monitor)
-    close(inactivity_monitor)
     log = fetch(log_monitor)
 
     # if we didn't kill the process, figure out the status from the exit code
@@ -490,6 +504,19 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
     # log the status and reason
     @assert status in [:ok, :fail, :kill]
+    ## HACK: sometimes Julia (or the container) fails to exit, even though we finished
+    ##       testing, resulting in an inactivity kill. detect and override such cases.
+    if status === :kill && reason === :inactivity
+        if occursin("Testing completed after", log)
+            status = :ok
+            reason = missing
+            log *= "PkgEval terminated, but testing had completed; overriding.\n"
+        elseif occursin("Testing failed after", log)
+            status = :fail
+            reason = missing
+            log *= "PkgEval terminated, but testing had completed; overriding.\n"
+        end
+    end
     ## special cases where we override the status (if we didn't actively kill the process)
     if status !== :kill
         ## e.g. testing might have failed because we couldn't install the package
