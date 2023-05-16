@@ -261,13 +261,13 @@ function chmod_recursive(root::String, perms)
         path = joinpath(root, f)
         try
             chmod(path, perms)
+            if isdir(path) && !islink(path)
+                chmod_recursive(path, perms)
+            end
         catch e
             if !isa(e, Base.IOError)
                 rethrow(e)
             end
-        end
-        if isdir(path) && !islink(path)
-            chmod_recursive(path, perms)
         end
     end
 end
