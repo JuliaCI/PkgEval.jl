@@ -164,7 +164,7 @@ function evaluate_script(config::Configuration, script::String, args=``;
     # kill on inactivity
     previous_cpu_time = missing
     previous_io_bytes = missing
-    inactivity_monitor = Timer(60; interval=60) do timer
+    inactivity_monitor = Timer(300; interval=300) do timer
         process_running(proc) || return
         pid = getpid(proc)
 
