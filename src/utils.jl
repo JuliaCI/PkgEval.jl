@@ -190,9 +190,41 @@ function cpu_time(pid)
 
     # cutime and cstime are only updated when the child exits,
     # so recursively scan all known children
-    total_time += sum(cpu_time, process_children(pid); init=0.0)
+    total_time += sum(skipmissing(cpu_time.(process_children(pid))); init=0.0)
 
     return total_time
+end
+
+
+# look up the I/O bytes performed by a process and its children
+function io_bytes(pid)
+    stats = try
+        read("/proc/$pid/io", String)
+    catch err # TOCTOU
+        if (isa(err, SystemError)  && err.errnum in [Libc.ENOENT, Libc.ESRCH, Libc.EACCES]) ||
+           (isa(err, Base.IOError) && err.code in [Base.UV_ENOENT, Base.UV_ESRCH, Base.UV_EACCES])
+            # the process has already exited, or we don't have permission
+            return missing
+        else
+            rethrow(err)
+        end
+    end
+
+    # this shouldn't happen, but it does occasionally
+    isempty(stats) && return missing
+
+    dict = Dict()
+    for line in split(stats, '\n')
+        m = match(r"^(.+): (\d+)$", line)
+        m === nothing && continue
+        dict[m.captures[1]] = parse(Int, m.captures[2])
+    end
+    total_bytes = dict["rchar"] + dict["wchar"]
+
+    # include child processes
+    total_bytes += sum(skipmissing(io_bytes.(process_children(pid))); init=0)
+
+    return total_bytes
 end
 
 

@@ -161,28 +161,46 @@ function evaluate_script(config::Configuration, script::String, args=``;
         stop()
     end
 
-    # kill on inactivity (less than 1 second of CPU usage every minute)
-    previous_cpu_time = nothing
-    inactivity_monitor = Timer(60; interval=30) do timer
+    # kill on inactivity
+    previous_cpu_time = missing
+    previous_io_bytes = missing
+    inactivity_monitor = Timer(300; interval=300) do timer
         process_running(proc) || return
         pid = getpid(proc)
+
+        # check CPU usage: less than 1 second of CPU time is considered inactive
+        cpu_inactive = missing
         current_cpu_time = cpu_time(pid)
-        current_cpu_time === missing && return
-        if current_cpu_time > 0 && previous_cpu_time !== nothing
-            cpu_time_diff = current_cpu_time - previous_cpu_time
-            if 0 <= cpu_time_diff < 1
-                status = :kill
-                reason = :inactivity
-
-                # first, send SIGUSR1 to trigger a profile dump
-                kill(proc, #=SIGUSR1=# 10)
-                sleep(10)
-
-                # then kill the process
-                stop()
-            end
+        if current_cpu_time !== missing && previous_cpu_time !== missing
+            cpu_inactive = 0 <= current_cpu_time - previous_cpu_time < 1
         end
         previous_cpu_time = current_cpu_time
+
+        # check I/O usage: less than 1 MB of I/O is considered inactive
+        io_inactive = missing
+        current_io_bytes = io_bytes(pid)
+        if current_io_bytes !== missing && previous_io_bytes !== missing
+            io_inactive = 0 <= current_io_bytes - previous_io_bytes < 1_000_000
+        end
+        previous_io_bytes = current_io_bytes
+
+        inactive = if io_inactive === missing
+            # I/O accounting may be unavailable
+            cpu_inactive === true
+        else
+            cpu_inactive === true && io_inactive === true
+        end
+        if inactive
+            status = :kill
+            reason = :inactivity
+
+            # first, send SIGUSR1 to trigger a profile dump
+            kill(proc, #=SIGUSR1=# 10)
+            sleep(10)
+
+            # then kill the process
+            stop()
+        end
     end
 
     # collect output
@@ -249,7 +267,7 @@ function evaluate_script(config::Configuration, script::String, args=``;
 end
 
 const common_script = raw"""
-    # simplified version of cpu_time in utils.jl (doesn't need to
+    # simplified version of utilities from utils.jl (with no need to
     # scan for children, as we use this from the parent when idle)
     function cpu_time()
         stats = read("/proc/self/stat", String)
@@ -263,6 +281,18 @@ const common_script = raw"""
         cstime = parse(Int, fields[17])
 
         return (utime + stime + cutime + cstime) / Sys.SC_CLK_TCK
+    end
+    function io_bytes()
+        stats = read("/proc/self/io", String)
+
+        dict = Dict()
+        for line in split(stats, '\n')
+            m = match(r"^(.+): (\d+)$", line)
+            m === nothing && continue
+            dict[m.captures[1]] = parse(Int, m.captures[2])
+        end
+
+        return dict["rchar"] + dict["wchar"]
     end
 
     using Dates
@@ -451,6 +481,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         end
 
         t0 = cpu_time()
+        io0 = io_bytes()
         try
             if bugreporting
                 Pkg.test(package_spec.name; julia_args=`--load bugreport.jl`)
@@ -464,6 +495,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             rethrow()
         finally
             write("/output/duration", repr(cpu_time()-t0))
+            write("/output/input_output", repr(io_bytes()-io0))
         end""" * "\nend"
 
     args = `$(repr(package_spec_tuple(pkg)))`
@@ -483,7 +515,8 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     output = Dict()
     for (entry, type, default) in [("installed", Bool, false),
                                    ("version", Union{Nothing,VersionNumber}, missing),
-                                   ("duration", Float64, 0.0)]
+                                   ("duration", Float64, 0.0),
+                                   ("input_output", Int, 0)]
         file = joinpath(output_dir, entry)
         output[entry] = if isfile(file)
             str = read(file, String)
@@ -677,7 +710,10 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     chmod_recursive(workdir, 0o777) # JuliaLang/julia#47650
     rm(workdir; recursive=true)
 
-    return (; log, status, reason, version=output["version"], duration=output["duration"])
+    return (; log, status, reason,
+               version=output["version"],
+               duration=output["duration"],
+               input_output=output["input_output"])
 end
 
 """
@@ -790,12 +826,12 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
         compiled = false,
         julia_flags = [config.julia_flags..., "--sysimage", sysimage_path],
     )
-    (; log, status, reason, version, duration) =
+    (; log, status, reason, version, duration, input_output) =
         evaluate_test(test_config, pkg; mounts, use_cache, kwargs...)
     log = compile_log * "\n\n" * '#'^80 * "\n" * '#'^80 * "\n\n\n" * log
 
     rm(sysimage_dir; recursive=true)
-    return (; log, status, reason, version, duration)
+    return (; log, status, reason, version, duration, input_output)
 
 end
 
@@ -1021,6 +1057,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                        status = Symbol[],
                        reason = Union{Missing,Symbol}[],
                        duration = Float64[],
+                       input_output = Int[],
                        log = Union{Missing,String}[])
     skips = similar(result)
 
@@ -1043,7 +1080,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                 # couldn't find a compatible version in the registry...
                 for config in configs
                     push!(skips, [config.name, package.name, missing,
-                                  :skip, :uninstallable, 0, missing])
+                                  :skip, :uninstallable, 0, 0, missing])
                 end
                 nothing
             end
@@ -1090,7 +1127,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
             return false
         elseif job.package.name in blacklist || job.package.name in skip_list
             push!(skips, [job.config.name, job.package.name, missing,
-                          :skip, :blacklisted, 0, missing])
+                          :skip, :blacklisted, 0, 0, missing])
             return false
         else
             return true
@@ -1126,7 +1163,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                     # test the package
                     main_config = Configuration(job.config; cpus=[i-1],
                                                 rr=(job.config.rr==RREnabled))
-                    (; log, status, reason, version, duration) =
+                    (; log, status, reason, version, duration, input_output) =
                         evaluate_test(main_config, job.package; job.use_cache)
 
                     if retry
@@ -1137,13 +1174,13 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
 
                             # if the rr test crashed in the same way, use that evaluation
                             if rr_results.status === status && rr_results.reason === reason
-                                (; log, status, reason, version, duration) = rr_results
+                                (; log, status, reason, version, duration, input_output) = rr_results
                             end
                         end
                     end
 
                     push!(result, [job.config.name, job.package.name,
-                                    version, status, reason, duration, log])
+                                    version, status, reason, duration, input_output, log])
 
                     if retry
                         # late retry: when done testing a package, re-test failures.
