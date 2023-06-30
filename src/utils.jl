@@ -201,9 +201,9 @@ function io_bytes(pid)
     stats = try
         read("/proc/$pid/io", String)
     catch err # TOCTOU
-        if (isa(err, SystemError)  && err.errnum in [Libc.ENOENT, Libc.ESRCH]) ||
-           (isa(err, Base.IOError) && err.code in [Base.UV_ENOENT, Base.UV_ESRCH])
-            # the process has already exited
+        if (isa(err, SystemError)  && err.errnum in [Libc.ENOENT, Libc.ESRCH, Libc.EACCES]) ||
+           (isa(err, Base.IOError) && err.code in [Base.UV_ENOENT, Base.UV_ESRCH, Base.UV_EACCES])
+            # the process has already exited, or we don't have permission
             return missing
         else
             rethrow(err)
