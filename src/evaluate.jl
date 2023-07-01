@@ -28,6 +28,7 @@ const reasons = [
     :unreachable            => "an unreachable instruction was executed",
     :gc_corruption          => "GC corruption was detected",
     :segfault               => "a segmentation fault happened",
+    :inference_overflow     => "inference exceeded maximum recursion depth",
     # fail
     :syntax                 => "package has syntax issues",
     :uncompilable           => "compilation of the package failed",
@@ -568,10 +569,12 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             status = :crash
             reason = :unreachable
         elseif occursin("Internal error: encountered unexpected error in runtime", log) ||
-               occursin("Internal error: stack overflow in type inference", log) ||
                occursin("Internal error: encountered unexpected error during compilation", log)
             status = :crash
             reason = :internal
+        elseif occursin("Internal error: stack overflow in type inference", log)
+            status = :crash
+            reason = :inference_overflow
         elseif occursin(r"signal \(.+\): Abort", log) ||                # sigdie handler
                occursin("(received signal: 6)", log)                    # Pkg log
             status = :crash
