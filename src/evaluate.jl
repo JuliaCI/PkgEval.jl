@@ -32,6 +32,7 @@ const reasons = [
     # fail
     :syntax                 => "package has syntax issues",
     :uncompilable           => "compilation of the package failed",
+    :method_overwriting     => "illegal method overwrites during precompilation",
     :test_failures          => "package has test failures",
     :binary_dependency      => "package requires a missing binary dependency",
     :missing_dependency     => "package is missing a package dependency",
@@ -605,6 +606,8 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
                 occursin("listen: address already in use", log) ||
                 occursin("connect: connection refused", log)
             :network
+        elseif occursin("Method overwriting is not permitted", log)
+            :method_overwriting
         elseif occursin("ERROR: LoadError: syntax", log)
             :syntax
         elseif occursin("Some tests did not pass", log) || occursin("Test Failed", log)
