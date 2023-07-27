@@ -604,6 +604,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
                 occursin(r"Error: HTTP/\d \d+", log) ||
                 occursin("Temporary failure in name resolution", log) ||
                 occursin("listen: address already in use", log) ||
+                occursin("Could not download", log) ||
                 occursin("connect: connection refused", log)
             :network
         elseif occursin("Method overwriting is not permitted", log)
