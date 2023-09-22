@@ -290,6 +290,7 @@ function setup_generic_sandbox(config::Configuration, cmd::Cmd; workdir::String,
         # some essential env vars (since we don't run from a shell)
         "PATH" => "/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin",
         "HOME" => config.home,
+        "LANG" => "C.UTF-8",
     ))
     if haskey(ENV, "TERM")
         env["TERM"] = ENV["TERM"]
