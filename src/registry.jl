@@ -87,7 +87,9 @@ function _get_packages(config::Configuration)
     proc = sandboxed_julia(config, `-e $stdlib_script`; stdout=p.out)
     while !eof(p.out)
         line = readline(p.out)
-        uuid, name = split(line, ' ')
+        entries = split(line, ' ')
+        length(entries) == 2 || continue
+        uuid, name = entries
         stdlibs[name] = Package(; name, uuid=UUID(uuid))
     end
     success(proc) || error("Failed to list standard libraries")
