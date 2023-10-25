@@ -16,6 +16,8 @@ using crun_jll
 
 skip_list = String[]
 skip_rr_list = String[]
+important_list = String[]
+slow_list = String[]
 
 # due to containers/crun#1092, we really need to use unique container names,
 # and not reuse, e.g., when running in a testset
@@ -43,6 +45,7 @@ function __init__()
     packages = TOML.parsefile(joinpath(dirname(@__DIR__), "Packages.toml"))
     global skip_list = get(packages, "skip", String[])
     global skip_rr_list = get(packages, "skip_rr", String[])
+    global important_list = get(packages, "important", String[])
     global slow_list = get(packages, "slow", String[])
 
     global container_root = mktempdir(prefix="pkgeval_containers_")

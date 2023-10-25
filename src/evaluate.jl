@@ -1119,7 +1119,10 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
 
     # pre-filter the jobs for packages we'll skip to get a better ETA
     jobs = filter(jobs) do job
-        if endswith(job.package.name, "_jll")
+        if job.package.name in important_list
+            # important packages we always test
+            return true
+        elseif endswith(job.package.name, "_jll")
             # JLLs we ignore completely; it's not useful to include them in the skip count
             return false
         elseif job.package.name in blacklist || job.package.name in skip_list

@@ -63,7 +63,7 @@ skip = [
     "RemoteHPC",            # server software
     "Metal",                # Apple hardware
     "ObjectiveC",           # macOS
-    
+
     # nested containerization not supported
     # (triggers a bug in crun)
     "Sandbox",
@@ -75,6 +75,11 @@ skip = [
 skip_rr = [
     "Plots",                        # hangs
     "BinaryBuilderBase",            # requires 32-bit rr
+]
+
+# packages that are important, and thus shouldn't ever be blacklisted
+important = [
+    "Revise"
 ]
 
 # packages that are slow, and should be granted more test time (they're worth it)
