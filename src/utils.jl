@@ -36,6 +36,14 @@ function get_github_checkout(repo, ref)
         ref, nothing
     end
 
+    # special case: "stable", where we use the latest release tag
+    if ref == "stable"
+        tags = split(read(`$(git()) -C $clone tag`, String))
+        filter!(t -> startswith(t, "v"), tags)
+        filter!(t -> !occursin(r"-", t), tags)
+        ref = sort(tags, by=VersionNumber) |> last
+    end
+
     # explicitly fetch the requested commit from the remote and put it on the master branch.
     # we need to do this as not all specs (e.g. `pull/42/merge`) might be available locally
     run(`$(git()) -C $clone fetch --quiet --force origin $ref:master`)
