@@ -111,29 +111,6 @@ function evaluate_script(config::Configuration, script::String, args=``;
         env["JULIA_PKG_SERVER"] = ENV["JULIA_PKG_SERVER"]
     end
 
-    version = julia_version(config)
-
-    # generating package images is really expensive, without much benefit (for PkgEval)
-    if version < v"1.9-beta1" || (v"1.10-" <= version < v"1.10.0-DEV.204")
-        # we don't support pkgimages yet
-    elseif any(startswith("--pkgimages"), config.julia_flags)
-        # the user specifically requested pkgimages
-    else
-        flag = if version >= v"1.11.0-DEV.1119"
-            # we can selectively disable pkgimages while allowing reuse of existing ones
-            "--pkgimages=existing"
-        elseif version >= v"1.11-DEV.123"
-            # we can only selectively disable all compilation caches. this isn't ideal,
-            # but at this point in time (where many stdlibs have been moved out of the
-            # system image) it's strictly better than using `--pkgimages=no`
-            "--compiled-modules=existing"
-        else
-            # completely disable pkgimages
-            "--pkgimages=no"
-        end
-        config = Configuration(config; julia_flags=[config.julia_flags..., flag])
-    end
-
     input = Pipe()
     output = Pipe()
     args = `-e 'include_string(Main, read(stdin,String))' --color=no $args`
@@ -412,6 +389,30 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             end
         end
 
+        # generating package images is really expensive, without much benefit (for PkgEval)
+        # so determine here if we need to disable them using additional CLI args
+        # (we can't do this externally because of JuliaLang/Pkg.jl#3737)
+        julia_args = if VERSION < v"1.9-beta1" || (v"1.10-" <= VERSION < v"1.10.0-DEV.204")
+            # we don't support pkgimages yet
+            ``
+        elseif any(startswith("--pkgimages"), Base.julia_cmd().exec)
+            # the user specifically requested pkgimages
+            ``
+        else
+            if VERSION >= v"1.11-DEV.1119"
+                # we can selectively disable pkgimages while allowing reuse of existing ones
+                `--pkgimages=existing`
+            elseif VERSION >= v"1.11-DEV.123"
+                # we can only selectively disable all compilation caches. this isn't ideal,
+                # but at this point in time (where many stdlibs have been moved out of the
+                # system image) it's strictly better than using `--pkgimages=no`
+                `--compiled-modules=existing`
+            else
+                # completely disable pkgimages
+                `--pkgimages=no`
+            end
+        end
+
         Pkg.add(deps)
 
         Pkg.activate()
@@ -453,6 +454,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         try
             run(```$(Base.julia_cmd())
                    --check-bounds=yes
+                   $(julia_args)
                    -e 'using Pkg
 
                        Pkg.activate("pkgeval"; shared=true)
@@ -499,9 +501,9 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         io0 = io_bytes()
         try
             if bugreporting
-                Pkg.test(package_spec.name; julia_args=`--load bugreport.jl`)
+                Pkg.test(package_spec.name; julia_args=`$julia_args --load bugreport.jl`)
             else
-                Pkg.test(package_spec.name)
+                Pkg.test(package_spec.name; julia_args)
             end
 
             println("\nTesting completed after $(elapsed(t0))")
