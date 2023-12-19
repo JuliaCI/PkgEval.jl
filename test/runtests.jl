@@ -102,6 +102,9 @@ end
         @test results[1, :package] == "Example"
         @test results[1, :version] isa VersionNumber
         @test results[1, :status] == :ok
+        if results[1, :status] != :ok
+            println(results[1, :log])
+        end
     end
 
     # specifying a version
@@ -112,6 +115,9 @@ end
         @test results[1, :package] == "Example"
         @test results[1, :version] == v"0.5.3"
         @test results[1, :status] == :ok
+        if results[1, :status] != :ok
+            println(results[1, :log])
+        end
     end
 
     # specifying a revision
