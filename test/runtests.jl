@@ -52,7 +52,7 @@ config = let
     end
     Configuration(; config_kwargs...)
 end
-@info sprint(io->print(io, config))
+@info "Using the following configuration for testing: " * sprint(io->print(io, config))
 
 @testset "julia installation" begin
     let
@@ -97,33 +97,28 @@ end
 @testset "package installation" begin
     # by name
     let results = evaluate([config],
-                           [Package(; name="Example")])
+                           [Package(; name="Example")];
+                           echo=true)
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
         @test results[1, :version] isa VersionNumber
         @test results[1, :status] == :ok
-        if results[1, :status] != :ok
-            println(results[1, :log])
-        end
     end
 
     # specifying a version
     let results = evaluate([config],
                            [Package(; name="Example", version=v"0.5.3")];
-                           validate=false)
+                           echo=true, validate=false)
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
         @test results[1, :version] == v"0.5.3"
         @test results[1, :status] == :ok
-        if results[1, :status] != :ok
-            println(results[1, :log])
-        end
     end
 
     # specifying a revision
     let results = evaluate([config],
                            [Package(; name="Example", rev="master")];
-                           validate=false)
+                           echo=true, validate=false)
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
         @test results[1, :status] == :ok
@@ -133,7 +128,7 @@ end
     # specifying the URL
     let results = evaluate([config],
                            [Package(; name="Example", url="https://github.com/JuliaLang/Example.jl")];
-                           validate=false)
+                           echo=true, validate=false)
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
         @test results[1, :status] == :ok
@@ -150,7 +145,7 @@ if julia_version >= v"1.10.0-DEV.204" || v"1.9.0-alpha1.55" <= julia_version < v
 
         # wipe the cache and evaluate Example.jl
         rm(compilecache, recursive=true, force=true)
-        PkgEval.evaluate_test(config, Package(; name="Example"))
+        PkgEval.evaluate_test(config, Package(; name="Example"); echo=true)
 
         # make sure we only generated one package image
         @test isdir(compilecache)
@@ -236,7 +231,7 @@ end
     package_names = ["TimerOutputs", "Crayons", "Example", "Gtk"]
     packages = [Package(; name) for name in package_names]
 
-    results = evaluate([config], packages; validate=false)
+    results = evaluate([config], packages; echo=true, validate=false, ninstances=1)
     if julia_release !== nothing
         @test all(results.status .== :ok)
         for result in eachrow(results)
@@ -249,7 +244,7 @@ end
     results = evaluate([Configuration(config; name="regular"),
                         Configuration(config; name="compiled", compiled=true)],
                        [Package(; name="Example")];
-                       validate=false)
+                       echo=true, validate=false)
     @test size(results, 1) == 2
     for result in eachrow(results)
         @test result.configuration in ["regular", "compiled"]
@@ -268,7 +263,7 @@ end
 haskey(ENV, "CI") || @testset "rr" begin
     results = evaluate([Configuration(config; rr=PkgEval.RREnabled)],
                        [Package(; name="Example")];
-                       validate=false)
+                       echo=true, validate=false)
     @test all(results.status .== :ok)
     @test contains(results[1, :log], "BugReporting")
     if julia_release !== nothing
@@ -282,7 +277,7 @@ end
     non_stdlibs = ["Example"]
     packages = [Package(; name) for name in [stdlibs; non_stdlibs]]
 
-    results = evaluate([config], packages; validate=false)
+    results = evaluate([config], packages; echo=true, validate=false)
     @test all(results.status .== :ok)
     for result in eachrow(results)
         if result.package in stdlibs

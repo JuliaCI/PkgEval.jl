@@ -1,4 +1,11 @@
-export Configuration, ismodified, Package
+module PkgEvalCore
+
+using Pkg
+using Base: UUID
+
+export Configuration, ismodified, Package,
+       package_spec_tuple, can_use_binaries,
+       RREnabled, RREnabledOnRetry, RRDisabled
 
 
 ## individual settings, keeping track of modifications
@@ -91,7 +98,24 @@ Base.@kwdef struct Configuration
     compile_time_limit::Setting{Float64} = Default(30*60) # 30 mins
 end
 
-function Base.show(io::IO, cfg::Configuration)
+function durationstring(seconds)
+    components = String[]
+    divisions = [3600 => "hour", 60 => "min", 1 => "sec"]
+    for (div, name) in divisions
+        if seconds >= div
+            push!(components, "$(Int(seconds ÷ div)) $name")
+            seconds %= div
+        end
+    end
+    if isempty(components)
+        "0 sec"
+    else
+        join(components, " ")
+    end
+end
+
+# verbose printing
+function Base.show(io::IO, ::MIME"text/plain", cfg::Configuration)
     function show_setting(field, renderer=identity)
         setting = getfield(cfg, Symbol(field))
         value_str = renderer(setting[])
@@ -123,6 +147,21 @@ function Base.show(io::IO, cfg::Configuration)
     show_setting.(["log_limit", "memory_limit"], Base.format_bytes)
     show_setting.(["time_limit", "compile_time_limit"], durationstring)
 
+    print(io, ")")
+end
+
+# compact printing, making sure the output is parseable again
+function Base.show(io::IO, cfg::Configuration)
+    default_cfg = Configuration()
+    print(io, "Configuration(")
+    got_fields = false
+    for field in fieldnames(Configuration)
+        if getproperty(cfg, field) != getproperty(default_cfg, field)
+            got_fields && print(io, ", ")
+            print(io, field, "=", repr(getproperty(cfg, field)))
+            got_fields = true
+        end
+    end
     print(io, ")")
 end
 
@@ -188,7 +227,7 @@ function Package(cfg::Package; kwargs...)
 end
 
 # convert a Package to a tuple that's Pkg.add'able
-function package_spec_tuple(pkg::Package)
+function Base.convert(::Type{Pkg.PackageSpec}, pkg::Package)
     spec = (;)
     for field in (:name, :uuid, :version, :url, :rev)
         val = getfield(pkg, field)
@@ -196,15 +235,22 @@ function package_spec_tuple(pkg::Package)
             spec = merge(spec, NamedTuple{(field,)}((val,)))
         end
     end
-    spec
+    PackageSpec(; spec...)
 end
 
+# compact printing, making sure the output is parseable again
+function Base.show(io::IO, pkg::Package)
+    print(io, "Package(")
+    got_fields = false
+    for field in fieldnames(Package)
+        val = getfield(pkg, field)
+        if val !== nothing
+            got_fields && print(io, ", ")
+            print(io, field, "=", repr(val))
+            got_fields = true
+        end
+    end
+    print(io, ")")
+end
 
-## test job
-
-struct Job
-    config::Configuration
-    package::Package
-
-    use_cache::Bool
 end
