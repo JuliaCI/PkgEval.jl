@@ -4,6 +4,7 @@ using Pkg, LazyArtifacts, Random
 import Pkg.TOML
 import GitHub
 using Base: UUID
+using Reexport: @reexport
 
 import Scratch: @get_scratch!
 download_dir = ""
@@ -23,7 +24,9 @@ slow_list = String[]
 # and not reuse, e.g., when running in a testset
 const rng = MersenneTwister()
 
-include("types.jl")
+include("PkgEvalCore.jl")
+@reexport using .PkgEvalCore
+
 include("registry.jl")
 include("rootfs.jl")
 include("buildkite.jl")

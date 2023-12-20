@@ -7,6 +7,13 @@ using ProgressMeter: Progress, update!, next!, finish!, durationstring
 using Base.Threads: @threads
 import REPL
 
+struct Job
+    config::Configuration
+    package::Package
+
+    use_cache::Bool
+end
+
 const statusses = Dict(
     :ok     => "successful",
     :skip   => "skipped",
@@ -258,39 +265,6 @@ function evaluate_script(config::Configuration, script::String, args=``;
     return (; log, status, reason)
 end
 
-const common_script = raw"""
-    # simplified version of utilities from utils.jl (with no need to
-    # scan for children, as we use this from the parent when idle)
-    function cpu_time()
-        stats = read("/proc/self/stat", String)
-
-        m = match(r"^(\d+) \((.+)\) (.+)", stats)
-        @assert m !== nothing "Invalid contents for /proc/self/stat: $stats"
-        fields = [[m.captures[1], m.captures[2]]; split(m.captures[3])]
-        utime = parse(Int, fields[14])
-        stime = parse(Int, fields[15])
-        cutime = parse(Int, fields[16])
-        cstime = parse(Int, fields[17])
-
-        return (utime + stime + cutime + cstime) / Sys.SC_CLK_TCK
-    end
-    function io_bytes()
-        stats = read("/proc/self/io", String)
-
-        dict = Dict()
-        for line in split(stats, '\n')
-            m = match(r"^(.+): (\d+)$", line)
-            m === nothing && continue
-            dict[m.captures[1]] = parse(Int, m.captures[2])
-        end
-
-        return dict["rchar"] + dict["wchar"]
-    end
-
-    using Dates
-    elapsed(t) = "$(round(cpu_time() - t; digits=2))s"
-"""
-
 """
     evaluate_test(config::Configuration, pkg; use_cache=true, kwargs...)
 
@@ -346,155 +320,10 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     mkdir(output_dir)
     mounts["/output:rw"] = output_dir
 
-    script = "begin\n" * common_script * raw"""
-        using Pkg
-        using Base: UUID
-        package_spec = eval(Meta.parse(ARGS[1]))
-
-        bugreporting = parse(Bool, ENV["PKGEVAL_RR"])
-        precompile = parse(Bool, ENV["PKGEVAL_PRECOMPILE"])
-
-        println("Package evaluation of $(package_spec.name) started at ", now(UTC))
-
-        println()
-        using InteractiveUtils
-        versioninfo()
-
-
-        print("\n\n", '#'^80, "\n# Set-up\n#\n\n")
-
-        # we install PkgEval dependencies in a separate environment
-        Pkg.activate("pkgeval"; shared=true)
-
-        deps = ["TestEnv"]
-
-        if bugreporting
-            push!(deps, "BugReporting")
-
-            # instead of using --bug-report, we'll load BugReporting manually, because
-            # by default we can't access any unrelated package from within the sandbox
-            # created by Pkg, resulting in re-installation and compilation of BugReporting.
-            open("bugreport.jl", "w") do io
-                # loading an unrelated package like this is normally a bad thing to do,
-                # because the versions of BugReporting.jl's dependencies may conflict with
-                # the dependencies of the package under evaluation. However, in the session
-                # where we load BugReporting.jl we'll never actually load the package we
-                # want to test, only re-start Julia under rr, so this should be fine.
-                println(io, "pushfirst!(LOAD_PATH, $(repr(Base.ACTIVE_PROJECT[])))")
-
-                # this code is essentially what --bug-report from InteractiveUtils does
-                println(io, "using BugReporting")
-                println(io, "println(\\"Re-executing tests under rr\\")")
-                println(io, "BugReporting.make_interactive_report(\\"rr-local\\", ARGS)")
-            end
-        end
-
-        Pkg.add(deps)
-
-        Pkg.activate()
-
-
-        print("\n\n", '#'^80, "\n# Installation\n#\n\n")
-
-        t0 = cpu_time()
-        try
-            Pkg.add(; package_spec...)
-
-            println("\nInstallation completed after $(elapsed(t0))")
-            write("/output/installed", repr(true))
-        catch
-            println("\nInstallation failed after $(elapsed(t0))\n")
-            write("/output/installed", repr(false))
-            rethrow()
-        finally
-            # even if a package fails to install, it may have been resolved
-            # (e.g., when the build phase errors)
-            for package_info in values(Pkg.dependencies())
-                if package_info.name == package_spec.name
-                    write("/output/version", repr(package_info.version))
-                    break
-                end
-            end
-        end
-
-
-        if precompile
-        print("\n\n", '#'^80, "\n# Precompilation\n#\n\n")
-
-        # we run with JULIA_PKG_PRECOMPILE_AUTO=0 to avoid precompiling on Pkg.add,
-        # because we can't use the generated images for Pkg.test which uses different
-        # options (i.e., --check-bounds=yes). however, to get accurate test timings,
-        # we *should* precompile before running tests, so we do that here manually.
-
-        t0 = cpu_time()
-        try
-            run(```$(Base.julia_cmd())
-                   --check-bounds=yes
-                   -e 'using Pkg
-
-                       Pkg.activate("pkgeval"; shared=true)
-
-                       # precompile PkgEval run-time dependencies (notably BugReporting.jl)
-                       Pkg.precompile()
-
-                       # try to use TestEnv to precompile the package test dependencies
-                       try
-                         using TestEnv
-                         Pkg.activate()
-                         TestEnv.activate(ARGS[1])
-                       catch err
-                         @error "Failed to use TestEnv.jl; test dependencies will not be precompiled" exception=(err, catch_backtrace())
-                         Pkg.activate()
-                       end
-                       Pkg.precompile()' $(package_spec.name)```)
-
-            println("\nPrecompilation completed after $(elapsed(t0))")
-        catch
-            println("\nPrecompilation failed after $(elapsed(t0))\n")
-        end
-        end
-
-
-        print("\n\n", '#'^80, "\n# Testing\n#\n\n")
-
-        is_stdlib = any(Pkg.Types.stdlibs()) do (uuid,pkg)
-            name = isa(pkg, String) ? pkg : first(pkg)
-            name == package_spec.name
-        end
-        if is_stdlib
-            println("\n$(package_spec.name) is a standard library in this Julia build.")
-
-            # we currently only support testing the embedded version of stdlib packages
-            if haskey(package_spec, :version) ||
-               haskey(package_spec, :url) ||
-               haskey(package_spec, :ref)
-                error("Packages that are standard libraries can only be tested using the embedded version.")
-            end
-        end
-
-        t0 = cpu_time()
-        io0 = io_bytes()
-        try
-            if bugreporting
-                Pkg.test(package_spec.name; julia_args=`--load bugreport.jl`)
-            else
-                Pkg.test(package_spec.name)
-            end
-
-            println("\nTesting completed after $(elapsed(t0))")
-        catch
-            println("\nTesting failed after $(elapsed(t0))\n")
-            rethrow()
-        finally
-            write("/output/duration", repr(cpu_time()-t0))
-            write("/output/input_output", repr(io_bytes()-io0))
-        end""" * "\nend"
-
-    args = `$(repr(package_spec_tuple(pkg)))`
-
-    # forward arguments to the test script
-    env["PKGEVAL_RR"] = string(config.rr == RREnabled)
-    env["PKGEVAL_PRECOMPILE"] = string(config.precompile)
+    # launch the test script that's part of this repository
+    mounts["/PkgEval.jl:ro"] = dirname(@__DIR__)
+    script = """include("/PkgEval.jl/scripts/test.jl")"""
+    args = `$config $pkg`
 
     total_duration = @elapsed begin
         (; log, status, reason) = evaluate_script(config, script, args;
@@ -623,31 +452,9 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
     # pack-up our rr trace. this is expensive, so we only do it for failures.
     if config.rr == RREnabled && status == :crash
-        rr_script = "begin\n" * common_script * raw"""
-            using Pkg
-            using Base: UUID
-            package_spec = eval(Meta.parse(ARGS[1]))
-
-            print("\n\n", '#'^80, "\n# Bug reporting\n#\n\n")
-            t0 = cpu_time()
-
-            try
-                # use a clean environment, or BugReporting's deps could
-                # affect/be affected by the tested package's dependencies.
-                Pkg.activate(; temp=true)
-                Pkg.add(name="BugReporting", uuid="bcf9a6e7-4020-453c-b88e-690564246bb8")
-                using BugReporting
-
-                trace_dir = BugReporting.default_rr_trace_dir()
-                trace = BugReporting.find_latest_trace(trace_dir)
-                BugReporting.compress_trace(trace, "/output/$(package_spec.name).tar.zst")
-                println("\nBugReporting completed after $(elapsed(t0))")
-            catch err
-                println("\nBugReporting failed after $(elapsed(t0))")
-                showerror(stdout, err)
-                Base.show_backtrace(stdout, catch_backtrace())
-                println()
-            end""" * "\nend"
+        # launch the bug reporting script that's part of this repository
+        rr_script = """include("/PkgEval.jl/scripts/report_bug.jl")"""
+        args = `$config $pkg`
 
         trace = joinpath(output_dir, "$(pkg.name).tar.zst")
 
@@ -725,55 +532,8 @@ is performed in an Arch Linux container.
 """
 function evaluate_compiled_test(config::Configuration, pkg::Package;
                                 use_cache::Bool=true, kwargs...)
-    script = "begin\n" * common_script * raw"""
-        using Pkg
-        using Base: UUID
-        package_spec = eval(Meta.parse(ARGS[1]))
-        sysimage_path = ARGS[2]
-
-        println("Package compilation of $(package_spec.name) started at ", now(UTC))
-
-        println()
-        using InteractiveUtils
-        versioninfo()
-
-
-        print("\n\n", '#'^80, "\n# Installation\n#\n\n")
-        t0 = time()
-
-        is_stdlib = any(Pkg.Types.stdlibs()) do (uuid,pkg)
-            name = isa(pkg, String) ? pkg : first(pkg)
-            name == package_spec.name
-        end
-        is_stdlib && error("Packages that are standard libraries cannot be compiled again.")
-
-        println("Installing PackageCompiler...")
-        project = Base.active_project()
-        Pkg.activate(; temp=true)
-        Pkg.add(name="PackageCompiler", uuid="9b87118b-4619-50d2-8e1e-99f35a4d4d9d")
-        using PackageCompiler
-        Pkg.activate(project)
-
-        println("\nInstalling $(package_spec.name)...")
-
-        Pkg.add(; package_spec...)
-
-        println("\nCompleted after $(elapsed(t0))")
-
-
-        print("\n\n", '#'^80, "\n# Compilation\n#\n\n")
-        t1 = time()
-
-        create_sysimage([package_spec.name]; sysimage_path)
-        println("\nCompleted after $(elapsed(t1))")
-
-        s = stat(sysimage_path).size
-        println("Generated system image is ", Base.format_bytes(s))
-    """ * "\nend"
 
     sysimage_path = "/sysimage/sysimg.so"
-    args = `$(repr(package_spec_tuple(pkg))) $sysimage_path`
-
     sysimage_dir = mktempdir(prefix="pkgeval_$(pkg.name)_sysimage_")
     mounts = Dict(
         dirname(sysimage_path)*":rw"    => sysimage_dir,
@@ -792,6 +552,11 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
         uid=2000,
         gid=2000,
     )
+
+    # launch the compile script that's part of this repository
+    mounts["/PkgEval.jl:ro"] = dirname(@__DIR__)
+    script = """include("/PkgEval.jl/scripts/compile.jl")"""
+    args = `$config $pkg $sysimage_path`
 
     (; status, reason, log) =
         evaluate_script(compile_config, script, args; mounts, kwargs...)
@@ -1047,7 +812,7 @@ arguments.
 """
 function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Package[];
                   ninstances::Integer=Sys.CPU_THREADS, retry::Bool=true,
-                  validate::Bool=true, blacklist::Vector{String}=String[])
+                  validate::Bool=true, blacklist::Vector{String}=String[], kwargs...)
     result = DataFrame(configuration = String[],
                        package = String[],
                        version = Union{Missing,VersionNumber}[],
@@ -1164,13 +929,13 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                     main_config = Configuration(job.config; cpus=[i-1],
                                                 rr=(job.config.rr==RREnabled))
                     (; log, status, reason, version, duration, input_output) =
-                        evaluate_test(main_config, job.package; job.use_cache)
+                        evaluate_test(main_config, job.package; job.use_cache, kwargs...)
 
                     if retry
                         # early retry: rerun crashes under rr to see if we can get a trace
                         if status === :crash && job.config.rr == RREnabledOnRetry
                             rr_config = Configuration(main_config; rr=true)
-                            rr_results = evaluate_test(rr_config, job.package; job.use_cache)
+                            rr_results = evaluate_test(rr_config, job.package; job.use_cache, kwargs...)
 
                             # if the rr test crashed in the same way, use that evaluation
                             if rr_results.status === status && rr_results.reason === reason
