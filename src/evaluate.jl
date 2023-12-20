@@ -120,14 +120,18 @@ function evaluate_script(config::Configuration, script::String, args=``;
 
     input = Pipe()
     output = Pipe()
-    args = `-e 'include_string(Main, read(stdin,String))' --color=no $args`
+    if !isempty(script)
+        `-e 'include_string(Main, read(stdin,String))' $args`
+    end
     proc = sandboxed_julia(config, args; stdout=output, stderr=output, stdin=input,
                            wait=false, env, mounts, kwargs...)
     close(output.in)
 
-    # pass the script over standard input to avoid exceeding max command line size,
-    # and keep the process listing somewhat clean
-    println(input, script)
+    if !isempty(script)
+        # pass the script over standard input to avoid exceeding max command line size,
+        # and keep the process listing somewhat clean
+        println(input, script)
+    end
     close(input)
 
     function stop()
@@ -322,11 +326,10 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
     # launch the test script that's part of this repository
     mounts["/PkgEval.jl:ro"] = dirname(@__DIR__)
-    script = """include("/PkgEval.jl/scripts/test.jl")"""
-    args = `$config $pkg`
+    args = `"/PkgEval.jl/scripts/test.jl" $config $pkg`
 
     total_duration = @elapsed begin
-        (; log, status, reason) = evaluate_script(config, script, args;
+        (; log, status, reason) = evaluate_script(config, "", args;
                                                   name, workdir, mounts, env,
                                                   kwargs...)
     end
@@ -453,13 +456,12 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     # pack-up our rr trace. this is expensive, so we only do it for failures.
     if config.rr == RREnabled && status == :crash
         # launch the bug reporting script that's part of this repository
-        rr_script = """include("/PkgEval.jl/scripts/report_bug.jl")"""
-        args = `$config $pkg`
+        rr_args = `"/PkgEval.jl/scripts/report_bug.jl" $config $pkg`
 
         trace = joinpath(output_dir, "$(pkg.name).tar.zst")
 
         rr_config = Configuration(config; time_limit=config.time_limit*2)
-        rr_log = evaluate_script(rr_config, rr_script, args;
+        rr_log = evaluate_script(rr_config, "", rr_args;
                                  name, workdir, mounts, env, kwargs...).log
 
         # upload the trace
@@ -555,11 +557,10 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
 
     # launch the compile script that's part of this repository
     mounts["/PkgEval.jl:ro"] = dirname(@__DIR__)
-    script = """include("/PkgEval.jl/scripts/compile.jl")"""
-    args = `$config $pkg $sysimage_path`
+    args = `"/PkgEval.jl/scripts/compile.jl" $config $pkg $sysimage_path`
 
     (; status, reason, log) =
-        evaluate_script(compile_config, script, args; mounts, kwargs...)
+        evaluate_script(compile_config, "", args; mounts, kwargs...)
     log *= "\n"
 
     # log the status and determine a more accurate reason from the log
