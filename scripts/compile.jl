@@ -29,7 +29,7 @@ Pkg.activate(project)
 
 println("\nInstalling $(pkg.name)...")
 
-Pkg.add(convert(PackageSpec, pkg))
+Pkg.add(convert(Pkg.Types.PackageSpec, pkg))
 
 println("\nCompleted after $(elapsed(t0))")
 

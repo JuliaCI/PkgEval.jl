@@ -71,7 +71,7 @@ print("\n\n", '#'^80, "\n# Installation\n#\n\n")
 
 t0 = cpu_time()
 try
-    Pkg.add(convert(PackageSpec, pkg))
+    Pkg.add(convert(Pkg.Types.PackageSpec, pkg))
 
     println("\nInstallation completed after $(elapsed(t0))")
     write("/output/installed", repr(true))

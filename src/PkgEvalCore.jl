@@ -227,7 +227,7 @@ function Package(cfg::Package; kwargs...)
 end
 
 # convert a Package to a tuple that's Pkg.add'able
-function Base.convert(::Type{Pkg.PackageSpec}, pkg::Package)
+function Base.convert(::Type{Pkg.Types.PackageSpec}, pkg::Package)
     spec = (;)
     for field in (:name, :uuid, :version, :url, :rev)
         val = getfield(pkg, field)
