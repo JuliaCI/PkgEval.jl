@@ -101,24 +101,8 @@ print("\n\n", '#'^80, "\n# Precompilation\n#\n\n")
 
 t0 = cpu_time()
 try
-    run(```$(Base.julia_cmd()) $(julia_args) --check-bounds=yes
-            -e 'using Pkg
-
-                Pkg.activate("pkgeval"; shared=true)
-
-                # precompile PkgEval run-time dependencies (notably BugReporting.jl)
-                Pkg.precompile()
-
-                # try to use TestEnv to precompile the package test dependencies
-                try
-                    using TestEnv
-                    Pkg.activate()
-                    TestEnv.activate(ARGS[1])
-                catch err
-                    @error "Failed to use TestEnv.jl; test dependencies will not be precompiled" exception=(err, catch_backtrace())
-                    Pkg.activate()
-                end
-                Pkg.precompile()' $(pkg.name)```)
+    script = joinpath(@__DIR__, "precompile.jl")
+    run(`$(Base.julia_cmd()) $(julia_args) --check-bounds=yes $script $config $pkg`)
 
     println("\nPrecompilation completed after $(elapsed(t0))")
 catch
