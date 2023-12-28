@@ -349,7 +349,7 @@ function setup_julia_sandbox(config::Configuration, args=``;
         # use the provided registry
         # NOTE: putting a registry in a non-primary depot entry makes Pkg use it as-is,
         #       without needing to set Pkg.UPDATED_REGISTRY_THIS_SESSION.
-        "JULIA_DEPOT_PATH" => "::/usr/local/share/julia",
+        "JULIA_DEPOT_PATH" => "$(config.home)/.julia:/usr/local/share/julia:",
     ))
 
     cmd = `$(config.julia_install_dir)/bin/$(config.julia_binary)`
