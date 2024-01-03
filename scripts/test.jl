@@ -63,7 +63,19 @@ else
     end
 end
 
-Pkg.add(deps)
+io = IOBuffer()
+Pkg.DEFAULT_IO[] = io
+try
+    println("Installing PkgEval dependencies...")
+    Pkg.add(deps)
+    println()
+catch
+    # something went wrong installing PkgEval's dependencies
+    println(String(take!(io)))
+    rethrow()
+finally
+    Pkg.DEFAULT_IO[] = nothing
+end
 
 Pkg.activate()
 

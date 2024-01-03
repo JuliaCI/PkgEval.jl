@@ -6,7 +6,9 @@ pkg = eval(Meta.parse(ARGS[2]))
 Pkg.activate("pkgeval"; shared=true)
 
 # precompile PkgEval run-time dependencies (notably BugReporting.jl)
+println("Precompiling PkgEval dependencies...")
 Pkg.precompile()
+println()
 
 # try to use TestEnv to precompile the package test dependencies
 try
@@ -17,4 +19,6 @@ catch err
     @error "Failed to use TestEnv.jl; test dependencies will not be precompiled" exception=(err, catch_backtrace())
     Pkg.activate()
 end
+
+println("Precompiling $(pkg.name) dependencies...")
 Pkg.precompile()
