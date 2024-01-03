@@ -35,6 +35,7 @@ if config.rr == RREnabled
         println(io, "using BugReporting")
         println(io, "println(\"Switching execution to under rr\")")
         println(io, "BugReporting.make_interactive_report(\"rr-local\", ARGS)")
+        println(io, "exit(0)")
     end
 end
 
