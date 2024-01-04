@@ -45,6 +45,13 @@ cgroup_controllers = PkgEval.get_cgroup_controllers()
     end
 end
 
+@testset "Sandbox" begin
+    # smoke test
+    cfg = Configuration(xvfb=false)
+    hello_world = chomp(sprint(stdout->PkgEval.sandboxed_cmd(cfg, `/bin/echo "Hello, World!"`; stdout)))
+    @test hello_world == "Hello, World!"
+end
+
 config = let
     config_kwargs = Dict{Symbol,Any}(:julia => julia)
     if !isempty(buildflags)
