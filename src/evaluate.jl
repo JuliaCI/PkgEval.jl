@@ -39,8 +39,10 @@ const reasons = [
     # fail
     :syntax                 => "package has syntax issues",
     :uncompilable           => "compilation of the package failed",
+    :precompile             => "package fails to precompile",
     :method_overwriting     => "illegal method overwrites during precompilation",
     :test_failures          => "package has test failures",
+    :test_errors            => "package tests unexpectedly errored",
     :binary_dependency      => "package requires a missing binary dependency",
     :missing_dependency     => "package is missing a package dependency",
     :missing_package        => "package is using an unknown package",
@@ -391,13 +393,9 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         elseif occursin("Unreachable reached", log)
             status = :crash
             reason = :unreachable
-        elseif occursin("Internal error: encountered unexpected error in runtime", log) ||
-               occursin("Internal error: encountered unexpected error during compilation", log)
+        elseif occursin("Internal error:", log)
             status = :crash
             reason = :internal
-        elseif occursin("Internal error: stack overflow in type inference", log)
-            status = :crash
-            reason = :inference_overflow
         elseif occursin(r"signal \(.+\): Abort", log) ||                # sigdie handler
                occursin("(received signal: 6)", log)                    # Pkg log
             status = :crash
@@ -433,8 +431,14 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             :method_overwriting
         elseif occursin("ERROR: LoadError: syntax", log)
             :syntax
-        elseif occursin("Some tests did not pass", log) || occursin("Test Failed", log)
-            :test_failures
+        elseif occursin("Failed to precompile", log)
+            :precompile
+        elseif occursin(r"Package .+ errored during testing", log)
+            if occursin("Some tests did not pass", log) && occursin("0 errored", log)
+                :test_failures
+            else
+                :test_errors
+            end
         else
             :unknown
         end
