@@ -37,6 +37,7 @@ Default(val::T) where {T} = Setting{T}(val, false)
     RRDisabled
 end
 Base.convert(::Type{RecordReplayMode}, x::Bool) = x ? RREnabled : RRDisabled
+Base.convert(::Type{RecordReplayMode}, x::Int) = RecordReplayMode(x)
 
 Base.@kwdef struct Configuration
     name::String = "unnamed"
@@ -156,9 +157,15 @@ function Base.show(io::IO, cfg::Configuration)
     print(io, "Configuration(")
     got_fields = false
     for field in fieldnames(Configuration)
-        if getproperty(cfg, field) != getproperty(default_cfg, field)
+        if ismodified(cfg, field)
             got_fields && print(io, ", ")
-            print(io, field, "=", repr(getproperty(cfg, field)))
+            val = getproperty(cfg, field)
+            if val isa RecordReplayMode
+                # make sure we don't require the enum type, which may not be available
+                # globally (e.g. if PkgEval was loaded without importing all names)
+                val = Int(val)
+            end
+            print(io, field, "=", repr(val))
             got_fields = true
         end
     end
