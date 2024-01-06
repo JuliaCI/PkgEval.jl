@@ -31,6 +31,7 @@ const reasons = [
     missing                 => missing,
     # crash
     :abort                  => "the process was aborted",
+    :codegen                => "invalid LLVM IR was generated",
     :internal               => "an internal error was encountered",
     :unreachable            => "an unreachable instruction was executed",
     :gc_corruption          => "GC corruption was detected",
@@ -390,6 +391,9 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         if occursin("GC error (probable corruption)", log)
             status = :crash
             reason = :gc_corruption
+        elseif occursin(r"Failed to verify .+, dumping entire module", log)
+            status = :crash
+            reason = :codegen
         elseif occursin("Unreachable reached", log)
             status = :crash
             reason = :unreachable
