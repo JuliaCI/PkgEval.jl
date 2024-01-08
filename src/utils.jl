@@ -114,10 +114,9 @@ function github_auth()
     return _github_auth[]
 end
 
-
 # list the children of a process.
 # note that this may return processes that have already exited, so beware of TOCTOU.
-function process_children(pid)
+function process_children(pid; recursive=true)
     tids = try
         readdir("/proc/$pid/task")
     catch err # TOCTOU
@@ -132,37 +131,73 @@ function process_children(pid)
 
     pids = Int[]
     for tid in tids
-        try
+        child_pids = try
             children = read("/proc/$pid/task/$tid/children", String)
-            append!(pids, parse.(Int, split(children)))
+            parse.(Int, split(children))
         catch err # TOCTOU
             if (isa(err, SystemError)  && err.errnum in [Libc.ENOENT, Libc.ESRCH]) ||
                (isa(err, Base.IOError) && err.code in [Base.UV_ENOENT, Base.UV_ESRCH])
                 # the task has already exited
+                continue
             else
                 rethrow()
+            end
+        end
+
+        setdiff!(child_pids, pids)
+        append!(pids, child_pids)
+
+        if recursive
+            # recurse into the children
+            for pid in child_pids
+                nested_pids = process_children(pid)
+                setdiff!(nested_pids, pids)
+                append!(pids, nested_pids)
             end
         end
     end
     return pids
 end
 
-
-# kill a process and all of its children
-function recursive_kill(proc, sig)
+function process_tree(proc)
     parent_pid = try
         getpid(proc)
     catch err # TOCTOU
         if (isa(err, SystemError)  && err.errnum == Libc.ESRCH) ||
            (isa(err, Base.IOError) && err.code == Base.UV_ESRCH)
             # the process has already exited
-            return
+            return Int[]
         else
-            rethrow(err)
+            rethrow()
         end
     end
-    for pid in reverse([parent_pid; process_children(parent_pid)])
-        ccall(:uv_kill, Cint, (Cint, Cint), pid, sig)
+
+    Int[parent_pid; process_children(parent_pid)]
+end
+
+# TODO: LinuxProcess abstraction with `getproperty(:comm)` doing the below
+function pid_comm(pid)
+    try
+        chomp(read("/proc/$pid/comm", String))
+    catch err # TOCTOU
+        if (isa(err, SystemError)  && err.errnum in [Libc.ENOENT, Libc.ESRCH]) ||
+            (isa(err, Base.IOError) && err.code in [Base.UV_ENOENT, Base.UV_ESRCH])
+            # the task has already exited
+            nothing
+        else
+            rethrow()
+        end
+    end
+end
+
+function pid_kill(pid, sig)
+    ccall(:uv_kill, Cint, (Cint, Cint), pid, sig)
+end
+
+# kill a process and all of its children
+function recursive_kill(proc, sig)
+    for pid in reverse(process_tree(proc))
+        pid_kill(pid, sig)
     end
     return
 end

@@ -159,9 +159,13 @@ function evaluate_script(config::Configuration, script::String, args=``;
         status = :kill
         reason = :time_limit
 
-        # first, send SIGUSR1 to trigger a profile dump
-        kill(proc, #=SIGUSR1=# 10)
-        sleep(10)
+        # first, send SIGUSR1 to all Julia processes to trigger a profile dump
+        for pid in reverse(process_tree(proc))
+            if startswith(pid_comm(pid), "julia")
+                pid_kill(pid, #=SIGUSR1=# 10)
+                sleep(10)
+            end
+        end
 
         # then kill the process
         stop()
