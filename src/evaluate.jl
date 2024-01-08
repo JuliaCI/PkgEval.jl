@@ -410,6 +410,12 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
             reason = :segfault
         end
     end
+    ## some crashes can be refined by looking at the log
+    if status === :crash
+        if reason == :segfault && occursin(r"\b(jl_|ijl_|_jl_|)gc_", log)
+            reason = :gc_corruption
+        end
+    end
     ## in other cases we look at the log to determine a failure reason
     if status === :fail
         log *= "PkgEval failed"
