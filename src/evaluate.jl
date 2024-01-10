@@ -899,8 +899,17 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
         end
         push!(jobs, job)
     end
-    ## use a random test order to (hopefully) get a more reasonable ETA
-    shuffle!(jobs)
+
+    # sort the jobs
+    try
+        # ... by number of dependencies, hopefully increasing cache reuse
+        deps = package_dependencies(first(values(configs)))
+        ndeps(pkg) = haskey(deps, pkg.name) ? length(deps[pkg.name]) : typemax(Int)
+        sort!(jobs, by=job->ndeps(job.package))
+    catch err
+        @error "Could not sort jobs" exception=(err, catch_backtrace())
+        shuffle!(jobs)
+    end
 
     # pre-filter the jobs for packages we'll skip to get a better ETA
     jobs = filter(jobs) do job

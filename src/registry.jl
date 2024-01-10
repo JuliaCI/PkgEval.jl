@@ -134,6 +134,62 @@ function _get_packages(config::Configuration)
     return packages
 end
 
+"""
+    package_dependencies(config; transitive=true)
+
+This function returns a dictionary of package dependencies for each package in the registry.
+
+## Arguments
+- `config`: The configuration object for the registry.
+- `transitive`: A boolean indicating whether to include transitive dependencies. Default is `true`.
+
+## Returns
+A dictionary where the keys are package names and the values are vectors of package names representing the dependencies.
+
+"""
+function package_dependencies(config; transitive=true)
+    dependencies = Dict{String,Vector{String}}()
+
+    # iterate packages from the registry
+    registry = get_registry(config)
+    registry_instance = Pkg.Registry.RegistryInstance(registry)
+    for (_, pkg) in registry_instance
+        # we only consider the latest version of each package; see `get_packages`
+        info = Pkg.Registry.registry_info(pkg)
+        version = maximum(keys(info.version_info))
+
+        # iterate the dependencies
+        pkg_deps = Set{String}()
+        for (version_range, deps) in info.deps
+            version in version_range || continue
+            for (name, uuid) in deps
+                push!(pkg_deps, name)
+            end
+        end
+        delete!(pkg_deps, "julia")
+        dependencies[pkg.name] = collect(pkg_deps)
+    end
+
+    if transitive
+        function get_deps!(pkg, deps_seen=String[])
+            new_deps = get(dependencies, pkg, [])
+            for dep in new_deps
+                if !(dep in deps_seen)
+                    push!(deps_seen, dep)
+                    get_deps!(dep, deps_seen)
+                end
+            end
+            return deps_seen
+        end
+
+        for (pkg, deps) in dependencies
+            dependencies[pkg] = get_deps!(pkg)
+        end
+    end
+
+    return dependencies
+end
+
 # look up the tree hash of a package/slug combination.
 # this is useful for verifying the package store on disk.
 # returns nothing if the combination wasn't found in the registry.
