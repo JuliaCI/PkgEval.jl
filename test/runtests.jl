@@ -2,7 +2,10 @@ using PkgEval
 using Test
 using Git
 
-julia = get(ENV, "JULIA", "v"*string(VERSION))
+julia = get(ENV, "JULIA", "")
+if isempty(julia)
+    julia = "v"*string(VERSION)
+end
 julia_release = if contains(julia, r"^v\d")
     parse(VersionNumber, julia)
 else
