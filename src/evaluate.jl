@@ -905,7 +905,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
         # ... by number of dependencies, hopefully increasing cache reuse
         deps = package_dependencies(first(values(configs)))
         ndeps(pkg) = haskey(deps, pkg.name) ? length(deps[pkg.name]) : typemax(Int)
-        sort!(jobs, by=job->ndeps(job.package))
+        sort!(jobs, by=job->ndeps(job.package), rev=true)
     catch err
         @error "Could not sort jobs" exception=(err, catch_backtrace())
         shuffle!(jobs)
