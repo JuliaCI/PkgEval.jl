@@ -7,7 +7,7 @@ date=$(date +%Y%m%d)
 
 rootfs=$(mktemp --directory --tmpdir="$DIR")
 
-# download from https://gitlab.archlinux.org/archlinux/archlinux-docker/-/packages
+# download base-devel image from https://gitlab.archlinux.org/archlinux/archlinux-docker/-/packages
 # pass as argument
 archive=$1
 
