@@ -968,7 +968,9 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
 
                             # if the rr test crashed in the same way, use that evaluation
                             if rr_results.status === status && rr_results.reason === reason
-                                (; log, status, reason, version, duration, input_output) = rr_results
+                                # NOTE: we only use the rr log, as other metrics should be
+                                #       either identical, or not comparable (e.g., duration)
+                                log = rr_results.log
                             else
                                 log *= "\n\n" * '#'^80 * "\n# Bug reporting\n#\n\n"
                                 log *= """The package crashed during testing (reason=$reason), but PkgEval was unable to
