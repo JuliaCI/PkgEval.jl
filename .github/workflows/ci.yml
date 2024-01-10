@@ -17,24 +17,32 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version:
-          - '1.7'
-          - '1.8'
-          - '1.9'
-          - '1.10'
-        os:
-          - ubuntu-latest
-        arch:
-          - x64
-        test_julia:
-          - "v1.6.7"              # release from versions.json
-          - "nightly"             # special releases
-          - "stable"
-          - "master~10"           # directly from Git, likely built by CI
-          - "master"              # directly from Git, force a build (see below)
+        version: ['1.9', '1.10']
+        os: ['ubuntu-latest']
+        arch: [x64]
+        test_julia: ['']
+        test_buildflags: ['']
         include:
-          - test_julia: "master"
-            test_buildflags: "JULIA_CPU_TARGET=native JULIA_PRECOMPILE=0"
+          # special releases
+          - os: 'ubuntu-latest'
+            arch: 'x64'
+            version: '1.10'
+            test_julia: 'nightly'
+          - os: 'ubuntu-latest'
+            arch: 'x64'
+            version: '1.10'
+            test_julia: 'stable'
+          # directly from Git, likely built by CI
+          - os: 'ubuntu-latest'
+            arch: 'x64'
+            version: '1.10'
+            test_julia: 'master~10'
+          # directly from Git, force a build (see below)
+          - os: 'ubuntu-latest'
+            arch: 'x64'
+            version: '1.10'
+            test_julia: 'master'
+            test_buildflags: 'JULIA_CPU_TARGET=native JULIA_PRECOMPILE=0'
     env:
       JULIA_DEBUG: PkgEval
       JULIA: ${{ matrix.test_julia }}
