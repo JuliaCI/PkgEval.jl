@@ -33,6 +33,7 @@ if config.rr == RREnabled
 
         # this code is essentially what --bug-report from InteractiveUtils does
         println(io, "using BugReporting")
+        println(io, "ENV[\"ENABLE_GDBLISTENER\"] = \"1\"")
         println(io, "println(\"Switching execution to under rr\")")
         println(io, "BugReporting.make_interactive_report(\"rr-local\", ARGS)")
         println(io, "exit(0)")
