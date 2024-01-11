@@ -115,7 +115,19 @@ print("\n\n", '#'^80, "\n# Precompilation\n#\n\n")
 t0 = cpu_time()
 try
     script = joinpath(@__DIR__, "precompile.jl")
-    run(`$(Base.julia_cmd()) $(julia_args) --check-bounds=yes $script $config $pkg`)
+    # we need to make sure to match the test environment, or at least
+    # with respect to CLI flags that affect precompilation caching.
+    # that means enabling bounds checking; other CLI flags that affect
+    # precompilation caching (debug & opt level, inlining) should either
+    # be set to the default, or customized through `julia_args`.
+    # see Pkg.jl's `gen_subprocess_cmd` for more details.
+    run(```
+        $(Base.julia_cmd())
+        --check-bounds=yes
+        --inline=$(Bool(Base.JLOptions().can_inline) ? "yes" : "no")
+        $(julia_args)
+        $script $config $pkg
+    ```)
 
     println("\nPrecompilation completed after $(elapsed(t0))")
 catch
