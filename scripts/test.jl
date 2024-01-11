@@ -110,8 +110,21 @@ if !isfile(runtests)
     error("Package $(pkg.name) did not provide a `test/runtests.jl` file")
 end
 
+is_stdlib = any(Pkg.Types.stdlibs()) do (uuid,stdlib)
+    name = isa(stdlib, String) ? stdlib : first(stdlib)
+    name == pkg.name
+end
+if is_stdlib
+    println("\n$(pkg.name) is a standard library in this Julia build.")
 
-if config.precompile
+    # we currently only support testing the embedded version of stdlib packages
+    if pkg.version !== nothing || pkg.url !== nothing || pkg.rev !== nothing
+        error("Packages that are standard libraries can only be tested using the embedded version.")
+    end
+end
+
+
+if config.precompile && !is_stdlib
 print("\n\n", '#'^80, "\n# Precompilation\n#\n\n")
 
 # we run with JULIA_PKG_PRECOMPILE_AUTO=0 to avoid precompiling on Pkg.add,
@@ -132,19 +145,6 @@ end
 
 
 print("\n\n", '#'^80, "\n# Testing\n#\n\n")
-
-is_stdlib = any(Pkg.Types.stdlibs()) do (uuid,stdlib)
-    name = isa(stdlib, String) ? stdlib : first(stdlib)
-    name == pkg.name
-end
-if is_stdlib
-    println("\n$(pkg.name) is a standard library in this Julia build.")
-
-    # we currently only support testing the embedded version of stdlib packages
-    if pkg.version !== nothing || pkg.url !== nothing || pkg.rev !== nothing
-        error("Packages that are standard libraries can only be tested using the embedded version.")
-    end
-end
 
 t0 = cpu_time()
 io0 = io_bytes()
