@@ -103,6 +103,13 @@ finally
     end
 end
 
+# ensure the package has a test/runtests.jl file, so we can bail out quicker
+src = Base.find_package(pkg.name)
+runtests = joinpath(dirname(src), "..", "test", "runtests.jl")
+if !isfile(runtests)
+    error("Package $(pkg.name) did not provide a `test/runtests.jl` file")
+end
+
 
 if config.precompile
 print("\n\n", '#'^80, "\n# Precompilation\n#\n\n")
