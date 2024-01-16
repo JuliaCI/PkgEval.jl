@@ -222,6 +222,25 @@ function build_julia!(config::Configuration, checkout::String)
                          stdin=devnull, stdout=output, stderr=output)
     close(output.in)
 
+    function stop()
+        if process_running(proc)
+            # we need to be careful we don't end up killing only the sandbox process
+            recursive_kill(proc, Base.SIGTERM)
+            t = Timer(10) do timer
+                recursive_kill(proc, Base.SIGKILL)
+            end
+            wait(proc)
+            close(t)
+        end
+        close(output)
+    end
+
+    # kill on timeout
+    timeout_monitor = Timer(1800) do timer
+        process_running(proc) || return
+        stop()
+    end
+
     # collect output
     log_monitor = @async begin
         io = IOBuffer()
@@ -234,7 +253,7 @@ function build_julia!(config::Configuration, checkout::String)
     end
 
     wait(proc)
-    close(output)
+    close(timeout_monitor)
     log = fetch(log_monitor)
 
     if !success(proc)
