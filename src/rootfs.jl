@@ -21,18 +21,18 @@ function _create_rootfs(config::Configuration)
         # download
         url = rootfs_toml["download"][1]["url"]
         hash = rootfs_toml["download"][1]["sha256"]
-        tarball = joinpath(download_dir, "rootfs", basename(url))
+        tarball = joinpath(download_dir, hash)
         if !isfile(tarball)
             Pkg.PlatformEngines.download_verify(url, hash, tarball)
         end
 
         # extract
         open(tarball) do io
-            stream = if endswith(tarball, ".xz")
+            stream = if endswith(url, ".xz")
                 XzDecompressorStream(io)
-            elseif endswith(tarball, ".gz")
+            elseif endswith(url, ".gz")
                 GzipDecompressorStream(io)
-            elseif endswith(tarball, ".zst")
+            elseif endswith(url, ".zst")
                 ZstdDecompressorStream(io)
             else
                 error("Unknown file extension")
