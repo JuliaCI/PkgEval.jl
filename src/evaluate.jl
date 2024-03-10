@@ -309,20 +309,28 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     # we create our own workdir so that we can reuse it
     workdir = mktempdir(prefix="pkgeval_$(pkg.name)_")
 
-    # caches are mutable, so they can get corrupted during a run. that's why it's possible
-    # to run without them (in case of a retry), and is also why we set them up here rather
-    # than in `sandboxed_julia` (because we know we've verified caches before entering here)
+    local_depot_path = joinpath(config.home, ".julia")
+    local_depot = joinpath(workdir, "depot")
+    mkdir(local_depot)
+    mounts[local_depot_path * ":rw"] = local_depot
+
+    # shared files are mounted using a layered depot
     if use_cache
-        depot_dir = joinpath(config.home, ".julia")
+        shared_depot_path = "/usr/local/share/julia"
 
         shared_compilecache = get_compilecache(config)
-        mounts[joinpath(depot_dir, "compiled")] = shared_compilecache
+        mounts[joinpath(shared_depot_path, "compiled") * ":ro"] = shared_compilecache
 
         shared_packages = joinpath(storage_dir, "packages")
-        mounts[joinpath(depot_dir, "packages")] = shared_packages
+        mounts[joinpath(shared_depot_path, "packages") * ":ro"] = shared_packages
 
         shared_artifacts = joinpath(storage_dir, "artifacts")
-        mounts[joinpath(depot_dir, "artifacts")] = shared_artifacts
+        mounts[joinpath(shared_depot_path, "artifacts") * ":ro"] = shared_artifacts
+
+        # XXX: we also need to append the bundled depot path (JuliaLang/julia#51448)
+        bundled_depot_path = joinpath(config.julia_install_dir, "share", "julia")
+        env["JULIA_DEPOT_PATH"] =
+            join([local_depot_path, shared_depot_path, bundled_depot_path], ":")
     end
 
     # structured output will be written to the /output directory. this is to avoid having to
@@ -506,10 +514,9 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
     # (cache and) clean-up output created by this package
     if use_cache
-        depot_dir = joinpath(workdir, "upper", "home", "pkgeval", ".julia")
-        local_compilecache = joinpath(depot_dir, "compiled")
-        local_packages = joinpath(depot_dir, "packages")
-        local_artifacts = joinpath(depot_dir, "artifacts")
+        local_compilecache = joinpath(local_depot, "compiled")
+        local_packages = joinpath(local_depot, "packages")
+        local_artifacts = joinpath(local_depot, "artifacts")
 
         # verify local resources
         registry_dir = get_registry(config)
@@ -526,8 +533,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
                                (local_artifacts, shared_artifacts),
                                (local_compilecache, shared_compilecache)]
                 if isdir(src)
-                    # NOTE: removals (whiteouts) are represented as char devices
-                    run(`$(rsync()) --no-specials --no-devices --archive --quiet $(src)/ $(dst)/`)
+                    run(`$(rsync()) --archive --quiet $(src)/ $(dst)/`)
                 end
             end
         end
