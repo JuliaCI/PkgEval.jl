@@ -46,7 +46,7 @@ end
 julia_args = if VERSION < v"1.9-beta1" || (v"1.10-" <= VERSION < v"1.10.0-DEV.204")
     # we don't support pkgimages yet
     ``
-elseif any(startswith("--pkgimages"), config.julia_flags)
+elseif any(startswith("--pkgimages"), config.julia_args)
     # the user specifically requested pkgimages
     ``
 else

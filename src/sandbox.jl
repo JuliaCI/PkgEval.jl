@@ -368,7 +368,7 @@ function setup_julia_sandbox(config::Configuration, args=``;
     # configure threads
     env["JULIA_NUM_THREADS"] = string(config.threads)
 
-    setup_generic_sandbox(config, `$cmd $(Cmd(config.julia_flags)) $args`;
+    setup_generic_sandbox(config, `$cmd $(Cmd(config.julia_args)) $args`;
                           env, mounts, kwargs...)
 end
 

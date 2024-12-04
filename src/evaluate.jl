@@ -609,7 +609,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
     compile_log = log
     test_config = Configuration(config;
         compiled = false,
-        julia_flags = [config.julia_flags..., "--sysimage", sysimage_path],
+        julia_args = [config.julia_args..., "--sysimage", sysimage_path],
     )
     (; log, status, reason, version, duration, input_output) =
         evaluate_test(test_config, pkg; mounts, use_cache, kwargs...)
