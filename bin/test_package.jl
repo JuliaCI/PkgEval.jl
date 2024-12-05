@@ -5,7 +5,7 @@ function usage(error=nothing)
         println(stderr, "ERROR: $error")
     end
     println(stderr, """
-        Usage: julia test_package.jl [--julia=nightly] [--rr=false]
+        Usage: julia test_package.jl [--julia=nightly] [--julia_args=""] [--env=""] [--rr=false]
                                      [--name=...] [--version=...] [--rev=...] [--url=...] [--path=...]
 
         This script can be used to quickly test a package against a specific version of Julia.
@@ -14,7 +14,9 @@ function usage(error=nothing)
         To test a local development version, use the `--path` flag.
 
         The `--julia` flag can be used to specify the version of Julia to test with, and defaults to `nightly`.
-        With the `--rr` flag you can enable running under `rr`, as used by daily PkgEval runs.""")
+        To pass additional arguments to Julia, use one or more `--julia_args` flag.
+        Similarly, to set environment variables, use one or more `--env` flag.
+        With the `--rr` flag you can enable running under `rr`.""")
     exit(error === nothing ? 0 : 1)
 end
 
@@ -26,27 +28,47 @@ end
 
 args = Dict()
 for arg in ARGS
-    startswith(arg, "--") || usage("invalid argument: $arg")
-    contains(arg, "=")    || usage("invalid argument: $arg")
+    startswith(arg, "--") || usage("unknown argument: $arg")
+    contains(arg, "=")    || usage("argument missing value: $arg")
 
     option, value = split(arg, "="; limit=2)
-    args[Symbol(option[3:end])] = String(value)
+    flag = Symbol(option[3:end])
+    if haskey(args, flag)
+        push!(args[flag], String(value))
+    else
+        args[flag] = [String(value)]
+    end
 end
 
 # create the Configuration object
-config_flags = [(:julia => String), (:rr => Bool)]
+config_flags = [(:julia => String), (:julia_args => Vector{String}),
+                (:env => Vector{String}), (:rr => Bool)]
 config_args = Dict()
+function parse_value(typ, val)
+    if typ === String
+        val
+    else
+        parse(typ, val)
+    end
+end
 for (flag, typ) in config_flags
     if haskey(args, flag)
-        config_args[flag] = if typ === String
-            args[flag]
+        config_args[flag] = if typ <: Vector
+            parse_value.(Ref(eltype(typ)), args[flag])
         else
-            parse(typ, args[flag])
+            length(args[flag]) == 1 || usage("multiple values for --$flag")
+            parse_value(typ, only(args[flag]))
         end
         delete!(args, flag)
     end
 end
 config = Configuration(; config_args...)
+
+# remaining arguments should be singular
+for flag in keys(args)
+    length(args[flag]) == 1 || usage("multiple values for --$flag")
+end
+args = Dict(key => only(val) for (key, val) in args)
 
 result = if haskey(args, :path)
     path = expanduser(args[:path])

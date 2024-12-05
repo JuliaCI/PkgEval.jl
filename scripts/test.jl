@@ -43,26 +43,32 @@ end
 # generating package images is really expensive, without much benefit (for PkgEval)
 # so determine here if we need to disable them using additional CLI args
 # (we can't do this externally because of JuliaLang/Pkg.jl#3737)
-julia_args = if VERSION < v"1.9-beta1" || (v"1.10-" <= VERSION < v"1.10.0-DEV.204")
+julia_args = String[]
+if VERSION < v"1.9-beta1" || (v"1.10-" <= VERSION < v"1.10.0-DEV.204")
     # we don't support pkgimages yet
-    ``
-elseif any(startswith("--pkgimages"), config.julia_flags)
+elseif any(startswith("--pkgimages"), config.julia_args)
     # the user specifically requested pkgimages
-    ``
 else
     if VERSION >= v"1.11-DEV.1119"
         # we can selectively disable pkgimages while allowing reuse of existing ones
-        `--pkgimages=existing`
+        push!(julia_args, "--pkgimages=existing")
     elseif VERSION >= v"1.11-DEV.123"
         # we can only selectively disable all compilation caches. this isn't ideal,
         # but at this point in time (where many stdlibs have been moved out of the
         # system image) it's strictly better than using `--pkgimages=no`
-        `--compiled-modules=existing`
+        push!(julia_args, "--compiled-modules=existing")
     else
         # completely disable pkgimages
-        `--pkgimages=no`
+        push!(julia_args, "--pkgimages=no")
     end
 end
+
+# forward all user-provided flags to `Pkg.test` to ensure the test environment uses them.
+# we need to do so because Pkg inserts its own flags we want to be able to override (e.g.,
+# `--check-bounds`), and because its use of `Base.julia_cmd()` doesn't include all flags
+# passed to the current Julia process (e.g. `--inline`).
+append!(julia_args, config.julia_args)
+julia_args = Cmd(julia_args)
 
 io = IOBuffer()
 Pkg.DEFAULT_IO[] = io

@@ -12,7 +12,7 @@ versioninfo()
 
 
 print("\n\n", '#'^80, "\n# Installation\n#\n\n")
-t0 = time()
+t0 = cpu_time()
 
 is_stdlib = any(Pkg.Types.stdlibs()) do (uuid,stdlib)
     name = isa(stdlib, String) ? stdlib : first(stdlib)
@@ -35,7 +35,7 @@ println("\nCompleted after $(elapsed(t0))")
 
 
 print("\n\n", '#'^80, "\n# Compilation\n#\n\n")
-t1 = time()
+t1 = cpu_time()
 
 create_sysimage([pkg.name]; sysimage_path)
 println("\nCompleted after $(elapsed(t1))")

@@ -148,7 +148,7 @@ end
 
 if julia_version >= v"1.10.0-DEV.204" || v"1.9.0-alpha1.55" <= julia_version < v"1.10-"
 @testset "package precompilation" begin
-    let config = Configuration(config; julia_flags=["--pkgimages=yes"])
+    let config = Configuration(config; julia_args=["--pkgimages=yes"])
         # find out where Example.jl will be precompiled
         verstr = "v$(julia_version.major).$(julia_version.minor)"
         compilecache = joinpath(PkgEval.get_compilecache(config), verstr, "Example")
