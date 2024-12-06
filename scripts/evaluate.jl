@@ -113,7 +113,7 @@ end
 # ensure the package has a test/runtests.jl file, so we can bail out quicker
 src = Base.find_package(pkg.name)
 runtests = joinpath(dirname(src), "..", "test", "runtests.jl")
-if !isfile(runtests)
+if config.run_tests && !isfile(runtests)
     error("Package $(pkg.name) did not provide a `test/runtests.jl` file")
 end
 
@@ -163,6 +163,7 @@ end
 end
 
 
+if config.run_tests
 print("\n\n", '#'^80, "\n# Testing\n#\n\n")
 
 t0 = cpu_time()
@@ -181,4 +182,29 @@ catch
 finally
     write("/output/duration", repr(cpu_time()-t0))
     write("/output/input_output", repr(io_bytes()-io0))
+end
+
+else
+print("\n\n", '#'^80, "\n# Loading\n#\n\n")
+
+t0 = cpu_time()
+io0 = io_bytes()
+try
+    # we load the package in a session mimicking Pkg's sandbox,
+    # because that's what we previously precompiled the package in.
+    run(```$(Base.julia_cmd())
+           --check-bounds=yes
+           --inline=$(Bool(Base.JLOptions().can_inline) ? "yes" : "no")
+           $(julia_args)
+           -e $("using $(pkg.name)")```)
+
+    println("\nLoading completed after $(elapsed(t0))")
+catch
+    println("\nLoading failed after $(elapsed(t0))\n")
+    rethrow()
+finally
+    write("/output/duration", repr(cpu_time()-t0))
+    write("/output/input_output", repr(io_bytes()-io0))
+end
+
 end
