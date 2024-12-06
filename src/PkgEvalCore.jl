@@ -97,6 +97,10 @@ Base.@kwdef struct Configuration
     ##                then running tests using that system image.
     compiled::Setting{Bool} = Default(false)
     compile_time_limit::Setting{Float64} = Default(30*60) # 30 mins
+
+    # test properties
+    ## whether to actually run the tests, or just install and load the package
+    run_tests::Setting{Bool} = Default(true)
 end
 
 function durationstring(seconds)
