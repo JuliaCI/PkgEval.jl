@@ -302,11 +302,8 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     name = "$(pkg.name)-$(config.name)-$(randstring(rng))"
 
     # grant some packages more test time
-    # As of Julia 1.12, PackageCompiler takes even more time (more than 90 minutes),
-    # so let's do *3 instead of *2. Our slow list is very short (just two packages
-    # at the time or writing), so I think it's fine.
     if pkg.name in slow_list
-        config = Configuration(config;  time_limit=config.time_limit*3)
+        config = Configuration(config;  time_limit=config.time_limit*2)
     end
 
     # we create our own workdir so that we can reuse it
