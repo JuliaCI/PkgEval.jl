@@ -14,19 +14,6 @@ struct Job
     use_cache::Bool
 end
 
-const statusses = Dict(
-    :test   => "tested",
-    :load   => "loaded",
-    :skip   => "skipped",
-    :fail   => "unsuccessful",
-    :kill   => "interrupted",
-    :crash  => "crashed",
-)
-
-function status_message(status)
-    return statusses[status]
-end
-
 # NOTE: within each status group, reasons are sorted in order of reporting priority
 const reasons = [
     missing                 => missing,
