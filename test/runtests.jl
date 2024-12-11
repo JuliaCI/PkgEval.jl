@@ -106,14 +106,13 @@ end
 
 @testset "package installation" begin
     # by name
-    let results = evaluate([Configuration(config; run_tests=false)],
+    let results = evaluate([Configuration(config; goal=:load)],
                            [Package(; name="Example")];
                            echo=true)
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
         @test results[1, :version] isa VersionNumber
-        @test results[1, :status] == :ok
-        @test results[1, :reason] == :loaded
+        @test results[1, :status] == :load
     end
     let results = evaluate([config],
                            [Package(; name="Example")];
@@ -121,8 +120,7 @@ end
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
         @test results[1, :version] isa VersionNumber
-        @test results[1, :status] == :ok
-        @test results[1, :reason] == :tested
+        @test results[1, :status] == :test
     end
 
     # specifying a version
@@ -132,8 +130,7 @@ end
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
         @test results[1, :version] == v"0.5.3"
-        @test results[1, :status] == :ok
-        @test results[1, :reason] == :tested
+        @test results[1, :status] == :test
     end
 
     # specifying a revision
@@ -142,8 +139,7 @@ end
                            echo=true, validate=false)
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
-        @test results[1, :status] == :ok
-        @test results[1, :reason] == :tested
+        @test results[1, :status] == :test
         @test contains(results[1, :log], "https://github.com/JuliaLang/Example.jl.git#master")
     end
 
@@ -153,8 +149,7 @@ end
                            echo=true, validate=false)
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
-        @test results[1, :status] == :ok
-        @test results[1, :reason] == :tested
+        @test results[1, :status] == :test
         @test contains(results[1, :log], "https://github.com/JuliaLang/Example.jl#master")
     end
 end
@@ -256,8 +251,7 @@ end
 
     results = evaluate([config], packages; echo=true, validate=false, ninstances=1)
     if julia_release !== nothing
-        @test all(results.status .== :ok)
-        @test all(results.reason .== :tested)
+        @test all(results.status .== :test)
         for result in eachrow(results)
             @test occursin("Testing $(result.package) tests passed", result.log)
         end
@@ -278,8 +272,7 @@ end
             @test contains(result.log, "PackageCompiler succeeded")
         end
         if julia_release !== nothing
-            @test result.status == :ok
-            @test result.reason == :tested
+            @test result.status == :test
             @test contains(result.log, "Testing Example tests passed")
         end
     end
@@ -291,8 +284,7 @@ haskey(ENV, "CI") || @testset "rr" begin
                        echo=true, validate=false)
     @test contains(results[1, :log], "BugReporting")
     if julia_release !== nothing
-        @test all(results.status .== :ok)
-        @test all(results.reason .== :tested)
+        @test all(results.status .== :test)
         @test contains(results[1, :log], "Testing Example tests passed")
     end
 end
@@ -303,7 +295,7 @@ end
     packages = [Package(; name) for name in [stdlibs; non_stdlibs]]
 
     results = evaluate([config], packages; echo=true, validate=false)
-    @test all(results.status .== :ok)
+    @test all(results.status .== :test)
     for result in eachrow(results)
         if result.package in stdlibs
             @test contains(result.log, "is a standard library")

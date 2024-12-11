@@ -15,7 +15,8 @@ struct Job
 end
 
 const statusses = Dict(
-    :ok     => "successful",
+    :test   => "tested",
+    :load   => "loaded",
     :skip   => "skipped",
     :fail   => "unsuccessful",
     :kill   => "interrupted",
@@ -29,9 +30,6 @@ end
 # NOTE: within each status group, reasons are sorted in order of reporting priority
 const reasons = [
     missing                 => missing,
-    # ok
-    :tested                 => "testing was successful",
-    :loaded                 => "package was loaded successfully",
     # crash
     :abort                  => "the process was aborted",
     :codegen                => "invalid LLVM IR was generated",
@@ -245,7 +243,7 @@ function evaluate_script(config::Configuration, script::String, args=``;
     # if we didn't kill the process, figure out the status from the exit code
     if status === nothing
         if success(proc)
-            status = :ok
+            status = config.goal
         elseif proc.exitcode == 134 # SIGABRT
             status = :crash
             reason = :abort
@@ -274,7 +272,7 @@ end
 """
     evaluate_package(config::Configuration, pkg; use_cache=true, kwargs...)
 
-Evaluate a single package `pkg`inside of a sandbox according to `config`. The `use_cache`
+Evaluate a single package `pkg` inside of a sandbox according to `config`. The `use_cache`
 argument determines whether the package can use the caches shared across jobs (which may be
 a cause of issues).
 
@@ -357,18 +355,22 @@ function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=t
     end
 
     # log the status and reason
-    @assert status in [:ok, :fail, :kill]
+    @assert status in [config.goal, :crash, :fail, :kill]
     ## HACK: sometimes Julia (or the container) fails to exit, even though we finished
     ##       testing, resulting in an inactivity kill. detect and override such cases.
     if status === :kill && reason === :inactivity
-        if occursin(r"(Loading|Testing) completed after", log)
-            status = :ok
+        if occursin("Testing completed after", log)
+            status = :test
             reason = missing
-            log *= "PkgEval terminated, but job had succeeded; overriding.\n"
+            log *= "PkgEval terminated, but package had successfully tested; overriding.\n"
+        elseif occursin("Loading completed after", log)
+            status = :load
+            reason = missing
+            log *= "PkgEval terminated, but package had successfully loaded; overriding.\n"
         elseif occursin(r"(Loading|Testing) failed after", log)
             status = :fail
             reason = missing
-            log *= "PkgEval terminated, but job had failed; overriding.\n"
+            log *= "PkgEval terminated, but evaluation had failed; overriding.\n"
         end
     end
     ## special cases where we override the status (if we didn't actively kill the process)
@@ -409,10 +411,6 @@ function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=t
         if reason == :segfault && occursin(r"\b(jl_|ijl_|_jl_|)gc_", log)
             reason = :gc_corruption
         end
-    end
-    ## if the script succeeded, keep track of what we did
-    if status === :ok
-        reason = config.run_tests ? :tested : :loaded
     end
     ## in other cases we look at the log to determine a failure reason
     if status === :fail
@@ -456,7 +454,7 @@ function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=t
         log *= "PkgEval crashed"
     elseif status === :skip
         log *= "PkgEval skipped"
-    elseif status === :ok
+    elseif status === config.goal
         log *= "PkgEval succeeded"
     end
     log *= " after $(round(total_duration, digits=2))s"
@@ -554,6 +552,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
     )
 
     compile_config = Configuration(config;
+        goal = :compile,
         time_limit = config.compile_time_limit,
         # don't record the compilation, only the test execution
         rr = false,
@@ -576,21 +575,23 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
     log *= "\n"
 
     # log the status and determine a more accurate reason from the log
-    @assert status in [:ok, :fail, :kill]
-    if status === :ok
+    @assert status in [:compile, :crash, :fail, :kill]
+    if status === :compile
         log *= "PackageCompiler succeeded"
     elseif status === :fail
         log *= "PackageCompiler failed"
         reason = :uncompilable
     elseif status === :kill
         log *= "PackageCompiler terminated"
+    elseif status === :crash
+        log *= "PackageCompiler crashed"
     end
     if reason !== missing
         log *= ": " * reason_message(reason)
     end
     log *= "\n"
 
-    if status !== :ok
+    if status !== :compile
         rm(sysimage_dir; recursive=true)
         return (; log, status, reason, version=missing, duration=0.0)
     end
@@ -807,17 +808,17 @@ end
              ninstances=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true,
              blacklist::Vector{String}, kwargs...)
 
-Run tests for `packages` using `configs`. If no packages are specified, default to testing
-all packages in the configured registry. The configurations can be specified as an array, or
-as a dictionary where the key can be used to name the configuration (and more easily
-identify it in the output dataframe).
+Evaluate `packages` using `configs`. If no packages are specified, default to evaluating all
+packages in the configured registry. The configurations can be specified as an array, or as
+a dictionary where the key can be used to name the configuration (and more easily identify
+it in the output dataframe).
 
-The `ninstances` keyword argument determines how many packages are tested in parallel;
+The `ninstances` keyword argument determines how many packages are evaluated in parallel;
 `retry` determines whether packages that did not fail on all configurations are retries;
-`validate` enables validation of artifact and package caches before running tests.
+`validate` enables validation of artifact and package caches before evaluating.
 
-The `blacklist` keyword argument can be used to skip testing of packages, specified by name.
-It is only used when no explicit list of packages is given.
+By default, packages are evaluated by running their tests. If a package is part of the
+`blacklist`, testing is skipped and only installation and loadability is evaluated.
 
 Refer to `evaluate_package`[@ref] and `sandboxed_julia`[@ref] for more possible keyword
 arguments.
@@ -942,7 +943,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                 while !isempty(jobs) && !done
                     job = pop!(jobs)
 
-                    # determine the test configuration
+                    # determine how to evaluate this package
                     main_config = Configuration(job.config; cpus=[i-1],
                                                 rr=(job.config.rr==RREnabled))
                     ## grant some packages more test time
@@ -954,12 +955,12 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                         main_config =
                             Configuration(main_config; time_limit=main_config.time_limit*2)
                     end
-                    ## blacklisted packages shouldn't be tested, just loaded
+                    ## blacklisted packages shouldn't be tested, just installed and loaded
                     if job.package.name in blacklist
-                        main_config = Configuration(main_config; run_tests=false)
+                        main_config = Configuration(main_config; goal=:load)
                     end
 
-                    # test the package
+                    # evaluate the package
                     running[i] = (; config=main_config, job.package, time=time())
                     (; log, status, reason, version, duration, input_output) =
                         evaluate_package(main_config, job.package; job.use_cache, kwargs...)
@@ -1048,12 +1049,13 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                 function showvalues()
                     # known statuses
                     # NOTE: we filtered skips, so don't need to report them here
-                    o = count(==(:ok),      result[!, :status])
+                    l = count(==(:load),    result[!, :status])
+                    t = count(==(:test),    result[!, :status])
                     f = count(==(:fail),    result[!, :status])
                     c = count(==(:crash),   result[!, :status])
                     k = count(==(:kill),    result[!, :status])
 
-                    [(:success, o), (:failed, f), (:crashed, c), (:killed, k)]
+                    [(:loaded, l), (:tested, t), (:failed, f), (:crashed, c), (:killed, k)]
                 end
                 update!(p, nrow(result); showvalues)
                 sleep(sleep_time)
