@@ -89,4 +89,4 @@ else
     pkg = Package(; args...)
     PkgEval.evaluate_package(config, pkg; echo=true)
 end
-exit(result.status == :ok ? 0 : 1)
+exit(result.status == :test ? 0 : 1)

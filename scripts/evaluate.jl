@@ -113,7 +113,7 @@ end
 # ensure the package has a test/runtests.jl file, so we can bail out quicker
 src = Base.find_package(pkg.name)
 runtests = joinpath(dirname(src), "..", "test", "runtests.jl")
-if config.run_tests && !isfile(runtests)
+if config.goal === :test && !isfile(runtests)
     error("Package $(pkg.name) did not provide a `test/runtests.jl` file")
 end
 
@@ -163,28 +163,7 @@ end
 end
 
 
-if config.run_tests
-print("\n\n", '#'^80, "\n# Testing\n#\n\n")
-
-t0 = cpu_time()
-io0 = io_bytes()
-try
-    if config.rr == RREnabled
-        Pkg.test(pkg.name; julia_args=`$julia_args --load bugreport.jl`)
-    else
-        Pkg.test(pkg.name; julia_args)
-    end
-
-    println("\nTesting completed after $(elapsed(t0))")
-catch
-    println("\nTesting failed after $(elapsed(t0))\n")
-    rethrow()
-finally
-    write("/output/duration", repr(cpu_time()-t0))
-    write("/output/input_output", repr(io_bytes()-io0))
-end
-
-else
+if config.goal === :load
 print("\n\n", '#'^80, "\n# Loading\n#\n\n")
 
 t0 = cpu_time()
@@ -206,5 +185,27 @@ finally
     write("/output/duration", repr(cpu_time()-t0))
     write("/output/input_output", repr(io_bytes()-io0))
 end
+end
 
+
+if config.goal === :test
+print("\n\n", '#'^80, "\n# Testing\n#\n\n")
+
+t0 = cpu_time()
+io0 = io_bytes()
+try
+    if config.rr == RREnabled
+        Pkg.test(pkg.name; julia_args=`$julia_args --load bugreport.jl`)
+    else
+        Pkg.test(pkg.name; julia_args)
+    end
+
+    println("\nTesting completed after $(elapsed(t0))")
+catch
+    println("\nTesting failed after $(elapsed(t0))\n")
+    rethrow()
+finally
+    write("/output/duration", repr(cpu_time()-t0))
+    write("/output/input_output", repr(io_bytes()-io0))
+end
 end
