@@ -39,7 +39,7 @@ $ julia --project bin/test_package.jl --name Example --path=~/.julia/dev/Example
 ```
 
 By default, this will use the latest `nightly` version of Julia, which is what PkgEval
-uses. To use another version, use the `--julia` argument, e.g., `--julia=1.8`.
+uses. To use another version, use the `--julia` argument, e.g., `--julia=1.11`.
 
 
 ## API
@@ -52,10 +52,10 @@ To use PkgEval programmatically, there are three main interfaces do deal with:
 - the `evaluate` function to evaluate every package on each provieded configuration,
   returning the results in a DataFrame
 
-```julia
+```julia-repl
 julia> using PkgEval
 
-julia> config = Configuration(; julia="1.7");
+julia> config = Configuration(; julia="1.10");
 
 julia> package = Package(; name="Example");
 
@@ -83,7 +83,7 @@ Testing Example tests passed
 If you want to debug why your package fails, it's probably easiest to use an interactive
 shell:
 
-```julia
+```julia-repl
 julia> using PkgEval
 
 julia> config = Configuration()
@@ -108,7 +108,7 @@ Now you can install, load and test your package. This will, by default, use a ni
 of Julia. If you want PkgEval.jl to compile Julia, e.g. to test a specific version, create
 a Configuration instance as such:
 
-```julia
+```julia-repl
 julia> config = Configuration(julia="master",
                               buildflags=["JULIA_CPU_TARGET=native", "JULIA_PRECOMPILE=0"])
 
