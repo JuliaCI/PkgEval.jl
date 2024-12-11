@@ -934,11 +934,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                     main_config = Configuration(job.config; cpus=[i-1],
                                                 rr=(job.config.rr==RREnabled))
                     ## grant some packages more test time
-                    if job.config.rr == RREnabled
-                        main_config =
-                            Configuration(main_config; time_limit=main_config.time_limit*2)
-                    end
-                    if job.package.name in slow_list
+                    if job.package.name in slow_list || job.config.rr == RREnabled
                         main_config =
                             Configuration(main_config; time_limit=main_config.time_limit*2)
                     end
@@ -955,10 +951,10 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                     if retry
                         # early retry: rerun crashes under rr to see if we can get a trace
                         if status === :crash && job.config.rr == RREnabledOnRetry
-                            rr_config = Configuration(main_config; rr=true,
-                                                      time_limit=main_config.time_limit*2)
+                            rr_config = Configuration(main_config; rr=true)
                             running[i] = (; config=rr_config, job.package, time=time())
-                            rr_results = evaluate_package(rr_config, job.package; job.use_cache, kwargs...)
+                            rr_results = evaluate_package(rr_config, job.package;
+                                                          job.use_cache, kwargs...)
 
                             # if the rr test crashed in the same way, use that evaluation
                             if rr_results.status === status && rr_results.reason === reason
