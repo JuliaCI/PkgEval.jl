@@ -18,27 +18,27 @@ jobs:
       fail-fast: false
       matrix:
         version: ['1.10', '1.11']
-        os: ['ubuntu-22.04']
+        os: ['ubuntu-latest']
         arch: [x64]
         test_julia: ['']
         test_buildflags: ['']
         include:
           # special releases
-          - os: 'ubuntu-22.04'
+          - os: 'ubuntu-latest'
             arch: 'x64'
             version: '1.10'
             test_julia: 'nightly'
-          - os: 'ubuntu-22.04'
+          - os: 'ubuntu-latest'
             arch: 'x64'
             version: '1.10'
             test_julia: 'stable'
           # directly from Git, likely built by CI
-          - os: 'ubuntu-22.04'
+          - os: 'ubuntu-latest'
             arch: 'x64'
             version: '1.10'
             test_julia: 'master~10'
           # directly from Git, force a build (see below)
-          - os: 'ubuntu-22.04'
+          - os: 'ubuntu-latest'
             arch: 'x64'
             version: '1.10'
             test_julia: 'master'
@@ -49,22 +49,22 @@ jobs:
       BUILDFLAGS: ${{ matrix.test_buildflags }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: "Allow unprivileged user namespaces"
+        run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+
+      # install Julia
       - uses: julia-actions/setup-julia@v2
         with:
           version: ${{ matrix.version }}
           arch: ${{ matrix.arch }}
-      - uses: actions/cache@v4
-        env:
-          cache-name: cache-artifacts
-        with:
-          path: ~/.julia/artifacts
-          key: ${{ runner.os }}-test-${{ env.cache-name }}-${{ hashFiles('**/Project.toml') }}
-          restore-keys: |
-            ${{ runner.os }}-test-${{ env.cache-name }}-
-            ${{ runner.os }}-test-
-            ${{ runner.os }}-
+
+      # set-up packages
+      - uses: julia-actions/cache@v2
       - uses: julia-actions/julia-buildpkg@v1
-      - uses: julia-actions/julia-runtest@v1
+
+      - name: Run tests
+        uses: julia-actions/julia-runtest@v1
         env:
           BUILDKITE_TOKEN: ${{ secrets.BUILDKITE_TOKEN }}
           GITHUB_AUTH: ${{ secrets.GITHUB_TOKEN }}
