@@ -18,27 +18,27 @@ jobs:
       fail-fast: false
       matrix:
         version: ['1.10', '1.11']
-        os: ['ubuntu-latest']
+        os: ['ubuntu-22.04']
         arch: [x64]
         test_julia: ['']
         test_buildflags: ['']
         include:
           # special releases
-          - os: 'ubuntu-latest'
+          - os: 'ubuntu-22.04'
             arch: 'x64'
             version: '1.10'
             test_julia: 'nightly'
-          - os: 'ubuntu-latest'
+          - os: 'ubuntu-22.04'
             arch: 'x64'
             version: '1.10'
             test_julia: 'stable'
           # directly from Git, likely built by CI
-          - os: 'ubuntu-latest'
+          - os: 'ubuntu-22.04'
             arch: 'x64'
             version: '1.10'
             test_julia: 'master~10'
           # directly from Git, force a build (see below)
-          - os: 'ubuntu-latest'
+          - os: 'ubuntu-22.04'
             arch: 'x64'
             version: '1.10'
             test_julia: 'master'
