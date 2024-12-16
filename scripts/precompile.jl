@@ -27,6 +27,10 @@ if config.goal === :test
         Pkg.activate()
         Pkg.DEFAULT_IO[] = nothing
     end
+else
+    Pkg.DEFAULT_IO[] = devnull
+    Pkg.activate()
+    Pkg.DEFAULT_IO[] = nothing
 end
 
 println("Precompiling package dependencies...")

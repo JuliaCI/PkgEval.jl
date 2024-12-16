@@ -10,14 +10,6 @@ print("\n\n", '#'^80, "\n# Set-up\n#\n\n")
 
 t0 = cpu_time()
 
-# we install PkgEval dependencies in a separate environment
-try
-    Pkg.DEFAULT_IO[] = devnull
-    Pkg.activate("pkgeval"; shared=true)
-finally
-    Pkg.DEFAULT_IO[] = nothing
-end
-
 deps = String[]
 
 if config.goal === :test
@@ -36,11 +28,20 @@ if config.rr == RREnabled
         # the dependencies of the package under evaluation. However, in the session
         # where we load BugReporting.jl we'll never actually load the package we
         # want to test, only re-start Julia under rr, so this should be fine.
-        println(io, "pushfirst!(LOAD_PATH, $(repr(Base.ACTIVE_PROJECT[])))")
+        println(io, """
+            project = Base.active_project()
+
+            prepend!(LOAD_PATH, $(repr(LOAD_PATH)))
+            using Pkg
+
+            Pkg.activate("pkgeval"; shared=true)
+            using BugReporting
+
+            Pkg.activate(project)
+        """)
 
         # this code is essentially what --bug-report from InteractiveUtils does
         println(io, """
-            using BugReporting
             ENV["ENABLE_GDBLISTENER"] = "1"
             println("Switching execution to under rr")
             BugReporting.make_interactive_report("rr-local", ARGS)
@@ -54,6 +55,10 @@ if !isempty(deps)
     Pkg.DEFAULT_IO[] = io
     try
         println("Installing PkgEval dependencies (", join(deps, ", "), ")...")
+
+        # we install PkgEval dependencies in a separate environment
+        Pkg.activate("pkgeval"; shared=true)
+
         Pkg.add(deps)
     catch
         # something went wrong installing PkgEval's dependencies
@@ -183,7 +188,8 @@ t0 = cpu_time()
 io0 = io_bytes()
 try
     # we load the package in a session mimicking Pkg's sandbox,
-    # because that's what we previously precompiled the package in.
+    # because that's what we previously precompiled the package for.
+    println("Loading $(pkg.name)...")
     run(```$(Base.julia_cmd())
            --check-bounds=yes
            --inline=$(Bool(Base.JLOptions().can_inline) ? "yes" : "no")
