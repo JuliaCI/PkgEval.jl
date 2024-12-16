@@ -40,24 +40,22 @@ if config.rr == RREnabled
 end
 
 if !isempty(deps)
-    # we install PkgEval dependencies in a separate environment
-    Pkg.activate("pkgeval"; shared=true)
-
     io = IOBuffer()
     Pkg.DEFAULT_IO[] = io
     try
-        println("Installing PkgEval dependencies...")
+        println("Installing PkgEval dependencies (", join(deps, ", "), ")...")
+
+        # we install PkgEval dependencies in a separate environment
+        Pkg.activate("pkgeval"; shared=true)
         Pkg.add(deps)
-        println()
     catch
         # something went wrong installing PkgEval's dependencies
         println(String(take!(io)))
         rethrow()
     finally
+        Pkg.activate()
         Pkg.DEFAULT_IO[] = nothing
     end
-
-    Pkg.activate()
 end
 
 # generating package images is really expensive, without much benefit (for PkgEval)
@@ -97,7 +95,9 @@ print("\n\n", '#'^80, "\n# Installation\n#\n\n")
 
 t0 = cpu_time()
 try
-    Pkg.add(convert(Pkg.Types.PackageSpec, pkg))
+    spec = convert(Pkg.Types.PackageSpec, pkg)
+    println("Installing $(spec.name)...")
+    Pkg.add(spec)
 
     println("\nInstallation completed after $(elapsed(t0))")
     write("/output/installed", repr(true))
