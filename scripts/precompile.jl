@@ -10,14 +10,16 @@ println("Precompiling PkgEval dependencies...")
 Pkg.precompile()
 println()
 
-# try to use TestEnv to precompile the package test dependencies
-try
-    using TestEnv
-    Pkg.activate()
-    TestEnv.activate(pkg.name)
-catch err
-    @error "Failed to use TestEnv.jl; test dependencies will not be precompiled" exception=(err, catch_backtrace())
-    Pkg.activate()
+if config.goal === :test
+    # try to use TestEnv to precompile the package test dependencies
+    try
+        using TestEnv
+        Pkg.activate()
+        TestEnv.activate(pkg.name)
+    catch err
+        @error "Failed to use TestEnv.jl; test dependencies will not be precompiled" exception=(err, catch_backtrace())
+        Pkg.activate()
+    end
 end
 
 println("Precompiling $(pkg.name) dependencies...")

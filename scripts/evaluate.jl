@@ -15,7 +15,11 @@ print("\n\n", '#'^80, "\n# Set-up\n#\n\n")
 # we install PkgEval dependencies in a separate environment
 Pkg.activate("pkgeval"; shared=true)
 
-deps = ["TestEnv"]
+deps = String[]
+
+if config.goal === :test
+    push!(deps, "TestEnv")
+end
 
 if config.rr == RREnabled
     push!(deps, "BugReporting")
