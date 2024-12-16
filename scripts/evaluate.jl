@@ -10,6 +10,14 @@ print("\n\n", '#'^80, "\n# Set-up\n#\n\n")
 
 t0 = cpu_time()
 
+# we install PkgEval dependencies in a separate environment
+try
+    Pkg.DEFAULT_IO[] = devnull
+    Pkg.activate("pkgeval"; shared=true)
+finally
+    Pkg.DEFAULT_IO[] = nothing
+end
+
 deps = String[]
 
 if config.goal === :test
@@ -31,11 +39,13 @@ if config.rr == RREnabled
         println(io, "pushfirst!(LOAD_PATH, $(repr(Base.ACTIVE_PROJECT[])))")
 
         # this code is essentially what --bug-report from InteractiveUtils does
-        println(io, "using BugReporting")
-        println(io, "ENV[\"ENABLE_GDBLISTENER\"] = \"1\"")
-        println(io, "println(\"Switching execution to under rr\")")
-        println(io, "BugReporting.make_interactive_report(\"rr-local\", ARGS)")
-        println(io, "exit(0)")
+        println(io, """
+            using BugReporting
+            ENV["ENABLE_GDBLISTENER"] = "1"
+            println("Switching execution to under rr")
+            BugReporting.make_interactive_report("rr-local", ARGS)
+            exit(0)
+        """)
     end
 end
 
@@ -44,9 +54,6 @@ if !isempty(deps)
     Pkg.DEFAULT_IO[] = io
     try
         println("Installing PkgEval dependencies (", join(deps, ", "), ")...")
-
-        # we install PkgEval dependencies in a separate environment
-        Pkg.activate("pkgeval"; shared=true)
         Pkg.add(deps)
     catch
         # something went wrong installing PkgEval's dependencies
