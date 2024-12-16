@@ -8,8 +8,7 @@ println("Package evaluation of $(pkg.name) on Julia $VERSION ($(Base.GIT_VERSION
 
 print("\n\n", '#'^80, "\n# Set-up\n#\n\n")
 
-# we install PkgEval dependencies in a separate environment
-Pkg.activate("pkgeval"; shared=true)
+t0 = cpu_time()
 
 deps = String[]
 
@@ -38,6 +37,27 @@ if config.rr == RREnabled
         println(io, "BugReporting.make_interactive_report(\"rr-local\", ARGS)")
         println(io, "exit(0)")
     end
+end
+
+if !isempty(deps)
+    # we install PkgEval dependencies in a separate environment
+    Pkg.activate("pkgeval"; shared=true)
+
+    io = IOBuffer()
+    Pkg.DEFAULT_IO[] = io
+    try
+        println("Installing PkgEval dependencies...")
+        Pkg.add(deps)
+        println()
+    catch
+        # something went wrong installing PkgEval's dependencies
+        println(String(take!(io)))
+        rethrow()
+    finally
+        Pkg.DEFAULT_IO[] = nothing
+    end
+
+    Pkg.activate()
 end
 
 # generating package images is really expensive, without much benefit (for PkgEval)
@@ -70,21 +90,7 @@ end
 append!(julia_args, config.julia_args)
 julia_args = Cmd(julia_args)
 
-io = IOBuffer()
-Pkg.DEFAULT_IO[] = io
-try
-    println("Installing PkgEval dependencies...")
-    Pkg.add(deps)
-    println()
-catch
-    # something went wrong installing PkgEval's dependencies
-    println(String(take!(io)))
-    rethrow()
-finally
-    Pkg.DEFAULT_IO[] = nothing
-end
-
-Pkg.activate()
+println("\nSet-up completed after $(elapsed(t0))")
 
 
 print("\n\n", '#'^80, "\n# Installation\n#\n\n")
