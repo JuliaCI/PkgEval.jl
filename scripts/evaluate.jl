@@ -3,11 +3,7 @@ include("common.jl")
 config = eval(Meta.parse(ARGS[1]))
 pkg = eval(Meta.parse(ARGS[2]))
 
-println("Package evaluation of $(pkg.name) started at ", now(UTC))
-
-println()
-using InteractiveUtils
-versioninfo()
+println("Package evaluation of $(pkg.name) on Julia $VERSION ($(Base.GIT_VERSION_INFO.commit_short)) started at ", now(UTC))
 
 
 print("\n\n", '#'^80, "\n# Set-up\n#\n\n")
