@@ -21,6 +21,18 @@ cd PkgEval.jl
 julia --project -e 'import Pkg; Pkg.instantiate()'
 ```
 
+While PkgEval uses user-namespaces and thus does not require `root` permissions,
+some distributions have recently locked-down this feature for security reasons.
+If you run into permission errors, try toggling any of the two `sysctl`s below
+(by using `sysctl -w` or saving the setting in `/etc/sysctl.conf` or in a file
+in `/etc/sysctl.d`):
+
+```
+kernel.unprivileged_userns_clone = 1
+# or
+kernel.apparmor_restrict_unprivileged_userns = 0
+```
+
 To quickly test a package, a script has been provided under the `bin/` folder:
 
 ```shell
