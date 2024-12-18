@@ -84,9 +84,9 @@ result = if haskey(args, :path)
     isempty(args) || usage("must only specify --name when using --path")
 
     pkg = Package(; name, url="/package")
-    PkgEval.evaluate_test(config, pkg; echo=true, mounts=Dict("/package:ro" => path))
+    PkgEval.evaluate_package(config, pkg; echo=true, mounts=Dict("/package:ro" => path))
 else
     pkg = Package(; args...)
-    PkgEval.evaluate_test(config, pkg; echo=true)
+    PkgEval.evaluate_package(config, pkg; echo=true)
 end
-exit(result.status == :ok ? 0 : 1)
+exit(result.status == :test ? 0 : 1)
