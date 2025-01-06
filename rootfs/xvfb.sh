@@ -1,32 +1,28 @@
 #!/bin/bash -uxe
 
-DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-
 version="bookworm"
-arch=$(uname -m)
 date=$(date +%Y%m%d)
 
-rootfs=$(mktemp --directory --tmpdir="$DIR")
-trap "sudo rm -rf $rootfs" EXIT
+cat > "mkosi.conf" << EOF
+[Distribution]
+Distribution=debian
+Release=$version
 
-sudo debootstrap --variant=minbase \
-                 --include=xvfb \
-                 $version "$rootfs"
+[Output]
+Format=tar
+CompressOutput=zstd
+CompressLevel=19
 
-# Clean some files
-sudo chroot "$rootfs" apt-get clean
-sudo rm -rf "$rootfs"/var/lib/apt/lists/*
+[Content]
+Packages=
+    xvfb
+EOF
+trap "rm mkosi.conf" EXIT
 
-# Remove special `dev` files
-sudo rm -rf "$rootfs"/dev/*
+mkosi --architecture=x86-64
+mv image.tar.zst "xvfb-$version-x86_64-$date.tar.zst"
+rm image
 
-# Remove `_apt` user so that `apt` doesn't try to `setgroups()`
-sudo sed '/_apt:/d' -i "$rootfs"/etc/passwd
-
-sudo chown "$(id -u)":"$(id -g)" -R "$rootfs"
-
-pushd "$rootfs"
-tar -cf - . | zstd -T0 -19 > "$DIR/xvfb-$version-$arch-$date.tar.zst"
-popd
-
-rm -rf "$rootfs"
+mkosi --architecture=arm64
+mv image.tar.zst "xvfb-$version-aarch64-$date.tar.zst"
+rm image

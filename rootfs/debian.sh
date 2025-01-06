@@ -1,44 +1,31 @@
 #!/bin/bash -uxe
 
-DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-
 version="bookworm"
-arch=$(uname -m)
 date=$(date +%Y%m%d)
 
-rootfs=$(mktemp --directory --tmpdir="/var/tmp")
-trap "sudo rm -rf $rootfs" EXIT
+cat > "debian.conf" << EOF
+[Distribution]
+Distribution=debian
+Release=$version
 
-packages=()
+[Output]
+Format=tar
+CompressOutput=zstd
+CompressLevel=19
 
-# download engines
-packages+=(curl ca-certificates)
-# essential tools
-packages+=(git unzip)
-# toolchain
-packages+=(build-essential libatomic1 python3 gfortran perl wget m4 cmake pkg-config curl patchelf)
+[Content]
+Packages=
+    curl
+    ca-certificates
+    git
+    unzip
+EOF
+trap "rm debian.conf" EXIT
 
-function join_by { local IFS="$1"; shift; echo "$*"; }
-package_list=$(join_by , ${packages[@]})
+mkosi --include debian.conf --architecture x86-64
+mv image.tar.zst "debian-$version-x86_64-$date.tar.zst"
+rm image
 
-sudo debootstrap --variant=minbase \
-                 --include=$package_list \
-                 $version "$rootfs"
-
-# Clean some files
-sudo chroot "$rootfs" apt-get clean
-sudo rm -rf "$rootfs"/var/lib/apt/lists/*
-
-# Remove special `dev` files
-sudo rm -rf "$rootfs"/dev/*
-
-# Remove `_apt` user so that `apt` doesn't try to `setgroups()`
-sudo sed '/_apt:/d' -i "$rootfs"/etc/passwd
-
-sudo chown "$(id -u)":"$(id -g)" -R "$rootfs"
-
-pushd "$rootfs"
-tar -cf - . | zstd -T0 -19 > "$DIR/debian-$version-$arch-$date.tar.zst"
-popd
-
-rm -rf "$rootfs"
+mkosi --include debian.conf --architecture arm64
+mv image.tar.zst "debian-$version-aarch64-$date.tar.zst"
+rm image
