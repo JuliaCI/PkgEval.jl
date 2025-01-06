@@ -3,9 +3,11 @@
 DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 version="bookworm"
+arch=$(uname -m)
 date=$(date +%Y%m%d)
 
-rootfs=$(mktemp --directory --tmpdir="$DIR")
+rootfs=$(mktemp --directory --tmpdir="/var/tmp")
+trap "sudo rm -rf $rootfs" EXIT
 
 packages=()
 
@@ -36,7 +38,7 @@ sudo sed '/_apt:/d' -i "$rootfs"/etc/passwd
 sudo chown "$(id -u)":"$(id -g)" -R "$rootfs"
 
 pushd "$rootfs"
-tar -cJf "$DIR/debian-$version-$date.tar.xz" .
+tar -cf - . | zstd -T0 -19 > "$DIR/debian-$version-$arch-$date.tar.zst"
 popd
 
 rm -rf "$rootfs"

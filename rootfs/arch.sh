@@ -3,6 +3,7 @@
 DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 version="devel"
+arch="x86_64"
 date=$(date +%Y%m%d)
 
 rootfs=$(mktemp --directory --tmpdir="$DIR")
@@ -19,7 +20,7 @@ sudo chown "$(id -u)":"$(id -g)" -R "$rootfs"
 mkdir $rootfs/proc $rootfs/dev
 
 pushd "$rootfs"
-tar -cJf "$DIR/arch-$version-$date.tar.xz" .
+tar -cf - . | zstd -T0 -19 > "$DIR/arch-$version-$arch-$date.tar.zst"
 popd
 
 rm -rf "$rootfs"
