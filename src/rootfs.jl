@@ -16,7 +16,7 @@ function _create_rootfs(config::Configuration)
         cp(base, derived; force=true)
     else
         artifacts_toml = TOML.parsefile(joinpath(dirname(@__DIR__), "Artifacts.toml"))
-        rootfs_toml = artifacts_toml[config.rootfs]
+        rootfs_toml = artifacts_toml["$(config.rootfs).$(Sys.ARCH)"]
 
         # download
         url = rootfs_toml["download"][1]["url"]
@@ -49,10 +49,6 @@ function _create_rootfs(config::Configuration)
     chmod(joinpath(derived, "etc/group"), 0o644)
     open(joinpath(derived, "etc/group"), "a") do io
         println(io, "$(config.group):x:$(config.gid):")
-    end
-    chmod(joinpath(derived, "etc/shadow"), 0o640)
-    open(joinpath(derived, "etc/shadow"), "a") do io
-        println(io, "$(config.user):*:::::::")
     end
 
     # replace resolv.conf
