@@ -19,6 +19,15 @@ Packages=
     ca-certificates
     git
     unzip
+    gcc
+    g++
+    make
+    libc6-dev
+    autoconf
+    automake
+    cmake
+    libtool
+    pkg-config
 EOF
 trap "rm debian.conf" EXIT
 

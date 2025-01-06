@@ -19,6 +19,15 @@ Packages=
     ca-certificates
     git
     unzip
+    gcc
+    gcc-c++
+    make
+    glibc-devel
+    autoconf
+    automake
+    cmake
+    libtool
+    pkgconfig
 EOF
 trap "rm fedora.conf" EXIT
 
