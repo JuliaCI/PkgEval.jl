@@ -21,16 +21,31 @@ cd PkgEval.jl
 julia --project -e 'import Pkg; Pkg.instantiate()'
 ```
 
-While PkgEval uses user-namespaces and thus does not require `root` permissions,
-some distributions have recently locked-down this feature for security reasons.
-If you run into permission errors, try toggling any of the two `sysctl`s below
-(by using `sysctl -w` or saving the setting in `/etc/sysctl.conf` or in a file
-in `/etc/sysctl.d`):
+You may also have to explicitly allow user namespaces, as well as dial down perf
+event restrictions for `rr` to work. Both of these are configured through sysctl,
+e.g., by creating `/etc/sysctl.d/99-pkgeval.conf` with the following contents:
 
 ```
+# for crun (only needed on recent Ubuntu/Debian)
 kernel.unprivileged_userns_clone = 1
-# or
 kernel.apparmor_restrict_unprivileged_userns = 0
+
+# for rr (only needed when you want to run under `rr`)
+kernel.perf_event_paranoid = 1
+
+# creating this file requires a `systemctl restart systemd-sysctl` or reboot to apply
+```
+
+Optionally, for resource constraints to work, you have to configure the systemd
+user service to delegate additional control groups:
+
+```
+$ sudo mkdir -p /etc/systemd/system/user@.service.d
+$ cat <<EOF | sudo tee /etc/systemd/system/user@.service.d/delegate.conf
+[Service]
+Delegate=cpu cpuset io memory pids
+EOF
+$ sudo systemctl daemon-reload
 ```
 
 To quickly test a package, a script has been provided under the `bin/` folder:
@@ -125,27 +140,4 @@ julia> config = Configuration(julia="master",
                               buildflags=["JULIA_CPU_TARGET=native", "JULIA_PRECOMPILE=0"])
 
 # NOTE: buildflags are specified to speed-up the build
-```
-
-
-## Resource constraints
-
-PkgEval uses cgroups for restricting the resources each package can use. By default however,
-non-root users can control the `memory` and `pids` cgroup controllers. To enable PkgEval
-to control more resources, run the following commands:
-
-```
-$ sudo mkdir -p /etc/systemd/system/user@.service.d
-$ cat <<EOF | sudo tee /etc/systemd/system/user@.service.d/delegate.conf
-[Service]
-Delegate=cpu cpuset io memory pids
-EOF
-$ sudo systemctl daemon-reload
-```
-
-In addition, some container runtimes (i.e. `runc`) want full control over the current
-cgroup, which can be done by launching Julia as a scoped service:
-
-```
-systemd-run --user --scope -p Delegate=yes julia ...
 ```
