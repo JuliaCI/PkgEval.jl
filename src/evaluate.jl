@@ -548,8 +548,8 @@ Run the unit tests for a single package `pkg` (see `evaluate_test`[@ref] for det
 a list of supported keyword arguments), after first having compiled a system image that
 contains this package and its dependencies.
 
-To find incompatibilities, the compilation happens on an Ubuntu-based runner, while testing
-is performed in an Arch Linux container.
+To find incompatibilities, the compilation happens on a Debian-based runner, while testing
+is performed in an Fedora container.
 """
 function evaluate_compiled_test(config::Configuration, pkg::Package;
                                 use_cache::Bool=true, kwargs...)
@@ -566,7 +566,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
         rr = false,
         # discover package relocatability issues by compiling in a different environment
         julia_install_dir="/usr/local/julia",
-        rootfs="arch",
+        rootfs="fedora",
         user="user",
         group="group",
         home="/home/user",
