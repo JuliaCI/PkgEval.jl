@@ -106,13 +106,21 @@ end
 
 @testset "package installation" begin
     # by name
-    let results = evaluate([config],
+    let results = evaluate([Configuration(config; goal=:load)],
                            [Package(; name="Example")];
                            echo=true)
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
         @test results[1, :version] isa VersionNumber
-        @test results[1, :status] == :ok
+        @test results[1, :status] == :load
+    end
+    let results = evaluate([config],
+                           [Package(; name="Example")];
+                           echo=true, validate=false)
+        @test size(results, 1) == 1
+        @test results[1, :package] == "Example"
+        @test results[1, :version] isa VersionNumber
+        @test results[1, :status] == :test
     end
 
     # specifying a version
@@ -122,7 +130,7 @@ end
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
         @test results[1, :version] == v"0.5.3"
-        @test results[1, :status] == :ok
+        @test results[1, :status] == :test
     end
 
     # specifying a revision
@@ -131,7 +139,7 @@ end
                            echo=true, validate=false)
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
-        @test results[1, :status] == :ok
+        @test results[1, :status] == :test
         @test contains(results[1, :log], "https://github.com/JuliaLang/Example.jl.git#master")
     end
 
@@ -141,7 +149,7 @@ end
                            echo=true, validate=false)
         @test size(results, 1) == 1
         @test results[1, :package] == "Example"
-        @test results[1, :status] == :ok
+        @test results[1, :status] == :test
         @test contains(results[1, :log], "https://github.com/JuliaLang/Example.jl#master")
     end
 end
@@ -155,7 +163,7 @@ if julia_version >= v"1.10.0-DEV.204" || v"1.9.0-alpha1.55" <= julia_version < v
 
         # wipe the cache and evaluate Example.jl
         rm(compilecache, recursive=true, force=true)
-        PkgEval.evaluate_test(config, Package(; name="Example"); echo=true)
+        PkgEval.evaluate_package(config, Package(; name="Example"); echo=true)
 
         # make sure we only generated one package image
         @test isdir(compilecache)
@@ -243,7 +251,7 @@ end
 
     results = evaluate([config], packages; echo=true, validate=false, ninstances=1)
     if julia_release !== nothing
-        @test all(results.status .== :ok)
+        @test all(results.status .== :test)
         for result in eachrow(results)
             @test occursin("Testing $(result.package) tests passed", result.log)
         end
@@ -264,7 +272,7 @@ end
             @test contains(result.log, "PackageCompiler succeeded")
         end
         if julia_release !== nothing
-            @test result.status == :ok
+            @test result.status == :test
             @test contains(result.log, "Testing Example tests passed")
         end
     end
@@ -274,10 +282,9 @@ haskey(ENV, "CI") || @testset "rr" begin
     results = evaluate([Configuration(config; rr=PkgEval.RREnabled)],
                        [Package(; name="Example")];
                        echo=true, validate=false)
-    @test all(results.status .== :ok)
     @test contains(results[1, :log], "BugReporting")
     if julia_release !== nothing
-        @test results[1, :status] == :ok
+        @test all(results.status .== :test)
         @test contains(results[1, :log], "Testing Example tests passed")
     end
 end
@@ -288,7 +295,7 @@ end
     packages = [Package(; name) for name in [stdlibs; non_stdlibs]]
 
     results = evaluate([config], packages; echo=true, validate=false)
-    @test all(results.status .== :ok)
+    @test all(results.status .== :test)
     for result in eachrow(results)
         if result.package in stdlibs
             @test contains(result.log, "is a standard library")

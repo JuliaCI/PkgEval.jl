@@ -3,19 +3,18 @@ include("common.jl")
 config = eval(Meta.parse(ARGS[1]))
 pkg = eval(Meta.parse(ARGS[2]))
 
-println("Package evaluation of $(pkg.name) started at ", now(UTC))
-
-println()
-using InteractiveUtils
-versioninfo()
+println("Package evaluation of $(pkg.name) on Julia $VERSION ($(Base.GIT_VERSION_INFO.commit_short)) started at ", now(UTC))
 
 
 print("\n\n", '#'^80, "\n# Set-up\n#\n\n")
 
-# we install PkgEval dependencies in a separate environment
-Pkg.activate("pkgeval"; shared=true)
+t0 = cpu_time()
 
-deps = ["TestEnv"]
+deps = String[]
+
+if config.goal === :test
+    push!(deps, "TestEnv")
+end
 
 if config.rr == RREnabled
     push!(deps, "BugReporting")
@@ -29,14 +28,45 @@ if config.rr == RREnabled
         # the dependencies of the package under evaluation. However, in the session
         # where we load BugReporting.jl we'll never actually load the package we
         # want to test, only re-start Julia under rr, so this should be fine.
-        println(io, "pushfirst!(LOAD_PATH, $(repr(Base.ACTIVE_PROJECT[])))")
+        println(io, """
+            project = Base.active_project()
+
+            prepend!(LOAD_PATH, $(repr(LOAD_PATH)))
+            using Pkg
+
+            Pkg.activate("pkgeval"; shared=true)
+            using BugReporting
+
+            Pkg.activate(project)
+        """)
 
         # this code is essentially what --bug-report from InteractiveUtils does
-        println(io, "using BugReporting")
-        println(io, "ENV[\"ENABLE_GDBLISTENER\"] = \"1\"")
-        println(io, "println(\"Switching execution to under rr\")")
-        println(io, "BugReporting.make_interactive_report(\"rr-local\", ARGS)")
-        println(io, "exit(0)")
+        println(io, """
+            ENV["ENABLE_GDBLISTENER"] = "1"
+            println("Switching execution to under rr")
+            BugReporting.make_interactive_report("rr-local", ARGS)
+            exit(0)
+        """)
+    end
+end
+
+if !isempty(deps)
+    io = IOBuffer()
+    Pkg.DEFAULT_IO[] = io
+    try
+        println("Installing PkgEval dependencies (", join(deps, ", "), ")...")
+
+        # we install PkgEval dependencies in a separate environment
+        Pkg.activate("pkgeval"; shared=true)
+
+        Pkg.add(deps)
+    catch
+        # something went wrong installing PkgEval's dependencies
+        println(String(take!(io)))
+        rethrow()
+    finally
+        Pkg.activate()
+        Pkg.DEFAULT_IO[] = nothing
     end
 end
 
@@ -70,28 +100,16 @@ end
 append!(julia_args, config.julia_args)
 julia_args = Cmd(julia_args)
 
-io = IOBuffer()
-Pkg.DEFAULT_IO[] = io
-try
-    println("Installing PkgEval dependencies...")
-    Pkg.add(deps)
-    println()
-catch
-    # something went wrong installing PkgEval's dependencies
-    println(String(take!(io)))
-    rethrow()
-finally
-    Pkg.DEFAULT_IO[] = nothing
-end
-
-Pkg.activate()
+println("\nSet-up completed after $(elapsed(t0))")
 
 
 print("\n\n", '#'^80, "\n# Installation\n#\n\n")
 
 t0 = cpu_time()
 try
-    Pkg.add(convert(Pkg.Types.PackageSpec, pkg))
+    spec = convert(Pkg.Types.PackageSpec, pkg)
+    println("Installing $(spec.name)...")
+    Pkg.add(spec)
 
     println("\nInstallation completed after $(elapsed(t0))")
     write("/output/installed", repr(true))
@@ -113,7 +131,7 @@ end
 # ensure the package has a test/runtests.jl file, so we can bail out quicker
 src = Base.find_package(pkg.name)
 runtests = joinpath(dirname(src), "..", "test", "runtests.jl")
-if !isfile(runtests)
+if config.goal === :test && !isfile(runtests)
     error("Package $(pkg.name) did not provide a `test/runtests.jl` file")
 end
 
@@ -163,6 +181,33 @@ end
 end
 
 
+if config.goal === :load
+print("\n\n", '#'^80, "\n# Loading\n#\n\n")
+
+t0 = cpu_time()
+io0 = io_bytes()
+try
+    # we load the package in a session mimicking Pkg's sandbox,
+    # because that's what we previously precompiled the package for.
+    println("Loading $(pkg.name)...")
+    run(```$(Base.julia_cmd())
+           --check-bounds=yes
+           --inline=$(Bool(Base.JLOptions().can_inline) ? "yes" : "no")
+           $(julia_args)
+           -e $("using $(pkg.name)")```)
+
+    println("\nLoading completed after $(elapsed(t0))")
+catch
+    println("\nLoading failed after $(elapsed(t0))\n")
+    rethrow()
+finally
+    write("/output/duration", repr(cpu_time()-t0))
+    write("/output/input_output", repr(io_bytes()-io0))
+end
+end
+
+
+if config.goal === :test
 print("\n\n", '#'^80, "\n# Testing\n#\n\n")
 
 t0 = cpu_time()
@@ -181,4 +226,5 @@ catch
 finally
     write("/output/duration", repr(cpu_time()-t0))
     write("/output/input_output", repr(io_bytes()-io0))
+end
 end

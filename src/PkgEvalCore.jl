@@ -97,6 +97,11 @@ Base.@kwdef struct Configuration
     ##                then running tests using that system image.
     compiled::Setting{Bool} = Default(false)
     compile_time_limit::Setting{Float64} = Default(30*60) # 30 mins
+
+    # test properties
+    ## what kind of evaluation to perform (:load, :test)
+    ## XXX: also support :install and :precompile?
+    goal::Setting{Symbol} = Default(:test)
 end
 
 function durationstring(seconds)

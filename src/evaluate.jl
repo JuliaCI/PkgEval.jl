@@ -14,18 +14,6 @@ struct Job
     use_cache::Bool
 end
 
-const statusses = Dict(
-    :ok     => "successful",
-    :skip   => "skipped",
-    :fail   => "unsuccessful",
-    :kill   => "interrupted",
-    :crash  => "crashed",
-)
-
-function status_message(status)
-    return statusses[status]
-end
-
 # NOTE: within each status group, reasons are sorted in order of reporting priority
 const reasons = [
     missing                 => missing,
@@ -89,15 +77,6 @@ function get_compilecache(config::Configuration)
     end
 end
 
-function effective_time_limit(config::Configuration)
-    if config.rr == RREnabled
-        # extend the timeout to account for the rr record overhead
-        return config.time_limit[] * 2
-    else
-        return config.time_limit[]
-    end
-end
-
 """
     evaluate_script(config::Configuration, script::String, args=``)
 
@@ -154,7 +133,7 @@ function evaluate_script(config::Configuration, script::String, args=``;
     reason = missing
 
     # kill on timeout
-    timeout_monitor = Timer(effective_time_limit(config)) do timer
+    timeout_monitor = Timer(config.time_limit[]) do timer
         process_running(proc) || return
         status = :kill
         reason = :time_limit
@@ -251,7 +230,7 @@ function evaluate_script(config::Configuration, script::String, args=``;
     # if we didn't kill the process, figure out the status from the exit code
     if status === nothing
         if success(proc)
-            status = :ok
+            status = config.goal
         elseif proc.exitcode == 134 # SIGABRT
             status = :crash
             reason = :abort
@@ -278,17 +257,17 @@ function evaluate_script(config::Configuration, script::String, args=``;
 end
 
 """
-    evaluate_test(config::Configuration, pkg; use_cache=true, kwargs...)
+    evaluate_package(config::Configuration, pkg; use_cache=true, kwargs...)
 
-Run the unit tests for a single package `pkg` inside of a sandbox according to `config`.
-The `use_cache` argument determines whether the package can use the caches shared across
-jobs (which may be a cause of issues).
+Evaluate a single package `pkg` inside of a sandbox according to `config`. The `use_cache`
+argument determines whether the package can use the caches shared across jobs (which may be
+a cause of issues).
 
 Refer to `evaluate_script`[@ref] for more possible `keyword arguments.
 """
-function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true,
-                       mounts::Dict{String,String}=Dict{String,String}(),
-                       env::Dict{String,String}=Dict{String,String}(), kwargs...)
+function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=true,
+                          mounts::Dict{String,String}=Dict{String,String}(),
+                          env::Dict{String,String}=Dict{String,String}(), kwargs...)
     # some options should have been handled already
     @assert config.rr in [RREnabled, RRDisabled]
 
@@ -300,11 +279,6 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     end
 
     name = "$(pkg.name)-$(config.name)-$(randstring(rng))"
-
-    # grant some packages more test time
-    if pkg.name in slow_list
-        config = Configuration(config;  time_limit=config.time_limit*2)
-    end
 
     # we create our own workdir so that we can reuse it
     workdir = mktempdir(prefix="pkgeval_$(pkg.name)_")
@@ -334,7 +308,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
 
     # launch the test script that's part of this repository
     mounts["/PkgEval.jl:ro"] = dirname(@__DIR__)
-    args = `"/PkgEval.jl/scripts/test.jl" $config $pkg`
+    args = `"/PkgEval.jl/scripts/evaluate.jl" $config $pkg`
 
     total_duration = @elapsed begin
         (; log, status, reason) = evaluate_script(config, "", args;
@@ -368,18 +342,22 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
     end
 
     # log the status and reason
-    @assert status in [:ok, :fail, :kill]
+    @assert status in [config.goal, :crash, :fail, :kill]
     ## HACK: sometimes Julia (or the container) fails to exit, even though we finished
     ##       testing, resulting in an inactivity kill. detect and override such cases.
     if status === :kill && reason === :inactivity
         if occursin("Testing completed after", log)
-            status = :ok
+            status = :test
             reason = missing
-            log *= "PkgEval terminated, but testing had completed; overriding.\n"
-        elseif occursin("Testing failed after", log)
+            log *= "PkgEval terminated, but package had successfully tested; overriding.\n"
+        elseif occursin("Loading completed after", log)
+            status = :load
+            reason = missing
+            log *= "PkgEval terminated, but package had successfully loaded; overriding.\n"
+        elseif occursin(r"(Loading|Testing) failed after", log)
             status = :fail
             reason = missing
-            log *= "PkgEval terminated, but testing had completed; overriding.\n"
+            log *= "PkgEval terminated, but evaluation had failed; overriding.\n"
         end
     end
     ## special cases where we override the status (if we didn't actively kill the process)
@@ -463,7 +441,7 @@ function evaluate_test(config::Configuration, pkg::Package; use_cache::Bool=true
         log *= "PkgEval crashed"
     elseif status === :skip
         log *= "PkgEval skipped"
-    elseif status === :ok
+    elseif status === config.goal
         log *= "PkgEval succeeded"
     end
     log *= " after $(round(total_duration, digits=2))s"
@@ -544,7 +522,7 @@ end
 """
     evaluate_compiled_test(config::Configuration, pkg::Package)
 
-Run the unit tests for a single package `pkg` (see `evaluate_test`[@ref] for details and
+Run the unit tests for a single package `pkg` (see `evaluate_package`[@ref] for details and
 a list of supported keyword arguments), after first having compiled a system image that
 contains this package and its dependencies.
 
@@ -561,6 +539,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
     )
 
     compile_config = Configuration(config;
+        goal = :compile,
         time_limit = config.compile_time_limit,
         # don't record the compilation, only the test execution
         rr = false,
@@ -583,21 +562,23 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
     log *= "\n"
 
     # log the status and determine a more accurate reason from the log
-    @assert status in [:ok, :fail, :kill]
-    if status === :ok
+    @assert status in [:compile, :crash, :fail, :kill]
+    if status === :compile
         log *= "PackageCompiler succeeded"
     elseif status === :fail
         log *= "PackageCompiler failed"
         reason = :uncompilable
     elseif status === :kill
         log *= "PackageCompiler terminated"
+    elseif status === :crash
+        log *= "PackageCompiler crashed"
     end
     if reason !== missing
         log *= ": " * reason_message(reason)
     end
     log *= "\n"
 
-    if status !== :ok
+    if status !== :compile
         rm(sysimage_dir; recursive=true)
         return (; log, status, reason, version=missing, duration=0.0)
     end
@@ -609,7 +590,7 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
         julia_args = [config.julia_args..., "--sysimage", sysimage_path],
     )
     (; log, status, reason, version, duration, input_output) =
-        evaluate_test(test_config, pkg; mounts, use_cache, kwargs...)
+        evaluate_package(test_config, pkg; mounts, use_cache, kwargs...)
     log = compile_log * "\n\n" * '#'^80 * "\n" * '#'^80 * "\n\n\n" * log
 
     rm(sysimage_dir; recursive=true)
@@ -814,20 +795,19 @@ end
              ninstances=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true,
              blacklist::Vector{String}, kwargs...)
 
-Run tests for `packages` using `configs`. If no packages are specified, default to testing
-all packages in the configured registry. The configurations can be specified as an array, or
-as a dictionary where the key can be used to name the configuration (and more easily
-identify it in the output dataframe).
+Evaluate `packages` using `configs`. If no packages are specified, default to evaluating all
+packages in the configured registry. The configurations can be specified as an array, or as
+a dictionary where the key can be used to name the configuration (and more easily identify
+it in the output dataframe).
 
-The `ninstances` keyword argument determines how many packages are tested in parallel;
+The `ninstances` keyword argument determines how many packages are evaluated in parallel;
 `retry` determines whether packages that did not fail on all configurations are retries;
-`validate` enables validation of artifact and package caches before running tests.
+`validate` enables validation of artifact and package caches before evaluating.
 
-The `blacklist` keyword argument can be used to skip testing of packages, specified by name.
-The blacklist is always extended with a hard-coded set of packages known to be problematic.
-It is only used when no explicit list of packages is given.
+By default, packages are evaluated by running their tests. If a package is part of the
+`blacklist`, testing is skipped and only installation and loadability is evaluated.
 
-Refer to `evaluate_test`[@ref] and `sandboxed_julia`[@ref] for more possible keyword
+Refer to `evaluate_package`[@ref] and `sandboxed_julia`[@ref] for more possible keyword
 arguments.
 """
 function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Package[];
@@ -868,9 +848,6 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
             end
         end
         packages = filter(!isnothing, packages)
-
-        # if we are given an explicit list of packages, ignore the blacklist
-        blacklist = String[]
     end
 
     # ensure the configurations have unique names
@@ -919,7 +896,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
         elseif endswith(job.package.name, "_jll")
             # JLLs we ignore completely; it's not useful to include them in the skip count
             return false
-        elseif job.package.name in blacklist || job.package.name in skip_list
+        elseif job.package.name in skip_list
             push!(skips, [job.config.name, job.package.name, missing,
                           :skip, :blacklisted, 0, 0, missing])
             return false
@@ -952,19 +929,32 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
             try
                 while !isempty(jobs) && !done
                     job = pop!(jobs)
-                    running[i] = (; job.config, job.package, time=time())
 
-                    # test the package
+                    # determine how to evaluate this package
                     main_config = Configuration(job.config; cpus=[i-1],
                                                 rr=(job.config.rr==RREnabled))
+                    ## grant some packages more test time
+                    if job.package.name in slow_list || job.config.rr == RREnabled
+                        main_config =
+                            Configuration(main_config; time_limit=main_config.time_limit*2)
+                    end
+                    ## blacklisted packages shouldn't be tested, just installed and loaded
+                    if job.package.name in blacklist
+                        main_config = Configuration(main_config; goal=:load)
+                    end
+
+                    # evaluate the package
+                    running[i] = (; config=main_config, job.package, time=time())
                     (; log, status, reason, version, duration, input_output) =
-                        evaluate_test(main_config, job.package; job.use_cache, kwargs...)
+                        evaluate_package(main_config, job.package; job.use_cache, kwargs...)
 
                     if retry
                         # early retry: rerun crashes under rr to see if we can get a trace
                         if status === :crash && job.config.rr == RREnabledOnRetry
                             rr_config = Configuration(main_config; rr=true)
-                            rr_results = evaluate_test(rr_config, job.package; job.use_cache, kwargs...)
+                            running[i] = (; config=rr_config, job.package, time=time())
+                            rr_results = evaluate_package(rr_config, job.package;
+                                                          job.use_cache, kwargs...)
 
                             # if the rr test crashed in the same way, use that evaluation
                             if rr_results.status === status && rr_results.reason === reason
@@ -986,7 +976,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                     end
 
                     push!(result, [job.config.name, job.package.name,
-                                    version, status, reason, duration, input_output, log])
+                                   version, status, reason, duration, input_output, log])
 
                     if retry
                         # late retry: when done testing a package, re-test failures.
@@ -1042,12 +1032,13 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                 function showvalues()
                     # known statuses
                     # NOTE: we filtered skips, so don't need to report them here
-                    o = count(==(:ok),      result[!, :status])
+                    l = count(==(:load),    result[!, :status])
+                    t = count(==(:test),    result[!, :status])
                     f = count(==(:fail),    result[!, :status])
                     c = count(==(:crash),   result[!, :status])
                     k = count(==(:kill),    result[!, :status])
 
-                    [(:success, o), (:failed, f), (:crashed, c), (:killed, k)]
+                    [(:loaded, l), (:tested, t), (:failed, f), (:crashed, c), (:killed, k)]
                 end
                 update!(p, nrow(result); showvalues)
                 sleep(sleep_time)
@@ -1064,7 +1055,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                 ## add the time it takes to run the latest job until it times out
                 if !isempty(actually_running)
                     latest_job = actually_running[findmax(x->x.time, actually_running)[2]]
-                    est_total_time += effective_time_limit(latest_job.config) -
+                    est_total_time += latest_job.config.time_limit[] -
                                       (time() - latest_job.time)
                 end
 
