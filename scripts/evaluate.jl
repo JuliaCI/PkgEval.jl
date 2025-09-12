@@ -213,8 +213,8 @@ print("\n\n", '#'^80, "\n# Testing\n#\n\n")
 t0 = cpu_time()
 io0 = io_bytes()
 try
-    if THIS_IS_STDLIB
-        # For stdlibs, we have to use `Base.runtests()` instead of `Pkg.test()`
+    if is_stdlib
+        # For stdlibs, we use `Base.runtests()` instead of `Pkg.test()`
         ncores = ceil(Int, max(4, Sys.CPU_THREADS / 2)) # TODO: Figure out how to decide on the value of ncores.
         if config.rr == RREnabled
             # TODO: Figure out how to do the `$julia_args --load bugreport.jl` stuff.
