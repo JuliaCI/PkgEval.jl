@@ -213,10 +213,21 @@ print("\n\n", '#'^80, "\n# Testing\n#\n\n")
 t0 = cpu_time()
 io0 = io_bytes()
 try
-    if config.rr == RREnabled
-        Pkg.test(pkg.name; julia_args=`$julia_args --load bugreport.jl`)
+    if THIS_IS_STDLIB
+        # For stdlibs, we have to use `Base.runtests()` instead of `Pkg.test()`
+        ncores = ceil(Int, max(4, Sys.CPU_THREADS / 2)) # TODO: Figure out how to decide on the value of ncores.
+        if config.rr == RREnabled
+            # TODO: Figure out how to do the `$julia_args --load bugreport.jl` stuff.
+            Base.runtests([pkg.name]; ncores=ncores)
+        else
+            Base.runtests([pkg.name])
+        end
     else
-        Pkg.test(pkg.name; julia_args)
+        if config.rr == RREnabled
+            Pkg.test(pkg.name; julia_args=`$julia_args --load bugreport.jl`)
+        else
+            Pkg.test(pkg.name; julia_args)
+        end
     end
 
     println("\nTesting completed after $(elapsed(t0))")
