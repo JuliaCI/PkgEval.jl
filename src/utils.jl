@@ -351,10 +351,18 @@ end
 const kernel_version = Ref{Union{VersionNumber,Missing}}()
 function get_kernel_version()
     if !isassigned(kernel_version)
-        kver_str = readchomp(`/bin/uname -r`)
+        kver_str = strip(read(`/bin/uname -r`, String))
         kver = tryparse(VersionNumber, kver_str)
         if kver === nothing
-            @warn "Failed to parse kernel version '$kver_str'"
+            # Regex for RHEL derivatives:
+            r = r"^(\d*?\.\d*?\.\d*?)-[\w\d._]*?$"
+            m = match(r, kver_str)
+            if m isa RegexMatch
+                kver = tryparse(VersionNumber, m[1])
+            end
+            if kver === nothing
+                @warn "Failed to parse kernel version '$kver_str'"
+            end
         end
         kernel_version[] = something(kver, missing)
     end
