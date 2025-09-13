@@ -355,6 +355,7 @@ function get_kernel_version()
         kver = tryparse(VersionNumber, kver_str)
         if kver === nothing
             # Regex for RHEL derivatives:
+            # https://github.com/JuliaCI/PkgEval.jl/pull/287
             r = r"^(\d*?\.\d*?\.\d*?)-[\w\d._]*?$"
             m = match(r, kver_str)
             if m isa RegexMatch
