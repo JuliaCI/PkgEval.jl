@@ -347,27 +347,34 @@ function chmod_recursive(root::String, perms)
     end
 end
 
-
 const kernel_version = Ref{Union{VersionNumber,Missing}}()
 function get_kernel_version()
     if !isassigned(kernel_version)
         kver_str = strip(read(`/bin/uname -r`, String))
-        kver = tryparse(VersionNumber, kver_str)
-        if kver === nothing
-            # Regex for RHEL derivatives:
-            # https://github.com/JuliaCI/PkgEval.jl/pull/287
-            r = r"^(\d*?\.\d*?\.\d*?)-[\w\d._]*?$"
-            m = match(r, kver_str)
-            if m isa RegexMatch
-                kver = tryparse(VersionNumber, m[1])
-            end
-            if kver === nothing
-                @warn "Failed to parse kernel version '$kver_str'"
-            end
-        end
+        kver = parse_kernel_version(str)
         kernel_version[] = something(kver, missing)
     end
     return kernel_version[]
+end
+function parse_kernel_version(kver_str::AbstractString)
+    kver = tryparse(VersionNumber, kver_str)
+    if kver isa VersionNumber
+        return kver
+    end
+
+    # Regex for RHEL derivatives:
+    # https://github.com/JuliaCI/PkgEval.jl/pull/287
+    r = r"^(\d*?\.\d*?\.\d*?)-[\w\d._]*?$"
+    m = match(r, kver_str)
+    if m isa RegexMatch
+        kver = tryparse(VersionNumber, m[1])
+        if kver isa VersionNumber
+            return kver
+        end
+    end
+
+    @warn "Failed to parse kernel version '$kver_str'"
+    return nothing
 end
 
 
