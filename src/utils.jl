@@ -351,7 +351,7 @@ const kernel_version = Ref{Union{VersionNumber,Missing}}()
 function get_kernel_version()
     if !isassigned(kernel_version)
         kver_str = strip(read(`/bin/uname -r`, String))
-        kver = parse_kernel_version(str)
+        kver = parse_kernel_version(kver_str)
         kernel_version[] = something(kver, missing)
     end
     return kernel_version[]
