@@ -286,12 +286,12 @@ function setup_generic_sandbox(config::Configuration, cmd::Cmd; workdir::String,
         end
     end
 
-    env = merge(env, Dict(
+    env = merge(Dict(
         # some essential env vars (since we don't run from a shell)
         "PATH" => "/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin",
         "HOME" => config.home,
         "LANG" => "C.UTF-8",
-    ))
+    ), env)
     if haskey(ENV, "TERM")
         env["TERM"] = ENV["TERM"]
     end
@@ -350,6 +350,9 @@ function setup_julia_sandbox(config::Configuration, args=``;
         # NOTE: putting a registry in a non-primary depot entry makes Pkg use it as-is,
         #       without needing to set Pkg.UPDATED_REGISTRY_THIS_SESSION.
         "JULIA_DEPOT_PATH" => "$(config.home)/.julia:/usr/local/share/julia:",
+
+        # put Julia on PATH
+        "PATH" => "/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:$(config.julia_install_dir)/bin",
     ))
 
     cmd = `$(config.julia_install_dir)/bin/$(config.julia_binary)`
