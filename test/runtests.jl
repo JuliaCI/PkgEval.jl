@@ -19,6 +19,14 @@ buildflags = get(ENV, "BUILDFLAGS", "")
 cgroup_controllers = PkgEval.get_cgroup_controllers()
 @info "Available cgroup controllers: $(isempty(cgroup_controllers) ? "none" : join(cgroup_controllers, ", "))"
 
+@testset "Misc quick tests" begin
+    @test PkgEval.parse_kernel_version("1.2.3") == v"1.2.3"
+
+    # RHEL derivatives
+    # https://github.com/JuliaCI/PkgEval.jl/pull/287
+    @test PkgEval.parse_kernel_version("4.18.0-553.60.1.el8_10.x86_64") == v"4.18.0"
+end
+
 @testset "Configuration" begin
     # default object: nothing modified
     x = Configuration()
