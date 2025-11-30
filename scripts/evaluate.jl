@@ -62,32 +62,26 @@ end
 if !isempty(deps)
     # Need to handle https://github.com/JuliaLang/Pkg.jl/pull/4499,
     # but also need to handle older Julia versions without ScopedValues
-    if isdefined(Base, :ScopedValues) && (Pkg.DEFAULT_IO isa Base.ScopedValues.ScopedValue)
-        # This is after Pkg.jl/pull/4499
-        io = IOBuffer()
-        try
+    use_scoped_values = isdefined(Base, :ScopedValues) && (Pkg.DEFAULT_IO isa Base.ScopedValues.ScopedValue)
+    io = IOBuffer()
+    if !use_scoped_values
+        Pkg.DEFAULT_IO[] = io
+    end
+    try
+        if use_scoped_values
             Base.ScopedValues.@with Pkg.DEFAULT_IO => io begin
                 install_pkgeval_deps()
             end
-        catch
-            # something went wrong installing PkgEval's dependencies
-            println(String(take!(io)))
-            rethrow()
-        finally
-            Pkg.activate()
-        end
-    else
-        # This is before Pkg.jl/pull/4499
-        io = IOBuffer()
-        Pkg.DEFAULT_IO[] = io
-        try
+        else
             install_pkgeval_deps()
-        catch
-            # something went wrong installing PkgEval's dependencies
-            println(String(take!(io)))
-            rethrow()
-        finally
-            Pkg.activate()
+        end
+    catch
+        # something went wrong installing PkgEval's dependencies
+        println(String(take!(io)))
+        rethrow()
+    finally
+        Pkg.activate()
+        if !use_scoped_values
             Pkg.DEFAULT_IO[] = nothing
         end
     end
