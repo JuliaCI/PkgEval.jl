@@ -50,23 +50,46 @@ if config.rr == RREnabled
     end
 end
 
+function install_pkgeval_deps()
+    println("Installing PkgEval dependencies (", join(deps, ", "), ")...")
+
+    # we install PkgEval dependencies in a separate environment
+    Pkg.activate("pkgeval"; shared=true)
+
+    Pkg.add(deps)
+end
+
 if !isempty(deps)
-    io = IOBuffer()
-    Pkg.DEFAULT_IO[] = io
-    try
-        println("Installing PkgEval dependencies (", join(deps, ", "), ")...")
-
-        # we install PkgEval dependencies in a separate environment
-        Pkg.activate("pkgeval"; shared=true)
-
-        Pkg.add(deps)
-    catch
-        # something went wrong installing PkgEval's dependencies
-        println(String(take!(io)))
-        rethrow()
-    finally
-        Pkg.activate()
-        Pkg.DEFAULT_IO[] = nothing
+    # Need to handle https://github.com/JuliaLang/Pkg.jl/pull/4499,
+    # but also need to handle older Julia versions without ScopedValues
+    if isdefined(Base, :ScopedValues) && (Pkg.DEFAULT_IO isa Base.ScopedValues.ScopedValue)
+        # This is after Pkg.jl/pull/4499
+        io = IOBuffer()
+        try
+            Base.ScopedValues.@with Pkg.DEFAULT_IO => io begin
+                install_pkgeval_deps()
+            end
+        catch
+            # something went wrong installing PkgEval's dependencies
+            println(String(take!(io)))
+            rethrow()
+        finally
+            Pkg.activate()
+        end
+    else
+        # This is before Pkg.jl/pull/4499
+        io = IOBuffer()
+        Pkg.DEFAULT_IO[] = io
+        try
+            install_pkgeval_deps()
+        catch
+            # something went wrong installing PkgEval's dependencies
+            println(String(take!(io)))
+            rethrow()
+        finally
+            Pkg.activate()
+            Pkg.DEFAULT_IO[] = nothing
+        end
     end
 end
 
