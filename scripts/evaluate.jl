@@ -69,7 +69,8 @@ if !isempty(deps)
     end
     try
         if use_scoped_values
-            Base.ScopedValues.@with Pkg.DEFAULT_IO => io begin
+            # Avoid using the @with macro here
+            Base.ScopedValues.with(Pkg.DEFAULT_IO => io) do
                 install_pkgeval_deps()
             end
         else
