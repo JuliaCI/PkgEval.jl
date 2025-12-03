@@ -48,7 +48,7 @@ jobs:
       JULIA: ${{ matrix.test_julia }}
       BUILDFLAGS: ${{ matrix.test_buildflags }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: "Allow unprivileged user namespaces"
         run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
