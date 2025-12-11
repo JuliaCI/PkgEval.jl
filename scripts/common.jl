@@ -32,5 +32,43 @@ function io_bytes()
     return dict["rchar"] + dict["wchar"]
 end
 
+suppress_pkg_output(f::Function) = capture_pkg_output(f; suppress = true)
+function capture_pkg_output(f::Function; suppress::Bool = false)
+    # Need to handle https://github.com/JuliaLang/Pkg.jl/pull/4499,
+    # but also need to handle older Julia versions without ScopedValues
+    use_scoped_values = isdefined(Base, :ScopedValues) && (Pkg.DEFAULT_IO isa Base.ScopedValues.ScopedValue)
+    if suppress
+        io = devnull
+    else
+        io = IOBuffer()
+    end
+    if !use_scoped_values
+        Pkg.DEFAULT_IO[] = io
+    end
+    try
+        if use_scoped_values
+            # Avoid using the @with macro here
+            Base.ScopedValues.with(Pkg.DEFAULT_IO => io) do
+                f()
+            end
+        else
+            f()
+        end
+    catch
+        # Something went wrong when trying to run f()
+        # So print the Pkg output to stdout (unless `suppress` is true)
+        if !suppress
+            println(String(take!(io)))
+        end
+        # And then rethrow the exception
+        rethrow()
+    finally
+        if !use_scoped_values
+            Pkg.DEFAULT_IO[] = nothing
+        end
+    end
+    return nothing
+end
+
 using Dates
 elapsed(t) = "$(round(cpu_time() - t; digits=2))s"
