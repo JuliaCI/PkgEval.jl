@@ -9,17 +9,9 @@ t0 = cpu_time()
 try
     # use a clean environment, or BugReporting's deps could
     # affect/be affected by the tested package's dependencies.
-    io = IOBuffer()
-    Pkg.DEFAULT_IO[] = io
-    try
+    capture_pkg_output() do
         Pkg.activate(; temp=true)
         Pkg.add(name="BugReporting", uuid="bcf9a6e7-4020-453c-b88e-690564246bb8")
-    catch
-        # something went wrong installing BugReporting.jl
-        println(String(take!(io)))
-        rethrow()
-    finally
-        Pkg.DEFAULT_IO[] = nothing
     end
     using BugReporting
 
