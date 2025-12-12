@@ -60,8 +60,11 @@ function install_pkgeval_deps()
 end
 
 if !isempty(deps)
-    capture_pkg_output(install_pkgeval_deps)
-    Pkg.activate()
+    try
+        capture_pkg_output(install_pkgeval_deps)
+    finally
+        Pkg.activate()
+    end
 end
 
 # generating package images is really expensive, without much benefit (for PkgEval)
