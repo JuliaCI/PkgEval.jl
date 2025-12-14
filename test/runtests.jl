@@ -173,7 +173,7 @@ if julia_version >= v"1.10.0-DEV.204" || v"1.9.0-alpha1.55" <= julia_version < v
         rm(compilecache, recursive=true, force=true)
         @info "after wipe, before eval" compilecache isdir(compilecache)
         PkgEval.evaluate_package(config, Package(; name="Example"); echo=true)
-        @info "after eval" compilecache isdir(compilecache) readdir(compilecache)
+        @info "after eval" compilecache isdir(compilecache) readdir(compilecache) join(readdir(compilecache), ", ")
 
         # make sure we only generated one package image
         @test isdir(compilecache)
