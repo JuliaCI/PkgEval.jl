@@ -1,5 +1,7 @@
 module PkgEval
 
+# Hello world
+
 using Pkg, LazyArtifacts, Random
 import Pkg.TOML
 import GitHub
