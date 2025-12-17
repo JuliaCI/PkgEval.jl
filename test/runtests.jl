@@ -255,7 +255,7 @@ end
 @testset "complex packages" begin
     # some more complicate packages that are all expected to pass tests
     package_names = [
-        "TimerOutputs",
+        "SortingAlgorithms",
         "Crayons",
         "Example",
         "Gtk",
