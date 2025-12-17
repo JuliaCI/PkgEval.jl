@@ -254,7 +254,12 @@ end
 
 @testset "complex packages" begin
     # some more complicate packages that are all expected to pass tests
-    package_names = ["TimerOutputs", "Crayons", "Example", "Gtk"]
+    package_names = [
+        "TimerOutputs",
+        "Crayons",
+        "Example",
+        "Gtk",
+    ]
     packages = [Package(; name) for name in package_names]
 
     results = evaluate([config], packages; echo=true, validate=false, ninstances=1)
