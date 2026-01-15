@@ -92,6 +92,13 @@ end
 # so determine here if we need to disable them using additional CLI args
 # (we can't do this externally because of JuliaLang/Pkg.jl#3737)
 julia_args = String[]
+
+# Enable bounds-checking
+# Needed because after https://github.com/JuliaLang/Pkg.jl/pull/4494, Pkg.test() no
+# longer enables bounds-checking.
+push!(julia_args, "--check-bounds=yes")
+
+# --pkgimages and/or --compiled-modules
 if VERSION < v"1.9-beta1" || (v"1.10-" <= VERSION < v"1.10.0-DEV.204")
     # we don't support pkgimages yet
 elseif any(startswith("--pkgimages"), config.julia_args)
