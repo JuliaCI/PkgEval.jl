@@ -939,8 +939,11 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                             Configuration(main_config; time_limit=main_config.time_limit*2)
                     end
                     ## blacklisted packages shouldn't be tested, just installed and loaded
+                    ## However, if the user manually specified `goal` when invoking Nanosoldier, respect that
                     if job.package.name in blacklist
-                        main_config = Configuration(main_config; goal=:load)
+                        if !ismodified(cfg, :goal)
+                            main_config = Configuration(main_config; goal=:load)
+                        end
                     end
 
                     # evaluate the package
