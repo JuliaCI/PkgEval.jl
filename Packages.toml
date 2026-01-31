@@ -84,29 +84,11 @@ skip_rr = [
     "BinaryBuilderBase",            # requires 32-bit rr
 ]
 
-# packages that are important, and thus shouldn't ever be blacklisted
-important = [
-    "BenchmarkTools",
-    "CodeTracking", # used by Revise
-    "DataFrames",
-    "DifferentialEquations",
-    "Flux",
-    "HTTP",
-    "JuliaInterpreter",
-    "JuMP",
-    "LLVM",
-    "LoweredCodeUtils", # used by Revise
-    "Plots",
-    "Revise",
-    "PackageCompiler",
-
+external_stdlibs = [
     # The following is the list of external stdlibs (excluding JLLs).
     # An external stdlib is a Julia stdlib that lives in an external repo (not the JuliaLang/julia repo).
     # Please keep this list up-to-date with https://github.com/JuliaLang/julia/tree/master/stdlib
     # You know it's an external stdlib if it has a `$name.version` file in that folder
-    #
-    # Motivation: We never want to blacklist external stdlibs, because after https://github.com/JuliaCI/julia-buildkite/pull/483,
-    # PkgEval is the easiest way to test an external stdlib on your PR to JuliaLang/julia.
     "ArgTools",
     "DelimitedFiles",
     "Distributed",
@@ -125,8 +107,25 @@ important = [
     "Tar",
 ]
 
+# packages that are important, and thus shouldn't ever be blacklisted
+important = [
+    "BenchmarkTools",
+    "CodeTracking", # used by Revise
+    "DataFrames",
+    "DifferentialEquations",
+    "Flux",
+    "HTTP",
+    "JuliaInterpreter",
+    "JuMP",
+    "LLVM",
+    "LoweredCodeUtils", # used by Revise
+    "Plots",
+    "Revise",
+    "PackageCompiler",
+]
+
 # packages that are slow, and should be granted more test time (they're worth it)
 slow = [
     "PackageCompiler",
-    "ChainRules"
+    "ChainRules",
 ]
