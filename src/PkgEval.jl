@@ -17,6 +17,7 @@ using crun_jll
 
 skip_list = String[]
 skip_rr_list = String[]
+external_stdlibs = String[]
 important_list = String[]
 slow_list = String[]
 
@@ -48,8 +49,15 @@ function __init__()
     packages = TOML.parsefile(joinpath(dirname(@__DIR__), "Packages.toml"))
     global skip_list = get(packages, "skip", String[])
     global skip_rr_list = get(packages, "skip_rr", String[])
+    global external_stdlibs = get(packages, "external_stdlibs", String[])
     global important_list = get(packages, "important", String[])
     global slow_list = get(packages, "slow", String[])
+
+    # Add all external stdlibs to "important" and "slow"
+    # We never want to blacklist external stdlibs, because after https://github.com/JuliaCI/julia-buildkite/pull/483,
+    # PkgEval is the easiest way to test an external stdlib on your PR to JuliaLang/julia.
+    append!(important_list, external_stdlibs)
+    append!(slow_list, external_stdlibs)
 
     global container_root = mktempdir(prefix="pkgeval_containers_")
 
