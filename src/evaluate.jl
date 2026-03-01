@@ -934,7 +934,11 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                     main_config = Configuration(job.config; cpus=[i-1],
                                                 rr=(job.config.rr==RREnabled))
                     ## grant some packages more test time
-                    if job.package.name in slow_list || job.config.rr == RREnabled
+                    if job.package.name in ["Pkg", "LinearAlgebra"]
+                        # These particular stdlibs take an extra long time
+                        main_config =
+                            Configuration(main_config; time_limit=main_config.time_limit*5)
+                    elseif job.package.name in slow_list || job.config.rr == RREnabled
                         main_config =
                             Configuration(main_config; time_limit=main_config.time_limit*2)
                     end
