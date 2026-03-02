@@ -125,7 +125,8 @@ external_stdlibs = [
 ]
 
 # packages that are slow, and should be granted more test time (they're worth it)
-slow = [
-    "PackageCompiler",
-    "ChainRules",
-]
+[slow]
+PackageCompiler = "2x"
+ChainRules = "2x"
+Pkg = "5x"
+LinearAlgebra = "5x"
