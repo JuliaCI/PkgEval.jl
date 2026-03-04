@@ -19,7 +19,7 @@ skip_list = String[]
 skip_rr_list = String[]
 external_stdlibs = String[]
 important_list = String[]
-slow_list = String[]
+slow_map = Dict{String, Int}()
 
 # due to containers/crun#1092, we really need to use unique container names,
 # and not reuse, e.g., when running in a testset
@@ -51,13 +51,21 @@ function __init__()
     global skip_rr_list = get(packages, "skip_rr", String[])
     global external_stdlibs = get(packages, "external_stdlibs", String[])
     global important_list = get(packages, "important", String[])
-    global slow_list = get(packages, "slow", String[])
+    global slow_map = Dict{String, Int}()
+    for (k, v) in get(packages, "slow", Dict())
+        r = r"^(\d\d*?)x$"
+        m = match(r, strip(v))
+        i = parse(Int, m[1])
+        slow_map[k] = i
+    end
 
     # Add all external stdlibs to "important" and "slow"
     # We never want to blacklist external stdlibs, because after https://github.com/JuliaCI/julia-buildkite/pull/483,
     # PkgEval is the easiest way to test an external stdlib on your PR to JuliaLang/julia.
     append!(important_list, external_stdlibs)
-    append!(slow_list, external_stdlibs)
+    for stdlib in external_stdlibs
+        get!(slow_map, stdlib, 2)
+    end
 
     global container_root = mktempdir(prefix="pkgeval_containers_")
 
