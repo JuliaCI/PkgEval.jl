@@ -31,6 +31,7 @@ const reasons = [
     :precompile             => "package fails to precompile",
     :method_overwriting     => "illegal method overwrites during precompilation",
     :test_failures          => "package has test failures",
+    :test_failures_isapprox => "package has test failures (isapprox)",
     :test_errors            => "package tests unexpectedly errored",
     :binary_dependency      => "package requires a missing binary dependency",
     :missing_dependency     => "package is missing a package dependency",
@@ -428,7 +429,49 @@ function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=t
             :precompile
         elseif occursin(r"Package .+ errored during testing", log)
             if occursin("Some tests did not pass", log) && occursin("0 errored", log)
-                :test_failures
+                # here, we're dealing with a package that has test failures.
+                # try to extract those failures to categorize further.
+                function categorize_test_failures()
+                    # get number of failures
+                    m = match(r"Some tests did not pass:.*(\d+) failed", log)
+                    m === nothing && error("Could not find test summary")
+                    nfailures = parse(Int, m.captures[1])
+
+                    # extract failures
+                    lines = split(log, '\n')
+                    failures = []
+                    i = 1
+                    while i <= length(lines)
+                        if occursin("Test Failed at", lines[i])
+                            # let's keep on consuming lines until we encounter an empty one
+                            test_log = lines[i]
+                            i += 1
+                            while i <= length(lines) && !isempty(lines[i])
+                                test_log *= "\n" * lines[i]
+                                i += 1
+                            end
+                            push!(failures, test_log)
+                        else
+                            i += 1
+                        end
+                    end
+                    if nfailures != length(failures)
+                        error("Found $(length(failures)) test failures, but expected $nfailures")
+                    end
+
+                    # categorize failures
+                    if all(f -> occursin(r"(isapprox|≈)", f), failures)
+                        return :test_failures_isapprox
+                    end
+
+                    return :test_failures
+                end
+                try
+                    categorize_test_failures()
+                catch err
+                    @error "Failed to categorize test failures of $(pkg.name) on $(config.name)" exception=(err, catch_backtrace())
+                    :test_failures
+                end
             else
                 :test_errors
             end
