@@ -167,7 +167,10 @@ function run_sandbox(config::Configuration, setup, args...; workdir=nothing, wai
         JSON3.pretty(io, JSON3.write(sandbox_config))
     end
 
-    proc = run(pipeline(`$(crun()) --systemd-cgroup --root $(container_root) run --bundle $bundle_path $(sandbox.name)`;
+    # crun's systemd cgroup manager requires a running systemd, which is not available
+    # when running inside a container ourselves; fall back to the cgroupfs manager there.
+    cgroup_manager = isdir("/run/systemd/system") ? ["--systemd-cgroup"] : String[]
+    proc = run(pipeline(`$(crun()) $(cgroup_manager) --root $(container_root) run --bundle $bundle_path $(sandbox.name)`;
                         stdin, stderr, stdout); wait)
 
     # XXX: once `crun` support `stats` like `runc`, use that for resource usage reporting

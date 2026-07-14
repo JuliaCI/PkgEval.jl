@@ -50,9 +50,56 @@ for flag in keys(args)
              :transitive, :jlls, :output, :ninstances] || usage("unknown flag: --$flag")
 end
 
+# on non-Linux platforms, transparently re-execute this script inside a Linux container,
+# where the existing sandboxing code works unchanged
 if !Sys.islinux()
-    println(stderr, "ERROR: evaluating packages requires Linux (see the README); on other platforms, run this script inside a Linux VM or container.")
-    exit(1)
+    docker = Sys.which("docker")
+    if docker === nothing
+        println(stderr, """
+            ERROR: evaluating packages requires Linux. To do so from this machine, install a
+                   Docker-compatible container runtime (Docker Desktop, OrbStack, Colima, ...)
+                   and this script will automatically run itself in a Linux container.""")
+        exit(1)
+    end
+
+    # local Julia installations cannot be used, as the sandbox runs Linux binaries
+    for flag in (:primary, :against)
+        haskey(args, flag) || continue
+        if ispath(expanduser(args[flag]))
+            usage("--$flag points to a local Julia installation, which cannot be used from $(Sys.KERNEL); use a version number, release name, or repository spec instead")
+        end
+    end
+
+    pkgeval = dirname(@__DIR__)
+
+    println("Building the PkgEval container image...")
+    run(pipeline(`$docker build --quiet --tag pkgeval $(joinpath(pkgeval, "bin"))`;
+                 stdout=devnull))
+
+    # the report is written to a directory mounted from the host, while the Julia depot
+    # (package cache, PkgEval's scratch spaces) persists in a named volume
+    output = abspath(expanduser(get(args, :output, "pkgeval-report")))
+    mkpath(output)
+    flags = String["--$flag=$value" for (flag, value) in args if flag !== :output]
+    push!(flags, "--output=/output")
+
+    script = """
+        set -e
+        julia -e 'using Pkg; Pkg.activate("pkgeval"; shared=true);
+                  Pkg.develop(path="/PkgEval"); Pkg.instantiate()'
+        exec julia --project=@pkgeval /PkgEval/bin/evaluate.jl "\$@"
+        """
+    runflags = ["--rm", "--privileged",
+                "--volume", "pkgeval-depot:/root/.julia",
+                "--volume", "$(pkgeval):/PkgEval",
+                "--volume", "$(output):/output"]
+    stdout isa Base.TTY && push!(runflags, "--tty")
+
+    proc = run(ignorestatus(`$docker run $runflags pkgeval bash -c $script -- $flags`))
+    if isfile(joinpath(output, "report.html"))
+        println("\nReport available at $(joinpath(output, "report.html"))")
+    end
+    exit(proc.exitcode)
 end
 
 # resolve a Julia spec: map juliaup-style channel names to PkgEval release names,

@@ -10,6 +10,13 @@ Note that for now, **PkgEval.jl is Linux-only**, and even requires a
 sufficiently recent kernel (at least 5.11, or a distribution like Ubuntu that
 has back-ported support for unprivileged overlayfs mounts in user namespaces).
 
+On other platforms, such as macOS, the `bin/evaluate.jl` script (see below) can
+still be used: given a Docker-compatible container runtime (Docker Desktop,
+OrbStack, Colima, ...), it automatically re-executes itself inside a Linux
+container, where the sandboxing code works as-is. Note that on Apple silicon
+this evaluates the aarch64 build of Julia, whereas Nanosoldier tests x86_64,
+so results may (rarely) differ.
+
 
 ## Quick start
 
