@@ -56,6 +56,27 @@ end
     end
 end
 
+@testset "Registry queries" begin
+    cfg = Configuration()
+
+    dependencies = PkgEval.package_dependencies(cfg; transitive=false)
+    @test haskey(dependencies, "Example")
+    @test "Crayons" in dependencies["OhMyREPL"]
+
+    direct = PkgEval.package_dependents(cfg, "Crayons"; transitive=false)
+    @test "OhMyREPL" in direct
+    @test all(pkg -> "Crayons" in dependencies[pkg], direct)
+
+    transitive = PkgEval.package_dependents(cfg, "Crayons"; transitive=true)
+    @test direct ⊆ transitive
+    @test "Crayons" ∉ transitive
+
+    # standard libraries aren't registered, but do have dependents
+    @test !isempty(PkgEval.package_dependents(cfg, "LinearAlgebra"; transitive=false))
+
+    @test_throws ErrorException PkgEval.package_dependents(cfg, "NotARealPackage")
+end
+
 @testset "Sandbox" begin
     # smoke test
     cfg = Configuration(xvfb=false)

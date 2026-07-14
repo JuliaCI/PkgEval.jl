@@ -104,6 +104,27 @@ Installed Example ─ v0.5.3
 Testing Example tests passed
 ```
 
+### Selecting packages by dependency
+
+To test a set of packages related to another package, e.g., all the packages that would be
+affected by a change to one of your packages, use `PkgEval.package_dependents` to query the
+registry's dependency graph:
+
+```julia-repl
+julia> config = Configuration();
+
+# all packages that directly depend on Crayons, excluding JLL packages
+julia> names = filter(!endswith("_jll"), PkgEval.package_dependents(config, "Crayons"; transitive=false));
+
+# all packages that transitively depend on Crayons
+julia> names = PkgEval.package_dependents(config, "Crayons");
+
+julia> evaluate([config], [Package(; name) for name in names])
+```
+
+The related `PkgEval.package_dependencies(config)` returns the forward dependency graph,
+i.e., a dictionary mapping each registered package to its dependencies.
+
 
 ## Why does my package fail?
 

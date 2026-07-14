@@ -190,6 +190,55 @@ function package_dependencies(config; transitive=true)
     return dependencies
 end
 
+"""
+    package_dependents(config, package::String; transitive=true)
+
+This function returns the names of the registered packages that depend on `package`,
+which may also be the name of a standard library.
+
+## Arguments
+- `config`: The configuration object for the registry.
+- `package`: The name of the package to find the dependents of.
+- `transitive`: A boolean indicating whether to include transitive dependents, i.e.,
+  packages that depend on `package` through other packages. Default is `true`.
+
+## Returns
+A sorted vector of package names.
+
+Like `package_dependencies`, only the latest version of each package is considered.
+"""
+function package_dependents(config, package::String; transitive=true)
+    dependencies = package_dependencies(config; transitive=false)
+
+    # invert the dependency graph
+    dependents = Dict{String,Vector{String}}()
+    for (pkg, deps) in dependencies, dep in deps
+        push!(get!(Vector{String}, dependents, dep), pkg)
+    end
+
+    # verify the package exists, either as a registered package or as a dependency
+    # of one (covering standard libraries, which aren't registered)
+    if !haskey(dependencies, package) && !haskey(dependents, package)
+        error("Package $package not found in registry")
+    end
+
+    pkg_dependents = Set{String}(get(dependents, package, String[]))
+    if transitive
+        queue = collect(pkg_dependents)
+        while !isempty(queue)
+            pkg = pop!(queue)
+            for dependent in get(dependents, pkg, String[])
+                if !(dependent in pkg_dependents)
+                    push!(pkg_dependents, dependent)
+                    push!(queue, dependent)
+                end
+            end
+        end
+    end
+
+    return sort(collect(pkg_dependents))
+end
+
 # look up the tree hash of a package/slug combination.
 # this is useful for verifying the package store on disk.
 # returns nothing if the combination wasn't found in the registry.
