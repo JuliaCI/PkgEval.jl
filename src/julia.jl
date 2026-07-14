@@ -176,15 +176,19 @@ function build_julia(config::Configuration)
 end
 function build_julia!(config::Configuration, checkout::String)
     # Pre-populate the srccache and save the downloaded files
-    srccache = joinpath(download_dir, "srccache")
-    repo_srccache = joinpath(checkout, "deps", "srccache")
-    cp(srccache, repo_srccache)
-    run(ignorestatus(setenv(`make -C deps getall NO_GIT=1`; dir=checkout)),
-        devnull, devnull, devnull)
-    for file in readdir(repo_srccache)
-        if !ispath(joinpath(srccache, file))
-            cp(joinpath(repo_srccache, file), joinpath(srccache, file))
+    if Sys.which("make") !== nothing
+        srccache = joinpath(download_dir, "srccache")
+        repo_srccache = joinpath(checkout, "deps", "srccache")
+        cp(srccache, repo_srccache)
+        run(ignorestatus(setenv(`make -C deps getall NO_GIT=1`; dir=checkout)),
+            devnull, devnull, devnull)
+        for file in readdir(repo_srccache)
+            if !ispath(joinpath(srccache, file))
+                cp(joinpath(repo_srccache, file), joinpath(srccache, file))
+            end
         end
+    else
+        @warn "make not available; skipping srccache pre-population (sources will be downloaded during the build)"
     end
 
     # Define a Make.user
@@ -235,8 +239,9 @@ function build_julia!(config::Configuration, checkout::String)
         close(output)
     end
 
-    # kill on timeout
-    timeout_monitor = Timer(1800) do timer
+    # kill on timeout. Nanosoldier only builds incrementally (using CI artifacts), but
+    # local from-source builds routinely take longer than half an hour, so be generous.
+    timeout_monitor = Timer(2*3600) do timer
         process_running(proc) || return
         stop()
     end

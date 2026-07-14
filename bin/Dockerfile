@@ -4,6 +4,12 @@
 
 FROM julia:1
 
+# make and curl are needed to pre-populate the source cache when building Julia
+# from source (the build itself happens in a PkgEval sandbox)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends make curl ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
 # the sandboxes PkgEval creates use overlayfs, whose upper directories cannot live
 # on the container's own overlayfs filesystem. sandbox working directories are
 # created in TMPDIR, so point that at a volume instead.
