@@ -68,6 +68,24 @@ $ julia --project bin/test_package.jl --name Example --path=~/.julia/dev/Example
 By default, this will use the latest `nightly` version of Julia, which is what PkgEval
 uses. To use another version, use the `--julia` argument, e.g., `--julia=1.11`.
 
+To evaluate many packages at once, and generate an HTML report like the ones Nanosoldier
+produces in response to `@nanosoldier runtests()`, use `bin/evaluate.jl`. For example, to
+compare a local build of Julia against the nightly release, using all packages that
+depend on Crayons:
+
+```shell
+$ julia --project bin/evaluate.jl --primary=~/Julia/julia/usr --against=nightly \
+        --depends-on=Crayons --output=/tmp/crayons-report
+```
+
+The `--primary` and `--against` flags accept a version number, a release name
+(`nightly`, `stable`), a repository spec (`myfork/julia#branch`, built from source if no
+CI binaries are available), or the path to a local Julia installation. Packages are
+selected with `--packages=A,B,C` or `--depends-on=Y` (add `--transitive=true` for
+indirect dependents); without a selection, the whole registry is evaluated. The output
+directory is self-contained: `report.html` links to the per-package logs stored next to
+it. See `--help` for all options.
+
 
 ## API
 
