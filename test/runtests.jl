@@ -1,6 +1,7 @@
 using PkgEval
 using Test
 using Git
+using DataFrames: DataFrame
 
 julia = get(ENV, "JULIA", "")
 if isempty(julia)
@@ -75,6 +76,54 @@ end
     @test !isempty(PkgEval.package_dependents(cfg, "LinearAlgebra"; transitive=false))
 
     @test_throws ErrorException PkgEval.package_dependents(cfg, "NotARealPackage")
+end
+
+@testset "Report generation" begin
+    rows = []
+    function addtest(configuration, package, version, status, reason)
+        push!(rows, (; configuration, package, version, status, reason,
+                       duration=42.0, input_output=0,
+                       log="log of $package on $configuration"))
+    end
+    for configuration in ("primary", "against")
+        addtest(configuration, "Example", v"0.5.3", :test, missing)
+        addtest(configuration, "SkippedPkg", missing, :skip, :blacklisted)
+        addtest(configuration, "AlwaysBroken", v"1.0.0", :fail, :test_failures)
+    end
+    addtest("primary", "OhMyREPL", v"0.5.24", :fail, :test_failures)
+    addtest("against", "OhMyREPL", v"0.5.24", :test, missing)
+    addtest("primary", "SlowPkg", v"0.1.0", :kill, :time_limit)
+    addtest("against", "SlowPkg", v"0.1.0", :test, missing)
+    results = DataFrame(rows)
+
+    # comparison report
+    dir = mktempdir()
+    configs = [Configuration(name="primary", julia="mybuild"),
+               Configuration(name="against", julia="nightly")]
+    report = write_report(dir, configs, results; versioninfo=Dict{String,String}())
+    @test report.has_issues
+    @test isfile(joinpath(dir, "report.html"))
+    @test read(joinpath(dir, "logs", "OhMyREPL", "primary.log"), String) ==
+          "log of OhMyREPL on primary"
+    md = read(joinpath(dir, "report.md"), String)
+    @test occursin("2 packages started failing", md)
+    @test occursin("[fail](logs/OhMyREPL/primary.log)", md)
+    @test occursin("[test](logs/OhMyREPL/against.log)", md)
+    # killed tests are lumped in with failures
+    @test occursin("[fail](logs/SlowPkg/primary.log)", md)
+
+    # single-configuration report
+    dir = mktempdir()
+    report = write_report(dir, results[results.configuration .== "primary", :])
+    @test report.has_issues
+    md = read(joinpath(dir, "report.md"), String)
+    @test occursin("[OhMyREPL v0.5.24](logs/OhMyREPL/primary.log)", md)
+
+    # a report without any failures has no issues
+    dir = mktempdir()
+    passing = results[results.package .== "Example", :]
+    report = write_report(dir, configs, passing; versioninfo=Dict{String,String}())
+    @test !report.has_issues
 end
 
 @testset "Sandbox" begin

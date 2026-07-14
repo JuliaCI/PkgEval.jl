@@ -34,6 +34,7 @@ include("buildkite.jl")
 include("julia.jl")
 include("sandbox.jl")
 include("evaluate.jl")
+include("report.jl")
 include("utils.jl")
 
 function __init__()

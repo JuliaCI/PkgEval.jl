@@ -7,6 +7,7 @@ version = "0.2.0"
 CodecXz = "ba30903b-d9e8-5048-a5ec-d1f5b0d4b47b"
 CodecZlib = "944b1d66-785c-5afd-91f1-9de20f533193"
 CodecZstd = "6b39b394-51ab-5f42-8807-6242bab2b4c2"
+CommonMark = "a80b9123-70ca-4bc0-993e-6e3bcb318db6"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 Downloads = "f43a241f-c20a-4ad4-852c-f6b1247861c6"
@@ -27,13 +28,15 @@ rsync_jll = "191d6b87-264a-55f5-a0e2-c8fbce9a1ce0"
 s5cmd_jll = "9c7924da-da29-52d4-adf6-81e6cfbf5c74"
 
 [compat]
+CommonMark = "0.8, 0.9, 1"
 DataFrames = "1.0"
 Downloads = "1.0"
 crun_jll = "~1.18"
 julia = "1.7"
 
 [extras]
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["Test"]
+test = ["DataFrames", "Test"]
