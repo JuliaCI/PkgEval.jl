@@ -218,7 +218,16 @@ function build_julia!(config::Configuration, checkout::String)
         echo "default:" > doc/Makefile
         mkdir -p doc/_build/html
 
-        export MAKEFLAGS="-j$(nproc)"
+        # scale build parallelism to available memory: compiling Julia's LLVM-heavy
+        # sources can require around 2GB per job, and overcommitting gets the compiler
+        # OOM-killed (easily hit in a memory-limited VM, e.g. when running on macOS)
+        jobs=$(nproc)
+        mem_gb=$(( $(awk '/MemTotal/ {print $2}' /proc/meminfo) / 1048576 ))
+        if [ $((mem_gb / 2)) -lt $jobs ]; then
+            jobs=$((mem_gb / 2))
+            [ $jobs -lt 1 ] && jobs=1
+        fi
+        export MAKEFLAGS="-j$jobs"
     """ * config.buildcommands
 
     output = Pipe()
