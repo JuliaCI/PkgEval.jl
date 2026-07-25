@@ -1,4 +1,4 @@
-export evaluate
+export evaluate, evaluate_job
 
 using Dates
 using Random
@@ -790,6 +790,59 @@ function remove_uncacheable_packages(registry, package_dir; show_status::Bool=tr
 end
 
 
+# apply the per-package adjustments (skip lists, time limit multipliers, etc.) that are
+# used for every job that is part of an evaluation
+function job_config(config::Configuration, pkg::Package; blacklist::Vector{String}=String[])
+    ## some packages are not supported by rr
+    if pkg.name in skip_rr_list
+        config = Configuration(config; rr=RRDisabled)
+    end
+    ## retrying with rr is handled by `evaluate`; a single job either uses it or not
+    config = Configuration(config; rr=(config.rr==RREnabled))
+    ## grant some packages more test time
+    time_multiplier = get(slow_map, pkg.name, config.rr == RREnabled ? 2 : 1)
+    config = Configuration(config; time_limit=config.time_limit*time_multiplier)
+    ## blacklisted packages shouldn't be tested, just installed and loaded
+    ## However, if the user manually specified `goal` when invoking Nanosoldier, respect that
+    if pkg.name in blacklist
+        if !ismodified(config, :goal)
+            config = Configuration(config; goal=:load)
+        end
+    end
+    return config
+end
+
+"""
+    evaluate_job(config::Configuration, pkg::Package; use_cache::Bool=true,
+                 blacklist::Vector{String}=String[], kwargs...)
+
+Evaluate a single package `pkg` according to `config`, applying the same per-package
+adjustments as `evaluate` does (e.g., skipping blacklisted packages, or granting more time
+to packages that are known to be slow). This is useful for distributed operation, where
+single jobs are handed out to worker processes.
+
+Returns a named tuple `(; package, version, status, reason, duration, log, ...)` with the
+same statuses and reasons as reported in the DataFrame returned by `evaluate`.
+
+In contrast to `evaluate`, this function never retries evaluations, and does not pin the
+evaluation to a specific CPU; set `cpus` in the `config` to do so.
+
+Refer to `evaluate_package`[@ref] and `sandboxed_julia`[@ref] for more possible keyword
+arguments.
+"""
+function evaluate_job(config::Configuration, pkg::Package; use_cache::Bool=true,
+                      blacklist::Vector{String}=String[], kwargs...)
+    if pkg.name in skip_list && !(pkg.name in important_list)
+        return (; package=pkg.name, version=missing, status=:skip, reason=:blacklisted,
+                  duration=0.0, input_output=0, log=missing)
+    end
+
+    config = job_config(config, pkg; blacklist)
+    (; log, status, reason, version, duration, input_output) =
+        evaluate_package(config, pkg; use_cache, kwargs...)
+    return (; package=pkg.name, version, status, reason, duration, input_output, log)
+end
+
 """
     evaluate(configs::Vector{Configuration}, [packages::Vector{Package}];
              ninstances=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true,
@@ -931,24 +984,14 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                     job = pop!(jobs)
 
                     # determine how to evaluate this package
-                    main_config = Configuration(job.config; cpus=[i-1],
-                                                rr=(job.config.rr==RREnabled))
-                    ## grant some packages more test time
-                    time_multiplier = get(slow_map, job.package.name, job.config.rr == RREnabled ? 2 : 1)
-                    main_config =
-                        Configuration(main_config; time_limit=main_config.time_limit*time_multiplier)
-                    ## blacklisted packages shouldn't be tested, just installed and loaded
-                    ## However, if the user manually specified `goal` when invoking Nanosoldier, respect that
-                    if job.package.name in blacklist
-                        if !ismodified(main_config, :goal)
-                            main_config = Configuration(main_config; goal=:load)
-                        end
-                    end
+                    pinned_config = Configuration(job.config; cpus=[i-1])
+                    main_config = job_config(pinned_config, job.package; blacklist)
 
                     # evaluate the package
                     running[i] = (; config=main_config, job.package, time=time())
                     (; log, status, reason, version, duration, input_output) =
-                        evaluate_package(main_config, job.package; job.use_cache, kwargs...)
+                        evaluate_job(pinned_config, job.package; job.use_cache,
+                                     blacklist, kwargs...)
 
                     if retry
                         # early retry: rerun crashes under rr to see if we can get a trace

@@ -105,6 +105,16 @@ Testing Example tests passed
 ```
 
 
+## Distributed use
+
+Instead of evaluating whole lists of packages at once, the `evaluate_job` function can be
+used to evaluate a single `(Configuration, Package)` job, e.g., pulled from a queue by a
+worker process. It applies the same per-package adjustments as `evaluate` (skip lists,
+time limit multipliers, ...) and shares caches with other evaluations on the same node,
+but never retries evaluations, and leaves scheduling decisions such as CPU pinning to the
+caller (via the `cpus` setting of the `Configuration`).
+
+
 ## Why does my package fail?
 
 If you want to debug why your package fails, it's probably easiest to use an interactive
