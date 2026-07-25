@@ -86,6 +86,67 @@ function get_julia_release(config::Configuration)
     return only(readdir(dir; join=true))
 end
 
+# Julia CI stages every build to a public, commit-addressed S3 bucket -- the same
+# place juliaup fetches PR builds from -- so a commit that CI has already built
+# needs no compilation here. This matters most for distributed use, where the
+# alternative is every worker separately spending half an hour on the same build.
+const staging_buckets = ["julialang-ephemeral-ci", "julialang-ephemeral-pr"]
+const assertion_buildflags = Set(["LLVM_ASSERTIONS=1", "FORCE_ASSERTIONS=1"])
+
+# CI publishes a plain and an assertions-enabled variant; anything else built
+# with custom flags has no counterpart and must be built locally.
+function staged_variant(config::Configuration)
+    ismodified(config, :buildcommands) && return nothing
+    flags = Set(config.buildflags)
+    if isempty(flags)
+        return "linux"
+    elseif flags == assertion_buildflags
+        return "linuxassert"
+    else
+        return nothing
+    end
+end
+
+function resolve_commit(repo::AbstractString, ref::AbstractString)
+    occursin(r"^[0-9a-f]{40}$"i, ref) && return lowercase(ref)
+    try
+        commit = GitHub.commit(repo, ref; auth=github_auth())
+        return lowercase(string(commit.sha))
+    catch err
+        @debug "Could not resolve $repo@$ref to a commit" err
+        return nothing
+    end
+end
+
+function get_julia_staged(config::Configuration)
+    Sys.islinux() || return nothing
+    variant = staged_variant(config)
+    variant === nothing && return nothing
+
+    repo, ref = parse_repo_spec(config.julia, "JuliaLang/julia")
+    String(repo) == "JuliaLang/julia" || return nothing   # only this repo is staged by CI
+    sha = resolve_commit(repo, ref)
+    sha === nothing && return nothing
+
+    arch = string(Sys.ARCH)
+    filename = "julia-$(sha[1:10])-$(variant)-$(arch).tar.gz"
+    for bucket in staging_buckets
+        url = "https://$bucket.s3.amazonaws.com/bin/$sha/$filename"
+        filepath = joinpath(download_dir, filename)
+        try
+            isfile(filepath) || Downloads.download(url, filepath)
+        catch err
+            @debug "No staged build in $bucket for $repo@$(sha[1:10])" err
+            continue
+        end
+        @debug "Using CI build for $repo#$ref: $url"
+        dir = mktempdir(prefix="pkgeval_julia_")
+        Pkg.PlatformEngines.unpack(filepath, dir)
+        return only(readdir(dir; join=true))
+    end
+    return nothing
+end
+
 function get_julia_build(config)
     can_use_binaries(config) || return
     repo, ref = parse_repo_spec(config.julia, "JuliaLang/julia")
@@ -277,6 +338,12 @@ end
 function _install_julia(config::Configuration)
     # check if it's an official release
     dir = get_julia_release(config)
+    if dir !== nothing
+        return dir
+    end
+
+    # try a CI-staged build (public, no credentials needed)
+    dir = get_julia_staged(config)
     if dir !== nothing
         return dir
     end
