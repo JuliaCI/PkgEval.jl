@@ -69,29 +69,44 @@ function __init__()
 
     global container_root = mktempdir(prefix="pkgeval_containers_")
 
-    # we only support unified cgroupv2
-    if isdir("/sys/fs/cgroup/unified")
-        @error "Unsupported hybdir cgroup v1/v2 setup detected; resource limits will not be enforced"
-    elseif isdir("/sys/fs/cgroup")
-        minfo = mount_info("/sys/fs/cgroup")
-        if minfo === nothing
-            @error "Failed to determine cgroup filesystem type; resource limits will not be enforced"
-        elseif minfo.type != "cgroup2"
-            @error "Unsupported cgroup type, only unified cgroupv2 is supported; resource limits will not be enforced"
-        else
-            controllers = get_cgroup_controllers()
-            "cpuset" in controllers ||
-                @error "No access to cpuset cgroup controller; CPU resource limits will not be enforced"
-            "memory" in controllers ||
-                @error "No access to memory cgroup controller; memory resource limits will not be enforced"
-            "pids" in controllers ||
-                @error "No access to pids cgroup controller; process limits will not be enforced"
-        end
-    else
-        @error "No cgroup set-up detected; resource limits will not be enforced"
-    end
-
     Random.seed!(rng)
+end
+
+# Checked when the first sandbox is created rather than at load time: `using
+# PkgEval` happens in plenty of contexts that never run a container — submitting
+# jobs, generating reports, querying the registry — and complaining about the
+# host's cgroup set-up there is noise. (On 1.12+ this is what `OncePerProcess`
+# does; spelled out longhand to keep the package loadable on older releases.)
+const cgroups_checked = Ref(false)
+const cgroups_check_lock = ReentrantLock()
+function check_cgroups()
+    lock(cgroups_check_lock) do
+        cgroups_checked[] && return
+        cgroups_checked[] = true
+
+        # we only support unified cgroupv2
+        if isdir("/sys/fs/cgroup/unified")
+            @error "Unsupported hybdir cgroup v1/v2 setup detected; resource limits will not be enforced"
+        elseif isdir("/sys/fs/cgroup")
+            minfo = mount_info("/sys/fs/cgroup")
+            if minfo === nothing
+                @error "Failed to determine cgroup filesystem type; resource limits will not be enforced"
+            elseif minfo.type != "cgroup2"
+                @error "Unsupported cgroup type, only unified cgroupv2 is supported; resource limits will not be enforced"
+            else
+                controllers = get_cgroup_controllers()
+                "cpuset" in controllers ||
+                    @error "No access to cpuset cgroup controller; CPU resource limits will not be enforced"
+                "memory" in controllers ||
+                    @error "No access to memory cgroup controller; memory resource limits will not be enforced"
+                "pids" in controllers ||
+                    @error "No access to pids cgroup controller; process limits will not be enforced"
+            end
+        else
+            @error "No cgroup set-up detected; resource limits will not be enforced"
+        end
+    end
+    return
 end
 
 end # module

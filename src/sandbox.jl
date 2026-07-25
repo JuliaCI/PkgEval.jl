@@ -151,6 +151,7 @@ If no `workdir` is passed, one will be created and cleaned-up after the sandbox 
 """
 function run_sandbox(config::Configuration, setup, args...; workdir=nothing, wait=true,
                      stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
+    check_cgroups()   # warns once, only for processes that actually run containers
     do_cleanup = false
     if workdir === nothing
         workdir = mktempdir(prefix="pkgeval_sandbox_"; cleanup=false)
