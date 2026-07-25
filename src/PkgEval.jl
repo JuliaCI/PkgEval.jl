@@ -67,46 +67,41 @@ function __init__()
         get!(slow_map, stdlib, 2)
     end
 
-    global container_root = mktempdir(prefix="pkgeval_containers_")
-
     Random.seed!(rng)
 end
 
-# Checked when the first sandbox is created rather than at load time: `using
-# PkgEval` happens in plenty of contexts that never run a container — submitting
-# jobs, generating reports, querying the registry — and complaining about the
-# host's cgroup set-up there is noise. (On 1.12+ this is what `OncePerProcess`
-# does; spelled out longhand to keep the package loadable on older releases.)
-const cgroups_checked = Ref(false)
-const cgroups_check_lock = ReentrantLock()
-function check_cgroups()
-    lock(cgroups_check_lock) do
-        cgroups_checked[] && return
-        cgroups_checked[] = true
+# Both of these are needed only by processes that actually run containers.
+# `using PkgEval` happens in plenty of contexts that never do — submitting jobs,
+# generating reports, querying the registry — so neither the temporary root nor
+# the (noisy) cgroup diagnostics belong in `__init__`.
 
-        # we only support unified cgroupv2
-        if isdir("/sys/fs/cgroup/unified")
-            @error "Unsupported hybdir cgroup v1/v2 setup detected; resource limits will not be enforced"
-        elseif isdir("/sys/fs/cgroup")
-            minfo = mount_info("/sys/fs/cgroup")
-            if minfo === nothing
-                @error "Failed to determine cgroup filesystem type; resource limits will not be enforced"
-            elseif minfo.type != "cgroup2"
-                @error "Unsupported cgroup type, only unified cgroupv2 is supported; resource limits will not be enforced"
-            else
-                controllers = get_cgroup_controllers()
-                "cpuset" in controllers ||
-                    @error "No access to cpuset cgroup controller; CPU resource limits will not be enforced"
-                "memory" in controllers ||
-                    @error "No access to memory cgroup controller; memory resource limits will not be enforced"
-                "pids" in controllers ||
-                    @error "No access to pids cgroup controller; process limits will not be enforced"
-            end
+const container_root = OncePerProcess{String}() do
+    mktempdir(prefix="pkgeval_containers_")
+end
+
+const check_cgroups = OncePerProcess{Nothing}() do
+    # we only support unified cgroupv2
+    if isdir("/sys/fs/cgroup/unified")
+        @error "Unsupported hybdir cgroup v1/v2 setup detected; resource limits will not be enforced"
+    elseif isdir("/sys/fs/cgroup")
+        minfo = mount_info("/sys/fs/cgroup")
+        if minfo === nothing
+            @error "Failed to determine cgroup filesystem type; resource limits will not be enforced"
+        elseif minfo.type != "cgroup2"
+            @error "Unsupported cgroup type, only unified cgroupv2 is supported; resource limits will not be enforced"
         else
-            @error "No cgroup set-up detected; resource limits will not be enforced"
+            controllers = get_cgroup_controllers()
+            "cpuset" in controllers ||
+                @error "No access to cpuset cgroup controller; CPU resource limits will not be enforced"
+            "memory" in controllers ||
+                @error "No access to memory cgroup controller; memory resource limits will not be enforced"
+            "pids" in controllers ||
+                @error "No access to pids cgroup controller; process limits will not be enforced"
         end
+    else
+        @error "No cgroup set-up detected; resource limits will not be enforced"
     end
-    return
+    nothing
 end
 
 end # module
