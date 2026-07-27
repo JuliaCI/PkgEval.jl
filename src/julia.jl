@@ -90,7 +90,10 @@ end
 # place juliaup fetches PR builds from -- so a commit that CI has already built
 # needs no compilation here. This matters most for distributed use, where the
 # alternative is every worker separately spending half an hour on the same build.
-const staging_buckets = ["julialang-ephemeral-ci", "julialang-ephemeral-pr"]
+# -request holds on-demand builds triggered through the farm's build-request
+# broker (julia-buildkite's julia-build-request pipeline stages there)
+const staging_buckets = ["julialang-ephemeral-ci", "julialang-ephemeral-pr",
+                         "julialang-ephemeral-request"]
 const assertion_buildflags = Set(["LLVM_ASSERTIONS=1", "FORCE_ASSERTIONS=1"])
 
 # CI publishes a plain and an assertions-enabled variant; anything else built
@@ -335,6 +338,25 @@ function build_julia!(config::Configuration, checkout::String)
     return only(readdir(install_dir; join=true))
 end
 
+"""
+When disabled (the farm sets this), a Julia that cannot be *downloaded* raises
+`MissingStagedBuild` instead of falling back to a ~30-minute source build —
+the caller can then ask CI to produce the build and retry. The error carries
+exactly what such a request needs; specs no build request could ever satisfy
+(other repos, custom buildcommands/flags) raise a plain error instead.
+"""
+const source_build_fallback = Ref(true)
+
+struct MissingStagedBuild <: Exception
+    repo::String
+    sha::String
+    variant::String
+end
+
+Base.showerror(io::IO, err::MissingStagedBuild) =
+    print(io, "no staged build of $(err.repo)@$(err.sha[1:10]) ($(err.variant)); ",
+              "source builds are disabled")
+
 function _install_julia(config::Configuration)
     # check if it's an official release
     dir = get_julia_release(config)
@@ -355,6 +377,15 @@ function _install_julia(config::Configuration)
     end
 
     # finally, just build Julia
+    if !source_build_fallback[]
+        repo, ref = parse_repo_spec(config.julia, "JuliaLang/julia")
+        variant = staged_variant(config)
+        sha = String(repo) == "JuliaLang/julia" && variant !== nothing ?
+              resolve_commit(repo, ref) : nothing
+        sha === nothing &&
+            error("no downloadable build for julia = $(repo)#$(ref) and source builds are disabled")
+        throw(MissingStagedBuild(String(repo), sha, variant))
+    end
     return build_julia(config)
 end
 
