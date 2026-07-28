@@ -32,6 +32,21 @@ function io_bytes()
     return dict["rchar"] + dict["wchar"]
 end
 
+# Peak memory of this container's cgroup: the sandbox runs in its own cgroup
+# namespace, so /sys/fs/cgroup is our very own subtree. memory.peak is the
+# high-watermark of memory.current — note that this *includes* page cache, so
+# it reflects the comfortable footprint rather than the hard minimum. It is
+# monotonic since container start, so a single read at the end covers
+# install + precompile + test. Returns 0 when unavailable (cgroup v1, or the
+# memory controller not delegated).
+function peak_rss()
+    try
+        parse(Int, strip(read("/sys/fs/cgroup/memory.peak", String)))
+    catch
+        0
+    end
+end
+
 suppress_pkg_output(f::Function) = capture_pkg_output(f; suppress = true)
 function capture_pkg_output(f::Function; suppress::Bool = false)
     # Need to handle https://github.com/JuliaLang/Pkg.jl/pull/4499,

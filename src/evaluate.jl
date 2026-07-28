@@ -322,7 +322,8 @@ function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=t
     for (entry, type, default) in [("installed", Bool, false),
                                    ("version", Union{Nothing,VersionNumber}, missing),
                                    ("duration", Float64, 0.0),
-                                   ("input_output", Int, 0)]
+                                   ("input_output", Int, 0),
+                                   ("peak_rss", Int, 0)]
         file = joinpath(output_dir, entry)
         output[entry] = if isfile(file)
             str = read(file, String)
@@ -516,7 +517,8 @@ function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=t
     return (; log, status, reason,
                version=output["version"],
                duration=output["duration"],
-               input_output=output["input_output"])
+               input_output=output["input_output"],
+               peak_rss=output["peak_rss"])
 end
 
 """
@@ -589,12 +591,12 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
         compiled = false,
         julia_args = [config.julia_args..., "--sysimage", sysimage_path],
     )
-    (; log, status, reason, version, duration, input_output) =
+    (; log, status, reason, version, duration, input_output, peak_rss) =
         evaluate_package(test_config, pkg; mounts, use_cache, kwargs...)
     log = compile_log * "\n\n" * '#'^80 * "\n" * '#'^80 * "\n\n\n" * log
 
     rm(sysimage_dir; recursive=true)
-    return (; log, status, reason, version, duration, input_output)
+    return (; log, status, reason, version, duration, input_output, peak_rss)
 
 end
 
@@ -834,13 +836,13 @@ function evaluate_job(config::Configuration, pkg::Package; use_cache::Bool=true,
                       blacklist::Vector{String}=String[], kwargs...)
     if pkg.name in skip_list && !(pkg.name in important_list)
         return (; package=pkg.name, version=missing, status=:skip, reason=:blacklisted,
-                  duration=0.0, input_output=0, log=missing)
+                  duration=0.0, input_output=0, peak_rss=0, log=missing)
     end
 
     config = job_config(config, pkg; blacklist)
-    (; log, status, reason, version, duration, input_output) =
+    (; log, status, reason, version, duration, input_output, peak_rss) =
         evaluate_package(config, pkg; use_cache, kwargs...)
-    return (; package=pkg.name, version, status, reason, duration, input_output, log)
+    return (; package=pkg.name, version, status, reason, duration, input_output, peak_rss, log)
 end
 
 """
@@ -873,6 +875,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                        reason = Union{Missing,Symbol}[],
                        duration = Float64[],
                        input_output = Int[],
+                       peak_rss = Int[],
                        log = Union{Missing,String}[])
     skips = similar(result)
 
@@ -895,7 +898,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                 # couldn't find a compatible version in the registry...
                 for config in configs
                     push!(skips, [config.name, package.name, missing,
-                                  :skip, :uninstallable, 0, 0, missing])
+                                  :skip, :uninstallable, 0, 0, 0, missing])
                 end
                 nothing
             end
@@ -951,7 +954,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
             return false
         elseif job.package.name in skip_list
             push!(skips, [job.config.name, job.package.name, missing,
-                          :skip, :blacklisted, 0, 0, missing])
+                          :skip, :blacklisted, 0, 0, 0, missing])
             return false
         else
             return true
@@ -989,7 +992,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
 
                     # evaluate the package
                     running[i] = (; config=main_config, job.package, time=time())
-                    (; log, status, reason, version, duration, input_output) =
+                    (; log, status, reason, version, duration, input_output, peak_rss) =
                         evaluate_job(pinned_config, job.package; job.use_cache,
                                      blacklist, kwargs...)
 
@@ -1021,7 +1024,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                     end
 
                     push!(result, [job.config.name, job.package.name,
-                                   version, status, reason, duration, input_output, log])
+                                   version, status, reason, duration, input_output, peak_rss, log])
 
                     if retry
                         # late retry: when done testing a package, re-test failures.

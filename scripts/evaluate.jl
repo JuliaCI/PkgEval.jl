@@ -207,6 +207,7 @@ catch
 finally
     write("/output/duration", repr(cpu_time()-t0))
     write("/output/input_output", repr(io_bytes()-io0))
+    write("/output/peak_rss", repr(peak_rss()))
 end
 end
 
@@ -230,5 +231,6 @@ catch
 finally
     write("/output/duration", repr(cpu_time()-t0))
     write("/output/input_output", repr(io_bytes()-io0))
+    write("/output/peak_rss", repr(peak_rss()))
 end
 end
