@@ -1,6 +1,7 @@
 using PkgEval
 using Test
 using Git
+using Pkg
 
 julia = get(ENV, "JULIA", "")
 if isempty(julia)
@@ -25,6 +26,23 @@ cgroup_controllers = PkgEval.get_cgroup_controllers()
     # RHEL derivatives
     # https://github.com/JuliaCI/PkgEval.jl/pull/287
     @test PkgEval.parse_kernel_version("4.18.0-553.60.1.el8_10.x86_64") == v"4.18.0"
+end
+
+@testset "Registry" begin
+    version_entry(version, yanked=false) =
+        VersionNumber(version) =>
+            Pkg.Registry.VersionInfo(Base.SHA1(zeros(UInt8, 20)), yanked)
+
+    @test PkgEval.latest_installable_version(
+        Dict(version_entry("1.0.0"), version_entry("2.0.0"))) == v"2.0.0"
+
+    # a yanked latest version must not shadow the newest installable one
+    @test PkgEval.latest_installable_version(
+        Dict(version_entry("1.0.0"), version_entry("1.1.0"),
+             version_entry("2.0.0", true))) == v"1.1.0"
+
+    @test PkgEval.latest_installable_version(
+        Dict(version_entry("1.0.0", true), version_entry("2.0.0", true))) === nothing
 end
 
 @testset "Configuration" begin
