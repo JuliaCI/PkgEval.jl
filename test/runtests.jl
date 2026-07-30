@@ -1,6 +1,7 @@
 using PkgEval
 using Test
 using Git
+import Downloads, HTTP
 
 julia = get(ENV, "JULIA", "")
 if isempty(julia)
@@ -25,6 +26,40 @@ cgroup_controllers = PkgEval.get_cgroup_controllers()
     # RHEL derivatives
     # https://github.com/JuliaCI/PkgEval.jl/pull/287
     @test PkgEval.parse_kernel_version("4.18.0-553.60.1.el8_10.x86_64") == v"4.18.0"
+end
+
+@testset "Buildkite" begin
+    contents = "artifact contents"
+    server = HTTP.serve!("127.0.0.1", 8080; listenany=true) do request
+        if HTTP.header(request, "Authorization", "") == "Bearer valid-token"
+            HTTP.Response(200, contents)
+        else
+            HTTP.Response(401, "unauthorized")
+        end
+    end
+
+    try
+        url = "http://127.0.0.1:$(HTTP.port(server))/artifact.tar.gz"
+        artifact(sha1) = PkgEval.BuildkiteArtifact(
+            Dict("download_url" => url, "filename" => "artifact.tar.gz",
+                 "sha1sum" => sha1))
+        # downloads are cached by hash, so start from a clean slate
+        uncached(sha1) = (ba = artifact(sha1);
+                          rm(joinpath(PkgEval.download_dir, sha1); force=true);
+                          ba)
+
+        withenv("BUILDKITE_TOKEN" => "valid-token") do
+            path = PkgEval.download(uncached("0"^40))
+            @test read(path, String) == contents
+        end
+
+        # the token has to actually make it into the request
+        withenv("BUILDKITE_TOKEN" => "invalid-token") do
+            @test_throws Downloads.RequestError PkgEval.download(uncached("1"^40))
+        end
+    finally
+        close(server)
+    end
 end
 
 @testset "Configuration" begin

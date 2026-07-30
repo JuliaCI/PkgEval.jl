@@ -1,6 +1,5 @@
 using Dates
-import HTTP, JSON3
-import HTTP: download
+import Downloads, HTTP, JSON3
 using Base: UUID, SHA1
 
 const buildkite_api = "https://api.buildkite.com/v2"
@@ -51,7 +50,7 @@ end
 function download(ba::BuildkiteArtifact)
     path = joinpath(download_dir, bytes2hex(ba.hash.bytes))
     if !isfile(path)
-        HTTP.download(ba.url, path; headers=buildkite_headers(), update_period=Inf)
+        Downloads.download(ba.url, path; headers=buildkite_headers())
     end
     return path
 end
