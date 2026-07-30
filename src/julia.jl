@@ -428,3 +428,23 @@ function julia_version(config::Configuration)
         end
     end
 end
+
+"""
+    julia_supports_cache_hook(config::Configuration) -> Bool
+
+Whether the configuration's julia carries `Base.CACHE_FETCH_HOOK` (the
+loader's cache-fetch hook, consumed by PkgEvalFarm's cache protocol).
+Detected by running the *sandboxed* julia — never the binary on the host, so
+the check carries exactly the same trust as evaluating with it. `false` on
+any failure.
+"""
+function julia_supports_cache_hook(config::Configuration)
+    try
+        (; status) = evaluate_script(config,
+            "exit(isdefined(Base, :CACHE_FETCH_HOOK) ? 0 : 1)")
+        return status === config.goal
+    catch err
+        @warn "cache-hook detection failed; assuming unsupported" err
+        return false
+    end
+end
