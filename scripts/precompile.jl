@@ -34,6 +34,16 @@ println("Precompiling package dependencies...")
 Pkg.precompile()
 
 if config.goal === :seal
+    # under the cache protocol, also report what this environment produced for
+    # the unit under seal, keyed identically to how consumers will ask for it
+    if @isdefined(PkgEvalCacheClient)
+        try
+            PkgEvalCacheClient.emit_produced_keys(pkg.name, "/output/seal_keys.toml")
+        catch err
+            @error "failed to emit produced cache keys" exception=(err, catch_backtrace())
+        end
+    end
+
     # report the resolved environment (the true dependency graph, test deps
     # included) for publication ordering and learned scheduling edges
     import TOML

@@ -498,9 +498,10 @@ function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=t
         exported_compilecache = joinpath(upper_depot, "compiled")
         isdir(exported_compilecache) &&
             cp(exported_compilecache, joinpath(export_dir, "compiled"); force=true)
-        graph_file = joinpath(output_dir, "seal_graph.toml")
-        isfile(graph_file) &&
-            cp(graph_file, joinpath(export_dir, "seal_graph.toml"); force=true)
+        for extra in ("seal_graph.toml", "seal_keys.toml")
+            file = joinpath(output_dir, extra)
+            isfile(file) && cp(file, joinpath(export_dir, extra); force=true)
+        end
     end
 
     # (cache and) clean-up output created by this package

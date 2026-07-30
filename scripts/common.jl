@@ -4,6 +4,13 @@ using .PkgEvalCore
 using Pkg
 using Base: UUID
 
+# compile-cache protocol client (PkgEvalFarm sealing): only when the worker
+# provided a cache server *and* this julia carries the loading hook
+if haskey(ENV, "PKGEVAL_CACHE_SERVER") && isdefined(Base, :CACHE_FETCH_HOOK)
+    include("cache_client.jl")
+    PkgEvalCacheClient.install!()
+end
+
 # simplified version of utilities from utils.jl (with no need to
 # scan for children, as we use this from the parent when idle)
 function cpu_time()
