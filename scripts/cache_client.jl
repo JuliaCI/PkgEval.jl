@@ -235,13 +235,15 @@ end
 
 ## the hook
 
-const HITS = Ref(0)    # observability for tests/logs
+const HITS = Ref(0)     # observability for tests/logs
+const MISSES = Ref(0)
 
 function fetch_hook(pkg::Base.PkgId, sourcepath::String)
     ctx = build_context(pkg)
     ctx === nothing && return false
     resp = http_request("GET", "/cache/v1/$NAMESPACE/$(ctx.uuid)/$(ctx.key)")
     if resp === nothing || resp[1] != 200
+        MISSES[] += 1
         # report the miss with its full context — a complete derivation
         # request the worker can execute (docs/sealing.md, stage 2)
         http_request("POST", "/want/v2/$NAMESPACE",
@@ -270,7 +272,15 @@ function fetch_hook(pkg::Base.PkgId, sourcepath::String)
     return true
 end
 
-install!() = (Base.CACHE_FETCH_HOOK[] = fetch_hook; nothing)
+function install!()
+    Base.CACHE_FETCH_HOOK[] = fetch_hook
+    # one line of evidence in every evaluation log: how the cache behaved
+    atexit() do
+        (HITS[] > 0 || MISSES[] > 0) &&
+            println(stderr, "[cache_client] hits=", HITS[], " misses=", MISSES[])
+    end
+    return nothing
+end
 
 ## publication support (seal jobs): report what this environment produced for
 ## one unit, keyed with the same build_context the fetch side uses. The worker
