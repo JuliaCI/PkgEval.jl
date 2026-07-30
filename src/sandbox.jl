@@ -337,6 +337,11 @@ function setup_julia_sandbox(config::Configuration, args=``;
     ))
     # NOTE: we only mount immutable data here that cannot be broken by the sandbox.
 
+    # callers may append extra read-only depots (e.g. PkgEvalFarm's sealed
+    # compilecache) between the primary depot and the registry depot; they must
+    # mount the named paths themselves
+    extra_depots = split(get(env, "PKGEVAL_EXTRA_DEPOTS", ""), ':'; keepempty=false)
+
     env = merge(env, Dict(
         # PkgEval detection
         "CI" => "true",
@@ -350,7 +355,8 @@ function setup_julia_sandbox(config::Configuration, args=``;
         # use the provided registry
         # NOTE: putting a registry in a non-primary depot entry makes Pkg use it as-is,
         #       without needing to set Pkg.UPDATED_REGISTRY_THIS_SESSION.
-        "JULIA_DEPOT_PATH" => "$(config.home)/.julia:/usr/local/share/julia:",
+        "JULIA_DEPOT_PATH" => join(["$(config.home)/.julia"; extra_depots;
+                                    "/usr/local/share/julia"; ""], ':'),
 
         # put Julia on PATH
         "PATH" => "/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:$(config.julia_install_dir)/bin",

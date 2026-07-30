@@ -12,7 +12,9 @@ t0 = cpu_time()
 
 deps = String[]
 
-if config.goal === :test
+if config.goal in (:test, :seal)
+    # :seal precompiles the *test* environment too: the artifacts exist to
+    # warm a later `Pkg.test` of this package
     push!(deps, "TestEnv")
 end
 
@@ -153,7 +155,7 @@ if is_stdlib
 end
 
 
-if config.precompile && !is_stdlib
+if (config.precompile || config.goal === :seal) && !is_stdlib
 print("\n\n", '#'^80, "\n# Precompilation\n#\n\n")
 
 # we run with JULIA_PKG_PRECOMPILE_AUTO=0 to avoid precompiling on Pkg.add,
@@ -181,6 +183,12 @@ try
     println("\nPrecompilation completed after $(elapsed(t0))")
 catch
     println("\nPrecompilation failed after $(elapsed(t0))\n")
+    # for a seal evaluation, precompilation *is* the job
+    config.goal === :seal && rethrow()
+finally
+    if config.goal === :seal
+        write("/output/duration", repr(cpu_time()-t0))
+    end
 end
 end
 

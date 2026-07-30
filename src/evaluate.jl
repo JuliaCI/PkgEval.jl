@@ -266,6 +266,8 @@ a cause of issues).
 Refer to `evaluate_script`[@ref] for more possible `keyword arguments.
 """
 function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=true,
+                          use_compilecache::Bool=use_cache,
+                          export_dir::Union{Nothing,String}=nothing,
                           mounts::Dict{String,String}=Dict{String,String}(),
                           env::Dict{String,String}=Dict{String,String}(), kwargs...)
     # some options should have been handled already
@@ -289,8 +291,14 @@ function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=t
     if use_cache
         depot_dir = joinpath(config.home, ".julia")
 
-        shared_compilecache = get_compilecache(config)
-        mounts[joinpath(depot_dir, "compiled")] = shared_compilecache
+        # seal evaluations skip the machine-shared compilecache in both
+        # directions: sealed artifacts must link against canonical (published)
+        # dependency files only, not whatever this machine's test jobs
+        # scavenged (see PkgEvalFarm's docs/sealing.md)
+        if use_compilecache
+            shared_compilecache = get_compilecache(config)
+            mounts[joinpath(depot_dir, "compiled")] = shared_compilecache
+        end
 
         shared_packages = joinpath(storage_dir, "packages")
         mounts[joinpath(depot_dir, "packages")] = shared_packages
@@ -483,6 +491,18 @@ function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=t
         log *= rr_log
     end
 
+    # hand the produced compilecache (and the resolved dependency graph the
+    # seal script wrote to /output) to the caller before the workdir goes away
+    if export_dir !== nothing
+        upper_depot = joinpath(workdir, "upper", "home", "pkgeval", ".julia")
+        exported_compilecache = joinpath(upper_depot, "compiled")
+        isdir(exported_compilecache) &&
+            cp(exported_compilecache, joinpath(export_dir, "compiled"); force=true)
+        graph_file = joinpath(output_dir, "seal_graph.toml")
+        isfile(graph_file) &&
+            cp(graph_file, joinpath(export_dir, "seal_graph.toml"); force=true)
+    end
+
     # (cache and) clean-up output created by this package
     if use_cache
         depot_dir = joinpath(workdir, "upper", "home", "pkgeval", ".julia")
@@ -496,14 +516,15 @@ function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=t
             remove_uncacheable_packages(registry_dir, local_packages; show_status=false)
         isdir(local_artifacts) &&
             verify_artifacts(local_artifacts; show_status=false)
-        isdir(local_compilecache) &&
+        use_compilecache && isdir(local_compilecache) &&
             verify_compilecache(local_compilecache; show_status=false)
 
         # copy new local resources (packages, artifacts, ...) to shared storage
+        shared_pairs = [(local_packages, shared_packages),
+                        (local_artifacts, shared_artifacts)]
+        use_compilecache && push!(shared_pairs, (local_compilecache, shared_compilecache))
         lock(storage_lock) do
-            for (src, dst) in [(local_packages, shared_packages),
-                               (local_artifacts, shared_artifacts),
-                               (local_compilecache, shared_compilecache)]
+            for (src, dst) in shared_pairs
                 if isdir(src)
                     # NOTE: removals (whiteouts) are represented as char devices
                     run(`$(rsync()) --no-specials --no-devices --archive --quiet $(src)/ $(dst)/`)
@@ -843,6 +864,28 @@ function evaluate_job(config::Configuration, pkg::Package; use_cache::Bool=true,
     (; log, status, reason, version, duration, input_output, peak_rss) =
         evaluate_package(config, pkg; use_cache, kwargs...)
     return (; package=pkg.name, version, status, reason, duration, input_output, peak_rss, log)
+end
+
+"""
+    evaluate_seal(config::Configuration, pkg::Package; export_dir::String, kwargs...)
+
+Precompile `pkg`'s test environment (goal `:seal`) without running its tests,
+exporting the produced compilecache and the resolved dependency graph to
+`export_dir` (`compiled/` and `seal_graph.toml`). Precompilation runs with the
+exact CLI flags `Pkg.test` would use, so the artifacts are loadable by a later
+test evaluation. The machine-shared compilecache is not consulted: sealed
+artifacts must link only against canonical dependency files, which the caller
+provides via a read-only depot mount (see PkgEvalFarm's docs/sealing.md).
+
+Success is reported as status `:seal`; a failing precompile surfaces as the
+usual failure statuses/reasons.
+"""
+function evaluate_seal(config::Configuration, pkg::Package; export_dir::String,
+                       use_cache::Bool=true, kwargs...)
+    config.compiled && error("sealing compiled-mode configurations is not supported")
+    config = Configuration(config; goal=:seal)
+    return evaluate_job(config, pkg; use_cache, use_compilecache=false,
+                        export_dir, kwargs...)
 end
 
 """
