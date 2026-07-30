@@ -6,7 +6,7 @@ using Base: UUID
 
 # compile-cache protocol client (PkgEvalFarm sealing): only when the worker
 # provided a cache server *and* this julia carries the loading hook
-if haskey(ENV, "PKGEVAL_CACHE_SERVER") && isdefined(Base, :CACHE_FETCH_HOOK)
+if !isempty(get(ENV, "PKGEVAL_CACHE_SERVER", "")) && isdefined(Base, :CACHE_FETCH_HOOK)
     include("cache_client.jl")
     PkgEvalCacheClient.install!()
 end

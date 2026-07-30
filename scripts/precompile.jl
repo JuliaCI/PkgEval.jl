@@ -33,7 +33,7 @@ end
 println("Precompiling package dependencies...")
 Pkg.precompile()
 
-if config.goal === :seal
+if config.goal in (:seal, :derive)
     # under the cache protocol, also report what this environment produced for
     # the unit under seal, keyed identically to how consumers will ask for it
     if @isdefined(PkgEvalCacheClient)

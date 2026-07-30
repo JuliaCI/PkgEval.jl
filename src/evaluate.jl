@@ -890,6 +890,26 @@ function evaluate_seal(config::Configuration, pkg::Package; export_dir::String,
 end
 
 """
+    evaluate_derive(config::Configuration, pkg::Package;
+                    export_dir::String, pins_file::String, kwargs...)
+
+Execute a derivation (PkgEvalFarm docs/sealing.md, stage 2): reproduce a
+requester's exact environment — every closure package pinned via `pins_file`,
+a TOML of `uuid => {name, uuid, version}` mounted at /derive_pins.toml — and
+precompile `pkg`'s *package* environment (no TestEnv: the requester wanted it
+as a dependency). Same export and compilecache semantics as `evaluate_seal`.
+"""
+function evaluate_derive(config::Configuration, pkg::Package; export_dir::String,
+                         pins_file::String, use_cache::Bool=true,
+                         mounts::Dict{String,String}=Dict{String,String}(), kwargs...)
+    config.compiled && error("deriving compiled-mode configurations is not supported")
+    config = Configuration(config; goal=:derive)
+    mounts = merge(mounts, Dict("/derive_pins.toml:ro" => pins_file))
+    return evaluate_job(config, pkg; use_cache, use_compilecache=false,
+                        export_dir, mounts, kwargs...)
+end
+
+"""
     evaluate(configs::Vector{Configuration}, [packages::Vector{Package}];
              ninstances=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true,
              blacklist::Vector{String}, kwargs...)

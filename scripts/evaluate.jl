@@ -115,7 +115,23 @@ t0 = cpu_time()
 try
     spec = convert(Pkg.Types.PackageSpec, pkg)
     println("Installing $(spec.name)...")
-    Pkg.add(spec)
+    if config.goal === :derive && isfile("/derive_pins.toml")
+        # derivation executions (docs/sealing.md, stage 2) reproduce a
+        # requester's exact environment: every package in the closure is
+        # pinned, so resolution has one answer and the materialized dep
+        # artifacts validate
+        import TOML
+        pins = Pkg.Types.PackageSpec[]
+        for (_, info) in TOML.parsefile("/derive_pins.toml")
+            push!(pins, Pkg.Types.PackageSpec(; name=info["name"],
+                                              uuid=Base.UUID(info["uuid"]),
+                                              version=VersionNumber(info["version"])))
+        end
+        println("Pinning $(length(pins)) package(s) for derivation...")
+        Pkg.add([pins; spec])
+    else
+        Pkg.add(spec)
+    end
 
     println("\nInstallation completed after $(elapsed(t0))")
     write("/output/installed", repr(true))
@@ -155,7 +171,7 @@ if is_stdlib
 end
 
 
-if (config.precompile || config.goal === :seal) && !is_stdlib
+if (config.precompile || config.goal in (:seal, :derive)) && !is_stdlib
 print("\n\n", '#'^80, "\n# Precompilation\n#\n\n")
 
 # we run with JULIA_PKG_PRECOMPILE_AUTO=0 to avoid precompiling on Pkg.add,
@@ -183,10 +199,10 @@ try
     println("\nPrecompilation completed after $(elapsed(t0))")
 catch
     println("\nPrecompilation failed after $(elapsed(t0))\n")
-    # for a seal evaluation, precompilation *is* the job
-    config.goal === :seal && rethrow()
+    # for seal/derivation evaluations, precompilation *is* the job
+    config.goal in (:seal, :derive) && rethrow()
 finally
-    if config.goal === :seal
+    if config.goal in (:seal, :derive)
         write("/output/duration", repr(cpu_time()-t0))
     end
 end

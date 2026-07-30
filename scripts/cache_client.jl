@@ -89,21 +89,21 @@ function dep_build_id(id::Base.PkgId)
     end
     isempty(paths) && return nothing
     # the loader prefers the newest candidate; in the farm's fresh per-job
-    # depots there is exactly one
+    # depots there is exactly one. parse_cache_buildid composes the same full
+    # (checksum << 64) | lo form module_build_id reports for loaded modules —
+    # the two paths must agree or producer/consumer keys diverge.
     path = last(sort(paths; by=mtime))
-    header = try
-        Base.parse_cache_header(path)
+    try
+        build_id, file_uuid = Base.parse_cache_buildid(path)
+        file_uuid == id.uuid || return nothing
+        return build_id
     catch
         return nothing
     end
-    for (modkey, build_id) in header[1]
-        modkey == id && return UInt128(build_id)
-    end
-    return nothing
 end
 
-function build_context(pkg::Base.PkgId)
-    pkg.uuid === nothing && return nothing
+# One manifest snapshot per context computation: uuid -> (name, entry).
+function manifest_by_uuid()
     project = Base.active_project()
     project === nothing && return nothing
     manifest_path = Base.project_file_manifest_path(project)
@@ -116,38 +116,93 @@ function build_context(pkg::Base.PkgId)
     get(manifest, "manifest_format", "1") in ("2.0", "2") ||
         haskey(manifest, "deps") || return nothing
     entries = get(manifest, "deps", manifest)
-    pkg_entries = get(entries, pkg.name, nothing)
-    pkg_entries isa AbstractVector || return nothing
-    entry = nothing
-    for e in pkg_entries
-        get(e, "uuid", "") == string(pkg.uuid) && (entry = e; break)
+    entries isa AbstractDict || return nothing
+    by_uuid = Dict{Base.UUID,Tuple{String,Dict{String,Any}}}()
+    for (name, pkg_entries) in entries
+        pkg_entries isa AbstractVector || continue
+        for e in pkg_entries
+            e isa AbstractDict || continue
+            uuid = get(e, "uuid", nothing)
+            uuid === nothing && continue
+            by_uuid[Base.UUID(String(uuid))] = (String(name), e)
+        end
     end
-    entry === nothing && return nothing
+    return by_uuid
+end
+
+# The v2 preimage carries, per direct dep, its resolved version and its *own*
+# context key: that is what lets a derivation executor reconstruct the exact
+# environment (pin versions, fetch dep artifacts by key, recurse through
+# their metadata) instead of facing an unresolvable build_id. Computed
+# recursively over the manifest with memoization; the driver calls
+# concurrently, hence the lock.
+const CTX_LOCK = ReentrantLock()
+const CTX_CACHE = Dict{Base.UUID,Any}()
+
+function build_context(pkg::Base.PkgId)
+    pkg.uuid === nothing && return nothing
+    env = manifest_by_uuid()
+    env === nothing && return nothing
+    return lock(CTX_LOCK) do
+        empty_stack = Set{Base.UUID}()
+        _build_context(pkg.uuid, env, empty_stack)
+    end
+end
+
+function _build_context(uuid::Base.UUID, env, stack::Set{Base.UUID})
+    haskey(CTX_CACHE, uuid) && return CTX_CACHE[uuid]
+    uuid in stack && return nothing   # manifest cycle: unkeyable
+    push!(stack, uuid)
+    ctx = try
+        _build_context_uncached(uuid, env, stack)
+    finally
+        delete!(stack, uuid)
+    end
+    # positives only: a context that is unkeyable *now* (deps not yet
+    # compiled/fetched — e.g. the serial require site fires before the
+    # precompilation driver has processed the deps) may become keyable by the
+    # time the hook is consulted again
+    ctx === nothing || (CTX_CACHE[uuid] = ctx)
+    return ctx
+end
+
+function _build_context_uncached(uuid::Base.UUID, env, stack::Set{Base.UUID})
+    haskey(env, uuid) || return nothing
+    name, entry = env[uuid]
     version = get(entry, "version", nothing)
     tree = get(entry, "git-tree-sha1", nothing)
     (version === nothing || tree === nothing) && return nothing   # dev/stdlib: unkeyable
 
     # direct deps: names (unambiguous) or a name=>uuid table
     raw_deps = get(entry, "deps", Union{}[])
-    deps = Tuple{String,UInt128}[]
-    dep_ids = Base.PkgId[]
+    dep_uuids = Base.UUID[]
     if raw_deps isa AbstractDict
-        for (_, uuid) in raw_deps
-            push!(dep_ids, Base.PkgId(Base.UUID(String(uuid)), ""))
+        for (_, dep_uuid) in raw_deps
+            push!(dep_uuids, Base.UUID(String(dep_uuid)))
         end
     else
-        for name in raw_deps
-            dep_entries = get(entries, String(name), nothing)
-            dep_entries isa AbstractVector && length(dep_entries) == 1 || return nothing
-            push!(dep_ids, Base.PkgId(Base.UUID(String(dep_entries[1]["uuid"])), String(name)))
+        by_name = Dict(n => u for (u, (n, _)) in env)
+        for dep_name in raw_deps
+            dep_uuid = get(by_name, String(dep_name), nothing)
+            dep_uuid === nothing && return nothing
+            push!(dep_uuids, dep_uuid)
         end
     end
-    for id in dep_ids
-        build_id = dep_build_id(id)
+    deps = NamedTuple[]
+    for dep_uuid in dep_uuids
+        dep_name = haskey(env, dep_uuid) ? env[dep_uuid][1] : ""
+        build_id = dep_build_id(Base.PkgId(dep_uuid, dep_name))
         build_id === nothing && return nothing   # unkeyable without the full dep context
-        push!(deps, (string(id.uuid), UInt128(build_id)))
+        dep_entry = haskey(env, dep_uuid) ? env[dep_uuid][2] : Dict{String,Any}()
+        dep_version = something(get(dep_entry, "version", nothing), "-")
+        # a dep that is itself unkeyable (stdlib, dev) contributes build_id
+        # identity but no fetchable artifact
+        dep_ctx = _build_context(dep_uuid, env, stack)
+        push!(deps, (; uuid=string(dep_uuid), name=dep_name,
+                     build_id=UInt128(build_id), version=String(dep_version),
+                     key=dep_ctx === nothing ? "-" : dep_ctx.key))
     end
-    sort!(deps)
+    sort!(deps; by=d -> d.uuid)
 
     flags = try
         Int(Base._cacheflag_to_uint8(Base.CacheFlags()))
@@ -158,21 +213,24 @@ function build_context(pkg::Base.PkgId)
     # same resolved environment, so a degenerate value only costs fetch
     # precision, never a wrong hit (the loader revalidates prefs itself)
     prefs = try
-        d = Base.get_preferences(pkg.uuid)
+        d = Base.get_preferences(uuid)
         isempty(d) ? "0" : bytes2hex(SHA.sha256(sprint(io -> TOML.print(io, d; sorted=true))))
     catch
         "0"
     end
 
-    canon = join(["v1",
+    canon = join(["v2",
                   "julia=$(VERSION)+$(Base.GIT_VERSION_INFO.commit)",
-                  "uuid=$(pkg.uuid)",
+                  "name=$name",
+                  "uuid=$uuid",
                   "version=$version",
                   "tree=$tree",
                   "flags=$flags",
                   "prefs=$prefs",
-                  ("dep=$u:$(string(b, base=16))" for (u, b) in deps)...], "\n")
-    return (; key=bytes2hex(SHA.sha256(canon)), canon, uuid=string(pkg.uuid))
+                  ("dep=$(d.uuid):$(string(d.build_id, base=16)):$(d.version):$(d.key)"
+                   for d in deps)...], "\n")
+    return (; key=bytes2hex(SHA.sha256(canon)), canon, uuid=string(uuid), name,
+            version=String(string(version)), deps)
 end
 
 ## the hook
@@ -184,9 +242,10 @@ function fetch_hook(pkg::Base.PkgId, sourcepath::String)
     ctx === nothing && return false
     resp = http_request("GET", "/cache/v1/$NAMESPACE/$(ctx.uuid)/$(ctx.key)")
     if resp === nothing || resp[1] != 200
-        # report the miss with its full context: the worker can turn this into
-        # a learned edge today and a derivation request tomorrow
-        http_request("POST", "/want/v1", Vector{UInt8}(codeunits(ctx.canon)); deadline=2.0)
+        # report the miss with its full context — a complete derivation
+        # request the worker can execute (docs/sealing.md, stage 2)
+        http_request("POST", "/want/v2/$NAMESPACE",
+                     Vector{UInt8}(codeunits(ctx.canon)); deadline=2.0)
         return false
     end
     payload = resp[2]
@@ -218,7 +277,15 @@ install!() = (Base.CACHE_FETCH_HOOK[] = fetch_hook; nothing)
 ## decides what (if anything) to publish — and under which uuid namespace.
 
 function emit_produced_keys(unit::String, out::String)
-    id = Base.identify_package(unit)
+    # resolve through the manifest, not identify_package: units that are not
+    # project-direct deps (e.g. a derivation's transitive packages) are
+    # invisible to Main's load path but present in the environment
+    env = manifest_by_uuid()
+    env === nothing && return
+    id = nothing
+    for (uuid, (name, _)) in env
+        name == unit && (id = Base.PkgId(uuid, name); break)
+    end
     id === nothing && return
     ctx = build_context(id)
     ctx === nothing && return
@@ -234,8 +301,14 @@ function emit_produced_keys(unit::String, out::String)
     end
     compiled = joinpath(depot, "compiled")
     entry = Dict("uuid" => ctx.uuid, "key" => ctx.key, "preimage" => ctx.canon,
+                 "version" => ctx.version,
                  "ji" => relpath(ji, compiled),
-                 "so" => so === nothing ? "" : relpath(so, compiled))
+                 "so" => so === nothing ? "" : relpath(so, compiled),
+                 # direct-dep identities and keys: published alongside the
+                 # artifact (its .meta sidecar) so closures resolve by-key
+                 "deps" => [Dict("uuid" => d.uuid, "name" => d.name,
+                                 "version" => d.version, "key" => d.key)
+                            for d in ctx.deps])
     open(out, "w") do io
         TOML.print(io, Dict(unit => entry))
     end
