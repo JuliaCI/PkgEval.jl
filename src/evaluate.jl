@@ -151,10 +151,14 @@ function evaluate_script(config::Configuration, script::String, args=``;
         stop()
     end
 
-    # kill on inactivity
+    # kill on inactivity. Seal/derivation evaluations legitimately idle for
+    # minutes at a time (blocked in cache-protocol fetches the proxy holds
+    # while a dependency's derivation completes), so their windows are wide —
+    # the configuration's time limit remains the hard bound.
+    inactivity_interval = config.goal in (:seal, :derive) ? 1200 : 300
     previous_cpu_time = missing
     previous_io_bytes = missing
-    inactivity_monitor = Timer(300; interval=300) do timer
+    inactivity_monitor = Timer(inactivity_interval; interval=inactivity_interval) do timer
         process_running(proc) || return
         pid = getpid(proc)
 

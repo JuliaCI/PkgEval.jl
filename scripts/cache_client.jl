@@ -17,6 +17,10 @@ using Sockets, SHA, TOML
 
 const SERVER = get(ENV, "PKGEVAL_CACHE_SERVER", "")
 const NAMESPACE = get(ENV, "PKGEVAL_CACHE_NAMESPACE", "default")
+# generous: the proxy answers immediately unless it is *productively* holding
+# the fetch while this exact key's derivation completes
+const FETCH_DEADLINE = something(tryparse(Float64,
+    get(ENV, "PKGEVAL_CACHE_FETCH_DEADLINE", "")), 900.0)
 
 ## minimal HTTP/1.1 over a TCP socket: the server is a loopback proxy the
 ## worker runs; a watchdog timer bounds every exchange so a wedged proxy can
@@ -241,7 +245,8 @@ const MISSES = Ref(0)
 function fetch_hook(pkg::Base.PkgId, sourcepath::String)
     ctx = build_context(pkg)
     ctx === nothing && return false
-    resp = http_request("GET", "/cache/v1/$NAMESPACE/$(ctx.uuid)/$(ctx.key)")
+    resp = http_request("GET", "/cache/v1/$NAMESPACE/$(ctx.uuid)/$(ctx.key)";
+                        deadline=FETCH_DEADLINE)
     if resp === nothing || resp[1] != 200
         MISSES[] += 1
         # report the miss with its full context — a complete derivation
