@@ -123,9 +123,14 @@ try
         import TOML
         pins = Pkg.Types.PackageSpec[]
         for (_, info) in TOML.parsefile("/derive_pins.toml")
-            push!(pins, Pkg.Types.PackageSpec(; name=info["name"],
-                                              uuid=Base.UUID(info["uuid"]),
-                                              version=VersionNumber(info["version"])))
+            # want-derived pins carry no name; uuid+version identify fully
+            name = get(info, "name", nothing)
+            push!(pins, name === nothing ?
+                Pkg.Types.PackageSpec(; uuid=Base.UUID(info["uuid"]),
+                                      version=VersionNumber(info["version"])) :
+                Pkg.Types.PackageSpec(; name,
+                                      uuid=Base.UUID(info["uuid"]),
+                                      version=VersionNumber(info["version"])))
         end
         println("Pinning $(length(pins)) package(s) for derivation...")
         Pkg.add([pins; spec])
