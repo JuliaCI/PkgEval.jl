@@ -151,11 +151,12 @@ function evaluate_script(config::Configuration, script::String, args=``;
         stop()
     end
 
-    # kill on inactivity. Seal/derivation evaluations legitimately idle for
-    # minutes at a time (blocked in cache-protocol fetches the proxy holds
-    # while a dependency's derivation completes), so their windows are wide —
-    # the configuration's time limit remains the hard bound.
-    inactivity_interval = config.goal in (:seal, :derive) ? 1200 : 300
+    # kill on inactivity. Evaluations connected to the compile-cache protocol
+    # legitimately idle for minutes at a time (blocked in fetches the proxy
+    # holds while a dependency's derivation completes), so their windows are
+    # wide — the configuration's time limit remains the hard bound.
+    inactivity_interval = (config.goal in (:seal, :derive) ||
+                           !isempty(get(env, "PKGEVAL_CACHE_SERVER", ""))) ? 1200 : 300
     previous_cpu_time = missing
     previous_io_bytes = missing
     inactivity_monitor = Timer(inactivity_interval; interval=inactivity_interval) do timer

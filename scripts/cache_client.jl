@@ -17,10 +17,12 @@ using Sockets, SHA, TOML
 
 const SERVER = get(ENV, "PKGEVAL_CACHE_SERVER", "")
 const NAMESPACE = get(ENV, "PKGEVAL_CACHE_NAMESPACE", "default")
-# generous: the proxy answers immediately unless it is *productively* holding
-# the fetch while this exact key's derivation completes
+# effectively unbounded: the proxy answers immediately unless it is
+# *productively* holding the fetch while this exact key's derivation
+# completes, and cutting a hold short would silently break artifact sharing
+# for the rest of the job — the evaluation's own time limit is the bound
 const FETCH_DEADLINE = something(tryparse(Float64,
-    get(ENV, "PKGEVAL_CACHE_FETCH_DEADLINE", "")), 900.0)
+    get(ENV, "PKGEVAL_CACHE_FETCH_DEADLINE", "")), 86400.0)
 
 ## minimal HTTP/1.1 over a TCP socket: the server is a loopback proxy the
 ## worker runs; a watchdog timer bounds every exchange so a wedged proxy can
