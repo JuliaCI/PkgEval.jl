@@ -247,14 +247,15 @@ const MISSES = Ref(0)
 function fetch_hook(pkg::Base.PkgId, sourcepath::String)
     ctx = build_context(pkg)
     ctx === nothing && return false
-    resp = http_request("GET", "/cache/v1/$NAMESPACE/$(ctx.uuid)/$(ctx.key)";
-                        deadline=FETCH_DEADLINE)
+    # one request carries the full preimage: the proxy serves the artifact,
+    # or *creates* its derivation and holds this very request until it
+    # terminates — so even the first requester of a context waits for the
+    # canonical artifact instead of compiling a private copy. A 404 means the
+    # derivation terminally failed: compiling locally is then correct.
+    resp = http_request("POST", "/ensure/v2/$NAMESPACE",
+                        Vector{UInt8}(codeunits(ctx.canon)); deadline=FETCH_DEADLINE)
     if resp === nothing || resp[1] != 200
         MISSES[] += 1
-        # report the miss with its full context — a complete derivation
-        # request the worker can execute (docs/sealing.md, stage 2)
-        http_request("POST", "/want/v2/$NAMESPACE",
-                     Vector{UInt8}(codeunits(ctx.canon)); deadline=2.0)
         return false
     end
     payload = resp[2]
