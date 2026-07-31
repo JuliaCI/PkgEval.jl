@@ -34,7 +34,10 @@ function build_oci_config(sandbox::Sandbox, cmd::Cmd; terminal::Bool)
         if mount isa BindMount
             # preserve mount options that restrict allowed operations, as not all container
             # runtimes do this for us (opencontainers/runc#1603, opencontainers/runc#1523).
-            mount_options = filter(mount_info(mount.source).opts) do option
+            # the source may not resolve to a mount (e.g. it doesn't exist yet); let the
+            # runtime report that instead of crashing here on a missing mtab entry.
+            info = mount_info(mount.source)
+            mount_options = info === nothing ? String[] : filter(info.opts) do option
                 option in ["nodev", "nosuid", "noexec"]
             end
             push!(mounts, (; destination, mount.source, type="none",
