@@ -5,10 +5,17 @@ using Pkg
 using Base: UUID
 
 # compile-cache protocol client (PkgEvalFarm sealing): only when the worker
-# provided a cache server *and* this julia carries the loading hook
+# provided a cache server *and* this julia carries the loading hook.
+# PKGEVAL_CACHE_FETCH=0 loads the client (derivations still emit produced
+# keys) without installing the fetch hook: a derivation's published deps are
+# already materialized into its depot, so an in-sandbox fetch can only target
+# unpublished keys — holding on those deadlocks the very job meant to
+# produce them.
 if !isempty(get(ENV, "PKGEVAL_CACHE_SERVER", "")) && isdefined(Base, :CACHE_FETCH_HOOK)
     include("cache_client.jl")
-    PkgEvalCacheClient.install!()
+    if get(ENV, "PKGEVAL_CACHE_FETCH", "1") != "0"
+        PkgEvalCacheClient.install!()
+    end
 end
 
 # simplified version of utilities from utils.jl (with no need to
