@@ -326,7 +326,11 @@ function _implied_extensions(roots::Vector{Base.UUID}, env;
         table = _parent_extensions(parent, env)
         table === nothing && continue
         for (ext_name, triggers) in table
-            all(t -> haskey(env, t), triggers) || continue
+            # the ext loads into this compile process only if every trigger is
+            # itself in the process's load set — the unit's closure, not merely
+            # the manifest (over-approximating turned unrelated units unkeyable
+            # while they waited on extensions that never load for them)
+            all(t -> t in closure, triggers) || continue
             id = Base.PkgId(Base.uuid5(parent, ext_name), ext_name)
             id.uuid == skip_ext && continue
             push!(implied, id)
