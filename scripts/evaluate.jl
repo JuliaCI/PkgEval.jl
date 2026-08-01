@@ -162,11 +162,16 @@ finally
     end
 end
 
-# ensure the package has a test/runtests.jl file, so we can bail out quicker
-src = Base.find_package(pkg.name)
-runtests = joinpath(dirname(src), "..", "test", "runtests.jl")
-if config.goal === :test && !isfile(runtests)
-    error("Package $(pkg.name) did not provide a `test/runtests.jl` file")
+# ensure the package has a test/runtests.jl file, so we can bail out quicker.
+# only meaningful (and only *computable*) for test goals: an extension unit
+# under :derive is not in the load path, so find_package returns nothing
+if config.goal === :test
+    src = Base.find_package(pkg.name)
+    runtests = src === nothing ? nothing :
+               joinpath(dirname(src), "..", "test", "runtests.jl")
+    if runtests === nothing || !isfile(runtests)
+        error("Package $(pkg.name) did not provide a `test/runtests.jl` file")
+    end
 end
 
 is_stdlib = any(Pkg.Types.stdlibs()) do (uuid,stdlib)
