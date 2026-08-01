@@ -338,9 +338,12 @@ const MISSES = Ref(0)
 
 function fetch_hook(pkg::Base.PkgId, sourcepath::String)
     ctx = build_context(pkg)
-    get(ENV, "PKGEVAL_CACHE_DEBUG", "") == "1" &&
-        println(stderr, "[cache_client debug] hook ", pkg.name, " ctx=", ctx === nothing ? "nothing" : "ok")
-    ctx === nothing && return false
+    if ctx === nothing
+        # unkeyable (dev/stdlib parent, deps not yet compiled, ...): named so
+        # the residual-miss taxonomy is measurable from any job log
+        println(stderr, "[cache_client] unkeyable: ", pkg.name)
+        return false
+    end
     # one request carries the full preimage: the proxy serves the artifact,
     # or *creates* its derivation and holds this very request until it
     # terminates — so even the first requester of a context waits for the
@@ -350,6 +353,11 @@ function fetch_hook(pkg::Base.PkgId, sourcepath::String)
                         Vector{UInt8}(codeunits(ctx.canon)); deadline=FETCH_DEADLINE)
     if resp === nothing || resp[1] != 200
         MISSES[] += 1
+        lines = split(ctx.canon, '\n')
+        prefsline = something(findfirst(startswith("prefs="), lines), 0)
+        println(stderr, "[cache_client] miss: ", pkg.name, " key=", first(ctx.key, 12),
+                prefsline == 0 ? "" : " " * lines[prefsline],
+                resp === nothing ? " (no response)" : " (status $(resp[1]))")
         return false
     end
     payload = resp[2]
