@@ -379,6 +379,7 @@ function fetch_hook(pkg::Base.PkgId, sourcepath::String)
     len_so > 0 && write(stem * ".$(Base.Libc.Libdl.dlext)",
                         payload[17+len_ji:16+len_ji+len_so])
     HITS[] += 1
+    println(stderr, "[cache_client] hit: ", pkg.name, " key=", first(ctx.key, 12))
     return true
 end
 
