@@ -38,7 +38,17 @@ if config.goal in (:seal, :derive)
     # the unit under seal, keyed identically to how consumers will ask for it
     if @isdefined(PkgEvalCacheClient)
         try
-            PkgEvalCacheClient.emit_produced_keys(pkg.name, "/output/seal_keys.toml")
+            if config.goal === :seal
+                # a seal covers the unit and any of its extensions this
+                # environment triggered
+                PkgEvalCacheClient.emit_produced_keys_with_extensions(
+                    pkg.name, "/output/seal_keys.toml")
+            else
+                # derivations name their unit exactly; extension units have no
+                # manifest entry, so the uuid must come from the want
+                PkgEvalCacheClient.emit_produced_keys(pkg.name, "/output/seal_keys.toml";
+                    uuid=pkg.uuid === nothing ? nothing : string(pkg.uuid))
+            end
         catch err
             @error "failed to emit produced cache keys" exception=(err, catch_backtrace())
         end

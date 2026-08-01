@@ -123,17 +123,24 @@ try
         import TOML
         pins = Pkg.Types.PackageSpec[]
         for (_, info) in TOML.parsefile("/derive_pins.toml")
-            # want-derived pins carry no name; uuid+version identify fully
+            # want-derived pins carry no name; uuid+version identify fully.
+            # an entry without a version (stdlib trigger of an extension)
+            # still needs to be a direct dep, just unpinned
             name = get(info, "name", nothing)
-            push!(pins, name === nothing ?
-                Pkg.Types.PackageSpec(; uuid=Base.UUID(info["uuid"]),
-                                      version=VersionNumber(info["version"])) :
-                Pkg.Types.PackageSpec(; name,
-                                      uuid=Base.UUID(info["uuid"]),
-                                      version=VersionNumber(info["version"])))
+            version = get(info, "version", nothing)
+            kwargs = (; uuid=Base.UUID(info["uuid"]),)
+            name !== nothing && (kwargs = (; kwargs..., name))
+            version !== nothing && (kwargs = (; kwargs..., version=VersionNumber(version)))
+            push!(pins, Pkg.Types.PackageSpec(; kwargs...))
         end
         println("Pinning $(length(pins)) package(s) for derivation...")
-        Pkg.add([pins; spec])
+        if get(ENV, "PKGEVAL_DERIVE_EXT", "0") == "1"
+            # the unit is a package extension: not addable itself — installing
+            # its parent and triggers (all among the pins) makes Pkg compile it
+            Pkg.add(pins)
+        else
+            Pkg.add([pins; spec])
+        end
     else
         Pkg.add(spec)
     end

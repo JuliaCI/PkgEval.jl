@@ -151,7 +151,12 @@ function build_context(pkg::Base.PkgId)
     env === nothing && return nothing
     return lock(CTX_LOCK) do
         empty_stack = Set{Base.UUID}()
-        _build_context(pkg.uuid, env, empty_stack)
+        if haskey(env, pkg.uuid)
+            _build_context(pkg.uuid, env, empty_stack)
+        else
+            # not a manifest entry: possibly a package extension
+            _build_ext_context(pkg, env, empty_stack)
+        end
     end
 end
 
@@ -210,20 +215,9 @@ function _build_context_uncached(uuid::Base.UUID, env, stack::Set{Base.UUID})
     end
     sort!(deps; by=d -> d.uuid)
 
-    flags = try
-        Int(Base._cacheflag_to_uint8(Base.CacheFlags()))
-    catch
-        return nothing
-    end
-    # kept symmetric-by-construction: both sides run this same code in the
-    # same resolved environment, so a degenerate value only costs fetch
-    # precision, never a wrong hit (the loader revalidates prefs itself)
-    prefs = try
-        d = Base.get_preferences(uuid)
-        isempty(d) ? "0" : bytes2hex(SHA.sha256(sprint(io -> TOML.print(io, d; sorted=true))))
-    catch
-        "0"
-    end
+    flags = _cache_flags()
+    flags === nothing && return nothing
+    prefs = _prefs_hash(uuid)
 
     canon = join(["v2",
                   "julia=$(VERSION)+$(Base.GIT_VERSION_INFO.commit)",
@@ -239,6 +233,104 @@ function _build_context_uncached(uuid::Base.UUID, env, stack::Set{Base.UUID})
             version=String(string(version)), deps)
 end
 
+_cache_flags() = try
+    Int(Base._cacheflag_to_uint8(Base.CacheFlags()))
+catch
+    nothing
+end
+
+# kept symmetric-by-construction: both sides run this same code in the
+# same resolved environment, so a degenerate value only costs fetch
+# precision, never a wrong hit (the loader revalidates prefs itself)
+_prefs_hash(uuid) = try
+    d = Base.get_preferences(uuid)
+    isempty(d) ? "0" : bytes2hex(SHA.sha256(sprint(io -> TOML.print(io, d; sorted=true))))
+catch
+    "0"
+end
+
+# Package extensions have no manifest entry of their own: their identity
+# derives entirely from the parent — uuid5(parent_uuid, ext_name), the
+# parent's version and tree (the extension source lives inside the parent's
+# tree), and dep lines for the parent plus the trigger packages (the loader
+# loads all of them before the extension, so their build_ids are known).
+# Emitted as a "v3" preimage carrying an ext_of line; package preimages stay
+# v2, so every published package key is unaffected. An old proxy rejects v3
+# as malformed, which the hook already treats as a plain miss.
+function _build_ext_context(pkg::Base.PkgId, env, stack::Set{Base.UUID})
+    haskey(CTX_CACHE, pkg.uuid) && return CTX_CACHE[pkg.uuid]
+    parent_uuid = nothing
+    for (u, _) in env
+        if Base.uuid5(u, pkg.name) == pkg.uuid
+            parent_uuid = u
+            break
+        end
+    end
+    parent_uuid === nothing && return nothing
+    parent_name, parent_entry = env[parent_uuid]
+    version = get(parent_entry, "version", nothing)
+    tree = get(parent_entry, "git-tree-sha1", nothing)
+    (version === nothing || tree === nothing) && return nothing   # dev parent: unkeyable
+    parent_ctx = _build_context(parent_uuid, env, stack)
+
+    # triggers: the parent project's [extensions] entry, resolved through its
+    # [weakdeps] and [deps] tables
+    parent_src = Base.locate_package(Base.PkgId(parent_uuid, parent_name))
+    parent_src === nothing && return nothing
+    project = try
+        TOML.parsefile(joinpath(dirname(dirname(parent_src)), "Project.toml"))
+    catch
+        return nothing
+    end
+    triggers = get(get(project, "extensions", Dict{String,Any}()), pkg.name, nothing)
+    triggers === nothing && return nothing
+    triggers isa AbstractString && (triggers = [triggers])
+    lookup = Dict{String,String}()
+    for table in ("deps", "weakdeps"), (k, v) in get(project, table, Dict{String,Any}())
+        v isa AbstractString && (lookup[String(k)] = String(v))
+    end
+    dep_ids = [Base.PkgId(parent_uuid, parent_name)]
+    for t in triggers
+        u = get(lookup, String(t), nothing)
+        u === nothing && return nothing
+        push!(dep_ids, Base.PkgId(Base.UUID(u), String(t)))
+    end
+
+    deps = NamedTuple[]
+    for id in dep_ids
+        build_id = dep_build_id(id)
+        build_id === nothing && return nothing   # trigger not compiled yet: retry later
+        entry = haskey(env, id.uuid) ? env[id.uuid][2] : Dict{String,Any}()
+        dep_version = something(get(entry, "version", nothing), "-")
+        dep_ctx = id.uuid == parent_uuid ? parent_ctx : _build_context(id.uuid, env, stack)
+        push!(deps, (; uuid=string(id.uuid), name=id.name,
+                     build_id=UInt128(build_id), version=String(dep_version),
+                     key=dep_ctx === nothing ? "-" : dep_ctx.key))
+    end
+    sort!(deps; by=d -> d.uuid)
+
+    flags = _cache_flags()
+    flags === nothing && return nothing
+    prefs = _prefs_hash(pkg.uuid)
+
+    canon = join(["v3",
+                  "julia=$(VERSION)+$(Base.GIT_VERSION_INFO.commit)",
+                  "name=$(pkg.name)",
+                  "uuid=$(pkg.uuid)",
+                  "ext_of=$parent_uuid",
+                  "version=$version",
+                  "tree=$tree",
+                  "flags=$flags",
+                  "prefs=$prefs",
+                  ("dep=$(d.uuid):$(string(d.build_id, base=16)):$(d.version):$(d.key)"
+                   for d in deps)...], "\n")
+    ctx = (; key=bytes2hex(SHA.sha256(canon)), canon, uuid=string(pkg.uuid),
+           name=pkg.name, version=String(string(version)), deps,
+           ext_of=string(parent_uuid))
+    CTX_CACHE[pkg.uuid] = ctx
+    return ctx
+end
+
 ## the hook
 
 const HITS = Ref(0)     # observability for tests/logs
@@ -246,6 +338,8 @@ const MISSES = Ref(0)
 
 function fetch_hook(pkg::Base.PkgId, sourcepath::String)
     ctx = build_context(pkg)
+    get(ENV, "PKGEVAL_CACHE_DEBUG", "") == "1" &&
+        println(stderr, "[cache_client debug] hook ", pkg.name, " ctx=", ctx === nothing ? "nothing" : "ok")
     ctx === nothing && return false
     # one request carries the full preimage: the proxy serves the artifact,
     # or *creates* its derivation and holds this very request until it
@@ -294,22 +388,12 @@ end
 ## one unit, keyed with the same build_context the fetch side uses. The worker
 ## decides what (if anything) to publish — and under which uuid namespace.
 
-function emit_produced_keys(unit::String, out::String)
-    # resolve through the manifest, not identify_package: units that are not
-    # project-direct deps (e.g. a derivation's transitive packages) are
-    # invisible to Main's load path but present in the environment
-    env = manifest_by_uuid()
-    env === nothing && return
-    id = nothing
-    for (uuid, (name, _)) in env
-        name == unit && (id = Base.PkgId(uuid, name); break)
-    end
-    id === nothing && return
+function _produced_entry(id::Base.PkgId)
     ctx = build_context(id)
-    ctx === nothing && return
+    ctx === nothing && return nothing
     depot = DEPOT_PATH[1]
     paths = filter(p -> startswith(p, depot), Base.find_all_in_cache_path(id))
-    isempty(paths) && return
+    isempty(paths) && return nothing
     ji = last(sort(paths; by=mtime))
     so = try
         oc = Base.ocachefile_from_cachefile(ji)
@@ -318,17 +402,73 @@ function emit_produced_keys(unit::String, out::String)
         nothing
     end
     compiled = joinpath(depot, "compiled")
-    entry = Dict("uuid" => ctx.uuid, "key" => ctx.key, "preimage" => ctx.canon,
-                 "version" => ctx.version,
-                 "ji" => relpath(ji, compiled),
-                 "so" => so === nothing ? "" : relpath(so, compiled),
-                 # direct-dep identities and keys: published alongside the
-                 # artifact (its .meta sidecar) so closures resolve by-key
-                 "deps" => [Dict("uuid" => d.uuid, "name" => d.name,
-                                 "version" => d.version, "key" => d.key)
-                            for d in ctx.deps])
+    entry = Dict{String,Any}(
+        "uuid" => ctx.uuid, "key" => ctx.key, "preimage" => ctx.canon,
+        "version" => ctx.version,
+        "ji" => relpath(ji, compiled),
+        "so" => so === nothing ? "" : relpath(so, compiled),
+        # direct-dep identities and keys: published alongside the
+        # artifact (its .meta sidecar) so closures resolve by-key
+        "deps" => [Dict("uuid" => d.uuid, "name" => d.name,
+                        "version" => d.version, "key" => d.key)
+                   for d in ctx.deps])
+    hasproperty(ctx, :ext_of) && (entry["ext_of"] = ctx.ext_of)
+    return entry
+end
+
+# resolve a unit through the manifest, not identify_package: units that are
+# not project-direct deps (e.g. a derivation's transitive packages) are
+# invisible to Main's load path but present in the environment. An explicit
+# uuid bypasses the scan (extension units have no manifest entry at all).
+function _unit_id(unit::String, uuid::Union{Nothing,String})
+    uuid !== nothing && return Base.PkgId(Base.UUID(uuid), unit)
+    env = manifest_by_uuid()
+    env === nothing && return nothing
+    for (u, (name, _)) in env
+        name == unit && return Base.PkgId(u, name)
+    end
+    return nothing
+end
+
+function emit_produced_keys(unit::String, out::String;
+                            uuid::Union{Nothing,String}=nothing)
+    id = _unit_id(unit, uuid)
+    id === nothing && return
+    entry = _produced_entry(id)
+    entry === nothing && return
     open(out, "w") do io
         TOML.print(io, Dict(unit => entry))
+    end
+    return
+end
+
+# The seal-job variant: the unit plus any of its own extensions that were
+# produced in this depot (their triggers happened to be present). Extension
+# entries publish under uuid5(unit, ext_name), so they carry the unit's
+# authority — the farm verifies that derivation structurally.
+function emit_produced_keys_with_extensions(unit::String, out::String)
+    id = _unit_id(unit, nothing)
+    id === nothing && return
+    entries = Dict{String,Any}()
+    entry = _produced_entry(id)
+    entry === nothing && return
+    entries[unit] = entry
+    src = Base.locate_package(id)
+    exts = try
+        src === nothing ? Dict{String,Any}() :
+            get(TOML.parsefile(joinpath(dirname(dirname(src)), "Project.toml")),
+                "extensions", Dict{String,Any}())
+    catch
+        Dict{String,Any}()
+    end
+    for ext_name in keys(exts)
+        ext_id = Base.PkgId(Base.uuid5(id.uuid, String(ext_name)), String(ext_name))
+        ext_entry = _produced_entry(ext_id)
+        ext_entry === nothing && continue   # not triggered in this env
+        entries[String(ext_name)] = ext_entry
+    end
+    open(out, "w") do io
+        TOML.print(io, entries)
     end
     return
 end
