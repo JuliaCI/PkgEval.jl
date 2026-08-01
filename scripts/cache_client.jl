@@ -355,7 +355,7 @@ function fetch_hook(pkg::Base.PkgId, sourcepath::String)
         MISSES[] += 1
         lines = split(ctx.canon, '\n')
         prefsline = something(findfirst(startswith("prefs="), lines), 0)
-        println(stderr, "[cache_client] miss: ", pkg.name, " key=", first(ctx.key, 12),
+        println(stderr, "[cache_client] miss: ", pkg.name, " uuid=", ctx.uuid, " key=", ctx.key,
                 prefsline == 0 ? "" : " " * lines[prefsline],
                 resp === nothing ? " (no response)" : " (status $(resp[1]))")
         return false
