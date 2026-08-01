@@ -213,6 +213,14 @@ function _build_context_uncached(uuid::Base.UUID, env, stack::Set{Base.UUID})
                      build_id=UInt128(build_id), version=String(dep_version),
                      key=dep_ctx === nothing ? "-" : dep_ctx.key))
     end
+    for ext_id in _implied_extensions([uuid], env; skip_parent=uuid)
+        build_id = dep_build_id(ext_id)
+        build_id === nothing && return nothing   # ext not compiled yet: retry later
+        ext_ctx = _build_ext_context(ext_id, env, stack)
+        push!(deps, (; uuid=string(ext_id.uuid), name=ext_id.name,
+                     build_id=UInt128(build_id), version="-",
+                     key=ext_ctx === nothing ? "-" : ext_ctx.key))
+    end
     sort!(deps; by=d -> d.uuid)
 
     flags = _cache_flags()
@@ -237,6 +245,94 @@ _cache_flags() = try
     Int(Base._cacheflag_to_uint8(Base.CacheFlags()))
 catch
     nothing
+end
+
+# Extensions implied by the environment: any extension of a package whose
+# triggers are all manifest-present auto-loads into every later compile
+# process, and the produced cachefiles record its build_id as a proper dep.
+# Preimages must therefore carry those extensions too, or two environments
+# compute identical keys for mutually incompatible artifacts (seen live: the
+# canonical ChainRulesCore was permanently stale everywhere because each
+# environment's private CompatLinearAlgebraExt build_id was baked into it).
+# Cached per parent uuid: (ext_name => trigger uuids) or nothing.
+const EXT_TABLE_CACHE = Dict{Base.UUID,Any}()
+
+function _parent_extensions(uuid::Base.UUID, env)
+    get!(EXT_TABLE_CACHE, uuid) do
+        name = haskey(env, uuid) ? env[uuid][1] : return nothing
+        src = Base.locate_package(Base.PkgId(uuid, name))
+        src === nothing && return nothing
+        project = try
+            TOML.parsefile(joinpath(dirname(dirname(src)), "Project.toml"))
+        catch
+            return nothing
+        end
+        exts = get(project, "extensions", nothing)
+        exts isa AbstractDict || return nothing
+        lookup = Dict{String,String}()
+        for table in ("deps", "weakdeps"), (k, v) in get(project, table, Dict{String,Any}())
+            v isa AbstractString && (lookup[String(k)] = String(v))
+        end
+        table = Dict{String,Vector{Base.UUID}}()
+        for (ext_name, triggers) in exts
+            triggers isa AbstractString && (triggers = [triggers])
+            triggers isa AbstractVector || continue
+            uuids = Base.UUID[]
+            ok = true
+            for t in triggers
+                u = get(lookup, String(t), nothing)
+                u === nothing && (ok = false; break)
+                push!(uuids, Base.UUID(u))
+            end
+            ok && (table[String(ext_name)] = uuids)
+        end
+        table
+    end
+end
+
+"""
+Extension PkgIds that load in this environment during a compile whose process
+loads the manifest closure of `roots`: parents from that closure whose
+triggers are all manifest-present. `skip_parent` drops that parent's own
+extensions (a package's exts load only after it); `skip_ext` drops the unit
+being keyed (an extension never loads during its own compile).
+"""
+function _implied_extensions(roots::Vector{Base.UUID}, env;
+                             skip_parent::Union{Nothing,Base.UUID}=nothing,
+                             skip_ext::Union{Nothing,Base.UUID}=nothing)
+    closure = Set{Base.UUID}()
+    frontier = copy(roots)
+    while !isempty(frontier)
+        u = pop!(frontier)
+        u in closure && continue
+        push!(closure, u)
+        haskey(env, u) || continue
+        raw = get(env[u][2], "deps", Union{}[])
+        if raw isa AbstractDict
+            for (_, du) in raw
+                push!(frontier, Base.UUID(String(du)))
+            end
+        elseif raw isa AbstractVector
+            by_name = Dict(n => du for (du, (n, _)) in env)
+            for dn in raw
+                du = get(by_name, String(dn), nothing)
+                du === nothing || push!(frontier, du)
+            end
+        end
+    end
+    skip_parent === nothing || delete!(closure, skip_parent)
+    implied = Base.PkgId[]
+    for parent in sort!(collect(closure))
+        table = _parent_extensions(parent, env)
+        table === nothing && continue
+        for (ext_name, triggers) in table
+            all(t -> haskey(env, t), triggers) || continue
+            id = Base.PkgId(Base.uuid5(parent, ext_name), ext_name)
+            id.uuid == skip_ext && continue
+            push!(implied, id)
+        end
+    end
+    return implied
 end
 
 # kept symmetric-by-construction: both sides run this same code in the
@@ -306,6 +402,15 @@ function _build_ext_context(pkg::Base.PkgId, env, stack::Set{Base.UUID})
         push!(deps, (; uuid=string(id.uuid), name=id.name,
                      build_id=UInt128(build_id), version=String(dep_version),
                      key=dep_ctx === nothing ? "-" : dep_ctx.key))
+    end
+    for ext_id in _implied_extensions([id.uuid for id in dep_ids], env;
+                                      skip_ext=pkg.uuid)
+        build_id = dep_build_id(ext_id)
+        build_id === nothing && return nothing
+        ext_ctx = ext_id.uuid == pkg.uuid ? nothing : _build_ext_context(ext_id, env, stack)
+        push!(deps, (; uuid=string(ext_id.uuid), name=ext_id.name,
+                     build_id=UInt128(build_id), version="-",
+                     key=ext_ctx === nothing ? "-" : ext_ctx.key))
     end
     sort!(deps; by=d -> d.uuid)
 
