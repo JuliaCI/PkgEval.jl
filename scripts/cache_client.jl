@@ -495,9 +495,10 @@ end
 function install!()
     Base.CACHE_FETCH_HOOK[] = fetch_hook
     # one line of evidence in every evaluation log: how the cache behaved
+    # printed even when idle: 0/0 means the machine-local compilecache had
+    # everything fresh, which is different from the client not loading at all
     atexit() do
-        (HITS[] > 0 || MISSES[] > 0) &&
-            println(stderr, "[cache_client] hits=", HITS[], " misses=", MISSES[])
+        println(stderr, "[cache_client] hits=", HITS[], " misses=", MISSES[])
     end
     return nothing
 end
