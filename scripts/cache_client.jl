@@ -24,12 +24,17 @@ const NAMESPACE = get(ENV, "PKGEVAL_CACHE_NAMESPACE", "default")
 const FETCH_DEADLINE = something(tryparse(Float64,
     get(ENV, "PKGEVAL_CACHE_FETCH_DEADLINE", "")), 86400.0)
 
+# derivations fetch in probe-only mode: published deps are consumed (so the
+# produced preimage references canonical build_ids), anything else 404s
+# immediately instead of holding
+const NOHOLD = get(ENV, "PKGEVAL_CACHE_NOHOLD", "0") == "1"
+
 ## minimal HTTP/1.1 over a TCP socket: the server is a loopback proxy the
 ## worker runs; a watchdog timer bounds every exchange so a wedged proxy can
 ## never stall loading
 
 function http_request(method::String, path::String, body::Vector{UInt8}=UInt8[];
-                      deadline::Float64=10.0)
+                      deadline::Float64=10.0, headers::String="")
     m = match(r"^http://([0-9a-zA-Z.-]+):(\d+)$", SERVER)
     m === nothing && return nothing
     sock = try
@@ -40,7 +45,7 @@ function http_request(method::String, path::String, body::Vector{UInt8}=UInt8[];
     watchdog = Timer(_ -> close(sock), deadline)
     try
         write(sock, "$method $path HTTP/1.1\r\nHost: farm\r\nConnection: close\r\n" *
-                    "Content-Length: $(length(body))\r\n\r\n")
+                    headers * "Content-Length: $(length(body))\r\n\r\n")
         write(sock, body)
         status = let line = readline(sock)
             parts = split(line, ' '; limit=3)
@@ -458,8 +463,12 @@ function fetch_hook(pkg::Base.PkgId, sourcepath::String)
     # terminates — so even the first requester of a context waits for the
     # canonical artifact instead of compiling a private copy. A 404 means the
     # derivation terminally failed: compiling locally is then correct.
+    # NOHOLD (derivations): probe only — an immediate 404 on anything not yet
+    # published, so a derivation can consume canonical deps without ever
+    # waiting on (or deadlocking with) another derivation.
     resp = http_request("POST", "/ensure/v2/$NAMESPACE",
-                        Vector{UInt8}(codeunits(ctx.canon)); deadline=FETCH_DEADLINE)
+                        Vector{UInt8}(codeunits(ctx.canon)); deadline=FETCH_DEADLINE,
+                        headers=NOHOLD ? "X-Nohold: 1\r\n" : "")
     if resp === nothing || resp[1] != 200
         MISSES[] += 1
         lines = split(ctx.canon, '\n')

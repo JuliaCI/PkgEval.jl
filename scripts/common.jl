@@ -6,11 +6,11 @@ using Base: UUID
 
 # compile-cache protocol client (PkgEvalFarm sealing): only when the worker
 # provided a cache server *and* this julia carries the loading hook.
-# PKGEVAL_CACHE_FETCH=0 loads the client (derivations still emit produced
-# keys) without installing the fetch hook: a derivation's published deps are
-# already materialized into its depot, so an in-sandbox fetch can only target
-# unpublished keys — holding on those deadlocks the very job meant to
-# produce them.
+# Derivations run with PKGEVAL_CACHE_NOHOLD=1: the hook fetches published
+# deps (so produced preimages reference canonical build_ids and consumers'
+# wanted keys converge) but never holds — a hold on an unpublished key would
+# deadlock the very job meant to produce it. PKGEVAL_CACHE_FETCH=0 disables
+# the hook entirely (the client still loads to emit produced keys).
 if !isempty(get(ENV, "PKGEVAL_CACHE_SERVER", "")) && isdefined(Base, :CACHE_FETCH_HOOK)
     include("cache_client.jl")
     if get(ENV, "PKGEVAL_CACHE_FETCH", "1") != "0"
