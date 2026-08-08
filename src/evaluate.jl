@@ -392,8 +392,10 @@ function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=t
         # log the status and reason
         @assert status in [config.goal, :crash, :fail, :kill]
         ## HACK: sometimes Julia (or the container) fails to exit, even though we finished
-        ##       testing, resulting in an inactivity kill. detect and override such cases.
-        if status === :kill && reason === :inactivity
+        ##       testing, resulting in an inactivity kill. similarly, an evaluation can
+        ##       finish during the time limit's SIGUSR1 grace window, i.e., after the kill
+        ##       decision but before the actual SIGTERM. detect and override such cases.
+        if status === :kill && (reason === :inactivity || reason === :time_limit)
             if occursin("Testing completed after", log)
                 status = :test
                 reason = missing
