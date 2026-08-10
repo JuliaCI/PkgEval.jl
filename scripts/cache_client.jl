@@ -17,10 +17,12 @@ using Sockets, SHA, TOML
 
 const SERVER = get(ENV, "PKGEVAL_CACHE_SERVER", "")
 const NAMESPACE = get(ENV, "PKGEVAL_CACHE_NAMESPACE", "default")
-# effectively unbounded: the proxy answers immediately unless it is
-# *productively* holding the fetch while this exact key's derivation
-# completes, and cutting a hold short would silently break artifact sharing
-# for the rest of the job — the evaluation's own time limit is the bound
+# the proxy answers immediately unless it is *productively* holding the fetch
+# while this exact key's derivation completes; cutting a hold short would
+# silently break artifact sharing for the rest of the job, so seal jobs leave
+# this effectively unbounded. The farm bounds it for *test* jobs, where a hold
+# outliving the evaluation's remaining budget must degrade to a local compile
+# instead of a killed job.
 const FETCH_DEADLINE = something(tryparse(Float64,
     get(ENV, "PKGEVAL_CACHE_FETCH_DEADLINE", "")), 86400.0)
 
@@ -90,9 +92,23 @@ end
 ## keys with this same function in the same process kind, which is what makes
 ## them match without any cachefile-header parsing.
 
+"""
+A dep's build_id plus whether it is *store-canonical*: fetched through the
+protocol or shipped with the julia build, so every sandbox resolving this
+context observes the same value. A dep compiled in this sandbox (or scavenged
+from a machine-local cache) has a build_id no other process can reproduce —
+a context embedding one can never be derived, which the hold decision in
+`fetch_hook` needs to know.
+"""
 function dep_build_id(id::Base.PkgId)
     mod = Base.maybe_root_module(id)
-    mod isa Module && return Base.module_build_id(mod)
+    if mod isa Module
+        origin = get(Base.pkgorigins, id, nothing)
+        cachepath = origin === nothing ? nothing : origin.cachepath
+        # no cachefile: baked into the sysimage, identical in every sandbox
+        return (; build_id=Base.module_build_id(mod),
+                canonical=cachepath === nothing || path_canonical(cachepath))
+    end
     paths = try
         Base.find_all_in_cache_path(id)
     catch
@@ -107,11 +123,18 @@ function dep_build_id(id::Base.PkgId)
     try
         build_id, file_uuid = Base.parse_cache_buildid(path)
         file_uuid == id.uuid || return nothing
-        return build_id
+        return (; build_id, canonical=path_canonical(path))
     catch
         return nothing
     end
 end
+
+# fetched artifacts carry a `_fetched` stem (see fetch_hook); a cachefile in
+# the job depot without it was compiled here or scavenged from a machine-local
+# cache. Cachefiles outside the job depot ship with the julia build (stdlibs)
+# or a read-only sealed depot, the same for every consumer of this context.
+path_canonical(path::AbstractString) =
+    !startswith(path, DEPOT_PATH[1]) || occursin("_fetched", basename(path))
 
 # One manifest snapshot per context computation: uuid -> (name, entry).
 function manifest_by_uuid()
@@ -205,25 +228,28 @@ function _build_context_uncached(uuid::Base.UUID, env, stack::Set{Base.UUID})
         end
     end
     deps = NamedTuple[]
+    canonical = true
     for dep_uuid in dep_uuids
         dep_name = haskey(env, dep_uuid) ? env[dep_uuid][1] : ""
-        build_id = dep_build_id(Base.PkgId(dep_uuid, dep_name))
-        build_id === nothing && return nothing   # unkeyable without the full dep context
+        bid = dep_build_id(Base.PkgId(dep_uuid, dep_name))
+        bid === nothing && return nothing   # unkeyable without the full dep context
+        canonical &= bid.canonical
         dep_entry = haskey(env, dep_uuid) ? env[dep_uuid][2] : Dict{String,Any}()
         dep_version = something(get(dep_entry, "version", nothing), "-")
         # a dep that is itself unkeyable (stdlib, dev) contributes build_id
         # identity but no fetchable artifact
         dep_ctx = _build_context(dep_uuid, env, stack)
         push!(deps, (; uuid=string(dep_uuid), name=dep_name,
-                     build_id=UInt128(build_id), version=String(dep_version),
+                     build_id=UInt128(bid.build_id), version=String(dep_version),
                      key=dep_ctx === nothing ? "-" : dep_ctx.key))
     end
     for ext_id in _implied_extensions([uuid], env; skip_parent=uuid)
-        build_id = dep_build_id(ext_id)
-        build_id === nothing && return nothing   # ext not compiled yet: retry later
+        bid = dep_build_id(ext_id)
+        bid === nothing && return nothing   # ext not compiled yet: retry later
+        canonical &= bid.canonical
         ext_ctx = _build_ext_context(ext_id, env, stack)
         push!(deps, (; uuid=string(ext_id.uuid), name=ext_id.name,
-                     build_id=UInt128(build_id), version="-",
+                     build_id=UInt128(bid.build_id), version="-",
                      key=ext_ctx === nothing ? "-" : ext_ctx.key))
     end
     sort!(deps; by=d -> d.uuid)
@@ -242,8 +268,10 @@ function _build_context_uncached(uuid::Base.UUID, env, stack::Set{Base.UUID})
                   "prefs=$prefs",
                   ("dep=$(d.uuid):$(string(d.build_id, base=16)):$(d.version):$(d.key)"
                    for d in deps)...], "\n")
+    # canonical is metadata for the hold decision, never part of the canon
+    # string: taint must not shift published keys
     return (; key=bytes2hex(SHA.sha256(canon)), canon, uuid=string(uuid), name,
-            version=String(string(version)), deps)
+            version=String(string(version)), deps, canonical)
 end
 
 _cache_flags() = try
@@ -402,23 +430,26 @@ function _build_ext_context(pkg::Base.PkgId, env, stack::Set{Base.UUID})
     end
 
     deps = NamedTuple[]
+    canonical = true
     for id in dep_ids
-        build_id = dep_build_id(id)
-        build_id === nothing && return nothing   # trigger not compiled yet: retry later
+        bid = dep_build_id(id)
+        bid === nothing && return nothing   # trigger not compiled yet: retry later
+        canonical &= bid.canonical
         entry = haskey(env, id.uuid) ? env[id.uuid][2] : Dict{String,Any}()
         dep_version = something(get(entry, "version", nothing), "-")
         dep_ctx = id.uuid == parent_uuid ? parent_ctx : _build_context(id.uuid, env, stack)
         push!(deps, (; uuid=string(id.uuid), name=id.name,
-                     build_id=UInt128(build_id), version=String(dep_version),
+                     build_id=UInt128(bid.build_id), version=String(dep_version),
                      key=dep_ctx === nothing ? "-" : dep_ctx.key))
     end
     for ext_id in _implied_extensions([id.uuid for id in dep_ids], env;
                                       skip_ext=pkg.uuid)
-        build_id = dep_build_id(ext_id)
-        build_id === nothing && return nothing
+        bid = dep_build_id(ext_id)
+        bid === nothing && return nothing
+        canonical &= bid.canonical
         ext_ctx = ext_id.uuid == pkg.uuid ? nothing : _build_ext_context(ext_id, env, stack)
         push!(deps, (; uuid=string(ext_id.uuid), name=ext_id.name,
-                     build_id=UInt128(build_id), version="-",
+                     build_id=UInt128(bid.build_id), version="-",
                      key=ext_ctx === nothing ? "-" : ext_ctx.key))
     end
     sort!(deps; by=d -> d.uuid)
@@ -440,7 +471,7 @@ function _build_ext_context(pkg::Base.PkgId, env, stack::Set{Base.UUID})
                    for d in deps)...], "\n")
     ctx = (; key=bytes2hex(SHA.sha256(canon)), canon, uuid=string(pkg.uuid),
            name=pkg.name, version=String(string(version)), deps,
-           ext_of=string(parent_uuid))
+           ext_of=string(parent_uuid), canonical)
     CTX_CACHE[pkg.uuid] = ctx
     return ctx
 end
@@ -466,16 +497,21 @@ function fetch_hook(pkg::Base.PkgId, sourcepath::String)
     # NOHOLD (derivations): probe only — an immediate 404 on anything not yet
     # published, so a derivation can consume canonical deps without ever
     # waiting on (or deadlocking with) another derivation.
+    # A non-canonical context probes too: some dep's build_id is local to this
+    # sandbox, so no derivation can ever produce the wanted key — holding
+    # would wait out a full derivation for a guaranteed 404.
+    nohold = NOHOLD || !ctx.canonical
     resp = http_request("POST", "/ensure/v2/$NAMESPACE",
                         Vector{UInt8}(codeunits(ctx.canon)); deadline=FETCH_DEADLINE,
-                        headers=NOHOLD ? "X-Nohold: 1\r\n" : "")
+                        headers=nohold ? "X-Nohold: 1\r\n" : "")
     if resp === nothing || resp[1] != 200
         MISSES[] += 1
         lines = split(ctx.canon, '\n')
         prefsline = something(findfirst(startswith("prefs="), lines), 0)
         println(stderr, "[cache_client] miss: ", pkg.name, " uuid=", ctx.uuid, " key=", ctx.key,
                 prefsline == 0 ? "" : " " * lines[prefsline],
-                resp === nothing ? " (no response)" : " (status $(resp[1]))")
+                resp === nothing ? " (no response)" : " (status $(resp[1]))",
+                !NOHOLD && !ctx.canonical ? " probe=local-deps" : "")
         return false
     end
     payload = resp[2]
