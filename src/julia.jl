@@ -435,16 +435,19 @@ end
 Whether the configuration's julia carries `Base.CACHE_FETCH_HOOK` (the
 loader's cache-fetch hook, consumed by PkgEvalFarm's cache protocol).
 Detected by running the *sandboxed* julia — never the binary on the host, so
-the check carries exactly the same trust as evaluating with it. `false` on
-any failure.
+the check carries exactly the same trust as evaluating with it.
+
+Only *definitive* verdicts return: the sandboxed julia printed its answer.
+A probe that never got to answer — an unstaged build, a sandbox failure, a
+kill — throws instead, so a caller can retry once the cause clears rather
+than freeze "unsupported" into a whole run (PkgEvalFarm#12: an on-demand
+against build made detection fail, permanently de-sealing one side of the
+comparison).
 """
 function julia_supports_cache_hook(config::Configuration)
-    try
-        (; status) = evaluate_script(config,
-            "exit(isdefined(Base, :CACHE_FETCH_HOOK) ? 0 : 1)")
-        return status === config.goal
-    catch err
-        @warn "cache-hook detection failed; assuming unsupported" err
-        return false
-    end
+    (; log) = evaluate_script(config,
+        """println("CACHE_HOOK_PROBE:", isdefined(Base, :CACHE_FETCH_HOOK) ? "yes" : "no")""")
+    occursin("CACHE_HOOK_PROBE:yes", log) && return true
+    occursin("CACHE_HOOK_PROBE:no", log) && return false
+    error("cache-hook probe did not run to an answer:\n" * last(log, 500))
 end
