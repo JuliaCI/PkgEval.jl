@@ -555,6 +555,12 @@ end
 function _produced_entry(id::Base.PkgId)
     ctx = build_context(id)
     ctx === nothing && return nothing
+    # a context embedding any sandbox-local build_id (a dep compiled here
+    # rather than fetched or shipped with julia) keys the artifact under a
+    # name no other sandbox ever computes: publishing it is pure waste, and
+    # the canonical twin must be derived regardless. Only canonical units
+    # publish.
+    ctx.canonical || return nothing
     depot = DEPOT_PATH[1]
     paths = filter(p -> startswith(p, depot), Base.find_all_in_cache_path(id))
     isempty(paths) && return nothing
