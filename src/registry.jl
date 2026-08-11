@@ -53,6 +53,21 @@ function get_pkgserver_registry(requested_uuid)
     return dir
 end
 
+# Determine the version of a package that we should test: the most recent one that has not
+# been yanked. Yanked versions cannot be resolved by Pkg, so selecting one would report the
+# package as uninstallable for as long as the yank stands. Returns `nothing` if every
+# registered version has been yanked, in which case the package cannot be tested at all.
+function latest_installable_version(version_info)
+    latest = nothing
+    for (version, info) in version_info
+        info.yanked && continue
+        if latest === nothing || version > latest
+            latest = version
+        end
+    end
+    return latest
+end
+
 """
     packages(config::Configuration)::Dict{String,Package}
 
@@ -105,7 +120,8 @@ function _get_packages(config::Configuration)
         # we could be smarter here and intersect the known versions of a package
         # with each Julia version, but that's a lot more complicated.
         info = Pkg.Registry.registry_info(pkg)
-        version = maximum(keys(info.version_info))
+        version = latest_installable_version(info.version_info)
+        version === nothing && continue
 
         # check if this package is compatible with the current Julia version
         compat = true
@@ -156,7 +172,8 @@ function package_dependencies(config; transitive=true)
     for (_, pkg) in registry_instance
         # we only consider the latest version of each package; see `get_packages`
         info = Pkg.Registry.registry_info(pkg)
-        version = maximum(keys(info.version_info))
+        version = latest_installable_version(info.version_info)
+        version === nothing && continue
 
         # iterate the dependencies
         pkg_deps = Set{String}()
