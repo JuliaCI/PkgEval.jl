@@ -274,8 +274,18 @@ function _build_context_uncached(uuid::Base.UUID, env, stack::Set{Base.UUID})
             version=String(string(version)), deps, canonical)
 end
 
+# The pkgimages flag is masked out of the canon: it describes the artifact
+# (whether a .so accompanies the .ji), not the resolution context. Publishers
+# run --pkgimages=yes while consumers run --pkgimages=existing, and existing-
+# mode loads either artifact kind — masking keeps both sides computing the
+# same key (and leaves consumer-computed keys, hence all previously sealed
+# entries, unchanged: existing-mode already had the flag clear).
 _cache_flags() = try
-    Int(Base._cacheflag_to_uint8(Base.CacheFlags()))
+    f = Base.CacheFlags()
+    masked = Base.CacheFlags(; use_pkgimages=false, debug_level=f.debug_level,
+                             check_bounds=f.check_bounds, inline=f.inline,
+                             opt_level=f.opt_level)
+    Int(Base._cacheflag_to_uint8(masked))
 catch
     nothing
 end
