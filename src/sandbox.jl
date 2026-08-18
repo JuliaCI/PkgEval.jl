@@ -16,6 +16,7 @@ Base.@kwdef struct Sandbox
     mounts::Array{Pair{String,AbstractMount}}=Pair{String,AbstractMount}[]
     cpus::Vector{Int}=String[]
     memory::Int=0
+    swap::Int=0
     pids::Int=0
     cwd::String="/root"
     uid::Int=0
@@ -110,6 +111,14 @@ function build_oci_config(sandbox::Sandbox, cmd::Cmd; terminal::Bool)
     # Linux platform configuration
     # https://github.com/opencontainers/runtime-spec/blob/main/config-linux.md
     linux = Dict()
+    # place every sandbox under one systemd slice so that a host can cap their
+    # *aggregate* memory (the per-sandbox limits above are overcommitted): with
+    # `crun --systemd-cgroup` this is "slice:prefix:name", created on demand,
+    # so an unconfigured slice is equivalent to not setting it at all
+    slice = get(ENV, "PKGEVAL_SANDBOX_SLICE", "")
+    if !isempty(slice)
+        linux["cgroupsPath"] = "$(slice):pkgeval:$(sandbox.name)"
+    end
     linux["resources"] = Dict()
     linux["resources"]["devices"] = [
         (allow=false, access="rwm")
@@ -119,8 +128,9 @@ function build_oci_config(sandbox::Sandbox, cmd::Cmd; terminal::Bool)
         linux["resources"]["cpu"] = (; cpus=join(sandbox.cpus, ","))
     end
     if sandbox.memory != 0 && "memory" in get_cgroup_controllers()
-        # the swap limit is memory+swap, so we disable swap by setting both identically
-        linux["resources"]["memory"] = (; limit=sandbox.memory, swap=sandbox.memory)
+        # the OCI swap limit is memory+swap, so swap==0 disables swap entirely
+        linux["resources"]["memory"] = (; limit=sandbox.memory,
+                                          swap=sandbox.memory + sandbox.swap)
     end
     if sandbox.pids != 0 && "pids" in get_cgroup_controllers()
         linux["resources"]["pids"] = (; limit=sandbox.pids)
@@ -318,6 +328,7 @@ function setup_generic_sandbox(config::Configuration, cmd::Cmd; workdir::String,
                              env, mounts=sandbox_mounts,
                              config.uid, config.gid, cwd=config.home,
                              config.cpus, memory=config.memory_limit,
+                             swap=config.swap_limit,
                              pids=config.process_limit)
 
     return sandbox_config, cmd
