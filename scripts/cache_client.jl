@@ -562,7 +562,65 @@ end
 ## one unit, keyed with the same build_context the fetch side uses. The worker
 ## decides what (if anything) to publish — and under which uuid namespace.
 
-function _produced_entry(id::Base.PkgId)
+"""
+The artifact's load-time dependency pins — (PkgId => build_id) from the cache
+header — or `nothing` when the header cannot be parsed (treat as unverifiable,
+not as invalid: this must degrade to the pre-check behavior on julias whose
+header layout we cannot read).
+"""
+function _required_pins(ji::String)
+    parsed = try
+        open(ji) do io
+            Base.isvalid_cache_header(io) == 0 && return nothing
+            Base.parse_cache_header(io, ji)
+        end
+    catch
+        nothing
+    end
+    parsed === nothing && return nothing
+    # two tuple elements share this type: the modules *in* the file come
+    # first, the required modules later — we want the requirements
+    hits = [part for part in parsed if part isa Vector{Pair{Base.PkgId,UInt128}}]
+    return isempty(hits) ? nothing : last(hits)
+end
+
+"""
+Whether the exact pinned build of `id` is reachable by an arbitrary consumer
+resolving the same context: it lives in the sysimage or a julia-shipped
+cachefile, was fetched through the protocol (so the store serves that very
+build), or ships in this same publication (`copublished`). A pin only a
+sandbox-local compile satisfies is poison to publish — consumers compute the
+key, fetch the parent, and can never load it (build_ids are per-compile).
+"""
+function _pin_canonical(id::Base.PkgId, build_id::UInt128,
+                        copublished::Set{Base.UUID})
+    id.uuid === nothing && return true   # toplevel modules: identity everywhere
+    id.uuid in copublished && return true
+    mod = Base.maybe_root_module(id)
+    if mod isa Module && Base.module_build_id(mod) == build_id
+        origin = get(Base.pkgorigins, id, nothing)
+        cachepath = origin === nothing ? nothing : origin.cachepath
+        return cachepath === nothing || path_canonical(cachepath)
+    end
+    paths = try
+        Base.find_all_in_cache_path(id)
+    catch
+        String[]
+    end
+    for path in paths
+        bid = try
+            b, file_uuid = Base.parse_cache_buildid(path)
+            file_uuid == id.uuid ? b : nothing
+        catch
+            nothing
+        end
+        bid == build_id || continue
+        path_canonical(path) && return true
+    end
+    return false
+end
+
+function _produced_entry(id::Base.PkgId; copublished::Set{Base.UUID}=Set{Base.UUID}())
     ctx = build_context(id)
     ctx === nothing && return nothing
     # a context embedding any sandbox-local build_id (a dep compiled here
@@ -575,6 +633,25 @@ function _produced_entry(id::Base.PkgId)
     paths = filter(p -> startswith(p, depot), Base.find_all_in_cache_path(id))
     isempty(paths) && return nothing
     ji = last(sort(paths; by=mtime))
+    # Export-time integrity: the context above is a snapshot (CTX_CACHE, plus
+    # mtime-based candidate selection), while the artifact's header pins the
+    # builds it was actually compiled against — across a long precompile
+    # session (fetch, reject, recompile) the two drift. A published artifact
+    # whose pins disagree with its preimage, or pin a build no consumer can
+    # obtain, is poison: consumers compute the key, fetch it, and can never
+    # load it (seen live: fetched Accessors and StructArrays pinning two
+    # different private builds of ConstructionBaseLinearAlgebraExt, both
+    # absent from the store). Verify against the artifact itself; entries
+    # that fail simply stay unpublished and the closure re-derives later.
+    pins = _required_pins(ji)
+    if pins !== nothing
+        ctx_bid = Dict(d.uuid => d.build_id for d in ctx.deps)
+        for (dep, build_id) in pins
+            want = dep.uuid === nothing ? nothing : get(ctx_bid, string(dep.uuid), nothing)
+            want !== nothing && want != build_id && return nothing
+            _pin_canonical(dep, build_id, copublished) || return nothing
+        end
+    end
     so = try
         oc = Base.ocachefile_from_cachefile(ji)
         isfile(oc) ? oc : nothing
@@ -614,7 +691,7 @@ function emit_produced_keys(unit::String, out::String;
                             uuid::Union{Nothing,String}=nothing)
     id = _unit_id(unit, uuid)
     id === nothing && return
-    entry = _produced_entry(id)
+    entry = _produced_entry(id; copublished=Set{Base.UUID}([id.uuid]))
     entry === nothing && return
     open(out, "w") do io
         TOML.print(io, Dict(unit => entry))
@@ -630,9 +707,6 @@ function emit_produced_keys_with_extensions(unit::String, out::String)
     id = _unit_id(unit, nothing)
     id === nothing && return
     entries = Dict{String,Any}()
-    entry = _produced_entry(id)
-    entry === nothing && return
-    entries[unit] = entry
     src = Base.locate_package(id)
     exts = try
         src === nothing ? Dict{String,Any}() :
@@ -641,11 +715,18 @@ function emit_produced_keys_with_extensions(unit::String, out::String)
     catch
         Dict{String,Any}()
     end
-    for ext_name in keys(exts)
-        ext_id = Base.PkgId(Base.uuid5(id.uuid, String(ext_name)), String(ext_name))
-        ext_entry = _produced_entry(ext_id)
+    ext_ids = [Base.PkgId(Base.uuid5(id.uuid, String(n)), String(n)) for n in keys(exts)]
+    # the co-publication set is optimistic (declared extensions may end up not
+    # exported), which is sound: a parent never pins its own extensions — only
+    # extensions pin the unit, and the unit always ships
+    copublished = Set{Base.UUID}([id.uuid; [e.uuid for e in ext_ids]])
+    entry = _produced_entry(id; copublished)
+    entry === nothing && return
+    entries[unit] = entry
+    for ext_id in ext_ids
+        ext_entry = _produced_entry(ext_id; copublished)
         ext_entry === nothing && continue   # not triggered in this env
-        entries[String(ext_name)] = ext_entry
+        entries[ext_id.name] = ext_entry
     end
     open(out, "w") do io
         TOML.print(io, entries)
