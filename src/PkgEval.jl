@@ -67,8 +67,19 @@ function __init__()
         get!(slow_map, stdlib, 2)
     end
 
-    global container_root = mktempdir(prefix="pkgeval_containers_")
+    Random.seed!(rng)
+end
 
+# Both of these are needed only by processes that actually run containers.
+# `using PkgEval` happens in plenty of contexts that never do — submitting jobs,
+# generating reports, querying the registry — so neither the temporary root nor
+# the (noisy) cgroup diagnostics belong in `__init__`.
+
+const container_root = OncePerProcess{String}() do
+    mktempdir(prefix="pkgeval_containers_")
+end
+
+const check_cgroups = OncePerProcess{Nothing}() do
     # we only support unified cgroupv2
     if isdir("/sys/fs/cgroup/unified")
         @error "Unsupported hybdir cgroup v1/v2 setup detected; resource limits will not be enforced"
@@ -90,8 +101,7 @@ function __init__()
     else
         @error "No cgroup set-up detected; resource limits will not be enforced"
     end
-
-    Random.seed!(rng)
+    nothing
 end
 
 end # module

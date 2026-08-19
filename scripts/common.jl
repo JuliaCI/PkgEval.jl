@@ -4,6 +4,20 @@ using .PkgEvalCore
 using Pkg
 using Base: UUID
 
+# compile-cache protocol client (PkgEvalFarm sealing): only when the worker
+# provided a cache server *and* this julia carries the loading hook.
+# Derivations run with PKGEVAL_CACHE_NOHOLD=1: the hook fetches published
+# deps (so produced preimages reference canonical build_ids and consumers'
+# wanted keys converge) but never holds — a hold on an unpublished key would
+# deadlock the very job meant to produce it. PKGEVAL_CACHE_FETCH=0 disables
+# the hook entirely (the client still loads to emit produced keys).
+if !isempty(get(ENV, "PKGEVAL_CACHE_SERVER", "")) && isdefined(Base, :CACHE_FETCH_HOOK)
+    include("cache_client.jl")
+    if get(ENV, "PKGEVAL_CACHE_FETCH", "1") != "0"
+        PkgEvalCacheClient.install!()
+    end
+end
+
 # simplified version of utilities from utils.jl (with no need to
 # scan for children, as we use this from the parent when idle)
 function cpu_time()
@@ -30,6 +44,21 @@ function io_bytes()
     end
 
     return dict["rchar"] + dict["wchar"]
+end
+
+# Peak memory of this container's cgroup: the sandbox runs in its own cgroup
+# namespace, so /sys/fs/cgroup is our very own subtree. memory.peak is the
+# high-watermark of memory.current — note that this *includes* page cache, so
+# it reflects the comfortable footprint rather than the hard minimum. It is
+# monotonic since container start, so a single read at the end covers
+# install + precompile + test. Returns 0 when unavailable (cgroup v1, or the
+# memory controller not delegated).
+function peak_rss()
+    try
+        parse(Int, strip(read("/sys/fs/cgroup/memory.peak", String)))
+    catch
+        0
+    end
 end
 
 suppress_pkg_output(f::Function) = capture_pkg_output(f; suppress = true)

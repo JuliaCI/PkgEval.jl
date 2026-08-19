@@ -1,4 +1,4 @@
-export evaluate
+export evaluate, evaluate_job
 
 using Dates
 using Random
@@ -77,6 +77,36 @@ function get_compilecache(config::Configuration)
     end
 end
 
+# The shared compilecaches grow without bound (every evaluation rsyncs its
+# newly-compiled files back in), eventually filling the temporary filesystem
+# and failing evaluations during setup (ENOSPC from `mktempdir`). When the
+# available space drops below a floor, empty them. Only their contents: the
+# directories may be bind-mounted into active sandboxes and are rsynced into
+# by path when evaluations finish, so they must stay in place.
+tempdisk_floor() =
+    something(tryparse(Int, get(ENV, "PKGEVAL_TEMPDISK_FLOOR_GB", "")), 32) * Int64(2)^30
+function ensure_tempdisk_space()
+    available = try
+        Base.diskstat(tempdir()).available
+    catch
+        return  # no disk statistics on this platform; fail open
+    end
+    available >= tempdisk_floor() && return
+    # storage_lock keeps a finishing evaluation's rsync from racing the purge
+    lock(storage_lock) do
+        lock(compiled_lock) do
+            for dir in values(compiled_cache)
+                chmod_recursive(dir, 0o777) # JuliaLang/julia#47650
+                for entry in readdir(dir; join=true)
+                    rm(entry; recursive=true, force=true)
+                end
+            end
+        end
+    end
+    @warn "Temporary disk space is low; emptied the shared compilecaches" available
+    return
+end
+
 """
     evaluate_script(config::Configuration, script::String, args=``)
 
@@ -151,10 +181,15 @@ function evaluate_script(config::Configuration, script::String, args=``;
         stop()
     end
 
-    # kill on inactivity
+    # kill on inactivity. Evaluations connected to the compile-cache protocol
+    # legitimately idle for minutes at a time (blocked in fetches the proxy
+    # holds while a dependency's derivation completes), so their windows are
+    # wide — the configuration's time limit remains the hard bound.
+    inactivity_interval = (config.goal in (:seal, :derive) ||
+                           !isempty(get(env, "PKGEVAL_CACHE_SERVER", ""))) ? 1200 : 300
     previous_cpu_time = missing
     previous_io_bytes = missing
-    inactivity_monitor = Timer(300; interval=300) do timer
+    inactivity_monitor = Timer(inactivity_interval; interval=inactivity_interval) do timer
         process_running(proc) || return
         pid = getpid(proc)
 
@@ -266,6 +301,8 @@ a cause of issues).
 Refer to `evaluate_script`[@ref] for more possible `keyword arguments.
 """
 function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=true,
+                          use_compilecache::Bool=use_cache,
+                          export_dir::Union{Nothing,String}=nothing,
                           mounts::Dict{String,String}=Dict{String,String}(),
                           env::Dict{String,String}=Dict{String,String}(), kwargs...)
     # some options should have been handled already
@@ -273,6 +310,9 @@ function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=t
 
     mounts = copy(mounts)
     env = copy(env)
+
+    # make room before we add to the temporary disk
+    ensure_tempdisk_space()
 
     if config.compiled
         return evaluate_compiled_test(config, pkg; use_cache, kwargs...)
@@ -282,241 +322,271 @@ function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=t
 
     # we create our own workdir so that we can reuse it
     workdir = mktempdir(prefix="pkgeval_$(pkg.name)_")
+    try
 
-    # caches are mutable, so they can get corrupted during a run. that's why it's possible
-    # to run without them (in case of a retry), and is also why we set them up here rather
-    # than in `sandboxed_julia` (because we know we've verified caches before entering here)
-    if use_cache
-        depot_dir = joinpath(config.home, ".julia")
+        # caches are mutable, so they can get corrupted during a run. that's why it's possible
+        # to run without them (in case of a retry), and is also why we set them up here rather
+        # than in `sandboxed_julia` (because we know we've verified caches before entering here)
+        if use_cache
+            depot_dir = joinpath(config.home, ".julia")
 
-        shared_compilecache = get_compilecache(config)
-        mounts[joinpath(depot_dir, "compiled")] = shared_compilecache
+            # seal evaluations skip the machine-shared compilecache in both
+            # directions: sealed artifacts must link against canonical (published)
+            # dependency files only, not whatever this machine's test jobs
+            # scavenged (see PkgEvalFarm's docs/sealing.md)
+            if use_compilecache
+                shared_compilecache = get_compilecache(config)
+                mounts[joinpath(depot_dir, "compiled")] = shared_compilecache
+            end
 
-        shared_packages = joinpath(storage_dir, "packages")
-        mounts[joinpath(depot_dir, "packages")] = shared_packages
+            shared_packages = joinpath(storage_dir, "packages")
+            mounts[joinpath(depot_dir, "packages")] = shared_packages
 
-        shared_artifacts = joinpath(storage_dir, "artifacts")
-        mounts[joinpath(depot_dir, "artifacts")] = shared_artifacts
-    end
+            shared_artifacts = joinpath(storage_dir, "artifacts")
+            mounts[joinpath(depot_dir, "artifacts")] = shared_artifacts
+        end
 
-    # structured output will be written to the /output directory. this is to avoid having to
-    # parse log output, which is fragile. a simple pipe would be sufficient, but Julia
-    # doesn't export those, and named pipes aren't portable to all platforms.
-    output_dir = joinpath(workdir, "output")
-    mkdir(output_dir)
-    mounts["/output:rw"] = output_dir
+        # structured output will be written to the /output directory. this is to avoid having to
+        # parse log output, which is fragile. a simple pipe would be sufficient, but Julia
+        # doesn't export those, and named pipes aren't portable to all platforms.
+        output_dir = joinpath(workdir, "output")
+        mkdir(output_dir)
+        mounts["/output:rw"] = output_dir
 
-    # launch the test script that's part of this repository
-    mounts["/PkgEval.jl:ro"] = dirname(@__DIR__)
-    args = `"/PkgEval.jl/scripts/evaluate.jl" $config $pkg`
+        # launch the test script that's part of this repository
+        mounts["/PkgEval.jl:ro"] = dirname(@__DIR__)
+        args = `"/PkgEval.jl/scripts/evaluate.jl" $config $pkg`
 
-    total_duration = @elapsed begin
-        (; log, status, reason) = evaluate_script(config, "", args;
-                                                  name, workdir, mounts, env,
-                                                  kwargs...)
-    end
-    log *= "\n"
+        total_duration = @elapsed begin
+            (; log, status, reason) = evaluate_script(config, "", args;
+                                                      name, workdir, mounts, env,
+                                                      kwargs...)
+        end
+        log *= "\n"
 
-    # parse structured output
-    output = Dict()
-    for (entry, type, default) in [("installed", Bool, false),
-                                   ("version", Union{Nothing,VersionNumber}, missing),
-                                   ("duration", Float64, 0.0),
-                                   ("input_output", Int, 0)]
-        file = joinpath(output_dir, entry)
-        output[entry] = if isfile(file)
-            str = read(file, String)
-            try
-                eval(Meta.parse(str))::type
-            catch
-                @warn "Could not parse $entry of $(pkg.name) on $(config.name) (got '$str', expected a $type)"
+        # parse structured output
+        output = Dict()
+        for (entry, type, default) in [("installed", Bool, false),
+                                       ("version", Union{Nothing,VersionNumber}, missing),
+                                       ("duration", Float64, 0.0),
+                                       ("input_output", Int, 0),
+                                       ("peak_rss", Int, 0)]
+            file = joinpath(output_dir, entry)
+            output[entry] = if isfile(file)
+                str = read(file, String)
+                try
+                    eval(Meta.parse(str))::type
+                catch
+                    @warn "Could not parse $entry of $(pkg.name) on $(config.name) (got '$str', expected a $type)"
+                    default
+                end
+            else
                 default
             end
-        else
-            default
         end
-    end
-    if output["version"] === nothing
-        # this happens with unversioned stdlibs
-        output["version"] = missing
-    end
+        if output["version"] === nothing
+            # this happens with unversioned stdlibs
+            output["version"] = missing
+        end
 
-    # log the status and reason
-    @assert status in [config.goal, :crash, :fail, :kill]
-    ## HACK: sometimes Julia (or the container) fails to exit, even though we finished
-    ##       testing, resulting in an inactivity kill. detect and override such cases.
-    if status === :kill && reason === :inactivity
-        if occursin("Testing completed after", log)
-            status = :test
-            reason = missing
-            log *= "PkgEval terminated, but package had successfully tested; overriding.\n"
-        elseif occursin("Loading completed after", log)
-            status = :load
-            reason = missing
-            log *= "PkgEval terminated, but package had successfully loaded; overriding.\n"
-        elseif occursin(r"(Loading|Testing) failed after", log)
-            status = :fail
-            reason = missing
-            log *= "PkgEval terminated, but evaluation had failed; overriding.\n"
-        end
-    end
-    ## special cases where we override the status (if we didn't actively kill the process)
-    if status !== :kill
-        ## e.g. testing might have failed because we couldn't install the package
-        if !output["installed"]
-            status = :skip
-            reason = :uninstallable
-        elseif occursin("Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
-            status = :skip
-            reason = :untestable
-        end
-        ## e.g. testing might have succeeded but there may have been an internal error
-        if occursin("GC error (probable corruption)", log)
-            status = :crash
-            reason = :gc_corruption
-        elseif occursin(r"Failed to verify .+, dumping entire module", log)
-            status = :crash
-            reason = :codegen
-        elseif occursin("Unreachable reached", log)
-            status = :crash
-            reason = :unreachable
-        elseif occursin("Internal error:", log)
-            status = :crash
-            reason = :internal
-        elseif occursin(r"signal \(.+\): Abort", log) ||                # sigdie handler
-               occursin("(received signal: 6)", log)                    # Pkg log
-            status = :crash
-            reason = :abort
-        elseif occursin(r"signal \(.+\): Segmentation fault", log) ||   # sigdie handler
-               occursin("(received signal: 11)", log)                   # Pkg log
-            status = :crash
-            reason = :segfault
-        end
-    end
-    ## some crashes can be refined by looking at the log
-    if status === :crash
-        if reason == :segfault && occursin(r"\b(jl_|ijl_|_jl_|)gc_", log)
-            reason = :gc_corruption
-        end
-    end
-    ## in other cases we look at the log to determine a failure reason
-    if status === :fail
-        log *= "PkgEval failed"
-
-        reason = if occursin("cannot open shared object file: No such file or directory", log)
-            :binary_dependency
-        elseif occursin(r"Package .+ does not have .+ in its dependencies", log)
-            :missing_dependency
-        elseif occursin(r"Package .+ not found in current path", log)
-            :missing_package
-        elseif occursin("failed to clone from", log) ||
-                occursin(r"HTTP/\d \d+ while requesting", log) ||
-                occursin("Could not resolve host", log) ||
-                occursin("Resolving timed out after", log) ||
-                occursin("Could not download", log) ||
-                occursin(r"Error: HTTP/\d \d+", log) ||
-                occursin("Temporary failure in name resolution", log) ||
-                occursin("listen: address already in use", log) ||
-                occursin("Could not download", log) ||
-                occursin("connect: connection refused", log)
-            :network
-        elseif occursin("Method overwriting is not permitted", log)
-            :method_overwriting
-        elseif occursin("ERROR: LoadError: syntax", log)
-            :syntax
-        elseif occursin("Failed to precompile", log)
-            :precompile
-        elseif occursin(r"Package .+ errored during testing", log)
-            if occursin("Some tests did not pass", log) && occursin("0 errored", log)
-                :test_failures
-            else
-                :test_errors
+        # log the status and reason
+        @assert status in [config.goal, :crash, :fail, :kill]
+        ## HACK: sometimes Julia (or the container) fails to exit, even though we finished
+        ##       testing, resulting in an inactivity kill. similarly, an evaluation can
+        ##       finish during the time limit's SIGUSR1 grace window, i.e., after the kill
+        ##       decision but before the actual SIGTERM. detect and override such cases.
+        if status === :kill && (reason === :inactivity || reason === :time_limit)
+            if occursin("Testing completed after", log)
+                status = :test
+                reason = missing
+                log *= "PkgEval terminated, but package had successfully tested; overriding.\n"
+            elseif occursin("Loading completed after", log)
+                status = :load
+                reason = missing
+                log *= "PkgEval terminated, but package had successfully loaded; overriding.\n"
+            elseif occursin(r"(Loading|Testing) failed after", log)
+                status = :fail
+                reason = missing
+                log *= "PkgEval terminated, but evaluation had failed; overriding.\n"
             end
-        else
-            :unknown
         end
-    elseif status === :kill
-        log *= "PkgEval terminated"
-    elseif status === :crash
-        log *= "PkgEval crashed"
-    elseif status === :skip
-        log *= "PkgEval skipped"
-    elseif status === config.goal
-        log *= "PkgEval succeeded"
-    end
-    log *= " after $(round(total_duration, digits=2))s"
-    if reason !== missing
-        log *= ": " * reason_message(reason)
-    end
-    log *= "\n"
-
-    # pack-up our rr trace. this is expensive, so we only do it for failures.
-    if config.rr == RREnabled && status == :crash
-        # launch the bug reporting script that's part of this repository
-        rr_args = `"/PkgEval.jl/scripts/report_bug.jl" $config $pkg`
-
-        trace = joinpath(output_dir, "$(pkg.name).tar.zst")
-
-        rr_config = Configuration(config; time_limit=config.time_limit*2)
-        rr_log = evaluate_script(rr_config, "", rr_args;
-                                 name, workdir, mounts, env, kwargs...).log
-
-        # upload the trace
-        # TODO: re-use BugReporting.jl
-        if haskey(ENV, "PKGEVAL_RR_BUCKET")
-            bucket = ENV["PKGEVAL_RR_BUCKET"]
-            unixtime = round(Int, datetime2unix(now()))
-            trace_unique_name = "$(pkg.name)-$(unixtime).tar.zst"
-            if isfile(trace)
-                run(`$(s5cmd()) --log error cp -acl public-read $trace s3://$(bucket)/$(trace_unique_name)`)
-                rr_log *= "Uploaded rr trace to https://s3.amazonaws.com/$(bucket)/$(trace_unique_name)"
-            else
-                rr_log *= "Testing did not produce an rr trace."
+        ## special cases where we override the status (if we didn't actively kill the process)
+        if status !== :kill
+            ## e.g. testing might have failed because we couldn't install the package
+            if !output["installed"]
+                status = :skip
+                reason = :uninstallable
+            elseif occursin("Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
+                status = :skip
+                reason = :untestable
             end
-        else
-            rr_log *= "Testing produced an rr trace, but PkgEval.jl was not configured to upload rr traces."
+            ## e.g. testing might have succeeded but there may have been an internal error
+            if occursin("GC error (probable corruption)", log)
+                status = :crash
+                reason = :gc_corruption
+            elseif occursin(r"Failed to verify .+, dumping entire module", log)
+                status = :crash
+                reason = :codegen
+            elseif occursin("Unreachable reached", log)
+                status = :crash
+                reason = :unreachable
+            elseif occursin("Internal error:", log)
+                status = :crash
+                reason = :internal
+            elseif occursin(r"signal \(.+\): Abort", log) ||                # sigdie handler
+                   occursin("(received signal: 6)", log)                    # Pkg log
+                status = :crash
+                reason = :abort
+            elseif occursin(r"signal \(.+\): Segmentation fault", log) ||   # sigdie handler
+                   occursin("(received signal: 11)", log)                   # Pkg log
+                status = :crash
+                reason = :segfault
+            end
+        end
+        ## some crashes can be refined by looking at the log
+        if status === :crash
+            if reason == :segfault && occursin(r"\b(jl_|ijl_|_jl_|)gc_", log)
+                reason = :gc_corruption
+            end
+        end
+        ## in other cases we look at the log to determine a failure reason
+        if status === :fail
+            log *= "PkgEval failed"
+
+            reason = if occursin("cannot open shared object file: No such file or directory", log)
+                :binary_dependency
+            elseif occursin(r"Package .+ does not have .+ in its dependencies", log)
+                :missing_dependency
+            elseif occursin(r"Package .+ not found in current path", log)
+                :missing_package
+            elseif occursin("failed to clone from", log) ||
+                    occursin(r"HTTP/\d \d+ while requesting", log) ||
+                    occursin("Could not resolve host", log) ||
+                    occursin("Resolving timed out after", log) ||
+                    occursin("Could not download", log) ||
+                    occursin(r"Error: HTTP/\d \d+", log) ||
+                    occursin("Temporary failure in name resolution", log) ||
+                    occursin("listen: address already in use", log) ||
+                    occursin("Could not download", log) ||
+                    occursin("connect: connection refused", log)
+                :network
+            elseif occursin("Method overwriting is not permitted", log)
+                :method_overwriting
+            elseif occursin("ERROR: LoadError: syntax", log)
+                :syntax
+            elseif occursin("Failed to precompile", log)
+                :precompile
+            elseif occursin(r"Package .+ errored during testing", log)
+                if occursin("Some tests did not pass", log) && occursin("0 errored", log)
+                    :test_failures
+                else
+                    :test_errors
+                end
+            else
+                :unknown
+            end
+        elseif status === :kill
+            log *= "PkgEval terminated"
+        elseif status === :crash
+            log *= "PkgEval crashed"
+        elseif status === :skip
+            log *= "PkgEval skipped"
+        elseif status === config.goal
+            log *= "PkgEval succeeded"
+        end
+        log *= " after $(round(total_duration, digits=2))s"
+        if reason !== missing
+            log *= ": " * reason_message(reason)
+        end
+        log *= "\n"
+
+        # pack-up our rr trace. this is expensive, so we only do it for failures.
+        if config.rr == RREnabled && status == :crash
+            # launch the bug reporting script that's part of this repository
+            rr_args = `"/PkgEval.jl/scripts/report_bug.jl" $config $pkg`
+
+            trace = joinpath(output_dir, "$(pkg.name).tar.zst")
+
+            rr_config = Configuration(config; time_limit=config.time_limit*2)
+            rr_log = evaluate_script(rr_config, "", rr_args;
+                                     name, workdir, mounts, env, kwargs...).log
+
+            # upload the trace
+            # TODO: re-use BugReporting.jl
+            if haskey(ENV, "PKGEVAL_RR_BUCKET")
+                bucket = ENV["PKGEVAL_RR_BUCKET"]
+                unixtime = round(Int, datetime2unix(now()))
+                trace_unique_name = "$(pkg.name)-$(unixtime).tar.zst"
+                if isfile(trace)
+                    run(`$(s5cmd()) --log error cp -acl public-read $trace s3://$(bucket)/$(trace_unique_name)`)
+                    rr_log *= "Uploaded rr trace to https://s3.amazonaws.com/$(bucket)/$(trace_unique_name)"
+                else
+                    rr_log *= "Testing did not produce an rr trace."
+                end
+            else
+                rr_log *= "Testing produced an rr trace, but PkgEval.jl was not configured to upload rr traces."
+            end
+
+            # remove inaccurate rr errors (rr-debugger/rr/#3346)
+            rr_log = replace(rr_log, r"\[ERROR .* Metadata of .* changed: .*\n" => "")
+            log *= rr_log
         end
 
-        # remove inaccurate rr errors (rr-debugger/rr/#3346)
-        rr_log = replace(rr_log, r"\[ERROR .* Metadata of .* changed: .*\n" => "")
-        log *= rr_log
-    end
+        # hand the produced compilecache (and the resolved dependency graph the
+        # seal script wrote to /output) to the caller before the workdir goes away
+        if export_dir !== nothing
+            upper_depot = joinpath(workdir, "upper", "home", "pkgeval", ".julia")
+            exported_compilecache = joinpath(upper_depot, "compiled")
+            isdir(exported_compilecache) &&
+                cp(exported_compilecache, joinpath(export_dir, "compiled"); force=true)
+            for extra in ("seal_graph.toml", "seal_keys.toml")
+                file = joinpath(output_dir, extra)
+                isfile(file) && cp(file, joinpath(export_dir, extra); force=true)
+            end
+        end
 
-    # (cache and) clean-up output created by this package
-    if use_cache
-        depot_dir = joinpath(workdir, "upper", "home", "pkgeval", ".julia")
-        local_compilecache = joinpath(depot_dir, "compiled")
-        local_packages = joinpath(depot_dir, "packages")
-        local_artifacts = joinpath(depot_dir, "artifacts")
+        # (cache and) clean-up output created by this package
+        if use_cache
+            depot_dir = joinpath(workdir, "upper", "home", "pkgeval", ".julia")
+            local_compilecache = joinpath(depot_dir, "compiled")
+            local_packages = joinpath(depot_dir, "packages")
+            local_artifacts = joinpath(depot_dir, "artifacts")
 
-        # verify local resources
-        registry_dir = get_registry(config)
-        isdir(local_packages) &&
-            remove_uncacheable_packages(registry_dir, local_packages; show_status=false)
-        isdir(local_artifacts) &&
-            verify_artifacts(local_artifacts; show_status=false)
-        isdir(local_compilecache) &&
-            verify_compilecache(local_compilecache; show_status=false)
+            # verify local resources
+            registry_dir = get_registry(config)
+            isdir(local_packages) &&
+                remove_uncacheable_packages(registry_dir, local_packages; show_status=false)
+            isdir(local_artifacts) &&
+                verify_artifacts(local_artifacts; show_status=false)
+            use_compilecache && isdir(local_compilecache) &&
+                verify_compilecache(local_compilecache; show_status=false)
 
-        # copy new local resources (packages, artifacts, ...) to shared storage
-        lock(storage_lock) do
-            for (src, dst) in [(local_packages, shared_packages),
-                               (local_artifacts, shared_artifacts),
-                               (local_compilecache, shared_compilecache)]
-                if isdir(src)
-                    # NOTE: removals (whiteouts) are represented as char devices
-                    run(`$(rsync()) --no-specials --no-devices --archive --quiet $(src)/ $(dst)/`)
+            # copy new local resources (packages, artifacts, ...) to shared storage
+            shared_pairs = [(local_packages, shared_packages),
+                            (local_artifacts, shared_artifacts)]
+            use_compilecache && push!(shared_pairs, (local_compilecache, shared_compilecache))
+            lock(storage_lock) do
+                for (src, dst) in shared_pairs
+                    if isdir(src)
+                        # NOTE: removals (whiteouts) are represented as char devices
+                        run(`$(rsync()) --no-specials --no-devices --archive --quiet $(src)/ $(dst)/`)
+                    end
                 end
             end
         end
+        return (; log, status, reason,
+                   version=output["version"],
+                   duration=output["duration"],
+                   input_output=output["input_output"],
+                   peak_rss=output["peak_rss"])
+    finally
+        try
+            chmod_recursive(workdir, 0o777) # JuliaLang/julia#47650
+            rm(workdir; recursive=true)
+        catch err
+            @error "Unexpected error while cleaning up workdir" exception=(err, catch_backtrace())
+        end
     end
-    chmod_recursive(workdir, 0o777) # JuliaLang/julia#47650
-    rm(workdir; recursive=true)
-
-    return (; log, status, reason,
-               version=output["version"],
-               duration=output["duration"],
-               input_output=output["input_output"])
 end
 
 """
@@ -589,12 +659,12 @@ function evaluate_compiled_test(config::Configuration, pkg::Package;
         compiled = false,
         julia_args = [config.julia_args..., "--sysimage", sysimage_path],
     )
-    (; log, status, reason, version, duration, input_output) =
+    (; log, status, reason, version, duration, input_output, peak_rss) =
         evaluate_package(test_config, pkg; mounts, use_cache, kwargs...)
     log = compile_log * "\n\n" * '#'^80 * "\n" * '#'^80 * "\n\n\n" * log
 
     rm(sysimage_dir; recursive=true)
-    return (; log, status, reason, version, duration, input_output)
+    return (; log, status, reason, version, duration, input_output, peak_rss)
 
 end
 
@@ -790,6 +860,101 @@ function remove_uncacheable_packages(registry, package_dir; show_status::Bool=tr
 end
 
 
+# apply the per-package adjustments (skip lists, time limit multipliers, etc.) that are
+# used for every job that is part of an evaluation
+function job_config(config::Configuration, pkg::Package; blacklist::Vector{String}=String[])
+    ## some packages are not supported by rr
+    if pkg.name in skip_rr_list
+        config = Configuration(config; rr=RRDisabled)
+    end
+    ## retrying with rr is handled by `evaluate`; a single job either uses it or not
+    config = Configuration(config; rr=(config.rr==RREnabled))
+    ## grant some packages more test time
+    time_multiplier = get(slow_map, pkg.name, config.rr == RREnabled ? 2 : 1)
+    config = Configuration(config; time_limit=config.time_limit*time_multiplier)
+    ## blacklisted packages shouldn't be tested, just installed and loaded
+    ## However, if the user manually specified `goal` when invoking Nanosoldier, respect that
+    if pkg.name in blacklist
+        if !ismodified(config, :goal)
+            config = Configuration(config; goal=:load)
+        end
+    end
+    return config
+end
+
+"""
+    evaluate_job(config::Configuration, pkg::Package; use_cache::Bool=true,
+                 blacklist::Vector{String}=String[], kwargs...)
+
+Evaluate a single package `pkg` according to `config`, applying the same per-package
+adjustments as `evaluate` does (e.g., skipping blacklisted packages, or granting more time
+to packages that are known to be slow). This is useful for distributed operation, where
+single jobs are handed out to worker processes.
+
+Returns a named tuple `(; package, version, status, reason, duration, log, ...)` with the
+same statuses and reasons as reported in the DataFrame returned by `evaluate`.
+
+In contrast to `evaluate`, this function never retries evaluations, and does not pin the
+evaluation to a specific CPU; set `cpus` in the `config` to do so.
+
+Refer to `evaluate_package`[@ref] and `sandboxed_julia`[@ref] for more possible keyword
+arguments.
+"""
+function evaluate_job(config::Configuration, pkg::Package; use_cache::Bool=true,
+                      blacklist::Vector{String}=String[], kwargs...)
+    if pkg.name in skip_list && !(pkg.name in important_list)
+        return (; package=pkg.name, version=missing, status=:skip, reason=:blacklisted,
+                  duration=0.0, input_output=0, peak_rss=0, log=missing)
+    end
+
+    config = job_config(config, pkg; blacklist)
+    (; log, status, reason, version, duration, input_output, peak_rss) =
+        evaluate_package(config, pkg; use_cache, kwargs...)
+    return (; package=pkg.name, version, status, reason, duration, input_output, peak_rss, log)
+end
+
+"""
+    evaluate_seal(config::Configuration, pkg::Package; export_dir::String, kwargs...)
+
+Precompile `pkg`'s test environment (goal `:seal`) without running its tests,
+exporting the produced compilecache and the resolved dependency graph to
+`export_dir` (`compiled/` and `seal_graph.toml`). Precompilation runs with the
+exact CLI flags `Pkg.test` would use, so the artifacts are loadable by a later
+test evaluation. The machine-shared compilecache is not consulted: sealed
+artifacts must link only against canonical dependency files, which the caller
+provides via a read-only depot mount (see PkgEvalFarm's docs/sealing.md).
+
+Success is reported as status `:seal`; a failing precompile surfaces as the
+usual failure statuses/reasons.
+"""
+function evaluate_seal(config::Configuration, pkg::Package; export_dir::String,
+                       use_cache::Bool=true, kwargs...)
+    config.compiled && error("sealing compiled-mode configurations is not supported")
+    config = Configuration(config; goal=:seal)
+    return evaluate_job(config, pkg; use_cache, use_compilecache=false,
+                        export_dir, kwargs...)
+end
+
+"""
+    evaluate_derive(config::Configuration, pkg::Package;
+                    export_dir::String, pins_file::String, kwargs...)
+
+Execute a derivation (PkgEvalFarm docs/sealing.md, stage 2): reproduce a
+requester's exact environment — every closure package pinned via `pins_file`,
+a TOML of `uuid => {name, uuid, version}` mounted at /derive_pins.toml — and
+precompile `pkg`'s *package* environment (no TestEnv: the requester wanted it
+as a dependency). Same export and compilecache semantics as `evaluate_seal`.
+"""
+function evaluate_derive(config::Configuration, pkg::Package; export_dir::String,
+                         pins_file::String, use_cache::Bool=true,
+                         mounts::Dict{String,String}=Dict{String,String}(), kwargs...)
+    config.compiled && error("deriving compiled-mode configurations is not supported")
+    config = Configuration(config; goal=:derive)
+    mounts = merge(mounts, Dict("/derive_pins.toml:ro" => pins_file))
+    return evaluate_job(config, pkg; use_cache, use_compilecache=false,
+                        export_dir, mounts, kwargs...)
+end
+
 """
     evaluate(configs::Vector{Configuration}, [packages::Vector{Package}];
              ninstances=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true,
@@ -820,6 +985,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                        reason = Union{Missing,Symbol}[],
                        duration = Float64[],
                        input_output = Int[],
+                       peak_rss = Int[],
                        log = Union{Missing,String}[])
     skips = similar(result)
 
@@ -842,7 +1008,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                 # couldn't find a compatible version in the registry...
                 for config in configs
                     push!(skips, [config.name, package.name, missing,
-                                  :skip, :uninstallable, 0, 0, missing])
+                                  :skip, :uninstallable, 0, 0, 0, missing])
                 end
                 nothing
             end
@@ -898,7 +1064,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
             return false
         elseif job.package.name in skip_list
             push!(skips, [job.config.name, job.package.name, missing,
-                          :skip, :blacklisted, 0, 0, missing])
+                          :skip, :blacklisted, 0, 0, 0, missing])
             return false
         else
             return true
@@ -931,24 +1097,14 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                     job = pop!(jobs)
 
                     # determine how to evaluate this package
-                    main_config = Configuration(job.config; cpus=[i-1],
-                                                rr=(job.config.rr==RREnabled))
-                    ## grant some packages more test time
-                    time_multiplier = get(slow_map, job.package.name, job.config.rr == RREnabled ? 2 : 1)
-                    main_config =
-                        Configuration(main_config; time_limit=main_config.time_limit*time_multiplier)
-                    ## blacklisted packages shouldn't be tested, just installed and loaded
-                    ## However, if the user manually specified `goal` when invoking Nanosoldier, respect that
-                    if job.package.name in blacklist
-                        if !ismodified(main_config, :goal)
-                            main_config = Configuration(main_config; goal=:load)
-                        end
-                    end
+                    pinned_config = Configuration(job.config; cpus=[i-1])
+                    main_config = job_config(pinned_config, job.package; blacklist)
 
                     # evaluate the package
                     running[i] = (; config=main_config, job.package, time=time())
-                    (; log, status, reason, version, duration, input_output) =
-                        evaluate_package(main_config, job.package; job.use_cache, kwargs...)
+                    (; log, status, reason, version, duration, input_output, peak_rss) =
+                        evaluate_job(pinned_config, job.package; job.use_cache,
+                                     blacklist, kwargs...)
 
                     if retry
                         # early retry: rerun crashes under rr to see if we can get a trace
@@ -978,7 +1134,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                     end
 
                     push!(result, [job.config.name, job.package.name,
-                                   version, status, reason, duration, input_output, log])
+                                   version, status, reason, duration, input_output, peak_rss, log])
 
                     if retry
                         # late retry: when done testing a package, re-test failures.
