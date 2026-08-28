@@ -286,6 +286,29 @@ function setup_generic_sandbox(config::Configuration, cmd::Cmd; workdir::String,
         end
     end
 
+    # additionally setup user-requested bind mounts
+    for spec in config.bind
+        parts = split(spec, ':')
+        if !(2 <= length(parts) <= 3)
+            # `--bind src:dst[:ro|:rw]`, default `rw`
+            error("invalid --bind spec `$spec`: expected `src:dst[:ro|:rw]`")
+        end
+
+        writable = true
+        source, destination = abspath(String(parts[1])), String(parts[2])
+        if length(parts) == 3
+            let mode = String(parts[3])
+                if !(mode in ("ro", "rw"))
+                    error("invalid --bind mode `$mode` in `$spec`: must be `ro` or `rw`")
+                end
+                writable = (mode == "rw")
+            end
+        end
+
+        isdir(source) || mkpath(source) # auto-create host path, if missing
+        push!(sandbox_mounts, destination => BindMount(; source, writable))
+    end
+
     env = merge(Dict(
         # some essential env vars (since we don't run from a shell)
         "PATH" => "/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin",

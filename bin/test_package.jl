@@ -5,7 +5,7 @@ function usage(error=nothing)
         println(stderr, "ERROR: $error")
     end
     println(stderr, """
-        Usage: julia test_package.jl [--julia=nightly] [--julia_args=""] [--env=""] [--rr=false]
+        Usage: julia test_package.jl [--julia=nightly] [--julia_args=""] [--env=""] [--bind=""] [--rr=false]
                                      [--name=...] [--version=...] [--rev=...] [--url=...] [--path=...]
 
         This script can be used to quickly test a package against a specific version of Julia.
@@ -16,6 +16,7 @@ function usage(error=nothing)
         The `--julia` flag can be used to specify the version of Julia to test with, and defaults to `nightly`.
         To pass additional arguments to Julia, use one or more `--julia_args` flag.
         Similarly, to set environment variables, use one or more `--env` flag.
+        To bind-mount a host directory into the sandbox, use one or more `--bind=src:dst[:ro|:rw]` flag.
         With the `--rr` flag you can enable running under `rr`.""")
     exit(error === nothing ? 0 : 1)
 end
@@ -42,7 +43,7 @@ end
 
 # create the Configuration object
 config_flags = [(:julia => String), (:julia_args => Vector{String}),
-                (:env => Vector{String}), (:rr => Bool)]
+                (:env => Vector{String}), (:bind => Vector{String}), (:rr => Bool)]
 config_args = Dict()
 function parse_value(typ, val)
     if typ === String
