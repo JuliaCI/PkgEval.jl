@@ -142,9 +142,17 @@ function get_julia_staged(config::Configuration)
             @debug "No staged build in $bucket for $repo@$(sha[1:10])" err
             continue
         end
-        @debug "Using CI build for $repo#$ref: $url"
         dir = mktempdir(prefix="pkgeval_julia_")
-        Pkg.PlatformEngines.unpack(filepath, dir)
+        try
+            Pkg.PlatformEngines.unpack(filepath, dir)
+        catch err
+            # a corrupt cached tarball would otherwise break every later install
+            @debug "Could not unpack staged build from $bucket for $repo@$(sha[1:10])" err
+            rm(filepath; force=true)
+            rm(dir; recursive=true, force=true)
+            continue
+        end
+        @debug "Using CI build for $repo#$ref: $url"
         return only(readdir(dir; join=true))
     end
     return nothing
