@@ -12,7 +12,9 @@ t0 = cpu_time()
 
 deps = String[]
 
-if config.goal === :test
+if config.goal in (:test, :seal)
+    # :seal precompiles the *test* environment too: the artifacts exist to
+    # warm a later `Pkg.test` of this package
     push!(deps, "TestEnv")
 end
 
@@ -113,7 +115,35 @@ t0 = cpu_time()
 try
     spec = convert(Pkg.Types.PackageSpec, pkg)
     println("Installing $(spec.name)...")
-    Pkg.add(spec)
+    if config.goal === :derive && isfile("/derive_pins.toml")
+        # derivation executions (docs/sealing.md, stage 2) reproduce a
+        # requester's exact environment: every package in the closure is
+        # pinned, so resolution has one answer and the materialized dep
+        # artifacts validate
+        import TOML
+        pins = Pkg.Types.PackageSpec[]
+        for (_, info) in TOML.parsefile("/derive_pins.toml")
+            # want-derived pins carry no name; uuid+version identify fully.
+            # an entry without a version (stdlib trigger of an extension)
+            # still needs to be a direct dep, just unpinned
+            name = get(info, "name", nothing)
+            version = get(info, "version", nothing)
+            kwargs = (; uuid=Base.UUID(info["uuid"]),)
+            name !== nothing && (kwargs = (; kwargs..., name))
+            version !== nothing && (kwargs = (; kwargs..., version=VersionNumber(version)))
+            push!(pins, Pkg.Types.PackageSpec(; kwargs...))
+        end
+        println("Pinning $(length(pins)) package(s) for derivation...")
+        if get(ENV, "PKGEVAL_DERIVE_EXT", "0") == "1"
+            # the unit is a package extension: not addable itself — installing
+            # its parent and triggers (all among the pins) makes Pkg compile it
+            Pkg.add(pins)
+        else
+            Pkg.add([pins; spec])
+        end
+    else
+        Pkg.add(spec)
+    end
 
     println("\nInstallation completed after $(elapsed(t0))")
     write("/output/installed", repr(true))
@@ -132,11 +162,16 @@ finally
     end
 end
 
-# ensure the package has a test/runtests.jl file, so we can bail out quicker
-src = Base.find_package(pkg.name)
-runtests = joinpath(dirname(src), "..", "test", "runtests.jl")
-if config.goal === :test && !isfile(runtests)
-    error("Package $(pkg.name) did not provide a `test/runtests.jl` file")
+# ensure the package has a test/runtests.jl file, so we can bail out quicker.
+# only meaningful (and only *computable*) for test goals: an extension unit
+# under :derive is not in the load path, so find_package returns nothing
+if config.goal === :test
+    src = Base.find_package(pkg.name)
+    runtests = src === nothing ? nothing :
+               joinpath(dirname(src), "..", "test", "runtests.jl")
+    if runtests === nothing || !isfile(runtests)
+        error("Package $(pkg.name) did not provide a `test/runtests.jl` file")
+    end
 end
 
 is_stdlib = any(Pkg.Types.stdlibs()) do (uuid,stdlib)
@@ -153,7 +188,7 @@ if is_stdlib
 end
 
 
-if config.precompile && !is_stdlib
+if (config.precompile || config.goal in (:seal, :derive)) && !is_stdlib
 print("\n\n", '#'^80, "\n# Precompilation\n#\n\n")
 
 # we run with JULIA_PKG_PRECOMPILE_AUTO=0 to avoid precompiling on Pkg.add,
@@ -181,6 +216,12 @@ try
     println("\nPrecompilation completed after $(elapsed(t0))")
 catch
     println("\nPrecompilation failed after $(elapsed(t0))\n")
+    # for seal/derivation evaluations, precompilation *is* the job
+    config.goal in (:seal, :derive) && rethrow()
+finally
+    if config.goal in (:seal, :derive)
+        write("/output/duration", repr(cpu_time()-t0))
+    end
 end
 end
 
@@ -207,6 +248,7 @@ catch
 finally
     write("/output/duration", repr(cpu_time()-t0))
     write("/output/input_output", repr(io_bytes()-io0))
+    write("/output/peak_rss", repr(peak_rss()))
 end
 end
 
@@ -230,5 +272,6 @@ catch
 finally
     write("/output/duration", repr(cpu_time()-t0))
     write("/output/input_output", repr(io_bytes()-io0))
+    write("/output/peak_rss", repr(peak_rss()))
 end
 end

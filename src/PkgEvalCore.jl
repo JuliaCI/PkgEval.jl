@@ -92,6 +92,9 @@ Base.@kwdef struct Configuration
     log_limit::Setting{Int} = Default(2^20) # 1 MiB
     time_limit::Setting{Float64} = Default(45*60) # 45 mins
     memory_limit::Setting{Int} = Default(32*2^30) # 32 GiB
+    ## swap allowed on top of memory_limit; 0 keeps swap disabled so that test
+    ## timings stay comparable (a thrashing test should time out, not crawl)
+    swap_limit::Setting{Int} = Default(0)
     process_limit::Setting{Int} = Default(512)
     ## compiled mode: first generating a system image containing each package under test,
     ##                then running tests using that system image.
@@ -150,7 +153,7 @@ function Base.show(io::IO, ::MIME"text/plain", cfg::Configuration)
 
     println(io, "  # Execution properties")
     show_setting.(["env", "cpus", "threads", "xvfb", "rr", "precompile", "compiled", "process_limit"])
-    show_setting.(["log_limit", "memory_limit"], Base.format_bytes)
+    show_setting.(["log_limit", "memory_limit", "swap_limit"], Base.format_bytes)
     show_setting.(["time_limit", "compile_time_limit"], durationstring)
 
     print(io, ")")

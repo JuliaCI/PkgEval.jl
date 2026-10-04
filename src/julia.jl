@@ -86,6 +86,70 @@ function get_julia_release(config::Configuration)
     return only(readdir(dir; join=true))
 end
 
+# Julia CI stages every build to a public, commit-addressed S3 bucket -- the same
+# place juliaup fetches PR builds from -- so a commit that CI has already built
+# needs no compilation here. This matters most for distributed use, where the
+# alternative is every worker separately spending half an hour on the same build.
+# -request holds on-demand builds triggered through the farm's build-request
+# broker (julia-buildkite's julia-build-request pipeline stages there)
+const staging_buckets = ["julialang-ephemeral-ci", "julialang-ephemeral-pr",
+                         "julialang-ephemeral-request"]
+const assertion_buildflags = Set(["LLVM_ASSERTIONS=1", "FORCE_ASSERTIONS=1"])
+
+# CI publishes a plain and an assertions-enabled variant; anything else built
+# with custom flags has no counterpart and must be built locally.
+function staged_variant(config::Configuration)
+    ismodified(config, :buildcommands) && return nothing
+    flags = Set(config.buildflags)
+    if isempty(flags)
+        return "linux"
+    elseif flags == assertion_buildflags
+        return "linuxassert"
+    else
+        return nothing
+    end
+end
+
+function resolve_commit(repo::AbstractString, ref::AbstractString)
+    occursin(r"^[0-9a-f]{40}$"i, ref) && return lowercase(ref)
+    try
+        commit = GitHub.commit(repo, ref; auth=github_auth())
+        return lowercase(string(commit.sha))
+    catch err
+        @debug "Could not resolve $repo@$ref to a commit" err
+        return nothing
+    end
+end
+
+function get_julia_staged(config::Configuration)
+    Sys.islinux() || return nothing
+    variant = staged_variant(config)
+    variant === nothing && return nothing
+
+    repo, ref = parse_repo_spec(config.julia, "JuliaLang/julia")
+    String(repo) == "JuliaLang/julia" || return nothing   # only this repo is staged by CI
+    sha = resolve_commit(repo, ref)
+    sha === nothing && return nothing
+
+    arch = string(Sys.ARCH)
+    filename = "julia-$(sha[1:10])-$(variant)-$(arch).tar.gz"
+    for bucket in staging_buckets
+        url = "https://$bucket.s3.amazonaws.com/bin/$sha/$filename"
+        filepath = joinpath(download_dir, filename)
+        try
+            isfile(filepath) || Downloads.download(url, filepath)
+        catch err
+            @debug "No staged build in $bucket for $repo@$(sha[1:10])" err
+            continue
+        end
+        @debug "Using CI build for $repo#$ref: $url"
+        dir = mktempdir(prefix="pkgeval_julia_")
+        Pkg.PlatformEngines.unpack(filepath, dir)
+        return only(readdir(dir; join=true))
+    end
+    return nothing
+end
+
 function get_julia_build(config)
     can_use_binaries(config) || return
     repo, ref = parse_repo_spec(config.julia, "JuliaLang/julia")
@@ -274,9 +338,34 @@ function build_julia!(config::Configuration, checkout::String)
     return only(readdir(install_dir; join=true))
 end
 
+"""
+When disabled (the farm sets this), a Julia that cannot be *downloaded* raises
+`MissingStagedBuild` instead of falling back to a ~30-minute source build —
+the caller can then ask CI to produce the build and retry. The error carries
+exactly what such a request needs; specs no build request could ever satisfy
+(other repos, custom buildcommands/flags) raise a plain error instead.
+"""
+const source_build_fallback = Ref(true)
+
+struct MissingStagedBuild <: Exception
+    repo::String
+    sha::String
+    variant::String
+end
+
+Base.showerror(io::IO, err::MissingStagedBuild) =
+    print(io, "no staged build of $(err.repo)@$(err.sha[1:10]) ($(err.variant)); ",
+              "source builds are disabled")
+
 function _install_julia(config::Configuration)
     # check if it's an official release
     dir = get_julia_release(config)
+    if dir !== nothing
+        return dir
+    end
+
+    # try a CI-staged build (public, no credentials needed)
+    dir = get_julia_staged(config)
     if dir !== nothing
         return dir
     end
@@ -288,6 +377,15 @@ function _install_julia(config::Configuration)
     end
 
     # finally, just build Julia
+    if !source_build_fallback[]
+        repo, ref = parse_repo_spec(config.julia, "JuliaLang/julia")
+        variant = staged_variant(config)
+        sha = String(repo) == "JuliaLang/julia" && variant !== nothing ?
+              resolve_commit(repo, ref) : nothing
+        sha === nothing &&
+            error("no downloadable build for julia = $(repo)#$(ref) and source builds are disabled")
+        throw(MissingStagedBuild(String(repo), sha, variant))
+    end
     return build_julia(config)
 end
 
@@ -329,4 +427,27 @@ function julia_version(config::Configuration)
             _julia_version(config)
         end
     end
+end
+
+"""
+    julia_supports_cache_hook(config::Configuration) -> Bool
+
+Whether the configuration's julia carries `Base.CACHE_FETCH_HOOK` (the
+loader's cache-fetch hook, consumed by PkgEvalFarm's cache protocol).
+Detected by running the *sandboxed* julia — never the binary on the host, so
+the check carries exactly the same trust as evaluating with it.
+
+Only *definitive* verdicts return: the sandboxed julia printed its answer.
+A probe that never got to answer — an unstaged build, a sandbox failure, a
+kill — throws instead, so a caller can retry once the cause clears rather
+than freeze "unsupported" into a whole run (PkgEvalFarm#12: an on-demand
+against build made detection fail, permanently de-sealing one side of the
+comparison).
+"""
+function julia_supports_cache_hook(config::Configuration)
+    (; log) = evaluate_script(config,
+        """println("CACHE_HOOK_PROBE:", isdefined(Base, :CACHE_FETCH_HOOK) ? "yes" : "no")""")
+    occursin("CACHE_HOOK_PROBE:yes", log) && return true
+    occursin("CACHE_HOOK_PROBE:no", log) && return false
+    error("cache-hook probe did not run to an answer:\n" * last(log, 500))
 end

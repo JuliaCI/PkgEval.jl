@@ -1,3 +1,8 @@
+# newer Pkg requires the registry as a first argument to registry_info
+registry_info(reg::Pkg.Registry.RegistryInstance, pkg) =
+    hasmethod(Pkg.Registry.registry_info, Tuple{typeof(reg), typeof(pkg)}) ?
+        Pkg.Registry.registry_info(reg, pkg) : Pkg.Registry.registry_info(pkg)
+
 const registry_lock = ReentrantLock()
 const registry_cache = Dict()
 function get_registry(config::Configuration)
@@ -119,7 +124,7 @@ function _get_packages(config::Configuration)
         #
         # we could be smarter here and intersect the known versions of a package
         # with each Julia version, but that's a lot more complicated.
-        info = Pkg.Registry.registry_info(pkg)
+        info = registry_info(registry_instance, pkg)
         version = latest_installable_version(info.version_info)
         version === nothing && continue
 
@@ -171,7 +176,7 @@ function package_dependencies(config; transitive=true)
     registry_instance = Pkg.Registry.RegistryInstance(registry)
     for (_, pkg) in registry_instance
         # we only consider the latest version of each package; see `get_packages`
-        info = Pkg.Registry.registry_info(pkg)
+        info = registry_info(registry_instance, pkg)
         version = latest_installable_version(info.version_info)
         version === nothing && continue
 
@@ -218,7 +223,7 @@ function lookup_package_slug(registry::String, package::String, slug::String)
 
         registry_instance = Pkg.Registry.RegistryInstance(registry)
         for (_, pkg) in registry_instance
-            pkginfo = Registry.registry_info(pkg)
+            pkginfo = registry_info(registry_instance, pkg)
             for (v, vinfo) in pkginfo.version_info
                 tree_hash = vinfo.git_tree_sha1
                 for slug in (Base.version_slug(pkg.uuid, tree_hash),

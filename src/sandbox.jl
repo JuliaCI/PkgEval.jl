@@ -16,6 +16,7 @@ Base.@kwdef struct Sandbox
     mounts::Array{Pair{String,AbstractMount}}=Pair{String,AbstractMount}[]
     cpus::Vector{Int}=String[]
     memory::Int=0
+    swap::Int=0
     pids::Int=0
     cwd::String="/root"
     uid::Int=0
@@ -34,7 +35,10 @@ function build_oci_config(sandbox::Sandbox, cmd::Cmd; terminal::Bool)
         if mount isa BindMount
             # preserve mount options that restrict allowed operations, as not all container
             # runtimes do this for us (opencontainers/runc#1603, opencontainers/runc#1523).
-            mount_options = filter(mount_info(mount.source).opts) do option
+            # the source may not resolve to a mount (e.g. it doesn't exist yet); let the
+            # runtime report that instead of crashing here on a missing mtab entry.
+            info = mount_info(mount.source)
+            mount_options = info === nothing ? String[] : filter(info.opts) do option
                 option in ["nodev", "nosuid", "noexec"]
             end
             push!(mounts, (; destination, mount.source, type="none",
@@ -107,6 +111,14 @@ function build_oci_config(sandbox::Sandbox, cmd::Cmd; terminal::Bool)
     # Linux platform configuration
     # https://github.com/opencontainers/runtime-spec/blob/main/config-linux.md
     linux = Dict()
+    # place every sandbox under one systemd slice so that a host can cap their
+    # *aggregate* memory (the per-sandbox limits above are overcommitted): with
+    # `crun --systemd-cgroup` this is "slice:prefix:name", created on demand,
+    # so an unconfigured slice is equivalent to not setting it at all
+    slice = get(ENV, "PKGEVAL_SANDBOX_SLICE", "")
+    if !isempty(slice)
+        linux["cgroupsPath"] = "$(slice):pkgeval:$(sandbox.name)"
+    end
     linux["resources"] = Dict()
     linux["resources"]["devices"] = [
         (allow=false, access="rwm")
@@ -116,8 +128,9 @@ function build_oci_config(sandbox::Sandbox, cmd::Cmd; terminal::Bool)
         linux["resources"]["cpu"] = (; cpus=join(sandbox.cpus, ","))
     end
     if sandbox.memory != 0 && "memory" in get_cgroup_controllers()
-        # the swap limit is memory+swap, so we disable swap by setting both identically
-        linux["resources"]["memory"] = (; limit=sandbox.memory, swap=sandbox.memory)
+        # the OCI swap limit is memory+swap, so swap==0 disables swap entirely
+        linux["resources"]["memory"] = (; limit=sandbox.memory,
+                                          swap=sandbox.memory + sandbox.swap)
     end
     if sandbox.pids != 0 && "pids" in get_cgroup_controllers()
         linux["resources"]["pids"] = (; limit=sandbox.pids)
@@ -151,6 +164,7 @@ If no `workdir` is passed, one will be created and cleaned-up after the sandbox 
 """
 function run_sandbox(config::Configuration, setup, args...; workdir=nothing, wait=true,
                      stdin=stdin, stdout=stdout, stderr=stderr, kwargs...)
+    check_cgroups()   # warns once, only for processes that actually run containers
     do_cleanup = false
     if workdir === nothing
         workdir = mktempdir(prefix="pkgeval_sandbox_"; cleanup=false)
@@ -167,7 +181,7 @@ function run_sandbox(config::Configuration, setup, args...; workdir=nothing, wai
         JSON3.pretty(io, JSON3.write(sandbox_config))
     end
 
-    proc = run(pipeline(`$(crun()) --systemd-cgroup --root $(container_root) run --bundle $bundle_path $(sandbox.name)`;
+    proc = run(pipeline(`$(crun()) --systemd-cgroup --root $(container_root()) run --bundle $bundle_path $(sandbox.name)`;
                         stdin, stderr, stdout); wait)
 
     # XXX: once `crun` support `stats` like `runc`, use that for resource usage reporting
@@ -314,6 +328,7 @@ function setup_generic_sandbox(config::Configuration, cmd::Cmd; workdir::String,
                              env, mounts=sandbox_mounts,
                              config.uid, config.gid, cwd=config.home,
                              config.cpus, memory=config.memory_limit,
+                             swap=config.swap_limit,
                              pids=config.process_limit)
 
     return sandbox_config, cmd
@@ -349,7 +364,8 @@ function setup_julia_sandbox(config::Configuration, args=``;
         # use the provided registry
         # NOTE: putting a registry in a non-primary depot entry makes Pkg use it as-is,
         #       without needing to set Pkg.UPDATED_REGISTRY_THIS_SESSION.
-        "JULIA_DEPOT_PATH" => "$(config.home)/.julia:/usr/local/share/julia:",
+        "JULIA_DEPOT_PATH" => join(["$(config.home)/.julia";
+                                    "/usr/local/share/julia"; ""], ':'),
 
         # put Julia on PATH
         "PATH" => "/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:$(config.julia_install_dir)/bin",

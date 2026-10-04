@@ -289,6 +289,8 @@ function mount_info(path::String)
     path_stat = stat(path)
 
     stream = ccall(:setmntent, Ptr{Nothing}, (Cstring, Cstring), "/etc/mtab", "r")
+    # hosts without /etc/mtab (some containers): getmntent(NULL) segfaults
+    stream == C_NULL && return nothing
     while true
         # get the next mtab entry
         entry = ccall(:getmntent, Ptr{mntent}, (Ptr{Nothing},), stream)
