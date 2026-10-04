@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: ['1.10', '1.11']
+        version: ['1.12']
         os: ['ubuntu-latest']
         arch: [x64]
         test_julia: ['']
@@ -26,21 +26,21 @@ jobs:
           # special releases
           - os: 'ubuntu-latest'
             arch: 'x64'
-            version: '1.10'
+            version: '1.12'
             test_julia: 'nightly'
           - os: 'ubuntu-latest'
             arch: 'x64'
-            version: '1.10'
+            version: '1.12'
             test_julia: 'stable'
           # directly from Git, likely built by CI
           - os: 'ubuntu-latest'
             arch: 'x64'
-            version: '1.10'
+            version: '1.12'
             test_julia: 'master~10'
           # directly from Git, force a build (see below)
           - os: 'ubuntu-latest'
             arch: 'x64'
-            version: '1.10'
+            version: '1.12'
             test_julia: 'master'
             test_buildflags: 'JULIA_CPU_TARGET=native JULIA_PRECOMPILE=0'
     env:

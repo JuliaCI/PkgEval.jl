@@ -204,7 +204,9 @@ end
                            [Package(; name="Example")];
                            validate=false, retry=false)
         @test size(results, 1) == 1
-        @test results[1, :status] == :kill && results[1, :reason] == :time_limit
+        # a run that finishes during the kill's grace window is rescued as tested
+        @test (results[1, :status] == :kill && results[1, :reason] == :time_limit) ||
+              contains(results[1, :log], "PkgEval terminated, but package had successfully tested")
     end
 
     @testset "log limit" begin

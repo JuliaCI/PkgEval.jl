@@ -83,15 +83,18 @@ end
 # available space drops below a floor, empty them. Only their contents: the
 # directories may be bind-mounted into active sandboxes and are rsynced into
 # by path when evaluations finish, so they must stay in place.
+# This is opt-in, because the caches are also the lower layer of running sandboxes.
 tempdisk_floor() =
-    something(tryparse(Int, get(ENV, "PKGEVAL_TEMPDISK_FLOOR_GB", "")), 32) * Int64(2)^30
+    something(tryparse(Int, get(ENV, "PKGEVAL_TEMPDISK_FLOOR_GB", "")), 0) * Int64(2)^30
 function ensure_tempdisk_space()
+    min_available = tempdisk_floor()
+    min_available > 0 || return
     available = try
         Base.diskstat(tempdir()).available
     catch
         return  # no disk statistics on this platform; fail open
     end
-    available >= tempdisk_floor() && return
+    available >= min_available && return
     # storage_lock keeps a finishing evaluation's rsync from racing the purge
     lock(storage_lock) do
         lock(compiled_lock) do
