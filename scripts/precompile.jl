@@ -2,6 +2,7 @@ include("common.jl")
 
 config = eval(Meta.parse(ARGS[1]))
 pkg = eval(Meta.parse(ARGS[2]))
+project = ARGS[3]
 
 suppress_pkg_output() do
     Pkg.activate("pkgeval"; shared=true)
@@ -26,7 +27,7 @@ if config.goal in (:test, :seal)
     end
 else
     suppress_pkg_output() do
-        Pkg.activate()
+        config.goal === :load ? Pkg.activate(project) : Pkg.activate()
     end
 end
 
