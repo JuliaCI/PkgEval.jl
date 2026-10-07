@@ -573,8 +573,12 @@ function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=t
             lock(storage_lock) do
                 for (src, dst) in shared_pairs
                     if isdir(src)
+                        # Julia touches every cache file it loads and tries the newest one first.
+                        # Never update existing cache files, so that other jobs' loads don't
+                        # change which of several interchangeable builds is picked.
+                        extra = src == local_compilecache ? `--ignore-existing` : ``
                         # NOTE: removals (whiteouts) are represented as char devices
-                        run(`$(rsync()) --no-specials --no-devices --archive --quiet $(src)/ $(dst)/`)
+                        run(`$(rsync()) --no-specials --no-devices --archive --quiet $extra $(src)/ $(dst)/`)
                     end
                 end
             end

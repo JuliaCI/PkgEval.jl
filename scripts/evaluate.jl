@@ -69,6 +69,12 @@ if !isempty(deps)
     end
 end
 
+# load and test jobs use a temporary environment, like `Pkg.test` does, so that cache
+# files built here get a name unique to this job instead of colliding with other jobs' builds
+if config.goal in (:load, :test)
+    Pkg.activate(; temp=true)
+end
+
 # generating package images is really expensive, without much benefit (for PkgEval)
 # so determine here if we need to disable them using additional CLI args
 # (we can't do this externally because of JuliaLang/Pkg.jl#3737)
@@ -214,7 +220,7 @@ try
         --check-bounds=yes
         --inline=$(Bool(Base.JLOptions().can_inline) ? "yes" : "no")
         $(julia_args)
-        $script $config $pkg
+        $script $config $pkg $(dirname(Base.active_project()))
     ```)
 
     println("\nPrecompilation completed after $(elapsed(t0))")
@@ -243,6 +249,7 @@ try
            --check-bounds=yes
            --inline=$(Bool(Base.JLOptions().can_inline) ? "yes" : "no")
            $(julia_args)
+           --project=$(dirname(Base.active_project()))
            -e $("using $(pkg.name)")```)
 
     println("\nLoading completed after $(elapsed(t0))")
