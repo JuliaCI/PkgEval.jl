@@ -3,6 +3,8 @@ include("common.jl")
 config = eval(Meta.parse(ARGS[1]))
 pkg = eval(Meta.parse(ARGS[2]))
 project = ARGS[3]
+# load and test jobs run in a temporary environment; seal and derive jobs keep the default one
+activate_job_env() = config.goal in (:load, :test) ? Pkg.activate(project) : Pkg.activate()
 
 suppress_pkg_output() do
     Pkg.activate("pkgeval"; shared=true)
@@ -18,16 +20,16 @@ if config.goal in (:test, :seal)
     try
         using TestEnv
         suppress_pkg_output() do
-            Pkg.activate()
+            activate_job_env()
             TestEnv.activate(pkg.name)
         end
     catch err
         @error "Failed to use TestEnv.jl; test dependencies will not be precompiled" exception=(err, catch_backtrace())
-        Pkg.activate()
+        activate_job_env()
     end
 else
     suppress_pkg_output() do
-        config.goal === :load ? Pkg.activate(project) : Pkg.activate()
+        activate_job_env()
     end
 end
 

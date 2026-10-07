@@ -69,9 +69,9 @@ if !isempty(deps)
     end
 end
 
-# like `Pkg.test`, load-only jobs use a temporary environment, so that their cache
-# files get a name unique to this job instead of overwriting other jobs' builds
-if config.goal === :load
+# load and test jobs use a temporary environment, like `Pkg.test` does, so that cache
+# files built here get a name unique to this job instead of overwriting other jobs' builds
+if config.goal in (:load, :test)
     Pkg.activate(; temp=true)
 end
 
