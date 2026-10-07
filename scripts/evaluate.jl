@@ -162,15 +162,19 @@ finally
     end
 end
 
-# ensure the package has a test/runtests.jl file, so we can bail out quicker.
-# only meaningful (and only *computable*) for test goals: an extension unit
-# under :derive is not in the load path, so find_package returns nothing
-if config.goal === :test
+# a package without a test/runtests.jl file can't be tested, but it can still be
+# precompiled and loaded, which catches a Julia change breaking it. only meaningful
+# (and only *computable*) for test goals: an extension unit under :derive is not in
+# the load path, so find_package returns nothing
+goal = config.goal
+if goal === :test
     src = Base.find_package(pkg.name)
     runtests = src === nothing ? nothing :
                joinpath(dirname(src), "..", "test", "runtests.jl")
     if runtests === nothing || !isfile(runtests)
-        error("Package $(pkg.name) did not provide a `test/runtests.jl` file")
+        println("\nPackage $(pkg.name) has no `test/runtests.jl` file; loading it instead of testing.")
+        goal = :load
+        write("/output/goal", repr(goal))
     end
 end
 
@@ -188,7 +192,7 @@ if is_stdlib
 end
 
 
-if (config.precompile || config.goal in (:seal, :derive)) && !is_stdlib
+if (config.precompile || goal in (:seal, :derive)) && !is_stdlib
 print("\n\n", '#'^80, "\n# Precompilation\n#\n\n")
 
 # we run with JULIA_PKG_PRECOMPILE_AUTO=0 to avoid precompiling on Pkg.add,
@@ -226,7 +230,7 @@ end
 end
 
 
-if config.goal === :load
+if goal === :load
 print("\n\n", '#'^80, "\n# Loading\n#\n\n")
 
 t0 = cpu_time()
@@ -253,7 +257,7 @@ end
 end
 
 
-if config.goal === :test
+if goal === :test
 print("\n\n", '#'^80, "\n# Testing\n#\n\n")
 
 t0 = cpu_time()
