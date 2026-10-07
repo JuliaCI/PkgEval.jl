@@ -180,6 +180,19 @@ end
     end
 end
 
+@testset "packages without tests" begin
+    # AlgebraicInterfaces v0.1.4 has no test/runtests.jl and no dependencies:
+    # it can't be tested, so it is precompiled and loaded instead
+    let results = evaluate([config],
+                           [Package(; name="AlgebraicInterfaces", version=v"0.1.4")];
+                           echo=true, validate=false)
+        @test size(results, 1) == 1
+        @test results[1, :status] == :load
+        @test results[1, :reason] === missing
+        @test contains(results[1, :log], "loading it instead of testing")
+    end
+end
+
 if julia_version >= v"1.10.0-DEV.204" || v"1.9.0-alpha1.55" <= julia_version < v"1.10-"
 @testset "package precompilation" begin
     let config = Configuration(config; julia_args=["--pkgimages=yes"])

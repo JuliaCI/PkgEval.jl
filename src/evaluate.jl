@@ -370,6 +370,7 @@ function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=t
         # parse structured output
         output = Dict()
         for (entry, type, default) in [("installed", Bool, false),
+                                       ("goal", Symbol, config.goal),
                                        ("version", Union{Nothing,VersionNumber}, missing),
                                        ("duration", Float64, 0.0),
                                        ("input_output", Int, 0),
@@ -394,6 +395,10 @@ function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=t
 
         # log the status and reason
         @assert status in [config.goal, :crash, :fail, :kill]
+        ## a package without tests is loaded instead of tested, so its success is a load
+        if status === config.goal
+            status = output["goal"]
+        end
         ## HACK: sometimes Julia (or the container) fails to exit, even though we finished
         ##       testing, resulting in an inactivity kill. similarly, an evaluation can
         ##       finish during the time limit's SIGUSR1 grace window, i.e., after the kill
@@ -419,9 +424,6 @@ function evaluate_package(config::Configuration, pkg::Package; use_cache::Bool=t
             if !output["installed"]
                 status = :skip
                 reason = :uninstallable
-            elseif occursin("Package $(pkg.name) did not provide a `test/runtests.jl` file", log)
-                status = :skip
-                reason = :untestable
             end
             ## e.g. testing might have succeeded but there may have been an internal error
             if occursin("GC error (probable corruption)", log)
