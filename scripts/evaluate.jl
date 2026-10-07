@@ -70,7 +70,7 @@ if !isempty(deps)
 end
 
 # load and test jobs use a temporary environment, like `Pkg.test` does, so that cache
-# files built here get a name unique to this job instead of overwriting other jobs' builds
+# files built here get a name unique to this job instead of colliding with other jobs' builds
 if config.goal in (:load, :test)
     Pkg.activate(; temp=true)
 end
