@@ -44,7 +44,10 @@ end
             """)
         client = joinpath(dirname(@__DIR__), "scripts", "cache_client.jl")
         script = joinpath(@__DIR__, "cache_client_extcycle.jl")
-        out = read(`$(Base.julia_cmd()) --startup-file=no $script $client $dir`, String)
+        # the client script only needs stdlibs, which the test environment may not expose
+        cmd = addenv(`$(Base.julia_cmd()) --startup-file=no $script $client $dir`,
+                     "JULIA_LOAD_PATH" => "@stdlib")
+        out = read(cmd, String)
         @test out == "keyed tainted"
     end
 end
