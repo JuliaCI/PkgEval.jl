@@ -19,4 +19,10 @@ function keys_in_order(names)
 end
 # keying must not depend on which extension the driver reaches first
 ab, ba = keys_in_order(["ExtA", "ExtB"]), keys_in_order(["ExtB", "ExtA"])
-print(any(isnothing, values(ab)) ? "unkeyable" : ab == ba ? "keyed" : "order-dependent")
+result = any(isnothing, values(ab)) ? "unkeyable" : ab == ba ? "keyed" : "order-dependent"
+# a locally compiled extension must still make the contexts it loads into
+# non-canonical, so they are neither published nor held for
+@eval C dep_build_id(id::Base.PkgId) = (; build_id=UInt128(1), canonical=!startswith(id.name, "Ext"))
+empty!(C.CTX_CACHE)
+ctx = C._build_ext_context(ext("ExtA"), env, Set{Base.UUID}())
+print(result, ctx !== nothing && !ctx.canonical ? " tainted" : " untainted")

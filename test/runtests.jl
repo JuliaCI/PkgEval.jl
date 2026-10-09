@@ -45,7 +45,7 @@ end
         client = joinpath(dirname(@__DIR__), "scripts", "cache_client.jl")
         script = joinpath(@__DIR__, "cache_client_extcycle.jl")
         out = read(`$(Base.julia_cmd()) --startup-file=no $script $client $dir`, String)
-        @test out == "keyed"
+        @test out == "keyed tainted"
     end
 end
 

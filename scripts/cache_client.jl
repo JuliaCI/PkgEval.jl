@@ -243,16 +243,9 @@ function _build_context_uncached(uuid::Base.UUID, env, stack::Set{Base.UUID})
                      build_id=UInt128(bid.build_id), version=String(dep_version),
                      key=dep_ctx === nothing ? "-" : dep_ctx.key))
     end
-    for ext_id in _implied_extensions([uuid], env; skip_parent=uuid)
-        bid = dep_build_id(ext_id)
-        bid === nothing && return nothing   # ext not compiled yet: retry later
-        canonical &= bid.canonical
-        # an extension is pinned by its build_id alone: keying it as well would
-        # recurse forever between two extensions that each load during the
-        # other's compile, and any cut makes the keys depend on keying order
-        push!(deps, (; uuid=string(ext_id.uuid), name=ext_id.name,
-                     build_id=UInt128(bid.build_id), version="-", key="-"))
-    end
+    ext_canonical = push_implied_extensions!(deps, _implied_extensions([uuid], env; skip_parent=uuid))
+    ext_canonical === nothing && return nothing
+    canonical &= ext_canonical
     sort!(deps; by=d -> d.uuid)
 
     flags = _cache_flags()
@@ -383,6 +376,22 @@ function _implied_extensions(roots::Vector{Base.UUID}, env;
     return implied
 end
 
+# An extension is pinned by its build_id alone: keying it as well would recurse
+# forever between two extensions that each load during the other's compile, and
+# any cut makes the keys depend on keying order. Returns whether every one is
+# canonical, or `nothing` while one is not compiled yet (retry later).
+function push_implied_extensions!(deps, ext_ids::Vector{Base.PkgId})
+    canonical = true
+    for ext_id in ext_ids
+        bid = dep_build_id(ext_id)
+        bid === nothing && return nothing
+        canonical &= bid.canonical
+        push!(deps, (; uuid=string(ext_id.uuid), name=ext_id.name,
+                     build_id=UInt128(bid.build_id), version="-", key="-"))
+    end
+    return canonical
+end
+
 # kept symmetric-by-construction: both sides run this same code in the
 # same resolved environment, so a degenerate value only costs fetch
 # precision, never a wrong hit (the loader revalidates prefs itself)
@@ -453,15 +462,10 @@ function _build_ext_context(pkg::Base.PkgId, env, stack::Set{Base.UUID})
                      build_id=UInt128(bid.build_id), version=String(dep_version),
                      key=dep_ctx === nothing ? "-" : dep_ctx.key))
     end
-    for ext_id in _implied_extensions([id.uuid for id in dep_ids], env;
-                                      skip_ext=pkg.uuid)
-        bid = dep_build_id(ext_id)
-        bid === nothing && return nothing
-        canonical &= bid.canonical
-        # pinned by build_id alone, as in package contexts
-        push!(deps, (; uuid=string(ext_id.uuid), name=ext_id.name,
-                     build_id=UInt128(bid.build_id), version="-", key="-"))
-    end
+    ext_canonical = push_implied_extensions!(deps,
+        _implied_extensions([id.uuid for id in dep_ids], env; skip_ext=pkg.uuid))
+    ext_canonical === nothing && return nothing
+    canonical &= ext_canonical
     sort!(deps; by=d -> d.uuid)
 
     flags = _cache_flags()
