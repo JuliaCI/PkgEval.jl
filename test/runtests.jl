@@ -28,6 +28,30 @@ cgroup_controllers = PkgEval.get_cgroup_controllers()
     @test PkgEval.parse_kernel_version("4.18.0-553.60.1.el8_10.x86_64") == v"4.18.0"
 end
 
+@testset "cache client: extensions that imply each other" begin
+    mktempdir() do dir
+        mkpath(joinpath(dir, "src"))
+        write(joinpath(dir, "src", "P.jl"), "module P end")
+        write(joinpath(dir, "Project.toml"), """
+            name = "P"
+            uuid = "c0ffee00-0000-0000-0000-000000000001"
+            [deps]
+            A = "c0ffee00-0000-0000-0000-000000000002"
+            B = "c0ffee00-0000-0000-0000-000000000003"
+            [extensions]
+            ExtA = "A"
+            ExtB = "B"
+            """)
+        client = joinpath(dirname(@__DIR__), "scripts", "cache_client.jl")
+        script = joinpath(@__DIR__, "cache_client_extcycle.jl")
+        # the client script only needs stdlibs, which the test environment may not expose
+        cmd = addenv(`$(Base.julia_cmd()) --startup-file=no $script $client $dir`,
+                     "JULIA_LOAD_PATH" => "@stdlib")
+        out = read(cmd, String)
+        @test out == "keyed tainted"
+    end
+end
+
 @testset "Registry" begin
     version_entry(version, yanked=false) =
         VersionNumber(version) =>
