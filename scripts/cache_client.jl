@@ -247,10 +247,11 @@ function _build_context_uncached(uuid::Base.UUID, env, stack::Set{Base.UUID})
         bid = dep_build_id(ext_id)
         bid === nothing && return nothing   # ext not compiled yet: retry later
         canonical &= bid.canonical
-        ext_ctx = _build_ext_context(ext_id, env, stack)
+        # an extension is pinned by its build_id alone: keying it as well would
+        # recurse forever between two extensions that each load during the
+        # other's compile, and any cut makes the keys depend on keying order
         push!(deps, (; uuid=string(ext_id.uuid), name=ext_id.name,
-                     build_id=UInt128(bid.build_id), version="-",
-                     key=ext_ctx === nothing ? "-" : ext_ctx.key))
+                     build_id=UInt128(bid.build_id), version="-", key="-"))
     end
     sort!(deps; by=d -> d.uuid)
 
@@ -457,10 +458,9 @@ function _build_ext_context(pkg::Base.PkgId, env, stack::Set{Base.UUID})
         bid = dep_build_id(ext_id)
         bid === nothing && return nothing
         canonical &= bid.canonical
-        ext_ctx = ext_id.uuid == pkg.uuid ? nothing : _build_ext_context(ext_id, env, stack)
+        # pinned by build_id alone, as in package contexts
         push!(deps, (; uuid=string(ext_id.uuid), name=ext_id.name,
-                     build_id=UInt128(bid.build_id), version="-",
-                     key=ext_ctx === nothing ? "-" : ext_ctx.key))
+                     build_id=UInt128(bid.build_id), version="-", key="-"))
     end
     sort!(deps; by=d -> d.uuid)
 
