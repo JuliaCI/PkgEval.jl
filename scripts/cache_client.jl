@@ -30,6 +30,10 @@ const FETCH_DEADLINE = something(tryparse(Float64,
 # produced preimage references canonical build_ids), anything else 404s
 # immediately instead of holding
 const NOHOLD = get(ENV, "PKGEVAL_CACHE_NOHOLD", "0") == "1"
+# names this evaluation to the proxy, which accounts the time its fetches are
+# held so the caller can leave that time out of the evaluation's time limit
+const JOB = filter(c -> isletter(c) || isdigit(c) || c == '-',
+                   get(ENV, "PKGEVAL_CACHE_JOB", ""))
 
 ## minimal HTTP/1.1 over a TCP socket: the server is a loopback proxy the
 ## worker runs; a watchdog timer bounds every exchange so a wedged proxy can
@@ -515,9 +519,16 @@ function fetch_hook(pkg::Base.PkgId, sourcepath::String)
     # sandbox, so no derivation can ever produce the wanted key — holding
     # would wait out a full derivation for a guaranteed 404.
     nohold = NOHOLD || !ctx.canonical
+    started = time()
     resp = http_request("POST", "/ensure/v2/$NAMESPACE",
                         Vector{UInt8}(codeunits(ctx.canon)); deadline=FETCH_DEADLINE,
-                        headers=nohold ? "X-Nohold: 1\r\n" : "")
+                        headers=(nohold ? "X-Nohold: 1\r\n" : "") *
+                                (isempty(JOB) ? "" : "X-PkgEval-Job: $JOB\r\n") *
+                                # so the proxy stops holding (and counting) about when we give up
+                                (FETCH_DEADLINE < 86400 ? "X-PkgEval-Deadline: $FETCH_DEADLINE\r\n" : ""))
+    # a fetch the proxy held shows up in the log with how long it waited
+    waited = time() - started
+    waited_note = waited >= 5 ? " waited=$(round(Int, waited))s" : ""
     if resp === nothing || resp[1] != 200
         MISSES[] += 1
         lines = split(ctx.canon, '\n')
@@ -525,7 +536,7 @@ function fetch_hook(pkg::Base.PkgId, sourcepath::String)
         println(stderr, "[cache_client] miss: ", pkg.name, " uuid=", ctx.uuid, " key=", ctx.key,
                 prefsline == 0 ? "" : " " * lines[prefsline],
                 resp === nothing ? " (no response)" : " (status $(resp[1]))",
-                !NOHOLD && !ctx.canonical ? " probe=local-deps" : "")
+                !NOHOLD && !ctx.canonical ? " probe=local-deps" : "", waited_note)
         return false
     end
     payload = resp[2]
@@ -547,7 +558,7 @@ function fetch_hook(pkg::Base.PkgId, sourcepath::String)
     len_so > 0 && write(stem * ".$(Base.Libc.Libdl.dlext)",
                         payload[17+len_ji:16+len_ji+len_so])
     HITS[] += 1
-    println(stderr, "[cache_client] hit: ", pkg.name, " key=", first(ctx.key, 12))
+    println(stderr, "[cache_client] hit: ", pkg.name, " key=", first(ctx.key, 12), waited_note)
     return true
 end
 
