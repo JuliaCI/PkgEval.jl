@@ -246,6 +246,23 @@ end
               contains(results[1, :log], "PkgEval terminated, but package had successfully tested")
     end
 
+    @testset "held time" begin
+        # time the caller reports as held is added to the time limit
+        let config = Configuration(config; time_limit=5.)
+            held_since = time()
+            result = PkgEval.evaluate_script(config, "sleep(10)";
+                                             held_time=() -> time() - held_since)
+            @test result.status !== :kill
+            result = PkgEval.evaluate_script(config, "sleep(10)"; held_time=() -> 2.0)
+            @test result.status === :kill && result.reason === :time_limit
+            # held time beyond the cap does not extend the limit
+            held_since = time()
+            result = PkgEval.evaluate_script(config, "sleep(10)"; max_held_time=2,
+                                             held_time=() -> time() - held_since)
+            @test result.status === :kill && result.reason === :time_limit
+        end
+    end
+
     @testset "log limit" begin
         results = evaluate([Configuration(config; log_limit=1)],
                            [Package(; name="Example")];

@@ -110,18 +110,33 @@ function ensure_tempdisk_space()
     return
 end
 
+function call_held_time(held_time)
+    try
+        Float64(held_time())
+    catch err
+        @error "held time callback failed" exception=(err, catch_backtrace())
+        nothing
+    end
+end
+
 """
     evaluate_script(config::Configuration, script::String, args=``)
 
 Run a Julia script `script` in non-interactive mode, returning the process status and a
 failure reason if any (both represented by a symbol), and the full log.
 
+`held_time`, if given, is a function returning how many seconds the caller's infrastructure
+has kept the evaluation waiting so far (e.g. cache fetches held by a proxy). Up to
+`max_held_time` seconds of what it reports during this call are added to the time limit,
+and the inactivity check ignores intervals in which it grew.
+
 Refer to `sandboxed_julia`[@ref] for more possible `keyword arguments.
 """
 function evaluate_script(config::Configuration, script::String, args=``;
                          env::Dict{String,String}=Dict{String,String}(),
                          mounts::Dict{String,String}=Dict{String,String}(),
-                         echo::Bool=false, kwargs...)
+                         echo::Bool=false, held_time=nothing,
+                         max_held_time::Real=Inf, kwargs...)
     @assert config.log_limit > 0
 
     env = merge(env, Dict(
@@ -164,10 +179,27 @@ function evaluate_script(config::Configuration, script::String, args=``;
 
     status = nothing
     reason = missing
+    started = time()
+    # a failing callback must not stop the time limit from being enforced
+    held_total() = held_time === nothing ? 0.0 : something(call_held_time(held_time), 0.0)
+    # only what is held during this evaluation counts, e.g. not an earlier one of the
+    # same package
+    held_before = held_total()
+    held() = held_total() - held_before
+    finished = Ref(false)
 
-    # kill on timeout
-    timeout_monitor = Timer(config.time_limit[]) do timer
+    # kill on timeout; time spent held is not the package's, so the deadline
+    # moves out by however much has been held by the time it is reached
+    timeout_monitor = Ref{Timer}()
+    function on_timeout(timer)
         process_running(proc) || return
+        remaining = started + config.time_limit[] + min(held(), max_held_time) - time()
+        if remaining >= 1
+            # no yield between the check and the store, so the cleanup below
+            # either sees this timer or stops it from being created
+            finished[] || (timeout_monitor[] = Timer(on_timeout, remaining))
+            return
+        end
         status = :kill
         reason = :time_limit
 
@@ -183,18 +215,23 @@ function evaluate_script(config::Configuration, script::String, args=``;
         # then kill the process
         stop()
     end
+    timeout_monitor[] = Timer(on_timeout, config.time_limit[])
 
     # kill on inactivity. Evaluations connected to the compile-cache protocol
     # legitimately idle for minutes at a time (blocked in fetches the proxy
     # holds while a dependency's derivation completes), so their windows are
-    # wide — the configuration's time limit remains the hard bound.
+    # wide — the time limit (plus any held time it allows) remains the hard bound.
     inactivity_interval = (config.goal in (:seal, :derive) ||
                            !isempty(get(env, "PKGEVAL_CACHE_SERVER", ""))) ? 1200 : 300
     previous_cpu_time = missing
     previous_io_bytes = missing
+    previous_held = held()
     inactivity_monitor = Timer(inactivity_interval; interval=inactivity_interval) do timer
         process_running(proc) || return
         pid = getpid(proc)
+        current_held = held()
+        was_held = current_held > previous_held
+        previous_held = current_held
 
         # check CPU usage: less than 1 second of CPU time is considered inactive
         cpu_inactive = missing
@@ -218,7 +255,7 @@ function evaluate_script(config::Configuration, script::String, args=``;
         else
             cpu_inactive === true && io_inactive === true
         end
-        if inactive
+        if inactive && !was_held
             status = :kill
             reason = :inactivity
 
@@ -260,7 +297,8 @@ function evaluate_script(config::Configuration, script::String, args=``;
         status = :kill
     finally
         # make sure we don't leave any stray timers running
-        close(timeout_monitor)
+        finished[] = true
+        close(timeout_monitor[])
         close(inactivity_monitor)
     end
     log = fetch(log_monitor)
