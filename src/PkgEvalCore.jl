@@ -76,6 +76,9 @@ Base.@kwdef struct Configuration
     # execution properties
     ## a list of environment variables to set in the sandbox
     env::Setting{Vector{String}} = Default(String[])
+    ## a list of bind-mount specs `src:dst[:ro|:rw]`
+    ##`src` is a host path. `dst` is the path inside the sandbox.
+    bind::Setting{Vector{String}} = Default(String[])
     ## a list of CPUs to restrict the Julia process to (or empty if unconstrained).
     cpus::Setting{Vector{Int}} = Default(Int[])
     ## how many threads the Julia process should use
