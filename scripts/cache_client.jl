@@ -264,12 +264,25 @@ function _build_context_uncached(uuid::Base.UUID, env, stack::Set{Base.UUID})
                   "tree=$tree",
                   "flags=$flags",
                   "prefs=$prefs",
+                  "cpu=$(_cpu_class())",
                   ("dep=$(d.uuid):$(string(d.build_id, base=16)):$(d.version):$(d.key)"
                    for d in deps)...], "\n")
     # canonical is metadata for the hold decision, never part of the canon
     # string: taint must not shift published keys
     return (; key=bytes2hex(SHA.sha256(canon)), canon, uuid=string(uuid), name,
             version=String(string(version)), deps, canonical)
+end
+
+# Packages see the real host CPU while they precompile, whatever the code
+# target: JLL wrappers pick their artifact (e.g. an AVX-512 build) and
+# HostCPUFeatures fixes its feature constants then. So a cache file only fits
+# hosts of the same CPU type, and the canon names it. The features hash tells
+# apart hosts whose hypervisor hides some features of the same CPU.
+_cpu_class() = try
+    features = ccall(:jl_get_cpu_features, Any, ())::String
+    string(Sys.CPU_NAME, ":", first(bytes2hex(SHA.sha256(features)), 12))
+catch
+    String(Sys.CPU_NAME)
 end
 
 # The pkgimages flag is masked out of the canon: it describes the artifact
@@ -485,6 +498,7 @@ function _build_ext_context(pkg::Base.PkgId, env, stack::Set{Base.UUID})
                   "tree=$tree",
                   "flags=$flags",
                   "prefs=$prefs",
+                  "cpu=$(_cpu_class())",
                   ("dep=$(d.uuid):$(string(d.build_id, base=16)):$(d.version):$(d.key)"
                    for d in deps)...], "\n")
     ctx = (; key=bytes2hex(SHA.sha256(canon)), canon, uuid=string(pkg.uuid),
