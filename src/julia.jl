@@ -121,6 +121,36 @@ function resolve_commit(repo::AbstractString, ref::AbstractString)
     end
 end
 
+# Evaluations run with `--check-bounds=yes`. Since JuliaLang/julia#60054, CI ships the stdlib
+# pkgimages for that setting in a companion archive. Without it, every evaluation precompiles
+# the stdlibs first. Older builds have no companion and bundle the pkgimages themselves.
+function add_checkbounds_pkgimages!(install::String, url::String, filepath::String)
+    url = replace(url, r"\.tar\.gz$" => ".checkbounds.tar.gz")
+    filepath = replace(filepath, r"\.tar\.gz$" => ".checkbounds.tar.gz")
+    try
+        isfile(filepath) || Downloads.download(url, filepath)
+    catch err
+        @debug "No bounds-checked stdlib pkgimages at $url" err
+        return
+    end
+    dir = mktempdir(prefix="pkgeval_checkbounds_")
+    try
+        Pkg.PlatformEngines.unpack(filepath, dir)
+        # the cache files are named apart from the bundled ones, so they merge into that depot
+        for (root, _, files) in walkdir(dir), file in files
+            dest = joinpath(install, relpath(joinpath(root, file), dir))
+            mkpath(dirname(dest))
+            mv(joinpath(root, file), dest; force=true)
+        end
+    catch err
+        @warn "Could not unpack bounds-checked stdlib pkgimages from $url" err
+        rm(filepath; force=true)
+    finally
+        rm(dir; recursive=true, force=true)
+    end
+    return
+end
+
 function get_julia_staged(config::Configuration)
     Sys.islinux() || return nothing
     variant = staged_variant(config)
@@ -153,7 +183,9 @@ function get_julia_staged(config::Configuration)
             continue
         end
         @debug "Using CI build for $repo#$ref: $url"
-        return only(readdir(dir; join=true))
+        install = only(readdir(dir; join=true))
+        add_checkbounds_pkgimages!(install, url, filepath)
+        return install
     end
     return nothing
 end
@@ -262,6 +294,8 @@ function build_julia!(config::Configuration, checkout::String)
     # Define a Make.user
     open("$checkout/Make.user", "w") do io
         println(io, "JULIA_BINARYDIST_FILENAME=julia")
+        # bundle the stdlib pkgimages for `--check-bounds=yes` (JuliaLang/julia#60054)
+        println(io, "JULIA_CHECK_BOUNDS_PKGIMAGES=1")
 
         for flag in config.buildflags
             println(io, "override $flag")
