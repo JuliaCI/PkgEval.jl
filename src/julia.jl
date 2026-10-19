@@ -22,7 +22,9 @@ function get_julia_nightly()
     dir = mktempdir(prefix="pkgeval_julia_")
     Pkg.PlatformEngines.download_verify_unpack(url, nothing, dir;
                                                ignore_existence=true)
-    return only(readdir(dir; join=true))
+    install = only(readdir(dir; join=true))
+    add_nightly_checkbounds_pkgimages!(install)
+    return install
 end
 
 function get_julia_release(config::Configuration)
@@ -83,7 +85,9 @@ function get_julia_release(config::Configuration)
     Pkg.PlatformEngines.download_verify_unpack(file["url"], file["sha256"], dir;
                                                 tarball_path=filepath, force=true,
                                                 ignore_existence=true)
-    return only(readdir(dir; join=true))
+    install = only(readdir(dir; join=true))
+    add_release_checkbounds_pkgimages!(install, String(file["url"]), version_spec)
+    return install
 end
 
 # Julia CI stages every build to a public, commit-addressed S3 bucket -- the same
@@ -121,33 +125,78 @@ function resolve_commit(repo::AbstractString, ref::AbstractString)
     end
 end
 
-# Evaluations run with `--check-bounds=yes`. Since JuliaLang/julia#60054, CI ships the stdlib
-# pkgimages for that setting in a companion archive. Without it, every evaluation precompiles
-# the stdlibs first. Older builds have no companion and bundle the pkgimages themselves.
-function add_checkbounds_pkgimages!(install::String, url::String, filepath::String)
-    url = replace(url, r"\.tar\.gz$" => ".checkbounds.tar.gz")
-    filepath = replace(filepath, r"\.tar\.gz$" => ".checkbounds.tar.gz")
-    try
-        isfile(filepath) || Downloads.download(url, filepath)
-    catch err
-        @debug "No bounds-checked stdlib pkgimages at $url" err
-        return
-    end
+# Evaluations run with `--check-bounds=yes`. Since JuliaLang/julia#60054, builds ship the stdlib
+# pkgimages for that setting in a companion archive next to the Julia tarball. Without it, every
+# evaluation precompiles the stdlibs first. Builds from before that bundle the pkgimages themselves.
+checkbounds_name(tarball::AbstractString) = replace(tarball, r"\.tar\.gz$" => ".checkbounds.tar.gz")
+
+"Merge the stdlib pkgimages of a companion archive into the bundled depot of `install`."
+function merge_checkbounds_pkgimages!(install::String, tarball::String)
     dir = mktempdir(prefix="pkgeval_checkbounds_")
     try
-        Pkg.PlatformEngines.unpack(filepath, dir)
-        # the cache files are named apart from the bundled ones, so they merge into that depot
+        Pkg.PlatformEngines.unpack(tarball, dir)
+        # the cache files are named apart from the bundled ones, as in a build with both sets
         for (root, _, files) in walkdir(dir), file in files
             dest = joinpath(install, relpath(joinpath(root, file), dir))
             mkpath(dirname(dest))
             mv(joinpath(root, file), dest; force=true)
         end
     catch err
-        @warn "Could not unpack bounds-checked stdlib pkgimages from $url" err
-        rm(filepath; force=true)
+        @warn "Could not unpack bounds-checked stdlib pkgimages from $tarball" err
+        rm(tarball; force=true)
     finally
         rm(dir; recursive=true, force=true)
     end
+    return
+end
+
+"Download the companion archive at `url` (verified against `hash`, if given) and merge it."
+function add_checkbounds_pkgimages!(install::String, url::String;
+                                    hash::Union{Nothing,String}=nothing)
+    filepath = joinpath(download_dir, basename(url))
+    try
+        if hash === nothing
+            isfile(filepath) || Downloads.download(url, filepath)
+        else
+            Pkg.PlatformEngines.download_verify(url, hash, filepath)
+        end
+    catch err
+        @debug "No bounds-checked stdlib pkgimages at $url" err
+        return
+    end
+    merge_checkbounds_pkgimages!(install, filepath)
+end
+
+# A nightly is looked up by its commit, as `julia-latest` may already be a newer build.
+function add_nightly_checkbounds_pkgimages!(install::String)
+    commit = match(r"^julia-([0-9a-f]{10})$", basename(install))
+    header = joinpath(install, "include", "julia", "julia_version.h")
+    (commit === nothing || !isfile(header)) && return
+    version = match(r"JULIA_VERSION_STRING \"(\d+)\.(\d+)\.", read(header, String))
+    version === nothing && return
+    arch = string(Sys.ARCH)
+    add_checkbounds_pkgimages!(install,
+        "https://julialangnightlies-s3.julialang.org/bin/linux/$arch/$(version[1]).$(version[2])/" *
+        "julia-$(commit[1])-linux-$arch.checkbounds.tar.gz")
+end
+
+# A release's companion is listed, with its hash, in the release's checksum file.
+function add_release_checkbounds_pkgimages!(install::String, url::String, version::VersionNumber)
+    version >= v"1.14.0-" || return
+    name = checkbounds_name(basename(url))
+    checksums = try
+        sprint(io -> Downloads.download(
+            "https://julialang-s3.julialang.org/bin/checksums/julia-$version.sha256", io))
+    catch err
+        @debug "No checksums for Julia $version" err
+        return
+    end
+    for line in eachline(IOBuffer(checksums))
+        parts = split(line)
+        length(parts) == 2 && parts[2] == name || continue
+        return add_checkbounds_pkgimages!(install, checkbounds_name(url); hash=String(parts[1]))
+    end
+    @debug "No bounds-checked stdlib pkgimages listed for $name"
     return
 end
 
@@ -184,7 +233,7 @@ function get_julia_staged(config::Configuration)
         end
         @debug "Using CI build for $repo#$ref: $url"
         install = only(readdir(dir; join=true))
-        add_checkbounds_pkgimages!(install, url, filepath)
+        add_checkbounds_pkgimages!(install, checkbounds_name(url))
         return install
     end
     return nothing
@@ -231,14 +280,29 @@ function get_julia_build(config)
         @debug "No artifacts found for $repo@$ref"
         return nothing
     end
-    artifact = first(artifacts)
+    # the build job also uploads the companion of bounds-checked stdlib pkgimages
+    i = findfirst(a -> !endswith(a.path, ".checkbounds.tar.gz"), artifacts)
+    if i === nothing
+        @debug "No Julia artifact found for $repo@$ref"
+        return nothing
+    end
+    artifact = artifacts[i]
 
     # download and extract to a temporary directory
     @debug "Found a matching artifact for $repo#$ref: $(artifact.url)"
     filepath = download(artifact)
     dir = mktempdir(prefix="pkgeval_julia_")
     Pkg.PlatformEngines.unpack(filepath, dir)
-    return only(readdir(dir; join=true))
+    install = only(readdir(dir; join=true))
+    j = findfirst(a -> a.path == checkbounds_name(artifact.path), artifacts)
+    if j !== nothing
+        try
+            merge_checkbounds_pkgimages!(install, download(artifacts[j]))
+        catch err
+            @warn "Could not download bounds-checked stdlib pkgimages from $(artifacts[j].url)" err
+        end
+    end
+    return install
 end
 
 # to get closer to CI-generated binaries, use a multiversioned build
