@@ -202,6 +202,23 @@ end
         @test results[1, :status] == :test
         @test contains(results[1, :log], "https://github.com/JuliaLang/Example.jl#master")
     end
+
+    # a skip-listed package is evaluated when the skip list is disabled
+    push!(PkgEval.skip_list, "Example")
+    try
+        results = evaluate([Configuration(config; goal=:load)],
+                           [Package(; name="Example")];
+                           echo=true, validate=false)
+        @test results[1, :status] == :skip
+        @test results[1, :reason] == :blacklisted
+
+        results = evaluate([Configuration(config; goal=:load)],
+                           [Package(; name="Example")];
+                           echo=true, validate=false, use_skip_list=false)
+        @test results[1, :status] == :load
+    finally
+        pop!(PkgEval.skip_list)
+    end
 end
 
 @testset "packages without tests" begin
