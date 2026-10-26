@@ -18,7 +18,6 @@ skip = [
     "UnitfulRecipes",       # deprecated, merged into Plots; installs an ancient GR (JuliaCI/PkgEval.jl#263, 2024)
 
     # requires binaries
-    "MATLAB",               # needs a MATLAB installation (JuliaCI/PkgEval.jl#83, 2021)
     "MATLABDiffEq",         # needs a MATLAB installation (JuliaCI/PkgEval.jl#83, 2021)
     "deSolveDiffEq",        # needs R with the deSolve package (JuliaCI/PkgEval.jl#83, 2021)
     "FEniCS",               # needs FEniCS from Conda or Docker (JuliaCI/PkgEval.jl#83, 2021)
@@ -38,8 +37,6 @@ skip = [
     # using a Cassette pass that generates invalid IR
     "Traceur",              # Cassette pass generates invalid IR (JunoLab/Traceur.jl#51, JuliaLang/julia#47687, 2023)
     "IBMQJulia",            # Cassette pass generates invalid IR (Sov-trotter/IBMQJulia.jl#27, JuliaLang/julia#47687, 2023)
-    # using overly complex types/tuples
-    "Salsa",                # overly complex types caused a compiler internal error (julia-vscode/Salsa.jl#42, 2023)
     # sleep precision tests with tight upper bound
     "LoopThrottle",         # flaky sleep timing tests, unmaintained (JuliaCI/PkgEval.jl#228, 2023)
     # generating malformed IR
@@ -49,7 +46,6 @@ skip = [
     # generating way too much output
     "OptimKit",             # test output goes over the log size limit (Jutho/OptimKit.jl#14, 2024)
     # unsafe pointer handling
-    "OIFITS",               # used FITSIO, which handled pointers unsafely (JuliaAstro/FITSIO.jl#194, 2024)
     "ScanByte",             # invalid pointer use segfaults since 1.11 (JuliaCI/PkgEval.jl#277, 2024)
 
     # requires specific environment
@@ -57,7 +53,6 @@ skip = [
     "AWSCRT",               # tests need an AWS IoT endpoint and credentials (JuliaCI/PkgEval.jl@a5012915, 2022)
     "AWSTools",             # tests need AWS credentials (JuliaCI/PkgEval.jl@a5012915, 2022)
     "LibAWSCRT",            # tests need AWS credentials (JuliaCI/PkgEval.jl@44722f20, 2023)
-    "AWS",                  # tests need AWS credentials (JuliaCI/PkgEval.jl@a0bad5db, 2024)
     "GPUInspector",         # needs a CUDA GPU (JuliaCI/PkgEval.jl@a5012915, 2022)
     "CUDA",                 # tests need a CUDA GPU (JuliaCI/PkgEval.jl@a5012915, 2022)
     "cuTENSOR",             # tests need a CUDA GPU (JuliaCI/PkgEval.jl@15807573, 2024)
