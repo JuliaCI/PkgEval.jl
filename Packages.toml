@@ -1,82 +1,76 @@
 skip = [
-    "julia",
-    "BugReporting", # nested rr is not supported
+    "julia",                # registered name for JuliaLang/julia itself, not a testable package (JuliaCI/PkgEval.jl@8cb0c9f6, 2018)
+    "BugReporting",         # its tests run rr, and nested rr is not supported (JuliaCI/PkgEval.jl#105, 2022)
 
     # deprecated
-    "NeuralNetDiffEq",
-    "DiffEqBiological",
-    "DiffEqMonteCarlo",
-    "DiffEqPDEBase",
-    "CUDAnative",
-    "CUDAatomics",
-    "CuArrays",
-    "CUDAdrv",
-    "CUDAapi",
-    "AMDGPUnative",
-    "ROCArrays",
-    "GPUifyLoops",
-    "UnitfulRecipes",
+    "NeuralNetDiffEq",      # deprecated, renamed NeuralPDE (JuliaCI/PkgEval.jl#83, 2021)
+    "DiffEqBiological",     # deprecated in favour of Catalyst (JuliaCI/PkgEval.jl#83, 2021)
+    "DiffEqMonteCarlo",     # deprecated, merged into DiffEqBase; repo archived (JuliaCI/PkgEval.jl#83, 2021)
+    "DiffEqPDEBase",        # deprecated; repo archived (JuliaCI/PkgEval.jl#83, 2021)
+    "CUDAnative",           # deprecated, merged into CUDA; repo archived (JuliaCI/PkgEval.jl#83, 2021)
+    "CUDAatomics",          # unmaintained since 2019, superseded by CUDA (JuliaCI/PkgEval.jl@a5012915, 2022)
+    "CuArrays",             # deprecated, merged into CUDA; repo archived (JuliaCI/PkgEval.jl#105, 2022)
+    "CUDAdrv",              # deprecated, merged into CUDA; repo archived (JuliaCI/PkgEval.jl#105, 2022)
+    "CUDAapi",              # deprecated, merged into CUDA; repo archived (JuliaCI/PkgEval.jl#105, 2022)
+    "AMDGPUnative",         # deprecated, merged into AMDGPU; repo archived (JuliaCI/PkgEval.jl@a5012915, 2022)
+    "ROCArrays",            # deprecated, merged into AMDGPU; repo archived (JuliaCI/PkgEval.jl@a5012915, 2022)
+    "GPUifyLoops",          # deprecated in favour of KernelAbstractions; repo archived (JuliaCI/PkgEval.jl@312324ab, 2022)
+    "UnitfulRecipes",       # deprecated, merged into Plots; installs an ancient GR (JuliaCI/PkgEval.jl#263, 2024)
 
     # requires binaries
-    "MATLAB",               # MATLAB
-    "MATLABDiffEq",         # MATLAB
-    "deSolveDiffEq",        # R
-    "FEniCS",               # Docker
-    "ClimateMachine",       # MPI
-    "MPI",                  # MPI
-    "BitemporalPostgres",   # POSTGRES
+    "MATLABDiffEq",         # needs a MATLAB installation (JuliaCI/PkgEval.jl#83, 2021)
+    "deSolveDiffEq",        # needs R with the deSolve package (JuliaCI/PkgEval.jl#83, 2021)
+    "FEniCS",               # needs FEniCS from Conda or Docker (JuliaCI/PkgEval.jl#83, 2021)
+    "ClimateMachine",       # needs a system MPI; repo archived (JuliaCI/PkgEval.jl#83, 2021)
+    "MPI",                  # tests launch jobs with mpiexec (JuliaCI/PkgEval.jl#83, 2021)
+    "BitemporalPostgres",   # needs a PostgreSQL server; repo archived (JuliaCI/PkgEval.jl#103, 2022)
 
     # doing bad things
-    # intentionally throwing a segfault
-    "Run",
+    "Run",                  # tests deliberately crash a child process with a signal (JuliaCI/PkgEval.jl@d4a2fd57, 2022)
     # crashes not caused by Julia
-    "ConnectFourSolver",    # artifact unsuited for julia#master
-    "Minuit2",              #
-    "Elemental",            # segfault in called library
-    "Starlight",            #
+    "ConnectFourSolver",    # prebuilt artifact does not work with Julia master (findmyway/ConnectFourSolver.jl#1, 2022)
+    "Minuit2",              # segfault in an outdated CxxWrap wrapper (JuliaHEP/Minuit2.jl#5, 2022)
+    "Elemental",            # segfault in libElemental (JuliaParallel/Elemental.jl#81, 2022)
+    "Starlight",            # crashes in its C libraries; repo since deleted (jhigginbotham64/Starlight.jl#38, 2022)
     # doing bad stuff during precompilation
-    "NewsLookout",          # writing to a file in the package dir
+    "NewsLookout",          # writes to a file in the package directory while precompiling (JuliaCI/PkgEval.jl@1c9fa827, 2023)
     # using a Cassette pass that generates invalid IR
-    "Traceur",
-    "IBMQJulia",
-    # using overly complex types/tuples
-    "Salsa",
+    "Traceur",              # Cassette pass generates invalid IR (JunoLab/Traceur.jl#51, JuliaLang/julia#47687, 2023)
+    "IBMQJulia",            # Cassette pass generates invalid IR (Sov-trotter/IBMQJulia.jl#27, JuliaLang/julia#47687, 2023)
     # sleep precision tests with tight upper bound
-    "LoopThrottle",
+    "LoopThrottle",         # flaky sleep timing tests, unmaintained (JuliaCI/PkgEval.jl#228, 2023)
     # generating malformed IR
-    "StrideArraysCore",
+    "StrideArraysCore",     # llvmcall IR fails an LLVM assertion (JuliaSIMD/StrideArraysCore.jl#46, 2024)
     # invoking APIs incorrectly
-    "CodeTransformation",
+    "CodeTransformation",   # calls jl_method_def with outdated arguments (perrutquist/CodeTransformation.jl#5, 2024)
     # generating way too much output
-    "OptimKit",
+    "OptimKit",             # test output goes over the log size limit (Jutho/OptimKit.jl#14, 2024)
     # unsafe pointer handling
-    "OIFITS",
-    "ScanByte",
+    "ScanByte",             # invalid pointer use segfaults since 1.11 (JuliaCI/PkgEval.jl#277, 2024)
 
     # requires specific environment
-    "AWSS3",                # AWS secrets
-    "AWSCRT",               #
-    "AWSTools",             #
-    "LibAWSCRT",            #
-    "AWS",                  #
-    "GPUInspector",         # GPU hardware
-    "CUDA",                 # CUDA hardware
-    "cuTENSOR",             #
-    "cuDNN",                #
-    "NCCL",                 #
-    "ArrayInterfaceCUDA",   #
-    "NNlibCUDA",            #
-    "BloqadeCUDA",          #
-    "FoldsCUDA",            #
-    "LinearSolveCUDA",      #
-    "cuTile",               #
-    "oneAPI",               # oneAPI hardware
-    "AMDGPU",               # AMD GPU hardware
-    "HSARuntime",
-    "AdalmPluto",           # SDR hardware
-    "RemoteHPC",            # server software
-    "Metal",                # Apple hardware
-    "ObjectiveC",           # macOS
+    "AWSS3",                # tests need AWS credentials (JuliaCI/PkgEval.jl@c24b3808, 2022)
+    "AWSCRT",               # tests need an AWS IoT endpoint and credentials (JuliaCI/PkgEval.jl@a5012915, 2022)
+    "AWSTools",             # tests need AWS credentials (JuliaCI/PkgEval.jl@a5012915, 2022)
+    "LibAWSCRT",            # tests need AWS credentials (JuliaCI/PkgEval.jl@44722f20, 2023)
+    "GPUInspector",         # needs a CUDA GPU (JuliaCI/PkgEval.jl@a5012915, 2022)
+    "CUDA",                 # tests need a CUDA GPU (JuliaCI/PkgEval.jl@a5012915, 2022)
+    "cuTENSOR",             # tests need a CUDA GPU (JuliaCI/PkgEval.jl@15807573, 2024)
+    "cuDNN",                # tests need a CUDA GPU (JuliaCI/PkgEval.jl@15807573, 2024)
+    "NCCL",                 # tests need CUDA GPUs (JuliaCI/PkgEval.jl@15807573, 2024)
+    "ArrayInterfaceCUDA",   # needs a CUDA GPU; deprecated, now an ArrayInterface extension (JuliaCI/PkgEval.jl@a5012915, 2022)
+    "NNlibCUDA",            # needs a CUDA GPU; deprecated, repo archived (JuliaCI/PkgEval.jl@a5012915, 2022)
+    "BloqadeCUDA",          # needs a CUDA GPU (JuliaCI/PkgEval.jl@a5012915, 2022)
+    "FoldsCUDA",            # needs a CUDA GPU (JuliaCI/PkgEval.jl@a5012915, 2022)
+    "LinearSolveCUDA",      # needs a CUDA GPU; deprecated, now a LinearSolve extension (JuliaCI/PkgEval.jl@a5012915, 2022)
+    "cuTile",               # needs a CUDA GPU and toolkit (JuliaCI/PkgEval.jl#308, 2026)
+    "oneAPI",               # tests need an Intel GPU (JuliaCI/PkgEval.jl@a5012915, 2022)
+    "AMDGPU",               # tests need an AMD GPU (JuliaCI/PkgEval.jl@a5012915, 2022)
+    "HSARuntime",           # needs an AMD GPU; deprecated, repo archived (JuliaCI/PkgEval.jl@9d3caa50, 2022)
+    "AdalmPluto",           # needs an ADALM-Pluto SDR device (JuliaCI/PkgEval.jl@3186bdc5, 2022)
+    "RemoteHPC",            # needs a running RemoteHPC server (JuliaCI/PkgEval.jl@ae4043ea, 2023)
+    "Metal",                # needs Apple silicon (JuliaCI/PkgEval.jl@f9e7bacd, 2023)
+    "ObjectiveC",           # tests need macOS (JuliaCI/PkgEval.jl@f9e7bacd, 2023)
 ]
 
 # packages that are incompatible with running under rr
