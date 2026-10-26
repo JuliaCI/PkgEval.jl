@@ -931,12 +931,16 @@ end
 
 """
     evaluate_job(config::Configuration, pkg::Package; use_cache::Bool=true,
-                 blacklist::Vector{String}=String[], kwargs...)
+                 blacklist::Vector{String}=String[], use_skip_list::Bool=true, kwargs...)
 
 Evaluate a single package `pkg` according to `config`, applying the same per-package
 adjustments as `evaluate` does (e.g., skipping blacklisted packages, or granting more time
 to packages that are known to be slow). This is useful for distributed operation, where
 single jobs are handed out to worker processes.
+
+Packages on the `skip` list in Packages.toml are not evaluated, and reported with status
+`:skip` and reason `:blacklisted`. Set `use_skip_list=false` to evaluate them anyway, e.g.
+when the package was requested explicitly.
 
 Returns a named tuple `(; package, version, status, reason, duration, log, ...)` with the
 same statuses and reasons as reported in the DataFrame returned by `evaluate`.
@@ -948,8 +952,9 @@ Refer to `evaluate_package`[@ref] and `sandboxed_julia`[@ref] for more possible 
 arguments.
 """
 function evaluate_job(config::Configuration, pkg::Package; use_cache::Bool=true,
-                      blacklist::Vector{String}=String[], kwargs...)
-    if pkg.name in skip_list && !(pkg.name in important_list)
+                      blacklist::Vector{String}=String[], use_skip_list::Bool=true,
+                      kwargs...)
+    if use_skip_list && pkg.name in skip_list && !(pkg.name in important_list)
         return (; package=pkg.name, version=missing, status=:skip, reason=:blacklisted,
                   duration=0.0, input_output=0, peak_rss=0, log=missing)
     end
@@ -1005,7 +1010,7 @@ end
 """
     evaluate(configs::Vector{Configuration}, [packages::Vector{Package}];
              ninstances=Sys.CPU_THREADS, retry::Bool=true, validate::Bool=true,
-             blacklist::Vector{String}, kwargs...)
+             blacklist::Vector{String}, use_skip_list::Bool=true, kwargs...)
 
 Evaluate `packages` using `configs`. If no packages are specified, default to evaluating all
 packages in the configured registry. The configurations can be specified as an array, or as
@@ -1018,13 +1023,16 @@ The `ninstances` keyword argument determines how many packages are evaluated in 
 
 By default, packages are evaluated by running their tests. If a package is part of the
 `blacklist`, testing is skipped and only installation and loadability is evaluated.
+Packages on the `skip` list in Packages.toml are not evaluated at all, unless
+`use_skip_list=false` is passed.
 
 Refer to `evaluate_package`[@ref] and `sandboxed_julia`[@ref] for more possible keyword
 arguments.
 """
 function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Package[];
                   ninstances::Integer=Sys.CPU_THREADS, retry::Bool=true,
-                  validate::Bool=true, blacklist::Vector{String}=String[], kwargs...)
+                  validate::Bool=true, blacklist::Vector{String}=String[],
+                  use_skip_list::Bool=true, kwargs...)
     result = DataFrame(configuration = String[],
                        package = String[],
                        version = Union{Missing,VersionNumber}[],
@@ -1109,7 +1117,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
         elseif endswith(job.package.name, "_jll")
             # JLLs we ignore completely; it's not useful to include them in the skip count
             return false
-        elseif job.package.name in skip_list
+        elseif use_skip_list && job.package.name in skip_list
             push!(skips, [job.config.name, job.package.name, missing,
                           :skip, :blacklisted, 0, 0, 0, missing])
             return false
@@ -1151,7 +1159,7 @@ function evaluate(configs::Vector{Configuration}, packages::Vector{Package}=Pack
                     running[i] = (; config=main_config, job.package, time=time())
                     (; log, status, reason, version, duration, input_output, peak_rss) =
                         evaluate_job(pinned_config, job.package; job.use_cache,
-                                     blacklist, kwargs...)
+                                     blacklist, use_skip_list, kwargs...)
 
                     if retry
                         # early retry: rerun crashes under rr to see if we can get a trace
